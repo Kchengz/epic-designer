@@ -1,19 +1,17 @@
 <template>
-    <a-form-item :label="record?.label" :rules="record?.rules" :name="record?.field">
-        <component :is="components[record?.component]" style="width: 100%;" v-model:value="k" @input="handleChange"
+    <a-form-item :label="record.label" :rules="record.rules" :name="record.field">
+        <component :is="component" style="width: 100%;" v-model:value="k" @input="handleChange"
             v-bind="componentProps" />
     </a-form-item>
 </template>
 <script lang="ts" setup>
 import { components } from '../config/component_use'
-import { defineEmits, ref } from 'vue'
+import { defineEmits, PropType, ref } from 'vue'
 
-enum comp {
-    "Input"
-}
+
 const props = defineProps({
     record: {
-        type: Object,
+        type: Object as any,
         require: true
     },
 })
@@ -21,7 +19,8 @@ const props = defineProps({
 const k = ref(null)
 const emit = defineEmits(['updateFormState'])
 const { record } = props
-const componentProps = record?.componentProps
+const component = components[record.component]
+const componentProps = record.componentProps
 
 
 function handleChange(e: any) {

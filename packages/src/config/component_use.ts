@@ -12,7 +12,7 @@ import {
   Upload,
 } from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
-export const components = {
+export const components: Record<string, any> = {
   Input,
   InputNumber,
   Radio,
