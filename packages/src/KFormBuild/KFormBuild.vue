@@ -2,16 +2,12 @@
     <a-form ref="form" :model="formState" v-bind="getFormBindValues" @finish="handleFinish">
         <KFormItem v-for="item,index in props.formSchema?.nodes"
             @updateFormState="handleUpdateFormState(item.field,$event)" :key="index" :record="item" />
-        <a-form-item>
-            <a-button type="primary" html-type="submit">Log in</a-button>
-        </a-form-item>
     </a-form>
-    <div @click="getData()">验证一下</div>
 </template>
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KFormItem from '../KFormItem/KFormItem.vue'
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, defineExpose, ref } from 'vue'
 const formState = reactive<any>({
 });
 const form = ref<any>(null)
@@ -63,4 +59,8 @@ function getData() {
     return form.value?.validateFields()
 
 }
+
+defineExpose({
+    getData
+})
 </script>
