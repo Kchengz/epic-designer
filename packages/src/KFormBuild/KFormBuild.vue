@@ -1,7 +1,7 @@
 <template>
     <a-form ref="form" :model="formState" v-bind="getFormBindValues" @finish="handleFinish">
-        <KFormItem v-for="item,index in props.formSchema?.nodes"
-            @updateFormState="handleUpdateFormState(item.field,$event)" :key="index" :record="item" />
+        <KFormItem v-for="item,index in props.formSchema?.nodes" v-model="formState[item.field]" :key="index"
+            :record="item" />
     </a-form>
 </template>
 <script lang="ts" setup>
@@ -42,17 +42,15 @@ const props = defineProps({
 
 
 const getFormBindValues = computed(() => {
-    return props.formSchema?.config
+    return {
+        ...props.formSchema?.config,
+    }
 })
 
 function handleFinish(e: any) {
     console.log(e, 332)
 }
 
-
-function handleUpdateFormState(field: string, value: any) {
-    formState[field] = value
-}
 
 function getData() {
     // validateFields

@@ -1,12 +1,12 @@
 <template>
     <a-form-item :label="record.label" :rules="record.rules" :name="record.field">
-        <component :is="component" style="width: 100%;" v-model:value="k" @input="handleChange"
+        <component :is="component" style="width: 100%;" :value="props.modelValue" @update:value="handleUpdate"
             v-bind="componentProps" />
     </a-form-item>
 </template>
 <script lang="ts" setup>
 import { components } from '../config/component_use'
-import { defineEmits, PropType, ref } from 'vue'
+import { defineEmits, ref } from 'vue'
 
 
 const props = defineProps({
@@ -14,18 +14,22 @@ const props = defineProps({
         type: Object as any,
         require: true
     },
+    modelValue: {}
 })
 
-const k = ref(null)
-const emit = defineEmits(['updateFormState'])
+console.log(props.modelValue)
+const itemValue = ref(null)
+const emit = defineEmits(['update:modelValue'])
 const { record } = props
+
 const component = components[record.component]
+
 const componentProps = record.componentProps
 
 
-function handleChange(e: any) {
+function handleUpdate(e: any) {
     // formState.input_1663731915815 = 123
-    emit('updateFormState', e.target.value)
+    emit('update:modelValue', e)
 
 }
 </script>
