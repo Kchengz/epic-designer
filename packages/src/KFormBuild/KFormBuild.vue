@@ -1,5 +1,5 @@
 <template>
-    <a-form ref="form" :model="formState" v-bind="getFormBindValues" @finish="handleFinish">
+    <a-form ref="form" :model="formState" v-bind="getFormBindValues">
         <KFormItem v-for="item,index in props.formSchema?.nodes" v-model="formState[item.field]" :key="index"
             :record="item" />
     </a-form>
@@ -8,8 +8,10 @@
 import type { PropType } from 'vue'
 import KFormItem from '../KFormItem/KFormItem.vue'
 import { computed, reactive, defineExpose, ref } from 'vue'
-const formState = reactive<any>({
+
+let formState = reactive<any>({
 });
+
 const form = ref<any>(null)
 
 interface FormItem {
@@ -47,9 +49,6 @@ const getFormBindValues = computed(() => {
     }
 })
 
-function handleFinish(e: any) {
-    console.log(e, 332)
-}
 
 
 function getData() {
@@ -58,7 +57,16 @@ function getData() {
 
 }
 
+function setData(data: object) {
+    // validateFields
+
+    Object.assign(formState,data)
+
+
+}
+
 defineExpose({
-    getData
+    getData,
+    setData
 })
 </script>

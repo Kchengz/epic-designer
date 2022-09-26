@@ -17,14 +17,14 @@ const props = defineProps({
     modelValue: {}
 })
 
-console.log(props.modelValue)
-const itemValue = ref(null)
+
 const emit = defineEmits(['update:modelValue'])
 const { record } = props
 
 const component = components[record.component]
 
 const componentProps = record.componentProps
+
 
 
 function handleUpdate(e: any) {

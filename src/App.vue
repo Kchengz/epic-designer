@@ -1,11 +1,20 @@
 <template>
   <div>
-    <KFormBuild :formSchema="formSchema" />
+    <KFormBuild ref="kfb" :formSchema="formSchema" />
   </div>
 
 </template>
 
 <script lang="ts" setup>
+import { ref, nextTick } from 'vue'
+const kfb = ref(null)
+nextTick(() => {
+  console.log(kfb.value)
+  kfb.value?.setData({
+    input_1663731915815: 1212
+  })
+})
+
 const formSchema = {
   "nodes": [
     {
@@ -42,4 +51,6 @@ const formSchema = {
     "customStyle": ""
   }
 }
+
+
 </script>
