@@ -8,6 +8,7 @@
 import type { PropType } from 'vue'
 import KFormItem from '../KFormItem/KFormItem.vue'
 import { computed, reactive, defineExpose, ref } from 'vue'
+import { rejects } from 'assert';
 
 let formState = reactive<any>({
 });
@@ -53,14 +54,20 @@ const getFormBindValues = computed(() => {
 
 function getData() {
     // validateFields
-    return form.value?.validateFields()
+    return new Promise(async (resolve, rejects) => {
+        try {
+            await form.value?.validateFields()
+            resolve(formState)
+        } catch (error) {
+            rejects(error)
+        }
+    })
 
 }
 
 function setData(data: object) {
     // validateFields
-
-    Object.assign(formState,data)
+    Object.assign(formState, data)
 
 
 }

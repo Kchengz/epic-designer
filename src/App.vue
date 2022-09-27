@@ -10,9 +10,9 @@ import { ref, nextTick } from 'vue'
 const kfb = ref(null)
 nextTick(() => {
   console.log(kfb.value)
-  kfb.value?.setData({
-    input_1663731915815: 1212
-  })
+  // kfb.value?.setData({
+  //   input_1663731915815: 1212
+  // })
 })
 
 const formSchema = {
