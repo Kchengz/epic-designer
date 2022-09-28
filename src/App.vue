@@ -1,6 +1,14 @@
 <template>
   <div>
-    <KFormBuild ref="kfb" :formSchema="formSchema" />
+    <KFormBuild ref="kfb" :formSchema="formSchema">
+      <template #sdf="{model,record}">
+        <span>{{model}}
+          {{record.field}}
+          <input v-model="model[record.field]" />
+        </span>
+      </template>
+    </KFormBuild>
+    
   </div>
 
 </template>
@@ -18,9 +26,10 @@ nextTick(() => {
 const formSchema = {
   "nodes": [
     {
-      "field": "input_1663731915815",
+      "field": "input_166373191",
       "component": "Input",
       "label": "输入框22",
+      slot: 'sdf',
       "componentProps": {
         "defaultValue": "",
         "placeholder": "请输入",

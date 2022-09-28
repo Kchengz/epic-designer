@@ -1,14 +1,17 @@
 <template>
     <a-form ref="form" :model="formState" v-bind="getFormBindValues">
-        <KFormItem v-for="item,index in props.formSchema?.nodes" v-model="formState[item.field]" :key="index"
-            :record="item" />
+        <KFormItem v-for="item,index in props.formSchema?.nodes" v-model="formState[item.field]" :model="formState" :key="index"
+            :record="item">
+            <template v-if="item.slot" #[getSlotName(item.slot)]="data">
+                <slot :name="item.slot" v-bind="data || {}"></slot>
+            </template>
+        </KFormItem>
     </a-form>
 </template>
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KFormItem from '../KFormItem/KFormItem.vue'
 import { computed, reactive, defineExpose, ref } from 'vue'
-import { rejects } from 'assert';
 
 let formState = reactive<any>({
 });
@@ -18,6 +21,7 @@ const form = ref<any>(null)
 interface FormItem {
     label: string;
     field: string;
+    slot?: string;
     component: string;
     componentProps: any;
     key: string
@@ -68,8 +72,10 @@ function getData() {
 function setData(data: object) {
     // validateFields
     Object.assign(formState, data)
+}
 
-
+function getSlotName(slot?: string): string {
+    return slot || ''
 }
 
 defineExpose({

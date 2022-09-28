@@ -1,7 +1,9 @@
 <template>
     <a-form-item :label="record.label" :rules="record.rules" :name="record.field">
-        <component :is="component" style="width: 100%;" :value="props.modelValue" @update:value="handleUpdate"
-            v-bind="componentProps" />
+        <slot :name="record.slot" :value="props.modelValue" :model="props.model" :record="record">
+            <component :is="component" style="width: 100%;" :value="props.modelValue" @update:value="handleUpdate"
+                v-bind="componentProps" />
+        </slot>
     </a-form-item>
 </template>
 <script lang="ts" setup>
@@ -13,6 +15,9 @@ const props = defineProps({
     record: {
         type: Object as any,
         require: true
+    },
+    model: {
+        type: Object as any,
     },
     modelValue: {}
 })
