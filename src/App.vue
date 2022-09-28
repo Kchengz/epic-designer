@@ -31,7 +31,7 @@ const formSchema = {
       "label": "输入框22",
       slot: 'sdf',
       "componentProps": {
-        "defaultValue": "",
+        "defaultValue": "22",
         "placeholder": "请输入",
       },
       "rules": [
