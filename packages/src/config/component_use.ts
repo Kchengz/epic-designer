@@ -9,7 +9,6 @@ import {
   Cascader,
   Transfer,
   TreeSelect,
-  Upload,
 } from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 export const components: Record<string, any> = {
@@ -23,5 +22,4 @@ export const components: Record<string, any> = {
   Cascader,
   Transfer,
   TreeSelect,
-  Upload,
 };

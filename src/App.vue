@@ -28,8 +28,9 @@ const formSchema = {
     {
       "field": "input_166373191",
       "component": "Input",
-      "label": "输入框22",
+      "label": "输入框sd水电费",
       slot: 'sdf',
+      labelCol:{span:3},
       "componentProps": {
         "defaultValue": "22",
         "placeholder": "请输入",

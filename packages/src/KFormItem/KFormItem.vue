@@ -1,5 +1,5 @@
 <template>
-    <a-form-item :label="record.label" :rules="record.rules" :name="record.field">
+    <a-form-item v-bind="record" :name="record.field">
         <slot :name="record.slot" :value="props.modelValue" :model="props.model" :record="record">
             <component :is="component" style="width: 100%;" v-model:value="props.model[record.field]"
                 v-bind="componentProps" />
