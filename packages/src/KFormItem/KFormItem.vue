@@ -1,15 +1,16 @@
 <template>
-    <a-form-item v-bind="record" :name="record.field">
+    <FormItem v-bind="record" :name="record.field">
         <slot :name="record.slot" :value="props.modelValue" :model="props.model" :record="record">
             <component :is="component" style="width: 100%;" v-model:value="props.model[record.field]"
                 v-bind="componentProps" />
         </slot>
-    </a-form-item>
+    </FormItem>
 </template>
 <script lang="ts" setup>
 import { defineEmits, onMounted, ref } from 'vue'
 import { pluginManager } from '../core/PluginManager'
 
+const FormItem = pluginManager.getComponent('FormItem');
 
 const props = defineProps({
     record: {

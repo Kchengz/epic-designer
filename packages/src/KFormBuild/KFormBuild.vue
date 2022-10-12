@@ -1,17 +1,19 @@
 <template>
-    <a-form ref="form" :model="formState" v-bind="getFormBindValues">
+    <Form ref="form" :model="formState" v-bind="getFormBindValues">
         <KFormItem v-for="item,index in props.formSchema?.nodes" v-model="formState[item.field]" :model="formState" :key="index"
             :record="item">
             <template v-if="item.slot" #[getSlotName(item.slot)]="data">
                 <slot :name="item.slot" v-bind="data || {}"></slot>
             </template>
         </KFormItem>
-    </a-form>
+    </Form>
 </template>
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KFormItem from '../KFormItem/KFormItem.vue'
 import { computed, reactive, defineExpose, ref } from 'vue'
+import { pluginManager } from '../core/PluginManager'
+
 
 export interface FormItem {
     label: string;
@@ -40,6 +42,7 @@ export interface FormSchema {
     config: FormConfig
 }
 
+const Form = pluginManager.getComponent('Form');
 
 let formState = reactive<any>({
 });
