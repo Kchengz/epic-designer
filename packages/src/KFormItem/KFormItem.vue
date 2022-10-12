@@ -7,8 +7,8 @@
     </a-form-item>
 </template>
 <script lang="ts" setup>
-import { components } from '../config/component_use'
 import { defineEmits, onMounted, ref } from 'vue'
+import { pluginManager } from '../core/PluginManager'
 
 
 const props = defineProps({
@@ -21,14 +21,16 @@ const props = defineProps({
     },
     modelValue: {}
 })
-
-
 const emit = defineEmits(['update:modelValue'])
+
+
+
 const { record } = props
-
-const component = components[record.component]
-
 const componentProps = record.componentProps
+
+// 获取已存在的组件
+const components = pluginManager.getComponents()
+const component = components[record.component]
 
 
 /**

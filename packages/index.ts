@@ -1,6 +1,6 @@
 import KFormBuild from "./src/KFormBuild/KFormBuild.vue";
 import { App } from "vue";
-
+export { pluginManager } from "./src/core/PluginManager";
 export { KFormBuild };
 
 const components = [KFormBuild];
@@ -11,8 +11,10 @@ const KFormDesign = {
     components.forEach((comp) => {
       app.component(comp.__name!, comp);
     });
-    // components.forEach( => )
   },
 };
+
+
+
 
 export default KFormDesign;

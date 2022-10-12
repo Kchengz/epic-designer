@@ -13,32 +13,39 @@ import type { PropType } from 'vue'
 import KFormItem from '../KFormItem/KFormItem.vue'
 import { computed, reactive, defineExpose, ref } from 'vue'
 
-let formState = reactive<any>({
-});
-
-const form = ref<any>(null)
-
-interface FormItem {
+export interface FormItem {
     label: string;
     field: string;
     slot?: string;
     component: string;
     componentProps: any;
-    key: string
+    key?: string;
+    rules?: any;
+    labelCol?: any;
+    wrapperCol?: any;
 }
 
-interface FormConfig {
-    layout: string;
-    labelWidth: string;
+export interface FormConfig {
+    layout?: string;
+    labelWidth?: string;
     labelLayout: any;
-    labelCol: string;
-    wrapperCol: string;
+    labelCol: any;
+    wrapperCol: any;
+    hideRequiredMark?: boolean;
+    customStyle?: string;
 }
 
-interface FormSchema {
+export interface FormSchema {
     nodes: FormItem[]
     config: FormConfig
 }
+
+
+let formState = reactive<any>({
+});
+
+const form = ref<any>(null)
+
 
 
 const props = defineProps({
@@ -77,6 +84,7 @@ function setData(data: object) {
 function getSlotName(slot?: string): string {
     return slot || ''
 }
+
 
 defineExpose({
     getData,
