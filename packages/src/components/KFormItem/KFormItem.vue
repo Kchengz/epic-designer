@@ -7,8 +7,8 @@
     </FormItem>
 </template>
 <script lang="ts" setup>
-import { defineEmits, onMounted, ref } from 'vue'
-import { pluginManager } from '../core/PluginManager'
+import { onMounted, ref } from 'vue'
+import { pluginManager } from '../../core/PluginManager'
 
 const FormItem = pluginManager.getComponent('FormItem');
 

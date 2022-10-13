@@ -16,36 +16,8 @@
 <script lang="ts" setup>
 import { ref, nextTick } from 'vue'
 import { KFormBuild } from '../packages';
-import { FormSchema } from '../packages/src/KFormBuild/KFormBuild.vue';
-import { pluginManager } from "../packages/index";
+import { FormSchema } from '../packages/src/components/KFormBuild/KFormBuild.vue';
 
-import {
-  Input,
-  InputNumber,
-  Radio,
-  Checkbox,
-  Select,
-  TimePicker,
-  DatePicker,
-  Cascader,
-  Transfer,
-  Form,
-  FormItem
-} from "ant-design-vue";
-
-import "ant-design-vue/dist/antd.css";
-
-pluginManager.addComponent("Input", Input);
-pluginManager.addComponent("InputNumber", InputNumber);
-pluginManager.addComponent("Radio", Radio);
-pluginManager.addComponent("Checkbox", Checkbox);
-pluginManager.addComponent("Select", Select);
-pluginManager.addComponent("TimePicker", TimePicker);
-pluginManager.addComponent("DatePicker", DatePicker);
-pluginManager.addComponent("Cascader", Cascader);
-pluginManager.addComponent("Transfer", Transfer);
-
-pluginManager.useAntd({ Form, FormItem });
 
 const kfb = ref(null)
 nextTick(() => {

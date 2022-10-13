@@ -2,15 +2,16 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 
-// ant-design-vue 按需加载配置
-// import Components from "unplugin-vue-components/vite";
-// import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "examples"),
+    },
+  },
   build: {
     outDir: "lib", //输出文件名称
     lib: {

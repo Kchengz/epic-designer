@@ -1,6 +1,7 @@
 class PluginManager {
   components: Record<string, any> = {};
 
+  constructor() {}
   /**
    * 添加组件到插件管理器中
    * @param componentName 组件名称
@@ -26,17 +27,7 @@ class PluginManager {
     return this.components[name];
   }
 
-  /**
-   * 加载antd UI
-   * @param antd antd ui
-   */
-  useAntd(antd: any) {
-    const { Form, FormItem } = antd;
-    this.addComponent("Form", Form);
-    this.addComponent("FormItem", FormItem);
-  }
+
 }
 
-const pm = new PluginManager();
-
-export const pluginManager = pm;
+export const pluginManager = new PluginManager();

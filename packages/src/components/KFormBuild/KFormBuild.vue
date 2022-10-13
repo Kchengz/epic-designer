@@ -11,8 +11,8 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KFormItem from '../KFormItem/KFormItem.vue'
-import { computed, reactive, defineExpose, ref } from 'vue'
-import { pluginManager } from '../core/PluginManager'
+import { computed, reactive, ref } from 'vue'
+import { pluginManager } from '../../core/PluginManager'
 
 
 export interface FormItem {

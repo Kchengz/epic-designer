@@ -1,4 +1,4 @@
-import KFormBuild from "./src/KFormBuild/KFormBuild.vue";
+import KFormBuild from "./src/components/KFormBuild/KFormBuild.vue";
 import { App } from "vue";
 export { pluginManager } from "./src/core/PluginManager";
 export { KFormBuild };
@@ -13,8 +13,5 @@ const KFormDesign = {
     });
   },
 };
-
-
-
 
 export default KFormDesign;
