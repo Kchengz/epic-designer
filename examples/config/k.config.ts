@@ -12,20 +12,12 @@ import {
 } from "ant-design-vue";
 
 import "../../packages/init";
+console.log(InputNumber)
 
 pluginManager.addComponent("Input", async () => {
-  // console.log((await import("ant-design-vue"))["Input"]);
-  // console.log(
-  //   Promise.resolve((await import("ant-design-vue"))["Input"]).then((res) =>
-  //     console.log(res)
-  //   )
-  // );
-  import("./test.vue").then(res=>{
-    console.log(res)
-  })
-  console.log(Input)
-  return Input
+  return (await import("ant-design-vue"))["Input"]
 });
+pluginManager.addComponent("Input", Input);
 // pluginManager.addComponent("InputNumber", InputNumber);
 // pluginManager.addComponent("Radio", Radio);
 // pluginManager.addComponent("Checkbox", Checkbox);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <KFormBuild ref="kfb" :formSchema="formSchema">
+    <KFormBuild v-if="loading" ref="kfb" :formSchema="formSchema">
       <template #sdf="{model,record}">
         <span>{{model}}
           {{record.field}}
@@ -20,18 +20,16 @@ import { FormSchema } from '../packages/src/components/KFormBuild/KFormBuild.vue
 
 
 const kfb = ref(null)
-nextTick(() => {
-  console.log(kfb.value)
-  // kfb.value?.setData({
-  //   input_1663731915815: 1212
-  // })
-})
+const loading = ref(false)
 
+setTimeout(() => {
+  loading.value = true
+}, 1000);
 const formSchema: FormSchema = {
   "nodes": [
     {
       "field": "input_166373191",
-      "component": "Input",
+      "component": "Test",
       "label": "输入框sd水电费",
       "componentProps": {
         "defaultValue": "22",
