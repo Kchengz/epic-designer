@@ -1,8 +1,7 @@
 <template>
     <FormItem v-bind="record" :name="record.field">
         <slot :name="record.slot" :value="props.modelValue" :model="props.model" :record="record">
-            <component :is="component" style="width: 100%;" v-model:value="props.model[record.field]"
-                v-bind="componentProps" />
+            <component v-bind="componentProps" />
         </slot>
     </FormItem>
 </template>
@@ -22,24 +21,30 @@ const props = defineProps({
     },
     modelValue: {}
 })
-const emit = defineEmits(['update:modelValue'])
-
-
 
 const { record } = props
-const componentProps = record.componentProps
 
 // 获取已存在的组件
 const components = pluginManager.getComponents()
 const component = components[record.component]
 
+const emit = defineEmits([`update:modelValue`])
+
+// 获取组件props
+const componentProps = {
+    ...record.componentProps,
+    is: component,
+    style: "width: 100%;",
+    [component.bindModel]: props.modelValue,
+    [`onUpdate:${component.bindModel}`]: handleUpdate
+}
 
 /**
  * 通过函数更新值
+ * @param v value值
  */
-function handleUpdate(e: any) {
-    emit('update:modelValue', e)
-
+function handleUpdate(v: any) {
+    emit(`update:modelValue`, v)
 }
 
 onMounted(() => {

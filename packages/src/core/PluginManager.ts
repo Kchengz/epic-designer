@@ -7,7 +7,10 @@ class PluginManager {
    * @param componentName 组件名称
    * @param component 组件
    */
-  addComponent(componentName: string, component: any) {
+  addComponent(componentName: string, component: any, bindModel: string = 'value') {
+    // v-model 绑定的属性名,兼容不同ui差异
+    component.bindModel = bindModel
+    // 添加组件
     this.components[componentName] = component;
   }
 
@@ -26,7 +29,6 @@ class PluginManager {
   getComponent(name: string) {
     return this.components[name];
   }
-
 
 }
 
