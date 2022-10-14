@@ -29,6 +29,7 @@ const formSchema: FormSchema = {
   "nodes": [
     {
       "field": "input_1663731915815",
+      noInput: true,
       "component": "Test",
       "label": "输入框sd水电费",
       "componentProps": {
@@ -42,6 +43,7 @@ const formSchema: FormSchema = {
         {
           "field": "input_1663731915815",
           "component": "Input",
+          slot: 'sdf',
           "label": "输入框222352",
           "componentProps": {
             "defaultValue": "",
@@ -50,6 +52,19 @@ const formSchema: FormSchema = {
           "rules": [
             { required: true, message: 'Please input your username!' }
           ]
+        },
+        {
+          "field": "input_1663731915815",
+          noInput: true,
+          "component": "Test",
+          "label": "输入框sd水电费",
+          "componentProps": {
+            "defaultValue": "222222",
+            "placeholder": "请输入",
+          },
+          "rules": [
+            { required: true, message: 'Please input your username!' }
+          ],
         },
       ]
     },

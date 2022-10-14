@@ -1,6 +1,6 @@
 <template>
     <FormItem v-if="component && !record.noInput" v-bind="record" :name="record.field">
-        <slot :name="record.slot" v-bind="componentProps">
+        <slot :name="record.slot" v-bind="componentProps" :model="formData">
             <component v-bind="{...componentProps,[componentProps.bindModel]:formData[record.field]}">
                 <!-- 递归组件 start -->
                 <template #node="data">
@@ -16,7 +16,6 @@
         <component v-bind="componentProps">
             <!-- 递归组件 start -->
             <template #node="data">
-                {{data}}
                 <KNode v-bind="data" />
             </template>
             <!-- 递归组件 end -->
@@ -26,10 +25,13 @@
 
 </template>
 <script lang="ts" setup>
-import { shallowRef, inject } from 'vue'
+import { shallowRef, inject,Slots } from 'vue'
 import { pluginManager } from '../../core/PluginManager'
 
 let formData: any = inject('formData')
+let slots = inject('slots') as Slots
+
+console.log(slots.sdf)
 
 const { component: FormItem } = pluginManager.getComponent('FormItem');
 

@@ -11,16 +11,14 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KNode from '../KNode/KNode.vue'
-import { computed, reactive, provide, ref } from 'vue'
+import { computed, reactive, provide, ref, useSlots } from 'vue'
 import { pluginManager } from '../../core/PluginManager'
-import { useFormData } from '../../core/FormState'
-
 
 export interface FormItem {
     label: string;
     field: string;
     slot?: string;
-    component: string;
+    component?: string;
     componentProps: any;
     key?: string;
     rules?: any;
@@ -48,9 +46,11 @@ export interface FormSchema {
 
 const { component: Form } = pluginManager.getComponent('Form');
 
-let formData = useFormData()
+const formData = reactive<any>({});
+const slots = useSlots()
 
 provide('formData',formData)
+provide('slots',slots)
 
 const form = ref<any>(null)
 
