@@ -25,13 +25,54 @@ const formSchema: FormSchema = {
     {
       "field": "input_166373191",
       "component": "Test",
-      "label": "输入框sd水电费",
+      "label": "我是父组件",
       "componentProps": {
         "defaultValue": "22",
         "placeholder": "请输入",
       },
+      noInput: true,
       "rules": [
         { required: true, message: 'Please input your username!' }
+      ],
+      children: [
+        {
+          "field": "input_166373191",
+          "component": "Input",
+          "label": "我是嵌套组件",
+          "componentProps": {
+            "defaultValue": "22",
+            "placeholder": "请输入",
+          },
+          "rules": [
+            { required: true, message: 'Please input your username!' }
+          ]
+        },
+        
+        {
+          "field": "input_166373191",
+          "component": "Input",
+          "label": "我是嵌套组件",
+          "componentProps": {
+            "defaultValue": "22",
+            "placeholder": "请输入",
+          },
+          "rules": [
+            { required: true, message: 'Please input your username!' }
+          ]
+        },
+        {
+          "field": "input_166373191",
+          "component": "Test",
+          "label": "我是父组件",
+          "componentProps": {
+            "defaultValue": "22",
+            "placeholder": "请输入",
+          },
+          noInput: true,
+          "rules": [
+            { required: true, message: 'Please input your username!' }
+          ],
+        }
       ]
     },
     {
@@ -48,19 +89,7 @@ const formSchema: FormSchema = {
     },
     {
       "field": "input_1663731915815",
-      "component": "Select",
-      "label": "输入框222352",
-      "componentProps": {
-        "defaultValue": "",
-        "placeholder": "请输入",
-      },
-      "rules": [
-        { required: true, message: 'Please input your username!' }
-      ]
-    },
-    {
-      "field": "input_1663731915815",
-      "component": "Checkbox",
+      "component": "Input",
       "label": "输入框222352",
       "componentProps": {
         "defaultValue": "",

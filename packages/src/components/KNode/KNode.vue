@@ -1,9 +1,29 @@
 <template>
-    <FormItem v-bind="record" v-if="component" :name="record.field">
-        <slot :name="record.slot" :value="props.modelValue" :model="props.model" :record="record">
-            <component v-bind="componentProps" />
+    <FormItem v-if="component && !record.noInput" v-bind="record" :name="record.field">
+        <slot :name="record.slot" v-bind="componentProps">
+            <component v-bind="componentProps">
+                <!-- 递归组件 start -->
+                <template #node="data">
+                    <KNode v-bind="data" />
+                </template>
+                <!-- 递归组件 end -->
+            </component>
         </slot>
     </FormItem>
+
+    <!-- 无需FormItem start -->
+    <slot v-else-if="component" :name="record.slot" v-bind="componentProps">
+        <component v-bind="componentProps" :model="props.model">
+            <!-- 递归组件 start -->
+            <template #node="data">
+                {{data}}
+                <KNode v-bind="data" />
+            </template>
+            <!-- 递归组件 end -->
+        </component>
+    </slot>
+    <!-- 无需FormItem end -->
+
 </template>
 <script lang="ts" setup>
 import { onMounted, shallowRef } from 'vue'
@@ -19,7 +39,9 @@ const props = defineProps({
     model: {
         type: Object as any,
     },
-    modelValue: {}
+    modelValue: {
+
+    }
 })
 const emit = defineEmits([`update:modelValue`])
 
@@ -36,7 +58,15 @@ let componentProps = shallowRef<any>(null)
  * 初始化组件
  */
 async function initComponent() {
-    console.time()
+    if (record.slot) {
+        componentProps.value = {
+            record: record,
+            ...record.componentProps,
+            style: "width: 100%;",
+        }
+        return false
+    }
+
     const { bindModel, component: cmp } = componentInfo
     // 如果数据项为函数，则判定为懒加载组件
     if (typeof cmp === 'function') {
@@ -49,9 +79,9 @@ async function initComponent() {
         component.value = cmp
     }
 
-    
     // 获取组件props数据
     componentProps.value = {
+        record: record,
         ...record.componentProps,
         is: component,
         style: "width: 100%;",
@@ -59,7 +89,6 @@ async function initComponent() {
         [`onUpdate:${bindModel}`]: handleUpdate
     }
 
-    console.timeEnd()
 
 }
 
@@ -69,6 +98,9 @@ async function initComponent() {
  * @param v value值
  */
 function handleUpdate(v: any) {
+    console.log(v)
+    console.log(props.model)
+    // props.model[record.field] = v
     emit(`update:modelValue`, v)
 }
 

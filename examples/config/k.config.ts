@@ -1,9 +1,22 @@
 import { pluginManager } from "../../packages/index";
 
 import "../../packages/init";
-pluginManager.addComponent("Input", () => import("ant-design-vue/lib/input"));
-pluginManager.addComponent("Select", () => import("ant-design-vue/lib/select"));
-pluginManager.addComponent("Checkbox", () => import("ant-design-vue/lib/checkbox"));
+
+pluginManager.addComponent(
+  "Input",
+  () => import("ant-design-vue/lib/input"),
+  "value"
+);
+pluginManager.addComponent(
+  "Select",
+  () => import("ant-design-vue/lib/select"),
+  "value"
+);
+pluginManager.addComponent(
+  "Checkbox",
+  () => import("ant-design-vue/lib/checkbox"),
+  "value"
+);
 
 // pluginManager.addComponent("Input", Input);
 // pluginManager.addComponent("InputNumber", InputNumber);
