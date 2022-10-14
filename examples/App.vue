@@ -8,6 +8,7 @@
         </span>
       </template>
     </KFormBuild>
+
   </div>
 
 </template>
@@ -19,72 +20,37 @@ import { FormSchema } from '../packages/src/components/KFormBuild/KFormBuild.vue
 
 
 const kfb = ref(null)
+nextTick(() => {
+  console.log(kfb.value)
+})
+
 
 const formSchema: FormSchema = {
   "nodes": [
     {
-      "field": "input_166373191",
+      "field": "input_1663731915815",
       "component": "Test",
-      "label": "我是父组件",
+      "label": "输入框sd水电费",
       "componentProps": {
-        "defaultValue": "22",
+        "defaultValue": "222222",
         "placeholder": "请输入",
       },
-      noInput: true,
       "rules": [
         { required: true, message: 'Please input your username!' }
       ],
       children: [
         {
-          "field": "input_166373191",
+          "field": "input_1663731915815",
           "component": "Input",
-          "label": "我是嵌套组件",
+          "label": "输入框222352",
           "componentProps": {
-            "defaultValue": "22",
+            "defaultValue": "",
             "placeholder": "请输入",
           },
           "rules": [
             { required: true, message: 'Please input your username!' }
           ]
         },
-        
-        {
-          "field": "input_166373191",
-          "component": "Input",
-          "label": "我是嵌套组件",
-          "componentProps": {
-            "defaultValue": "22",
-            "placeholder": "请输入",
-          },
-          "rules": [
-            { required: true, message: 'Please input your username!' }
-          ]
-        },
-        {
-          "field": "input_166373191",
-          "component": "Test",
-          "label": "我是父组件",
-          "componentProps": {
-            "defaultValue": "22",
-            "placeholder": "请输入",
-          },
-          noInput: true,
-          "rules": [
-            { required: true, message: 'Please input your username!' }
-          ],
-        }
-      ]
-    },
-    {
-      "field": "input_1663731915815",
-      "component": "Input",
-      "label": "输入框222352",
-      "componentProps": {
-        "defaultValue": "",
-        "placeholder": "请输入",
-      },
-      "rules": [
-        { required: true, message: 'Please input your username!' }
       ]
     },
     {

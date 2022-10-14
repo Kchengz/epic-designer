@@ -27,8 +27,6 @@ class PluginManager {
       component,
       bindModel,
     };
-
-    console.log(this.components)
   }
 
   /**

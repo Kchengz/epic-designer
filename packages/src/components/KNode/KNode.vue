@@ -1,7 +1,7 @@
 <template>
     <FormItem v-if="component && !record.noInput" v-bind="record" :name="record.field">
         <slot :name="record.slot" v-bind="componentProps">
-            <component v-bind="componentProps">
+            <component v-bind="{...componentProps,[componentProps.bindModel]:formData[record.field]}">
                 <!-- 递归组件 start -->
                 <template #node="data">
                     <KNode v-bind="data" />
@@ -13,7 +13,7 @@
 
     <!-- 无需FormItem start -->
     <slot v-else-if="component" :name="record.slot" v-bind="componentProps">
-        <component v-bind="componentProps" :model="props.model">
+        <component v-bind="componentProps">
             <!-- 递归组件 start -->
             <template #node="data">
                 {{data}}
@@ -26,8 +26,10 @@
 
 </template>
 <script lang="ts" setup>
-import { onMounted, shallowRef } from 'vue'
+import { shallowRef, inject } from 'vue'
 import { pluginManager } from '../../core/PluginManager'
+
+let formData: any = inject('formData')
 
 const { component: FormItem } = pluginManager.getComponent('FormItem');
 
@@ -36,14 +38,7 @@ const props = defineProps({
         type: Object as any,
         require: true
     },
-    model: {
-        type: Object as any,
-    },
-    modelValue: {
-
-    }
 })
-const emit = defineEmits([`update:modelValue`])
 
 const { record } = props
 
@@ -53,30 +48,24 @@ const componentInfo = pluginManager.getComponent(record.component)
 let component = shallowRef<any>(null)
 let componentProps = shallowRef<any>(null)
 
-
 /**
  * 初始化组件
  */
 async function initComponent() {
-    if (record.slot) {
-        componentProps.value = {
-            record: record,
-            ...record.componentProps,
-            style: "width: 100%;",
-        }
-        return false
-    }
 
     const { bindModel, component: cmp } = componentInfo
     // 如果数据项为函数，则判定为懒加载组件
     if (typeof cmp === 'function') {
         const res = await cmp()
         component.value = res.default ?? res
-        console.log(component.value)
-
     } else {
         // 否则为预加载组件
         component.value = cmp
+    }
+
+    // 如果存在默认值，则会在初始化之后赋值
+    if (record.componentProps.defaultValue) {
+        handleUpdate(componentProps.defaultValue)
     }
 
     // 获取组件props数据
@@ -85,10 +74,9 @@ async function initComponent() {
         ...record.componentProps,
         is: component,
         style: "width: 100%;",
-        [bindModel]: props.modelValue,
+        bindModel,
         [`onUpdate:${bindModel}`]: handleUpdate
     }
-
 
 }
 
@@ -98,18 +86,9 @@ async function initComponent() {
  * @param v value值
  */
 function handleUpdate(v: any) {
-    console.log(v)
-    console.log(props.model)
-    // props.model[record.field] = v
-    emit(`update:modelValue`, v)
+    formData[record.field] = v
 }
 
-onMounted(() => {
-    // 如果存在默认值，则会在初始化之后赋值
-    if (componentProps.defaultValue) {
-        handleUpdate(componentProps.defaultValue)
-    }
-})
 
 initComponent()
 
