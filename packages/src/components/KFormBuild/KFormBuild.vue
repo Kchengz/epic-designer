@@ -42,7 +42,7 @@ export interface FormSchema {
     config: FormConfig
 }
 
-const Form = pluginManager.getComponent('Form');
+const { component: Form } = pluginManager.getComponent('Form');
 
 let formState = reactive<any>({
 });

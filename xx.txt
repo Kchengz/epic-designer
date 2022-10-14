@@ -9,7 +9,7 @@
 import { onMounted, shallowRef } from 'vue'
 import { pluginManager } from '../../core/PluginManager'
 
-const { component: FormItem } = pluginManager.getComponent('FormItem');
+const FormItem = pluginManager.getComponent('FormItem');
 
 const props = defineProps({
     record: {
@@ -24,6 +24,7 @@ const props = defineProps({
 const emit = defineEmits([`update:modelValue`])
 
 const { record } = props
+console.log(12312)
 
 // 获取的组件
 const componentInfo = pluginManager.getComponent(record.component)
@@ -41,9 +42,7 @@ async function initComponent() {
     // 如果数据项为函数，则判定为懒加载组件
     if (typeof cmp === 'function') {
         const res = await cmp()
-        component.value = res.default ?? res
-        console.log(component.value)
-
+        component.value = res['default']
     } else {
         // 否则为预加载组件
         component.value = cmp

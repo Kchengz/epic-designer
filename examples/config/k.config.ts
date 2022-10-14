@@ -1,23 +1,11 @@
 import { pluginManager } from "../../packages/index";
-import {
-  Input,
-  InputNumber,
-  Radio,
-  Checkbox,
-  Select,
-  TimePicker,
-  DatePicker,
-  Cascader,
-  Transfer,
-} from "ant-design-vue";
 
 import "../../packages/init";
-console.log(InputNumber)
+pluginManager.addComponent("Input", () => import("ant-design-vue/lib/input"));
+pluginManager.addComponent("Select", () => import("ant-design-vue/lib/select"));
+pluginManager.addComponent("Checkbox", () => import("ant-design-vue/lib/checkbox"));
 
-pluginManager.addComponent("Input", async () => {
-  return (await import("ant-design-vue"))["Input"]
-});
-pluginManager.addComponent("Input", Input);
+// pluginManager.addComponent("Input", Input);
 // pluginManager.addComponent("InputNumber", InputNumber);
 // pluginManager.addComponent("Radio", Radio);
 // pluginManager.addComponent("Checkbox", Checkbox);

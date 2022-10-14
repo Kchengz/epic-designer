@@ -1,6 +1,6 @@
 <template>
   <div>
-    <KFormBuild v-if="loading" ref="kfb" :formSchema="formSchema">
+    <KFormBuild ref="kfb" :formSchema="formSchema">
       <template #sdf="{model,record}">
         <span>{{model}}
           {{record.field}}
@@ -8,7 +8,6 @@
         </span>
       </template>
     </KFormBuild>
-
   </div>
 
 </template>
@@ -20,11 +19,7 @@ import { FormSchema } from '../packages/src/components/KFormBuild/KFormBuild.vue
 
 
 const kfb = ref(null)
-const loading = ref(false)
 
-setTimeout(() => {
-  loading.value = true
-}, 1000);
 const formSchema: FormSchema = {
   "nodes": [
     {
@@ -42,6 +37,30 @@ const formSchema: FormSchema = {
     {
       "field": "input_1663731915815",
       "component": "Input",
+      "label": "输入框222352",
+      "componentProps": {
+        "defaultValue": "",
+        "placeholder": "请输入",
+      },
+      "rules": [
+        { required: true, message: 'Please input your username!' }
+      ]
+    },
+    {
+      "field": "input_1663731915815",
+      "component": "Select",
+      "label": "输入框222352",
+      "componentProps": {
+        "defaultValue": "",
+        "placeholder": "请输入",
+      },
+      "rules": [
+        { required: true, message: 'Please input your username!' }
+      ]
+    },
+    {
+      "field": "input_1663731915815",
+      "component": "Checkbox",
       "label": "输入框222352",
       "componentProps": {
         "defaultValue": "",
