@@ -1,10 +1,7 @@
-import { pluginManager } from './src/core/PluginManager';
+import { pluginManager } from "./src/core/PluginManager";
 
-import {
-    Form,
-    FormItem
-  } from "ant-design-vue";
+import Form from "ant-design-vue/lib/form";
+import FormItem from "ant-design-vue/lib/form/FormItem";
 
-  
 pluginManager.addComponent("Form", Form);
 pluginManager.addComponent("FormItem", FormItem);
