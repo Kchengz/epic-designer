@@ -1,11 +1,13 @@
 <template>
   <div>
     <KFormBuild ref="kfb" :formSchema="formSchema">
-      <template #sdf="{model,record}">
-        <span>{{model}}
-          {{record.field}}
-          <input v-model="model[record.field]" />
-        </span>
+      <template #sdff="data">
+        <div>
+          {{ data.updateValue }}
+          {{ data.value }}
+          {{ data }}
+          <input @input="e => data.updateValue(e.target.value)" />
+        </div>
       </template>
     </KFormBuild>
 
@@ -14,12 +16,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, nextTick } from 'vue'
+import { ref, nextTick } from 'vue';
 import { KFormBuild } from '../packages';
 import { FormSchema } from '../packages/src/components/KFormBuild/KFormBuild.vue';
 
 
 const kfb = ref(null)
+
 nextTick(() => {
   console.log(kfb.value)
 })
@@ -43,7 +46,7 @@ const formSchema: FormSchema = {
         {
           "field": "input_1663731915815",
           "component": "Input",
-          slot: 'sdf',
+          slot: 'sdff',
           "label": "输入框222352",
           "componentProps": {
             "defaultValue": "",

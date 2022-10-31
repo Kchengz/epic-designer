@@ -1,38 +1,32 @@
 <template>
     <FormItem v-if="component && !record.noInput" v-bind="record" :name="record.field">
-        <slot :name="record.slot" v-bind="componentProps" :model="formData">
-            <component v-bind="{...componentProps,[componentProps.bindModel]:formData[record.field]}">
-                <!-- 递归组件 start -->
-                <template #node="data">
-                    <KNode v-bind="data" />
-                </template>
-                <!-- 递归组件 end -->
-            </component>
-        </slot>
-    </FormItem>
-
-    <!-- 无需FormItem start -->
-    <slot v-else-if="component" :name="record.slot" v-bind="componentProps">
-        <component v-bind="componentProps">
+        <component v-bind="{...componentProps,[componentProps.bindModel]:formData[record.field]}">
             <!-- 递归组件 start -->
             <template #node="data">
                 <KNode v-bind="data" />
             </template>
             <!-- 递归组件 end -->
         </component>
-    </slot>
+    </FormItem>
+
+    <!-- 无需FormItem start -->
+    <component v-else-if="component" v-bind="{...componentProps,[componentProps.bindModel]:formData[record.field]}">
+        <!-- 递归组件 start -->
+        <template #node="data">
+            {{formData}}
+            <KNode v-bind="data" />
+        </template>
+        <!-- 递归组件 end -->
+    </component>
     <!-- 无需FormItem end -->
 
 </template>
 <script lang="ts" setup>
-import { shallowRef, inject,Slots } from 'vue'
+import { shallowRef, inject, Slots, renderSlot, h } from 'vue'
 import { pluginManager } from '../../core/PluginManager'
 
-let formData: any = inject('formData')
+let formData = inject('formData') as { [field: string]: any }
 let slots = inject('slots') as Slots
-
-console.log(slots.sdf)
-
 const { component: FormItem } = pluginManager.getComponent('FormItem');
 
 const props = defineProps({
@@ -44,17 +38,48 @@ const props = defineProps({
 
 const { record } = props
 
-// 获取的组件
-const componentInfo = pluginManager.getComponent(record.component)
-
+// 定义组件及组件props字段
 let component = shallowRef<any>(null)
 let componentProps = shallowRef<any>(null)
+
 
 /**
  * 初始化组件
  */
 async function initComponent() {
 
+    // 如果存在默认值，则会在初始化之后赋值
+    if (record.componentProps.defaultValue) {
+        handleUpdate(componentProps.defaultValue)
+    }
+
+
+    // 组件为slot类型时
+    if (record.slot) {
+        const slotName: string = record.slot
+
+        const slot = slots[slotName]?.({
+            record: record,
+            value: formData,
+            updateValue: handleUpdate
+        })
+        const s = slots[slotName]
+        console.log(s)
+        // console.log(renderSlot(slots,slotName,{kk:1212}))
+        // component.value = h('div',null,[renderSlot(slots,slotName,{kk:1212})])
+        component.value = h('div',null,slot)
+        
+        console.log(component.value)
+
+        // 获取组件props数据
+        componentProps.value = {
+            is: component,
+        }
+        return false
+    }
+
+    // 内置组件
+    const componentInfo = pluginManager.getComponent(record.component)
     const { bindModel, component: cmp } = componentInfo
     // 如果数据项为函数，则判定为懒加载组件
     if (typeof cmp === 'function') {
@@ -65,10 +90,6 @@ async function initComponent() {
         component.value = cmp
     }
 
-    // 如果存在默认值，则会在初始化之后赋值
-    if (record.componentProps.defaultValue) {
-        handleUpdate(componentProps.defaultValue)
-    }
 
     // 获取组件props数据
     componentProps.value = {

@@ -1,17 +1,13 @@
 <template>
     <Form ref="form" :model="formData" v-bind="getFormBindValues">
-        <KNode v-for="item,index in props.formSchema?.nodes"
-            :key="index" :record="item">
-            <template v-if="item.slot" #[getSlotName(item.slot)]="data">
-                <slot :name="item.slot" v-bind="data || {}"></slot>
-            </template>
+        <KNode ref="Knode" v-for="item,index in props.formSchema?.nodes" :key="index" :record="item">
         </KNode>
     </Form>
 </template>
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KNode from '../KNode/KNode.vue'
-import { computed, reactive, provide, ref, useSlots } from 'vue'
+import { computed, reactive, provide, ref, renderSlot, useSlots } from 'vue'
 import { pluginManager } from '../../core/PluginManager'
 
 export interface FormItem {
@@ -46,14 +42,13 @@ export interface FormSchema {
 
 const { component: Form } = pluginManager.getComponent('Form');
 
-const formData = reactive<any>({});
+const formData = reactive<{ [field: string]: any }>({});
 const slots = useSlots()
 
-provide('formData',formData)
-provide('slots',slots)
+provide('formData', formData)
+provide('slots', slots)
 
 const form = ref<any>(null)
-
 
 const props = defineProps({
     formSchema: {

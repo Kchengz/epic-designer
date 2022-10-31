@@ -11,6 +11,9 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "examples"),
     },
+    dedupe: [
+      'vue'
+    ]
   },
   build: {
     outDir: "lib", //输出文件名称
