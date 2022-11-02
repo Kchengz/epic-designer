@@ -8,7 +8,7 @@
 import type { PropType } from 'vue'
 import KNode from '../KNode/KNode.vue'
 import { computed, reactive, provide, ref, renderSlot, useSlots } from 'vue'
-import { pluginManager } from '../../core/PluginManager'
+import { pluginManager } from '../../utils/pluginManager'
 
 export interface FormItem {
     label: string;

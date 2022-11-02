@@ -23,7 +23,7 @@
 </template>
 <script lang="ts" setup>
 import { shallowRef, inject, Slots, renderSlot, h } from 'vue'
-import { pluginManager } from '../../core/PluginManager'
+import { pluginManager } from '../../utils/pluginManager'
 
 let formData = inject('formData') as { [field: string]: any }
 let slots = inject('slots') as Slots
