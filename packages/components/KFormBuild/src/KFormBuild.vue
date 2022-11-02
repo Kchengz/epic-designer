@@ -6,42 +6,10 @@
 </template>
 <script lang="ts" setup>
 import type { PropType } from 'vue'
-import KNode from '../KNode/KNode.vue'
-import { computed, reactive, provide, ref, renderSlot, useSlots } from 'vue'
-import { pluginManager } from '../../utils/pluginManager'
-
-export interface FormItem {
-    label: string;
-    field: string;
-    slot?: string;
-    component?: string;
-    componentProps: any;
-    key?: string;
-    rules?: any;
-    labelCol?: any;
-    wrapperCol?: any;
-    children?: FormItem[];
-    [propName: string]: any;
-}
-
-export interface FormConfig {
-    layout?: string;
-    labelWidth?: string;
-    labelLayout: any;
-    labelCol: any;
-    wrapperCol: any;
-    hideRequiredMark?: boolean;
-    customStyle?: string;
-}
-
-export interface FormSchema {
-    nodes: FormItem[]
-    config: FormConfig
-}
-
-export interface FormDataModel {
-    [field: string]: any
-}
+import KNode from '../../KNode/'
+import { computed, reactive, provide, ref, useSlots } from 'vue'
+import { pluginManager } from '../../../utils/pluginManager'
+import { FormSchema, FormDataModel } from './types/index'
 
 const { component: Form } = pluginManager.getComponent('Form');
 

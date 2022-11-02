@@ -13,7 +13,6 @@
     <component v-else-if="component" v-bind="{ ...componentProps, [componentProps.bindModel]: formData[record.field] }">
         <!-- 递归组件 start -->
         <template #node="data">
-            {{ formData }}
             <KNode v-bind="data" />
         </template>
         <!-- 递归组件 end -->
@@ -23,10 +22,13 @@
 </template>
 <script lang="ts" setup>
 import { shallowRef, inject, Slots, watch, h } from 'vue'
-import { pluginManager } from '../../utils/index'
+import { pluginManager } from '../../../utils/index'
+import { FormDataModel } from '../../KFormBuild/src/types/index'
 
-let formData = inject('formData') as { [field: string]: any }
+let formData = inject('formData') as FormDataModel
+
 let slots = inject('slots') as Slots
+
 const { component: FormItem } = pluginManager.getComponent('FormItem');
 
 const props = defineProps({
@@ -99,7 +101,6 @@ async function initComponent() {
         bindModel,
         [`onUpdate:${bindModel}`]: handleUpdate
     }
-
 }
 
 

@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import { ref, nextTick } from 'vue';
 import { KFormBuild } from '../packages';
-import { FormSchema } from '../packages/src/components/KFormBuild/KFormBuild.vue';
+import { FormSchema } from '../packages/components/KFormBuild/src/KFormBuild.vue';
 
 
 const kfb = ref(null)

@@ -1,4 +1,4 @@
-import { pluginManager } from "./src/utils/pluginManager";
+import { pluginManager } from "./utils/pluginManager";
 
 import Form from "ant-design-vue/lib/form";
 import FormItem from "ant-design-vue/lib/form/FormItem";

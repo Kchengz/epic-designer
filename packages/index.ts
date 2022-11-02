@@ -1,6 +1,6 @@
-import KFormBuild from "./src/components/KFormBuild/KFormBuild.vue";
+import KFormBuild from "./components/KFormBuild/";
 import { App } from "vue";
-export { pluginManager } from "./src/utils/pluginManager";
+export { pluginManager } from "./utils/pluginManager";
 export { KFormBuild };
 
 const components = [KFormBuild];
