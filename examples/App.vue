@@ -1,13 +1,8 @@
 <template>
   <div>
     <KFormBuild ref="kfb" :formSchema="formSchema">
-      <template #sdff="data">
-        <div>
-          {{ data.updateValue }}
-          {{ data.value }}
-          {{ data }}
-          <input @input="e => data.updateValue(e.target.value)" />
-        </div>
+      <template #sdff="{ model, record }">
+        <input v-model="model[record.field]" />
       </template>
     </KFormBuild>
 

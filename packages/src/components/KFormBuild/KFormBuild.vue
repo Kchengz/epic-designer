@@ -1,6 +1,6 @@
 <template>
     <Form ref="form" :model="formData" v-bind="getFormBindValues">
-        <KNode ref="Knode" v-for="item,index in props.formSchema?.nodes" :key="index" :record="item">
+        <KNode ref="Knode" v-for="item, index in props.formSchema?.nodes" :key="index" :record="item">
         </KNode>
     </Form>
 </template>
@@ -22,7 +22,6 @@ export interface FormItem {
     wrapperCol?: any;
     children?: FormItem[];
     [propName: string]: any;
-
 }
 
 export interface FormConfig {
@@ -40,9 +39,13 @@ export interface FormSchema {
     config: FormConfig
 }
 
+export interface FormDataModel {
+    [field: string]: any
+}
+
 const { component: Form } = pluginManager.getComponent('Form');
 
-const formData = reactive<{ [field: string]: any }>({});
+const formData = reactive<FormDataModel>({});
 const slots = useSlots()
 
 provide('formData', formData)
@@ -66,7 +69,7 @@ const getFormBindValues = computed(() => {
 
 
 
-function getData() {
+function getData(): Promise<FormDataModel> {
     // validateFields
     return new Promise(async (resolve, rejects) => {
         try {

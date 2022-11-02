@@ -1,6 +1,6 @@
 <template>
     <FormItem v-if="component && !record.noInput" v-bind="record" :name="record.field">
-        <component v-bind="{...componentProps,[componentProps.bindModel]:formData[record.field]}">
+        <component v-bind="{ ...componentProps, [componentProps.bindModel]: formData[record.field] }">
             <!-- 递归组件 start -->
             <template #node="data">
                 <KNode v-bind="data" />
@@ -10,10 +10,10 @@
     </FormItem>
 
     <!-- 无需FormItem start -->
-    <component v-else-if="component" v-bind="{...componentProps,[componentProps.bindModel]:formData[record.field]}">
+    <component v-else-if="component" v-bind="{ ...componentProps, [componentProps.bindModel]: formData[record.field] }">
         <!-- 递归组件 start -->
         <template #node="data">
-            {{formData}}
+            {{ formData }}
             <KNode v-bind="data" />
         </template>
         <!-- 递归组件 end -->
@@ -22,8 +22,8 @@
 
 </template>
 <script lang="ts" setup>
-import { shallowRef, inject, Slots, renderSlot, h } from 'vue'
-import { pluginManager } from '../../utils/pluginManager'
+import { shallowRef, inject, Slots, watch, h } from 'vue'
+import { pluginManager } from '../../utils/index'
 
 let formData = inject('formData') as { [field: string]: any }
 let slots = inject('slots') as Slots
@@ -58,18 +58,17 @@ async function initComponent() {
     if (record.slot) {
         const slotName: string = record.slot
 
-        const slot = slots[slotName]?.({
-            record: record,
-            value: formData,
-            updateValue: handleUpdate
+        // 需要监听值变化，重新传递参数
+        watch(() => formData[record.field], () => {
+            // 获取插槽函数
+            const slot = slots[slotName]?.({
+                record: record,
+                model: formData,
+            })
+            component.value = h('div', null, slot)
+        }, {
+            immediate: true
         })
-        const s = slots[slotName]
-        console.log(s)
-        // console.log(renderSlot(slots,slotName,{kk:1212}))
-        // component.value = h('div',null,[renderSlot(slots,slotName,{kk:1212})])
-        component.value = h('div',null,slot)
-        
-        console.log(component.value)
 
         // 获取组件props数据
         componentProps.value = {
