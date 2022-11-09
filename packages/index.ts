@@ -1,9 +1,9 @@
 import KBuilder from "./components/KBuilder/";
+import KDesigner from "./components/KDesigner/";
 import { App } from "vue";
-export { pluginManager } from "./utils/pluginManager";
-export { KBuilder };
+import { pluginManager } from "./utils/pluginManager";
 
-const components = [KBuilder];
+const components = [KBuilder, KDesigner];
 
 // 注册全局组件
 const KDesignr = {
@@ -12,6 +12,9 @@ const KDesignr = {
       app.component(comp.__name!, comp);
     });
   },
+  pluginManager
 };
 
+
+export { KBuilder, KDesigner, pluginManager };
 export default KDesignr;
