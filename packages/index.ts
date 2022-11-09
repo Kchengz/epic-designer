@@ -1,12 +1,12 @@
-import KFormBuild from "./components/KFormBuild/";
+import KBuilder from "./components/KBuilder/";
 import { App } from "vue";
 export { pluginManager } from "./utils/pluginManager";
-export { KFormBuild };
+export { KBuilder };
 
-const components = [KFormBuild];
+const components = [KBuilder];
 
 // 注册全局组件
-const KFormDesign = {
+const KDesignr = {
   install(app: App) {
     components.forEach((comp) => {
       app.component(comp.__name!, comp);
@@ -14,4 +14,4 @@ const KFormDesign = {
   },
 };
 
-export default KFormDesign;
+export default KDesignr;

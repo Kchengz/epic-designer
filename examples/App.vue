@@ -1,10 +1,10 @@
 <template>
   <div>
-    <KFormBuild ref="kfb" :formSchema="formSchema">
+    <KBuilder ref="kfb" :formSchema="formSchema">
       <template #sdff="{ model, record }">
         <input v-model="model[record.field]" />
       </template>
-    </KFormBuild>
+    </KBuilder>
 
   </div>
 
@@ -12,8 +12,8 @@
 
 <script lang="ts" setup>
 import { ref, nextTick } from 'vue';
-import { KFormBuild } from '../packages';
-import { FormSchema } from '../packages/components/KFormBuild/src/KFormBuild.vue';
+import { KBuilder } from '../packages';
+import { FormSchema } from '../packages/components/KBuilder/src/types';
 
 
 const kfb = ref(null)
