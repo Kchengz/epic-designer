@@ -1,9 +1,9 @@
 {
-  "name": "k-form-design-test",
+  "name": "k-designer-test",
   "private": false,
   "version": "0.0.3",
   "type": "module",
-  "main": "lib/k-form-design.js",
+  "main": "lib/k-designer.js",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -11,7 +11,7 @@
     "test": "vitest",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue src",
     "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue src --fix",
-    "docs:dev": "vitepress dev docs",
+    "docs:dev": "vitepress dev docs --port 58889",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
   },

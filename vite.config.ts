@@ -22,8 +22,8 @@ export default defineConfig({
     outDir: "lib", //输出文件名称
     lib: {
       entry: path.resolve(__dirname, "./packages/index.ts"), //指定组件编译入口文件
-      name: "k-form-design",
-      fileName: "k-form-design",
+      name: "k-designer",
+      fileName: "k-designer",
     }, //库编译模式配置
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
