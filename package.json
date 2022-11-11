@@ -8,7 +8,12 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue src",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue src --fix",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "dependencies": {
     "ant-design-vue": "^3.2.12"
@@ -21,6 +26,7 @@
     "typescript": "^4.6.4",
     "vite": "^3.1.8",
     "vite-plugin-vue-setup-extend": "^0.4.0",
+    "vitepress": "1.0.0-alpha.28",
     "vitest": "^0.24.5",
     "vue": "^3.2.41",
     "vue-tsc": "^0.40.4"
