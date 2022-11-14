@@ -1,0 +1,86 @@
+@import url('../../../theme/theme.less');
+
+.k-designer-main {
+    height        : 100%;
+    display       : flex;
+    flex-direction: column;
+    color         : @text-main;
+    cursor        : pointer;
+
+    .k-split-view-container {
+        display: flex;
+        flex   : 1;
+    }
+
+    ul {
+        list-style: none;
+        padding   : 0;
+        margin    : 0;
+    }
+}
+
+
+// 头部
+.k-header {
+    height          : 32px;
+    line-height     : 32px;
+    background-color: @header-bg;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+
+}
+
+// 底部
+.k-footer {
+    height          : 20px;
+    background-color: @primary-color;
+    color           : white;
+    font-size       : 10px;
+}
+
+
+// 左右侧栏
+.k-left-sidebar,
+.k-right-sidebar {
+    width           : 280px;
+    background-color: @view-bg;
+}
+
+// 右侧栏
+.k-right-sidebar {}
+
+
+// 编辑区域
+.k-edit-container {
+    flex            : 1;
+    background-color: @edit-view-bg;
+}
+
+// 活动视图切换器
+.k-action-bar {
+    width           : 50px;
+    background-color: @action-bar-bg;
+
+    .action-item {
+        text-align : center;
+        height     : 60px;
+        line-height: 60px;
+        position   : relative;
+
+        &.checked {
+            color: @text-tips;
+
+            &::before {
+                content         : '';
+                height          : 100%;
+                width           : 1px;
+                background-color: @text-tips;
+                position        : absolute;
+                top             : 0;
+                left            : 0;
+            }
+        }
+
+    }
+}
