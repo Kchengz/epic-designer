@@ -14,10 +14,12 @@ specifiers:
   vitest: ^0.24.5
   vue: ^3.2.41
   vue-tsc: ^0.40.4
+  vuedraggable: 4.1.0
 
 dependencies:
   ant-design-vue: registry.npmmirror.com/ant-design-vue/3.2.13_vue@3.2.41
   less: 4.1.3
+  vuedraggable: 4.1.0_vue@3.2.41
 
 devDependencies:
   '@types/node': registry.npmmirror.com/@types/node/18.11.8
@@ -376,12 +378,25 @@ packages:
     hasBin: true
     optional: true
 
+  /sortablejs/1.14.0:
+    resolution: {integrity: sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==}
+    dev: false
+
   /source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+
+  /vuedraggable/4.1.0_vue@3.2.41:
+    resolution: {integrity: sha512-FU5HCWBmsf20GpP3eudURW3WdWTKIbEIQxh9/8GE806hydR9qZqRRxRE3RjqX7PkuLuMQG/A7n3cfj9rCEchww==}
+    peerDependencies:
+      vue: ^3.0.1
+    dependencies:
+      sortablejs: 1.14.0
+      vue: registry.npmmirror.com/vue/3.2.41
+    dev: false
 
   registry.npmmirror.com/@algolia/autocomplete-core/1.7.2:
     resolution: {integrity: sha512-eclwUDC6qfApNnEfu1uWcL/rudQsn59tjEoUYZYE2JSXZrHLRjBUGMxiCoknobU2Pva8ejb0eRxpIYDtVVqdsw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@algolia/autocomplete-core/-/autocomplete-core-1.7.2.tgz}
