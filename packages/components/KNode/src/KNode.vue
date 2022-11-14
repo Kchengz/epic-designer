@@ -23,7 +23,7 @@
 <script lang="ts" setup>
 import { shallowRef, inject, Slots, watch, h } from 'vue'
 import { pluginManager } from '../../../utils/index'
-import { FormDataModel } from '../../KFormBuild/src/types/index'
+import { FormDataModel } from '../../KBuilder/src/types/index'
 
 let formData = inject('formData') as FormDataModel
 

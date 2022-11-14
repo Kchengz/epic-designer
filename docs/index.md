@@ -3,11 +3,14 @@ layout: home
 
 title: KDesigner
 titleTemplate: 低代码可视化设计器
-
 hero:
   name: KDesigner
   text: 低代码可视化设计器
   tagline: '开源、规范、可视化、可扩展'
+  image:
+    src: /logo.png
+    alt: KDesigner
+    width: 140
   actions:
     - theme: brand
       text: 开始 👆

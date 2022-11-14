@@ -1,9 +1,10 @@
 <template>
-    <KBuilder ref="kfb" :formSchema="formSchema">
-      <template #sdff="{ model, record }">
-        <input v-model="model[record.field]" />
-      </template>
-    </KBuilder>
+  <KBuilder ref="kfb" :formSchema="formSchema">
+    <template #sdff="{ model, record }">
+      234234
+      <input v-model="model[record.field]" />
+    </template>
+  </KBuilder>
 </template>
 
 <script lang="ts" setup>
@@ -19,7 +20,7 @@ const formSchema: FormSchema = {
       "field": "input_1663731915815",
       noInput: true,
       "component": "Test",
-      "label": "输入框sd水电费",
+      "label": "输入",
       "componentProps": {
         "defaultValue": "222222",
         "placeholder": "请输入",
