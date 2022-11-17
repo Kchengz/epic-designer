@@ -5,12 +5,13 @@
     display       : flex;
     flex-direction: column;
     color         : @text-main;
-    min-width: 900px;
+    min-width     : 900px;
     cursor        : pointer;
 
     .k-split-view-container {
         display: flex;
         flex   : 1;
+        height : calc(100% - 32px - 20px);
     }
 
     ul {
@@ -26,9 +27,9 @@
     height          : 32px;
     line-height     : 32px;
     background-color: @header-bg;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 12px;
+    display         : flex;
+    justify-content : space-between;
+    padding         : 0 12px;
 
 }
 
@@ -56,6 +57,7 @@
 .k-edit-container {
     flex            : 1;
     background-color: @edit-view-bg;
+    overflow        : auto;
 }
 
 // 活动视图切换器
@@ -68,6 +70,11 @@
         height     : 60px;
         line-height: 60px;
         position   : relative;
+
+        &:hover {
+            color: @text-tips;
+        }
+
 
         &.checked {
             color: @text-tips;

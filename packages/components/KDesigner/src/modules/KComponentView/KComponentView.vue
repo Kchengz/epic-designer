@@ -2,7 +2,12 @@
     <aside class="k-left-sidebar">
         <div>
             活动面板
-            <draggable v-model="arr1" group="itxst" item-key="id" :component-data="{ name: 'list' }">
+            <draggable v-model="arr1" group="componentView" v-bind="{
+                group: { name: 'edit-draggable', pull: 'clone', put: false },
+                sort: false,
+                animation: 180,
+                ghostClass: 'moving'
+            }" item-key="id" :component-data="{ name: 'list' }">
                 <template #item="{ element }">
                     <div class="item">
                         {{ element.name }}
