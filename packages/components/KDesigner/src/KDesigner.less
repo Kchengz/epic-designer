@@ -6,7 +6,7 @@
     flex-direction: column;
     color         : @text-main;
     min-width     : 900px;
-    cursor        : pointer;
+    cursor        : default;
 
     .k-split-view-container {
         display: flex;
@@ -49,6 +49,17 @@
     background-color: @view-bg;
 }
 
+// 组件选择面板
+.k-component-view {
+    width           : 280px;
+    background-color: @view-bg;
+
+    .source-componet-item {
+        cursor: pointer;
+    }
+
+}
+
 // 右侧栏
 .k-right-sidebar {}
 
@@ -59,9 +70,23 @@
     background-color: @edit-view-bg;
     overflow        : auto;
 
-    [name=draggable-range] {
-        min-height      : 20px;
-        background-color: white;
+
+
+    .k-edit-content {
+        height          : 100%;
+        background-color: #f89;
+
+        [name=draggable-range] {
+            min-height      : 60px;
+            background-color: white;
+        }
+
+        > [name=draggable-range] {
+            min-height      : 100%;
+            background-color: white;
+        }
+
+
     }
 }
 

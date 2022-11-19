@@ -1,13 +1,13 @@
 <template>
   <div class="demo-content">
-    <div class="btn-box">
+    <!-- <div class="btn-box">
       <div :class="{ active: showIndex === 1 }" @click="showIndex = 1">
         设计器
       </div>
       <div :class="{ active: showIndex === 2 }" @click="showIndex = 2">
         生成器
       </div>
-    </div>
+    </div> -->
     <Designer v-if="showIndex === 1" />
     <Builder v-if="showIndex === 2" />
   </div>

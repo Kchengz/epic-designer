@@ -3,6 +3,7 @@
  */
 import { pluginManager } from "./index";
 import { NodeItem, SchemaGroupItem } from '../types/kDesigner.d'
+import { getUUID } from './index'
 
 
 class NodeSchema {
@@ -37,7 +38,7 @@ class NodeSchema {
         },
         {
             title: "布局组件",
-            list: ["divider", "card", "tabs", "grid", "table",'Test']
+            list: ["divider", "card", "tabs", "grid", "table", 'Test']
         }
     ];
 
@@ -52,6 +53,8 @@ class NodeSchema {
             item.component && pluginManager.addComponent(item.type, item.component);
             // 删除schemas中的component属性
             delete item.component;
+            // 初始化组件id
+            item.id = getUUID()
             return item;
         });
 

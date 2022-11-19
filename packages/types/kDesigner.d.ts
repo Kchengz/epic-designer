@@ -1,5 +1,5 @@
 export interface NodeItem {
-    label: string;
+    label?: string;
     field?: string;
     slotName?: string;
     type: string;

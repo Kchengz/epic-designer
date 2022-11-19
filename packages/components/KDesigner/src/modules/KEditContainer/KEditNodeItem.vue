@@ -2,16 +2,11 @@
     <draggable v-model="value" group="edit-draggable" item-key="id" :component-data="{ name: 'draggable-range' }">
         <template #item="{ element }">
             <div class="item">
-                {{ element.label }}
                 <KNode :record="element">
                     <template #edit-node="data">
-                        23234
-                        {{ element }}
                         <KEditNodeItem v-model:schemas="element.children" />
-                        23423
                     </template>
                 </KNode>
-
             </div>
         </template>
     </draggable>
