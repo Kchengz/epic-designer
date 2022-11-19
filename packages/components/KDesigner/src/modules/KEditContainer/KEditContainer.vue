@@ -1,34 +1,17 @@
 <template>
     <section class="k-edit-container">
-        <draggable v-model="arr1" @add="deepClone" group="edit-draggable" item-key="id"
-            :component-data="{ name: 'list' }">
-            <template #item="{ element }">
-                <div class="item">
-                    {{ element.name }}
-                </div>
-            </template>
-        </draggable>
+        <KEditNodeItem v-model:schemas="schemas" />
     </section>
 </template>
 <script lang="ts" setup>
-import draggable from 'vuedraggable'
-import { ref } from 'vue'
-const arr1 = ref([
-    {
-        name: '测试',
-        id: 45
-    },
-    {
-        name: '测试2',
-        id: 452
-    },
-    {
-        name: '测试3',
-        id: 454
-    },
-])
+import { NodeItem } from '../../../../../types/kDesigner'
+import KEditNodeItem from './KEditNodeItem.vue'
+import { ref, reactive, unref, provide, useSlots } from 'vue'
+import { FormDataModel } from '../../../../../types/kDesigner'
+const formData = reactive<FormDataModel>({});
+const slots = useSlots()
+provide('formData', formData)
+provide('slots', slots)
+const schemas = ref<NodeItem[]>([])
 
-function deepClone(e) {
-    console.log(e)
-}
 </script>

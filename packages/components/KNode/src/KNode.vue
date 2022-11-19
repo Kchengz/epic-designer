@@ -6,6 +6,11 @@
                 <KNode v-bind="data" />
             </template>
             <!-- 递归组件 end -->
+            <!-- 递归组件 start -->
+            <template #edit-node="data">
+                <slot name="edit-node"></slot>
+            </template>
+            <!-- 递归组件 end -->
         </component>
     </FormItem>
 
@@ -16,6 +21,11 @@
             <KNode v-bind="data" />
         </template>
         <!-- 递归组件 end -->
+        <!-- 递归组件 start -->
+        <template #edit-node="data">
+            <slot name="edit-node"></slot>
+        </template>
+        <!-- 递归组件 end -->
     </component>
     <!-- 无需FormItem end -->
 
@@ -23,7 +33,7 @@
 <script lang="ts" setup>
 import { shallowRef, inject, Slots, watch, h } from 'vue'
 import { pluginManager } from '../../../utils/index'
-import { FormDataModel } from '../../KBuilder/src/types/index'
+import { FormDataModel } from '../../../types/kDesigner'
 
 let formData = inject('formData') as FormDataModel
 
@@ -51,14 +61,14 @@ let componentProps = shallowRef<any>(null)
 async function initComponent() {
 
     // 如果存在默认值，则会在初始化之后赋值
-    if (record.componentProps.defaultValue) {
+    if (record.componentProps?.defaultValue) {
         handleUpdate(componentProps.defaultValue)
     }
 
 
     // 组件为slot类型时
-    if (record.slot) {
-        const slotName: string = record.slot
+    if (record.type === 'slot') {
+        const slotName: string = record.slotName
 
         // 需要监听值变化，重新传递参数
         watch(() => formData[record.field], () => {
@@ -80,7 +90,13 @@ async function initComponent() {
     }
 
     // 内置组件
-    const componentInfo = pluginManager.getComponent(record.component)
+    const componentInfo = pluginManager.getComponent(record.type)
+    // 内部不存在组件
+    if (!componentInfo) {
+        console.error(`组件${record.type}未注册`)
+        return false
+    }
+
     const { bindModel, component: cmp } = componentInfo
     // 如果数据项为函数，则判定为懒加载组件
     if (typeof cmp === 'function') {

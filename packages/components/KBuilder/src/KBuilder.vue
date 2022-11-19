@@ -9,7 +9,7 @@ import type { PropType } from 'vue'
 import KNode from '../../KNode/'
 import { computed, reactive, provide, ref, useSlots } from 'vue'
 import { pluginManager } from '../../../utils/pluginManager'
-import { FormSchema, FormDataModel } from './types/index'
+import { FormSchema, FormDataModel } from '../../../types/kDesigner'
 
 const { component: Form } = pluginManager.getComponent('Form');
 

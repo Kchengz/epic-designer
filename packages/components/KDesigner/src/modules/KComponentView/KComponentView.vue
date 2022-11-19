@@ -1,16 +1,16 @@
 <template>
     <aside class="k-left-sidebar">
-        <div>
-            活动面板
-            <draggable v-model="arr1" group="componentView" v-bind="{
+        <div v-for="item in sourceSchema">
+            {{ item.title }}
+            <draggable v-model="item.list" group="componentView" v-bind="{
                 group: { name: 'edit-draggable', pull: 'clone', put: false },
                 sort: false,
                 animation: 180,
                 ghostClass: 'moving'
-            }" item-key="id" :component-data="{ name: 'list' }">
+            }" item-key="id" :component-data="{ name: 'list' }" @end="handleDraggableEnd($event, item.list)">
                 <template #item="{ element }">
                     <div class="item">
-                        {{ element.name }}
+                        {{ element.label }}
                     </div>
                 </template>
             </draggable>
@@ -19,21 +19,24 @@
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { ref } from 'vue'
-const arr1 = ref([
-    {
-        name: '测试',
-        id: 45
-    },
-    {
-        name: '测试2',
-        id: 452
-    },
-    {
-        name: '测试3',
-        id: 454
-    },
-]) 
+import { ref, toRaw } from 'vue'
+import { getUUID, deepClone, nodeSchema } from '../../../../../utils/index'
+import { SchemaNodeGroupItem } from '../../../../../types/kDesigner'
+
+const sourceSchema = ref<SchemaNodeGroupItem[]>([])
+sourceSchema.value = nodeSchema.getSchemaByGroup()
+
+/**
+ * 拖拽结束,深拷贝一次数据,防止重复引用
+ * @param e 
+ * @param list
+ */
+function handleDraggableEnd(e, list) {
+    list[e.oldIndex] = deepClone({
+        ...toRaw(list[e.oldIndex]),
+        id: getUUID(),
+    })
+}
 </script>
 <style lang="less">
 // 列表动画

@@ -1,7 +1,7 @@
 import KBuilder from "./components/KBuilder/";
 import KDesigner from "./components/KDesigner/";
 import { App } from "vue";
-import { pluginManager } from "./utils/pluginManager";
+import { pluginManager, nodeSchema } from "./utils/index";
 
 const components = [KBuilder, KDesigner];
 
@@ -12,9 +12,10 @@ const KDesignr = {
       app.component(comp.__name!, comp);
     });
   },
-  pluginManager
+  pluginManager,
+  nodeSchema
 };
 
 
-export { KBuilder, KDesigner, pluginManager };
+export { KBuilder, KDesigner, pluginManager, nodeSchema };
 export default KDesignr;

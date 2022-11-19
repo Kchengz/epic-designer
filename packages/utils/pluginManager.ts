@@ -38,11 +38,11 @@ class PluginManager {
   }
 
   /**
-   * 通过name 查询相应的组件
+   * 通过type 查询相应的组件
    * @returns components
    */
-  getComponent(name: string) {
-    return this.components[name];
+  getComponent(type: string) {
+    return this.components[type];
   }
 }
 

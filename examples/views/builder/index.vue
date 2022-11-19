@@ -19,7 +19,7 @@ const formSchema: FormSchema = {
     {
       "field": "input_1663731915815",
       noInput: true,
-      "component": "Test",
+      "type": "Test",
       "label": "输入",
       "componentProps": {
         "defaultValue": "222222",
@@ -31,8 +31,8 @@ const formSchema: FormSchema = {
       children: [
         {
           "field": "input_1663731915815",
-          "component": "Input",
-          slot: 'sdff',
+          "type": "slot",
+          slotName: 'sdff',
           "label": "输入框222352",
           "componentProps": {
             "defaultValue": "",
@@ -45,7 +45,7 @@ const formSchema: FormSchema = {
         {
           "field": "input_1663731915815",
           noInput: true,
-          "component": "Test",
+          "type": "Test",
           "label": "输入框sd水电费",
           "componentProps": {
             "defaultValue": "222222",
@@ -59,7 +59,7 @@ const formSchema: FormSchema = {
     },
     {
       "field": "input_1663731915815",
-      "component": "Input",
+      "type": "Input",
       "label": "输入框222352",
       "componentProps": {
         "defaultValue": "",

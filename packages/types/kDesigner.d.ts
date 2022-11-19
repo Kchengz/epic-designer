@@ -1,14 +1,14 @@
-export interface FormItem {
+export interface NodeItem {
     label: string;
-    field: string;
-    slot?: string;
-    component?: string;
-    componentProps: any;
-    key?: string;
+    field?: string;
+    slotName?: string;
+    type: string;
+    componentProps?: any;
+    id?: string;
     rules?: any;
     labelCol?: any;
     wrapperCol?: any;
-    children?: FormItem[];
+    children?: NodeItem[];
     [propName: string]: any;
 }
 
@@ -23,10 +23,20 @@ export interface FormConfig {
 }
 
 export interface FormSchema {
-    nodes: FormItem[]
+    nodes: NodeItem[]
     config: FormConfig
 }
 
 export interface FormDataModel {
     [field: string]: any
+}
+
+export interface SchemaGroupItem {
+    title: string,
+    list: string[]
+}
+
+export interface SchemaNodeGroupItem {
+    title: string,
+    list: NodeItem[]
 }
