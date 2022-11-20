@@ -1,12 +1,11 @@
 <template>
     <section class="k-edit-container">
-        <div class="k-edit-content">
-            <KEditNodeItem v-model:schemas="schemas" />
+        <div class="k-edit-range">
+                <KEditNodeItem v-model:schemas="schemas" />
         </div>
     </section>
 </template>
 <script lang="ts" setup>
-import draggable from 'vuedraggable'
 import { NodeItem } from '../../../../../types/kDesigner'
 import KEditNodeItem from './KEditNodeItem.vue'
 import { ref, reactive, unref, provide, useSlots } from 'vue'
@@ -16,8 +15,8 @@ const slots = useSlots()
 provide('formData', formData)
 provide('slots', slots)
 const schemas = ref<NodeItem[]>([{
-    type: 'page',
     title: '页面',
+    type: 'page',
     children: []
 }])
 

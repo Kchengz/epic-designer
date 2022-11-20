@@ -67,23 +67,26 @@
 // 编辑区域
 .k-edit-container {
     flex            : 1;
-    background-color: @edit-view-bg;
+    background-image: linear-gradient(#f8f8f8 14px, transparent 0), linear-gradient(90deg, transparent 14px, #373739 0);
+    background-size : 15px 15px;
     overflow        : auto;
+    padding         : 16px;
 
 
-
-    .k-edit-content {
-        height          : 100%;
-        background-color: #f89;
+    .k-edit-range {
+        height: 100%;
 
         [name=draggable-range] {
             min-height      : 60px;
-            background-color: white;
+            background-color: @edit-bg;
+
         }
 
-        > [name=draggable-range] {
-            min-height      : 100%;
-            background-color: white;
+        >[name=draggable-range] {
+            min-height   : 100%;
+            border-radius: 6px;
+            padding      : 10px;
+
         }
 
 
