@@ -1,7 +1,10 @@
 <template>
     <aside class="k-component-view">
+        
         <div v-for="item in sourceSchema">
-            {{ item.title }}
+            <div class="collapse-header">
+                {{ item.title }}
+            </div>
             <draggable v-model="item.list" group="componentView" v-bind="{
                 group: { name: 'edit-draggable', pull: 'clone', put: false },
                 sort: false,

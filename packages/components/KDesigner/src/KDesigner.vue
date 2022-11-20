@@ -17,7 +17,25 @@ import KLeftSidebar from './modules/KComponentView/KComponentView.vue'
 import KRightSidebar from './modules/KAttributeView/KAttributeView.vue'
 import KContent from './modules/KEditContainer/KEditContainer.vue'
 import KActionBar from './modules/KActionBar/KActionBar.vue'
+import { provide, reactive } from 'vue'
+import { DesignerState } from '../../../types/kDesigner'
+const state = reactive<DesignerState>({
+    checkedNode: null
+})
 
+provide('designer', {
+    setCheckedNode,
+    state
+})
+
+/**
+ * 选中节点
+ * @param schema 
+ */
+function setCheckedNode(schema) {
+    console.log(schema)
+    state.checkedNode = schema
+}
 
 </script>
 

@@ -54,9 +54,36 @@
     width           : 280px;
     background-color: @view-bg;
 
-    .source-componet-item {
-        cursor: pointer;
+    .collapse-header {
+        padding: 10px;
     }
+
+    [name=list] {
+        display      : flex;
+        flex-wrap    : wrap;
+        padding-right: 10px;
+
+        .source-componet-item {
+            cursor       : pointer;
+            width        : calc(50% - 10px);
+            border       : 1px solid @component-item-border-color;
+            padding      : 0 10px;
+            margin-left  : 10px;
+            margin-bottom: 10px;
+            height       : 32px;
+            display      : flex;
+            align-items  : center;
+            border-radius: 4px;
+
+            &:hover {
+                border-color: @primary-color;
+                color       : @primary-color;
+            }
+        }
+    }
+
+
+
 
 }
 
@@ -89,8 +116,48 @@
 
         }
 
+        .item {
+            border: 1px solid transparent;
+
+            &::before {
+                content   : '';
+                height    : 5px;
+                width     : 0%;
+                background: @primary-color;
+                position  : absolute;
+                top       : -5px;
+                right     : 0;
+                transition: all .3s;
+            }
+
+            &.checked {
+                background: @primary-hover-bg-color;
+                position  : relative;
+                &::before {
+                    width: 100%;
+                }
+            }
+
+            .action-box {
+                position  : absolute;
+                top       : -30px;
+                right     : 0;
+                height    : 30px;
+                background: @primary-color;
+                color     : white;
+                display   : flex;
+                padding: 0 4px;
+                .action-item {
+                    height       : 30px;
+                    line-height  : 25px;
+                    padding: 0 4px;
+
+                }
+            }
+        }
 
     }
+
 }
 
 // 活动视图切换器

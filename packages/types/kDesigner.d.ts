@@ -22,7 +22,7 @@ export interface FormConfig {
     customStyle?: string;
 }
 
-export interface FormSchema {
+export interface Schemas {
     nodes: NodeItem[]
     config: FormConfig
 }
@@ -39,4 +39,13 @@ export interface SchemaGroupItem {
 export interface SchemaNodeGroupItem {
     title: string,
     list: NodeItem[]
+}
+
+export interface Designer {
+    setCheckedNode: (record: NodeItem) => {},
+    state: DesignerState
+}
+
+export interface DesignerState {
+    checkedNode: NodeItem | null
 }

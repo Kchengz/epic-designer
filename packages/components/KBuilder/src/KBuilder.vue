@@ -1,6 +1,6 @@
 <template>
     <Form ref="form" :model="formData" v-bind="getFormBindValues">
-        <KNode ref="Knode" v-for="item, index in props.formSchema?.nodes" :key="index" :record="item">
+        <KNode ref="Knode" v-for="item, index in props.schemas?.nodes" :key="index" :record="item">
         </KNode>
     </Form>
 </template>
@@ -8,8 +8,8 @@
 import type { PropType } from 'vue'
 import KNode from '../../KNode/'
 import { computed, reactive, provide, ref, useSlots } from 'vue'
+import { Schemas, FormDataModel } from '../../../types/kDesigner'
 import { pluginManager } from '../../../utils/pluginManager'
-import { FormSchema, FormDataModel } from '../../../types/kDesigner'
 
 const { component: Form } = pluginManager.getComponent('Form');
 
@@ -22,15 +22,15 @@ provide('slots', slots)
 const form = ref<any>(null)
 
 const props = defineProps({
-    formSchema: {
-        type: Object as PropType<FormSchema>
+    schemas: {
+        type: Object as PropType<Schemas>
     }
 })
 
 
 const getFormBindValues = computed(() => {
     return {
-        ...props.formSchema?.config,
+        ...props.schemas?.config,
     }
 })
 

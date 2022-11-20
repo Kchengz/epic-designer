@@ -1,7 +1,16 @@
 <template>
     <draggable v-model="value" group="edit-draggable" item-key="id" :component-data="{ name: 'draggable-range' }">
         <template #item="{ element }">
-            <div class="item">
+            <div class="item" :class="{ checked: designer.state.checkedNode?.id === element.id }"
+                @click.stop="designer.setCheckedNode(element)">
+                <div class="action-box" v-show="designer.state.checkedNode?.id === element.id">
+                    <div class="action-item">
+                        {{ element.type }}
+                    </div>
+                    <div class="action-item">
+                        {{ element.type }}23334
+                    </div>
+                </div>
                 <KNode :record="element">
                     <template #edit-node="data">
                         <KEditNodeItem v-model:schemas="element.children" />
@@ -16,7 +25,11 @@ import draggable from 'vuedraggable'
 import { computed, PropType } from 'vue'
 
 import KNode from '../../../../KNode'
-import { NodeItem } from '../../../../../types/kDesigner'
+import { NodeItem, Designer } from '../../../../../types/kDesigner'
+import { inject } from 'vue'
+
+const designer = inject('designer') as Designer
+
 const props = defineProps({
     schemas: {
         type: Array as PropType<NodeItem[]>
@@ -32,5 +45,7 @@ const value = computed({
         emit('update:schemas', e)
     }
 })
+
+
 
 </script>
