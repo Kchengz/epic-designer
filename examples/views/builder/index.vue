@@ -10,11 +10,11 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { KBuilder } from '../../../packages';
-import { FormSchema } from '../../../packages/components/KBuilder/src/types';
+import { Schemas } from '../../../packages/types/kDesigner';
 
-const kfb = ref(null)
+const kfb = ref(null);
 
-const formSchema: FormSchema = {
+const formSchema: Schemas = {
   "nodes": [
     {
       "field": "input_1663731915815",

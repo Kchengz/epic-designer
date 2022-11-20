@@ -1,6 +1,6 @@
 <template>
     <aside class="k-component-view">
-        
+
         <div v-for="item in sourceSchema">
             <div class="collapse-header">
                 {{ item.title }}
@@ -24,7 +24,7 @@
 import draggable from 'vuedraggable'
 import { ref, toRaw } from 'vue'
 import { getUUID, deepClone, nodeSchema } from '../../../../../utils/index'
-import { SchemaNodeGroupItem } from '../../../../../types/kDesigner'
+import { SchemaNodeGroupItem, NodeItem } from '../../../../../types/kDesigner'
 
 const sourceSchema = ref<SchemaNodeGroupItem[]>([])
 sourceSchema.value = nodeSchema.getSchemaByGroup()
@@ -33,7 +33,7 @@ sourceSchema.value = nodeSchema.getSchemaByGroup()
  * @param e 
  * @param list
  */
-function handleDraggableEnd(e, list) {
+function handleDraggableEnd(e: any, list: NodeItem[]) {
     list[e.oldIndex] = deepClone({
         ...toRaw(list[e.oldIndex]),
         id: getUUID(),

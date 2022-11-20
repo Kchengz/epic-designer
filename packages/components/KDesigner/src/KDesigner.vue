@@ -19,6 +19,7 @@ import KContent from './modules/KEditContainer/KEditContainer.vue'
 import KActionBar from './modules/KActionBar/KActionBar.vue'
 import { provide, reactive } from 'vue'
 import { DesignerState } from '../../../types/kDesigner'
+import { NodeItem } from '../../../types/kDesigner'
 const state = reactive<DesignerState>({
     checkedNode: null,
     actionBarCheckedIndex: 0
@@ -33,7 +34,7 @@ provide('designer', {
  * 选中节点
  * @param schema 
  */
-function setCheckedNode(schema) {
+function setCheckedNode(schema: NodeItem) {
     state.checkedNode = schema
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "k-designer-test",
+  "name": "k-designer",
   "private": false,
   "version": "0.0.3",
   "type": "module",
@@ -9,8 +9,6 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue src",
-    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue src --fix",
     "docs:dev": "vitepress dev docs --port 58889",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"

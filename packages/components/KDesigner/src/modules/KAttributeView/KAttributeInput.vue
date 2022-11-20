@@ -71,7 +71,7 @@ async function initComponent() {
     }
 }
 
-function handleUpdate(e) {
+function handleUpdate(e: any) {
     value.value = e
 }
 
