@@ -7,9 +7,6 @@
                     <div class="action-item">
                         {{ element.type }}
                     </div>
-                    <div class="action-item">
-                        {{ element.type }}23334
-                    </div>
                 </div>
                 <KNode :record="element">
                     <template #edit-node="data">

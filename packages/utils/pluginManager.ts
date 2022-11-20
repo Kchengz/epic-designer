@@ -17,6 +17,8 @@ export interface ComponentAttr {
   label: string;
   title?: string;
   defaultValue?: any;
+  [attr: string]: any;
+
 }
 
 export interface ComponentAttrs {

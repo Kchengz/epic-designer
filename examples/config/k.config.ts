@@ -1,39 +1,13 @@
-import { pluginManager, nodeSchema } from "../../packages/index";
+import { pluginManager } from "../../packages/index";
 
 import "../../packages/init";
 
-pluginManager.registerComponent(
-  "input",
-  () => import("ant-design-vue/lib/input"),
-  "value"
-);
-pluginManager.registerComponent(
-  "select",
-  () => import("ant-design-vue/lib/select"),
-  "value"
-);
 pluginManager.registerComponent(
   "Checkbox",
   () => import("ant-design-vue/lib/checkbox"),
   "value"
 );
 pluginManager.registerComponent("Test", () => import("./test.vue"));
-
-
-// const list = [{
-//   label: '文本框',
-//   type: 'input',
-//   field: 'input',
-// }, {
-//   label: '选择框',
-//   type: 'select',
-//   field: 'select',
-// }, {
-//   label: '测试布局组件',
-//   type: 'Test',
-//   children: []
-// },]
-// nodeSchema.addSchemas(list)
 
 
 pluginManager.addComponent(
@@ -45,15 +19,79 @@ pluginManager.addComponent(
   },
   [
     {
-      label: '文字',
+      label: '字段名',
+      type: 'input',
+      attrIndex: 'field'
+    },
+    {
+      label: '标题',
       type: 'input',
       attrIndex: 'label'
     },
     {
-      label: '类型',
-      type: 'input',
-      defaultValue: '454',
+      label: '输入类型',
+      type: 'select',
+      defaultValue: 'text',
+      componentProps: {
+        options: [
+          {
+            label: 'text',
+            value: 'text'
+          },
+          {
+            label: 'number',
+            value: 'number'
+          },
+          {
+            label: 'password',
+            value: 'password'
+          },
+        ],
+      },
       attrIndex: 'componentProps.type'
+    },
+  ]
+);
+
+pluginManager.addComponent(
+  () => import("ant-design-vue/lib/input-number"),
+  {
+    label: '数字输入框',
+    type: 'select',
+    field: 'select',
+  },
+  [
+    {
+      label: '字段名',
+      type: 'input',
+      attrIndex: 'field'
+    },
+    {
+      label: '文字',
+      type: 'input',
+      attrIndex: 'label'
+    },
+
+  ]
+);
+
+pluginManager.addComponent(
+  () => import("ant-design-vue/lib/select"),
+  {
+    label: '选择框',
+    type: 'select',
+    field: 'select',
+  },
+  [
+    {
+      label: '字段名',
+      type: 'input',
+      attrIndex: 'field'
+    },
+    {
+      label: '文字',
+      type: 'input',
+      attrIndex: 'label'
     },
   ]
 );
