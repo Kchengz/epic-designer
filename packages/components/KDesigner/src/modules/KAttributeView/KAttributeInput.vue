@@ -36,20 +36,16 @@ let componentProps = shallowRef<any>(null)
 async function initComponent() {
 
     // 如果存在默认值，则会在初始化之后赋值
-    if (record.componentProps?.defaultValue) {
-        value.value = componentProps.defaultValue
+    if (record.defaultValue) {
+        handleUpdate(record.defaultValue)
     }
+
     // 内置组件
     const componentInfo = pluginManager.getComponent(record.type)
     // 内部不存在组件
     if (!componentInfo) {
         console.error(`组件${record.type}未注册`)
         return false
-    }
-
-    // 初始化默认值
-    if (record.defaultValue) {
-        handleUpdate(record.defaultValue)
     }
 
     const { bindModel, component: cmp } = componentInfo

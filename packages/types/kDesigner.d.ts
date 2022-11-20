@@ -23,29 +23,30 @@ export interface FormConfig {
 }
 
 export interface Schemas {
-    nodes: NodeItem[]
-    config: FormConfig
+    nodes: NodeItem[];
+    config: FormConfig;
 }
 
 export interface FormDataModel {
-    [field: string]: any
+    [field: string]: any;
 }
 
 export interface SchemaGroupItem {
-    title: string,
-    list: string[]
+    title: string;
+    list: string[];
 }
 
 export interface SchemaNodeGroupItem {
-    title: string,
-    list: NodeItem[]
+    title: string;
+    list: NodeItem[];
 }
 
 export interface Designer {
     setCheckedNode: (record: NodeItem) => {},
-    state: DesignerState
+    state: DesignerState;
 }
 
 export interface DesignerState {
-    checkedNode: NodeItem | null
+    checkedNode: NodeItem | null;
+    actionBarCheckedIndex: number | null;
 }

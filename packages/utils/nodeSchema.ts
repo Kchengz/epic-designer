@@ -35,10 +35,10 @@ class NodeSchema {
                 "html"
             ]
         },
-        {
-            title: "布局组件",
-            list: ["divider", "card", "tabs", "grid", "table", 'Test']
-        }
+        // {
+        //     title: "布局组件",
+        //     list: ["divider", "card", "tabs", "grid", "table", 'Test']
+        // }
     ];
 
     /**

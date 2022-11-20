@@ -1,6 +1,7 @@
 <template>
     <FormItem v-if="component && !record.noInput" v-bind="record" :name="record.field">
-        <component v-bind="{ ...componentProps, [componentProps.bindModel]: formData[record.field] }">
+        <component
+            v-bind="{ ...componentProps, ...record.componentProps, [componentProps.bindModel]: formData[record.field] }">
             <!-- 递归组件 start -->
             <template #node="data">
                 <KNode v-bind="data" />
@@ -15,7 +16,8 @@
     </FormItem>
 
     <!-- 无需FormItem start -->
-    <component v-else-if="component" v-bind="{ ...componentProps, [componentProps.bindModel]: formData[record.field] }">
+    <component v-else-if="component"
+        v-bind="{ ...componentProps, ...record.componentProps, [componentProps.bindModel]: formData[record.field] }">
         <!-- 递归组件 start -->
         <template #node="data">
             <KNode v-bind="data" />
@@ -53,7 +55,6 @@ const { record } = props
 // 定义组件及组件props字段
 let component = shallowRef<any>(null)
 let componentProps = shallowRef<any>(null)
-
 
 /**
  * 初始化组件
@@ -111,7 +112,6 @@ async function initComponent() {
     // 获取组件props数据
     componentProps.value = {
         record: record,
-        ...record.componentProps,
         is: component,
         style: "width: 100%;",
         bindModel,
