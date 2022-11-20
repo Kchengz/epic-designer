@@ -1,7 +1,6 @@
 /**
  * 节点管理
  */
-import { pluginManager } from "./index";
 import { NodeItem, SchemaGroupItem } from '../types/kDesigner.d'
 import { getUUID } from './index'
 
@@ -43,22 +42,26 @@ class NodeSchema {
     ];
 
     /**
-     * 添加节点结构数据
+     * 添加单个节点结构数据
+     * 
+     * @param {*} schema
+     * @returns
+     */
+    addSchema(schema: NodeItem) {
+        // 初始化组件id
+        schema.id = getUUID()
+        return this.schemaList.push(schema);
+    }
+    /**
+     * 添加多个节点结构数据
+     * 
      * @param {*} schemas []
      * @returns
      */
     addSchemas(schemas: NodeItem[]) {
-        const s = schemas.map(item => {
-            // 存在component组件则添加到插件管理器中
-            item.component && pluginManager.addComponent(item.type, item.component);
-            // 删除schemas中的component属性
-            delete item.component;
-            // 初始化组件id
-            item.id = getUUID()
-            return item;
-        });
-
-        return this.schemaList.push(...s);
+        schemas.forEach(item => {
+            this.addSchema(item)
+        })
     }
 
     /**
