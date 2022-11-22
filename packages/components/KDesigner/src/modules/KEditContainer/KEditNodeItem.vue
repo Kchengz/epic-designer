@@ -1,5 +1,5 @@
 <template>
-    <draggable v-model="value" group="edit-draggable" item-key="id" :component-data="{ name: 'draggable-range' }">
+    <draggable v-model="schemas" group="edit-draggable" item-key="id" @add="handleAdd" :component-data="{ name: 'draggable-range' }">
         <template #item="{ element }">
             <div class="item" :class="{ checked: designer.state.checkedNode?.id === element.id }"
                 @click.stop="designer.setCheckedNode(element)">
@@ -34,7 +34,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:schemas'])
-const value = computed({
+const schemas = computed({
     get() {
         return props.schemas
     },
@@ -43,6 +43,8 @@ const value = computed({
     }
 })
 
-
+function handleAdd(e){
+    designer.setCheckedNode(schemas.value![e.newIndex])
+}
 
 </script>
