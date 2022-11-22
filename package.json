@@ -1,7 +1,7 @@
 {
   "name": "k-designer",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.31",
   "type": "module",
   "main": "lib/k-designer.js",
   "scripts": {
