@@ -118,6 +118,9 @@
 
         .item {
             border: 1px solid transparent;
+            position  : relative;
+
+
             &::before {
                 content   : '';
                 height    : 5px;
@@ -129,6 +132,17 @@
                 transition: all .3s;
             }
 
+            // 遮罩层
+            &::after{
+                content   : '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            // 选中样式
             &.checked {
                 background: @primary-hover-bg-color;
                 position  : relative;

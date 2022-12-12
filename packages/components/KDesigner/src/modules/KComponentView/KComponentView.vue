@@ -5,7 +5,7 @@
             <div class="collapse-header">
                 {{ item.title }}
             </div>
-            <draggable v-model="item.list" group="componentView" v-bind="{
+            <draggable v-model="item.list" v-bind="{
                 group: { name: 'edit-draggable', pull: 'clone', put: false },
                 sort: false,
                 animation: 180,
