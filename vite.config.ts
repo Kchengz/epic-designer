@@ -8,7 +8,7 @@ export default defineConfig({
     vue(),
     dts({
       entryRoot: 'packages',
-      outputDir: 'types'
+      outputDir: 'lib/types'
     })
   ],
   resolve: {
@@ -29,6 +29,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, "./packages/index.ts"), //指定组件编译入口文件
       name: "k-designer",
+      // formats: ["es"],
       fileName: "k-designer",
     }, //库编译模式配置
     rollupOptions: {
