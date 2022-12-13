@@ -2,9 +2,15 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
-
+import dts from 'vite-plugin-dts'
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    dts({
+      entryRoot: 'packages',
+      outputDir: 'types'
+    })
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "examples"),
@@ -34,6 +40,10 @@ export default defineConfig({
           vue: "Vue",
         },
       },
-    }, // rollup打包配置
+    },
+    commonjsOptions: {
+      esmExternals: true
+    },
+    // rollup打包配置
   },
 });
