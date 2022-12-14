@@ -37,9 +37,8 @@ import { shallowRef, inject, Slots, watch, h } from 'vue'
 import { pluginManager } from '../../../utils/index'
 import { FormDataModel } from '../../../types/kDesigner'
 
-let formData = inject('formData') as FormDataModel
-
-let slots = inject('slots') as Slots
+let formData = inject('formData', {}) as FormDataModel
+let slots = inject('slots', {}) as Slots
 
 const { component: FormItem } = pluginManager.getComponent('FormItem');
 
