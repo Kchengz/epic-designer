@@ -2,14 +2,14 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
-import dts from 'vite-plugin-dts'
+import dts from "vite-plugin-dts";
 export default defineConfig({
   plugins: [
     vue(),
     dts({
-      entryRoot: 'packages',
-      outputDir: 'lib/types'
-    })
+      entryRoot: "packages",
+      outputDir: "lib/types",
+    }),
   ],
   resolve: {
     alias: {
@@ -17,6 +17,7 @@ export default defineConfig({
     },
     dedupe: ["vue"],
   },
+  // 单元测试配置
   test: {
     globals: true,
     environment: "jsdom",
@@ -24,6 +25,7 @@ export default defineConfig({
       web: [/.[tj]sx$/],
     },
   },
+  // rollup打包配置
   build: {
     outDir: "lib", //输出文件名称
     lib: {
@@ -43,8 +45,14 @@ export default defineConfig({
       },
     },
     commonjsOptions: {
-      esmExternals: true
+      esmExternals: true,
     },
-    // rollup打包配置
+  },
+  optimizeDeps: {
+    include: [
+      `monaco-editor/esm/vs/language/json/json.worker`,
+      `monaco-editor/esm/vs/language/html/html.worker`,
+      `monaco-editor/esm/vs/editor/editor.worker`,
+    ],
   },
 });
