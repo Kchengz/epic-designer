@@ -1,9 +1,9 @@
 <template>
-    <component v-bind="{ ...componentProps }">
+    <component v-if="component" v-bind="{ ...componentProps,[`${componentProps?.bindModel}`]: value }">
     </component>
 </template>
 <script lang="ts" setup>
-import { shallowRef, computed } from 'vue'
+import { shallowRef,ref, computed } from 'vue'
 import { pluginManager } from '../../../../../utils/index'
 
 const props = defineProps({
@@ -14,9 +14,9 @@ const props = defineProps({
     modelValue: {}
 })
 const emit = defineEmits(['update:modelValue'])
-
 const value = computed({
     get() {
+        console.log(props.modelValue)
         return props.modelValue
     },
     set(e) {
@@ -26,7 +26,7 @@ const value = computed({
 const { record } = props
 
 // 定义组件及组件props字段
-let component = shallowRef<any>(null)
+let component = shallowRef<any>()
 let componentProps = shallowRef<any>(null)
 
 
@@ -58,7 +58,6 @@ async function initComponent() {
         component.value = cmp
     }
 
-
     // 获取组件props数据
     componentProps.value = {
         record: record,
@@ -66,7 +65,6 @@ async function initComponent() {
         is: component,
         style: "width: 100%;",
         bindModel,
-        [`${bindModel}`]: value,
         [`onUpdate:${bindModel}`]: handleUpdate
     }
 }
