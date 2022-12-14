@@ -1,5 +1,5 @@
 <template>
-    <FormItem v-if="component && !record.noInput" v-bind="record" :name="record.field">
+    <FormItem v-if="FormItem && component && !record.noInput" v-bind="record" :name="record.field">
         <component
             v-bind="{ ...componentProps, ...record.componentProps, [componentProps.bindModel]: formData[record.field] }">
             <!-- 递归组件 start -->
@@ -40,7 +40,7 @@ import { FormDataModel } from '../../../types/kDesigner'
 let formData = inject('formData', {}) as FormDataModel
 let slots = inject('slots', {}) as Slots
 
-const { component: FormItem } = pluginManager.getComponent('FormItem');
+const { component: FormItem } = pluginManager.getComponent('FormItem') || {};
 
 const props = defineProps({
     record: {
