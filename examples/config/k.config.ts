@@ -7,6 +7,12 @@ export function useComponent(pluginManager) {
     "value"
   );
 
+  pluginManager.registerComponent(
+    "test",
+    () => import("./test.vue"),
+    "value"
+  );
+
   pluginManager.addComponent(
     () => import("ant-design-vue/lib/input"),
     {

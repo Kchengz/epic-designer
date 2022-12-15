@@ -5,7 +5,7 @@
             <div class="collapse-header">
                 {{ item.title }}
             </div>
-            <Monaco />
+           <component v-if="Monaco" :is="Monaco" />
             <draggable v-model="item.list" v-bind="{
                 group: { name: 'edit-draggable', pull: 'clone', put: false },
                 sort: false,
@@ -26,7 +26,12 @@ import draggable from 'vuedraggable'
 import { ref, toRaw } from 'vue'
 import { getUUID, deepClone, nodeSchema } from '../../../../../utils/index'
 import { SchemaNodeGroupItem, NodeItem } from '../../../../../types/kDesigner'
-import Monaco from '../../../../MonacoEditor/monacoEditor.vue'
+// import Monaco from '../../../../MonacoEditor/monacoEditor.vue'
+import { pluginManager } from '../../../../../utils/index'
+const componentInfo = pluginManager.getComponent('monacoEditor')
+// console.log(componentInfo)
+const Monaco = componentInfo.component
+// console.log(Monaco)
 const sourceSchema = ref<SchemaNodeGroupItem[]>([])
 sourceSchema.value = nodeSchema.getSchemaByGroup()
 /**

@@ -3,19 +3,22 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted, watch, defineEmits } from 'vue';
-import * as monaco from 'monaco-editor';
-import JsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
-// 解决vite Monaco提示错误
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
 // @ts-ignore
-self.MonacoEnvironment = {
-  getWorker() {
-    return new JsonWorker();
-  },
-};
+// import JsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
+// 解决vite Monaco提示错误
+// (self as any).MonacoEnvironment = {
+//   getWorker() {
+//     return new JsonWorker();
+//   },
+// };
 
 const props = defineProps({
-  value: String,
+  value: {
+    type: String
+  },  
 })
+
 const editContainer = ref<HTMLElement | null>(null)
 
 let monacoEditor: monaco.editor.IStandaloneCodeEditor | null = null;
