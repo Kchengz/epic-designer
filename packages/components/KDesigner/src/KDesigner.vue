@@ -3,7 +3,7 @@
         <KHeader />
         <div class="k-split-view-container">
             <KActionBar />
-            <KComponentView v-show="state.actionBarCheckedIndex === 0" />
+            <!-- <KComponentView v-show="state.actionBarCheckedIndex === 0" /> -->
             <KContent />
             <KRightSidebar />
         </div>
@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import KHeader from './modules/KHeader/KHeader.vue'
 import KFooter from './modules/KFooter/KFooter.vue'
-import KComponentView from './modules/KComponentView/KComponentView.vue'
+// import KComponentView from './modules/KComponentView/KComponentView.vue'
 import KRightSidebar from './modules/KAttributeView/KAttributeView.vue'
 import KContent from './modules/KEditContainer/KEditContainer.vue'
 import KActionBar from './modules/KActionBar/KActionBar.vue'
@@ -22,7 +22,6 @@ import { DesignerState } from '../../../types/kDesigner'
 import { NodeItem } from '../../../types/kDesigner'
 const state = reactive<DesignerState>({
     checkedNode: null,
-    actionBarCheckedIndex: 0
 })
 const schemas = ref<NodeItem[]>([])
 provide('schemas', schemas)

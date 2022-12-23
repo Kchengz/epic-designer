@@ -1,10 +1,19 @@
-import { NodeItem } from '../types/kDesigner.d'
+import { NodeItem } from "../types/kDesigner.d";
 import { nodeSchema } from "./index";
-
 
 export interface ComponentInfo {
   bindModel: string;
   component: any;
+}
+
+export interface ActivitybarModel {
+  id: string;
+  title: string;
+  icon: string;
+  component: any;
+}
+export interface ViewsContainersModel {
+  activitybars: ActivitybarModel[];
 }
 
 export interface Components {
@@ -18,7 +27,6 @@ export interface ComponentAttr {
   title?: string;
   defaultValue?: any;
   [attr: string]: any;
-
 }
 
 export interface ComponentAttrs {
@@ -28,9 +36,13 @@ export interface ComponentAttrs {
 class PluginManager {
   components: Components = {};
   componentAttrs: ComponentAttrs = {};
-  constructor() { }
+  viewsContainers: ViewsContainersModel = {
+    activitybars: [],
+  };
+
+  constructor() {}
   /**
-   * 添加组件到插件管理器中
+   * 注册组件到插件管理器中
    * @param componentName 组件名称
    * @param component 组件
    * @param bindModel v-model 绑定的属性名,兼容不同ui差异
@@ -40,28 +52,32 @@ class PluginManager {
     component: any,
     bindModel: string = "value"
   ) {
-    // 添加组件
+    // 注册组件
     this.components[componentName] = {
       component,
       bindModel,
     };
   }
 
+  /**
+   * 添加组件
+   * @param component 组件
+   * @param schema 组件结构
+   * @param attrSchemas 属性结构
+   * @param bindModel 双向绑定value
+   */
   addComponent(
     component: any,
     schema: NodeItem,
     attrSchemas: ComponentAttr[],
-    bindModel: string = "value",
+    bindModel: string = "value"
   ) {
     // 添加组件
-    this.registerComponent(schema.type, component, bindModel)
+    this.registerComponent(schema.type, component, bindModel);
     // 添加组件属性
     this.componentAttrs[schema.type] = attrSchemas;
     nodeSchema.addSchema(schema);
-
   }
-
-
 
   /**
    * 获取所有插件管理中的所有组件
@@ -72,6 +88,14 @@ class PluginManager {
   }
 
   /**
+   * 通过type 查询相应的组件
+   * @returns components
+   */
+  getComponent(type: string) {
+    return this.components[type];
+  }
+
+  /**
    * 获取所有插件管理中的所有组件属性
    * @returns componentAttrs
    */
@@ -79,14 +103,19 @@ class PluginManager {
     return this.componentAttrs;
   }
 
-
+  /**
+   * 注册活动栏
+   */
+  registerActivitybar(activitybar: ActivitybarModel) {
+    this.viewsContainers.activitybars.push(activitybar);
+  }
 
   /**
-   * 通过type 查询相应的组件
-   * @returns components
+   * 获取所有activitybars
+   * @returns activitybars
    */
-  getComponent(type: string) {
-    return this.components[type];
+  getActivitybars() {
+    return this.viewsContainers.activitybars;
   }
 }
 

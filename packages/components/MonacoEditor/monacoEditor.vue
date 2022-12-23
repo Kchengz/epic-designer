@@ -51,9 +51,13 @@ onMounted(() => {
   });
 });
 </script>
-<style scoped>
+<style lang="less" scoped>
 .code-editor {
   width: 100%;
   min-height: 200px;
+
+  :deep(.monaco-editor) {
+    height: 100%;
+  }
 }
 </style>

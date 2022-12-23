@@ -1,207 +1,199 @@
-@import url('../../../theme/theme.less');
+@import url("../../../theme/theme.less");
 
 .k-designer-main {
-    height        : 100%;
-    display       : flex;
-    flex-direction: column;
-    color         : @text-main;
-    min-width     : 900px;
-    cursor        : default;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: @text-main;
+  min-width: 900px;
+  cursor: default;
 
-    .k-split-view-container {
-        display: flex;
-        flex   : 1;
-        height : calc(100% - 32px - 20px);
-    }
+  .k-split-view-container {
+    display: flex;
+    flex: 1;
+    height: calc(100% - 32px - 20px);
+  }
 
-    ul {
-        list-style: none;
-        padding   : 0;
-        margin    : 0;
-    }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 }
-
 
 // 头部
 .k-header {
-    height          : 32px;
-    line-height     : 32px;
-    background-color: @header-bg;
-    display         : flex;
-    justify-content : space-between;
-    padding         : 0 12px;
-
+  height: 32px;
+  line-height: 32px;
+  background-color: @header-bg;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
 }
 
 // 底部
 .k-footer {
-    height          : 20px;
-    background-color: @primary-color;
-    color           : white;
-    font-size       : 10px;
+  height: 20px;
+  background-color: @primary-color;
+  color: white;
+  font-size: 10px;
 }
-
 
 // 左右侧栏
 .k-left-sidebar,
 .k-right-sidebar {
-    width           : 280px;
-    background-color: @view-bg;
+  width: 280px;
+  background-color: @view-bg;
+  overflow: hidden;
+  transition: all 0.3s;
+  height: 100%;
+  .sidebar-container {
+    min-width: 280px;
+    height: 100%;
+  }
+  &.hide {
+    width: 0;
+  }
 }
 
 // 组件选择面板
 .k-component-view {
-    width           : 280px;
-    background-color: @view-bg;
+  .collapse-header {
+    padding: 10px;
+  }
 
-    .collapse-header {
-        padding: 10px;
+  [name="list"] {
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 10px;
+
+    .source-componet-item {
+      cursor: pointer;
+      width: calc(50% - 10px);
+      border: 1px solid @component-item-border-color;
+      padding: 0 10px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+
+      &:hover {
+        border-color: @primary-color;
+        color: @primary-color;
+      }
     }
-
-    [name=list] {
-        display      : flex;
-        flex-wrap    : wrap;
-        padding-right: 10px;
-
-        .source-componet-item {
-            cursor       : pointer;
-            width        : calc(50% - 10px);
-            border       : 1px solid @component-item-border-color;
-            padding      : 0 10px;
-            margin-left  : 10px;
-            margin-bottom: 10px;
-            height       : 32px;
-            display      : flex;
-            align-items  : center;
-            border-radius: 4px;
-
-            &:hover {
-                border-color: @primary-color;
-                color       : @primary-color;
-            }
-        }
-    }
-
-
-
-
+  }
 }
 
 // 右侧栏
-.k-right-sidebar {}
-
+.k-right-sidebar {
+}
 
 // 编辑区域
 .k-edit-container {
-    flex            : 1;
-    background-image: linear-gradient(#f8f8f8 14px, transparent 0), linear-gradient(90deg, transparent 14px, #373739 0);
-    background-size : 15px 15px;
-    overflow        : auto;
-    padding         : 16px;
+  flex: 1;
+  background-image: linear-gradient(#f8f8f8 14px, transparent 0),
+    linear-gradient(90deg, transparent 14px, #373739 0);
+  background-size: 15px 15px;
+  overflow: auto;
+  padding: 16px;
 
+  .k-edit-range {
+    height: 100%;
 
-    .k-edit-range {
-        height: 100%;
-
-        [name=draggable-range] {
-            min-height      : 60px;
-            background-color: @edit-bg;
-
-        }
-
-        >[name=draggable-range] {
-            min-height   : 100%;
-            border-radius: 6px;
-            padding      : 10px;
-
-        }
-
-        .item {
-            border: 1px solid transparent;
-            position  : relative;
-
-
-            &::before {
-                content   : '';
-                height    : 5px;
-                width     : 0%;
-                background: @primary-color;
-                position  : absolute;
-                top       : -5px;
-                right     : 0;
-                transition: all .3s;
-            }
-
-            // 遮罩层
-            &::after{
-                content   : '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-            }
-
-            // 选中样式
-            &.checked {
-                background: @primary-hover-bg-color;
-                position  : relative;
-                &::before {
-                    width: 100%;
-                }
-            }
-
-            .action-box {
-                position  : absolute;
-                top       : -30px;
-                right     : 0;
-                height    : 30px;
-                background: @primary-color;
-                color     : white;
-                display   : flex;
-                padding: 0 4px;
-                .action-item {
-                    height       : 30px;
-                    line-height  : 25px;
-                    padding: 0 4px;
-
-                }
-            }
-        }
-
+    [name="draggable-range"] {
+      min-height: 60px;
+      background-color: @edit-bg;
     }
 
+    > [name="draggable-range"] {
+      min-height: 100%;
+      border-radius: 6px;
+      padding: 10px;
+    }
+
+    .item {
+      border: 1px solid transparent;
+      position: relative;
+
+      &::before {
+        content: "";
+        height: 5px;
+        width: 0%;
+        background: @primary-color;
+        position: absolute;
+        top: -5px;
+        right: 0;
+        transition: all 0.3s;
+      }
+
+      // 遮罩层
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      // 选中样式
+      &.checked {
+        background: @primary-hover-bg-color;
+        position: relative;
+        &::before {
+          width: 100%;
+        }
+      }
+
+      .action-box {
+        position: absolute;
+        top: -30px;
+        right: 0;
+        height: 30px;
+        background: @primary-color;
+        color: white;
+        display: flex;
+        padding: 0 4px;
+        .action-item {
+          height: 30px;
+          line-height: 25px;
+          padding: 0 4px;
+        }
+      }
+    }
+  }
 }
 
 // 活动视图切换器
 .k-action-bar {
-    width           : 50px;
-    background-color: @action-bar-bg;
+  width: 50px;
+  background-color: @action-bar-bg;
 
-    .action-item {
-        text-align : center;
-        height     : 60px;
-        line-height: 60px;
-        position   : relative;
+  .action-item {
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    position: relative;
 
-        &:hover {
-            color: @text-tips;
-        }
-
-
-        &.checked {
-            color: @text-tips;
-
-            &::before {
-                content         : '';
-                height          : 100%;
-                width           : 1px;
-                background-color: @text-tips;
-                position        : absolute;
-                top             : 0;
-                left            : 0;
-            }
-        }
-
+    &:hover {
+      color: @text-tips;
     }
+
+    &.checked {
+      color: @text-tips;
+
+      &::before {
+        content: "";
+        height: 100%;
+        width: 1px;
+        background-color: @text-tips;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
 }
