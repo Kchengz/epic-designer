@@ -3,12 +3,19 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import dts from "vite-plugin-dts";
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 export default defineConfig({
   plugins: [
     vue(),
     dts({
       entryRoot: "packages",
       outputDir: "lib/types",
+    }),
+    createSvgIconsPlugin({
+      // 指定需要缓存的图标文件夹
+      iconDirs: [path.resolve(process.cwd(), "packages/icons")],
+      // 指定symbolId格式
+      symbolId: "icon-[dir]-[name]",
     }),
   ],
   resolve: {

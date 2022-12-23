@@ -3,7 +3,8 @@
         <ul class="actions-container">
             <li class="action-item" :title="item.title" v-for="(item, index) in activitybars"
                 :class="{ checked: actionBarCheckedIndex === index }" @click="handleClick(item, index)">
-                {{ item.title }}
+                <!-- {{ item.title }} -->
+                <KIcon :name="item.icon" />
             </li>
         </ul>
     </div>
@@ -17,6 +18,8 @@
 import { ref, shallowRef, onMounted } from 'vue'
 import { pluginManager } from '../../../../../utils/index'
 import { ActivitybarModel } from '../../../../../utils/pluginManager'
+import KIcon from '../../../../KIcon'
+
 const activitybars = pluginManager.getActivitybars()
 const actionBarCheckedIndex = ref<number | null>(0)
 

@@ -7,7 +7,7 @@ export interface ComponentInfo {
 }
 
 export interface ActivitybarModel {
-  id: string;
+  id?: string;
   title: string;
   icon: string;
   component: any;

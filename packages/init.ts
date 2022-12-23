@@ -13,27 +13,27 @@ pluginManager.registerComponent("FormItem", FormItem);
 pluginManager.registerActivitybar({
   id: "1",
   title: "组件",
-  icon: "./components",
+  icon: "apply",
   component: KComponentView,
 });
 
 pluginManager.registerActivitybar({
   id: "12",
   title: "源码",
-  icon: "./components3",
+  icon: "setting",
   component: KSoundCode,
 });
 
 pluginManager.registerActivitybar({
   id: "1",
   title: "模板",
-  icon: "./components3",
+  icon: "chart",
   component: KComponentView,
 });
 
 pluginManager.registerActivitybar({
   id: "1",
   title: "插件",
-  icon: "./components3",
+  icon: "apply",
   component: KComponentView,
 });

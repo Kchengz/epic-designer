@@ -41,7 +41,7 @@ onMounted(() => {
     value: props.value,
     readOnly: false,
     language: 'json',
-    theme: 'vs-dark',
+    theme: 'vs-light',
     selectOnLineNumbers: true,
   });
   // 监听值变化
