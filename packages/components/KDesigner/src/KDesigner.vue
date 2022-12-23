@@ -25,6 +25,10 @@ const state = reactive<DesignerState>({
 })
 const schemas = ref<NodeItem[]>([])
 provide('schemas', schemas)
+
+schemas.value.push({
+    "type": "form",
+})
 provide('designer', {
     setCheckedNode,
     state
