@@ -6,16 +6,10 @@
     </section>
 </template>
 <script lang="ts" setup>
-import { NodeItem } from '../../../../../types/kDesigner'
+import { NodeItem, Designer } from '../../../../../types/kDesigner'
 import KEditNodeItem from './KEditNodeItem.vue'
-import { ref, reactive, unref, provide, useSlots } from 'vue'
+import { ref, reactive, unref, inject, useSlots } from 'vue'
 
+const schemas = inject('schemas') as NodeItem[]
 
-const schemas = ref<NodeItem[]>([])
-//  {
-//     title: '页面',
-//     type: 'page',
-//     id: 'page',
-//     children: []
-// }
 </script>

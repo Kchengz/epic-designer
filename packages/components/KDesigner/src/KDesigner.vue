@@ -17,14 +17,15 @@ import KComponentView from './modules/KComponentView/KComponentView.vue'
 import KRightSidebar from './modules/KAttributeView/KAttributeView.vue'
 import KContent from './modules/KEditContainer/KEditContainer.vue'
 import KActionBar from './modules/KActionBar/KActionBar.vue'
-import { provide, reactive } from 'vue'
+import { provide, reactive, ref } from 'vue'
 import { DesignerState } from '../../../types/kDesigner'
 import { NodeItem } from '../../../types/kDesigner'
 const state = reactive<DesignerState>({
     checkedNode: null,
     actionBarCheckedIndex: 0
 })
-
+const schemas = ref<NodeItem[]>([])
+provide('schemas', schemas)
 provide('designer', {
     setCheckedNode,
     state

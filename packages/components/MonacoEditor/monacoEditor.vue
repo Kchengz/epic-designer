@@ -3,20 +3,23 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted, watch, defineEmits } from 'vue';
+// import * as monaco from 'monaco-editor';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
+import 'monaco-editor/esm/vs/language/json/monaco.contribution';
 // @ts-ignore
-// import JsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
+import JsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
 // 解决vite Monaco提示错误
-// (self as any).MonacoEnvironment = {
-//   getWorker() {
-//     return new JsonWorker();
-//   },
-// };
+self.MonacoEnvironment = {
+  getWorker(_: string, label: string) {
+    console.log(label)
+    return new JsonWorker();
+  },
+};
 
 const props = defineProps({
   value: {
     type: String
-  },  
+  },
 })
 
 const editContainer = ref<HTMLElement | null>(null)
