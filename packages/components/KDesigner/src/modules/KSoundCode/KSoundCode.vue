@@ -6,7 +6,7 @@
 <script lang="ts" setup>
 import { ref, inject, Ref, computed } from 'vue'
 import { nodeSchema } from '../../../../../utils/index'
-import { SchemaNodeGroupItem, NodeItem } from '../../../../../types/kDesigner'
+import { SchemaNodeGroupItem, Designer, NodeItem } from '../../../../../types/kDesigner'
 
 import { pluginManager } from '../../../../../utils/index'
 const componentInfo = pluginManager.getComponent('monacoEditor')
@@ -14,17 +14,22 @@ const Monaco = componentInfo.component
 
 const sourceSchema = ref<SchemaNodeGroupItem[]>([])
 sourceSchema.value = nodeSchema.getSchemaByGroup()
-const schemas = inject('schemas') as Ref<NodeItem[]>
+// const schemas = inject('schemas') as Ref<NodeItem[]>
+const designer = inject('designer') as Designer
 
 
 const getSchemas = computed({
     get() {
-        console.log(schemas.value)
-        JSON.stringify(schemas.value, null, 2)
+        if (!designer.state.checkedNode) { return '{}' }
+        return JSON.stringify(designer.state.checkedNode, null, 2)
     },
     set(e) {
-        console.log(e)
-        // schemas.value = JSON.parse(e)
+        if (!designer.state.checkedNode) { return false }
+
+        const json = JSON.parse(e)
+        for (var i in json) {
+            designer.state.checkedNode[i] = json[i]
+        }
     }
 })
 

@@ -43,6 +43,10 @@ onMounted(() => {
     language: 'json',
     theme: 'vs-light',
     selectOnLineNumbers: true,
+    minimap: {
+      enabled: false
+    },
+    lineNumbers: 'off'
   });
   // 监听值变化
   monacoEditor.onDidChangeModelContent(() => {
