@@ -1,4 +1,4 @@
-import '../../packages/init'
+import "../../packages/init";
 
 export function useComponent(pluginManager) {
   pluginManager.registerComponent(
@@ -7,10 +7,44 @@ export function useComponent(pluginManager) {
     "value"
   );
 
-  pluginManager.registerComponent(
-    "test",
+  // pluginManager.registerComponent("test", () => import("./test.vue"), "value");
+  pluginManager.addComponent(
     () => import("./test.vue"),
-    "value"
+    {
+      label: "测试",
+      type: "test",
+      field: "test",
+      children: [],
+    },
+    [
+      {
+        label: "标题",
+        type: "input",
+        attrIndex: "label",
+      },
+      {
+        label: "输入类型",
+        type: "select",
+        defaultValue: "text",
+        componentProps: {
+          options: [
+            {
+              label: "text",
+              value: "text",
+            },
+            {
+              label: "number",
+              value: "number",
+            },
+            {
+              label: "password",
+              value: "password",
+            },
+          ],
+        },
+        attrIndex: "componentProps.type",
+      },
+    ]
   );
 
   pluginManager.addComponent(

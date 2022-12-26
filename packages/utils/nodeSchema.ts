@@ -11,6 +11,7 @@ class NodeSchema {
       title: "基础组件",
       list: [
         "input",
+        "test",
         "textarea",
         "number",
         "select",
