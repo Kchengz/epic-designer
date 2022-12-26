@@ -131,4 +131,11 @@ export function useComponent(pluginManager) {
       },
     ]
   );
+
+  pluginManager.addComponent(() => import("./form.vue"), {
+    label: "测试2",
+    type: "form",
+    field: "test",
+    children: [],
+  });
 }
