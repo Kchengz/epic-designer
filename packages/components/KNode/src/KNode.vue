@@ -1,5 +1,5 @@
 <template>
-    <FormItem v-if="FormItem && component && !record.noInput" v-bind="record" :name="record.field">
+    <FormItem v-if="FormItem && record.isInput && component" v-bind="record" :name="record.field">
         <component
             v-bind="{ ...componentProps, ...record.componentProps, [componentProps.bindModel]: formData[record.field] }">
             <!-- 递归组件 start -->

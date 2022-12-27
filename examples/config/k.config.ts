@@ -53,6 +53,7 @@ export function useComponent(pluginManager) {
       label: "文本框",
       type: "input",
       field: "input",
+      isInput: true,
     },
     [
       {
@@ -96,6 +97,7 @@ export function useComponent(pluginManager) {
       label: "数字输入框",
       type: "select",
       field: "select",
+      isInput: true,
     },
     [
       {
@@ -117,6 +119,7 @@ export function useComponent(pluginManager) {
       label: "选择框",
       type: "select",
       field: "select",
+      isInput: true,
     },
     [
       {

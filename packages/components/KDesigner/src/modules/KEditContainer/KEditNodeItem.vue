@@ -1,5 +1,5 @@
 <template>
-    <draggable v-model="schemas" group="edit-draggable" item-key="id" @add="handleAdd"
+    <draggable v-model="schemas" :group="firstNodeId === 'root' || 'edit-draggable'" item-key="id" @add="handleAdd"
         :component-data="{ name: 'draggable-range' }">
         <template #item="{ element }">
             <div class="item" :class="{ checked: designer.state.checkedNode?.id === element.id }"
@@ -24,7 +24,7 @@ import { computed, PropType } from 'vue'
 
 import KNode from '../../../../KNode'
 import { NodeItem, Designer } from '../../../../../types/kDesigner'
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 
 const designer = inject('designer') as Designer
 
@@ -34,9 +34,17 @@ const props = defineProps({
     }
 })
 
+const firstNodeId = ref('')
+
 const emit = defineEmits(['update:schemas'])
 const schemas = computed({
     get() {
+
+        // 判断props.schemas是否存在值
+        if (props.schemas?.length) {
+            // 读取第一个节点id 如果节点id等于root 则判定该节点为根节点
+            firstNodeId.value = props.schemas[0].id || ''
+        }
         return props.schemas
     },
     set(e) {

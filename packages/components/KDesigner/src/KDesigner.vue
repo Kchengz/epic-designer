@@ -28,6 +28,8 @@ provide('schemas', schemas)
 
 schemas.value.push({
     "type": "form",
+    id: 'root',
+    children: []
 })
 provide('designer', {
     setCheckedNode,

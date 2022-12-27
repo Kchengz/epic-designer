@@ -98,20 +98,24 @@
     linear-gradient(90deg, transparent 14px, #373739 0);
   background-size: 15px 15px;
   overflow: auto;
-  padding: 16px;
+  padding: 24px;
 
   .k-edit-range {
     height: 100%;
 
     [name="draggable-range"] {
       min-height: 60px;
+      height: 100%;
       background-color: @edit-bg;
     }
 
     > [name="draggable-range"] {
-      min-height: 100%;
+      height: 100%;
       border-radius: 6px;
-      padding: 10px;
+      > .item {
+        height: 100%;
+      }
+      // padding: 10px;
     }
 
     .item {
@@ -130,14 +134,14 @@
       }
 
       // 遮罩层
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
+      // &::after {
+      //   content: "";
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   width: 100%;
+      //   height: 100%;
+      // }
 
       // 选中样式
       &.checked {
