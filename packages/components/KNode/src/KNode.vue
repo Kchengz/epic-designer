@@ -1,6 +1,6 @@
 <template>
     <FormItem v-if="FormItem && record.isInput && component" v-bind="record" :name="record.field">
-        <component
+        <component ref="nodeRef"
             v-bind="{ ...componentProps, ...record.componentProps, [componentProps.bindModel]: formData[record.field] }">
             <!-- 递归组件 start -->
             <template #node="data">
@@ -16,7 +16,7 @@
     </FormItem>
 
     <!-- 无需FormItem start -->
-    <component v-else-if="component"
+    <component v-else-if="component" ref="nodeRef"
         v-bind="{ ...componentProps, ...record.componentProps, [componentProps.bindModel]: formData[record.field] }">
         <!-- 递归组件 start -->
         <template #node="data">
@@ -33,12 +33,14 @@
 
 </template>
 <script lang="ts" setup>
-import { shallowRef, inject, Slots, watch, h } from 'vue'
+import { shallowRef, nextTick, ref, inject, Slots, watch, h } from 'vue'
 import { pluginManager } from '../../../utils/index'
 import { FormDataModel } from '../../../types/kDesigner'
 
 let formData = inject('formData', {}) as FormDataModel
 let slots = inject('slots', {}) as Slots
+const nodeRef = ref(null)
+let forms = inject('forms', {}) as any
 
 const { component: FormItem } = pluginManager.getComponent('FormItem') || {};
 
@@ -116,6 +118,15 @@ async function initComponent() {
         bindModel,
         [`onUpdate:${bindModel}`]: handleUpdate
     }
+
+    setTimeout(async() => {
+        // if(record.type !== 'form'){
+        //     return false
+        // }
+        console.log(nodeRef.value,1111111111)
+        const values = await nodeRef.value
+        console.log(values)
+    },1000)
 }
 
 

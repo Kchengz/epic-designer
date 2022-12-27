@@ -22,11 +22,6 @@ export interface FormConfig {
   customStyle?: string;
 }
 
-export interface Schemas {
-  nodes: NodeItem[];
-  config: FormConfig;
-}
-
 export interface FormDataModel {
   [field: string]: any;
 }

@@ -4,7 +4,7 @@
         <div class="k-split-view-container">
             <KActionBar />
             <!-- <KComponentView v-show="state.actionBarCheckedIndex === 0" /> -->
-            <KContent />
+            <KEditContainer />
             <KRightSidebar />
         </div>
         <KFooter />
@@ -15,7 +15,7 @@ import KHeader from './modules/KHeader/KHeader.vue'
 import KFooter from './modules/KFooter/KFooter.vue'
 // import KComponentView from './modules/KComponentView/KComponentView.vue'
 import KRightSidebar from './modules/KAttributeView/KAttributeView.vue'
-import KContent from './modules/KEditContainer/KEditContainer.vue'
+import KEditContainer from './modules/KEditContainer/KEditContainer.vue'
 import KActionBar from './modules/KActionBar/KActionBar.vue'
 import { provide, reactive, ref } from 'vue'
 import { DesignerState } from '../../../types/kDesigner'
