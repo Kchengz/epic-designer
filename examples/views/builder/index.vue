@@ -4,6 +4,7 @@
       <input v-model="model[record.field]" />
     </template>
   </KBuilder>
+  <div @click="handleGetData">获取数据</div>
 </template>
 
 <script lang="ts" setup>
@@ -11,17 +12,22 @@ import { ref } from 'vue';
 import { KBuilder } from '../../../packages';
 import { NodeItem } from '../../../packages/types/kDesigner';
 
-const kfb = ref(null);
 
-const schemas: NodeItem[] =[{
+
+const kfb = ref<any>(null);
+async function handleGetData() {
+  const values = await kfb.value?.getData()
+  console.log(values)
+}
+const schemas: NodeItem[] = [{
   "type": "form",
-  'name':'default',
+  'name': 'default',
   "id": "root",
   "children": [
     {
       "label": "文本框",
       "type": "input",
-      "field": "input",
+      "field": "input2",
       "isInput": true,
       "id": "glyhrunicr400",
       "componentProps": {
@@ -40,65 +46,15 @@ const schemas: NodeItem[] =[{
       "type": "input",
       "field": "input",
       "isInput": true,
-      "id": "kluewssswzk00"
+      "id": "kluewssswzk00",
+      componentProps: {
+
+      },
+      rules: [{
+        required: true,
+        message: '请输入'
+      }]
     },
-    {
-      "label": "测试",
-      "type": "test",
-      "field": "test",
-      "children": [
-        {
-          "label": "测试",
-          "type": "test",
-          "field": "test",
-          "children": [
-            {
-              "label": "测试",
-              "type": "test",
-              "field": "test",
-              "children": [],
-              "id": "hra41szjsww00"
-            },
-            {
-              "label": "测试",
-              "type": "test",
-              "field": "test",
-              "children": [
-                {
-                  "label": "文本框",
-                  "type": "input",
-                  "field": "input",
-                  "isInput": true,
-                  "id": "98mkhh9h0yk00",
-                  "componentProps": {
-                    "type": "text"
-                  }
-                }
-              ],
-              "id": "kzv5r4z2yg000"
-            }
-          ],
-          "id": "h2ihklxyx0000",
-          "componentProps": {
-            "type": "text"
-          }
-        },
-        {
-          "label": "测试",
-          "type": "test",
-          "field": "test",
-          "children": [],
-          "id": "d6x4c9b01ps00",
-          "componentProps": {
-            "type": "text"
-          }
-        }
-      ],
-      "id": "wa6gdmasbqo0",
-      "componentProps": {
-        "type": "text"
-      }
-    }
   ]
 }]
 

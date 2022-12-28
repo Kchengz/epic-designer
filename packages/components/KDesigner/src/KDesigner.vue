@@ -29,6 +29,7 @@ provide('schemas', schemas)
 schemas.value.push({
     "type": "form",
     id: 'root',
+    name:'default',
     children: []
 })
 provide('designer', {

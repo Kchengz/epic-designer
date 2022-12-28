@@ -16,7 +16,7 @@ import { NodeItem, FormDataModel } from '../../../types/kDesigner'
 const formData = reactive<FormDataModel>({});
 const slots = useSlots()
 const forms = ref<any>({})
-const form = ref<any>(null)
+// const form = ref<any>(null)
 
 provide('formData', formData)
 provide('slots', slots)
@@ -34,15 +34,13 @@ const props = defineProps({
 // })
 
 
-
-
 function getData(): Promise<FormDataModel> {
     // validateFields
     return new Promise(async (resolve, rejects) => {
         try {
+            console.log(forms.value)
             // 默认表单
             const values = await forms.value?.default?.validateFields()
-            console.log(values)
             resolve(values)
         } catch (error) {
             rejects(error)
