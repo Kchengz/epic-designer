@@ -12,8 +12,11 @@
     </Form>
 </template>
 <script lang="ts" setup>
-import { Form, Input, FormItem, Button } from 'ant-design-vue'
+
+import { pluginManager } from '../../packages/index'
 import { ref, watch, inject, useAttrs } from 'vue'
+const { component: Form } = pluginManager.getComponent('Form') || {};
+
 const attrs = useAttrs()
 console.log(attrs)
 const form = ref(null)
