@@ -2,7 +2,7 @@
   <div ref="editContainer" class="code-editor"></div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, watch, defineEmits } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 // import * as monaco from 'monaco-editor';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
 import 'monaco-editor/esm/vs/language/json/monaco.contribution';

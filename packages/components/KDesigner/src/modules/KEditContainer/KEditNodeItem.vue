@@ -1,5 +1,6 @@
 <template>
-    <draggable v-model="schemas" :group="firstNodeId === 'root' || 'edit-draggable'" item-key="id" @add="handleAdd"
+    <draggable v-model="schemas" :group="firstNodeId === 'root' || 'edit-draggable'" item-key="id"
+        @start="handleSelect($event.oldIndex)" @add="handleSelect($event.newIndex)"
         :component-data="{ name: 'draggable-range' }">
         <template #item="{ element }">
             <div class="item" :class="{ checked: designer.state.checkedNode?.id === element.id }"
@@ -52,8 +53,9 @@ const schemas = computed({
     }
 })
 
-function handleAdd(e: any) {
-    designer.setCheckedNode(schemas.value![e.newIndex])
+function handleSelect(index: number) {
+    console.log(index, 1111111)
+    designer.setCheckedNode(schemas.value![index])
 }
 
 </script>

@@ -9,7 +9,6 @@
 <script lang="ts" setup>
 import { pluginManager } from '../../../utils'
 import { ref, watch, inject, useAttrs } from 'vue'
-import { Button } from 'ant-design-vue'
 const { component: Form } = pluginManager.getComponent('Form') || {};
 const attrs = useAttrs()
 const form = ref<any>(null)

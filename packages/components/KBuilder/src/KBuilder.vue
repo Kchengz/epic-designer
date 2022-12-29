@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KNode from '../../KNode/'
-import { reactive, provide, ref, useSlots } from 'vue'
+import { reactive, provide, ref, watch, useSlots } from 'vue'
 import { NodeItem, FormDataModel } from '../../../types/kDesigner'
 
 
@@ -27,6 +27,10 @@ const props = defineProps({
         type: Object as PropType<NodeItem[]>
     }
 })
+
+watch(() => props.schemas, (e) => {
+    console.log(e,'--------------')
+}, { deep: true })
 // const getFormBindValues = computed(() => {
 //     return {
 //         ...props.schemas?.config,
