@@ -3,23 +3,16 @@
         <slot name="edit-node">
             <slot name="node" :record="item" v-for="item in children"></slot>
         </slot>
-        <!-- <FormItem :wrapper-col="{ offset: 8, span: 16 }" name="input" :rules="[]">
-            <Input v-model:value="attrs.model['input']" />
-        </FormItem>
-        <FormItem :wrapper-col="{ offset: 8, span: 16 }">
-            <Button type="primary" html-type="submit">Submit</Button>
-        </FormItem> -->
+        <!-- <Button type="primary" html-type="submit">Submit</Button> -->
     </Form>
 </template>
 <script lang="ts" setup>
-
-import { pluginManager } from '../../packages/index'
+import { pluginManager } from '../../../utils'
 import { ref, watch, inject, useAttrs } from 'vue'
+import { Button } from 'ant-design-vue'
 const { component: Form } = pluginManager.getComponent('Form') || {};
-
 const attrs = useAttrs()
-console.log(attrs)
-const form = ref(null)
+const form = ref<any>(null)
 const props = defineProps({
     record: {
         type: Object as any,
@@ -27,15 +20,7 @@ const props = defineProps({
     },
 })
 
-watch(() => attrs.model, async (e) => {
-    console.log(form.value)
-    const values = await form.value?.validateFields()
-    console.log(values)
-}, {
-    deep: true
-})
-
-function onFinish(e) {
+function onFinish(e: any) {
     console.log(e)
 }
 const children = props.record.children ?? []

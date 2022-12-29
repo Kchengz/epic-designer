@@ -1,5 +1,4 @@
 import "../../packages/init";
-
 export function useComponent(pluginManager) {
   pluginManager.registerComponent(
     "Checkbox",
@@ -135,10 +134,5 @@ export function useComponent(pluginManager) {
     ]
   );
 
-  pluginManager.addComponent(() => import("./form.vue"), {
-    label: "测试2",
-    type: "form",
-    field: "test",
-    children: [],
-  });
+
 }
