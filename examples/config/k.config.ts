@@ -94,9 +94,75 @@ export function useComponent(pluginManager) {
     () => import("ant-design-vue/lib/input-number"),
     {
       label: "数字输入框",
-      type: "select",
-      field: "select",
+      type: "number",
+      field: "number",
       isInput: true,
+    },
+    [
+      {
+        label: "字段名",
+        type: "input",
+        attrIndex: "field",
+      },
+      {
+        label: "文字",
+        type: "input",
+        attrIndex: "label",
+      },
+    ]
+  );
+  pluginManager.addComponent(
+    () => import("ant-design-vue/lib/radio/Group"),
+    {
+      label: "单选框",
+      type: "radio",
+      field: "radio",
+      isInput: true,
+      componentProps: {
+        options:[
+          {
+            label:'选项1',
+            value:'选项1',
+          },
+          {
+            label:'选项2',
+            value:'选项2',
+          },
+        ]
+      },
+    },
+    [
+      {
+        label: "字段名",
+        type: "input",
+        attrIndex: "field",
+      },
+      {
+        label: "文字",
+        type: "input",
+        attrIndex: "label",
+      },
+    ]
+  );
+  pluginManager.addComponent(
+    () => import("ant-design-vue/lib/checkbox/Group"),
+    {
+      label: "多选框",
+      type: "checkbox",
+      field: "checkbox",
+      isInput: true,
+      componentProps: {
+        options:[
+          {
+            label:'选项1',
+            value:'选项1',
+          },
+          {
+            label:'选项2',
+            value:'选项2',
+          },
+        ]
+      },
     },
     [
       {
@@ -119,6 +185,18 @@ export function useComponent(pluginManager) {
       type: "select",
       field: "select",
       isInput: true,
+      componentProps: {
+        options:[
+          {
+            label:'选项1',
+            value:'选项1',
+          },
+          {
+            label:'选项2',
+            value:'选项2',
+          },
+        ]
+      },
     },
     [
       {
