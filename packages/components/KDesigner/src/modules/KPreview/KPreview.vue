@@ -1,5 +1,5 @@
 <template>
-    <Modal title="预览" v-model:visible="visible" @cancel="handleClose" @ok="handleOk">
+    <Modal title="预览" v-model:visible="visible" width="800px" @cancel="handleClose" @ok="handleOk">
         <KBuilder ref="kb" :schemas="schemas" />
     </Modal>
 </template>
