@@ -52,6 +52,7 @@ export function useComponent(pluginManager) {
       label: "文本框",
       type: "input",
       field: "input",
+      
       isInput: true,
     },
     [
@@ -64,6 +65,11 @@ export function useComponent(pluginManager) {
         label: "标题",
         type: "input",
         attrIndex: "label",
+      },
+      {
+        label: "默认值",
+        type: "input",
+        attrIndex: "componentProps.defaultValue",
       },
       {
         label: "输入类型",

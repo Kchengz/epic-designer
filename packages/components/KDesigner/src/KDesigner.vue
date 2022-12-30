@@ -3,7 +3,6 @@
         <KHeader />
         <div class="k-split-view-container">
             <KActionBar />
-            <!-- <KComponentView v-show="state.actionBarCheckedIndex === 0" /> -->
             <KEditContainer />
             <KRightSidebar />
         </div>
@@ -13,7 +12,6 @@
 <script lang="ts" setup>
 import KHeader from './modules/KHeader/KHeader.vue'
 import KFooter from './modules/KFooter/KFooter.vue'
-// import KComponentView from './modules/KComponentView/KComponentView.vue'
 import KRightSidebar from './modules/KAttributeView/KAttributeView.vue'
 import KEditContainer from './modules/KEditContainer/KEditContainer.vue'
 import KActionBar from './modules/KActionBar/KActionBar.vue'
@@ -47,8 +45,7 @@ provide('designer', {
  * 选中节点
  * @param schema
  */
-function setCheckedNode (schema: NodeItem) {
-  console.log(schema, '-----setCheckedNode-------')
+function setCheckedNode (schema: NodeItem = rootSchema) {
   state.checkedNode = schema
 }
 

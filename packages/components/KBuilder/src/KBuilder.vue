@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KNode from '../../KNode/'
-import { reactive, provide, ref, watch, useSlots } from 'vue'
+import { reactive, provide, ref, useSlots } from 'vue'
 import { NodeItem, FormDataModel } from '../../../types/kDesigner'
 
 const formData = reactive<FormDataModel>({})
@@ -27,21 +27,20 @@ const props = defineProps({
   }
 })
 
-watch(() => props.schemas, (e) => {
-  console.log(e, '--------------')
-}, { deep: true })
-// const getFormBindValues = computed(() => {
-//     return {
-//         ...props.schemas?.config,
-//     }
-// })
-
-function getData (): Promise<FormDataModel> {
+/**
+ * 获取表单数据
+ * @param formName 表单name
+ */
+function getData (formName = 'default'): Promise<FormDataModel> {
   // validateFields
-  return forms.value?.default?.validateFields()
+  return forms.value?.[formName]?.validateFields()
 }
 
-function setData (data: object) {
+/**
+ * 设置表单数据
+ * @param data
+ */
+function setData (data: FormDataModel) {
   // validateFields
   Object.assign(formData, data)
 }

@@ -1,35 +1,35 @@
 <template>
-    <FormItem v-if="FormItem && props.record.isInput && component" v-bind="record" :name="props.record.field">
-        <component :is="component"
-            v-bind="{ ...componentProps, ...props.record.componentProps, [componentProps.bindModel]: formData[props.record.field] }">
-            <!-- 递归组件 start -->
-            <template #node="data">
-                <KNode v-bind="data" />
-            </template>
-            <!-- 递归组件 end -->
-            <!-- 递归组件 start -->
-            <template #edit-node>
-                <slot name="edit-node"></slot>
-            </template>
-            <!-- 递归组件 end -->
-        </component>
-    </FormItem>
-
-    <!-- 无需FormItem start -->
-    <component v-else-if="component" ref="nodeRef" :model="formData" :is="component"
-        v-bind="{ ...componentProps, ...props.record.componentProps, [componentProps.bindModel]: formData[props.record.field] }">
-        <!-- 递归组件 start -->
-        <template #node="data">
-            <KNode v-bind="data" />
-        </template>
-        <!-- 递归组件 end -->
-        <!-- 递归组件 start -->
-        <template #edit-node>
-            <slot name="edit-node"></slot>
-        </template>
-        <!-- 递归组件 end -->
+  <FormItem v-if="FormItem && props.record.isInput && component" v-bind="record" :name="props.record.field">
+    <component :is="component"
+      v-bind="{ ...componentProps, ...props.record.componentProps, [componentProps.bindModel]: formData[props.record.field] }">
+      <!-- 递归组件 start -->
+      <template #node="data">
+        <KNode v-bind="data" />
+      </template>
+      <!-- 递归组件 end -->
+      <!-- 递归组件 start -->
+      <template #edit-node>
+        <slot name="edit-node"></slot>
+      </template>
+      <!-- 递归组件 end -->
     </component>
-    <!-- 无需FormItem end -->
+  </FormItem>
+
+  <!-- 无需FormItem start -->
+  <component v-else-if="component" ref="nodeRef" :model="formData" :is="component"
+    v-bind="{ ...componentProps, ...props.record.componentProps, [componentProps.bindModel]: formData[props.record.field] }">
+    <!-- 递归组件 start -->
+    <template #node="data">
+      <KNode v-bind="data" />
+    </template>
+    <!-- 递归组件 end -->
+    <!-- 递归组件 start -->
+    <template #edit-node>
+      <slot name="edit-node"></slot>
+    </template>
+    <!-- 递归组件 end -->
+  </component>
+  <!-- 无需FormItem end -->
 
 </template>
 <script lang="ts" setup>
@@ -63,7 +63,7 @@ const componentProps = shallowRef<any>(null)
 async function initComponent () {
   // 如果存在默认值，则会在初始化之后赋值
   if (props.record.componentProps?.defaultValue) {
-    handleUpdate(componentProps.value.defaultValue)
+    handleUpdate(props.record.componentProps?.defaultValue)
   }
 
   // 组件为slot类型时
@@ -133,6 +133,11 @@ function handleUpdate (v: any) {
   formData[props.record.field] = v
 }
 
-initComponent()
-
+// 需要监听值变化，重新渲染组件
+watch(() => props.record, () => {
+  initComponent()
+}, {
+  immediate: true,
+  deep: true
+})
 </script>

@@ -1,6 +1,7 @@
 <template>
   <draggable v-model="schemas" :group="firstNodeId === 'root' || 'edit-draggable'" item-key="id"
     @start="handleSelect($event.oldIndex)" @add="handleSelect($event.newIndex)"
+    ghostClass="moveing"
     :component-data="{ name: 'draggable-range' }">
     <template #item="{ element, index }">
       <div class="item" :class="{ checked: designer.state.checkedNode?.id === element.id }"
@@ -9,10 +10,10 @@
           <div class="action-item">
             {{ element.type }}
           </div>
-          <div class="action-item" @click.stop="handleCopy(schemas!, element, index)">
+          <div v-if="firstNodeId !== 'root'" class="action-item" @click.stop="handleCopy(schemas!, element, index)">
             复制
           </div>
-          <div class="action-item">
+          <div v-if="firstNodeId !== 'root'" class="action-item" @click.stop="handleDelete(schemas!, element, index)">
             删除
           </div>
         </div>
@@ -29,7 +30,6 @@
 import draggable from 'vuedraggable'
 import { computed, watch, toRaw, PropType, inject, ref } from 'vue'
 import { getUUID, deepClone } from '../../../../../utils/index'
-
 import KNode from '../../../../KNode'
 import { NodeItem, Designer } from '../../../../../types/kDesigner'
 
@@ -64,11 +64,20 @@ watch(schemas, (e) => {
   immediate: true
 })
 
+/**
+ * 选中点击节点元素
+ * @param index
+ */
 function handleSelect (index: number) {
-  console.log(index, 1111111)
   designer.setCheckedNode(schemas.value![index])
 }
 
+/**
+ * 复制选中节点元素
+ * @param schemas
+ * @param schema
+ * @param index
+ */
 function handleCopy (schemas: NodeItem[], schema: NodeItem, index: number) {
   const node = deepClone({
     ...toRaw(schema),
@@ -77,6 +86,22 @@ function handleCopy (schemas: NodeItem[], schema: NodeItem, index: number) {
   schemas.splice(index + 1, 0, node)
 
   designer.setCheckedNode(node)
+}
+
+/**
+ * 删除元素
+ * @param schemas
+ * @param schema
+ * @param index
+ */
+function handleDelete (schemas: NodeItem[], schema: NodeItem, index: number) {
+  schemas = schemas.filter((item, i) => index !== i)
+  emit('update:schemas', schemas)
+  if (index === schemas.length) {
+    index--
+  }
+
+  designer.setCheckedNode(schemas[index])
 }
 
 </script>
