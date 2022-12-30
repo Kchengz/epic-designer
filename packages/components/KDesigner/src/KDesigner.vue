@@ -48,7 +48,7 @@ provide('designer', {
  * @param schema
  */
 function setCheckedNode (schema: NodeItem) {
-  console.log(schema)
+  console.log(schema, '-----setCheckedNode-------')
   state.checkedNode = schema
 }
 

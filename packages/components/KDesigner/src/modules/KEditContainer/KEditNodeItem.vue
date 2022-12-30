@@ -1,27 +1,34 @@
 <template>
-    <draggable v-model="schemas" :group="firstNodeId === 'root' || 'edit-draggable'" item-key="id"
-        @start="handleSelect($event.oldIndex)" @add="handleSelect($event.newIndex)"
-        :component-data="{ name: 'draggable-range' }">
-        <template #item="{ element }">
-            <div class="item" :class="{ checked: designer.state.checkedNode?.id === element.id }"
-                @click.stop="designer.setCheckedNode(element)">
-                <div class="action-box" v-show="designer.state.checkedNode?.id === element.id">
-                    <div class="action-item">
-                        {{ element.type }}
-                    </div>
-                </div>
-                <KNode :record="element">
-                    <template #edit-node>
-                        <KEditNodeItem v-model:schemas="element.children" />
-                    </template>
-                </KNode>
-            </div>
-        </template>
-    </draggable>
+  <draggable v-model="schemas" :group="firstNodeId === 'root' || 'edit-draggable'" item-key="id"
+    @start="handleSelect($event.oldIndex)" @add="handleSelect($event.newIndex)"
+    :component-data="{ name: 'draggable-range' }">
+    <template #item="{ element, index }">
+      <div class="item" :class="{ checked: designer.state.checkedNode?.id === element.id }"
+        @click.stop="designer.setCheckedNode(element)">
+        <div class="action-box" v-show="designer.state.checkedNode?.id === element.id">
+          <div class="action-item">
+            {{ element.type }}
+          </div>
+          <div class="action-item" @click.stop="handleCopy(schemas!, element, index)">
+            复制
+          </div>
+          <div class="action-item">
+            删除
+          </div>
+        </div>
+        <KNode :record="element">
+          <template #edit-node>
+            <KEditNodeItem v-model:schemas="element.children" />
+          </template>
+        </KNode>
+      </div>
+    </template>
+  </draggable>
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { computed, watch, PropType, inject, ref } from 'vue'
+import { computed, watch, toRaw, PropType, inject, ref } from 'vue'
+import { getUUID, deepClone } from '../../../../../utils/index'
 
 import KNode from '../../../../KNode'
 import { NodeItem, Designer } from '../../../../../types/kDesigner'
@@ -60,6 +67,16 @@ watch(schemas, (e) => {
 function handleSelect (index: number) {
   console.log(index, 1111111)
   designer.setCheckedNode(schemas.value![index])
+}
+
+function handleCopy (schemas: NodeItem[], schema: NodeItem, index: number) {
+  const node = deepClone({
+    ...toRaw(schema),
+    id: getUUID()
+  })
+  schemas.splice(index + 1, 0, node)
+
+  designer.setCheckedNode(node)
 }
 
 </script>
