@@ -1,14 +1,14 @@
 <template>
-    <FormItem v-if="FormItem && record.isInput && component" v-bind="record" :name="record.field">
-        <component
-            v-bind="{ ...componentProps, ...record.componentProps, [componentProps.bindModel]: formData[record.field] }">
+    <FormItem v-if="FormItem && props.record.isInput && component" v-bind="record" :name="props.record.field">
+        <component :is="component"
+            v-bind="{ ...componentProps, ...props.record.componentProps, [componentProps.bindModel]: formData[props.record.field] }">
             <!-- 递归组件 start -->
             <template #node="data">
                 <KNode v-bind="data" />
             </template>
             <!-- 递归组件 end -->
             <!-- 递归组件 start -->
-            <template #edit-node="data">
+            <template #edit-node>
                 <slot name="edit-node"></slot>
             </template>
             <!-- 递归组件 end -->
@@ -16,15 +16,15 @@
     </FormItem>
 
     <!-- 无需FormItem start -->
-    <component v-else-if="component" ref="nodeRef" :model="formData"
-        v-bind="{ ...componentProps, ...record.componentProps, [componentProps.bindModel]: formData[record.field] }">
+    <component v-else-if="component" ref="nodeRef" :model="formData" :is="component"
+        v-bind="{ ...componentProps, ...props.record.componentProps, [componentProps.bindModel]: formData[props.record.field] }">
         <!-- 递归组件 start -->
         <template #node="data">
             <KNode v-bind="data" />
         </template>
         <!-- 递归组件 end -->
         <!-- 递归组件 start -->
-        <template #edit-node="data">
+        <template #edit-node>
             <slot name="edit-node"></slot>
         </template>
         <!-- 递归组件 end -->
@@ -37,106 +37,101 @@ import { shallowRef, nextTick, ref, inject, Slots, watch, h } from 'vue'
 import { pluginManager } from '../../../utils/index'
 import { FormDataModel } from '../../../types/kDesigner'
 
-let formData = inject('formData', {}) as FormDataModel
-let slots = inject('slots', {}) as Slots
+const formData = inject('formData', {}) as FormDataModel
+const slots = inject('slots', {}) as Slots
 const nodeRef = ref<any>(null)
-let forms = inject('forms', {}) as any
+const forms = inject('forms', {}) as any
 
-const { component: FormItem } = pluginManager.getComponent('FormItem') || {};
+const { component: FormItem } = pluginManager.getComponent('FormItem') || {}
 
 const props = defineProps({
-    record: {
-        type: Object as any,
-        require: true
-    },
+  record: {
+    type: Object as any,
+    require: true
+  }
 })
 
-const { record } = props
+// const { record } = props
 
 // 定义组件及组件props字段
-let component = shallowRef<any>(null)
-let componentProps = shallowRef<any>(null)
+const component = shallowRef<any>(null)
+const componentProps = shallowRef<any>(null)
 
 /**
  * 初始化组件
  */
-async function initComponent() {
+async function initComponent () {
+  // 如果存在默认值，则会在初始化之后赋值
+  if (props.record.componentProps?.defaultValue) {
+    handleUpdate(componentProps.value.defaultValue)
+  }
 
-    // 如果存在默认值，则会在初始化之后赋值
-    if (record.componentProps?.defaultValue) {
-        handleUpdate(componentProps.defaultValue)
-    }
+  // 组件为slot类型时
+  if (props.record.type === 'slot') {
+    const slotName: string = props.record.slotName
 
-
-    // 组件为slot类型时
-    if (record.type === 'slot') {
-        const slotName: string = record.slotName
-
-        // 需要监听值变化，重新传递参数
-        watch(() => formData[record.field], () => {
-            // 获取插槽函数
-            const slot = slots[slotName]?.({
-                record: record,
-                model: formData,
-            })
-            component.value = h('div', null, slot)
-        }, {
-            immediate: true
-        })
-
-        // 获取组件props数据
-        componentProps.value = {
-            is: component,
-        }
-        return false
-    }
-
-    // 内置组件
-    const componentInfo = pluginManager.getComponent(record.type)
-    // 内部不存在组件
-    if (!componentInfo) {
-        console.error(`组件${record.type}未注册`)
-        return false
-    }
-
-    const { bindModel, component: cmp } = componentInfo
-    // 如果数据项为函数，则判定为懒加载组件
-    if (typeof cmp === 'function') {
-        const res = await cmp()
-        component.value = res.default ?? res
-    } else {
-        // 否则为预加载组件
-        component.value = cmp
-    }
-
+    // 需要监听值变化，重新传递参数
+    watch(() => formData[props.record.field], () => {
+      // 获取插槽函数
+      const slot = slots[slotName]?.({
+        record: props.record,
+        model: formData
+      })
+      component.value = h('div', null, slot)
+    }, {
+      immediate: true
+    })
 
     // 获取组件props数据
-    componentProps.value = {
-        record: record,
-        is: component,
-        style: "width: 100%;",
-        bindModel,
-        [`onUpdate:${bindModel}`]: handleUpdate
+    // componentProps.value = {
+    //   is: component
+    // }
+    return false
+  }
+
+  // 内置组件
+  const componentInfo = pluginManager.getComponent(props.record.type)
+  // 内部不存在组件
+  if (!componentInfo) {
+    console.error(`组件${props.record.type}未注册`)
+    return false
+  }
+
+  const { bindModel, component: cmp } = componentInfo
+  // 如果数据项为函数，则判定为懒加载组件
+  if (typeof cmp === 'function') {
+    const res = await cmp()
+    component.value = res.default ?? res
+  } else {
+    // 否则为预加载组件
+    component.value = cmp
+  }
+
+  // 获取组件props数据
+  componentProps.value = {
+    record: props.record,
+    // is: component,
+    style: 'width: 100%;',
+    bindModel,
+    [`onUpdate:${bindModel}`]: handleUpdate
+  }
+
+  nextTick(async () => {
+    if (props.record.type === 'form' && forms.value) {
+      const name = props.record.name ?? 'default'
+      forms.value[name] = nodeRef.value?.form
+      return false
     }
-
-    nextTick(async () => {
-        if (record.type === 'form' && forms.value) {
-            const name = record.name ?? 'default'
-            forms.value[name] = nodeRef.value?.form
-            return false
-        }
-    })
+  })
 }
-
 
 /**
  * 通过函数更新值
  * @param v value值
  */
-function handleUpdate(v: any) {
-    formData[record.field] = v
+function handleUpdate (v: any) {
+  formData[props.record.field] = v
 }
-
 
 initComponent()
 

@@ -10,7 +10,6 @@
     </div> -->
     <Designer v-if="showIndex === 1" />
     <Builder v-if="showIndex === 2" />
-    
   </div>
 </template>
 <script lang="ts" setup>
@@ -24,7 +23,6 @@ const showIndex = ref(1)
 .demo-content {
   height: calc(100vh - 32px);
   height: calc(100vh);
-
 
 }
 

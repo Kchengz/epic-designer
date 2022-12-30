@@ -22,42 +22,36 @@ const designer = inject('designer') as Designer
 
 const componentAttrs = pluginManager.getComponentAttrs()
 
-
-
-
 const checkedNode = computed(() => {
-    return designer.state.checkedNode
+  return designer.state.checkedNode
 })
 
 const componentAttr = computed(() => {
-    return componentAttrs[designer.state.checkedNode?.type || '']
+  return componentAttrs[designer.state.checkedNode?.type || '']
 })
 
-
-
-function getAttrValue(attrIndex:string) {
-    let obj = checkedNode.value || {} as {[key: string]: any}
-    let arr = attrIndex.split(".");
-    for (let i in arr) {
-        obj = obj[arr[i]] || "";
-    }
-    return obj;
+function getAttrValue (attrIndex:string) {
+  let obj = checkedNode.value || {} as {[key: string]: any}
+  const arr = attrIndex.split('.')
+  for (const i in arr) {
+    obj = obj[arr[i]] || ''
+  }
+  return obj
 }
 
-function setAttrValue(value:any, attrIndex:string) {
-    let obj = checkedNode.value || {} as {[key: string]: any}
-    let arr = attrIndex.split(".");
-    arr.forEach((item, index) => {
-        if (index === (arr.length - 1)) {
-            obj[item] = value
-            return false
-        }
-        if (!obj[item]) {
-            obj[item] = {}
-        }
-        obj = obj[item]
-    })
-
+function setAttrValue (value:any, attrIndex:string) {
+  let obj = checkedNode.value || {} as {[key: string]: any}
+  const arr = attrIndex.split('.')
+  arr.forEach((item, index) => {
+    if (index === (arr.length - 1)) {
+      obj[item] = value
+      return false
+    }
+    if (!obj[item]) {
+      obj[item] = {}
+    }
+    obj = obj[item]
+  })
 }
 
 </script>

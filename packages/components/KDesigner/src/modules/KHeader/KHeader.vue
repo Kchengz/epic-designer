@@ -14,11 +14,11 @@
     </header>
 </template>
 <script lang="ts" setup>
-import KPreview from '../KPreview/KPreview.vue';
+import KPreview from '../KPreview/KPreview.vue'
 import { ref } from 'vue'
 const preview = ref<any>(null)
 
-function handlePreview(){
-    preview.value.handleOpen()
+function handlePreview () {
+  preview.value.handleOpen()
 }
 </script>

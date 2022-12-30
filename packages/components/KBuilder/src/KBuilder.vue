@@ -12,8 +12,7 @@ import KNode from '../../KNode/'
 import { reactive, provide, ref, watch, useSlots } from 'vue'
 import { NodeItem, FormDataModel } from '../../../types/kDesigner'
 
-
-const formData = reactive<FormDataModel>({});
+const formData = reactive<FormDataModel>({})
 const slots = useSlots()
 const forms = ref<any>({})
 // const form = ref<any>(null)
@@ -23,13 +22,13 @@ provide('slots', slots)
 provide('forms', forms)
 
 const props = defineProps({
-    schemas: {
-        type: Object as PropType<NodeItem[]>
-    }
+  schemas: {
+    type: Object as PropType<NodeItem[]>
+  }
 })
 
 watch(() => props.schemas, (e) => {
-    console.log(e,'--------------')
+  console.log(e, '--------------')
 }, { deep: true })
 // const getFormBindValues = computed(() => {
 //     return {
@@ -37,34 +36,22 @@ watch(() => props.schemas, (e) => {
 //     }
 // })
 
-
-function getData(): Promise<FormDataModel> {
-    // validateFields
-    return new Promise(async (resolve, rejects) => {
-        try {
-            console.log(forms.value)
-            // 默认表单
-            const values = await forms.value?.default?.validateFields()
-            resolve(values)
-        } catch (error) {
-            rejects(error)
-        }
-    })
-
+function getData (): Promise<FormDataModel> {
+  // validateFields
+  return forms.value?.default?.validateFields()
 }
 
-function setData(data: object) {
-    // validateFields
-    Object.assign(formData, data)
+function setData (data: object) {
+  // validateFields
+  Object.assign(formData, data)
 }
 
-function getSlotName(slot?: string): string {
-    return slot || ''
-}
-
+// function getSlotName (slot?: string): string {
+//   return slot || ''
+// }
 
 defineExpose({
-    getData,
-    setData
+  getData,
+  setData
 })
 </script>

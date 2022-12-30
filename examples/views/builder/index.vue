@@ -1,52 +1,52 @@
 <template>
-  <KBuilder ref="kfb" :schemas="schemas">
-    <template #sdff="{ model, record }">
-      <input v-model="model[record.field]" />
-    </template>
-  </KBuilder>
-  <div @click="handleGetData">获取数据</div>
+  <div>
+    <KBuilder ref="kfb" :schemas="schemas">
+      <template #sdff="{ model, record }">
+        <input v-model="model[record.field]" />
+      </template>
+    </KBuilder>
+    <div @click="handleGetData">获取数据</div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { KBuilder } from '../../../packages';
-import { NodeItem } from '../../../packages/types/kDesigner';
+import { ref } from 'vue'
+import { KBuilder } from '../../../packages'
+import { NodeItem } from '../../../packages/types/kDesigner'
 
-
-
-const kfb = ref<any>(null);
-async function handleGetData() {
+const kfb = ref<any>(null)
+async function handleGetData () {
   const values = await kfb.value?.getData()
   console.log(values)
 }
 const schemas: NodeItem[] = [{
-  "type": "form",
-  'name': 'default',
-  "id": "root",
-  "children": [
+  type: 'form',
+  name: 'default',
+  id: 'root',
+  children: [
     {
-      "label": "文本框",
-      "type": "input",
-      "field": "input2",
-      "isInput": true,
-      "id": "glyhrunicr400",
-      "componentProps": {
-        "type": "text"
+      label: '文本框',
+      type: 'input',
+      field: 'input2',
+      isInput: true,
+      id: 'glyhrunicr400',
+      componentProps: {
+        type: 'text'
       }
     },
     {
-      "label": "选择框",
-      "type": "select",
-      "field": "select",
-      "isInput": true,
-      "id": "8yizri1tzns00"
+      label: '选择框',
+      type: 'select',
+      field: 'select',
+      isInput: true,
+      id: '8yizri1tzns00'
     },
     {
-      "label": "文本框",
-      "type": "input",
-      "field": "input",
-      "isInput": true,
-      "id": "kluewssswzk00",
+      label: '文本框',
+      type: 'input',
+      field: 'input',
+      isInput: true,
+      id: 'kluewssswzk00',
       componentProps: {
 
       },
@@ -54,7 +54,7 @@ const schemas: NodeItem[] = [{
         required: true,
         message: '请输入'
       }]
-    },
+    }
   ]
 }]
 
@@ -122,6 +122,5 @@ const schemas: NodeItem[] = [{
 //     "customStyle": ""
 //   }
 // }
-
 
 </script>

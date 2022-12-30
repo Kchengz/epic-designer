@@ -7,13 +7,14 @@
     </div>
 </template>
 <script lang="ts" setup>
-
+import { computed } from 'vue'
 const props = defineProps({
-    record: {
-        type: Object as any,
-        require: true
-    },
+  record: {
+    type: Object as any,
+    require: true
+  }
 })
-
-const children = props.record.children ?? []
+const children = computed(() => {
+  return props.record.children ?? []
+})
 </script>

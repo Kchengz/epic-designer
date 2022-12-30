@@ -8,22 +8,27 @@
 </template>
 <script lang="ts" setup>
 import { pluginManager } from '../../../utils'
-import { ref, watch, inject, useAttrs } from 'vue'
-const { component: Form } = pluginManager.getComponent('Form') || {};
+import { ref, computed, useAttrs } from 'vue'
+const { component: Form } = pluginManager.getComponent('Form') || {}
 const attrs = useAttrs()
 const form = ref<any>(null)
 const props = defineProps({
-    record: {
-        type: Object as any,
-        require: true
-    },
+  record: {
+    type: Object as any,
+    require: true
+  }
 })
 
-function onFinish(e: any) {
-    console.log(e)
+function onFinish (e: any) {
+  console.log(e)
 }
-const children = props.record.children ?? []
+// const children = props.record.children ?? []
+
+const children = computed(() => {
+  return props.record.children ?? []
+})
+
 defineExpose({
-    form
+  form
 })
 </script>

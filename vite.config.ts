@@ -4,6 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 import dts from "vite-plugin-dts";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
+import eslintPlugin from "vite-plugin-eslint";
 export default defineConfig({
   plugins: [
     vue(),
@@ -16,6 +17,9 @@ export default defineConfig({
       iconDirs: [path.resolve(process.cwd(), "packages/icons")],
       // 指定symbolId格式
       symbolId: "icon-[dir]-[name]",
+    }),
+    eslintPlugin({
+      include: ["src/**/*.ts", "src/**/*.vue", "src/*.ts", "src/*.vue"],
     }),
   ],
   resolve: {

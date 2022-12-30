@@ -18,34 +18,33 @@ import KRightSidebar from './modules/KAttributeView/KAttributeView.vue'
 import KEditContainer from './modules/KEditContainer/KEditContainer.vue'
 import KActionBar from './modules/KActionBar/KActionBar.vue'
 import { provide, reactive, ref } from 'vue'
-import { DesignerState } from '../../../types/kDesigner'
-import { NodeItem } from '../../../types/kDesigner'
+import { DesignerState, NodeItem } from '../../../types/kDesigner'
+
 const state = reactive<DesignerState>({
-    checkedNode: null,
+  checkedNode: null
 })
 const schemas = ref<NodeItem[]>([])
 provide('schemas', schemas)
 
 schemas.value.push({
-    "type": "form",
-    id: 'root',
-    name:'default',
-    children: []
+  type: 'form',
+  id: 'root',
+  name: 'default',
+  children: []
 })
 provide('designer', {
-    setCheckedNode,
-    state
+  setCheckedNode,
+  state
 })
 
 /**
  * 选中节点
- * @param schema 
+ * @param schema
  */
-function setCheckedNode(schema: NodeItem) {
-    console.log(schema)
-    state.checkedNode = schema
+function setCheckedNode (schema: NodeItem) {
+  console.log(schema)
+  state.checkedNode = schema
 }
-
 
 </script>
 

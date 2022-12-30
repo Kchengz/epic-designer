@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <KNode :record="element">
-                    <template #edit-node="data">
+                    <template #edit-node>
                         <KEditNodeItem v-model:schemas="element.children" />
                     </template>
                 </KNode>
@@ -21,41 +21,45 @@
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { computed, PropType } from 'vue'
+import { computed, watch, PropType, inject, ref } from 'vue'
 
 import KNode from '../../../../KNode'
 import { NodeItem, Designer } from '../../../../../types/kDesigner'
-import { inject, ref } from 'vue'
 
 const designer = inject('designer') as Designer
 
 const props = defineProps({
-    schemas: {
-        type: Array as PropType<NodeItem[]>
-    }
+  schemas: {
+    type: Array as PropType<NodeItem[]>
+  }
 })
 
 const firstNodeId = ref('')
 
 const emit = defineEmits(['update:schemas'])
 const schemas = computed({
-    get() {
-
-        // 判断props.schemas是否存在值
-        if (props.schemas?.length) {
-            // 读取第一个节点id 如果节点id等于root 则判定该节点为根节点
-            firstNodeId.value = props.schemas[0].id || ''
-        }
-        return props.schemas
-    },
-    set(e) {
-        emit('update:schemas', e)
-    }
+  get () {
+    // 判断props.schemas是否存在值
+    return props.schemas
+  },
+  set (e) {
+    emit('update:schemas', e)
+  }
 })
 
-function handleSelect(index: number) {
-    console.log(index, 1111111)
-    designer.setCheckedNode(schemas.value![index])
+watch(schemas, (e) => {
+  // 判断props.schemas是否存在值
+  if (e?.length) {
+    // 读取第一个节点id 如果节点id等于root 则判定该节点为根节点
+    firstNodeId.value = e[0].id ?? ''
+  }
+}, {
+  immediate: true
+})
+
+function handleSelect (index: number) {
+  console.log(index, 1111111)
+  designer.setCheckedNode(schemas.value![index])
 }
 
 </script>

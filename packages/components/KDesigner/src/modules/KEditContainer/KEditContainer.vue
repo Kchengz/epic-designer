@@ -6,9 +6,9 @@
     </section>
 </template>
 <script lang="ts" setup>
-import { NodeItem, Designer } from '../../../../../types/kDesigner'
+import { NodeItem } from '../../../../../types/kDesigner'
 import KEditNodeItem from './KEditNodeItem.vue'
-import { ref, reactive, unref, inject, useSlots } from 'vue'
+import { inject } from 'vue'
 
 const schemas = inject('schemas') as NodeItem[]
 
