@@ -1,26 +1,23 @@
 <template>
-    <div class="k-component-view">
-        <div v-for="(item,index) in sourceSchema" :key="index">
-            <div class="collapse-header">
-                {{ item.title }}
-            </div>
-            <draggable v-model="item.list" v-bind="{
-                    group: { name: 'edit-draggable', pull: 'clone', put: false },
-                    sort: false,
-                    animation: 180,
-                    ghostClass: 'moving'
-                    }"
-                    item-key="id"
-                    :component-data="{ name: 'list' }"
-                    @end="handleDraggableEnd($event, item.list)">
-                <template #item="{ element }">
-                    <div class="source-componet-item" @click="handleClick(element)">
-                        {{ element.label }}
-                    </div>
-                </template>
-            </draggable>
-        </div>
+  <div class="k-component-view">
+    <div v-for="(item, index) in sourceSchema" :key="index">
+      <div class="collapse-header">
+        {{ item.title }}
+      </div>
+      <draggable v-model="item.list" v-bind="{
+  group: { name: 'edit-draggable', pull: 'clone', put: false },
+  sort: false,
+  animation: 180,
+  ghostClass: 'moving'
+}" item-key="id" :component-data="{ name: 'list' }" @end="handleDraggableEnd($event, item.list)">
+        <template #item="{ element }">
+          <div class="source-componet-item" @click="handleClick(element)">
+            {{ element.label }}
+          </div>
+        </template>
+      </draggable>
     </div>
+  </div>
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
@@ -30,7 +27,7 @@ import { SchemaNodeGroupItem, NodeItem, Designer } from '../../../../../types/kD
 
 const sourceSchema = ref<SchemaNodeGroupItem[]>([])
 sourceSchema.value = nodeSchema.getSchemaByGroup()
-const schemas:any = inject('schemas')
+const schemas: any = inject('schemas')
 const designer = inject('designer') as Designer
 
 /**
@@ -55,13 +52,20 @@ function handleClick (e: NodeItem) {
     console.warn('未查询到节点')
     return false
   }
-  const { list } = data
-  const schema = deepClone({
+  let { list, schema, index } = data
+
+  // 如果选中元素存在children字段，则添加到children中
+  if (schema.children) {
+    list = schema.children
+    index = schema.children.length - 1
+  }
+
+  const node = deepClone({
     ...toRaw(e),
     id: getUUID()
   })
 
-  list.push(schema)
-  designer.setCheckedNode(schema)
+  list.splice(index + 1, 0, node)
+  designer.setCheckedNode(node)
 }
 </script>

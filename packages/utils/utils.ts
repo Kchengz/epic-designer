@@ -27,26 +27,39 @@ export function deepClone(json: object | any[]) {
 export function findSchemaById(schemas: NodeItem[], id: string) {
   let list: NodeItem[] = [];
   list.push(...schemas);
+  // 遍历子节点
+  for (let i = 0; list.length > i; i++) {
+    // 判断id是否一致
+    if (list[i].id === id) {
+      // 返回结果
+      return {
+        list: list,
+        schema: list[i],
+        index: i,
+      };
+    }
+  }
+
   while (list.length > 0) {
     // 弹出节点
     const item = list.pop();
-    
-    const children = item?.children
+
+    const children = item?.children;
     // 检查是否存在子节点，否则直接跳出循环
-    if (!children){
-      continue
+    if (!children) {
+      continue;
     }
 
     // 遍历子节点
-    for(let i in children){
+    for (let i = 0; children.length > i; i++) {
       // 判断id是否一致
-      if(children[i].id === id){
+      if (children[i].id === id) {
         // 返回结果
         return {
-          list:children,
-          schema:children[i],
-          index: i
-        }
+          list: children,
+          schema: children[i],
+          index: i,
+        };
       }
     }
     // 添加子节点到待遍历数组中

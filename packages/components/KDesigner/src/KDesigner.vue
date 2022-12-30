@@ -26,12 +26,18 @@ const state = reactive<DesignerState>({
 const schemas = ref<NodeItem[]>([])
 provide('schemas', schemas)
 
-schemas.value.push({
+const rootSchema = {
   type: 'form',
   id: 'root',
   name: 'default',
   children: []
-})
+}
+
+// 添加根节点
+schemas.value.push(rootSchema)
+// 选中根节点
+setCheckedNode(rootSchema)
+
 provide('designer', {
   setCheckedNode,
   state
