@@ -1,17 +1,18 @@
 <template>
-    <aside class="k-right-sidebar">
-        属性面板
-        <div v-if="checkedNode">
-            <div :key="item.attrIndex" v-for="item in componentAttr">
-                <div>
-                    {{ item.label }}
-                </div>
-                <KAttributeInput :record="item" :model-value="getAttrValue(item.attrIndex)"
-                    @update:model-value="setAttrValue($event, item.attrIndex)" />
-            </div>
-
+  <aside class="k-right-sidebar">
+    属性面板
+    <div v-if="checkedNode">
+      <div :key="item.attrIndex" v-for="item in componentAttr">
+        <div>
+          {{ item.label }}
         </div>
-    </aside>
+        <KAttributeInput :record="item" :model-value="getAttrValue(item.attrIndex)"
+          :componentProps="item.attrIndex === 'componentProps.defaultValue' ? checkedNode.componentProps : {}"
+          @update:model-value="setAttrValue($event, item.attrIndex)" />
+      </div>
+
+    </div>
+  </aside>
 </template>
 <script lang="ts" setup>
 import KAttributeInput from './KAttributeInput.vue'
@@ -30,8 +31,8 @@ const componentAttr = computed(() => {
   return componentAttrs[designer.state.checkedNode?.type || '']
 })
 
-function getAttrValue (attrIndex:string) {
-  let obj = checkedNode.value || {} as {[key: string]: any}
+function getAttrValue (attrIndex: string) {
+  let obj = checkedNode.value || {} as { [key: string]: any }
   const arr = attrIndex.split('.')
   for (const i in arr) {
     obj = obj[arr[i]] || ''
@@ -39,8 +40,8 @@ function getAttrValue (attrIndex:string) {
   return obj
 }
 
-function setAttrValue (value:any, attrIndex:string) {
-  let obj = checkedNode.value || {} as {[key: string]: any}
+function setAttrValue (value: any, attrIndex: string) {
+  let obj = checkedNode.value || {} as { [key: string]: any }
   const arr = attrIndex.split('.')
   arr.forEach((item, index) => {
     if (index === (arr.length - 1)) {

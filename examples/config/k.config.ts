@@ -144,6 +144,11 @@ export function useComponent(pluginManager) {
         attrIndex: "field",
       },
       {
+        label: "默认值",
+        type: "radio",
+        attrIndex: "componentProps.defaultValue",
+      },
+      {
         label: "文字",
         type: "input",
         attrIndex: "label",
@@ -175,6 +180,11 @@ export function useComponent(pluginManager) {
         label: "字段名",
         type: "input",
         attrIndex: "field",
+      },
+      {
+        label: "默认值",
+        type: "checkbox",
+        attrIndex: "componentProps.defaultValue",
       },
       {
         label: "文字",

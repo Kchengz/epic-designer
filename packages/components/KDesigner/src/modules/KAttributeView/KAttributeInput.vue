@@ -11,6 +11,10 @@ const props = defineProps({
     type: Object as any,
     require: true
   },
+  componentProps: {
+    type: Object as any,
+    default: () => {}
+  },
   modelValue: {}
 })
 const emit = defineEmits(['update:modelValue'])
@@ -58,7 +62,7 @@ async function initComponent () {
   componentProps.value = {
     record: props.record,
     ...props.record.componentProps,
-
+    ...props.componentProps,
     style: 'width: 100%;',
     bindModel,
     [`onUpdate:${bindModel}`]: handleUpdate
