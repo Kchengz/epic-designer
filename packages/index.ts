@@ -5,6 +5,8 @@ import { pluginManager, nodeSchema } from "./utils/index";
 import { defineAsyncComponent } from "vue";
 import 'virtual:svg-icons-register'
 
+import './index.less'
+
 const components = [KBuilder, KDesigner];
 pluginManager.registerComponent(
   "monacoEditor",

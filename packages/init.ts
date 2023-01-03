@@ -2,6 +2,7 @@ import { pluginManager } from "./utils/pluginManager";
 
 import KComponentView from "./components/KDesigner/src/modules/KComponentView/KComponentView.vue";
 import KSoundCode from "./components/KDesigner/src/modules/KSoundCode/KSoundCode.vue";
+import KOutline from "./components/KDesigner/src/modules/KOutline/KOutline.vue";
 // import KForm from "./components/KForm/index";
 
 import Form from "ant-design-vue/lib/form";
@@ -39,9 +40,9 @@ pluginManager.registerActivitybar({
 
 pluginManager.registerActivitybar({
   id: "1",
-  title: "模板",
+  title: "大纲",
   icon: "chart",
-  component: KComponentView,
+  component: KOutline,
 });
 
 // pluginManager.registerActivitybar({

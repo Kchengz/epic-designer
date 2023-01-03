@@ -1,0 +1,60 @@
+.k-tree-main {
+  // background: white;
+  a {
+    color: @text-main;
+    display: flex;
+    .text {
+      display: inline-block;
+      padding: 0 6px;
+      width: 100%;
+    }
+    .checked {
+      background: @primary-hover-bg-color;
+      color: @primary-color;
+    }
+  }
+  .k-tree-node {
+    padding-left: 18px;
+    min-height: 24px;
+    line-height: 24px;
+    cursor: pointer;
+  }
+
+  .k-tree-sublist {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &.expanded {
+      height: auto;
+    }
+    .k-tree-node {
+      position: relative;
+      &::after,
+      &::before {
+        content: "";
+        position: absolute;
+        background: #e8e9eb;
+        z-index: 99;
+      }
+      &::after {
+        width: 1px;
+        height: 100%;
+        left: 4px;
+        top: 0;
+      }
+      &::before {
+        width: 8px;
+        height: 1px;
+        left: 4px;
+        top: 13px;
+      }
+
+      &:last-child {
+        &::after {
+          height: 13px;
+        }
+      }
+    }
+  }
+}

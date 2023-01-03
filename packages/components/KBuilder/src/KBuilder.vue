@@ -23,7 +23,7 @@ provide('forms', forms)
 
 const props = defineProps({
   schemas: {
-    type: Object as PropType<NodeItem[]>
+    type: Array as PropType<NodeItem[]>
   }
 })
 
