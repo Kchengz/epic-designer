@@ -102,16 +102,21 @@
 
   .k-edit-range {
     height: 100%;
+    background-color: white;
+    border-radius: 6px;
+    overflow: auto;
 
     [name="draggable-range"] {
       min-height: 60px;
       height: 100%;
       background-color: @edit-bg;
+      border: 1px #999 dashed;
+      // padding: 10px;
     }
 
     > [name="draggable-range"] {
       height: 100%;
-      border-radius: 6px;
+      border: 1px transparent;
       > .item {
         height: 100%;
       }
@@ -120,6 +125,10 @@
       .ant-form-item-label > label {
         pointer-events: none;
       }
+    }
+
+    .root-node > form > [name="draggable-range"] {
+      border: transparent;
     }
 
     .item {

@@ -1,10 +1,10 @@
 <template>
   <draggable v-model="schemas" :group="firstNodeId === 'root' || 'edit-draggable'" item-key="id"
-    @start="handleSelect($event.oldIndex)" @add="handleSelect($event.newIndex)"
-    ghostClass="moveing"
+    @start="handleSelect($event.oldIndex)" @add="handleSelect($event.newIndex)" ghostClass="moveing"
     :component-data="{ name: 'draggable-range' }">
     <template #item="{ element, index }">
-      <div class="item" :class="{ checked: designer.state.checkedNode?.id === element.id }"
+      <div class="item"
+        :class="{ checked: designer.state.checkedNode?.id === element.id, 'root-node': element.id === 'root' }"
         @click.stop="designer.setCheckedNode(element)">
         <div class="action-box" v-show="designer.state.checkedNode?.id === element.id">
           <div class="action-item">
