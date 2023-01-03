@@ -1,5 +1,15 @@
 <template>
     <header class="k-footer">
-        我是底部
+        <div class="left">
+            form > input
+        </div>
+        <div class="right">
+            <div class="author">
+                kcz
+            </div>
+            <div class="package-name">
+                k-designer
+            </div>
+        </div>
     </header>
 </template>

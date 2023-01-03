@@ -44,9 +44,9 @@ pluginManager.registerActivitybar({
   component: KComponentView,
 });
 
-pluginManager.registerActivitybar({
-  id: "1",
-  title: "插件",
-  icon: "apply",
-  component: KComponentView,
-});
+// pluginManager.registerActivitybar({
+//   id: "1",
+//   title: "插件",
+//   icon: "apply",
+//   component: KComponentView,
+// });

@@ -37,6 +37,21 @@
   background-color: @primary-color;
   color: white;
   font-size: 10px;
+  padding: 0 6px;
+  display: flex;
+  justify-content: space-between;
+
+  .left,
+  .right {
+    display: flex;
+    > div {
+      padding: 0 6px;
+    }
+    .author,
+    .package-name {
+      cursor: pointer;
+    }
+  }
 }
 
 // 左右侧栏
