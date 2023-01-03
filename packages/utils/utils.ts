@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import { NodeItem } from "../types/kDesigner";
 /**
  * 生成一个用不重复的ID
@@ -65,6 +66,42 @@ export function findSchemaById(schemas: NodeItem[], id: string) {
     // 添加子节点到待遍历数组中
     list.push(...children);
   }
-  // 查询失败
-  return false;
+
+  throw `没有查询到id为${id}的节点`;
+}
+
+/**
+ * 通过id查询路径
+ * @param schemas
+ * @param id
+ */
+export function findPathById(schemas: NodeItem[], id: string) {
+  let matched: NodeItem[] = [];
+  return new Promise((resolve,reject) => {
+    function getNodePath(node: NodeItem) {
+      matched.push(node);
+
+      //找到符合条件的节点
+      if (node.id === id) {
+        resolve(matched);
+        return false;
+      }
+      if (node.children && node.children.length > 0) {
+        for (let i = 0; i < node.children.length; i++) {
+          getNodePath(node.children[i]);
+        }
+        //当前节点的子节点遍历完依旧没找到，则删除路径中的该节点
+        matched.pop();
+      } else {
+        //找到叶子节点时，删除路径当中的该叶子节点
+        matched.pop();
+      }
+    }
+
+    schemas.forEach((node) => {
+      getNodePath(node);
+    });
+
+    reject(`没有查询到id为${id}的节点`)
+  });
 }

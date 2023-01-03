@@ -17,7 +17,7 @@ import KEditContainer from './modules/KEditContainer/KEditContainer.vue'
 import KActionBar from './modules/KActionBar/KActionBar.vue'
 import { provide, reactive, ref } from 'vue'
 import { DesignerState, NodeItem, FormDataModel } from '../../../types/kDesigner'
-
+import { findPathById } from '../../../utils/index'
 const state = reactive<DesignerState>({
   checkedNode: null
 })
@@ -49,8 +49,11 @@ provide('designer', {
  * 选中节点
  * @param schema
  */
-function setCheckedNode (schema: NodeItem = rootSchema) {
+async function setCheckedNode (schema: NodeItem = rootSchema) {
   state.checkedNode = schema
+
+  const ggg = await findPathById(schemas.value, schema.id)
+  console.log(ggg)
 }
 
 </script>
