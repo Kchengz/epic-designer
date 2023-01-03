@@ -30,7 +30,10 @@ watch(
   () => props.value,
   (value) => {
     // 防止改变编辑器内容时光标重定向
-    if (value !== monacoEditor?.getValue()) {
+    const monacoEditorValue = monacoEditor?.getValue()
+    const currenValue = JSON.stringify(JSON.parse(monacoEditorValue ?? '{}'))
+    const inputValue = JSON.stringify(JSON.parse(value ?? '{}'))
+    if (inputValue !== currenValue) {
       monacoEditor?.setValue(value || '')
     }
   }

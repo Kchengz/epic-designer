@@ -1,7 +1,7 @@
 <template>
-    <div class="k-sound-code">
-        <component class="editor" v-if="Monaco" :is="Monaco" v-model:value="getSchemas" />
-    </div>
+  <div class="k-sound-code">
+    <component class="editor" v-if="Monaco" :is="Monaco" v-model:value="getSchemas" />
+  </div>
 </template>
 <script lang="ts" setup>
 import { ref, inject, computed } from 'vue'
@@ -25,8 +25,15 @@ const getSchemas = computed({
     if (!designer.state.checkedNode) { return false }
 
     const json = JSON.parse(e)
+    const keyArray = []
     for (const i in json) {
       designer.state.checkedNode[i] = json[i]
+      keyArray.push(i)
+    }
+    for (const i in designer.state.checkedNode) {
+      if (!keyArray.includes(i)) {
+        delete designer.state.checkedNode[i]
+      }
     }
   }
 })
@@ -35,10 +42,10 @@ const getSchemas = computed({
 
 <style>
 .k-sound-code {
-    height: 100%;
+  height: 100%;
 }
 
 .editor {
-    height: 100%;
+  height: 100%;
 }
 </style>
