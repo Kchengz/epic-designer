@@ -4,7 +4,8 @@
             <div>
                 <span v-for="(item, index) in designer.state.matched" :key="index">
                     <span v-if="index !== 0"> > </span>
-                    <span class="node-item" @click="handleSelect(item)">{{ item.type }}</span>
+                    <span class="node-item" @click="handleSelect(item)" @mouseover.stop="designer.setHoverNode(item)"
+        @mouseout.stop="designer.setHoverNode(null)">{{ item.type }}</span>
                 </span>
             </div>
         </div>

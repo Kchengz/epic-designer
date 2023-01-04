@@ -38,6 +38,8 @@ export interface SchemaNodeGroupItem {
 
 export interface Designer {
   setCheckedNode: (record: NodeItem) => {};
+  setHoverNode: (record: NodeItem | null) => {};
+  setDisableHover: (disableHover = false) => {};
   state: DesignerState;
   schemas: NodeItem[];
 }
@@ -45,6 +47,8 @@ export interface Designer {
 export interface DesignerState {
   checkedNode: NodeItem | null;
   hoverNode: NodeItem | null;
-  matched: NodeItem[]
+  disableHover: boolean;
+  matched: NodeItem[];
+  
   // actionBarCheckedIndex: number | null;
 }

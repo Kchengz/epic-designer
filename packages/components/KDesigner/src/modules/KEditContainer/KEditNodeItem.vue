@@ -1,11 +1,16 @@
 <template>
   <draggable v-model="schemas" :group="firstNodeId === 'root' || 'edit-draggable'" item-key="id"
-    @start="handleSelect($event.oldIndex)" @add="handleSelect($event.newIndex)" ghostClass="moveing"
+  @start="handleSelect($event.oldIndex);designer.setDisableHover(true)" @end="handleEnd()" @add="handleSelect($event.newIndex)" ghostClass="moveing"
     :component-data="{ name: 'draggable-range' }">
     <template #item="{ element, index }">
-      <div class="item"
-        :class="{ checked: designer.state.checkedNode?.id === element.id, 'root-node': element.id === 'root' }"
-        @click.stop="designer.setCheckedNode(element)">
+      <div class="item" :class="{
+          checked: designer.state.checkedNode?.id === element.id,
+          hover: designer.state.hoverNode?.id === element.id,
+          'root-node': element.id === 'root'
+        }"
+        @click.stop="designer.setCheckedNode(element)"
+        @mouseover.stop="designer.setHoverNode(element)"
+        @mouseout.stop="designer.setHoverNode(null)">
         <div class="action-box" v-show="designer.state.checkedNode?.id === element.id">
           <div class="action-item">
             {{ element.type }}
@@ -70,6 +75,10 @@ watch(schemas, (e) => {
  */
 function handleSelect (index: number) {
   designer.setCheckedNode(schemas.value![index])
+}
+
+function handleEnd () {
+  designer.setDisableHover()
 }
 
 /**
