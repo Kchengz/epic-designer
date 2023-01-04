@@ -13,7 +13,6 @@ const schemas = inject('schemas') as Ref<NodeItem[]>
 const selectedKeys = computed({
   get: () => {
     const id = designer.state.checkedNode?.id
-    console.log(id)
     return id ? [id] : []
   },
   set: (e: any) => {

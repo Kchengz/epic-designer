@@ -17,9 +17,11 @@ import KEditContainer from './modules/KEditContainer/KEditContainer.vue'
 import KActionBar from './modules/KActionBar/KActionBar.vue'
 import { provide, reactive, ref } from 'vue'
 import { DesignerState, NodeItem, FormDataModel } from '../../../types/kDesigner'
-import { findPathById } from '../../../utils/index'
+import { getMatchedById } from '../../../utils/index'
 const state = reactive<DesignerState>({
-  checkedNode: null
+  checkedNode: null,
+  hoverNode: null,
+  matched: []
 })
 const schemas = ref<NodeItem[]>([])
 
@@ -51,9 +53,7 @@ provide('designer', {
  */
 async function setCheckedNode (schema: NodeItem = rootSchema) {
   state.checkedNode = schema
-
-  const ggg = await findPathById(schemas.value, schema.id)
-  console.log(ggg)
+  state.matched = getMatchedById(schemas.value, schema.id)
 }
 
 </script>

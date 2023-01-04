@@ -44,5 +44,7 @@ export interface Designer {
 
 export interface DesignerState {
   checkedNode: NodeItem | null;
+  hoverNode: NodeItem | null;
+  matched: NodeItem[]
   // actionBarCheckedIndex: number | null;
 }

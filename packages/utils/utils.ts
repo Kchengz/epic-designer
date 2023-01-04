@@ -71,20 +71,18 @@ export function findSchemaById(schemas: NodeItem[], id: string) {
 }
 
 /**
- * 通过id查询路径
+ * 通过id获取节点路径
  * @param schemas
  * @param id
  */
-export function findPathById(schemas: NodeItem[], id: string) {
+export function getMatchedById(schemas: NodeItem[], id: string) {
   let matched: NodeItem[] = [];
-  return new Promise((resolve,reject) => {
+  try {
     function getNodePath(node: NodeItem) {
       matched.push(node);
-
-      //找到符合条件的节点
+      //找到符合条件的节点,终止查询
       if (node.id === id) {
-        resolve(matched);
-        return false;
+        throw "查询到符合条件节点";
       }
       if (node.children && node.children.length > 0) {
         for (let i = 0; i < node.children.length; i++) {
@@ -102,6 +100,8 @@ export function findPathById(schemas: NodeItem[], id: string) {
       getNodePath(node);
     });
 
-    reject(`没有查询到id为${id}的节点`)
-  });
+    console.error(`没有查询到id为${id}的节点`);
+  } finally {
+    return matched;
+  }
 }
