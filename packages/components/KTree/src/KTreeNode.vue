@@ -1,14 +1,14 @@
 <template>
   <li class="k-tree-node">
     <a>
-      <span @click="handleExpanded" v-if="props.record.children?.length">></span>
+      <span @click="handleExpanded" v-if="props.record.children?.length" class="icon-expanded" :class="{ expanded }"><span class="iconfont icon-zhankai"></span></span>
       <span class="text"
         :class="{ checked: treeProps.selectedKeys.includes(props.record.id!), hover: designer.state.hoverNode?.id === props.record.id }"
         @click="handleSelect(props.record.id!, props.record)" @mouseover.stop="designer.setHoverNode(props.record)"
         @mouseout.stop="designer.setHoverNode(null)"> {{ props.record.type }}</span>
     </a>
     <ul class="k-tree-sublist" v-if="props.record.children?.length"
-      :class="{ expanded: expandedKeys.includes(props.record.id ?? '') }">
+      :class="{ expanded }">
       <KTreeNode v-for="(item) in props.record.children" :record="item" :key="item.id" />
     </ul>
   </li>
@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import { NodeItem, Designer } from '../../../types/kDesigner'
 import type { PropType } from 'vue'
-import { inject, Ref } from 'vue'
+import { inject, computed, Ref } from 'vue'
 
 // const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
@@ -25,6 +25,9 @@ const expandedKeys = inject('expandedKeys') as Ref<string[]>
 const treeProps = inject('treeProps') as any
 const handleSelect = inject('handleSelect') as (id: string, record: NodeItem) => {}
 
+const expanded = computed(() => {
+  return expandedKeys.value.includes(props.record.id ?? '')
+})
 const props = defineProps({
   record: {
     type: Object as PropType<NodeItem>,

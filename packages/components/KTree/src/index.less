@@ -24,6 +24,16 @@
     min-height: 24px;
     line-height: 24px;
     cursor: pointer;
+    .icon-expanded {
+      font-size: 13px;
+      position: relative;
+      left: -2px;
+      transition: transform 0.3s;
+      color: #999;
+      &.expanded {
+        transform: rotate(90deg);
+      }
+    }
   }
 
   .k-tree-sublist {
@@ -36,6 +46,7 @@
     }
     .k-tree-node {
       position: relative;
+
       &::after,
       &::before {
         content: "";

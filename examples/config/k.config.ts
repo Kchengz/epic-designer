@@ -13,6 +13,7 @@ export function useComponent(pluginManager) {
       label: "测试",
       type: "test",
       field: "test",
+      icon: "icon-qiapian",
       children: [],
     },
     [
@@ -52,7 +53,7 @@ export function useComponent(pluginManager) {
       label: "文本框",
       type: "input",
       field: "input",
-      
+      icon: "icon-write",
       isInput: true,
     },
     [
@@ -101,6 +102,7 @@ export function useComponent(pluginManager) {
     {
       label: "数字输入框",
       type: "number",
+      icon: "icon-number",
       field: "number",
       isInput: true,
     },
@@ -122,19 +124,20 @@ export function useComponent(pluginManager) {
     {
       label: "单选框",
       type: "radio",
+      icon: "icon-danxuan-cuxiantiao",
       field: "radio",
       isInput: true,
       componentProps: {
-        options:[
+        options: [
           {
-            label:'选项1',
-            value:'选项1',
+            label: "选项1",
+            value: "选项1",
           },
           {
-            label:'选项2',
-            value:'选项2',
+            label: "选项2",
+            value: "选项2",
           },
-        ]
+        ],
       },
     },
     [
@@ -160,19 +163,20 @@ export function useComponent(pluginManager) {
     {
       label: "多选框",
       type: "checkbox",
+      icon: "icon-duoxuan1",
       field: "checkbox",
       isInput: true,
       componentProps: {
-        options:[
+        options: [
           {
-            label:'选项1',
-            value:'选项1',
+            label: "选项1",
+            value: "选项1",
           },
           {
-            label:'选项2',
-            value:'选项2',
+            label: "选项2",
+            value: "选项2",
           },
-        ]
+        ],
       },
     },
     [
@@ -199,19 +203,20 @@ export function useComponent(pluginManager) {
     {
       label: "选择框",
       type: "select",
+      icon: "icon-xiala",
       field: "select",
       isInput: true,
       componentProps: {
-        options:[
+        options: [
           {
-            label:'选项1',
-            value:'选项1',
+            label: "选项1",
+            value: "选项1",
           },
           {
-            label:'选项2',
-            value:'选项2',
+            label: "选项2",
+            value: "选项2",
           },
-        ]
+        ],
       },
     },
     [
@@ -227,6 +232,4 @@ export function useComponent(pluginManager) {
       },
     ]
   );
-
-
 }

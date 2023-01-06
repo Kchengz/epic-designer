@@ -18,6 +18,7 @@ pluginManager.addComponent(
     label: "测试2",
     type: "form",
     field: "test",
+    icon:'icon-qiapian',
     children: [],
   },
   []
