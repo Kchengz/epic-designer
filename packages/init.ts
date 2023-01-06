@@ -27,21 +27,21 @@ pluginManager.addComponent(
 pluginManager.registerActivitybar({
   id: "1",
   title: "组件",
-  icon: "apply",
+  icon: "icon-mokuai_1",
   component: KComponentView,
 });
 
 pluginManager.registerActivitybar({
   id: "12",
   title: "源码",
-  icon: "setting",
+  icon: "icon-daima1",
   component: KSoundCode,
 });
 
 pluginManager.registerActivitybar({
   id: "1",
   title: "大纲",
-  icon: "chart",
+  icon: "icon-tree1",
   component: KOutline,
 });
 

@@ -54,7 +54,7 @@ provide('designer', {
  */
 async function setCheckedNode (schema: NodeItem = rootSchema) {
   state.checkedNode = schema
-  state.matched = getMatchedById(schemas.value, schema.id)
+  state.matched = getMatchedById(schemas.value, schema.id!)
 }
 
 /**

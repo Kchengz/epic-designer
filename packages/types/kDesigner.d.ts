@@ -4,7 +4,7 @@ export interface NodeItem {
   slotName?: string;
   type: string;
   componentProps?: any;
-  id: string;
+  id?: string;
   rules?: any;
   labelCol?: any;
   wrapperCol?: any;

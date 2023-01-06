@@ -12,7 +12,7 @@
 }" item-key="id" :component-data="{ name: 'list' }" @end="handleDraggableEnd($event, item.list)">
         <template #item="{ element }">
           <div class="source-componet-item" @click="handleClick(element)">
-            {{ element.label }}
+            <span class="iconfont icon-chaifen"></span> {{ element.label }}
           </div>
         </template>
       </draggable>

@@ -3,7 +3,6 @@ import KDesigner from "./components/KDesigner/";
 import { App } from "vue";
 import { pluginManager, nodeSchema } from "./utils/index";
 import { defineAsyncComponent } from "vue";
-import 'virtual:svg-icons-register'
 
 import './index.less'
 
