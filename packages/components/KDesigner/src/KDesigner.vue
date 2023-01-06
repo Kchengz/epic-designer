@@ -33,6 +33,14 @@ const rootSchema = {
   type: 'form',
   id: 'root',
   name: 'default',
+  componentProps: {
+    layout: 'horizontal',
+    labelWidth: 100,
+    labelLayout: 'flex',
+    labelCol: { span: 5 },
+    wrapperCol: { span: 19 },
+    hideRequiredMark: false
+  },
   children: []
 }
 

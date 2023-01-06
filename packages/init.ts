@@ -18,10 +18,38 @@ pluginManager.addComponent(
     label: "测试2",
     type: "form",
     field: "test",
-    icon:'icon-qiapian',
+    icon: "icon-qiapian",
     children: [],
   },
-  []
+  [
+    {
+      label: "标签布局",
+      type: "radio",
+      attrIndex: "componentProps.labelLayout",
+      componentProps: {
+        options: [
+          {
+            label: "固定宽度",
+            value: "fixed",
+          },
+          {
+            label: "自适应宽度",
+            value: "flex",
+          },
+        ],
+      },
+    },
+    {
+      label: "labelCol",
+      type: "input",
+      attrIndex: "componentProps.labelCol.span",
+    },
+    {
+      label: "wrapperCol",
+      type: "input",
+      attrIndex: "componentProps.wrapperCol.span",
+    },
+  ]
 );
 
 // const list = ['组件', '节点树', '模板', '插件']

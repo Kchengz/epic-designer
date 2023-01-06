@@ -1,5 +1,5 @@
 <template>
-  <aside class="k-right-sidebar">
+  <aside class="KAttributeView">
     属性面板
     <div v-if="checkedNode">
       <div :key="item.attrIndex" v-for="item in componentAttr">

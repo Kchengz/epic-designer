@@ -1,5 +1,5 @@
 <template>
-    <Form ref="form" :model="attrs.model" style="height: 100%;" @finish="onFinish">
+    <Form ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%;" @finish="onFinish">
         <slot name="edit-node">
             <slot name="node" :record="item" v-for="item in children"></slot>
         </slot>
@@ -18,6 +18,29 @@ const props = defineProps({
     require: true
   }
 })
+
+const componentProps = computed(() => {
+  const recordProps = props.record.componentProps
+  return {
+    ...recordProps,
+    labelCol: { style: `width:${100}px` }
+    // recordProps.layout === 'horizontal' &&
+    //   isShowLabel(record.options.showLabel)
+    //     ? formConfig.labelLayout === 'flex'
+    //       ? { style: `width:${formConfig.labelWidth}px` }
+    //       : formConfig.labelCol
+    //     : {}
+
+  }
+})
+// :label-col="
+//       formConfig.layout === 'horizontal' &&
+//       isShowLabel(record.options.showLabel)
+//         ? formConfig.labelLayout === 'flex'
+//           ? { style: `width:${formConfig.labelWidth}px` }
+//           : formConfig.labelCol
+//         : {}
+//     "
 
 function onFinish (e: any) {
   console.log(e)
