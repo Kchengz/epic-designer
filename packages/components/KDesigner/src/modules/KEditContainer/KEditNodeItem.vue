@@ -13,13 +13,13 @@
         @mouseout.stop="designer.setHoverNode(null)">
         <div class="action-box" v-show="designer.state.checkedNode?.id === element.id">
           <div class="action-item">
-            {{ element.type }}
+            {{ nodeSchema.getSchemaByType(element.type)?.label }}
           </div>
-          <div v-if="firstNodeId !== 'root'" class="action-item" @click.stop="handleCopy(schemas!, element, index)">
-            复制
+          <div v-if="firstNodeId !== 'root'" title="复制" class="action-item" @click.stop="handleCopy(schemas!, element, index)">
+            <span class="iconfont icon-fuzhi3"></span>
           </div>
-          <div v-if="firstNodeId !== 'root'" class="action-item" @click.stop="handleDelete(schemas!, element, index)">
-            删除
+          <div v-if="firstNodeId !== 'root'" title="删除" class="action-item" @click.stop="handleDelete(schemas!, element, index)">
+            <span class="iconfont icon-shanchu1"></span>
           </div>
         </div>
         <KNode :record="element">
@@ -34,10 +34,9 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { computed, watch, toRaw, PropType, inject, ref } from 'vue'
-import { getUUID, deepClone } from '../../../../../utils/index'
+import { getUUID, deepClone, nodeSchema } from '../../../../../utils/index'
 import KNode from '../../../../KNode'
 import { NodeItem, Designer } from '../../../../../types/kDesigner'
-
 const designer = inject('designer') as Designer
 
 const props = defineProps({

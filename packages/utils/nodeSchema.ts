@@ -73,7 +73,7 @@ class NodeSchema {
   }
 
   /**
-   * 通过type查询node schema
+   * 通过type获取node schema
    * @returns
    */
   getSchemaByType(type: string) {

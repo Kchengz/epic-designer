@@ -41,7 +41,7 @@ pluginManager.registerActivitybar({
 pluginManager.registerActivitybar({
   id: "1",
   title: "大纲",
-  icon: "icon-tree1",
+  icon: "icon-juxingkaobei",
   component: KOutline,
 });
 
