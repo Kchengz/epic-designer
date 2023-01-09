@@ -35,7 +35,7 @@ function getAttrValue (attrIndex: string) {
   let obj = checkedNode.value || {} as { [key: string]: any }
   const arr = attrIndex.split('.')
   for (const i in arr) {
-    obj = obj[arr[i]] || ''
+    obj = obj[arr[i]] || null
   }
   return obj
 }
