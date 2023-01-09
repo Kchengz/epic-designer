@@ -1,24 +1,24 @@
 <template>
   <draggable v-model="schemas" :group="firstNodeId === 'root' || 'edit-draggable'" item-key="id"
-  @start="handleSelect($event.oldIndex);designer.setDisableHover(true)" @end="handleEnd()" @add="handleSelect($event.newIndex)" ghostClass="moveing"
-    :component-data="{ name: 'draggable-range' }">
+    @start="handleSelect($event.oldIndex); designer.setDisableHover(true)" @end="handleEnd()"
+    @add="handleSelect($event.newIndex)" ghostClass="moveing" :component-data="{ name: 'draggable-range' }">
     <template #item="{ element, index }">
       <div class="item" :class="{
-          checked: designer.state.checkedNode?.id === element.id,
-          hover: designer.state.hoverNode?.id === element.id,
-          'root-node': element.id === 'root'
-        }"
-        @click.stop="designer.setCheckedNode(element)"
-        @mouseover.stop="designer.setHoverNode(element)"
+        checked: designer.state.checkedNode?.id === element.id,
+        hover: designer.state.hoverNode?.id === element.id,
+        'root-node': element.id === 'root'
+      }" @click.stop="designer.setCheckedNode(element)" @mouseover.stop="designer.setHoverNode(element)"
         @mouseout.stop="designer.setHoverNode(null)">
         <div class="action-box" v-show="designer.state.checkedNode?.id === element.id">
           <div class="action-item">
             {{ nodeSchema.getSchemaByType(element.type)?.label }}
           </div>
-          <div v-if="firstNodeId !== 'root'" title="复制" class="action-item" @click.stop="handleCopy(schemas!, element, index)">
+          <div v-if="firstNodeId !== 'root'" title="复制" class="action-item"
+            @click.stop="handleCopy(schemas!, element, index)">
             <span class="iconfont icon-fuzhi3"></span>
           </div>
-          <div v-if="firstNodeId !== 'root'" title="删除" class="action-item" @click.stop="handleDelete(schemas!, element, index)">
+          <div v-if="firstNodeId !== 'root'" title="删除" class="action-item"
+            @click.stop="handleDelete(schemas!, element, index)">
             <span class="iconfont icon-shanchu1"></span>
           </div>
         </div>
@@ -92,7 +92,15 @@ function handleCopy (schemas: NodeItem[], schema: NodeItem, index: number) {
     id: getUUID()
   })
   schemas.splice(index + 1, 0, node)
-
+  const nodeArray = node.children ? [...node.children] : []
+  // 存在子节点时，需要遍历修改子节点id
+  while (nodeArray.length > 0) {
+    const item = nodeArray.pop()
+    item.id = getUUID()
+    if (item.children?.length > 0) {
+      nodeArray.push(...item.children)
+    }
+  }
   designer.setCheckedNode(node)
 }
 

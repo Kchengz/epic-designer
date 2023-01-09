@@ -230,6 +230,11 @@ export function useComponent(pluginManager) {
         type: "input",
         attrIndex: "label",
       },
+      {
+        label: "默认值",
+        type: "select",
+        attrIndex: "componentProps.defaultValue",
+      },
     ]
   );
 }
