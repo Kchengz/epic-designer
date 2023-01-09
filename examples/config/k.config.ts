@@ -1,5 +1,8 @@
-import "../../packages/init";
+import { init } from "../../packages/init";
+
 export function useComponent(pluginManager) {
+  init(pluginManager);
+
   pluginManager.registerComponent(
     "Checkbox",
     () => import("ant-design-vue/lib/checkbox"),

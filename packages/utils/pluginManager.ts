@@ -1,4 +1,4 @@
-import { NodeItem, RenderCallbackParams } from "../types/kDesigner.d";
+import { NodeItem } from "../types/kDesigner.d";
 import { nodeSchema } from "./index";
 import { loadAsyncComponent } from "./utils";
 
@@ -34,6 +34,7 @@ export interface ComponentAttr {
 export interface ComponentAttrs {
   [type: string]: ComponentAttr[];
 }
+
 
 class PluginManager {
   components: Components = {};

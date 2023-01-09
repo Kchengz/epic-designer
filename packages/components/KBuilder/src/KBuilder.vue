@@ -33,6 +33,8 @@ const props = defineProps({
  */
 function getData (formName = 'default'): Promise<FormDataModel> {
   // validateFields
+  console.log(forms.value, 45454)
+  console.log(forms.value?.[formName])
   return forms.value?.[formName]?.validateFields()
 }
 

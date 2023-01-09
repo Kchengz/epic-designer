@@ -1,22 +1,34 @@
 <template>
   <div class="form-main" style="height: 100%;">
-    <Form ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%;" @finish="onFinish">
+    <component :is="Form" ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%;" @finish="onFinish">
       <slot name="edit-node">
         <slot name="node" :record="item" v-for="item in children"></slot>
       </slot>
-    </Form>
+    </component>
   </div>
 </template>
 <script lang="ts" setup>
+import { ref, computed, inject, useAttrs, onMounted } from 'vue'
+// import { Form } from 'ant-design-vue'
 import { pluginManager } from '../../../utils'
-import { ref, computed, useAttrs } from 'vue'
 const { component: Form } = pluginManager.getComponent('Form') || {}
 const attrs = useAttrs()
 const form = ref<any>(null)
+const forms = inject('forms', {}) as any
+
 const props = defineProps({
   record: {
     type: Object as any,
     require: true
+  }
+})
+
+// form组件需要特殊处理
+onMounted(async () => {
+  if (props.record.type === 'form' && forms.value) {
+    const name = props.record.name ?? 'default'
+    forms.value[name] = form
+    return false
   }
 })
 
@@ -32,12 +44,6 @@ const componentProps = computed(() => {
     ...recordProps,
     labelCol,
     wrapperCol
-    // recordProps.layout === 'horizontal' &&
-    //   isShowLabel(record.options.showLabel)
-    //     ? formConfig.labelLayout === 'flex'
-    //       ? { style: `width:${formConfig.labelWidth}px` }
-    //       : formConfig.labelCol
-    //     : {}
 
   }
 })

@@ -1,5 +1,5 @@
 <template>
-  <FormItem v-if="FormItem && props.record.isInput && component" v-bind="record" :name="props.record.field">
+  <component :is="FormItem" v-if="FormItem && props.record.isInput && component" v-bind="record" :name="props.record.field">
     <component :is="component"
       v-bind="{ ...componentProps, ...props.record.componentProps, [componentProps.bindModel]: formData[props.record.field] }">
       <!-- 递归组件 start -->
@@ -13,10 +13,10 @@
       </template>
       <!-- 递归组件 end -->
     </component>
-  </FormItem>
+  </component>
 
   <!-- 无需FormItem start -->
-  <component v-else-if="component" ref="nodeRef" :model="formData" :is="component"
+  <component v-else-if="component" :model="formData" :is="component"
     v-bind="{ ...componentProps, ...props.record.componentProps, [componentProps.bindModel]: formData[props.record.field] }">
     <!-- 递归组件 start -->
     <template #node="data">
@@ -33,14 +33,13 @@
 
 </template>
 <script lang="ts" setup>
-import { shallowRef, nextTick, ref, inject, Slots, watch, h } from 'vue'
+import { shallowRef, inject, Slots, watch, h } from 'vue'
 import { pluginManager } from '../../../utils/index'
 import { FormDataModel } from '../../../types/kDesigner'
+// import { FormItem } from 'ant-design-vue'
 
 const formData = inject('formData', {}) as FormDataModel
 const slots = inject('slots', {}) as Slots
-const nodeRef = ref<any>(null)
-const forms = inject('forms', {}) as any
 
 const { component: FormItem } = pluginManager.getComponent('FormItem') || {}
 
@@ -73,11 +72,14 @@ async function initComponent () {
     // 需要监听值变化，重新传递参数
     watch(() => formData[props.record.field], () => {
       // 获取插槽函数
-      const slot = slots[slotName]?.({
+      // const slot = slots[slotName]?.({
+      //   record: props.record,
+      //   model: formData
+      // })
+      component.value = h('div', null, slots[slotName]?.({
         record: props.record,
         model: formData
-      })
-      component.value = h('div', null, slot)
+      }))
     }, {
       immediate: true
     })
@@ -115,14 +117,6 @@ async function initComponent () {
     bindModel,
     [`onUpdate:${bindModel}`]: handleUpdate
   }
-
-  nextTick(async () => {
-    if (props.record.type === 'form' && forms.value) {
-      const name = props.record.name ?? 'default'
-      forms.value[name] = nodeRef.value?.form
-      return false
-    }
-  })
 }
 
 /**
