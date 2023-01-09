@@ -1,5 +1,6 @@
-import { resolve } from "path";
 import { NodeItem } from "../types/kDesigner";
+import { defineAsyncComponent, AsyncComponentLoader } from 'vue'
+import AsyncLoading from '../components/AsyncLoading/AsyncLoading.vue'
 /**
  * 生成一个用不重复的ID
  * @param randomLength 随机id长度
@@ -18,6 +19,18 @@ export function getUUID(randomLength = 10): string {
 export function deepClone(json: object | any[]) {
   return JSON.parse(JSON.stringify(json));
 }
+
+/**
+ * * 异步加载组件
+ * @param loader
+ * @returns
+ */
+ export const loadAsyncComponent = (loader: AsyncComponentLoader<any>) =>
+ defineAsyncComponent({
+   loader,
+   loadingComponent: AsyncLoading,
+   delay: 20,
+ })
 
 /**
  * 通过id查询schemas

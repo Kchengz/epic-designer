@@ -1,5 +1,6 @@
 import { NodeItem } from "../types/kDesigner.d";
 import { nodeSchema } from "./index";
+import { loadAsyncComponent } from "./utils";
 
 export interface ComponentInfo {
   bindModel: string;
@@ -52,6 +53,9 @@ class PluginManager {
     component: any,
     bindModel: string = "value"
   ) {
+    if (typeof component === "function") {
+      component = loadAsyncComponent(component);
+    }
     // 注册组件
     this.components[componentName] = {
       component,

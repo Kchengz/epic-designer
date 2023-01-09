@@ -19,6 +19,7 @@ pluginManager.addComponent(
     type: "form",
     field: "test",
     icon: "icon-qiapian",
+    labelWidth: 100,
     children: [],
   },
   [
