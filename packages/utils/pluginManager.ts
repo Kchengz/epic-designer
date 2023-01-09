@@ -1,4 +1,4 @@
-import { NodeItem } from "../types/kDesigner.d";
+import { NodeItem, RenderCallbackParams } from "../types/kDesigner.d";
 import { nodeSchema } from "./index";
 import { loadAsyncComponent } from "./utils";
 
@@ -28,6 +28,7 @@ export interface ComponentAttr {
   title?: string;
   defaultValue?: any;
   [attr: string]: any;
+  show?: (renderCallbackParams: NodeItem) => boolean;
 }
 
 export interface ComponentAttrs {

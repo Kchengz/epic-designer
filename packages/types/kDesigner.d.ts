@@ -1,3 +1,7 @@
+export interface RenderCallbackParams {
+  values: { [propName: string]: any };
+}
+
 export interface NodeItem {
   label?: string;
   field?: string;
@@ -9,6 +13,7 @@ export interface NodeItem {
   labelCol?: any;
   wrapperCol?: any;
   children?: NodeItem[];
+  show?: (renderCallbackParams: RenderCallbackParams) => boolean;
   [propName: string]: any;
 }
 
@@ -49,6 +54,6 @@ export interface DesignerState {
   hoverNode: NodeItem | null;
   disableHover: boolean;
   matched: NodeItem[];
-  
+
   // actionBarCheckedIndex: number | null;
 }

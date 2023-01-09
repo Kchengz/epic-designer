@@ -3,12 +3,14 @@
     属性面板
     <div v-if="checkedNode">
       <div :key="item.attrIndex + checkedNode.id" v-for="item in componentAttr">
-        <div>
-          {{ item.label }}
+        <div v-show="item.show?.(checkedNode) ?? true">
+          <div>
+            {{ item.label }}
+          </div>
+          <KAttributeInput :record="item" :model-value="getAttrValue(item.attrIndex)"
+            :componentProps="item.attrIndex === 'componentProps.defaultValue' ? checkedNode.componentProps : {}"
+            @update:model-value="setAttrValue($event, item.attrIndex)" />
         </div>
-        <KAttributeInput :record="item" :model-value="getAttrValue(item.attrIndex)"
-          :componentProps="item.attrIndex === 'componentProps.defaultValue' ? checkedNode.componentProps : {}"
-          @update:model-value="setAttrValue($event, item.attrIndex)" />
       </div>
 
     </div>
@@ -28,20 +30,23 @@ const checkedNode = computed(() => {
 })
 
 const componentAttr = computed(() => {
-  return componentAttrs[designer.state.checkedNode?.type || '']
+  return componentAttrs[designer.state.checkedNode?.type ?? '']
 })
 
 function getAttrValue (attrIndex: string) {
-  let obj = checkedNode.value || {} as { [key: string]: any }
+  let obj = checkedNode.value ?? {} as { [key: string]: any }
   const arr = attrIndex.split('.')
   for (const i in arr) {
-    obj = obj[arr[i]] || null
+    obj = obj[arr[i]] ?? null
+    if (obj === null) {
+      return obj
+    }
   }
   return obj
 }
 
 function setAttrValue (value: any, attrIndex: string) {
-  let obj = checkedNode.value || {} as { [key: string]: any }
+  let obj = checkedNode.value ?? {} as { [key: string]: any }
   const arr = attrIndex.split('.')
   arr.forEach((item, index) => {
     if (index === (arr.length - 1)) {
