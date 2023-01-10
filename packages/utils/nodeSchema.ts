@@ -14,6 +14,7 @@ class NodeSchema {
         "test",
         "textarea",
         "number",
+        "password",
         "select",
         "checkbox",
         "radio",

@@ -35,7 +35,6 @@ export interface ComponentAttrs {
   [type: string]: ComponentAttr[];
 }
 
-
 export class PluginManager {
   components: Components = {};
   componentAttrs: ComponentAttrs = {};
@@ -75,13 +74,13 @@ export class PluginManager {
   addComponent(
     component: any,
     schema: NodeItem,
-    attrSchemas: ComponentAttr[],
+    atteditSchemas: ComponentAttr[],
     bindModel: string = "value"
   ) {
     // 添加组件
     this.registerComponent(schema.type, component, bindModel);
     // 添加组件属性
-    this.componentAttrs[schema.type] = attrSchemas;
+    this.componentAttrs[schema.type] = atteditSchemas;
     nodeSchema.addSchema(schema);
   }
 

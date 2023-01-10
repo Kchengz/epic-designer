@@ -1,5 +1,5 @@
 <template>
-    <component v-if="component" :is="component" v-bind="{ ...componentProps, [`${componentProps?.bindModel}`]: value }">
+    <component v-if="component" :is="component" v-bind="{ ...componentProps,...props.componentProps, [`${componentProps?.bindModel}`]: value }">
     </component>
 </template>
 <script lang="ts" setup>
@@ -62,7 +62,7 @@ async function initComponent () {
   componentProps.value = {
     record: props.record,
     ...props.record.componentProps,
-    ...props.componentProps,
+    // ...props.componentProps,
     style: 'width: 100%;',
     bindModel,
     [`onUpdate:${bindModel}`]: handleUpdate
@@ -70,6 +70,7 @@ async function initComponent () {
 }
 
 function handleUpdate (e: any) {
+  console.log(e)
   value.value = e
 }
 
