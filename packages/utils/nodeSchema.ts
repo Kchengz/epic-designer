@@ -34,12 +34,9 @@ class NodeSchema {
         "alert",
         "text",
         "html",
+        // "monacoEditor",
       ],
     },
-    // {
-    //     title: "布局组件",
-    //     list: ["divider", "card", "tabs", "grid", "table", 'Test']
-    // }
   ];
 
   /**

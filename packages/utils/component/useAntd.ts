@@ -14,7 +14,7 @@ export function useAntd(pluginManager: PluginManager) {
   pluginManager.registerComponent("Form", Form);
   pluginManager.registerComponent("FormItem", FormItem);
   pluginManager.registerComponent("Modal", Modal);
-  const componentObjArray = [
+  const componentArray = [
     Input,
     InputNumber,
     InputPassword,
@@ -25,7 +25,7 @@ export function useAntd(pluginManager: PluginManager) {
     DatePicker
   ];
 
-  componentObjArray.forEach((item) => {
+  componentArray.forEach((item) => {
     pluginManager.addComponent(
       item.component,
       item.schema,

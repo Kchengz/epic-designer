@@ -8,24 +8,8 @@ import "./index.less";
 // 初始化设计器
 initComponent(pluginManager);
 const components = [KBuilder, KDesigner];
-pluginManager.registerComponent(
-  "Form",
-  () => import("ant-design-vue/lib/form")
-);
-pluginManager.registerComponent(
-  "FormItem",
-  () => import("ant-design-vue/lib/form/FormItem")
-);
-pluginManager.registerComponent(
-  "Modal",
-  () => import("ant-design-vue/lib/modal")
-);
 
-pluginManager.registerComponent(
-  "monacoEditor",
-  () => import("./components/MonacoEditor/monacoEditor.vue"),
-  "value"
-);
+
 pluginManager.addComponent(
   () => import("./components/KForm/index"),
   {
