@@ -1,53 +1,14 @@
-import { init } from "../../packages/utils/init";
-
-export function useComponent(pluginManager) {
-  init(pluginManager);
-
+// import { init } from "../../packages/init";
+import { PluginManager } from "../pluginManager";
+import { Form, FormItem, Modal } from "ant-design-vue";
+export function useComponent(pluginManager: PluginManager) {
+  pluginManager.registerComponent("Form", Form);
+  pluginManager.registerComponent("FormItem", FormItem);
+  pluginManager.registerComponent("Modal", Modal);
   pluginManager.registerComponent(
     "Checkbox",
     () => import("ant-design-vue/lib/checkbox"),
     "value"
-  );
-
-  // pluginManager.registerComponent("test", () => import("./test.vue"), "value");
-  pluginManager.addComponent(
-    () => import("./test.vue"),
-    {
-      label: "测试",
-      type: "test",
-      field: "test",
-      icon: "icon-qiapian",
-      children: [],
-    },
-    [
-      {
-        label: "标题",
-        type: "input",
-        attrIndex: "label",
-      },
-      {
-        label: "输入类型",
-        type: "select",
-        defaultValue: "text",
-        componentProps: {
-          options: [
-            {
-              label: "text",
-              value: "text",
-            },
-            {
-              label: "number",
-              value: "number",
-            },
-            {
-              label: "password",
-              value: "password",
-            },
-          ],
-        },
-        attrIndex: "componentProps.type",
-      },
-    ]
   );
 
   pluginManager.addComponent(

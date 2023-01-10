@@ -36,7 +36,7 @@ export interface ComponentAttrs {
 }
 
 
-class PluginManager {
+export class PluginManager {
   components: Components = {};
   componentAttrs: ComponentAttrs = {};
   viewsContainers: ViewsContainersModel = {
@@ -113,6 +113,9 @@ class PluginManager {
    * 注册活动栏
    */
   registerActivitybar(activitybar: ActivitybarModel) {
+    if (typeof activitybar.component === "function") {
+      activitybar.component = loadAsyncComponent(activitybar.component);
+    }
     this.viewsContainers.activitybars.push(activitybar);
   }
 

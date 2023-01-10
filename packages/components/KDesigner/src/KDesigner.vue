@@ -10,14 +10,22 @@
   </div>
 </template>
 <script lang="ts" setup>
-import KHeader from './modules/KHeader/KHeader.vue'
-import KFooter from './modules/KFooter/KFooter.vue'
-import KRightSidebar from './modules/KAttributeView/KAttributeView.vue'
-import KEditContainer from './modules/KEditContainer/KEditContainer.vue'
-import KActionBar from './modules/KActionBar/KActionBar.vue'
+// import KHeader from './modules/KHeader/KHeader.vue'
+// import KFooter from './modules/KFooter/KFooter.vue'
+// import KRightSidebar from './modules/KAttributeView/KAttributeView.vue'
+// import KEditContainer from './modules/KEditContainer/KEditContainer.vue'
+// import KActionBar from './modules/KActionBar/KActionBar.vue'
+
 import { provide, reactive, ref } from 'vue'
 import { DesignerState, NodeItem, FormDataModel } from '../../../types/kDesigner'
-import { getMatchedById } from '../../../utils/index'
+import { getMatchedById, loadAsyncComponent } from '../../../utils/index'
+
+const KHeader = loadAsyncComponent(() => import('./modules/KHeader/KHeader.vue'))
+const KActionBar = loadAsyncComponent(() => import('./modules/KActionBar/KActionBar.vue'))
+const KEditContainer = loadAsyncComponent(() => import('./modules/KEditContainer/KEditContainer.vue'))
+const KRightSidebar = loadAsyncComponent(() => import('./modules/KAttributeView/KAttributeView.vue'))
+const KFooter = loadAsyncComponent(() => import('./modules/KFooter/KFooter.vue'))
+
 const state = reactive<DesignerState>({
   checkedNode: null,
   hoverNode: null,
