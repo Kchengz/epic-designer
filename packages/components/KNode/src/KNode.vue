@@ -1,7 +1,6 @@
 <template>
-  <div v-show="props.record.show?.(formData) ?? true">
-  <component :is="FormItem"
-    v-if="FormItem && props.record.isInput && component" v-bind="record" :name="props.record.field">
+  <component v-show="show" :is="FormItem" v-if="FormItem && props.record.isInput && component"
+    v-bind="{...record,rules:show ? record.rules: []}" :name="props.record.field">
     <component :is="component"
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 递归组件 start -->
@@ -18,7 +17,7 @@
   </component>
 
   <!-- 无需FormItem start -->
-  <component v-else-if="component" :model="formData" :is="component"
+  <component v-show="show" v-else-if="component" :model="formData" :is="component"
     v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
     <!-- 递归组件 start -->
     <template #node="data">
@@ -32,10 +31,9 @@
     <!-- 递归组件 end -->
   </component>
   <!-- 无需FormItem end -->
-</div>
 </template>
 <script lang="ts" setup>
-import { shallowRef, inject, reactive, PropType, Slots, watch, h } from 'vue'
+import { shallowRef, inject, computed, reactive, PropType, Slots, watch, h } from 'vue'
 import { pluginManager } from '../../../utils/index'
 import { FormDataModel, NodeItem } from '../../../types/kDesigner'
 // import { FormItem } from 'ant-design-vue'
@@ -58,6 +56,10 @@ const props = defineProps({
 const component = shallowRef<any>(null)
 const componentProps = shallowRef<any>({})
 const dataSource = reactive<any>({})
+
+const show = computed(() => {
+  return props.record.show?.({ values: formData }) ?? true
+})
 
 /**
  * 初始化组件

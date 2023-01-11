@@ -13,7 +13,7 @@ export interface NodeItem {
   labelCol?: any;
   wrapperCol?: any;
   children?: NodeItem[];
-  show?: (renderCallbackParams: { [propName: string]: any }) => boolean;
+  show?: (renderCallbackParams: RenderCallbackParams) => boolean;
   [propName: string]: any;
 }
 

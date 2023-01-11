@@ -24,9 +24,9 @@ const schemas: NodeItem[] = [{
   id: 'root',
   name: 'default',
   componentProps: {
-    layout: 'horizontal',
-    labelWidth: 100,
-    labelLayout: 'flex',
+    layout: 'inline',
+    labelWidth: 80,
+    labelLayout: 'fixed',
     labelCol: {
       span: 5
     },
@@ -51,13 +51,19 @@ const schemas: NodeItem[] = [{
     },
     {
       label: '密码输入框',
-      type: 'select',
+      type: 'number',
       icon: 'icon-number',
       field: 'number',
       isInput: true,
-      show: (values) => {
-        return values.input === '4444'
+      show: ({ values }) => {
+        return values.input !== '4444'
       },
+      rules: [
+        {
+          require: true,
+          message: '请输入'
+        }
+      ],
       dataSource: {
         api: () => {
           return [{
