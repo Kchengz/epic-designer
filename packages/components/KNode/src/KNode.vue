@@ -1,7 +1,8 @@
 <template>
-  <component :is="FormItem" v-if="FormItem && props.record.isInput && component" v-bind="record" :name="props.record.field">
+  <component :is="FormItem" v-if="FormItem && props.record.isInput && component" v-bind="record"
+    :name="props.record.field">
     <component :is="component"
-      v-bind="{ ...componentProps, ...props.record.componentProps, [componentProps.bindModel]: formData[props.record.field] }">
+      v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 递归组件 start -->
       <template #node="data">
         <KNode v-bind="data" />
@@ -17,7 +18,7 @@
 
   <!-- 无需FormItem start -->
   <component v-else-if="component" :model="formData" :is="component"
-    v-bind="{ ...componentProps, ...props.record.componentProps, [componentProps.bindModel]: formData[props.record.field] }">
+    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
     <!-- 递归组件 start -->
     <template #node="data">
       <KNode v-bind="data" />
@@ -33,9 +34,9 @@
 
 </template>
 <script lang="ts" setup>
-import { shallowRef, inject, Slots, watch, h } from 'vue'
+import { shallowRef, inject, reactive, PropType, Slots, watch, h } from 'vue'
 import { pluginManager } from '../../../utils/index'
-import { FormDataModel } from '../../../types/kDesigner'
+import { FormDataModel, NodeItem } from '../../../types/kDesigner'
 // import { FormItem } from 'ant-design-vue'
 
 const formData = inject('formData', {}) as FormDataModel
@@ -45,8 +46,8 @@ const { component: FormItem } = pluginManager.getComponent('FormItem') || {}
 
 const props = defineProps({
   record: {
-    type: Object as any,
-    require: true
+    type: Object as PropType<NodeItem>,
+    required: true
   }
 })
 
@@ -55,6 +56,7 @@ const props = defineProps({
 // 定义组件及组件props字段
 const component = shallowRef<any>(null)
 const componentProps = shallowRef<any>({})
+const dataSource = reactive<any>({})
 
 /**
  * 初始化组件
@@ -65,12 +67,18 @@ async function initComponent () {
     handleUpdate(props.record.componentProps?.defaultValue)
   }
 
+  // 数据处理
+  if (props.record.dataSource?.api) {
+    fetchData(props.record.dataSource?.api, props.record)
+  }
+
   // 组件为slot类型时
   if (props.record.type === 'slot') {
-    const slotName: string = props.record.slotName
+    const slotName = props.record.slotName
+    if (!slotName) { return false }
     // componentProps.value.bindModel = 'modelValue'
     // 需要监听值变化，重新传递参数
-    watch(() => formData[props.record.field], () => {
+    watch(() => formData[props.record.field!], () => {
       // 获取插槽函数
       // const slot = slots[slotName]?.({
       //   record: props.record,
@@ -105,10 +113,10 @@ async function initComponent () {
     // 否则为预加载组件
     component.value = cmp
   }
-
   // 获取组件props数据
   componentProps.value = {
     record: props.record,
+
     // is: component,
     style: 'width: 100%;',
     bindModel,
@@ -116,12 +124,27 @@ async function initComponent () {
   }
 }
 
+// dataSource
+function fetchData (api: string | Function, record: NodeItem) {
+  // const data = reactive({})
+  const dataField = record.dataSource.dataField ?? 'options'
+  async function asyncFetchData () {
+    if (typeof api === 'function') {
+      dataSource[dataField] = await api()
+    }
+  }
+
+  asyncFetchData()
+
+  // return data
+}
+
 /**
  * 通过函数更新值
  * @param v value值
  */
 function handleUpdate (v: any) {
-  formData[props.record.field] = v
+  formData[props.record.field!] = v
 }
 
 // 需要监听值变化，重新渲染组件

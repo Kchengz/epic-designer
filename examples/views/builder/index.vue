@@ -44,16 +44,25 @@ const schemas: NodeItem[] = [{
       icon: 'icon-write',
       isInput: true,
       id: '6jewjjk2jho00',
+
       componentProps: {
         type: 'text'
       }
     },
     {
       label: '密码输入框',
-      type: 'password',
+      type: 'select',
       icon: 'icon-number',
       field: 'number',
       isInput: true,
+      dataSource: {
+        api: () => {
+          return [{
+            label: '23423',
+            value: 1212
+          }]
+        }
+      },
       id: '8gdrepx5ep800'
     }
   ]
