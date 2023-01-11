@@ -1,6 +1,7 @@
 <template>
-  <component :is="FormItem" v-if="FormItem && props.record.isInput && component" v-bind="record"
-    :name="props.record.field">
+  <div v-show="props.record.show?.(formData) ?? true">
+  <component :is="FormItem"
+    v-if="FormItem && props.record.isInput && component" v-bind="record" :name="props.record.field">
     <component :is="component"
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 递归组件 start -->
@@ -31,7 +32,7 @@
     <!-- 递归组件 end -->
   </component>
   <!-- 无需FormItem end -->
-
+</div>
 </template>
 <script lang="ts" setup>
 import { shallowRef, inject, reactive, PropType, Slots, watch, h } from 'vue'

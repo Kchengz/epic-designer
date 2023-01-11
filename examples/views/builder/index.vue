@@ -55,6 +55,9 @@ const schemas: NodeItem[] = [{
       icon: 'icon-number',
       field: 'number',
       isInput: true,
+      show: (values) => {
+        return values.input === '4444'
+      },
       dataSource: {
         api: () => {
           return [{

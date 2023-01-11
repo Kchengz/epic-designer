@@ -9,6 +9,8 @@ import Checkbox from "./Antd/checkbox";
 import Select from "./Antd/select";
 import TimePicker from "./Antd/timePicker";
 import DatePicker from "./Antd/datePicker";
+import Cascader from "./Antd/cascader";
+import Switch from "./Antd/switch";
 
 export function useAntd(pluginManager: PluginManager) {
   pluginManager.registerComponent("Form", Form);
@@ -22,7 +24,9 @@ export function useAntd(pluginManager: PluginManager) {
     Checkbox,
     Select,
     TimePicker,
-    DatePicker
+    DatePicker,
+    Cascader,
+    Switch
   ];
 
   componentArray.forEach((item) => {

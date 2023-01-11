@@ -1,10 +1,10 @@
 <template>
-    <!-- <Form ref="form" :model="formData" v-bind="getFormBindValues"> -->
-    <div>
-        <KNode ref="Knode" v-for="item, index in props.schemas" :key="index" :record="item">
-        </KNode>
-    </div>
-    <!-- </Form> -->
+  <!-- <Form ref="form" :model="formData" v-bind="getFormBindValues"> -->
+  <div>
+    <KNode ref="Knode" v-for="item, index in props.schemas" :key="index" :record="item">
+    </KNode>
+  </div>
+  <!-- </Form> -->
 </template>
 <script lang="ts" setup>
 import type { PropType } from 'vue'
@@ -32,10 +32,22 @@ const props = defineProps({
  * 获取表单数据
  * @param formName 表单name
  */
-function getData (formName = 'default'): Promise<FormDataModel> {
+async function getData (formName = 'default'): Promise<FormDataModel> {
   // validateFields
-  console.log(forms.value, 45454)
-  console.log(forms.value?.[formName])
+  // console.log(forms.value, 45454)
+  // console.log(forms.value?.[formName])
+  await forms.value?.[formName]?.validateFields()
+  return formData
+}
+
+/**
+ * 获取表单数据
+ * @param formName 表单name
+ */
+function validateFields (formName = 'default'): Promise<FormDataModel> {
+  // validateFields
+  // console.log(forms.value, 45454)
+  // console.log(forms.value?.[formName])
   return forms.value?.[formName]?.validateFields()
 }
 
@@ -54,6 +66,7 @@ function setData (data: FormDataModel) {
 
 defineExpose({
   getData,
-  setData
+  setData,
+  validateFields
 })
 </script>
