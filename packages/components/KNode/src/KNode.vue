@@ -54,7 +54,7 @@ const props = defineProps({
 
 // 定义组件及组件props字段
 const component = shallowRef<any>(null)
-const componentProps = shallowRef<any>(null)
+const componentProps = shallowRef<any>({})
 
 /**
  * 初始化组件
@@ -68,7 +68,7 @@ async function initComponent () {
   // 组件为slot类型时
   if (props.record.type === 'slot') {
     const slotName: string = props.record.slotName
-
+    // componentProps.value.bindModel = 'modelValue'
     // 需要监听值变化，重新传递参数
     watch(() => formData[props.record.field], () => {
       // 获取插槽函数
@@ -85,9 +85,6 @@ async function initComponent () {
     })
 
     // 获取组件props数据
-    // componentProps.value = {
-    //   is: component
-    // }
     return false
   }
 

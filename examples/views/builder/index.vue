@@ -21,39 +21,40 @@ async function handleGetData () {
 }
 const schemas: NodeItem[] = [{
   type: 'form',
-  name: 'default',
   id: 'root',
+  name: 'default',
+  componentProps: {
+    layout: 'horizontal',
+    labelWidth: 100,
+    labelLayout: 'flex',
+    labelCol: {
+      span: 5
+    },
+    wrapperCol: {
+      span: 19
+    },
+    hideRequiredMark: false
+  },
   children: [
     {
       label: '文本框',
-      type: 'input',
-      field: 'input2',
+      type: 'slot',
+      field: 'input',
+      slotName: 'sdff',
+      icon: 'icon-write',
       isInput: true,
-      id: 'glyhrunicr400',
+      id: '6jewjjk2jho00',
       componentProps: {
         type: 'text'
       }
     },
     {
-      label: '选择框',
-      type: 'select',
-      field: 'select',
+      label: '密码输入框',
+      type: 'password',
+      icon: 'icon-number',
+      field: 'number',
       isInput: true,
-      id: '8yizri1tzns00'
-    },
-    {
-      label: '文本框',
-      type: 'input',
-      field: 'input',
-      isInput: true,
-      id: 'kluewssswzk00',
-      componentProps: {
-
-      },
-      rules: [{
-        required: true,
-        message: '请输入'
-      }]
+      id: '8gdrepx5ep800'
     }
   ]
 }]

@@ -16,7 +16,7 @@
 import Builder from './views/builder/index.vue'
 import Designer from './views/designer/index.vue'
 import { ref } from 'vue'
-const showIndex = ref(1)
+const showIndex = ref(2)
 
 </script>
 <style lang="less" scoped>

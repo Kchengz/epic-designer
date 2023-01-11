@@ -19,6 +19,7 @@ const forms = ref<any>({})
 
 provide('formData', formData)
 provide('slots', slots)
+console.log(slots)
 provide('forms', forms)
 
 const props = defineProps({
