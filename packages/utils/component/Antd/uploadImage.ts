@@ -1,12 +1,14 @@
 export default {
-  component: async () =>
-    (await import("ant-design-vue/lib/input")).InputPassword,
+  component: () => import("./KUploadImage"),
   schema: {
-    label: "密码输入框",
-    type: "password",
+    label: "上传图片",
+    type: "upload-image",
     icon: "icon-number",
-    field: "password",
+    field: "uploadImage",
     isInput: true,
+    componentProps: {
+      action: "http://cdn.kcz66.com/upload-img.txt",
+    },
   },
   atteditSchemas: [
     {
@@ -20,5 +22,5 @@ export default {
       attrIndex: "label",
     },
   ],
-  bindModel: "value",
+  bindModel: "modelValue",
 };

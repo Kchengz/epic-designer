@@ -75,7 +75,7 @@ export class PluginManager {
     component: any,
     schema: NodeItem,
     atteditSchemas: ComponentAttr[],
-    bindModel: string = "value"
+    bindModel: string = "modelValue"
   ) {
     // 添加组件
     this.registerComponent(schema.type, component, bindModel);

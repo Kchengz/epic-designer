@@ -62,8 +62,6 @@ async function initComponent () {
   componentProps.value = {
     record: props.record,
     ...props.record.componentProps,
-    // ...props.componentProps,
-    style: 'width: 100%;',
     bindModel,
     [`onUpdate:${bindModel}`]: handleUpdate
   }

@@ -6,6 +6,8 @@ export default {
     icon: "icon-number",
     field: "switch",
     isInput: true,
+    componentProps: {
+    },
   },
   atteditSchemas: [
     {
@@ -17,6 +19,11 @@ export default {
       label: "文字",
       type: "input",
       attrIndex: "label",
+    },
+    {
+      label: "默认值",
+      type: "switch",
+      attrIndex: "componentProps.defaultValue",
     },
   ],
   bindModel: "checked",

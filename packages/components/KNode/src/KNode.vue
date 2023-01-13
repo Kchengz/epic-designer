@@ -119,9 +119,7 @@ async function initComponent () {
   // 获取组件props数据
   componentProps.value = {
     record: props.record,
-
     // is: component,
-    style: 'width: 100%;',
     bindModel,
     [`onUpdate:${bindModel}`]: handleUpdate
   }

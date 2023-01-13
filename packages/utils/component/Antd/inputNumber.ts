@@ -6,6 +6,9 @@ export default {
     icon: "icon-number",
     field: "number",
     isInput: true,
+    componentProps:{
+      style: { width: "100%" },
+    }
   },
   atteditSchemas: [
     {

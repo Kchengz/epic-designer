@@ -11,6 +11,8 @@ import TimePicker from "./Antd/timePicker";
 import DatePicker from "./Antd/datePicker";
 import Cascader from "./Antd/cascader";
 import Switch from "./Antd/switch";
+import UploadImage from "./Antd/uploadImage";
+import UploadFile from "./Antd/uploadFile";
 
 export function useAntd(pluginManager: PluginManager) {
   pluginManager.registerComponent("Form", Form);
@@ -26,7 +28,9 @@ export function useAntd(pluginManager: PluginManager) {
     TimePicker,
     DatePicker,
     Cascader,
-    Switch
+    Switch,
+    UploadImage,
+    UploadFile
   ];
 
   componentArray.forEach((item) => {
