@@ -34,6 +34,7 @@ class NodeSchema {
         "alert",
         "text",
         "html",
+        "card",
         // "monacoEditor",
       ],
     },

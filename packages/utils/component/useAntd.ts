@@ -13,6 +13,7 @@ import Cascader from "./Antd/cascader";
 import Switch from "./Antd/switch";
 import UploadImage from "./Antd/uploadImage";
 import UploadFile from "./Antd/uploadFile";
+import Card from "./Antd/card";
 
 export function useAntd(pluginManager: PluginManager) {
   pluginManager.registerComponent("Form", Form);
@@ -30,7 +31,8 @@ export function useAntd(pluginManager: PluginManager) {
     Cascader,
     Switch,
     UploadImage,
-    UploadFile
+    UploadFile,
+    Card
   ];
 
   componentArray.forEach((item) => {
