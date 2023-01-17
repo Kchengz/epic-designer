@@ -1,19 +1,38 @@
-import { defineComponent, h, renderSlot } from "vue";
+import { defineComponent, h, renderSlot, PropType } from "vue";
 import Card from "ant-design-vue/lib/card";
+import { NodeItem } from "../../../types/kDesigner";
 export default defineComponent({
-  setup(_, { attrs, slots }) {
+  props: {
+    record: {
+      type: Object as PropType<NodeItem>,
+      require: true,
+    },
+    children: {
+      type: Array,
+    },
+  },
+  setup(props, { attrs, slots }) {
     return {
       attrs,
-      slots
+      slots,
+      props,
     };
   },
   render() {
-    const record = this.attrs.record as any
+    const record = {
+      ...this.props.record,
+      title: this.props.record!.label,
+    } as any;
+    const children = record.children;
+    delete record.children;
 
-    return [h(Card, { ...record, title: record.label }, [
-      renderSlot(this.slots, 'edit-node', {},
-        () => record.children!.map((record: any) => renderSlot(this.slots, 'node', { record })))
-    ])
-    ];
+    return h(Card, record, {
+      default: () =>
+        renderSlot(this.slots, "edit-node", {}, () =>
+          children!.map((record: any) =>
+            renderSlot(this.slots, "node", { record })
+          )
+        ),
+    });
   },
 });

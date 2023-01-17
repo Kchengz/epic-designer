@@ -125,7 +125,6 @@ export default defineComponent({
   },
   render() {
     // const type = this.attrs.type;
-    console.log(this.imgUrl);
     return h(
       "div",
       {
