@@ -13,9 +13,8 @@ const components = [KBuilder, KDesigner];
 pluginManager.addComponent(
   () => import("./components/KForm/index"),
   {
-    label: "测试2",
+    label: "表单",
     type: "form",
-    field: "test",
     icon: "icon-qiapian",
     labelWidth: 100,
     children: [],
