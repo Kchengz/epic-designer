@@ -33,7 +33,7 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, inject, computed, reactive, PropType, Slots, watch, h } from 'vue'
+import { shallowRef, inject, computed, reactive, onBeforeUpdate, PropType, Slots, watch, h } from 'vue'
 import { pluginManager } from '../../../utils/index'
 import { FormDataModel, NodeItem } from '../../../types/kDesigner'
 // import { FormItem } from 'ant-design-vue'
@@ -150,9 +150,12 @@ function handleUpdate (v: any) {
 
 // 需要监听值变化，重新渲染组件
 watch(() => props.record, () => {
+  console.log('k-node 重新渲染组件')
   initComponent()
 }, {
   immediate: true,
   deep: true
 })
+
+onBeforeUpdate(() => { console.log('更新了') })
 </script>

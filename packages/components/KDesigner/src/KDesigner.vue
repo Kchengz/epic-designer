@@ -78,10 +78,14 @@ async function setCheckedNode (schema: NodeItem = rootSchema) {
  * @param schema
  */
 async function setHoverNode (schema: NodeItem | null = null) {
-  if (state.disableHover) {
+  if (!schema || state.disableHover) {
     state.hoverNode = null
     return false
   }
+  if (schema?.id === state.hoverNode?.id) {
+    return false
+  }
+  console.log(schema?.id)
   state.hoverNode = schema
 }
 

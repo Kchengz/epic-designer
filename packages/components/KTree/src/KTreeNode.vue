@@ -4,8 +4,8 @@
       <span @click="handleExpanded" v-if="props.record.children?.length" class="icon-expanded" :class="{ expanded }"><span class="iconfont icon-zhankai"></span></span>
       <span class="text"
         :class="{ checked: treeProps.selectedKeys.includes(props.record.id!), hover: designer.state.hoverNode?.id === props.record.id }"
-        @click="handleSelect(props.record.id!, props.record)" @mouseover.stop="designer.setHoverNode(props.record)"
-        @mouseout.stop="designer.setHoverNode(null)"> {{ props.record.type }}</span>
+        @click="handleSelect(props.record.id!, props.record)" @mouseenter.stop="designer.setHoverNode(props.record)"
+        @mouseleave.stop="designer.setHoverNode(null)"> {{ props.record.type }}</span>
     </a>
     <ul class="k-tree-sublist" v-if="props.record.children?.length"
       :class="{ expanded }">
