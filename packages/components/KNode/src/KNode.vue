@@ -157,5 +157,5 @@ watch(() => props.record, () => {
   deep: true
 })
 
-onBeforeUpdate(() => { console.log('更新了') })
+onBeforeUpdate(() => { console.log('更新了11111') })
 </script>

@@ -22,11 +22,7 @@
             <span class="iconfont icon-shanchu1"></span>
           </div>
         </div>
-        <KNode :record="element">
-          <template #edit-node>
-            <KEditNodeItem v-model:schemas="element.children" />
-          </template>
-        </KNode>
+        <KNodeItem :element="element" />
       </div>
     </template>
   </draggable>
@@ -35,10 +31,9 @@
 import draggable from 'vuedraggable'
 import { computed, watch, toRaw, PropType, inject, ref } from 'vue'
 import { getUUID, deepClone, nodeSchema } from '../../../../../utils/index'
-import KNode from '../../../../KNode'
 import { NodeItem, Designer } from '../../../../../types/kDesigner'
+import KNodeItem from './KNodeItem.vue'
 const designer = inject('designer') as Designer
-
 const props = defineProps({
   schemas: {
     type: Array as PropType<NodeItem[]>
