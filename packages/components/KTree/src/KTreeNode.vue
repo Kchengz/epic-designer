@@ -5,7 +5,7 @@
       <span class="text"
         :class="{ checked: treeProps.selectedKeys.includes(props.record.id!), hover: designer.state.hoverNode?.id === props.record.id }"
         @click="handleSelect(props.record.id!, props.record)" @mouseenter.stop="designer.setHoverNode(props.record)"
-        @mouseleave.stop="designer.setHoverNode(null)"> {{ props.record.type }}</span>
+        @mouseleave.stop="designer.setHoverNode(null)"> {{ nodeSchema.getSchemaByType(props.record.type)?.label }}</span>
     </a>
     <ul class="k-tree-sublist" v-if="props.record.children?.length"
       :class="{ expanded }">
@@ -17,6 +17,7 @@
 import { NodeItem, Designer } from '../../../types/kDesigner'
 import type { PropType } from 'vue'
 import { inject, computed, Ref } from 'vue'
+import { nodeSchema } from '../../../utils/index'
 
 // const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
