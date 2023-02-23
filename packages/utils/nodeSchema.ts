@@ -36,6 +36,8 @@ class NodeSchema {
         "html",
         "card",
         "form",
+        "row",
+        "col",
         // "monacoEditor",
       ],
     },

@@ -14,6 +14,8 @@ import Switch from "./Antd/switch";
 import UploadImage from "./Antd/uploadImage";
 import UploadFile from "./Antd/uploadFile";
 import Card from "./Antd/card";
+import Row from "./Antd/row";
+import Col from "./Antd/col";
 
 export function useAntd(pluginManager: PluginManager) {
   pluginManager.registerComponent("Form", Form);
@@ -32,7 +34,9 @@ export function useAntd(pluginManager: PluginManager) {
     Switch,
     UploadImage,
     UploadFile,
-    Card
+    Card,
+    Row,
+    Col
   ];
 
   componentArray.forEach((item) => {
