@@ -1,5 +1,6 @@
 import { PluginManager } from "../pluginManager";
 import MonacoEditor from "./KComponent/monacoEditor";
+import Form from "./KComponent/form";
 export function initComponent(pluginManager: PluginManager) {
   // 左侧菜单初始化
   pluginManager.registerActivitybar({
@@ -27,7 +28,7 @@ export function initComponent(pluginManager: PluginManager) {
       import("../../components/KDesigner/src/modules/KOutline/KOutline.vue"),
   });
 
-  const componentArray = [MonacoEditor];
+  const componentArray = [MonacoEditor, Form];
   componentArray.forEach((item) => {
     pluginManager.addComponent(
       item.component,

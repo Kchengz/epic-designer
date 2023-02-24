@@ -35,6 +35,7 @@ class NodeSchema {
         "text",
         "html",
         "card",
+        "form",
         // "monacoEditor",
       ],
     },

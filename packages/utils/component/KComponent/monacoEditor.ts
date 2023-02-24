@@ -1,5 +1,5 @@
 export default {
-  component: () => import("../../../components/MonacoEditor/monacoEditor.vue"),
+  component: () => import("./MonacoEditor/monacoEditor.vue"),
   schema: {
     label: "代码编辑器",
     type: "monacoEditor",
