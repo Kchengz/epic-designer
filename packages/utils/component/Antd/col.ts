@@ -4,13 +4,16 @@ export default {
     label: "栅格布局-列",
     type: "col",
     icon: "icon-xiala",
-    children: []
+    children: [],
+    componentProps: {
+      span: 6
+    }
   },
   atteditSchemas: [
     {
       label: "占位格数",
-      type: "input",
-      attrIndex: "span",
+      type: "number",
+      attrIndex: "componentProps.span",
     },
 
   ],

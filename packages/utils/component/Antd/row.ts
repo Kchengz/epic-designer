@@ -10,24 +10,24 @@ export default {
     {
       label: "垂直对齐方式",
       type: "input",
-      attrIndex: "align",
+      attrIndex: "componentProps.align",
     },
     {
       label: "水平排列方式",
       type: "input",
-      attrIndex: "justify",
+      attrIndex: "componentProps.justify",
     },
     {
       label: "栅格间距",
       type: "input",
-      attrIndex: "gutter",
+      attrIndex: "componentProps.gutter",
     },
     {
       label: "自动换行",
       type: "switch",
-      attrIndex: "wrap",
+      attrIndex: "componentProps.wrap",
     },
-    
+
 
   ],
   bindModel: "value",
