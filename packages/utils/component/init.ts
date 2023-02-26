@@ -1,7 +1,10 @@
 import { PluginManager } from "../pluginManager";
 import MonacoEditor from "./KComponent/monacoEditor";
 import Form from "./KComponent/form";
+import KColEditor from './KComponent/KColEditor/KColEditor.vue'
 export function initComponent(pluginManager: PluginManager) {
+
+  pluginManager.registerComponent('k-col-editor', KColEditor)
   // 左侧菜单初始化
   pluginManager.registerActivitybar({
     title: "组件",

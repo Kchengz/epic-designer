@@ -37,7 +37,7 @@ class NodeSchema {
         "card",
         "form",
         "row",
-        "col",
+        // "col",
         // "tabs",
         // "tab-pane",
 

@@ -4,7 +4,24 @@ export default {
     label: "栅格布局",
     type: "row",
     icon: "icon-xiala",
-    children: []
+    children: [
+      {
+        "type": "col",
+        "children": [],
+        "componentProps": {
+          "span": 12
+        },
+        "id": "g062zikd2jk00"
+      },
+      {
+        "type": "col",
+        "children": [],
+        "componentProps": {
+          "span": 12
+        },
+        "id": "gy5z9jtfb3s00"
+      }
+    ]
   },
   atteditSchemas: [
     {
@@ -23,9 +40,9 @@ export default {
       attrIndex: "componentProps.gutter",
     },
     {
-      label: "自动换行",
-      type: "switch",
-      attrIndex: "componentProps.wrap",
+      label: "列编辑",
+      type: "k-col-editor",
+      attrIndex: "children",
     },
 
 
