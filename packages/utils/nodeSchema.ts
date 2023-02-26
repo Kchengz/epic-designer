@@ -38,9 +38,9 @@ class NodeSchema {
         "form",
         "row",
         "col",
-        "tabs",
-        "tabsPane",
-        
+        // "tabs",
+        // "tab-pane",
+
         // "monacoEditor",
       ],
     },

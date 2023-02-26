@@ -17,7 +17,7 @@ import Card from "./Antd/card";
 import Row from "./Antd/row";
 import Col from "./Antd/col";
 import Tabs from "./Antd/tabs";
-import TabsPane from "./Antd/tabsPane";
+import TabPane from "./Antd/tabPane";
 
 // 兼容性样式
 import './Antd/index.less'
@@ -43,7 +43,7 @@ export function useAntd(pluginManager: PluginManager) {
     Row,
     Col,
     Tabs,
-    TabsPane
+    TabPane
   ];
 
   componentArray.forEach((item) => {

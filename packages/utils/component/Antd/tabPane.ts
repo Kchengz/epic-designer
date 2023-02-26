@@ -1,21 +1,21 @@
 export default {
-  component: () => import("./KTabsPane"),
+  component: () => import("./KTabPane"),
   schema: {
-    label: "标签页内容",
-    type: "tabsPane",
+    label: "标签内容",
+    type: "tab-pane",
     icon: "icon-xiala",
     children: [],
     componentProps: {
-      tab: '标签页'
+      tab: '标签'
     }
   },
   atteditSchemas: [
     {
-      label: "选项卡名称",
+      label: "垂直对齐方式",
       type: "input",
       attrIndex: "componentProps.tab",
     },
-  
+
 
 
   ],
