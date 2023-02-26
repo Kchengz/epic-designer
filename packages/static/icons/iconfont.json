@@ -6,18 +6,53 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "3851344",
-      "name": "代码模式",
-      "font_class": "daimamoshi",
-      "unicode": "e656",
-      "unicode_decimal": 58966
+      "icon_id": "24464967",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e683",
+      "unicode_decimal": 59011
     },
     {
-      "icon_id": "13638701",
-      "name": "代码",
-      "font_class": "daima",
-      "unicode": "e657",
-      "unicode_decimal": 58967
+      "icon_id": "12974853",
+      "name": "上传",
+      "font_class": "shangchuan1",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "20320554",
+      "name": "展开",
+      "font_class": "zhankai",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    },
+    {
+      "icon_id": "18863163",
+      "name": "复制",
+      "font_class": "fuzhi3",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "3278375",
+      "name": "删除",
+      "font_class": "shanchu1",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "11891761",
+      "name": "circular",
+      "font_class": "circular",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "577338",
+      "name": "更多",
+      "font_class": "gengduo",
+      "unicode": "e73a",
+      "unicode_decimal": 59194
     },
     {
       "icon_id": "23897237",
@@ -27,53 +62,11 @@
       "unicode_decimal": 59233
     },
     {
-      "icon_id": "2967176",
-      "name": "符号-大纲树",
-      "font_class": "fuhao-dagangshu",
-      "unicode": "e71f",
-      "unicode_decimal": 59167
-    },
-    {
-      "icon_id": "5485659",
-      "name": "树列表",
-      "font_class": "shuliebiao",
-      "unicode": "e617",
-      "unicode_decimal": 58903
-    },
-    {
-      "icon_id": "12084141",
-      "name": "开发组件",
-      "font_class": "kaifazujian",
-      "unicode": "e641",
-      "unicode_decimal": 58945
-    },
-    {
-      "icon_id": "16852593",
-      "name": "树",
-      "font_class": "tree1",
-      "unicode": "e628",
-      "unicode_decimal": 58920
-    },
-    {
-      "icon_id": "22966396",
-      "name": "大纲管理_默认",
-      "font_class": "dagangguanli_moren",
-      "unicode": "e624",
-      "unicode_decimal": 58916
-    },
-    {
       "icon_id": "25468367",
       "name": "模块_1",
       "font_class": "mokuai_1",
       "unicode": "e63b",
       "unicode_decimal": 58939
-    },
-    {
-      "icon_id": "27585565",
-      "name": "课程大纲",
-      "font_class": "kechengdagang",
-      "unicode": "e614",
-      "unicode_decimal": 58900
     },
     {
       "icon_id": "648145",
@@ -130,20 +123,6 @@
       "font_class": "html",
       "unicode": "e693",
       "unicode_decimal": 59027
-    },
-    {
-      "icon_id": "1790453",
-      "name": "单行文本",
-      "font_class": "danhangwenben",
-      "unicode": "e6e6",
-      "unicode_decimal": 59110
-    },
-    {
-      "icon_id": "1790454",
-      "name": "多行文本",
-      "font_class": "duohangwenben",
-      "unicode": "e6e7",
-      "unicode_decimal": 59111
     },
     {
       "icon_id": "1812689",
@@ -291,13 +270,6 @@
       "font_class": "pingfen_moren",
       "unicode": "e877",
       "unicode_decimal": 59511
-    },
-    {
-      "icon_id": "10901926",
-      "name": "模型树",
-      "font_class": "tree",
-      "unicode": "e608",
-      "unicode_decimal": 58888
     },
     {
       "icon_id": "11249706",
