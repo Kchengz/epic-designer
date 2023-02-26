@@ -3,7 +3,7 @@
     @start="handleSelect($event.oldIndex); designer.setDisableHover(true)" @end="handleEnd()"
     @add="handleSelect($event.newIndex)" ghostClass="moveing" :component-data="{ name: 'draggable-range' }">
     <template #item="{ element, index }">
-      <div v-if="element.type !== 'col'" class="item" :class="{
+      <div v-if="!['col'].includes(element.type)" class="item" :class="{
         checked: designer.state.checkedNode?.id === element.id,
         hover: designer.state.hoverNode?.id === element.id,
         'root-node': element.id === 'root'
@@ -24,12 +24,7 @@
         </div>
         <KNodeItem :element="element" />
       </div>
-      <KNodeItem v-else class="item" :class="{
-        checked: designer.state.checkedNode?.id === element.id,
-        hover: designer.state.hoverNode?.id === element.id,
-        'root-node': element.id === 'root'
-      }" @click.stop="designer.setCheckedNode(element)" @mouseover.stop="designer.setHoverNode(element)"
-        @mouseout.stop="designer.setHoverNode(null)" :element="element" />
+      <KNodeItem v-else :element="element" />
     </template>
   </draggable>
 </template>
