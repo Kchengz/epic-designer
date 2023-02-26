@@ -16,6 +16,8 @@ import UploadFile from "./Antd/uploadFile";
 import Card from "./Antd/card";
 import Row from "./Antd/row";
 import Col from "./Antd/col";
+import Tabs from "./Antd/tabs";
+import TabsPane from "./Antd/tabsPane";
 
 // 兼容性样式
 import './Antd/index.less'
@@ -39,7 +41,9 @@ export function useAntd(pluginManager: PluginManager) {
     UploadFile,
     Card,
     Row,
-    Col
+    Col,
+    Tabs,
+    TabsPane
   ];
 
   componentArray.forEach((item) => {
