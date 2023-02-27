@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^3.2.15",
+    "element-plus": "^2.2.32",
     "less": "^4.1.3",
     "monaco-editor": "^0.34.1",
     "vuedraggable": "4.1.0"

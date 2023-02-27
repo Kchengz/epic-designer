@@ -1,4 +1,5 @@
 export { pluginManager } from './pluginManager'
 export { nodeSchema } from './nodeSchema'
 export { useAntd } from './component/useAntd'
+export { useElementPlus } from './component/useElementPlus'
 export * from './utils'
