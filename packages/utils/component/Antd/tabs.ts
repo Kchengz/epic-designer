@@ -4,7 +4,26 @@ export default {
     label: "标签页",
     type: "tabs",
     icon: "icon-xiala",
-    children: []
+    children: [
+      {
+        type: "tab-pane",
+        children: [],
+        id:'sdfsdf',
+        componentProps: {
+          tab: '标签1',
+          key: 123
+        }
+      },
+      {
+        type: "tab-pane",
+        children: [],
+        id:'sdfsdf2',
+        componentProps: {
+          tab: '标签2',
+          key: 2
+        }
+      },
+    ]
   },
   atteditSchemas: [
     {

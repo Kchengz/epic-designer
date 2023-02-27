@@ -6,7 +6,8 @@ export default {
     icon: "icon-xiala",
     children: [],
     componentProps: {
-      tab: '标签'
+      tab: '标签',
+      key: '1'
     }
   },
   atteditSchemas: [
