@@ -1,6 +1,6 @@
 <template>
   <component v-show="show" :is="FormItem" v-if="FormItem && props.record.isInput && component"
-    v-bind="{...record,rules:show ? record.rules: []}" :name="props.record.field">
+    v-bind="{ ...record, rules: show ? record.rules : [] }" :name="props.record.field">
     <component :is="component"
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 递归组件 start -->
@@ -58,6 +58,10 @@ const componentProps = shallowRef<any>({})
 const dataSource = reactive<any>({})
 
 const show = computed(() => {
+  if (typeof props.record.show === 'boolean') {
+    return props.record.show
+  }
+
   return props.record.show?.({ values: formData }) ?? true
 })
 

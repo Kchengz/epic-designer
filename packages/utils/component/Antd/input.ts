@@ -45,6 +45,18 @@ export default {
       },
       attrIndex: "componentProps.type",
     },
+    {
+      label: "显示",
+      type: "switch",
+      attrIndex: "show",
+      componentProps: {
+      }
+    },
+    {
+      label: "禁用",
+      type: "switch",
+      attrIndex: "componentProps.disabled",
+    },
   ],
   bindModel: "value",
 };
