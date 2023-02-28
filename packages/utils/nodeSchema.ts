@@ -37,7 +37,7 @@ class NodeSchema {
         "card",
         "form",
         "row",
-        // "tabs",
+        "tabs",
         // "tab-pane",
 
         // "monacoEditor",

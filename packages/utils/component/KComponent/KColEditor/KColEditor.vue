@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="k-col-editor-item" v-for="(item, index) in colList" :key="index">
-            <Number style="width:100%" v-model:value="item.componentProps.span" min="1" max="24" />
+            <Number style="width:100%" v-model:value="item.componentProps.span" v-model="item.componentProps.span" min="1" max="24" />
             <div class="del-btn" v-if="colList.length > 1">
                 <span @click="handleDelete(index)"> <span class="iconfont icon-shanchu"></span></span>
             </div>

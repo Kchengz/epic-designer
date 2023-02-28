@@ -1,10 +1,18 @@
-import { defineComponent, h, watch } from "vue";
+import { defineComponent, h, PropType } from "vue";
 import { ElButton } from "element-plus";
-import { handleActions } from './util'
+// import { handleActions } from "./util";
+import { NodeItem } from "../../../types/kDesigner";
+
 // 二次封装组件
 export default defineComponent({
   //emits: ["update:modelValue"],
-  setup(_, { emit, attrs }) {
+  props: {
+    record: {
+      type: Object as PropType<NodeItem>,
+      require: true,
+    },
+  },
+  setup(props, { emit, attrs }) {
     /*watch(
       () => attrs.type,
       () => {
@@ -17,32 +25,23 @@ export default defineComponent({
     }
 
     function handleAction(e = null) {
-      console.log("点击action1:" + JSON.stringify(e))
-      handleActions(attrs.record.componentProps.eventActions, 'onClick')
+      console.log("点击action1:" + JSON.stringify(e));
+      // handleActions(props.record!.componentProps.eventActions, "onClick");
     }
 
-    return {
-      attrs,
-      handleUpdate,
-      handleAction
+    return () => {
+      const componentProps: { [propName: string]: any } = {
+        ...props.record!.componentProps,
+        //"onUpdate:modelValue": this.handleUpdate,
+        onClick: handleAction,
+      };
+
+      // console.log("按钮attrs:" + JSON.stringify(this.attrs))
+      // console.log("按钮props:" + JSON.stringify(props))
+
+      return h(ElButton, componentProps, {
+        default: () => props.record!.label,
+      });
     };
-  },
-  render() {
-    let cmp: any = ElButton;
-    // const type = this.attrs.type;
-
-
-    const props: { [propName: string]: any } = {
-      ...this.attrs,
-      //"onUpdate:modelValue": this.handleUpdate,
-      "onClick": this.handleAction
-    };
-
-    // console.log("按钮attrs:" + JSON.stringify(this.attrs))
-    // console.log("按钮props:" + JSON.stringify(props))
-
-    return h(cmp, props, { default: () => [props.record.label] })
-
-
   },
 });

@@ -1,4 +1,3 @@
-
 export default {
   component: () => import("./KButton"),
   //component: ElButton,
@@ -28,11 +27,12 @@ export default {
       componentProps: {
         eventActions: [
           {
-            type: 'onClick',
+            type: "onClick",
             actions: [],
           },
         ],
       },
     },
   ],
+  bindModel: '',
 };

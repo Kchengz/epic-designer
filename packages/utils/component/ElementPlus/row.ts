@@ -78,7 +78,7 @@ export default {
         },
         {
             label: "栅格间距",
-            type: "input",
+            type: "number",
             attrIndex: "componentProps.gutter",
         },
         {
