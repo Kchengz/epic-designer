@@ -1,6 +1,6 @@
 import { defineComponent, h, renderSlot, PropType } from "vue";
-import { ElTabPane } from "element-plus";
-import { NodeItem } from "../../../types/kDesigner";
+import { ElRow } from "element-plus";
+import { NodeItem } from "../../../../types/kDesigner";
 export default defineComponent({
     props: {
         record: {
@@ -21,18 +21,19 @@ export default defineComponent({
     render() {
         const record = {
             ...this.props.record,
-            ...this.props.record?.componentProps,
             title: this.props.record!.label,
         } as any;
         const children = record.children;
         delete record.children;
-        return h(ElTabPane, record, {
-            default: () =>
+
+        return h(ElRow, record, {
+            default: () => [
                 renderSlot(this.slots, "edit-node", {}, () =>
                     children!.map((record: any) =>
                         renderSlot(this.slots, "node", { record })
                     )
                 ),
+            ]
         });
     },
 });

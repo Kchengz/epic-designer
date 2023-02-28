@@ -1,6 +1,6 @@
 import { defineComponent, h, renderSlot, PropType } from "vue";
-import Col from "ant-design-vue/lib/col";
-import { NodeItem } from "../../../types/kDesigner";
+import { ElCard } from "element-plus";
+import { NodeItem } from "../../../../types/kDesigner";
 export default defineComponent({
   props: {
     record: {
@@ -21,12 +21,12 @@ export default defineComponent({
   render() {
     const record = {
       ...this.props.record,
-      title: this.props.record!.label,
+      header: this.props.record!.label,
     } as any;
     const children = record.children;
     delete record.children;
 
-    return h(Col, record, {
+    return h(ElCard, record, {
       default: () =>
         renderSlot(this.slots, "edit-node", {}, () =>
           children!.map((record: any) =>

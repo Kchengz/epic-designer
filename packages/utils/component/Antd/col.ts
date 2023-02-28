@@ -1,5 +1,5 @@
 export default {
-  component: () => import("./KCol"),
+  component: () => import("./src/KCol"),
   schema: {
     label: "栅格布局-列",
     type: "col",

@@ -1,8 +1,6 @@
 
-import { ElSelect, ElOption } from "element-plus"
-
 export default {
-  component: () => import("./KSelect"),
+  component: () => import("./src/KSelect"),
   //component: ElSelect,
   schema: {
     label: "选择框",
@@ -11,7 +9,7 @@ export default {
     field: "select",
     isInput: true,
     componentProps: {
-      Option: [
+      options: [
         {
           label: "选项1",
           value: "选项1",

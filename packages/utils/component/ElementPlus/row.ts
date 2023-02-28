@@ -1,5 +1,5 @@
 export default {
-    component: () => import("./KRow"),
+    component: () => import("./src/KRow"),
     schema: {
         label: "栅格布局",
         type: "row",

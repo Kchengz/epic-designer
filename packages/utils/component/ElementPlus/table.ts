@@ -1,5 +1,5 @@
 export default {
-  component: () => import("./KTable.vue"),
+  component: () => import("./src/KTable.vue"),
   schema: {
     id: "组件ID",
     label: "数据表",

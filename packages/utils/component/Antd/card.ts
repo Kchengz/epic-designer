@@ -1,5 +1,5 @@
 export default {
-  component: () => import("./KCard"),
+  component: () => import("./src/KCard"),
   schema: {
     label: "卡片布局",
     type: "card",

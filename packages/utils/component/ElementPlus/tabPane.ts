@@ -1,5 +1,5 @@
 export default {
-    component: () => import("./KTabPane"),
+    component: () => import("./src/KTabPane"),
     schema: {
         label: "标签内容",
         type: "tab-pane",
@@ -15,9 +15,6 @@ export default {
             type: "input",
             attrIndex: "componentProps.tab",
         },
-
-
-
     ],
     bindModel: "modelValue",
 };

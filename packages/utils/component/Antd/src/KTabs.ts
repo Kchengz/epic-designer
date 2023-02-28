@@ -1,6 +1,6 @@
 import { defineComponent, h, renderSlot, PropType } from "vue";
 import Tabs from "ant-design-vue/lib/tabs";
-import { NodeItem } from "../../../types/kDesigner";
+import { NodeItem } from "../../../../types/kDesigner";
 export default defineComponent({
   props: {
     record: {

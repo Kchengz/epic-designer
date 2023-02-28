@@ -1,5 +1,5 @@
 export default {
-  component: () => import("./KRadio"),
+  component: () => import("./src/KRadio"),
   schema: {
     label: "单选框",
     type: "radio",

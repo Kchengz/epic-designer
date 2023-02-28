@@ -1,5 +1,5 @@
 export default {
-  component: () => import("./KButton"),
+  component: () => import("./src/KButton"),
   //component: ElButton,
   schema: {
     label: "按钮",

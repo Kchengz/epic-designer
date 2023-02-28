@@ -2,7 +2,7 @@ import { ComponentAttr } from '../../pluginManager'
 
 
 export default {
-    component: () => import("./KForm.vue"),
+    component: () => import("./src/KForm.vue"),
     schema: {
         id: "组件Id",
         label: "表单",

@@ -1,5 +1,5 @@
 export default {
-  component: () => import("./KUploadImage"),
+  component: () => import("./src/KUploadImage"),
   schema: {
     label: "上传图片",
     type: "upload-image",

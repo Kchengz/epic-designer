@@ -1,5 +1,5 @@
 export default {
-  component: () => import("./KDatePicker"),
+  component: () => import("./src/KDatePicker"),
   schema: {
     label: "日期选择器",
     type: "date",

@@ -1,5 +1,5 @@
 export default {
-  component: () => import("./KTabs"),
+  component: () => import("./src/KTabs"),
   schema: {
     label: "标签页",
     type: "tabs",

@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import { ref, computed, inject, useAttrs, onMounted } from 'vue'
 // import { Form } from 'ant-design-vue'
-import { pluginManager } from '../../../../index'
+import { pluginManager } from '../../../index'
 const { component: Form } = pluginManager.getComponent('Form') || {}
 const attrs = useAttrs()
 const form = ref<any>(null)
