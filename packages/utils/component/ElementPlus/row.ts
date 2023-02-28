@@ -87,7 +87,6 @@ export default {
             attrIndex: "children",
         },
 
-
     ],
     bindModel: "modelValue",
 };

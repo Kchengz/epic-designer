@@ -4,6 +4,7 @@ export default {
     label: "标签页",
     type: "tabs",
     icon: "icon-xiala",
+    field: "tabs",
     children: [
       {
         type: "tab-pane",
@@ -11,7 +12,7 @@ export default {
         id: "sdfsdf",
         componentProps: {
           label: "标签1",
-          name: 123,
+          name: '1',
         },
       },
       {
@@ -20,12 +21,12 @@ export default {
         id: "sdfsdf2",
         componentProps: {
           label: "标签2",
-          name: 2,
+          name: '2',
         },
       },
     ],
     componentProps: {
-      defaultValue: 123,
+      defaultValue: '1',
     },
   },
   atteditSchemas: [
@@ -44,11 +45,7 @@ export default {
       type: "input",
       attrIndex: "componentProps.gutter",
     },
-    {
-      label: "自动换行",
-      type: "switch",
-      attrIndex: "componentProps.wrap",
-    },
+
   ],
   bindModel: "modelValue",
 };
