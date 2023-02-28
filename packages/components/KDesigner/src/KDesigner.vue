@@ -38,9 +38,8 @@ const formData = reactive<FormDataModel>({})
 provide('schemas', schemas)
 provide('formData', formData)
 const rootSchema = {
-  type: 'form',
+  type: 'page',
   id: 'root',
-  name: 'default',
   componentProps: {
     layout: 'horizontal',
     labelWidth: 100,
