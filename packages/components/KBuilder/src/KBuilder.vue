@@ -41,7 +41,7 @@ async function getData (formName = 'default'): Promise<FormDataModel> {
 }
 
 /**
- * 获取表单数据
+ * 验证表单数据
  * @param formName 表单name
  */
 function validateFields (formName = 'default'): Promise<FormDataModel> {

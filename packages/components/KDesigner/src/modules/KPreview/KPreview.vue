@@ -1,6 +1,7 @@
 <template>
-    <component :is="Modal" title="预览" v-model:visible="visible" width="800px" @cancel="handleClose" @ok="handleOk">
+    <component :is="Modal" title="预览" v-model:visible="visible" v-model="visible" width="800px" @cancel="handleClose" @ok="handleOk">
         <KBuilder ref="kb" :schemas="schemas" />
+        <button @click="handleOk">提交</button>
     </component>
 </template>
 <script lang="ts" setup>

@@ -1,13 +1,18 @@
 // 注册ant-design-vue ui
 import { PluginManager } from "../pluginManager";
+import { ElDialog,ElFormItem } from 'element-plus'
 import Input from "./ElementPlus/input";
+import Form from "./ElementPlus/form";
 
 
-// 兼容性样式
 
 export function useElementPlus(pluginManager: PluginManager) {
+  pluginManager.registerComponent("Modal", ElDialog);
+  pluginManager.registerComponent("FormItem", ElFormItem);
+  
   const componentArray = [
     Input,
+    Form,
   ];
 
   componentArray.forEach((item) => {
