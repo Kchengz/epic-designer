@@ -21,8 +21,7 @@ export default defineComponent({
     render() {
         const record = {
             ...this.props.record,
-            ...this.props.record?.componentProps,
-            title: this.props.record!.label,
+            name: this.props.record!.id
         } as any;
         const children = record.children;
         delete record.children;

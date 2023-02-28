@@ -10,19 +10,13 @@ export default {
         type: "tab-pane",
         children: [],
         id: "sdfsdf",
-        componentProps: {
-          label: "标签1",
-          name: '1',
-        },
+        label: "标签1",
       },
       {
+        label: "标签2",
         type: "tab-pane",
         children: [],
         id: "sdfsdf2",
-        componentProps: {
-          label: "标签2",
-          name: '2',
-        },
       },
     ],
     componentProps: {
@@ -31,19 +25,9 @@ export default {
   },
   atteditSchemas: [
     {
-      label: "垂直对齐方式",
-      type: "input",
-      attrIndex: "componentProps.align",
-    },
-    {
-      label: "水平排列方式",
-      type: "input",
-      attrIndex: "componentProps.justify",
-    },
-    {
-      label: "栅格间距",
-      type: "input",
-      attrIndex: "componentProps.gutter",
+      label: "标签页配置",
+      type: "k-tab-pane-editor",
+      attrIndex: "children",
     },
 
   ],

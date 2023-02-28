@@ -2,9 +2,11 @@ import { PluginManager } from "../pluginManager";
 import MonacoEditor from "./KComponent/monacoEditor";
 import Page from "./KComponent/page";
 import KColEditor from "./KComponent/KColEditor/KColEditor.vue";
+import KTabPaneEditor from "./KComponent/KTabPaneEditor/KTabPaneEditor.vue";
 
 export function initComponent(pluginManager: PluginManager) {
   pluginManager.registerComponent("k-col-editor", KColEditor);
+  pluginManager.registerComponent("k-tab-pane-editor", KTabPaneEditor);
 
   // 左侧菜单初始化
   pluginManager.registerActivitybar({
