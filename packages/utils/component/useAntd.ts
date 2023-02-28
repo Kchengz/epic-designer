@@ -18,15 +18,19 @@ import Row from "./Antd/row";
 import Col from "./Antd/col";
 import Tabs from "./Antd/tabs";
 import TabPane from "./Antd/tabPane";
+import KColEditor from "./Antd/KColEditor/KColEditor.vue";
+import KForm from "./Antd/form";
 
 // 兼容性样式
-import './Antd/index.less'
+import "./Antd/index.less";
 
 export function useAntd(pluginManager: PluginManager) {
+  pluginManager.registerComponent("k-col-editor", KColEditor);
   pluginManager.registerComponent("Form", Form);
   pluginManager.registerComponent("FormItem", FormItem);
   pluginManager.registerComponent("Modal", Modal);
   const componentArray = [
+    KForm,
     Input,
     InputNumber,
     InputPassword,
@@ -43,7 +47,7 @@ export function useAntd(pluginManager: PluginManager) {
     Row,
     Col,
     Tabs,
-    TabPane
+    TabPane,
   ];
 
   componentArray.forEach((item) => {

@@ -9,7 +9,7 @@ import { useComponent } from "./config/k.config";
 import { pluginManager, useAntd, useElementPlus } from "../packages/index";
 
 useComponent(pluginManager);
-// useAntd(pluginManager)
-useElementPlus(pluginManager)
+useAntd(pluginManager)
+// useElementPlus(pluginManager)
 
 createApp(App).mount("#app");
