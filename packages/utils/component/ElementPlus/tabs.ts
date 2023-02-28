@@ -10,8 +10,8 @@ export default {
         children: [],
         id: "sdfsdf",
         componentProps: {
-          tab: "标签1",
-          key: 123,
+          label: "标签1",
+          name: 123,
         },
       },
       {
@@ -19,11 +19,14 @@ export default {
         children: [],
         id: "sdfsdf2",
         componentProps: {
-          tab: "标签2",
-          key: 2,
+          label: "标签2",
+          name: 2,
         },
       },
     ],
+    componentProps: {
+      defaultValue: 123,
+    },
   },
   atteditSchemas: [
     {
