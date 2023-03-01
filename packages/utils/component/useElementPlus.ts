@@ -13,6 +13,7 @@ import Tabs from "./ElementPlus/tabs";
 import Radio from "./ElementPlus/radio";
 import Checkbox from "./ElementPlus/checkbox";
 import Switch from "./ElementPlus/switch";
+import Cascader from "./ElementPlus/cascader";
 import TabPane from "./ElementPlus/tabPane";
 import DatePicker from "./ElementPlus/datePicker";
 
@@ -29,6 +30,7 @@ export function useElementPlus(pluginManager: PluginManager) {
     DatePicker,
     Select,
     Switch,
+    Cascader,
     Button,
     Card,
     Row,
