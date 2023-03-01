@@ -1,11 +1,10 @@
-import { ElInputNumber } from "element-plus";
 export default {
-  component: ElInputNumber,
+  component: async () => (await import("element-plus")).ElColorPicker,
   schema: {
-    label: "数字输入框",
-    type: "number",
+    label: "颜色选择器",
+    type: "color-picker",
     icon: "icon-number",
-    field: "number",
+    field: "color-picker",
     isInput: true,
     componentProps: {
       style: { width: "100%" },
@@ -21,6 +20,11 @@ export default {
       label: "文字",
       type: "input",
       attrIndex: "label",
+    },
+    {
+      label: "默认值",
+      type: "color-picker",
+      attrIndex: "componentProps.defaultValue",
     },
   ],
   bindModel: "modelValue",

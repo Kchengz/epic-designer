@@ -38,6 +38,7 @@ class NodeSchema {
         "form",
         "row",
         "tabs",
+        "color-picker",
         // "tab-pane",
 
         // "monacoEditor",

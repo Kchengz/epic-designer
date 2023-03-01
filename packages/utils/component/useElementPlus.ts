@@ -2,7 +2,7 @@
 import { PluginManager } from "../pluginManager";
 import { ElDialog, ElFormItem } from "element-plus";
 import Input from "./ElementPlus/input";
-import Number from "./ElementPlus/inputNumber";
+import Number from "./ElementPlus/input-number";
 import Form from "./ElementPlus/form";
 import Button from "./ElementPlus/button";
 import Card from "./ElementPlus/card";
@@ -12,6 +12,7 @@ import Select from "./ElementPlus/select";
 import Tabs from "./ElementPlus/tabs";
 import Radio from "./ElementPlus/radio";
 import Checkbox from "./ElementPlus/checkbox";
+import colorPicker from "./ElementPlus/color-picker";
 import Switch from "./ElementPlus/switch";
 import Cascader from "./ElementPlus/cascader";
 import TabPane from "./ElementPlus/tabPane";
@@ -30,6 +31,7 @@ export function useElementPlus(pluginManager: PluginManager) {
     DatePicker,
     Select,
     Switch,
+    colorPicker,
     Cascader,
     Button,
     Card,
