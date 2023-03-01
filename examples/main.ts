@@ -8,10 +8,11 @@ import "ant-design-vue/dist/antd.css";
 // 引入Element plus样式
 import 'element-plus/dist/index.css'
 
-import { useComponent } from "./config/k.config";
+// import { useComponent } from "./config/k.config";
 import { pluginManager, useAntd, useElementPlus } from "../packages/index";
 
-useComponent(pluginManager);
+// 测试布局组件
+// useComponent(pluginManager);
 // 使用Antd UI
 // useAntd(pluginManager)
 

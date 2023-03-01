@@ -55,7 +55,7 @@ function handleClick (e: NodeItem) {
   let { list, schema, index } = data
 
   // 如果选中元素存在children字段，则添加到children中
-  if (schema.children) {
+  if (schema.children && !['row', 'tabs'].includes(schema.type)) {
     list = schema.children
     index = schema.children.length - 1
   }
