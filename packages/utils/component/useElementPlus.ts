@@ -11,6 +11,7 @@ import Col from "./ElementPlus/col";
 import Select from "./ElementPlus/select";
 import Tabs from "./ElementPlus/tabs";
 import Radio from "./ElementPlus/radio";
+import Checkbox from "./ElementPlus/checkbox";
 import Switch from "./ElementPlus/switch";
 import TabPane from "./ElementPlus/tabPane";
 import DatePicker from "./ElementPlus/datePicker";
@@ -24,6 +25,7 @@ export function useElementPlus(pluginManager: PluginManager) {
     Input,
     Number,
     Radio,
+    Checkbox,
     DatePicker,
     Select,
     Switch,

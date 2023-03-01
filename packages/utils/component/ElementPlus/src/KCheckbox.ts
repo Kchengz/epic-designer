@@ -1,6 +1,6 @@
 import { defineComponent, h } from "vue";
 import "element-plus/es/components/select/style/css";
-import { ElRadioGroup, ElRadio } from "element-plus";
+import { ElCheckboxGroup, ElCheckbox } from "element-plus";
 
 // 二次封装组件
 export default defineComponent({
@@ -20,10 +20,10 @@ export default defineComponent({
       ...this.attrs,
       "onUpdate:modelValue": this.handleUpdate,
     };
-    return h(ElRadioGroup, props, {
+    return h(ElCheckboxGroup, props, {
       default: () => [
         props.options?.map((option: any) =>
-          h(ElRadio, { label: option.label, value: option.value })
+          h(ElCheckbox, { label: option.label, value: option.value })
         ),
       ],
     });
