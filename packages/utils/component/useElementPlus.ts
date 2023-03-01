@@ -12,6 +12,8 @@ import Select from "./ElementPlus/select";
 import Tabs from "./ElementPlus/tabs";
 import Radio from "./ElementPlus/radio";
 import Checkbox from "./ElementPlus/checkbox";
+import Slider from "./ElementPlus/slider";
+
 import colorPicker from "./ElementPlus/color-picker";
 import Switch from "./ElementPlus/switch";
 import Cascader from "./ElementPlus/cascader";
@@ -33,6 +35,7 @@ export function useElementPlus(pluginManager: PluginManager) {
     Switch,
     colorPicker,
     Cascader,
+    Slider,
     Button,
     Card,
     Row,

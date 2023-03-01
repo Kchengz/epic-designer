@@ -39,6 +39,7 @@ class NodeSchema {
         "row",
         "tabs",
         "color-picker",
+        "slider",
         // "tab-pane",
 
         // "monacoEditor",
