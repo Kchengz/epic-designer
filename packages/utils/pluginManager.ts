@@ -1,4 +1,4 @@
-import { NodeItem } from "../types/kDesigner.d";
+import { NodeItem, SchemaGroupItem } from "../types/kDesigner.d";
 import { nodeSchema } from "./index";
 import { loadAsyncComponent } from "./utils";
 
@@ -42,7 +42,7 @@ export class PluginManager {
     activitybars: [],
   };
 
-  constructor() {}
+  constructor() { }
   /**
    * 注册组件到插件管理器中
    * @param componentName 组件名称
@@ -124,6 +124,15 @@ export class PluginManager {
    */
   getActivitybars() {
     return this.viewsContainers.activitybars;
+  }
+
+  /**
+ * 设置分组,这个操作将会覆盖原来的数据
+ * @param {*} schemaGroup
+ * @returns
+ */
+  setSchemaGroup(schemaGroup: SchemaGroupItem[]) {
+    nodeSchema.setSchemaGroup(schemaGroup);
   }
 }
 
