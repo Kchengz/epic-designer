@@ -40,14 +40,6 @@ provide('formData', formData)
 const rootSchema = {
   type: 'page',
   id: 'root',
-  componentProps: {
-    layout: 'horizontal',
-    labelWidth: 100,
-    labelLayout: 'flex',
-    labelCol: { span: 5 },
-    wrapperCol: { span: 19 },
-    hideRequiredMark: false
-  },
   children: []
 }
 

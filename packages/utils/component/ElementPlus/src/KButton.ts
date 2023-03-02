@@ -1,4 +1,4 @@
-import { defineComponent, h, PropType } from "vue";
+import { defineComponent, h, renderSlot, PropType } from "vue";
 import { ElButton } from "element-plus";
 // import { handleActions } from "./util";
 import { NodeItem } from "../../../../types/kDesigner";
@@ -9,10 +9,9 @@ export default defineComponent({
   props: {
     record: {
       type: Object as PropType<NodeItem>,
-      require: true,
     },
   },
-  setup(props, { emit, attrs }) {
+  setup(props, { emit, slots }) {
     /*watch(
       () => attrs.type,
       () => {
@@ -31,17 +30,12 @@ export default defineComponent({
 
     return () => {
       const componentProps: { [propName: string]: any } = {
-        ...props.record!.componentProps,
-        //"onUpdate:modelValue": this.handleUpdate,
+        ...props.record?.componentProps,
         onClick: handleAction,
       };
 
-      // console.log("按钮attrs:" + JSON.stringify(this.attrs))
-      // console.log("按钮props:" + JSON.stringify(props))
 
-      return h(ElButton, componentProps, {
-        default: () => props.record!.label,
-      });
+      return h(ElButton, componentProps, renderSlot(slots, "default", {}, () => [props.record?.label]));
     };
   },
 });

@@ -7,7 +7,7 @@
             k-designer
         </div>
         <div class="k-header-item">
-            <span @click="handlePreview">预览</span> 关闭
+            <Button @click="handlePreview">预览</Button>
         </div>
         <KPreview ref="preview" />
 
@@ -16,6 +16,9 @@
 <script lang="ts" setup>
 import KPreview from '../KPreview/KPreview.vue'
 import { ref } from 'vue'
+import { pluginManager } from '../../../../../utils/index'
+
+const Button = pluginManager.getComponent('button').component
 const preview = ref<any>(null)
 
 function handlePreview () {

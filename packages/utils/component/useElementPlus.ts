@@ -56,7 +56,7 @@ export function useElementPlus(pluginManager: PluginManager) {
   // 设置分组显示
   pluginManager.setSchemaGroup([
     {
-      title: "基础组件",
+      title: "输入组件",
       list: [
         "input",
         "textarea",
