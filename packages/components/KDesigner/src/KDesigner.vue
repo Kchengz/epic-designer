@@ -2,6 +2,7 @@
   <div class="k-designer-main">
     <KHeader />
     <div class="k-split-view-container">
+      <!-- <ALoading /> -->
       <KActionBar />
       <KEditContainer />
       <KRightSidebar />
@@ -15,7 +16,6 @@
 // import KRightSidebar from './modules/KAttributeView/KAttributeView.vue'
 // import KEditContainer from './modules/KEditContainer/KEditContainer.vue'
 // import KActionBar from './modules/KActionBar/KActionBar.vue'
-
 import { provide, reactive, ref } from 'vue'
 import { DesignerState, NodeItem, FormDataModel } from '../../../types/kDesigner'
 import { getMatchedById, loadAsyncComponent } from '../../../utils/index'

@@ -1,6 +1,6 @@
 import { NodeItem } from "../types/kDesigner";
 import { defineAsyncComponent, AsyncComponentLoader } from 'vue'
-import AsyncLoading from '../components/AsyncLoading/AsyncLoading.vue'
+import KAsyncLoading from '../components/KAsyncLoading/KAsyncLoading.vue'
 /**
  * 生成一个用不重复的ID
  * @param randomLength 随机id长度
@@ -28,7 +28,7 @@ export function deepClone(json: object | any[]) {
  export const loadAsyncComponent = (loader: AsyncComponentLoader<any>) =>
  defineAsyncComponent({
    loader,
-   loadingComponent: AsyncLoading,
+   loadingComponent: KAsyncLoading,
    delay: 20,
  })
 
