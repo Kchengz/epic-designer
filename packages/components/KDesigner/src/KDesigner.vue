@@ -18,7 +18,7 @@
 // import KActionBar from './modules/KActionBar/KActionBar.vue'
 import { provide, reactive, ref } from 'vue'
 import { DesignerState, NodeItem, FormDataModel } from '../../../types/kDesigner'
-import { getMatchedById, loadAsyncComponent } from '../../../utils/index'
+import { getMatchedById, loadAsyncComponent, revoke } from '../../../utils/index'
 
 const KHeader = loadAsyncComponent(() => import('./modules/KHeader/KHeader.vue'))
 const KActionBar = loadAsyncComponent(() => import('./modules/KActionBar/KActionBar.vue'))
@@ -43,10 +43,13 @@ const rootSchema = {
   children: []
 }
 
-// 添加根节点
-schemas.value.push(rootSchema)
-// 选中根节点
-setCheckedNode(rootSchema)
+function init () {
+  // 添加根节点
+  schemas.value.push(rootSchema)
+  // 选中根节点
+  setCheckedNode(rootSchema)
+  revoke.push(schemas.value, '初始化撤销功能')
+}
 
 provide('designer', {
   setCheckedNode,
@@ -88,6 +91,7 @@ async function setDisableHover (disableHover = false) {
   state.disableHover = disableHover
 }
 
+init()
 </script>
 
 <style lang="less">

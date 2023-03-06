@@ -18,10 +18,11 @@
 </template>
 <script lang="ts" setup>
 import KAttributeInput from './KAttributeInput.vue'
-import { Designer } from '../../../../../types/kDesigner'
-import { pluginManager } from '../../../../../utils/index'
-import { inject, computed } from 'vue'
+import { Designer, NodeItem } from '../../../../../types/kDesigner'
+import { pluginManager, revoke } from '../../../../../utils/index'
+import { inject, computed, Ref } from 'vue'
 const designer = inject('designer') as Designer
+const schemas = inject('schemas') as Ref<NodeItem[]>
 
 const componentAttrs = pluginManager.getComponentAttrs()
 
@@ -58,6 +59,8 @@ function setAttrValue (value: any, attrIndex: string) {
     }
     obj = obj[item]
   })
+
+  revoke.push(schemas.value, '编辑组件属性')
 }
 
 </script>

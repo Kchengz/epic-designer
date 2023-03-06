@@ -46,7 +46,7 @@ export interface Designer {
   setHoverNode: (record: NodeItem | null) => {};
   setDisableHover: (disableHover = false) => {};
   state: DesignerState;
-  schemas: NodeItem[];
+  // schemas: NodeItem[];
 }
 
 export interface DesignerState {

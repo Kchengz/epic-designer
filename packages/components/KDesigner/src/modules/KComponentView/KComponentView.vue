@@ -5,11 +5,11 @@
         {{ item.title }}
       </div>
       <draggable v-model="item.list" v-bind="{
-  group: { name: 'edit-draggable', pull: 'clone', put: false },
-  sort: false,
-  animation: 180,
-  ghostClass: 'moving'
-}" item-key="id" :component-data="{ name: 'list' }" @end="handleDraggableEnd($event, item.list)">
+        group: { name: 'edit-draggable', pull: 'clone', put: false },
+        sort: false,
+        animation: 180,
+        ghostClass: 'moving'
+      }" item-key="id" :component-data="{ name: 'list' }" @end="handleDraggableEnd($event, item.list)">
         <template #item="{ element }">
           <div class="source-componet-item" @click="handleClick(element)">
             <span class="iconfont" :class="element.icon"></span> {{ element.label }}
@@ -21,13 +21,13 @@
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { ref, toRaw, inject } from 'vue'
-import { getUUID, deepClone, findSchemaById, nodeSchema } from '../../../../../utils/index'
+import { ref, Ref, toRaw, inject } from 'vue'
+import { getUUID, deepClone, findSchemaById, nodeSchema, revoke } from '../../../../../utils/index'
 import { SchemaNodeGroupItem, NodeItem, Designer } from '../../../../../types/kDesigner'
 
 const sourceSchema = ref<SchemaNodeGroupItem[]>([])
 sourceSchema.value = nodeSchema.getSchemaByGroup()
-const schemas: any = inject('schemas')
+const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
 
 /**
@@ -67,5 +67,6 @@ function handleClick (e: NodeItem) {
 
   list.splice(index + 1, 0, node)
   designer.setCheckedNode(node)
+  revoke.push(schemas.value, '插入组件')
 }
 </script>

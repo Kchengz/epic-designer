@@ -1,7 +1,7 @@
 <template>
   <draggable v-model="schemas" :group="firstNodeId === 'root' || 'edit-draggable'" item-key="id"
     @start="handleSelect($event.oldIndex); designer.setDisableHover(true)" @end="handleEnd()"
-    @add="handleSelect($event.newIndex)" ghostClass="moveing" :component-data="{ name: 'draggable-range' }">
+    @add="handleSelect($event.newIndex); handleAdd()" ghostClass="moveing" :component-data="{ name: 'draggable-range' }">
     <template #item="{ element, index }">
       <div class="item" :class="{
         checked: designer.state.checkedNode?.id === element.id,
@@ -26,15 +26,15 @@
       </div>
     </template>
   </draggable>
-
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { computed, watch, toRaw, PropType, inject, ref } from 'vue'
-import { getUUID, deepClone, nodeSchema } from '../../../../../utils/index'
+import { computed, watch, toRaw, PropType, inject, ref, Ref } from 'vue'
+import { getUUID, deepClone, nodeSchema, revoke } from '../../../../../utils/index'
 import { NodeItem, Designer } from '../../../../../types/kDesigner'
 import KNodeItem from './KNodeItem.vue'
 const designer = inject('designer') as Designer
+const globalSchemas = inject('schemas') as Ref<NodeItem[]>
 const props = defineProps({
   schemas: {
     type: Array as PropType<NodeItem[]>
@@ -74,6 +74,11 @@ function handleSelect (index: number) {
 
 function handleEnd () {
   designer.setDisableHover()
+  revoke.push(globalSchemas.value, '拖拽组件')
+}
+
+function handleAdd () {
+  revoke.push(globalSchemas.value, '插入组件')
 }
 
 /**
@@ -98,6 +103,8 @@ function handleCopy (schemas: NodeItem[], schema: NodeItem, index: number) {
     }
   }
   designer.setCheckedNode(node)
+
+  revoke.push(globalSchemas.value, '复制组件')
 }
 
 /**
@@ -112,8 +119,8 @@ function handleDelete (schemas: NodeItem[], schema: NodeItem, index: number) {
   if (index === schemas.length) {
     index--
   }
-
   designer.setCheckedNode(schemas[index])
+  revoke.push(globalSchemas.value, '删除组件')
 }
 
 </script>
