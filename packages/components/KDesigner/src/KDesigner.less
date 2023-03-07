@@ -126,13 +126,12 @@
   background-image: linear-gradient(#f8f8f8 14px, transparent 0),
     linear-gradient(90deg, transparent 14px, #373739 0);
   background-size: 15px 15px;
-  overflow: auto;
   padding: 32px 24px 24px;
 
   .k-edit-range {
     height: 100%;
     background-color: white;
-    overflow: auto;
+    overflow-y: auto;
     // border-radius: 6px;
     // overflow: auto;
 
@@ -218,10 +217,13 @@
 
       .action-box {
         position: absolute;
-        top: -30px;
+        z-index: 999;
+        top: 0px;
+        // top: -30px;
         right: 0;
         height: 30px;
         background: @primary-color;
+        border-radius: 0 2px 2px 4px;
         color: white;
         display: flex;
         padding: 0 4px;

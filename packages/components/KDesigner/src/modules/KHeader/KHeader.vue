@@ -18,7 +18,7 @@
 import KPreview from '../KPreview/KPreview.vue'
 import { ref, Ref, inject } from 'vue'
 import { pluginManager, revoke, getUUID } from '../../../../../utils/index'
-import { NodeItem } from '../../../../../types/kDesigner'
+import { NodeItem, Designer } from '../../../../../types/kDesigner'
 const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
 
