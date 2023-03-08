@@ -32,11 +32,16 @@ const props = defineProps({
  * 获取表单数据
  * @param formName 表单name
  */
-async function getData (formName = 'default'): Promise<FormDataModel> {
+async function getData (formName = 'default'): Promise<FormDataModel | boolean> {
   // validateFields
   // console.log(forms.value, 45454)
-  // console.log(forms.value?.[formName])
-  await forms.value?.[formName]?.validateFields()
+  const form = forms.value?.[formName]
+  // 不存在改表单时
+  if (!form) {
+    console.error(`表单 [name=${formName}] 不存在`)
+    return false
+  }
+  await form?.validateFields()
   return formData
 }
 
@@ -44,11 +49,17 @@ async function getData (formName = 'default'): Promise<FormDataModel> {
  * 验证表单数据
  * @param formName 表单name
  */
-function validateFields (formName = 'default'): Promise<FormDataModel> {
+async function validateFields (formName = 'default'): Promise<FormDataModel | boolean> {
   // validateFields
   // console.log(forms.value, 45454)
   // console.log(forms.value?.[formName])
-  return forms.value?.[formName]?.validateFields()
+  const form = forms.value?.[formName]
+  // 不存在改表单时
+  if (!form) {
+    console.error(`表单 [name=${formName}] 不存在`)
+    return false
+  }
+  return form?.validateFields()
 }
 
 /**
