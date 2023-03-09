@@ -20,6 +20,8 @@ import Cascader from "./ElementPlus/cascader";
 import TabPane from "./ElementPlus/tabPane";
 import DatePicker from "./ElementPlus/datePicker";
 
+// 组件样式调整
+import "./ElementPlus/src/index.less";
 export function useElementPlus(pluginManager: PluginManager) {
   pluginManager.registerComponent("Modal", ElDialog);
   pluginManager.registerComponent("FormItem", ElFormItem);

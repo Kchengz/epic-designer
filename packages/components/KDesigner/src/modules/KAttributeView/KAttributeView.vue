@@ -1,15 +1,17 @@
 <template>
-  <aside class="KAttributeView">
-    属性面板
+  <aside class="k-attribute-view">
     <div v-if="checkedNode">
       <div :key="item.attrIndex + checkedNode.id" v-for="item in componentAttr">
-        <div v-show="item.show?.(checkedNode) ?? true">
-          <div>
+        <div v-show="item.show?.(checkedNode) ?? true" class="attr-item">
+          <div class="attr-label" :title="item.label">
             {{ item.label }}
           </div>
-          <KAttributeInput :record="item" :model-value="getAttrValue(item.attrIndex)"
-            :componentProps="item.attrIndex === 'componentProps.defaultValue' ? checkedNode.componentProps : {}"
-            @update:model-value="setAttrValue($event, item.attrIndex)" />
+          <div class="attr-input">
+            <KAttributeInput :record="item" :model-value="getAttrValue(item.attrIndex)"
+              :componentProps="item.attrIndex === 'componentProps.defaultValue' ? checkedNode.componentProps : {}"
+              @update:model-value="setAttrValue($event, item.attrIndex)" />
+          </div>
+
         </div>
       </div>
 
