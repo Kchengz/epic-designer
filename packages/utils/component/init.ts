@@ -34,6 +34,21 @@ export function initComponent(pluginManager: PluginManager) {
       import("../../components/KDesigner/src/modules/KOutline/KOutline.vue"),
   });
 
+  pluginManager.registerRightSidebar({
+    title: "属性",
+    component: () =>
+      import(
+        "../../components/KDesigner/src/modules/KAttributeView/KAttributeView.vue"
+      ),
+  })
+
+  pluginManager.registerRightSidebar({
+    title: "大纲（测试扩展）",
+    component: () =>
+      import("../../components/KDesigner/src/modules/KOutline/KOutline.vue"),
+  })
+
+
   const componentArray = [MonacoEditor, Page];
   componentArray.forEach((item) => {
     pluginManager.addComponent(
@@ -44,3 +59,5 @@ export function initComponent(pluginManager: PluginManager) {
     );
   });
 }
+
+

@@ -23,7 +23,8 @@ import { getMatchedById, loadAsyncComponent, revoke } from '../../../utils/index
 const KHeader = loadAsyncComponent(() => import('./modules/KHeader/KHeader.vue'))
 const KActionBar = loadAsyncComponent(() => import('./modules/KActionBar/KActionBar.vue'))
 const KEditContainer = loadAsyncComponent(() => import('./modules/KEditContainer/KEditContainer.vue'))
-const KRightSidebar = loadAsyncComponent(() => import('./modules/KAttributeView/KAttributeView.vue'))
+const KRightSidebar = loadAsyncComponent(() => import('./modules/KRightSidebar/KRightSidebar.vue'))
+// const KRightSidebar = loadAsyncComponent(() => import('./modules/KAttributeView/KAttributeView.vue'))
 const KFooter = loadAsyncComponent(() => import('./modules/KFooter/KFooter.vue'))
 
 const state = reactive<DesignerState>({

@@ -13,8 +13,17 @@ export interface ActivitybarModel {
   icon: string;
   component: any;
 }
+
+export interface RightSidebarModel {
+  id?: string;
+  title: string;
+  component: any;
+}
+
+
 export interface ViewsContainersModel {
   activitybars: ActivitybarModel[];
+  rightSidebars: RightSidebarModel[];
 }
 
 export interface Components {
@@ -40,6 +49,7 @@ export class PluginManager {
   componentAttrs: ComponentAttrs = {};
   viewsContainers: ViewsContainersModel = {
     activitybars: [],
+    rightSidebars: []
   };
 
   constructor() { }
@@ -124,6 +134,24 @@ export class PluginManager {
    */
   getActivitybars() {
     return this.viewsContainers.activitybars;
+  }
+
+  /**
+   * 注册右侧栏
+   */
+  registerRightSidebar(rightSidebar: RightSidebarModel) {
+    if (typeof rightSidebar.component === "function") {
+      rightSidebar.component = loadAsyncComponent(rightSidebar.component);
+    }
+    this.viewsContainers.rightSidebars.push(rightSidebar);
+  }
+
+  /**
+   * 获取所有rightSidebars
+   * @returns rightSidebars
+   */
+  getRightSidebars() {
+    return this.viewsContainers.rightSidebars;
   }
 
   /**

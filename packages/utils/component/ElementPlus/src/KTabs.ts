@@ -22,7 +22,7 @@ export default defineComponent({
         const record = {
             ...this.props.record,
             ...this.props.record?.componentProps,
-            title: this.props.record!.label,
+            // title: this.props.record!.label,
         } as any;
         const children = record.children;
         delete record.children;
