@@ -12,17 +12,6 @@ export default defineComponent({
     },
   },
   setup(props, { emit, slots }) {
-    /*watch(
-      () => attrs.type,
-      () => {
-        handleUpdate();
-      }
-    );*/
-
-    function handleUpdate(e = null) {
-      //emit(`update:modelValue`, e);
-    }
-
     function handleAction(e = null) {
       console.log("点击action1:" + JSON.stringify(e));
       // handleActions(props.record!.componentProps.eventActions, "onClick");

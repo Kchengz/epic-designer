@@ -2,7 +2,6 @@
 import { ElInput } from "element-plus"
 
 export default {
-  //component: () => import("ant-design-vue/lib/input"),
   component: ElInput,
   schema: {
     label: "文本框",

@@ -62,7 +62,7 @@ export class PluginManager {
   registerComponent(
     componentName: string,
     component: any,
-    bindModel: string = "value"
+    bindModel: string = "modelValue"
   ) {
     if (typeof component === "function") {
       component = loadAsyncComponent(component);
