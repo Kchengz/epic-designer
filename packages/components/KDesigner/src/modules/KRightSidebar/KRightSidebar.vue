@@ -26,7 +26,6 @@ sidebarComponent.value = rightSidebars[0].component
 
 function handleClick (item: RightSidebarModel, index: number) {
   if (actionBarCheckedIndex.value === index) {
-    actionBarCheckedIndex.value = null
     return false
   }
   sidebarComponent.value = item.component
