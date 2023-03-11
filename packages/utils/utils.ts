@@ -29,7 +29,7 @@ export function deepClone(json: object | any[]) {
  defineAsyncComponent({
    loader,
    loadingComponent: KAsyncLoading,
-   delay: 20,
+   delay: 80,
  })
 
 /**

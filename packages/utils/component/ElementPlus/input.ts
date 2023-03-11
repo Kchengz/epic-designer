@@ -63,6 +63,11 @@ export default {
       type: "switch", 
       attrIndex: "componentProps.hidden",
     },
+    {
+      label: '可清空',
+      type: "switch", 
+      attrIndex: "componentProps.clearable",
+    },
   ],
   bindModel: "modelValue",
 };

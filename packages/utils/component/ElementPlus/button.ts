@@ -16,8 +16,49 @@ export default {
     },
     {
       label: "类型",
-      type: "input",
+      type: "select",
+      componentProps: {
+        placeholder: "请选择",
+        clearable: true,
+        options: [
+          {
+            label: "primary",
+            value: "primary",
+          },
+          {
+            label: "success",
+            value: "success",
+          },
+          {
+            label: "info",
+            value: "info",
+          },
+          {
+            label: "warning",
+            value: "warning",
+          },
+          {
+            label: "warning",
+            value: "warning",
+          },
+        ],
+      },
       attrIndex: "componentProps.type",
+    },
+    {
+      label: "朴素按钮",
+      type: "switch",
+      attrIndex: "componentProps.plain",
+    },
+    {
+      label: "圆角按钮",
+      type: "switch",
+      attrIndex: "componentProps.round",
+    },
+    {
+      label: "圆形按钮",
+      type: "switch",
+      attrIndex: "componentProps.circle",
     },
 
     {

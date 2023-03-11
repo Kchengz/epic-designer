@@ -1,5 +1,5 @@
 <template>
-  <Input v-model="size" type="number" min="0" @input="handleUpdate">
+  <Input v-model="size" clearable type="number" min="0" @input="handleUpdate">
   <template #append>
     <Select v-model="unit" style="width: 68px" @change="handleUpdate" :options="unitArray"></Select>
   </template>
