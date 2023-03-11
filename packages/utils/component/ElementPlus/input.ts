@@ -26,12 +26,7 @@ export default {
       type: "input",
       attrIndex: "label",
     },
-    {
-      label: '隐藏',
-      type: "switch", 
-      attrIndex: "componentProps.hidden",
 
-    },
     {
       label: "默认值",
       type: "input",
@@ -63,6 +58,11 @@ export default {
         ],
       },
       attrIndex: "componentProps.type",
+    },
+    {
+      label: '隐藏',
+      type: "switch", 
+      attrIndex: "componentProps.hidden",
     },
   ],
   bindModel: "modelValue",

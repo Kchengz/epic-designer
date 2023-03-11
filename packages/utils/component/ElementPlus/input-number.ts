@@ -7,7 +7,7 @@ export default {
     field: "number",
     isInput: true,
     componentProps: {
-      style: { width: "100%" },
+      placeholder: '请输入'
     },
   },
   atteditSchemas: [
@@ -25,6 +25,16 @@ export default {
       label: "默认值",
       type: "number",
       attrIndex: "componentProps.defaultValue",
+    },
+    {
+      label: "占位内容",
+      type: "input",
+      attrIndex: "componentProps.placeholder",
+    },
+    {
+      label: '隐藏',
+      type: "switch", 
+      attrIndex: "componentProps.hidden",
     },
   ],
   bindModel: "modelValue",

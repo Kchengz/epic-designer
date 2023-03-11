@@ -19,6 +19,7 @@ export default {
           value: "选项2",
         },
       ],
+      placeholder: '请选择'
     },
   },
   atteditSchemas: [
@@ -36,6 +37,11 @@ export default {
       label: "默认值",
       type: "select",
       attrIndex: "componentProps.defaultValue",
+    },
+    {
+      label: "占位内容",
+      type: "input",
+      attrIndex: "componentProps.placeholder",
     },
     {
       label: "隐藏",
