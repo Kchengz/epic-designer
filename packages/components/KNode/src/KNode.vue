@@ -58,6 +58,12 @@ const componentProps = shallowRef<any>({})
 const dataSource = reactive<any>({})
 
 const show = computed(() => {
+  // hidden 属性优先级最高
+  if (props.record.componentProps?.hidden) {
+    return false
+  }
+
+  // show属性为boolean类型则直接返回
   if (typeof props.record.show === 'boolean') {
     return props.record.show
   }

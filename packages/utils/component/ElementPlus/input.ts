@@ -11,8 +11,8 @@ export default {
     icon: "icon-write",
     isInput: true,
     componentProps: {
-      hidden: false, //{{ $.page_11_default.priority2 == "高" }}
-      defaultValue: ''
+      defaultValue: '',
+      placeholder: '请输入'
     }
   },
   atteditSchemas: [
@@ -28,8 +28,7 @@ export default {
     },
     {
       label: '隐藏',
-      type: "input",  // 现在是input，之后是checkbox + 动态绑定
-      defaultValue: false,
+      type: "switch", 
       attrIndex: "componentProps.hidden",
 
     },
@@ -37,6 +36,11 @@ export default {
       label: "默认值",
       type: "input",
       attrIndex: "componentProps.defaultValue",
+    },
+    {
+      label: "占位内容",
+      type: "input",
+      attrIndex: "componentProps.placeholder",
     },
     {
       label: "输入类型",
