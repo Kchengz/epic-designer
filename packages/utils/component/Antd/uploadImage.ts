@@ -1,6 +1,7 @@
+import { ComponentConfigModel } from '../../pluginManager'
 export default {
   component: () => import("./src/KUploadImage"),
-  schema: {
+  defaultSchema: {
     label: "上传图片",
     type: "upload-image",
     icon: "icon-number",
@@ -10,17 +11,19 @@ export default {
       action: "http://cdn.kcz66.com/upload-img.txt",
     },
   },
-  atteditSchemas: [
-    {
-      label: "字段名",
-      type: "input",
-      attrIndex: "field",
-    },
-    {
-      label: "文字",
-      type: "input",
-      attrIndex: "label",
-    },
-  ],
+  config: {
+    attribute: [
+      {
+        label: "字段名",
+        type: "input",
+        attrIndex: "field",
+      },
+      {
+        label: "文字",
+        type: "input",
+        attrIndex: "label",
+      },
+    ],
+  },
   bindModel: "modelValue",
-};
+} as ComponentConfigModel;

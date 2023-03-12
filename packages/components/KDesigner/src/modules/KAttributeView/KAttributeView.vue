@@ -1,7 +1,7 @@
 <template>
   <aside class="k-attribute-view">
     <div v-if="checkedNode">
-      <div :key="item.attrIndex + checkedNode.id" v-for="item in componentAttr">
+      <div :key="item.attrIndex + checkedNode.id" v-for="item in ComponentAttributes">
         <div v-show="item.show?.(checkedNode) ?? true" class="attr-item">
           <div class="attr-label" :title="item.label">
             {{ item.label }}
@@ -26,14 +26,14 @@ import { inject, computed, Ref } from 'vue'
 const designer = inject('designer') as Designer
 const schemas = inject('schemas') as Ref<NodeItem[]>
 
-const componentAttrs = pluginManager.getComponentConfings()
+const ComponentConfings = pluginManager.getComponentConfings()
 
 const checkedNode = computed(() => {
   return designer.state.checkedNode
 })
 
-const componentAttr = computed(() => {
-  return componentAttrs[designer.state.checkedNode?.type ?? '']?.config.attribute ?? []
+const ComponentAttributes = computed(() => {
+  return ComponentConfings[designer.state.checkedNode?.type ?? '']?.config.attribute ?? []
 })
 
 function getAttrValue (attrIndex: string) {
@@ -45,12 +45,14 @@ function getAttrValue (attrIndex: string) {
       return obj
     }
   }
+
   return obj
 }
 
 function setAttrValue (value: any, attrIndex: string) {
   let obj = checkedNode.value ?? {} as { [key: string]: any }
   const arr = attrIndex.split('.')
+  console.log(arr)
   arr.forEach((item, index) => {
     if (index === (arr.length - 1)) {
       obj[item] = value

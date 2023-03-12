@@ -1,5 +1,5 @@
 <template>
-    <component v-if="component" :is="component" v-bind="{ ...componentProps,...props.componentProps, [`${componentProps?.bindModel}`]: value }">
+    <component v-if="component" :is="component" v-bind="{ ...componentProps,...props.componentProps, [`${componentProps.bindModel}`]: value }">
     </component>
 </template>
 <script lang="ts" setup>
@@ -48,7 +48,6 @@ async function initComponent () {
     return false
   }
   const bindModel = pluginManager.getComponentConfingByType(props.record.type)?.bindModel ?? 'modelValue'
-
   // 如果数据项为函数，则判定为懒加载组件
   if (typeof cmp === 'function') {
     const res = await cmp()
@@ -68,7 +67,6 @@ async function initComponent () {
 }
 
 function handleUpdate (e: any) {
-  console.log(e)
   value.value = e
 }
 

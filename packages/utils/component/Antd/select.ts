@@ -1,6 +1,7 @@
+import { ComponentConfigModel } from '../../pluginManager'
 export default {
   component: () => import("ant-design-vue/lib/select"),
-  schema: {
+  defaultSchema: {
     label: "选择框",
     type: "select",
     icon: "icon-xiala",
@@ -19,22 +20,24 @@ export default {
       ],
     },
   },
-  atteditSchemas: [
-    {
-      label: "字段名",
-      type: "input",
-      attrIndex: "field",
-    },
-    {
-      label: "文字",
-      type: "input",
-      attrIndex: "label",
-    },
-    {
-      label: "默认值",
-      type: "select",
-      attrIndex: "componentProps.defaultValue",
-    },
-  ],
+  config: {
+    attribute: [
+      {
+        label: "字段名",
+        type: "input",
+        attrIndex: "field",
+      },
+      {
+        label: "文字",
+        type: "input",
+        attrIndex: "label",
+      },
+      {
+        label: "默认值",
+        type: "select",
+        attrIndex: "componentProps.defaultValue",
+      },
+    ],
+  },
   bindModel: "value",
-};
+} as ComponentConfigModel;

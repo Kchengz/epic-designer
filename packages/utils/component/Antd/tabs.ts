@@ -1,6 +1,7 @@
+import { ComponentConfigModel } from '../../pluginManager'
 export default {
   component: () => import("./src/KTabs"),
-  schema: {
+  defaultSchema: {
     label: "标签页",
     type: "tabs",
     icon: "icon-xiala",
@@ -8,7 +9,7 @@ export default {
       {
         type: "tab-pane",
         children: [],
-        id:'sdfsdf',
+        id: 'sdfsdf',
         componentProps: {
           tab: '标签1',
           key: 123
@@ -17,7 +18,7 @@ export default {
       {
         type: "tab-pane",
         children: [],
-        id:'sdfsdf2',
+        id: 'sdfsdf2',
         componentProps: {
           tab: '标签2',
           key: 2
@@ -25,29 +26,30 @@ export default {
       },
     ]
   },
-  atteditSchemas: [
-    {
-      label: "垂直对齐方式",
-      type: "input",
-      attrIndex: "componentProps.align",
-    },
-    {
-      label: "水平排列方式",
-      type: "input",
-      attrIndex: "componentProps.justify",
-    },
-    {
-      label: "栅格间距",
-      type: "input",
-      attrIndex: "componentProps.gutter",
-    },
-    {
-      label: "自动换行",
-      type: "switch",
-      attrIndex: "componentProps.wrap",
-    },
+  config: {
+    attribute: [
+      {
+        label: "垂直对齐方式",
+        type: "input",
+        attrIndex: "componentProps.align",
+      },
+      {
+        label: "水平排列方式",
+        type: "input",
+        attrIndex: "componentProps.justify",
+      },
+      {
+        label: "栅格间距",
+        type: "input",
+        attrIndex: "componentProps.gutter",
+      },
+      {
+        label: "自动换行",
+        type: "switch",
+        attrIndex: "componentProps.wrap",
+      },
 
 
-  ],
-  bindModel: "value",
-};
+    ],
+  },
+} as ComponentConfigModel;

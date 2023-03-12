@@ -1,6 +1,7 @@
+import { ComponentConfigModel } from '../../pluginManager'
 export default {
   component: () => import("ant-design-vue/lib/switch"),
-  schema: {
+  defaultSchema: {
     label: "开关",
     type: "switch",
     icon: "icon-number",
@@ -9,7 +10,8 @@ export default {
     componentProps: {
     },
   },
-  atteditSchemas: [
+  config: {
+    attribute: [
     {
       label: "字段名",
       type: "input",
@@ -26,5 +28,6 @@ export default {
       attrIndex: "componentProps.defaultValue",
     },
   ],
+},
   bindModel: "checked",
-};
+} as ComponentConfigModel;

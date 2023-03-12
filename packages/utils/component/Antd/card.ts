@@ -1,18 +1,19 @@
+import { ComponentConfigModel } from '../../pluginManager'
 export default {
   component: () => import("./src/KCard"),
-  schema: {
+  defaultSchema: {
     label: "卡片布局",
     type: "card",
     icon: "icon-xiala",
     children: []
   },
-  atteditSchemas: [
-    {
-      label: "标题",
-      type: "input",
-      attrIndex: "label",
-    },
-
-  ],
-  bindModel: "value",
-};
+  config: {
+    attribute: [
+      {
+        label: "标题",
+        type: "input",
+        attrIndex: "label",
+      },
+    ],
+  },
+} as ComponentConfigModel;
