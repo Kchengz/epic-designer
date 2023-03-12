@@ -1,14 +1,21 @@
 <template>
-  <div class="k-designer-main">
-    <KHeader />
-    <div class="k-split-view-container">
-      <!-- <ALoading /> -->
-      <KActionBar />
-      <KEditContainer />
-      <KRightSidebar />
-    </div>
-    <KFooter />
-  </div>
+  <Suspense>
+    <template #default>
+      <div class="k-designer-main">
+        <KHeader />
+        <div class="k-split-view-container">
+          <!-- <ALoading /> -->
+          <KActionBar />
+          <KEditContainer />
+          <KRightSidebar />
+        </div>
+        <KFooter />
+      </div>
+    </template>
+    <template #fallback>
+      <div class="loading">222222222</div>
+    </template>
+  </Suspense>
 </template>
 <script lang="ts" setup>
 // import KHeader from './modules/KHeader/KHeader.vue'

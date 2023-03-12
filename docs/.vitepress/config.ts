@@ -22,8 +22,8 @@ export default defineConfig({
       copyright: "本文档内容版权为 KDesigner 作者所有，保留所有权利。",
     },
     nav: [
-      { text: "指引", link: "/guide/start/", activeMatch: "/guide/start/" },
-      { text: "更新日志", link: "/updateLog/", activeMatch: "/updateLog/" },
+      { text: "指引", link: "/guide/start", activeMatch: "/guide/start" },
+      { text: "更新日志", link: "/updateLog", activeMatch: "/updateLog" },
       { text: "个人博客", link: "https://www.kcz66.com" },
       {
         text: "相关链接",

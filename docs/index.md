@@ -14,7 +14,7 @@ hero:
   actions:
     - theme: brand
       text: 开始 👆
-      link: /guide/start/
+      link: /guide/start
     - theme: alt
       text: KDesigner 源码
       link: https://gitee.com/kcz66
