@@ -4,16 +4,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, inject, computed } from 'vue'
-import { nodeSchema, pluginManager } from '../../../../../utils/index'
-import { SchemaNodeGroupItem, Designer } from '../../../../../types/kDesigner'
+import { inject, computed } from 'vue'
+import { pluginManager } from '../../../../../utils/index'
+import { Designer } from '../../../../../types/kDesigner'
 
-const componentInfo = pluginManager.getComponent('monacoEditor')
-const Monaco = componentInfo.component
+const Monaco = pluginManager.getComponent('monacoEditor')
 
-const sourceSchema = ref<SchemaNodeGroupItem[]>([])
-sourceSchema.value = nodeSchema.getSchemaByGroup()
-// const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
 
 const getSchemas = computed({

@@ -1,6 +1,7 @@
+import { ComponentConfigModel } from '../../pluginManager'
 export default {
   component: () => import("./src/KCheckbox"),
-  schema: {
+  defaultSchema: {
     label: "复选框",
     type: "checkbox",
     icon: "icon-duoxuan1",
@@ -20,22 +21,23 @@ export default {
       ],
     },
   },
-  atteditSchemas: [
-    {
-      label: "字段名",
-      type: "input",
-      attrIndex: "field",
-    },
-    {
-      label: "默认值",
-      type: "checkbox",
-      attrIndex: "componentProps.defaultValue",
-    },
-    {
-      label: "文字",
-      type: "input",
-      attrIndex: "label",
-    },
-  ],
-  bindModel: "modelValue",
-};
+  config: {
+    attribute: [
+      {
+        label: "字段名",
+        type: "input",
+        attrIndex: "field",
+      },
+      {
+        label: "默认值",
+        type: "checkbox",
+        attrIndex: "componentProps.defaultValue",
+      },
+      {
+        label: "文字",
+        type: "input",
+        attrIndex: "label",
+      },
+    ],
+  },
+} as ComponentConfigModel;

@@ -1,6 +1,7 @@
+import { ComponentConfigModel } from '../../pluginManager'
 export default {
     component: () => import("./src/KCol"),
-    schema: {
+    defaultSchema: {
         label: "栅格布局-列",
         type: "col",
         icon: "icon-xiala",
@@ -9,13 +10,14 @@ export default {
             span: 6
         }
     },
-    atteditSchemas: [
-        {
-            label: "占位格数",
-            type: "number",
-            attrIndex: "componentProps.span",
-        },
+    config: {
+        attribute: [
+            {
+                label: "占位格数",
+                type: "number",
+                attrIndex: "componentProps.span",
+            },
 
-    ],
-    bindModel: "modelValue",
-};
+        ],
+    }
+} as ComponentConfigModel;

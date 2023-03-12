@@ -6,9 +6,9 @@ import KTabPaneEditor from "./KComponent/KTabPaneEditor/KTabPaneEditor.vue";
 import KInputSize from "./KComponent/KInputSize/index.vue";
 
 export function initComponent(pluginManager: PluginManager) {
-  pluginManager.registerComponent("k-col-editor", KColEditor);
-  pluginManager.registerComponent("k-tab-pane-editor", KTabPaneEditor);
-  pluginManager.registerComponent("k-input-size", KInputSize);
+  pluginManager.component("k-col-editor", KColEditor);
+  pluginManager.component("k-tab-pane-editor", KTabPaneEditor);
+  pluginManager.component("k-input-size", KInputSize);
   
   // 左侧菜单初始化
   pluginManager.registerActivitybar({
@@ -53,12 +53,7 @@ export function initComponent(pluginManager: PluginManager) {
 
   const componentArray = [MonacoEditor, Page];
   componentArray.forEach((item) => {
-    pluginManager.addComponent(
-      item.component,
-      item.schema,
-      item.atteditSchemas,
-      item.bindModel
-    );
+    pluginManager.registerComponent(item);
   });
 }
 

@@ -1,11 +1,7 @@
 import { NodeItem, SchemaGroupItem } from "../types/kDesigner.d";
-import { nodeSchema } from "./index";
 import { loadAsyncComponent } from "./utils";
+import { getUUID } from "./index";
 
-export interface ComponentInfo {
-  bindModel: string;
-  component: any;
-}
 
 export interface ActivitybarModel {
   id?: string;
@@ -27,10 +23,11 @@ export interface ViewsContainersModel {
 }
 
 export interface Components {
-  [type: string]: ComponentInfo;
+  [type: string]: any;
 }
 
-export interface ComponentAttr {
+
+export interface ComponentAttrModel {
   attrIndex: string;
   type: string;
   label: string;
@@ -40,13 +37,35 @@ export interface ComponentAttr {
   show?: (renderCallbackParams: NodeItem) => boolean;
 }
 
-export interface ComponentAttrs {
-  [type: string]: ComponentAttr[];
+export interface ComponentConfigModel {
+  component: any;
+  defaultSchema: NodeItem;
+  config: {
+    attribute?: ComponentAttrModel[];
+    style?: ComponentAttrModel[];
+    event?: ComponentAttrModel[];
+    action?: ComponentAttrModel[];
+  };
+  bindModel?: string;
+}
+
+export interface ComponentConfigsModel {
+  [type: string]: ComponentConfigModel;
 }
 
 export class PluginManager {
   components: Components = {};
-  componentAttrs: ComponentAttrs = {};
+  componentConfigs: ComponentConfigsModel = {};
+  schemaGroup: SchemaGroupItem[] = [
+    {
+      title: "基础组件",
+      list: [
+        "input",
+        "test",
+        "textarea",
+      ],
+    },
+  ];
   viewsContainers: ViewsContainersModel = {
     activitybars: [],
     rightSidebars: []
@@ -54,44 +73,35 @@ export class PluginManager {
 
   constructor() { }
   /**
-   * 注册组件到插件管理器中
+   * 添加组件到插件管理器中
    * @param componentName 组件名称
    * @param component 组件
-   * @param bindModel v-model 绑定的属性名,兼容不同ui差异
    */
-  registerComponent(
+  component(
     componentName: string,
-    component: any,
-    bindModel: string = "modelValue"
+    component: any
   ) {
     if (typeof component === "function") {
       component = loadAsyncComponent(component);
     }
     // 注册组件
-    this.components[componentName] = {
-      component,
-      bindModel,
-    };
+    this.components[componentName] = component;
   }
 
   /**
-   * 添加组件
+   * 注册组件到插件管理器中
    * @param component 组件
    * @param schema 组件结构
    * @param attrSchemas 属性结构
    * @param bindModel 双向绑定value
    */
-  addComponent(
-    component: any,
-    schema: NodeItem,
-    atteditSchemas: ComponentAttr[],
-    bindModel: string = "modelValue"
+  registerComponent(
+    componentConfig: ComponentConfigModel,
   ) {
     // 添加组件
-    this.registerComponent(schema.type, component, bindModel);
-    // 添加组件属性
-    this.componentAttrs[schema.type] = atteditSchemas;
-    nodeSchema.addSchema(schema);
+    this.component(componentConfig.defaultSchema.type, componentConfig.component);
+    // 添加组件配置
+    this.componentConfigs[componentConfig.defaultSchema.type] = componentConfig;
   }
 
   /**
@@ -110,13 +120,7 @@ export class PluginManager {
     return this.components[type];
   }
 
-  /**
-   * 获取所有插件管理中的所有组件属性
-   * @returns componentAttrs
-   */
-  getComponentAttrs() {
-    return this.componentAttrs;
-  }
+
 
   /**
    * 注册活动栏
@@ -155,13 +159,70 @@ export class PluginManager {
   }
 
   /**
+ * 获取所有插件管理中的所有组件配置
+ * @returns componentAttrs
+ */
+  getComponentConfings() {
+    return this.componentConfigs;
+  }
+
+  /**
+  * 通过type获取ComponentConfing
+  * @returns
+  */
+  getComponentConfingByType(type: string) {
+    const componentConfig = this.componentConfigs[type]
+    if (!componentConfig) {
+      console.warn(`${type} 组件未注册到k-designer中`)
+    }
+    return componentConfig;
+  }
+
+  /**
  * 设置分组,这个操作将会覆盖原来的数据
  * @param {*} schemaGroup
  * @returns
  */
   setSchemaGroup(schemaGroup: SchemaGroupItem[]) {
-    nodeSchema.setSchemaGroup(schemaGroup);
+    this.schemaGroup = schemaGroup;
   }
+
+  /**
+ * 添加分组
+ * @param {*} schemaGroupItem
+ * @returns
+ */
+  addSchemaGroup(schemaGroupItem: SchemaGroupItem) {
+    this.schemaGroup.push(schemaGroupItem);
+  }
+
+  /**
+* 按照分组获取schemaGroupList
+* @returns schemaGroupList
+*/
+  getSchemaByGroup() {
+    const schemaGroupList = this.schemaGroup.map((item) => {
+      // 映射defaultSchema,并过滤未查询到的组件
+      const list = item.list.map(type => {
+        const schema = this.componentConfigs[type]?.defaultSchema
+        if (!schema) {
+          console.warn(`${type} 组件未注册到k-designer中`)
+          return false
+        }
+        return {
+          ...schema,
+          id: getUUID(),
+        }
+      }).filter(e => e) as NodeItem[]
+      return {
+        ...item,
+        list,
+      };
+    });
+    return schemaGroupList;
+  }
+
+
 }
 
 export const pluginManager = new PluginManager();

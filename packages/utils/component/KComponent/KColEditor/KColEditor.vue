@@ -14,7 +14,7 @@ import { pluginManager, getUUID } from '../../../index'
 import { NodeItem } from '../../../../types/kDesigner'
 import { computed, PropType } from 'vue'
 
-const Number = pluginManager.getComponent('number').component
+const Number = pluginManager.getComponent('number')
 const props = defineProps({
   value: {
     type: Array as PropType<NodeItem[]>,

@@ -41,14 +41,14 @@ async function initComponent () {
   }
 
   // 内置组件
-  const componentInfo = pluginManager.getComponent(props.record.type)
+  const cmp = pluginManager.getComponent(props.record.type)
   // 内部不存在组件
-  if (!componentInfo) {
+  if (!cmp) {
     console.error(`组件${props.record.type}未注册`)
     return false
   }
+  const bindModel = pluginManager.getComponentConfingByType(props.record.type)?.bindModel ?? 'modelValue'
 
-  const { bindModel, component: cmp } = componentInfo
   // 如果数据项为函数，则判定为懒加载组件
   if (typeof cmp === 'function') {
     const res = await cmp()

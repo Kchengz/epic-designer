@@ -8,8 +8,8 @@
 <script lang="ts" setup>
 import { pluginManager } from '../../../index'
 import { ref, watch } from 'vue'
-const Input = pluginManager.getComponent('input').component
-const Select = pluginManager.getComponent('select').component
+const Input = pluginManager.getComponent('input')
+const Select = pluginManager.getComponent('select')
 const props = defineProps({
   modelValue: {
     type: String,

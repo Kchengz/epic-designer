@@ -26,14 +26,14 @@ import { inject, computed, Ref } from 'vue'
 const designer = inject('designer') as Designer
 const schemas = inject('schemas') as Ref<NodeItem[]>
 
-const componentAttrs = pluginManager.getComponentAttrs()
+const componentAttrs = pluginManager.getComponentConfings()
 
 const checkedNode = computed(() => {
   return designer.state.checkedNode
 })
 
 const componentAttr = computed(() => {
-  return componentAttrs[designer.state.checkedNode?.type ?? '']
+  return componentAttrs[designer.state.checkedNode?.type ?? '']?.config.attribute ?? []
 })
 
 function getAttrValue (attrIndex: string) {

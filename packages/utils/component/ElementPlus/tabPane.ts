@@ -1,6 +1,7 @@
+import { ComponentConfigModel } from '../../pluginManager'
 export default {
     component: () => import("./src/KTabPane"),
-    schema: {
+    defaultSchema: {
         label: "标签内容",
         type: "tab-pane",
         icon: "icon-xiala",
@@ -9,12 +10,13 @@ export default {
             tab: '标签'
         }
     },
-    atteditSchemas: [
+    config: {
+        attribute: [
         {
             label: "垂直对齐方式",
             type: "input",
             attrIndex: "componentProps.tab",
         },
     ],
-    bindModel: "modelValue",
-};
+  }
+} as ComponentConfigModel;

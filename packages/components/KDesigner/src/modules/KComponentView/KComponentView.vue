@@ -22,11 +22,11 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { ref, Ref, toRaw, inject } from 'vue'
-import { getUUID, deepClone, findSchemaById, nodeSchema, revoke } from '../../../../../utils/index'
+import { getUUID, deepClone, findSchemaById, pluginManager, revoke } from '../../../../../utils/index'
 import { SchemaNodeGroupItem, NodeItem, Designer } from '../../../../../types/kDesigner'
 
 const sourceSchema = ref<SchemaNodeGroupItem[]>([])
-sourceSchema.value = nodeSchema.getSchemaByGroup()
+sourceSchema.value = pluginManager.getSchemaByGroup()
 const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
 

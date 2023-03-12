@@ -1,6 +1,7 @@
+import { ComponentConfigModel } from '../../pluginManager'
 export default {
   component: () => import("./src/KTabs"),
-  schema: {
+  defaultSchema: {
     label: "标签页",
     type: "tabs",
     icon: "icon-xiala",
@@ -23,13 +24,14 @@ export default {
       defaultValue: '1',
     },
   },
-  atteditSchemas: [
-    {
-      label: "标签页配置",
-      type: "k-tab-pane-editor",
-      attrIndex: "children",
-    },
+  config: {
+    attribute: [
+      {
+        label: "标签页配置",
+        type: "k-tab-pane-editor",
+        attrIndex: "children",
+      },
 
-  ],
-  bindModel: "modelValue",
-};
+    ],
+  }
+} as ComponentConfigModel;

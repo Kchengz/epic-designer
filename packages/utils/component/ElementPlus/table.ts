@@ -1,6 +1,7 @@
+import { ComponentConfigModel } from '../../pluginManager'
 export default {
   component: () => import("./src/KTable.vue"),
-  schema: {
+  defaultSchema: {
     id: "组件ID",
     label: "数据表",
     type: "table",
@@ -19,72 +20,73 @@ export default {
       ]
     }
   },
-  atteditSchemas: [
-    {
-      label: "组件ID",
-      type: "input",
-      attrIndex: "id",
-    },
-    {
-      label: "标题",
-      type: "input",
-      attrIndex: "label",
-    },
-    {
-      label: "数据表",
-      type: "input",
-      attrIndex: "tableName",
-    },
-    {
-      label: "过滤条件",
-      type: "input",
-      attrIndex: "componentProps.filter",
-    },
-    {
-      label: "关联过滤",
-      type: "input",
-      attrIndex: "componentProps.link_filter",
-    },
-    {
-      label: "显示复选框",
-      type: "input",
-      attrIndex: "componentProps.selection",
-      componentProps: {
-        selection: true
-      }
-    },
+  config: {
+    attribute: [
+      {
+        label: "组件ID",
+        type: "input",
+        attrIndex: "id",
+      },
+      {
+        label: "标题",
+        type: "input",
+        attrIndex: "label",
+      },
+      {
+        label: "数据表",
+        type: "input",
+        attrIndex: "tableName",
+      },
+      {
+        label: "过滤条件",
+        type: "input",
+        attrIndex: "componentProps.filter",
+      },
+      {
+        label: "关联过滤",
+        type: "input",
+        attrIndex: "componentProps.link_filter",
+      },
+      {
+        label: "显示复选框",
+        type: "input",
+        attrIndex: "componentProps.selection",
+        componentProps: {
+          selection: true
+        }
+      },
 
-    {
-      label: "表头",
-      type: "columns",
-      attrIndex: "componentProps.columns",
-    },
+      {
+        label: "表头",
+        type: "columns",
+        attrIndex: "componentProps.columns",
+      },
 
-    {
-      label: "表格按钮",
-      type: "buttons",
-      attrIndex: "componentProps.tableButtons",
-      componentProps: {
-        tableButtons: []
-      }
-    },
+      {
+        label: "表格按钮",
+        type: "buttons",
+        attrIndex: "componentProps.tableButtons",
+        componentProps: {
+          tableButtons: []
+        }
+      },
 
-    {
-      label: "行按钮",
-      type: "buttons",
-      attrIndex: "componentProps.rowButtons",
-      componentProps: {
-        rowButtons: true
-      }
-    },
-    {
-      label: "明细按钮",
-      type: "action",
-      attrIndex: "componentProps.eventActions",
-      componentProps: {
-        rowButtons: []
-      }
-    },
-  ],
-  bindModel: "modelValue",
-};
+      {
+        label: "行按钮",
+        type: "buttons",
+        attrIndex: "componentProps.rowButtons",
+        componentProps: {
+          rowButtons: true
+        }
+      },
+      {
+        label: "明细按钮",
+        type: "action",
+        attrIndex: "componentProps.eventActions",
+        componentProps: {
+          rowButtons: []
+        }
+      },
+    ],
+  }
+} as ComponentConfigModel;

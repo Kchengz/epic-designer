@@ -23,8 +23,8 @@ import DatePicker from "./ElementPlus/datePicker";
 // 组件样式调整
 import "./ElementPlus/src/index.less";
 export function useElementPlus(pluginManager: PluginManager) {
-  pluginManager.registerComponent("Modal", ElDialog);
-  pluginManager.registerComponent("FormItem", ElFormItem);
+  pluginManager.component("Modal", ElDialog);
+  pluginManager.component("FormItem", ElFormItem);
 
   const componentArray = [
     Form,
@@ -47,12 +47,7 @@ export function useElementPlus(pluginManager: PluginManager) {
   ];
 
   componentArray.forEach((item) => {
-    pluginManager.addComponent(
-      item.component,
-      item.schema,
-      item.atteditSchemas,
-      item.bindModel
-    );
+    pluginManager.registerComponent(item);
   });
 
   // 设置分组显示

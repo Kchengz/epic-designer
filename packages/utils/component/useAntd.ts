@@ -24,9 +24,9 @@ import KForm from "./Antd/form";
 import "./Antd/index.less";
 
 export function useAntd(pluginManager: PluginManager) {
-  pluginManager.registerComponent("Form", Form);
-  pluginManager.registerComponent("FormItem", FormItem);
-  pluginManager.registerComponent("Modal", Modal);
+  pluginManager.component("Form", Form);
+  pluginManager.component("FormItem", FormItem);
+  pluginManager.component("Modal", Modal);
   const componentArray = [
     KForm,
     Input,
@@ -49,11 +49,6 @@ export function useAntd(pluginManager: PluginManager) {
   ];
 
   componentArray.forEach((item) => {
-    pluginManager.addComponent(
-      item.component,
-      item.schema,
-      item.atteditSchemas,
-      item.bindModel
-    );
+    pluginManager.registerComponent(item);
   });
 }

@@ -9,7 +9,7 @@ import KBuilder from '../../../../KBuilder'
 import { pluginManager } from '../../../../../utils'
 import { ref, inject } from 'vue'
 import { NodeItem } from '../../../../../types/kDesigner'
-const { component: Modal } = pluginManager.getComponent('Modal') || {}
+const Modal = pluginManager.getComponent('Modal')
 
 const visible = ref(false)
 const schemas = inject('schemas') as NodeItem[]

@@ -5,7 +5,7 @@
     <div class="k-preview-widgets">
         <div class="action-box">
             <div class="action-item">
-                {{ designer.state.checkedNode?.type && nodeSchema.getSchemaByType(designer.state.checkedNode.type)?.label }}
+                {{ designer.state.checkedNode?.type && pluginManager.getComponentConfingByType(designer.state.checkedNode.type)?.defaultSchema.label }}
             </div>
             <div title="复制" class="action-item" @click.stop="handleCopy()">
                 <span class="iconfont icon-fuzhi3"></span>
@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 
 import { inject } from 'vue'
-import { nodeSchema } from '../../../../../utils/index'
+import { pluginManager } from '../../../../../utils/index'
 import { Designer } from '../../../../../types/kDesigner'
 const designer = inject('designer') as Designer
 /**

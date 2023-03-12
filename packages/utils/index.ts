@@ -1,5 +1,4 @@
 export { pluginManager } from './pluginManager'
-export { nodeSchema } from './nodeSchema'
 export { revoke } from './revoke'
 export { useAntd } from './component/useAntd'
 export { useElementPlus } from './component/useElementPlus'

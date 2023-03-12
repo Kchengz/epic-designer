@@ -11,7 +11,7 @@
         @mouseout.stop="designer.setHoverNode(null)">
         <div class="action-box" v-show="designer.state.checkedNode?.id === element.id">
           <div class="action-item">
-            {{ nodeSchema.getSchemaByType(element.type)?.label }}
+            {{ pluginManager.getComponentConfingByType(element.type)?.defaultSchema.label }}
           </div>
           <div v-if="firstNodeId !== 'root'" title="复制" class="action-item"
             @click.stop="handleCopy(schemas!, element, index)">
@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { computed, watch, toRaw, PropType, inject, ref, Ref } from 'vue'
-import { getUUID, deepClone, nodeSchema, revoke } from '../../../../../utils/index'
+import { getUUID, deepClone, pluginManager, revoke } from '../../../../../utils/index'
 import { NodeItem, Designer } from '../../../../../types/kDesigner'
 import KNodeItem from './KNodeItem.vue'
 const designer = inject('designer') as Designer

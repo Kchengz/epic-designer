@@ -22,7 +22,7 @@ import { NodeItem, Designer } from '../../../../../types/kDesigner'
 const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
 
-const Button = pluginManager.getComponent('button').component
+const Button = pluginManager.getComponent('button')
 const preview = ref<any>(null)
 const recordList = revoke.recordList
 const undoList = revoke.undoList

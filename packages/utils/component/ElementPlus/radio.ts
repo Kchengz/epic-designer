@@ -1,6 +1,7 @@
+import { ComponentConfigModel } from '../../pluginManager'
 export default {
   component: () => import("./src/KRadio"),
-  schema: {
+  defaultSchema: {
     label: "单选框",
     type: "radio",
     icon: "icon-danxuan-cuxiantiao",
@@ -19,22 +20,23 @@ export default {
       ],
     },
   },
-  atteditSchemas: [
-    {
-      label: "字段名",
-      type: "input",
-      attrIndex: "field",
-    },
-    {
-      label: "默认值",
-      type: "radio",
-      attrIndex: "componentProps.defaultValue",
-    },
-    {
-      label: "文字",
-      type: "input",
-      attrIndex: "label",
-    },
-  ],
-  bindModel: "modelValue",
-};
+  config: {
+    attribute: [
+      {
+        label: "字段名",
+        type: "input",
+        attrIndex: "field",
+      },
+      {
+        label: "默认值",
+        type: "radio",
+        attrIndex: "componentProps.defaultValue",
+      },
+      {
+        label: "文字",
+        type: "input",
+        attrIndex: "label",
+      },
+    ],
+  }
+} as ComponentConfigModel;

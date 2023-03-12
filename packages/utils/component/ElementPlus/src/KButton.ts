@@ -13,7 +13,7 @@ export default defineComponent({
   },
   setup(props, { emit, slots }) {
     function handleAction(e = null) {
-      console.log("点击action1:" + JSON.stringify(e));
+      // console.log("点击action1:" + JSON.stringify(e));
       // handleActions(props.record!.componentProps.eventActions, "onClick");
     }
 

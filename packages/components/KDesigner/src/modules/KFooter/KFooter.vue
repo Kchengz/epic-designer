@@ -5,7 +5,7 @@
                 <span v-for="(item, index) in designer.state.matched" :key="index">
                     <span v-if="index !== 0"> > </span>
                     <span class="node-item" @click="handleSelect(item)" @mouseenter.stop="designer.setHoverNode(item)"
-                        @mouseleave.stop="designer.setHoverNode(null)">{{ nodeSchema.getSchemaByType(item.type)?.label }}</span>
+                        @mouseleave.stop="designer.setHoverNode(null)">{{ pluginManager.getComponentConfingByType(item.type)?.defaultSchema.label }}</span>
                 </span>
             </div>
         </div>
@@ -22,7 +22,7 @@
 <script lang="ts" setup>
 import { inject } from 'vue'
 import { Designer, NodeItem } from '../../../../../types/kDesigner'
-import { nodeSchema } from '../../../../../utils/index'
+import { pluginManager } from '../../../../../utils/index'
 const designer = inject('designer') as Designer
 /**
  * 选中点击节点元素

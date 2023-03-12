@@ -37,12 +37,11 @@
 import { shallowRef, inject, computed, reactive, onBeforeUpdate, PropType, Slots, watch, h } from 'vue'
 import { pluginManager } from '../../../utils/index'
 import { FormDataModel, NodeItem } from '../../../types/kDesigner'
-// import { FormItem } from 'ant-design-vue'
 
 const formData = inject('formData', {}) as FormDataModel
 const slots = inject('slots', {}) as Slots
 
-const { component: FormItem } = pluginManager.getComponent('FormItem') || {}
+const FormItem = pluginManager.getComponent('FormItem')
 
 const props = defineProps({
   record: {
@@ -111,14 +110,14 @@ async function initComponent () {
   }
 
   // 内置组件
-  const componentInfo = pluginManager.getComponent(props.record.type)
+  const cmp = pluginManager.getComponent(props.record.type)
   // 内部不存在组件
-  if (!componentInfo) {
+  if (!cmp) {
     console.error(`组件${props.record.type}未注册`)
     return false
   }
+  const bindModel = pluginManager.getComponentConfingByType(props.record.type)?.bindModel ?? 'modelValue'
 
-  const { bindModel, component: cmp } = componentInfo
   // 如果数据项为函数，则判定为懒加载组件
   if (typeof cmp === 'function') {
     const res = await cmp()
@@ -147,7 +146,6 @@ function fetchData (api: string | Function, record: NodeItem) {
   }
 
   asyncFetchData()
-
   // return data
 }
 
