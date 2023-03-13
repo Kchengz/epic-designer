@@ -31,22 +31,22 @@ export default {
       {
         label: "垂直对齐方式",
         type: "input",
-        attrIndex: "componentProps.align",
+        field: "componentProps.align",
       },
       {
         label: "水平排列方式",
         type: "input",
-        attrIndex: "componentProps.justify",
+        field: "componentProps.justify",
       },
       {
         label: "栅格间距",
         type: "input",
-        attrIndex: "componentProps.gutter",
+        field: "componentProps.gutter",
       },
       {
         label: "自动换行",
         type: "switch",
-        attrIndex: "componentProps.wrap",
+        field: "componentProps.wrap",
       },
 
 

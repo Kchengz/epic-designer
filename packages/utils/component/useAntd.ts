@@ -51,4 +51,45 @@ export function useAntd(pluginManager: PluginManager) {
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item);
   });
+
+  // 设置分组显示
+  pluginManager.setSchemaGroup([
+    {
+      title: "输入组件",
+      list: [
+        "input",
+        "textarea",
+        "number",
+        "password",
+        "select",
+        "checkbox",
+        "radio",
+        "date",
+        "time",
+        "rate",
+        "slider",
+        "upload-file",
+        "upload-image",
+        "cascader",
+        "treeSelect",
+        "batch",
+        "editor",
+        "switch",
+        "button",
+        "text",
+        "html",
+        "form",
+        "color-picker",
+        "slider",
+      ],
+    },
+    {
+      title: "布局组件",
+      list: [
+        "card",
+        "row",
+        "tabs",
+      ]
+    }
+  ])
 }

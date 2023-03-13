@@ -12,7 +12,7 @@ export default {
       {
         label: "标题",
         type: "input",
-        attrIndex: "label",
+        field: "label",
       },
     ],
   },

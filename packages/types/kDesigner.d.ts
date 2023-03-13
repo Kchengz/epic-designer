@@ -3,17 +3,17 @@ export interface RenderCallbackParams {
 }
 
 export interface NodeItem {
+  type: string;
   label?: string;
   field?: string;
   slotName?: string;
-  type: string;
   componentProps?: any;
   id?: string;
   rules?: any;
   labelCol?: any;
   wrapperCol?: any;
   children?: NodeItem[];
-  show?: (renderCallbackParams: RenderCallbackParams) => boolean;
+  show?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean);
   [propName: string]: any;
 }
 

@@ -46,7 +46,7 @@ export default {
             },
           ]
         },
-        attrIndex: "componentProps.align",
+        field: "componentProps.align",
       },
       {
         label: "水平排列方式",
@@ -76,17 +76,17 @@ export default {
             },
           ]
         },
-        attrIndex: "componentProps.justify",
+        field: "componentProps.justify",
       },
       {
         label: "栅格间距",
         type: "input",
-        attrIndex: "componentProps.gutter",
+        field: "componentProps.gutter",
       },
       {
         label: "列编辑",
         type: "k-col-editor",
-        attrIndex: "children",
+        field: "children",
       },
 
 

@@ -28,7 +28,7 @@ export default {
       {
         label: "标签布局",
         type: "radio",
-        attrIndex: "componentProps.labelLayout",
+        field: "componentProps.labelLayout",
         componentProps: {
           options: [
             {
@@ -45,29 +45,29 @@ export default {
       {
         label: "name",
         type: "input",
-        attrIndex: "name",
+        field: "name",
       },
       {
         label: "labelWidth",
         type: "input",
-        attrIndex: "componentProps.labelWidth",
-        show: (values) => {
+        field: "componentProps.labelWidth",
+        show: ({values}) => {
           return values.componentProps.labelLayout === "fixed";
         },
       },
       {
         label: "labelCol",
         type: "input",
-        attrIndex: "componentProps.labelCol.span",
-        show: (values) => {
+        field: "componentProps.labelCol.span",
+        show: ({values}) => {
           return values.componentProps.labelLayout === "flex";
         },
       },
       {
         label: "wrapperCol",
         type: "input",
-        attrIndex: "componentProps.wrapperCol.span",
-        show: (values) => {
+        field: "componentProps.wrapperCol.span",
+        show: ({values}) => {
           return values.componentProps.labelLayout === "flex";
         },
       },

@@ -14,7 +14,7 @@ export default {
       {
         label: "name",
         type: "input",
-        attrIndex: "name",
+        field: "name",
       },
     ],
   }

@@ -16,7 +16,7 @@ export default {
       {
         label: "垂直对齐方式",
         type: "input",
-        attrIndex: "componentProps.tab",
+        field: "componentProps.tab",
       },
     ],
   },

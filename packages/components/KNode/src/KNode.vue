@@ -19,7 +19,7 @@
 
   <!-- 无需FormItem start -->
   <component v-show="show" v-else-if="component" :model="formData" :is="component"
-    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
+    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }">
     <!-- 递归组件 start -->
     <template #node="data">
       <KNode v-bind="data" />
@@ -34,20 +34,21 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, inject, computed, reactive, onBeforeUpdate, PropType, Slots, watch, h } from 'vue'
+import { shallowRef, inject, computed, reactive, PropType, Slots, watch, h } from 'vue'
 import { pluginManager } from '../../../utils/index'
 import { FormDataModel, NodeItem } from '../../../types/kDesigner'
 
 const formData = inject('formData', {}) as FormDataModel
 const slots = inject('slots', {}) as Slots
-
+const emit = defineEmits(['update:modelValue'])
 const FormItem = pluginManager.getComponent('FormItem')
 
 const props = defineProps({
   record: {
     type: Object as PropType<NodeItem>,
     required: true
-  }
+  },
+  modelValue: {}
 })
 
 // const { record } = props
@@ -155,16 +156,15 @@ function fetchData (api: string | Function, record: NodeItem) {
  */
 function handleUpdate (v: any) {
   formData[props.record.field!] = v
+  emit('update:modelValue', v)
 }
 
 // 需要监听值变化，重新渲染组件
 watch(() => props.record, () => {
-  console.log('k-node 重新渲染组件')
   initComponent()
 }, {
   immediate: true,
   deep: true
 })
 
-onBeforeUpdate(() => { console.log('更新了11111') })
 </script>

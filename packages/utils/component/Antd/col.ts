@@ -15,7 +15,7 @@ export default {
       {
         label: "占位格数",
         type: "number",
-        attrIndex: "componentProps.span",
+        field: "componentProps.span",
       },
 
     ],

@@ -14,12 +14,12 @@ export default {
       {
         label: "字段名",
         type: "input",
-        attrIndex: "field",
+        field: "field",
       },
       {
         label: "文字",
         type: "input",
-        attrIndex: "label",
+        field: "label",
       },
     ],
   },

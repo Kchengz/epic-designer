@@ -25,32 +25,32 @@ export default {
       {
         label: "组件ID",
         type: "input",
-        attrIndex: "id",
+        field: "id",
       },
       {
         label: "标题",
         type: "input",
-        attrIndex: "label",
+        field: "label",
       },
       {
         label: "数据表",
         type: "input",
-        attrIndex: "tableName",
+        field: "tableName",
       },
       {
         label: "过滤条件",
         type: "input",
-        attrIndex: "componentProps.filter",
+        field: "componentProps.filter",
       },
       {
         label: "关联过滤",
         type: "input",
-        attrIndex: "componentProps.link_filter",
+        field: "componentProps.link_filter",
       },
       {
         label: "显示复选框",
         type: "input",
-        attrIndex: "componentProps.selection",
+        field: "componentProps.selection",
         componentProps: {
           selection: true
         }
@@ -59,13 +59,13 @@ export default {
       {
         label: "表头",
         type: "columns",
-        attrIndex: "componentProps.columns",
+        field: "componentProps.columns",
       },
 
       {
         label: "表格按钮",
         type: "buttons",
-        attrIndex: "componentProps.tableButtons",
+        field: "componentProps.tableButtons",
         componentProps: {
           tableButtons: []
         }
@@ -74,7 +74,7 @@ export default {
       {
         label: "行按钮",
         type: "buttons",
-        attrIndex: "componentProps.rowButtons",
+        field: "componentProps.rowButtons",
         componentProps: {
           rowButtons: true
         }
@@ -82,7 +82,7 @@ export default {
       {
         label: "明细按钮",
         type: "action",
-        attrIndex: "componentProps.eventActions",
+        field: "componentProps.eventActions",
         componentProps: {
           rowButtons: []
         }

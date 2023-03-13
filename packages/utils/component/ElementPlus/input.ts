@@ -18,23 +18,23 @@ export default {
       {
         label: "字段名",
         type: "input",
-        attrIndex: "field",
+        field: "field",
       },
       {
         label: "标题",
         type: "input",
-        attrIndex: "label",
+        field: "label",
       },
 
       {
         label: "默认值",
         type: "input",
-        attrIndex: "componentProps.defaultValue",
+        field: "componentProps.defaultValue",
       },
       {
         label: "占位内容",
         type: "input",
-        attrIndex: "componentProps.placeholder",
+        field: "componentProps.placeholder",
       },
       {
         label: "输入类型",
@@ -56,17 +56,17 @@ export default {
             },
           ],
         },
-        attrIndex: "componentProps.type",
+        field: "componentProps.type",
       },
       {
         label: '隐藏',
         type: "switch",
-        attrIndex: "componentProps.hidden",
+        field: "componentProps.hidden",
       },
       {
         label: '可清空',
         type: "switch",
-        attrIndex: "componentProps.clearable",
+        field: "componentProps.clearable",
       },
     ],
   }

@@ -14,7 +14,7 @@ export default {
       {
         label: "标题",
         type: "input",
-        attrIndex: "label",
+        field: "label",
       },
       {
         label: "类型",
@@ -45,28 +45,28 @@ export default {
             },
           ],
         },
-        attrIndex: "componentProps.type",
+        field: "componentProps.type",
       },
       {
         label: "朴素按钮",
         type: "switch",
-        attrIndex: "componentProps.plain",
+        field: "componentProps.plain",
       },
       {
         label: "圆角按钮",
         type: "switch",
-        attrIndex: "componentProps.round",
+        field: "componentProps.round",
       },
       {
         label: "圆形按钮",
         type: "switch",
-        attrIndex: "componentProps.circle",
+        field: "componentProps.circle",
       },
 
       {
         label: "动作",
         type: "action",
-        attrIndex: "componentProps.eventActions",
+        field: "componentProps.eventActions",
         componentProps: {
           eventActions: [
             {

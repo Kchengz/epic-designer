@@ -26,22 +26,22 @@ export default {
             {
                 label: "组件ID",
                 type: "input",
-                attrIndex: "id"
+                field: "id"
             },
             {
                 label: "name",
                 type: "input",
-                attrIndex: "name",
+                field: "name",
             },
             {
                 label: "标签长度",
                 type: "input",
-                attrIndex: "componentProps.labelWidth",
+                field: "componentProps.labelWidth",
             },
             {
                 label: "标签位置",
                 type: "select",
-                attrIndex: "componentProps.labelPosition",
+                field: "componentProps.labelPosition",
                 componentProps: {
                     options: [
                         {
@@ -62,7 +62,7 @@ export default {
             {
                 label: "表单尺寸",
                 type: "select",
-                attrIndex: "componentProps.size",
+                field: "componentProps.size",
                 componentProps: {
                     options: [
                         {
@@ -83,12 +83,12 @@ export default {
             {
                 label: "scrollToError",
                 type: "switch",
-                attrIndex: "componentProps.scrollToError",
+                field: "componentProps.scrollToError",
             },
             {
                 label: "行内模式",
                 type: "switch",
-                attrIndex: "componentProps.inline",
+                field: "componentProps.inline",
             },
 
         ],

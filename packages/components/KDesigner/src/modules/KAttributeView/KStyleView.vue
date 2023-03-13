@@ -1,15 +1,15 @@
 <template>
   <aside class="k-attribute-view">
     <div v-if="checkedNode">
-      <div :key="item.attrIndex + checkedNode.id" v-for="item in componentStyles">
-        <div v-show="item.show?.(checkedNode) ?? true" class="attr-item">
+      <div :key="item.field! + checkedNode.id" v-for="item in componentStyles">
+        <div v-show="isShow(item)" class="attr-item">
           <div class="attr-label" :title="item.label">
             {{ item.label }}
           </div>
           <div class="attr-input">
-            <KAttributeInput :record="item" :model-value="getAttrValue(item.attrIndex)"
-              :componentProps="item.attrIndex === 'componentProps.defaultValue' ? checkedNode.componentProps : {}"
-              @update:model-value="setAttrValue($event, item.attrIndex)" />
+            <KNode
+              :record="{ ...item, show: true, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode.componentProps : {}) } }"
+              :model-value="getAttrValue(item.field!)" @update:model-value="setAttrValue($event, item.field!)" />
           </div>
         </div>
       </div>
@@ -18,20 +18,19 @@
   </aside>
 </template>
 <script lang="ts" setup>
-import KAttributeInput from './KAttributeInput.vue'
+import KNode from '../../../../KNode/index'
 import { Designer, NodeItem } from '../../../../../types/kDesigner'
 import { revoke } from '../../../../../utils/index'
-import { ComponentAttrModel } from '../../../../../utils/pluginManager'
 
 import { inject, computed, Ref } from 'vue'
 const designer = inject('designer') as Designer
 const schemas = inject('schemas') as Ref<NodeItem[]>
 
-const componentStyles: ComponentAttrModel[] = [
+const componentStyles: NodeItem[] = [
   {
     label: '宽度',
     type: 'k-input-size',
-    attrIndex: 'componentProps.style.width',
+    field: 'componentProps.style.width',
     componentProps: {
       suffix: 'px'
     }
@@ -39,27 +38,27 @@ const componentStyles: ComponentAttrModel[] = [
   {
     label: '高度',
     type: 'k-input-size',
-    attrIndex: 'componentProps.style.height'
+    field: 'componentProps.style.height'
   },
   {
     label: '内边距',
     type: 'k-input-size',
-    attrIndex: 'componentProps.style.padding'
+    field: 'componentProps.style.padding'
   },
   {
     label: '外边距',
     type: 'k-input-size',
-    attrIndex: 'componentProps.style.margin'
+    field: 'componentProps.style.margin'
   },
   {
     label: '背景色',
     type: 'color-picker',
-    attrIndex: 'componentProps.style.backgroundColor'
+    field: 'componentProps.style.backgroundColor'
   },
   {
     label: '字体颜色',
     type: 'color-picker',
-    attrIndex: 'componentProps.style.color'
+    field: 'componentProps.style.color'
   }
 ]
 
@@ -67,13 +66,21 @@ const checkedNode = computed(() => {
   return designer.state.checkedNode
 })
 
+function isShow (item: NodeItem) {
+  // show属性为boolean类型则直接返回
+  if (typeof item.show === 'boolean') {
+    return item.show
+  }
+  return item.show?.({ values: checkedNode.value! }) ?? true
+}
+
 // const componentStyleList = computed(() => {
 //   return componentStyles[designer.state.checkedNode?.type ?? '']
 // })
 
-function getAttrValue (attrIndex: string) {
+function getAttrValue (field: string) {
   let obj = checkedNode.value ?? {} as { [key: string]: any }
-  const arr = attrIndex.split('.')
+  const arr = field.split('.')
   for (const i in arr) {
     obj = obj[arr[i]] ?? null
     if (obj === null) {
@@ -83,9 +90,9 @@ function getAttrValue (attrIndex: string) {
   return obj
 }
 
-function setAttrValue (value: any, attrIndex: string) {
+function setAttrValue (value: any, field: string) {
   let obj = checkedNode.value ?? {} as { [key: string]: any }
-  const arr = attrIndex.split('.')
+  const arr = field.split('.')
   arr.forEach((item, index) => {
     if (index === (arr.length - 1)) {
       obj[item] = value

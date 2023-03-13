@@ -25,17 +25,17 @@ export default {
       {
         label: "字段名",
         type: "input",
-        attrIndex: "field",
+        field: "field",
       },
       {
         label: "文字",
         type: "input",
-        attrIndex: "label",
+        field: "label",
       },
       {
         label: "默认值",
         type: "select",
-        attrIndex: "componentProps.defaultValue",
+        field: "componentProps.defaultValue",
       },
     ],
   },

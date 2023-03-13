@@ -16,7 +16,7 @@ export function useComponent(pluginManager) {
       {
         label: "标题",
         type: "input",
-        attrIndex: "label",
+        field: "label",
       },
       {
         label: "输入类型",
@@ -38,7 +38,7 @@ export function useComponent(pluginManager) {
             },
           ],
         },
-        attrIndex: "componentProps.type",
+        field: "componentProps.type",
       },
     ]
   );

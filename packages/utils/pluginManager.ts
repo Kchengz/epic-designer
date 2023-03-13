@@ -27,24 +27,14 @@ export interface Components {
 }
 
 
-export interface ComponentAttrModel {
-  attrIndex: string;
-  type: string;
-  label: string;
-  title?: string;
-  defaultValue?: any;
-  [attr: string]: any;
-  show?: (renderCallbackParams: NodeItem) => boolean;
-}
-
 export interface ComponentConfigModel {
   component: any;
   defaultSchema: NodeItem;
   config: {
-    attribute?: ComponentAttrModel[];
-    style?: ComponentAttrModel[];
-    event?: ComponentAttrModel[];
-    action?: ComponentAttrModel[];
+    attribute?: NodeItem[];
+    style?: NodeItem[];
+    event?: NodeItem[];
+    action?: NodeItem[];
   };
   bindModel?: string;
 }

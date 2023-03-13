@@ -13,17 +13,17 @@ export default {
       {
         label: "字段名",
         type: "input",
-        attrIndex: "field",
+        field: "field",
       },
       {
         label: "标题",
         type: "input",
-        attrIndex: "label",
+        field: "label",
       },
       {
         label: "默认值",
         type: "monacoEditor",
-        attrIndex: "componentProps.defaultValue",
+        field: "componentProps.defaultValue",
       },
     ],
   },

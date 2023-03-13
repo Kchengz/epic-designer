@@ -26,22 +26,22 @@ export default {
       {
         label: "字段名",
         type: "input",
-        attrIndex: "field",
+        field: "field",
       },
       {
         label: "文字",
         type: "input",
-        attrIndex: "label",
+        field: "label",
       },
       {
         label: "默认值",
         type: "cascader",
-        attrIndex: "componentProps.defaultValue",
+        field: "componentProps.defaultValue",
       },
       {
         label: "占位内容",
         type: "input",
-        attrIndex: "componentProps.placeholder",
+        field: "componentProps.placeholder",
       },
     ],
   }
