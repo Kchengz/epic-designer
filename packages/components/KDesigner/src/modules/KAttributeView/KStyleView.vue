@@ -21,13 +21,13 @@
 import KAttributeInput from './KAttributeInput.vue'
 import { Designer, NodeItem } from '../../../../../types/kDesigner'
 import { revoke } from '../../../../../utils/index'
-import { ComponentAttr } from '../../../../../utils/pluginManager'
+import { ComponentAttrModel } from '../../../../../utils/pluginManager'
 
 import { inject, computed, Ref } from 'vue'
 const designer = inject('designer') as Designer
 const schemas = inject('schemas') as Ref<NodeItem[]>
 
-const componentStyles: ComponentAttr[] = [
+const componentStyles: ComponentAttrModel[] = [
   {
     label: '宽度',
     type: 'k-input-size',

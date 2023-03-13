@@ -1,5 +1,5 @@
 <template>
-    <div class="k-right-sidebar">
+    <div class="k-right-sidebar" v-if="sidebarComponent">
         <ul class="actions-container">
             <li class="action-item" :title="item.title" v-for="(item, index) in rightSidebars" :key="index"
                 :class="{ checked: actionBarCheckedIndex === index }" @click="handleClick(item, index)">
@@ -22,7 +22,7 @@ const rightSidebars = pluginManager.getRightSidebars()
 const actionBarCheckedIndex = ref<number | null>(0)
 
 const sidebarComponent = shallowRef<any>(null)
-sidebarComponent.value = rightSidebars[0].component
+sidebarComponent.value = rightSidebars[0]?.component
 
 function handleClick (item: RightSidebarModel, index: number) {
   if (actionBarCheckedIndex.value === index) {
