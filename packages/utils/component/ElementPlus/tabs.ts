@@ -8,16 +8,16 @@ export default {
     field: "tabs",
     children: [
       {
+        label: "标签1",
         type: "tab-pane",
         children: [],
-        id: "sdfsdf",
-        label: "标签1",
+        id: "1",
       },
       {
         label: "标签2",
         type: "tab-pane",
         children: [],
-        id: "sdfsdf2",
+        id: "2",
       },
     ],
     componentProps: {
@@ -31,7 +31,6 @@ export default {
         type: "k-tab-pane-editor",
         field: "children",
       },
-
     ],
-  }
+  },
 } as ComponentConfigModel;

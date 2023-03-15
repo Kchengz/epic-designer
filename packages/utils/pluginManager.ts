@@ -167,9 +167,6 @@ export class PluginManager {
   */
   getComponentConfingByType(type: string) {
     const componentConfig = this.componentConfigs[type]
-    if (!componentConfig) {
-      console.warn(`${type} 组件confing未注册到pluginManager中`)
-    }
     return componentConfig;
   }
 

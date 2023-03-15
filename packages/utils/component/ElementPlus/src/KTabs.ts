@@ -20,11 +20,11 @@ export default defineComponent({
     },
     render() {
         const record = {
-            ...this.props.record,
+            // ...this.props.record,
             ...this.props.record?.componentProps,
             // title: this.props.record!.label,
         } as any;
-        const children = record.children;
+        const children = this.props.record?.children ?? [];
         delete record.children;
 
         return h(ElTabs, record, {

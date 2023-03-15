@@ -56,7 +56,6 @@ function getAttrValue (field: string) {
 }
 
 function setAttrValue (value: any, field: string) {
-  console.log(value)
   let obj = checkedNode.value ?? {} as { [key: string]: any }
   const arr = field.split('.')
   arr.forEach((item, index) => {
