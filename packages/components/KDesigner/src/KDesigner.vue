@@ -84,7 +84,7 @@ async function setHoverNode (schema: NodeItem | null = null) {
   if (schema?.id === state.hoverNode?.id) {
     return false
   }
-  console.log(schema?.id)
+  // console.log(schema?.id)
   state.hoverNode = schema
 }
 

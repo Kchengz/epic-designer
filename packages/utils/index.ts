@@ -1,4 +1,5 @@
 export { pluginManager } from './pluginManager'
+export { pageManager } from './pageManager'
 export { revoke } from './revoke'
 export { useAntd } from './component/useAntd'
 export { useElementPlus } from './component/useElementPlus'
