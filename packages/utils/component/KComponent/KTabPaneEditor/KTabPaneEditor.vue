@@ -16,18 +16,18 @@ import { computed, PropType } from 'vue'
 
 const Input = pluginManager.getComponent('input')
 const props = defineProps({
-  value: {
+  modelValue: {
     type: Array as PropType<NodeItem[]>,
     default: () => []
   }
 })
-const emit = defineEmits(['update:value'])
+const emit = defineEmits(['update:modelValue'])
 const tabList = computed({
   get () {
-    return props.value
+    return props.modelValue
   },
   set (e) {
-    emit('update:value', e)
+    emit('update:modelValue', e)
   }
 })
 

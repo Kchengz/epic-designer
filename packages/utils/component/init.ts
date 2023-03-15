@@ -6,9 +6,9 @@ import KTabPaneEditor from "./KComponent/KTabPaneEditor/KTabPaneEditor.vue";
 import KInputSize from "./KComponent/KInputSize/index.vue";
 
 export function initComponent(pluginManager: PluginManager) {
-  pluginManager.component("k-col-editor", KColEditor);
   pluginManager.component("k-tab-pane-editor", KTabPaneEditor);
   pluginManager.component("k-input-size", KInputSize);
+  pluginManager.component("k-col-editor", KColEditor);
   
   // 左侧菜单初始化
   pluginManager.registerActivitybar({
