@@ -13,12 +13,36 @@ export function getUUID(randomLength = 10): string {
 
 /**
  * 深拷贝数据
- * @param json
+ * @param obj
  * @returns
  */
-export function deepClone(json: object | any[]) {
-  return JSON.parse(JSON.stringify(json));
+export function deepClone(obj: any, cache = new WeakMap()): any {
+  // 如果不是对象或数组，则直接返回
+  if (typeof obj !== 'object' || obj === null) {
+    return obj;
+  }
+
+  // 如果已经处理过这个对象，则直接返回缓存中的对象
+  if (cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  // 处理数组
+  if (Array.isArray(obj)) {
+    const clonedArray = obj.map((item: any) => deepClone(item, cache));
+    cache.set(obj, clonedArray);
+    return clonedArray;
+  }
+
+  // 处理对象
+  const clonedObj = {} as any;
+  cache.set(obj, clonedObj);
+  Object.keys(obj).forEach(key => {
+    clonedObj[key] = deepClone(obj[key], cache);
+  });
+  return clonedObj;
 }
+
 
 /**
  * * 异步加载组件
