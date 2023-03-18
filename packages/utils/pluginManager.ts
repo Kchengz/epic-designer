@@ -71,6 +71,11 @@ export class PluginManager {
     componentName: string,
     component: any
   ) {
+    // 检查是否已注册组件
+    if(this.components[componentName]){
+      console.warn(`${componentName}组件已在pluginManager中注册`)
+      return false
+    }
     if (typeof component === "function") {
       component = loadAsyncComponent(component);
     }
@@ -162,9 +167,6 @@ export class PluginManager {
   */
   getComponentConfingByType(type: string) {
     const componentConfig = this.componentConfigs[type]
-    if (!componentConfig) {
-      console.warn(`${type} 组件未注册到k-designer中`)
-    }
     return componentConfig;
   }
 
@@ -196,7 +198,7 @@ export class PluginManager {
       const list = item.list.map(type => {
         const schema = this.componentConfigs[type]?.defaultSchema
         if (!schema) {
-          console.warn(`${type} 组件未注册到k-designer中`)
+          console.warn(`${type} 组件未注册到pluginManager中`)
           return false
         }
         return {

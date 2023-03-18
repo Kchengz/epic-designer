@@ -30,7 +30,6 @@ const unitArray = [
 ]
 watch(() => props.modelValue, e => {
   const num = parseFloat(e)
-  console.log(Boolean())
   // 传入值为空或不正常时
   if (!num) {
     size.value = null

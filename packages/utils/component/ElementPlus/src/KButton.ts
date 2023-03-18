@@ -23,8 +23,10 @@ export default defineComponent({
         onClick: handleAction,
       };
 
-
-      return h(ElButton, componentProps, renderSlot(slots, "default", {}, () => [props.record?.label]));
+      return h(ElButton, componentProps, {
+        default: () =>
+          renderSlot(slots, "default", {}, () => [props.record?.label]),
+      });
     };
   },
 });

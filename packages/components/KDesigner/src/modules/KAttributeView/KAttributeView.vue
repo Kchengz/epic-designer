@@ -8,7 +8,7 @@
           </div>
           <div class="attr-input">
             <KNode
-              :record="{ ...item, show: true, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode.componentProps : {}) } }"
+              :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode.componentProps : {}), show: true, hidden: false } }"
               :model-value="getAttrValue(item.field!)" @update:model-value="setAttrValue($event, item.field!)" />
           </div>
         </div>
@@ -56,7 +56,6 @@ function getAttrValue (field: string) {
 }
 
 function setAttrValue (value: any, field: string) {
-  console.log(value)
   let obj = checkedNode.value ?? {} as { [key: string]: any }
   const arr = field.split('.')
   arr.forEach((item, index) => {

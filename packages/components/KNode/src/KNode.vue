@@ -1,8 +1,7 @@
 <template>
-  <component v-show="show" :is="FormItem" v-if="FormItem && props.record.isInput && component"
-    v-bind="{ ...record, rules: show ? record.rules : [] }"
-    :name="props.record.field">
-    <component :is="component"
+  <component :is="FormItem" v-if="FormItem && props.record.isInput && component && show"
+    v-bind="{ ...record, rules: show ? record.rules : [] }" :name="props.record.field">
+    <component :is="component" ref="componentInstance"
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 递归组件 start -->
       <template #node="data">
@@ -18,7 +17,7 @@
   </component>
 
   <!-- 无需FormItem start -->
-  <component v-show="show" v-else-if="component" :model="formData" :is="component"
+  <component v-else-if="component && show" :model="formData" :is="component" ref="componentInstance"
     v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }">
     <!-- 递归组件 start -->
     <template #node="data">
@@ -34,14 +33,15 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, inject, computed, reactive, PropType, Slots, watch, h } from 'vue'
-import { pluginManager } from '../../../utils/index'
+import { shallowRef, ref, inject, nextTick, computed, reactive, PropType, Slots, watch, h } from 'vue'
+import { pluginManager, pageManager } from '../../../utils/index'
 import { FormDataModel, NodeItem } from '../../../types/kDesigner'
 
 const formData = inject('formData', {}) as FormDataModel
 const slots = inject('slots', {}) as Slots
 const emit = defineEmits(['update:modelValue'])
 const FormItem = pluginManager.getComponent('FormItem')
+const componentInstance = ref(null)
 
 const props = defineProps({
   record: {
@@ -134,6 +134,10 @@ async function initComponent () {
     bindModel,
     [`onUpdate:${bindModel}`]: handleUpdate
   }
+
+  nextTick(() => {
+    props.record.id && pageManager.setComponent(props.record.id, componentInstance)
+  })
 }
 
 // dataSource
@@ -159,8 +163,15 @@ function handleUpdate (v: any) {
   emit('update:modelValue', v)
 }
 
+let oldData: string | null = null
 // 需要监听值变化，重新渲染组件
-watch(() => props.record, () => {
+watch(() => props.record, (newVal) => {
+  // 过滤所有子节点
+  const newData = JSON.stringify({ ...newVal, children: undefined })
+  if (newData === oldData) {
+    return false
+  }
+  oldData = newData
   initComponent()
 }, {
   immediate: true,
