@@ -113,32 +113,30 @@ export function findSchemaById(schemas: NodeItem[], id: string) {
  * @param id
  */
 export function getMatchedById(schemas: NodeItem[], id: string) {
-  let matched: NodeItem[] = [];
-  try {
-    function getNodePath(node: NodeItem) {
-      matched.push(node);
-      //找到符合条件的节点,终止查询
-      if (node.id === id) {
-        throw "查询到符合条件节点";
-      }
-      if (node.children && node.children.length > 0) {
-        for (let i = 0; i < node.children.length; i++) {
-          getNodePath(node.children[i]);
-        }
-        //当前节点的子节点遍历完依旧没找到，则删除路径中的该节点
-        matched.pop();
-      } else {
-        //找到叶子节点时，删除路径当中的该叶子节点
-        matched.pop();
+  const matched: NodeItem[] = [];
+  let found = false;
+
+  function getNodePath(node: NodeItem) {
+    matched.push(node);
+    if (node.id === id) {
+      found = true;
+    }
+    if (!found && node.children && node.children.length > 0) {
+      for (let i = 0; i < node.children.length; i++) {
+        getNodePath(node.children[i]);
+        if (found) break;
       }
     }
-
-    schemas.forEach((node) => {
-      getNodePath(node);
-    });
-
-    console.error(`没有查询到id为${id}的节点`);
-  } finally {
-    return matched;
+    if (!found) {
+      matched.pop();
+    }
   }
+
+  schemas.forEach(getNodePath);
+
+  if (!found) {
+    console.error(`没有查询到id为${id}的节点`);
+  }
+
+  return matched;
 }
