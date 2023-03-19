@@ -1,5 +1,5 @@
 import { NodeItem } from "../types/kDesigner";
-import { defineAsyncComponent, AsyncComponentLoader } from 'vue'
+import { defineAsyncComponent, AsyncComponentLoader, toRaw } from 'vue'
 import KAsyncLoading from '../components/KAsyncLoading/KAsyncLoading.vue'
 /**
  * 生成一个用不重复的ID
@@ -49,12 +49,12 @@ export function deepClone(obj: any, cache = new WeakMap()): any {
  * @param loader
  * @returns
  */
- export const loadAsyncComponent = (loader: AsyncComponentLoader<any>) =>
- defineAsyncComponent({
-   loader,
-   loadingComponent: KAsyncLoading,
-   delay: 80,
- })
+export const loadAsyncComponent = (loader: AsyncComponentLoader<any>) =>
+  defineAsyncComponent({
+    loader,
+    loadingComponent: KAsyncLoading,
+    delay: 80,
+  })
 
 /**
  * 通过id查询schemas
@@ -63,49 +63,35 @@ export function deepClone(obj: any, cache = new WeakMap()): any {
  * @returns
  */
 export function findSchemaById(schemas: NodeItem[], id: string) {
-  let list: NodeItem[] = [];
-  list.push(...schemas);
-  // 遍历子节点
-  for (let i = 0; list.length > i; i++) {
-    // 判断id是否一致
-    if (list[i].id === id) {
-      // 返回结果
-      return {
-        list: list,
-        schema: list[i],
-        index: i,
-      };
-    }
-  }
+  const stack: NodeItem[] = [{ type: 'root', children: schemas }];
 
-  while (list.length > 0) {
-    // 弹出节点
-    const item = list.pop();
-
+  while (stack.length > 0) {
+    const item = stack.pop();
     const children = item?.children;
-    // 检查是否存在子节点，否则直接跳出循环
+
+    // 没有子节点,跳过该循环
     if (!children) {
-      continue;
+      continue
     }
 
-    // 遍历子节点
-    for (let i = 0; children.length > i; i++) {
-      // 判断id是否一致
+    for (let i = 0; i < children.length; i++) {
       if (children[i].id === id) {
-        // 返回结果
         return {
-          list: children,
+          list: item.children,
           schema: children[i],
           index: i,
         };
       }
+
+      stack.push(...children);
+
     }
-    // 添加子节点到待遍历数组中
-    list.push(...children);
+
   }
 
   throw `没有查询到id为${id}的节点`;
 }
+
 
 /**
  * 通过id获取节点路径

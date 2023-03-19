@@ -49,7 +49,6 @@ function handleDraggableEnd (e: any, list: NodeItem[]) {
 function handleClick (e: NodeItem) {
   const data = findSchemaById(schemas.value, designer.state.checkedNode?.id ?? 'root')
   if (!data) {
-    console.warn('未查询到节点')
     return false
   }
   let { list, schema, index } = data
