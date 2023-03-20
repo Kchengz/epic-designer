@@ -19,12 +19,22 @@ export function useRevoke() {
   // 当前记录用currentRecord变量暂时存储，当用户修改时，再存放到recordList
   const currentRecord = ref<recordModel | null>(null);
 
+  // 最后记录时间
+  let lastPushTime = 0
   /**
    * @description: 插入历史记录
    * @param {object}record
    * @return {boolean}
    */
   function push(record: NodeItem[], type = "插入组件") {
+
+    // 忽略低于100ms时间差的记录
+    const nowTime = Date.now()
+    if (lastPushTime + 100 > nowTime) {
+      return
+    }
+    lastPushTime = nowTime
+
     // 判断之前是否已经存在currentRecord记录，有则存储到recordList
     if (currentRecord.value) {
       recordList.value.push(currentRecord.value);
