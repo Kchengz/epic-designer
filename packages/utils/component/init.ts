@@ -4,11 +4,13 @@ import Page from "./KComponent/page";
 import KColEditor from "./KComponent/KColEditor/KColEditor.vue";
 import KTabPaneEditor from "./KComponent/KTabPaneEditor/KTabPaneEditor.vue";
 import KInputSize from "./KComponent/KInputSize/index.vue";
+import KActionEditor from "./KComponent/KActionEditor/index.vue";
 
 export function initComponent(pluginManager: PluginManager) {
   pluginManager.component("k-tab-pane-editor", KTabPaneEditor);
   pluginManager.component("k-input-size", KInputSize);
   pluginManager.component("k-col-editor", KColEditor);
+  pluginManager.component("k-action-editor", KActionEditor);
   
   // 左侧菜单初始化
   pluginManager.registerActivitybar({
@@ -49,8 +51,13 @@ export function initComponent(pluginManager: PluginManager) {
     component: () =>
       import("../../components/KDesigner/src/modules/KAttributeView/KStyleView.vue"),
   })
+  pluginManager.registerRightSidebar({
+    title: "事件",
+    component: () =>
+      import("../../components/KDesigner/src/modules/KAttributeView/KEventView.vue"),
+  })
 
-
+  
   const componentArray = [MonacoEditor, Page];
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item);

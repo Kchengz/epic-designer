@@ -11,6 +11,8 @@ import type { PropType } from 'vue'
 import KNode from '../../KNode/'
 import { reactive, provide, ref, useSlots } from 'vue'
 import { NodeItem, FormDataModel } from '../../../types/kDesigner'
+import { PageManager } from '../../../utils/index'
+const pageManager = new PageManager()
 
 const formData = reactive<FormDataModel>({})
 const slots = useSlots()
@@ -19,7 +21,7 @@ const forms = ref<any>({})
 
 provide('formData', formData)
 provide('slots', slots)
-console.log(slots)
+provide('pageManager', pageManager)
 provide('forms', forms)
 
 const props = defineProps({

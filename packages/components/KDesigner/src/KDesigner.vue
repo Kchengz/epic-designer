@@ -22,7 +22,7 @@
 <script lang="ts" setup>
 import { provide, reactive, ref } from 'vue'
 import { DesignerState, NodeItem, FormDataModel } from '../../../types/kDesigner'
-import { getMatchedById, loadAsyncComponent, revoke } from '../../../utils/index'
+import { getMatchedById, loadAsyncComponent, revoke, PageManager } from '../../../utils/index'
 
 const KHeader = loadAsyncComponent(() => import('./modules/KHeader/KHeader.vue'))
 const KActionBar = loadAsyncComponent(() => import('./modules/KActionBar/KActionBar.vue'))
@@ -30,6 +30,8 @@ const KEditContainer = loadAsyncComponent(() => import('./modules/KEditContainer
 const KRightSidebar = loadAsyncComponent(() => import('./modules/KRightSidebar/KRightSidebar.vue'))
 const KFooter = loadAsyncComponent(() => import('./modules/KFooter/KFooter.vue'))
 const KAsyncLoading = loadAsyncComponent(() => import('../../KAsyncLoading/KAsyncLoading.vue'))
+
+const pageManager = new PageManager()
 
 const state = reactive<DesignerState>({
   checkedNode: null,
@@ -42,6 +44,7 @@ const schemas = ref<NodeItem[]>([])
 const formData = reactive<FormDataModel>({})
 provide('schemas', schemas)
 provide('formData', formData)
+provide('pageManager', pageManager)
 const rootSchema = {
   type: 'page',
   id: 'root',

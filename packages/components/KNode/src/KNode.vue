@@ -34,11 +34,15 @@
 </template>
 <script lang="ts" setup>
 import { shallowRef, ref, inject, nextTick, computed, reactive, PropType, Slots, watch, h } from 'vue'
-import { pluginManager, pageManager } from '../../../utils/index'
+import { pluginManager, PageManager, capitalizeFirstLetter } from '../../../utils/index'
+import { ActionModel } from '../../../utils/pageManager'
+
 import { FormDataModel, NodeItem } from '../../../types/kDesigner'
 
 const formData = inject('formData', {}) as FormDataModel
 const slots = inject('slots', {}) as Slots
+const pageManager = inject('pageManager', {}) as PageManager
+
 const emit = defineEmits(['update:modelValue'])
 const FormItem = pluginManager.getComponent('FormItem')
 const componentInstance = ref(null)
@@ -127,16 +131,23 @@ async function initComponent () {
     // 否则为预加载组件
     component.value = cmp
   }
+
+  const onEvent: { [type: string]: Function } = {}
+  props.record.onEvent && Object.keys(props.record.onEvent).forEach((item) => {
+    onEvent[`on${capitalizeFirstLetter(item)}`] = () => pageManager.doActions(props.record.onEvent[item])
+  })
+
   // 获取组件props数据
   componentProps.value = {
     record: props.record,
     // is: component,
     bindModel,
-    [`onUpdate:${bindModel}`]: handleUpdate
+    [`onUpdate:${bindModel}`]: handleUpdate,
+    ...onEvent
   }
 
   nextTick(() => {
-    props.record.id && pageManager.setComponent(props.record.id, componentInstance)
+    props.record.id && pageManager.addComponentInstance(props.record.id, componentInstance.value)
   })
 }
 

@@ -69,5 +69,23 @@ export default {
         field: "componentProps.clearable",
       },
     ],
+    event: [
+      {
+        type: 'input',
+        describe: '输入值'
+      },
+      {
+        type: 'change',
+        describe: '值修改'
+      },
+      {
+        type: 'focus',
+        describe: '获取焦点'
+      },
+      {
+        type: 'blur',
+        describe: '失去焦点'
+      },
+  ]
   }
 } as ComponentConfigModel;

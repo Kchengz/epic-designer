@@ -26,6 +26,11 @@ export interface Components {
   [type: string]: any;
 }
 
+export interface EventModel {
+  type: string;
+  describe: string;
+}
+
 
 export interface ComponentConfigModel {
   component: any;
@@ -33,7 +38,7 @@ export interface ComponentConfigModel {
   config: {
     attribute?: NodeItem[];
     style?: NodeItem[];
-    event?: NodeItem[];
+    event?: EventModel[];
     action?: NodeItem[];
   };
   bindModel?: string;
