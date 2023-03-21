@@ -48,6 +48,16 @@ export interface ComponentConfigsModel {
   [type: string]: ComponentConfigModel;
 }
 
+export interface MethodModel {
+  describe: string;
+  methodName: string;
+  method: Function;
+}
+
+export interface PublicMethodsModel { [methodName: string]: MethodModel }
+
+
+
 export class PluginManager {
   components: Components = {};
   componentConfigs: ComponentConfigsModel = {};
@@ -65,6 +75,13 @@ export class PluginManager {
     activitybars: [],
     rightSidebars: []
   };
+  publicMethods: PublicMethodsModel = {
+    test: {
+      describe: "测试函数",
+      methodName: 'test',
+      method: () => { alert('测试函数弹出') }
+    }
+  }
 
   constructor() { }
   /**
@@ -77,7 +94,7 @@ export class PluginManager {
     component: any
   ) {
     // 检查是否已注册组件
-    if(this.components[componentName]){
+    if (this.components[componentName]) {
       console.warn(`${componentName}组件已在pluginManager中注册`)
       return false
     }
@@ -119,8 +136,6 @@ export class PluginManager {
   getComponent(type: string) {
     return this.components[type];
   }
-
-
 
   /**
    * 注册活动栏
@@ -217,6 +232,17 @@ export class PluginManager {
       };
     });
     return schemaGroupList;
+  }
+
+
+  /**
+   * 添加公共方法
+   * @param method 
+   */
+  addPublicMethod(
+    method: MethodModel,
+  ) {
+    this.publicMethods[method.methodName] = method;
   }
 
 

@@ -4,7 +4,7 @@ import Page from "./KComponent/page";
 import KColEditor from "./KComponent/KColEditor/KColEditor.vue";
 import KTabPaneEditor from "./KComponent/KTabPaneEditor/KTabPaneEditor.vue";
 import KInputSize from "./KComponent/KInputSize/index.vue";
-import KActionEditor from "./KComponent/KActionEditor/index.vue";
+import KActionEditor from "./KComponent/KActionEditor/KActionEditor.vue";
 
 export function initComponent(pluginManager: PluginManager) {
   pluginManager.component("k-tab-pane-editor", KTabPaneEditor);

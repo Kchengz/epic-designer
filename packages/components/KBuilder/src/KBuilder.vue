@@ -9,11 +9,11 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KNode from '../../KNode/'
-import { reactive, provide, ref, useSlots } from 'vue'
+import { reactive, provide, ref, useSlots, onMounted } from 'vue'
 import { NodeItem, FormDataModel } from '../../../types/kDesigner'
 import { PageManager } from '../../../utils/index'
 const pageManager = new PageManager()
-
+const emit = defineEmits(['ready'])
 const formData = reactive<FormDataModel>({})
 const slots = useSlots()
 const forms = ref<any>({})
@@ -23,7 +23,6 @@ provide('formData', formData)
 provide('slots', slots)
 provide('pageManager', pageManager)
 provide('forms', forms)
-
 const props = defineProps({
   schemas: {
     type: Array as PropType<NodeItem[]>
@@ -73,9 +72,9 @@ function setData (data: FormDataModel) {
   Object.assign(formData, data)
 }
 
-// function getSlotName (slot?: string): string {
-//   return slot || ''
-// }
+onMounted(() => {
+  emit('ready', { pageManager })
+})
 
 defineExpose({
   getData,

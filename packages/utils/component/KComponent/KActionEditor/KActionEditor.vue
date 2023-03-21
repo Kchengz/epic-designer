@@ -3,7 +3,7 @@
     <div class="k-col-editor-item" v-for="(item, index) in actions" :key="index">
       <Input style="width:100%" v-model:value="item.componentId" v-model="item.componentId" placeholder="组件id" />
       <Input style="width:100%" v-model:value="item.methodName" v-model="item.methodName" placeholder="函数名称" />
-      <div class="del-btn" v-if="actions.length > 1">
+      <div class="del-btn">
         <span @click="handleDelete(index)"> <span class="iconfont icon-shanchu"></span></span>
       </div>
     </div>
@@ -43,7 +43,7 @@ function handleAdd () {
  * @param index
  */
 function handleDelete (index: number) {
-  const newData = actions.value.filter((item, i) => index !== i)
+  const newData = actions.value.filter((item: any, i: number) => index !== i)
   emit('update:modelValue', newData)
 }
 

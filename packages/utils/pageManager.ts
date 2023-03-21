@@ -1,3 +1,4 @@
+import { pluginManager } from "./index";
 export interface ActionModel {
   componentId?: string;
   args: string;
@@ -33,6 +34,7 @@ export class PageManager {
  */
   doActions(actions: ActionModel[]): void {
     console.log(actions)
+    console.log(pluginManager.publicMethods)
     actions.forEach((action) => {
       const component = action.componentId && this.getComponentInstance(action.componentId);
       console.log(component)
@@ -40,7 +42,10 @@ export class PageManager {
       if (component && typeof component[action.methodName] === "function") {
         component[action.methodName](action.args);
         console.log(component[action.methodName])
+        return
       }
+
+      pluginManager.publicMethods[action.methodName]?.method(action.args)
     });
   }
 }
