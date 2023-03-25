@@ -24,7 +24,7 @@ export class PageManager {
    * @returns 
    */
   addComponentInstance(id: string, instance: any) {
-    console.log(this.componentInstances)
+    console.log('组件',id,this.componentInstances)
     return (this.componentInstances[id] = instance);
   }
 

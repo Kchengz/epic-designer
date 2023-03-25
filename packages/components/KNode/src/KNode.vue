@@ -33,9 +33,9 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, ref, inject, nextTick, computed, reactive, PropType, Slots, watch, h } from 'vue'
+import { shallowRef, ref, inject, computed, reactive, PropType, Slots, watch, h } from 'vue'
 import { pluginManager, PageManager, capitalizeFirstLetter } from '../../../utils/index'
-import { ActionModel } from '../../../utils/pageManager'
+// import { ActionModel } from '../../../utils/pageManager'
 
 import { FormDataModel, NodeItem } from '../../../types/kDesigner'
 
@@ -53,6 +53,10 @@ const props = defineProps({
     required: true
   },
   modelValue: {}
+})
+
+watch(() => componentInstance.value, (instance: any) => {
+  props.record.id && pageManager.addComponentInstance(props.record.id, instance)
 })
 
 // const { record } = props
@@ -145,10 +149,6 @@ async function initComponent () {
     [`onUpdate:${bindModel}`]: handleUpdate,
     ...onEvent
   }
-
-  nextTick(() => {
-    props.record.id && pageManager.addComponentInstance(props.record.id, componentInstance.value)
-  })
 }
 
 // dataSource

@@ -1,14 +1,20 @@
 <template>
   <header class="k-header">
     <div class="k-header-item">
-      <Button @click="handleUndo" :disabled="!recordList.length">撤销</Button>
-      <Button @click="handleRedo" :disabled="!undoList.length">重做</Button>
+      <Button @click="handleUndo" size="small" :disabled="!recordList.length">
+        <span class="iconfont icon-chexiao2x"></span>
+      </Button>
+      <Button @click="handleRedo" size="small" :disabled="!undoList.length">
+        <span class="iconfont icon-fanhui2x"></span>
+      </Button>
     </div>
     <div class="k-header-item">
       k-designer
     </div>
     <div class="k-header-item">
-      <Button @click="handlePreview">预览</Button>
+      <Button @click="handlePreview" size="small">
+        <span class="iconfont icon-yulan" style="margin-right:6px"></span>
+        预览</Button>
     </div>
     <KPreview ref="preview" />
 
