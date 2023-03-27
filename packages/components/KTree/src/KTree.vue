@@ -6,8 +6,10 @@
 <script lang="ts" setup>
 import { NodeItem } from '../../../types/kDesigner'
 import type { PropType } from 'vue'
-import { ref, provide } from 'vue'
+import { ref, provide, useSlots } from 'vue'
 import KTreeNode from './KTreeNode.vue'
+const slots = useSlots()
+provide('slots', slots)
 
 // const schemas = inject('schemas') as Ref<NodeItem[]>
 
