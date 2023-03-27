@@ -77,7 +77,6 @@ export function findSchemaById(schemas: NodeItem[], id: string) {
   while (stack.length > 0) {
     const item = stack.pop();
     const children = item?.children;
-
     // 没有子节点,跳过该循环
     if (!children) {
       continue
@@ -86,7 +85,7 @@ export function findSchemaById(schemas: NodeItem[], id: string) {
     for (let i = 0; i < children.length; i++) {
       if (children[i].id === id) {
         return {
-          list: item.children,
+          list: item.children as NodeItem[],
           schema: children[i],
           index: i,
         };
