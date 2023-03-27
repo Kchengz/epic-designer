@@ -8,13 +8,15 @@
       </div>
     </div>
     <div class="add-btn" @click="handleAdd">添加动作</div>
+    <KActionModal ref="KActionModalRef" />
   </div>
 </template>
 <script lang="ts" setup>
 import { pluginManager } from '../../../index'
-import { computed, PropType } from 'vue'
-
+import { computed, PropType, ref } from 'vue'
+import KActionModal from './KActionModal.vue'
 const Input = pluginManager.getComponent('input')
+const KActionModalRef = ref<any>(null)
 const props = defineProps({
   modelValue: {
     type: Array as PropType<any>,
@@ -31,6 +33,8 @@ const actions = computed(() => {
  * 新增栅格Col
  */
 function handleAdd () {
+  KActionModalRef.value?.handleOpen()
+
   const action = {
   }
 
