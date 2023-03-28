@@ -3,15 +3,7 @@
     <a>
       <span @click="handleExpanded" v-if="props.record.children?.length" class="icon-expanded" :class="{ expanded }"><span
           class="iconfont icon-zhankai"></span></span>
-      <TreeText />
-      <!--
-      <slot></slot>
-        <span class="text"
-          :class="{ hover: designer.state.hoverNode?.id === props.record.id }"
-          @click="handleSelect(props.record.id!, props.record)" @mouseenter.stop="designer.setHoverNode(props.record)"
-          @mouseleave.stop="designer.setHoverNode(null)"> {{
-            pluginManager.getComponentConfingByType(props.record.type)?.defaultSchema.label }}</span>
-      </slot> -->
+      <TreeNodeText />
     </a>
     <ul class="k-tree-sublist" v-if="props.record.children?.length" :class="{ expanded }">
       <KTreeNode v-for="(item) in props.record.children" :record="item" :key="item.id" />
@@ -21,10 +13,9 @@
 <script lang="ts" setup>
 import { NodeItem } from '../../../types/kDesigner'
 import type { PropType } from 'vue'
-import { inject, computed, Ref, h, watch, Slots } from 'vue'
+import { inject, computed, Ref, h, defineComponent, Slots } from 'vue'
 import { pluginManager } from '../../../utils/index'
 const slots = inject('slots', {}) as Slots
-
 
 const expandedKeys = inject('expandedKeys') as Ref<string[]>
 const treeProps = inject('treeProps') as any
@@ -40,13 +31,13 @@ const props = defineProps({
   }
 })
 
-const TreeText = h('span', { class: { text: true, checked: treeProps.selectedKeys.includes(props.record.id!), onClick: handleSelect(props.record.id!, props.record) } }, slots['tree-node']?.(props) ?? pluginManager.getComponentConfingByType(props.record.type)?.defaultSchema.label)
+const TreeNodeText = defineComponent({
+  setup () {
+    return () => h('span', { class: { text: true, hover: treeProps.hoverKey === props.record.id, checked: treeProps.selectedKeys.includes(props.record.id!) }, onClick: () => handleSelect(props.record.id!, props.record) }, slots['tree-node']?.(props) ?? h('span', { class: { 'text-padding': true } }, pluginManager.getComponentConfingByType(props.record.type)?.defaultSchema.label))
+  }
+})
 
-// watch(() => props.record.id, () => {
-//   TreeText = h('span', { class: { text: true, checked: treeProps.selectedKeys.includes(props.record.id!), onClick: handleSelect(props.record.id!, props.record) } }, slots['tree-node']?.(props) ?? pluginManager.getComponentConfingByType(props.record.type)?.defaultSchema.label)
-// })
-
-function handleExpanded() {
+function handleExpanded () {
   const id = props.record.id
   if (!id) {
     return false
@@ -59,7 +50,7 @@ function handleExpanded() {
   }
 }
 
-function init() {
+function init () {
   const id = props.record.id
   if (!id || !props.record.children?.length) {
     return false

@@ -2,58 +2,57 @@
 @import url("./modules/KRightSidebar/index.less");
 
 .k-designer-main {
-
   // 覆盖iconfont样式
   .iconfont {
     font-size: 1em;
   }
 
-  user-select   : none;
-  height        : 100%;
-  display       : flex;
+  user-select: none;
+  height: 100%;
+  display: flex;
   flex-direction: column;
-  color         : @text-main;
-  min-width     : 900px;
-  cursor        : default;
+  color: @text-main;
+  min-width: 900px;
+  cursor: default;
 
   .k-split-view-container {
     display: flex;
-    flex   : 1;
-    height : calc(100% - 32px - 20px);
+    flex: 1;
+    height: calc(100% - 32px - 20px);
   }
 
   ul {
     list-style: none;
-    padding   : 0;
-    margin    : 0;
+    padding: 0;
+    margin: 0;
   }
 }
 
 // 头部
 .k-header {
-  height          : 42px;
+  height: 42px;
   background-color: @header-bg;
-  display         : flex;
-  align-items     : center;
-  justify-content : space-between;
-  padding         : 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
 }
 
 // 底部
 .k-footer {
-  height          : 20px;
+  height: 20px;
   background-color: @primary-color;
-  color           : white;
-  font-size       : 10px;
-  padding         : 0 6px;
-  display         : flex;
-  justify-content : space-between;
+  color: white;
+  font-size: 10px;
+  padding: 0 6px;
+  display: flex;
+  justify-content: space-between;
 
   .left,
   .right {
     display: flex;
 
-    >div {
+    > div {
       padding: 0 6px;
     }
 
@@ -69,17 +68,16 @@
 }
 
 // 左侧栏
-.k-left-sidebar,
-  {
-  width           : 280px;
+.k-left-sidebar {
+  width: 280px;
   background-color: @view-bg;
-  overflow        : hidden;
-  transition      : all 0.3s;
-  height          : 100%;
+  overflow: hidden;
+  transition: all 0.3s;
+  height: 100%;
 
   .sidebar-container {
     min-width: 280px;
-    height   : 100%;
+    height: 100%;
   }
 
   &.hide {
@@ -96,20 +94,20 @@
   }
 
   [name="list"] {
-    display      : flex;
-    flex-wrap    : wrap;
+    display: flex;
+    flex-wrap: wrap;
     padding-right: 10px;
 
     .source-componet-item {
-      cursor       : pointer;
-      width        : calc(50% - 10px);
-      border       : 1px solid @component-item-border-color;
-      padding      : 0 10px;
-      margin-left  : 10px;
+      cursor: pointer;
+      width: calc(50% - 10px);
+      border: 1px solid @component-item-border-color;
+      padding: 0 10px;
+      margin-left: 10px;
       margin-bottom: 10px;
-      height       : 32px;
-      display      : flex;
-      align-items  : center;
+      height: 32px;
+      display: flex;
+      align-items: center;
       border-radius: 4px;
 
       .iconfont {
@@ -118,7 +116,7 @@
 
       &:hover {
         border-color: @primary-color;
-        color       : @primary-color;
+        color: @primary-color;
       }
     }
   }
@@ -127,7 +125,7 @@
 // 右侧栏
 .k-attribute-view {
   .attr-item {
-    display      : flex;
+    display: flex;
     // align-items  : center;
     margin-bottom: 12px;
 
@@ -135,11 +133,11 @@
     //   background-color: @primary-color;
     // }
     .attr-label {
-      width        : 80px;
-      white-space  : nowrap;
-      overflow     : hidden;
+      width: 80px;
+      white-space: nowrap;
+      overflow: hidden;
       text-overflow: ellipsis;
-      font-size    : 12px;
+      font-size: 12px;
       line-height: 32px;
     }
 
@@ -155,43 +153,43 @@
   background-image: linear-gradient(#f8f8f8 14px, transparent 0),
     linear-gradient(90deg, transparent 14px, #373739 0);
   background-size: 15px 15px;
-  padding        : 32px 24px 24px;
+  padding: 32px 24px 24px;
 
   .k-edit-range {
-    height          : 100%;
+    height: 100%;
     background-color: white;
-    overflow-y      : auto;
+    overflow-y: auto;
     // border-radius: 6px;
     // overflow: auto;
 
     [name="draggable-range"] {
-      min-height      : 60px;
-      height          : 100%;
+      min-height: 60px;
+      height: 100%;
       background-color: @edit-bg;
-      border          : 1px #999 dashed;
-      width           : 100%;
+      border: 1px #999 dashed;
+      width: 100%;
       // padding: 10px;
     }
 
-    >[name="draggable-range"] {
+    > [name="draggable-range"] {
       height: 100%;
       border: 1px transparent;
-      >.item {
+      > .item {
         height: 100%;
       }
 
       // 屏蔽label点击事件
-      .ant-form-item-label>label {
+      .ant-form-item-label > label {
         pointer-events: none;
       }
     }
 
-    .root-node>.form-main>form>[name="draggable-range"] {
+    .root-node > .form-main > form > [name="draggable-range"] {
       border: transparent;
     }
 
     .item {
-      border  : 1px solid transparent;
+      border: 1px solid transparent;
       position: relative;
 
       // &.moveing {
@@ -211,13 +209,13 @@
       // }
 
       &::before {
-        content   : "";
-        height    : 5px;
-        width     : 0%;
+        content: "";
+        height: 5px;
+        width: 0%;
         background: @primary-color;
-        position  : absolute;
-        top       : -5px;
-        right     : 0;
+        position: absolute;
+        top: -5px;
+        right: 0;
         transition: all 0.3s;
       }
 
@@ -239,7 +237,7 @@
       // 选中样式
       &.checked {
         background: @primary-hover-bg-color;
-        position  : relative;
+        position: relative;
 
         &::before {
           width: 100%;
@@ -247,29 +245,29 @@
       }
 
       .action-box {
-        position     : absolute;
-        z-index      : 999;
-        top          : 0px;
+        position: absolute;
+        z-index: 999;
+        top: 0px;
         // top: -30px;
-        right        : 0;
-        height       : 30px;
-        background   : @primary-color;
+        right: 0;
+        height: 30px;
+        background: @primary-color;
         border-radius: 0 2px 2px 4px;
-        color        : white;
-        display      : flex;
-        padding      : 0 4px;
+        color: white;
+        display: flex;
+        padding: 0 4px;
 
         .action-item {
-          height     : 30px;
+          height: 30px;
           line-height: 25px;
-          padding    : 0 4px;
-          cursor     : pointer;
+          padding: 0 4px;
+          cursor: pointer;
         }
       }
 
       .form-main {
         padding: 6px;
-        border : 1px solid #f0f0f0;
+        border: 1px solid #f0f0f0;
       }
     }
   }
@@ -277,16 +275,16 @@
 
 // 活动视图切换器
 .k-action-bar {
-  width           : 50px;
+  width: 50px;
   background-color: @action-bar-bg;
 
   .action-item {
-    text-align : center;
-    height     : 48px;
+    text-align: center;
+    height: 48px;
     line-height: 48px;
-    position   : relative;
-    font-size  : 20px;
-    cursor     : pointer;
+    position: relative;
+    font-size: 20px;
+    cursor: pointer;
 
     &:hover {
       color: @text-tips;
@@ -296,13 +294,13 @@
       color: @text-tips;
 
       &::before {
-        content         : "";
-        height          : 100%;
-        width           : 1px;
+        content: "";
+        height: 100%;
+        width: 1px;
         background-color: @text-tips;
-        position        : absolute;
-        top             : 0;
-        left            : 0;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     }
   }
@@ -311,6 +309,6 @@
 .k-outline {
   padding-right: 12px;
   padding-top: 12px;
-  overflow     : auto;
-  height       : 100%;
+  overflow: auto;
+  height: 100%;
 }
