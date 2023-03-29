@@ -1,5 +1,5 @@
 <template>
-  <Suspense>
+  <Suspense @resolve="handleReady">
     <template #default>
       <div class="k-designer-main">
         <KHeader />
@@ -20,7 +20,7 @@
   </Suspense>
 </template>
 <script lang="ts" setup>
-import { provide, reactive, ref } from 'vue'
+import { provide, reactive, ref, nextTick } from 'vue'
 import { DesignerState, NodeItem, FormDataModel } from '../../../types/kDesigner'
 import { getMatchedById, loadAsyncComponent, revoke, PageManager } from '../../../utils/index'
 
@@ -30,8 +30,8 @@ const KEditContainer = loadAsyncComponent(() => import('./modules/KEditContainer
 const KRightSidebar = loadAsyncComponent(() => import('./modules/KRightSidebar/KRightSidebar.vue'))
 const KFooter = loadAsyncComponent(() => import('./modules/KFooter/KFooter.vue'))
 const KAsyncLoading = loadAsyncComponent(() => import('../../KAsyncLoading/KAsyncLoading.vue'))
-
 const pageManager = new PageManager()
+const emit = defineEmits(['ready'])
 
 const state = reactive<DesignerState>({
   checkedNode: null,
@@ -92,6 +92,16 @@ async function setHoverNode (schema: NodeItem | null = null) {
 }
 
 /**
+ * 组件（包含异步组件）加载完成后
+ */
+function handleReady () {
+  // 等待DOM更新循环结束后
+  nextTick(() => {
+    emit('ready', { pageManager })
+  })
+}
+
+/**
  * 设置hover状态
  * @param disableHover
  */
@@ -104,12 +114,4 @@ init()
 
 <style lang="less">
 @import './KDesigner.less';
-
-.loading-box{
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 </style>
