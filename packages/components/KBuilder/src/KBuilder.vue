@@ -1,17 +1,25 @@
 <template>
-  <!-- <Form ref="form" :model="formData" v-bind="getFormBindValues"> -->
-  <div>
-    <KNode ref="Knode" v-for="item, index in props.schemas" :key="index" :record="item">
-    </KNode>
-  </div>
-  <!-- </Form> -->
+  <Suspense @resolve="handleReady">
+    <template #default>
+      <div>
+        <KNode ref="Knode" v-for="item, index in props.schemas" :key="index" :record="item">
+        </KNode>
+      </div>
+    </template>
+    <template #fallback>
+      <div class="loading-box">
+        <KAsyncLoading />
+      </div>
+    </template>
+  </Suspense>
 </template>
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KNode from '../../KNode/'
-import { reactive, provide, ref, useSlots, onMounted } from 'vue'
+import { reactive, provide, ref, useSlots, nextTick } from 'vue'
 import { NodeItem, FormDataModel } from '../../../types/kDesigner'
-import { PageManager } from '../../../utils/index'
+import { loadAsyncComponent, PageManager } from '../../../utils/index'
+const KAsyncLoading = loadAsyncComponent(() => import('../../KAsyncLoading/KAsyncLoading.vue'))
 const pageManager = new PageManager()
 const emit = defineEmits(['ready'])
 const formData = reactive<FormDataModel>({})
@@ -72,9 +80,15 @@ function setData (data: FormDataModel) {
   Object.assign(formData, data)
 }
 
-onMounted(() => {
-  emit('ready', { pageManager })
-})
+/**
+ * 组件（包含异步组件）加载完成后
+ */
+function handleReady () {
+  // 等待DOM更新循环结束后
+  nextTick(() => {
+    emit('ready', { pageManager })
+  })
+}
 
 defineExpose({
   getData,
