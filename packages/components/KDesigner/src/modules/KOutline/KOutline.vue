@@ -1,10 +1,10 @@
 <template>
   <div class="k-outline">
-    <KTree :options="schemas" v-model:selectedKeys="selectedKeys">
+    <KTree :options="schemas" v-model:selectedKeys="selectedKeys" :hoverKey="designer.state.hoverNode?.id">
       <template #tree-node="{ record }">
-        <span class="text" :class="{ hover: designer.state.hoverNode?.id === record.id }"
-          @mouseenter.stop="designer.setHoverNode(record)" @mouseleave.stop="designer.setHoverNode(null)"> {{
-            pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}</span>
+        <div class="text-padding" @mouseenter.stop="designer.setHoverNode(record)"
+          @mouseleave.stop="designer.setHoverNode(null)"> {{
+            pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}</div>
       </template>
     </KTree>
 

@@ -11,8 +11,6 @@ import KTreeNode from './KTreeNode.vue'
 const slots = useSlots()
 provide('slots', slots)
 
-// const schemas = inject('schemas') as Ref<NodeItem[]>
-
 const expandedKeys = ref([])
 const props = defineProps({
   options: {
@@ -20,6 +18,9 @@ const props = defineProps({
   },
   selectedKeys: {
     type: Array as PropType<string[]>
+  },
+  hoverKey: {
+    type: String
   }
 })
 

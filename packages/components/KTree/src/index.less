@@ -8,15 +8,20 @@
     }
     .text {
       display: inline-block;
-      padding: 0 6px;
       width: 100%;
-    }
-    .hover {
-      background-color: #f2f2f2;
-    }
-    .checked {
-      background: @primary-hover-bg-color;
-      color: @primary-color;
+      &:hover,
+      &.hover {
+        background-color: #f2f2f2;
+      }
+
+      &.checked {
+        background: @primary-hover-bg-color;
+        color: @primary-color;
+      }
+
+      .text-padding {
+        padding: 0 6px;
+      }
     }
   }
   .k-tree-node {
@@ -39,7 +44,6 @@
   .k-tree-sublist {
     height: 0;
     overflow: hidden;
-    // transition: all 0.3s;
 
     &.expanded {
       height: auto;
