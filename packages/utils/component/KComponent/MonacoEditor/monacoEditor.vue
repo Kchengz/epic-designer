@@ -44,7 +44,7 @@ const props = defineProps({
   },
   language: {
     type: String,
-    default: 'json'
+    default: 'javascript'
   }
 })
 
