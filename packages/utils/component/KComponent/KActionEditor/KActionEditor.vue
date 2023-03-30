@@ -1,21 +1,28 @@
 <template>
-  <div>
+  <div class="k-action-editor-main">
     <div class="k-col-editor-item" v-for="(item, index) in actions" :key="index">
-      <Input style="width:100%" v-model:value="item.componentId" v-model="item.componentId" placeholder="组件id" />
-      <Input style="width:100%" v-model:value="item.methodName" v-model="item.methodName" placeholder="函数名称" />
+      {{  getLabel(item.componentId) }}
+      {{ item.methodName }}
       <div class="del-btn">
         <span @click="handleDelete(index)"> <span class="iconfont icon-shanchu"></span></span>
       </div>
     </div>
-    <div class="add-btn" @click="handleAdd">添加动作</div>
-    <KActionModal ref="KActionModalRef" />
+    <div class="add-btn" @click="handleOpen">添加动作</div>
+    <KActionModal ref="KActionModalRef" @add="handleAdd" />
   </div>
 </template>
 <script lang="ts" setup>
-import { pluginManager } from '../../../index'
-import { computed, PropType, ref } from 'vue'
+import { computed, PropType, ref, Ref, inject } from 'vue'
 import KActionModal from './KActionModal.vue'
-const Input = pluginManager.getComponent('input')
+import { findSchemaById } from '../../../index'
+import { NodeItem } from '../../../../types/kDesigner'
+const schemas = inject('schemas') as Ref<NodeItem[]>
+
+function getLabel (id:string) {
+  const { schema } = findSchemaById(schemas.value, id)
+  return schema.label
+}
+
 const KActionModalRef = ref<any>(null)
 const props = defineProps({
   modelValue: {
@@ -29,15 +36,11 @@ const actions = computed(() => {
   return props.modelValue ?? []
 })
 
-/**
- * 新增栅格Col
- */
-function handleAdd () {
+function handleOpen () {
   KActionModalRef.value?.handleOpen()
+}
 
-  const action = {
-  }
-
+function handleAdd (action: any) {
   actions.value.push(action)
   emit('update:modelValue', actions.value)
 }

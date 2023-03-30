@@ -66,7 +66,7 @@ export const loadAsyncComponent = (loader: AsyncComponentLoader<any>) =>
   })
 
 /**
- * 通过id查询schemas
+ * 通过id查询schema
  * @param schemas
  * @param id
  * @returns

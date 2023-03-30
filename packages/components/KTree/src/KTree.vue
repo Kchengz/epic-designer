@@ -24,10 +24,11 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:selectedKeys'])
+const emit = defineEmits(['update:selectedKeys', 'node-click'])
 
 function handleSelect (id: string, record: NodeItem) {
-  emit('update:selectedKeys', { id, record })
+  emit('update:selectedKeys', [id])
+  emit('node-click', { id, record })
 }
 
 provide('expandedKeys', expandedKeys)

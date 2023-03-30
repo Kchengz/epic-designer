@@ -1,5 +1,4 @@
-
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: async () => (await import("element-plus")).ElInput,
   defaultSchema: {
@@ -9,9 +8,9 @@ export default {
     icon: "icon-write",
     isInput: true,
     componentProps: {
-      defaultValue: '',
-      placeholder: '请输入'
-    }
+      defaultValue: "",
+      placeholder: "请输入",
+    },
   },
   config: {
     attribute: [
@@ -59,33 +58,39 @@ export default {
         field: "componentProps.type",
       },
       {
-        label: '隐藏',
+        label: "隐藏",
         type: "switch",
         field: "componentProps.hidden",
       },
       {
-        label: '可清空',
+        label: "可清空",
         type: "switch",
         field: "componentProps.clearable",
       },
     ],
     event: [
       {
-        type: 'input',
-        describe: '输入值'
+        type: "input",
+        describe: "输入值",
       },
       {
-        type: 'change',
-        describe: '值修改'
+        type: "change",
+        describe: "值修改",
       },
       {
-        type: 'focus',
-        describe: '获取焦点'
+        type: "focus",
+        describe: "获取焦点",
       },
       {
-        type: 'blur',
-        describe: '失去焦点'
+        type: "blur",
+        describe: "失去焦点",
       },
-  ]
-  }
+    ],
+    action: [
+      {
+        type: "select",
+        describe: "选中文字",
+      },
+    ],
+  },
 } as ComponentConfigModel;

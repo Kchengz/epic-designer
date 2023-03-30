@@ -1,6 +1,7 @@
 <template>
   <div class="k-outline">
-    <KTree :options="schemas" v-model:selectedKeys="selectedKeys" :hoverKey="designer.state.hoverNode?.id">
+    <KTree :options="schemas" :selectedKeys="selectedKeys" @node-click="handleNodeClick"
+      :hoverKey="designer.state.hoverNode?.id">
       <template #tree-node="{ record }">
         <div class="text-padding" @mouseenter.stop="designer.setHoverNode(record)"
           @mouseleave.stop="designer.setHoverNode(null)"> {{
@@ -18,14 +19,15 @@ import { pluginManager } from '../../../../../utils/index'
 const designer = inject('designer') as Designer
 const schemas = inject('schemas') as Ref<NodeItem[]>
 
-const selectedKeys = computed({
-  get: () => {
-    const id = designer.state.checkedNode?.id
-    return id ? [id] : []
-  },
-  set: (e: any) => {
-    designer.setCheckedNode(e.record)
-  }
+// 计算选中节点值
+const selectedKeys = computed(() => {
+  const id = designer.state.checkedNode?.id
+  return id ? [id] : []
 })
+
+// 设置选中节点
+function handleNodeClick (e: any) {
+  designer.setCheckedNode(e.record)
+}
 
 </script>

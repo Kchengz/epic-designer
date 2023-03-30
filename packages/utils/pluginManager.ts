@@ -39,7 +39,7 @@ export interface ComponentConfigModel {
     attribute?: NodeItem[];
     style?: NodeItem[];
     event?: EventModel[];
-    action?: NodeItem[];
+    action?: EventModel[];
   };
   bindModel?: string;
 }

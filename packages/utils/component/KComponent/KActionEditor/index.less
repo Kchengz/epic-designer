@@ -2,11 +2,37 @@
   display: flex;
   height: 400px;
   .k-modal-left-panel {
-    width: 120px;
-    border: 1px solid #f89;
+    width: 240px;
+    border: 1px solid #ddd;
+    overflow: auto;
+    padding: 8px;
+
+    .fun-btn {
+      border: 1px solid #ccc;
+      padding: 2px 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-bottom: 6px;
+      &.checked {
+        border-color: @primary-color;
+        color: @primary-color;
+      }
+    }
   }
 
   .k-modal-right-panel {
     flex: 1;
+    border: 1px solid #ddd;
+    margin-left: 8px;
+    padding: 8px;
+  }
+}
+.k-modal-footer {
+  text-align: right;
+}
+
+.k-action-editor-main {
+  .el-dialog__body {
+    padding: 16px;
   }
 }
