@@ -40,9 +40,11 @@ const state = reactive<DesignerState>({
   matched: []
 })
 const schemas = ref<NodeItem[]>([])
+const script = ref('')
 
 const formData = reactive<FormDataModel>({})
 provide('schemas', schemas)
+provide('script', script)
 provide('formData', formData)
 provide('pageManager', pageManager)
 const rootSchema = {

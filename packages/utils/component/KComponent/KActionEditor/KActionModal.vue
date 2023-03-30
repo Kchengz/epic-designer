@@ -1,23 +1,23 @@
 <template>
-    <Modal title="动作配置" v-model:visible="visible" v-model="visible" width="700px">
-        <div class="k-modal-action-main">
-            <div class="k-modal-left-panel">
-                <div class="fun-btn" :class="{ checked: actionItem.componentId === null }" @click="toggleMethod">函数</div>
-                组件
-                <KTree :options="schemas" v-model:selectedKeys="selectedKeys" @node-click="handleNodeClick" />
-            </div>
-            <div class="k-modal-right-panel">
-                动作选择
-                <Select v-model="actionItem.methodName" v-model:value="actionItem.methodName" :options="methodOptions" />
-                <Button v-if="actionItem.componentId === null" @click="handleAddMethod">自定义函数</Button>
-
-            </div>
-        </div>
-        <div class="k-modal-footer">
-            <Button @click="handleClose">取消</Button>
-            <Button type="primary" @click="handleSave">保存</Button>
-        </div>
-    </Modal>
+  <Modal title="动作配置" v-model:visible="visible" v-model="visible" width="700px">
+    <div class="k-modal-action-main">
+      <div class="k-modal-left-panel">
+        <div class="fun-btn" :class="{ checked: actionItem.componentId === null }" @click="toggleMethod">函数</div>
+        组件
+        <KTree :options="schemas" v-model:selectedKeys="selectedKeys" @node-click="handleNodeClick" />
+      </div>
+      <div class="k-modal-right-panel">
+        动作选择
+        <Select v-model="actionItem.methodName" v-model:value="actionItem.methodName" :options="methodOptions" />
+        <Button v-if="actionItem.componentId === null" @click="handleAddMethod">自定义函数</Button>
+        <!-- <MonacoEditor class="editor" v-model:value="html" /> -->
+      </div>
+    </div>
+    <div class="k-modal-footer">
+      <Button @click="handleClose">取消</Button>
+      <Button type="primary" @click="handleSave">保存</Button>
+    </div>
+  </Modal>
 </template>
 <script lang="ts" setup>
 import { pluginManager } from '../../../index'
@@ -27,11 +27,14 @@ import { NodeItem, FormDataModel } from '../../../../types/kDesigner'
 const Modal = pluginManager.getComponent('Modal')
 const Select = pluginManager.getComponent('select')
 const Button = pluginManager.getComponent('button')
+// const MonacoEditor = pluginManager.getComponent('monacoEditor')
 const schemas = inject('schemas') as Ref<NodeItem[]>
 const visible = ref(false)
 const selectedKeys = ref([])
 const nodeItem = ref<NodeItem | null>(null)
 const emit = defineEmits(['add'])
+
+// const html = ref('{}')
 
 const methodOptions = computed(() => {
   if (nodeItem.value) {
