@@ -18,28 +18,22 @@
   </aside>
 </template>
 <script lang="ts" setup>
-// import KAttributeInput from './KAttributeInput.vue'
 import KNode from '../../../../KNode/index'
 import { Designer, NodeItem, FormDataModel } from '../../../../../types/kDesigner'
 import { pluginManager, revoke } from '../../../../../utils/index'
-import { inject, computed, Ref, watch, reactive, provide } from 'vue'
+import { inject, computed, Ref, reactive, provide } from 'vue'
 const designer = inject('designer') as Designer
 const schemas = inject('schemas') as Ref<NodeItem[]>
-const state = reactive({
-  formData: {} as FormDataModel
-})
-provide('formData', state.formData)
+const formData = reactive<FormDataModel>({})
+
+provide('formData', formData)
 
 const componentConfings = pluginManager.getComponentConfings()
 const checkedNode = computed(() => {
   return designer.state.checkedNode
 })
 
-watch(() => checkedNode.value?.id, () => {
-  state.formData = {}
-})
-
-function isShow(item: NodeItem) {
+function isShow (item: NodeItem) {
   // show属性为boolean类型则直接返回
   if (typeof item.show === 'boolean') {
     return item.show
@@ -51,7 +45,7 @@ const componentAttributes = computed(() => {
   return componentConfings[designer.state.checkedNode?.type ?? '']?.config.attribute ?? []
 })
 
-function getAttrValue(field: string) {
+function getAttrValue (field: string) {
   let obj = checkedNode.value ?? {} as { [key: string]: any }
   const arr = field.split('.')
   for (const i in arr) {
@@ -63,7 +57,7 @@ function getAttrValue(field: string) {
   return obj
 }
 
-function setAttrValue(value: any, field: string) {
+function setAttrValue (value: any, field: string) {
   let obj = checkedNode.value ?? {} as { [key: string]: any }
   const arr = field.split('.')
   arr.forEach((item, index) => {

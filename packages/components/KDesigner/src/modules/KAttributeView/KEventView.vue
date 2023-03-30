@@ -34,7 +34,6 @@ const componentEvents = computed(() => {
 })
 
 function getAttrValue (field: string) {
-  console.log(field, '-------')
   let obj = checkedNode.value ?? {} as { [key: string]: any }
   const arr = field.split('.')
   for (const i in arr) {

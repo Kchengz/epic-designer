@@ -55,6 +55,16 @@ const props = defineProps({
   modelValue: {}
 })
 
+// 判断是否存在字段名称
+if (props.record.field) {
+  // 存在则更新表单状态
+  watch(() => props.modelValue, (e) => {
+    formData[props.record.field!] = e
+  }, {
+    immediate: true
+  })
+}
+
 watch(() => componentInstance.value, (instance: any) => {
   props.record.id && pageManager.addComponentInstance(props.record.id, instance)
 })

@@ -24,7 +24,6 @@ export class PageManager {
    * @returns 
    */
   addComponentInstance(id: string, instance: any) {
-    console.log('组件',id,this.componentInstances)
     return (this.componentInstances[id] = instance);
   }
 
@@ -33,11 +32,10 @@ export class PageManager {
  * @param actions 操作数组
  */
   doActions(actions: ActionModel[]): void {
-    console.log(actions)
-    console.log(pluginManager.publicMethods)
+    // console.log(actions)
+    // console.log(pluginManager.publicMethods)
     actions.forEach((action) => {
       const component = action.componentId && this.getComponentInstance(action.componentId);
-      console.log(component)
 
       if (component && typeof component[action.methodName] === "function") {
         component[action.methodName](action.args);
