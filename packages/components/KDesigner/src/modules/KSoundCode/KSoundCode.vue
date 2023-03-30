@@ -1,16 +1,24 @@
 <template>
   <div class="k-sound-code">
-    <component class="editor" v-if="Monaco" :is="Monaco" v-model:value="getSchemas" />
+    <component class="editor" ref="monacoEditorRef" v-if="Monaco" :is="Monaco" v-model="getSchemas" />
   </div>
 </template>
 <script lang="ts" setup>
-import { inject, computed } from 'vue'
+import { inject, ref, watch, computed } from 'vue'
 import { pluginManager } from '../../../../../utils/index'
 import { Designer } from '../../../../../types/kDesigner'
 
 const Monaco = pluginManager.getComponent('monacoEditor')
-
+const monacoEditorRef = ref<any>(null)
 const designer = inject('designer') as Designer
+
+watch(() => designer.state.checkedNode, (newVal: any, oldVal: any) => {
+  const currenValue = JSON.stringify(newVal)
+  const inputValue = JSON.stringify(oldVal)
+  if (inputValue !== currenValue) {
+    monacoEditorRef.value?.setValue(JSON.stringify(newVal, null, 2))
+  }
+})
 
 const getSchemas = computed({
   get () {
@@ -19,7 +27,6 @@ const getSchemas = computed({
   },
   set (e) {
     if (!designer.state.checkedNode) { return false }
-
     const json = JSON.parse(e)
     const keyArray = []
     for (const i in json) {

@@ -2,48 +2,68 @@
   <div ref="editContainer" class="code-editor"></div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
-// import * as monaco from 'monaco-editor';
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
-import 'monaco-editor/esm/vs/language/json/monaco.contribution'
+import { ref, onMounted } from 'vue'
+import * as monaco from 'monaco-editor'
+// import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
+// import 'monaco-editor/esm/vs/language/json/monaco.contribution'
+// @ts-ignore
+import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 // @ts-ignore
 import JsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
+// @ts-ignore
+import CssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
+// @ts-ignore
+import HtmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
+// @ts-ignore
+import TsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
+
 // 解决vite Monaco提示错误
 self.MonacoEnvironment = {
   getWorker (_: string, label: string) {
-    console.log(label)
-    return new JsonWorker()
+    if (label === 'json') {
+      return new JsonWorker()
+    }
+    if (label === 'css' || label === 'scss' || label === 'less') {
+      return new CssWorker()
+    }
+    if (label === 'html' || label === 'handlebars' || label === 'razor') {
+      return new HtmlWorker()
+    }
+    if (label === 'typescript' || label === 'javascript') {
+      return new TsWorker()
+    }
+    return new EditorWorker()
   }
 }
 
 const props = defineProps({
-  value: {
+  modelValue: {
     type: String
+  },
+  language: {
+    type: String,
+    default: 'json'
   }
 })
 
 const editContainer = ref<HTMLElement | null>(null)
 
 let monacoEditor: monaco.editor.IStandaloneCodeEditor | null = null
-const emit = defineEmits(['update:value'])
-watch(
-  () => props.value,
-  (value) => {
-    // 防止改变编辑器内容时光标重定向
-    const monacoEditorValue = monacoEditor?.getValue()
-    const currenValue = JSON.stringify(JSON.parse(monacoEditorValue ?? '{}'))
-    const inputValue = JSON.stringify(JSON.parse(value ?? '{}'))
-    if (inputValue !== currenValue) {
-      monacoEditor?.setValue(value || '')
-    }
-  }
-)
+const emit = defineEmits(['update:modelValue'])
+
+/**
+ * 设置文本
+ * @param value
+ */
+function setValue (value: string) {
+  monacoEditor?.setValue(value || '')
+}
 
 onMounted(() => {
   monacoEditor = monaco.editor.create(editContainer.value as HTMLElement, {
-    value: props.value,
+    value: props.modelValue,
     readOnly: false,
-    language: 'json',
+    language: props.language,
     theme: 'vs-light',
     selectOnLineNumbers: true,
     minimap: {
@@ -54,8 +74,12 @@ onMounted(() => {
   // 监听值变化
   monacoEditor.onDidChangeModelContent(() => {
     const currenValue = monacoEditor?.getValue()
-    emit('update:value', currenValue)
+    emit('update:modelValue', currenValue)
   })
+})
+
+defineExpose({
+  setValue
 })
 </script>
 <style lang="less" scoped>
