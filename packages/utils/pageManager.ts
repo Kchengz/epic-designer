@@ -32,8 +32,6 @@ export class PageManager {
  * @param actions 操作数组
  */
   doActions(actions: ActionModel[]): void {
-    // console.log(actions)
-    // console.log(pluginManager.publicMethods)
     actions.forEach((action) => {
       const component = action.componentId && this.getComponentInstance(action.componentId);
 

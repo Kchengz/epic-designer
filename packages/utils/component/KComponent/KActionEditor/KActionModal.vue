@@ -10,7 +10,7 @@
         动作选择
         <Select v-model="actionItem.methodName" v-model:value="actionItem.methodName" :options="methodOptions" />
         <Button v-if="actionItem.componentId === null" @click="handleAddMethod">自定义函数</Button>
-        <!-- <MonacoEditor class="editor" v-model:value="html" /> -->
+        <MonacoEditor class="editor" :config="MonacoEditorConfig" language="javascript" v-model="script" />
       </div>
     </div>
     <div class="k-modal-footer">
@@ -27,14 +27,20 @@ import { NodeItem, FormDataModel } from '../../../../types/kDesigner'
 const Modal = pluginManager.getComponent('Modal')
 const Select = pluginManager.getComponent('select')
 const Button = pluginManager.getComponent('button')
-// const MonacoEditor = pluginManager.getComponent('monacoEditor')
+const MonacoEditor = pluginManager.getComponent('monacoEditor')
 const schemas = inject('schemas') as Ref<NodeItem[]>
+const script = inject('script') as Ref<string>
 const visible = ref(false)
 const selectedKeys = ref([])
 const nodeItem = ref<NodeItem | null>(null)
+const MonacoEditorConfig = {
+  theme: 'vs-light',
+  selectOnLineNumbers: true,
+  minimap: {
+    enabled: false
+  }
+}
 const emit = defineEmits(['add'])
-
-// const html = ref('{}')
 
 const methodOptions = computed(() => {
   if (nodeItem.value) {

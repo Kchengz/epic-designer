@@ -45,6 +45,21 @@ const props = defineProps({
   language: {
     type: String,
     default: 'json'
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
+  },
+  config: {
+    type: Object,
+    default: () => ({
+      theme: 'vs-light',
+      selectOnLineNumbers: true,
+      minimap: {
+        enabled: false
+      },
+      lineNumbers: 'off'
+    })
   }
 })
 
@@ -64,14 +79,9 @@ function setValue (value: string) {
 onMounted(() => {
   monacoEditor = monaco.editor.create(editContainer.value as HTMLElement, {
     value: props.modelValue,
-    readOnly: false,
     language: props.language,
-    theme: 'vs-light',
-    selectOnLineNumbers: true,
-    minimap: {
-      enabled: false
-    },
-    lineNumbers: 'off'
+    readOnly: props.readOnly,
+    ...props.config
   })
   // 监听值变化
   monacoEditor.onDidChangeModelContent(() => {
