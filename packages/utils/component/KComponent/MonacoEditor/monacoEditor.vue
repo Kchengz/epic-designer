@@ -39,7 +39,8 @@ self.MonacoEnvironment = {
 
 const props = defineProps({
   modelValue: {
-    type: String
+    type: String,
+    default: ''
   },
   language: {
     type: String,
