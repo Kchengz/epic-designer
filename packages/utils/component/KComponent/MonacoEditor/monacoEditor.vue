@@ -3,11 +3,10 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-// import * as monaco from 'monaco-editor'
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
-import 'monaco-editor/esm/vs/editor/edcore.main.js'
-import 'monaco-editor/esm/vs/language/json/monaco.contribution'
-import 'monaco-editor/esm/vs/language/typescript/monaco.contribution'
+import * as monaco from 'monaco-editor'
+// import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
+// import 'monaco-editor/esm/vs/language/json/monaco.contribution'
+// import 'monaco-editor/esm/vs/language/typescript/monaco.contribution'
 // @ts-ignore
 // import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 // @ts-ignore
@@ -44,7 +43,7 @@ const props = defineProps({
   },
   language: {
     type: String,
-    default: 'javascript'
+    default: 'json'
   }
 })
 

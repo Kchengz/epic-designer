@@ -147,8 +147,8 @@ async function initComponent () {
   }
 
   const onEvent: { [type: string]: Function } = {}
-  props.record.onEvent && Object.keys(props.record.onEvent).forEach((item) => {
-    onEvent[`on${capitalizeFirstLetter(item)}`] = () => pageManager.doActions(props.record.onEvent[item])
+  props.record.on && Object.keys(props.record.on).forEach((item) => {
+    onEvent[`on${capitalizeFirstLetter(item)}`] = () => pageManager.doActions(props.record.on[item])
   })
 
   // 获取组件props数据

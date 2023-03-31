@@ -7,8 +7,8 @@
             {{ item.describe }}
           </div>
           <div class="attr-input">
-            <KActionEditor :model-value="getAttrValue(`onEvent.${item.type}`)"
-              @update:model-value="setAttrValue($event, `onEvent.${item.type}`)" />
+            <KActionEditor :model-value="getAttrValue(`on.${item.type}`)"
+              @update:model-value="setAttrValue($event, `on.${item.type}`)" />
           </div>
         </div>
       </div>
