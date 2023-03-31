@@ -5,17 +5,17 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { inject, ref, watch } from 'vue'
-import { pluginManager, deepEqual } from '../../../../../utils/index'
+import { inject, ref, toRaw, watch } from 'vue'
+import { pluginManager, deepEqual, deepClone } from '../../../../../utils/index'
 import { Designer } from '../../../../../types/kDesigner'
 
 const Monaco = pluginManager.getComponent('monacoEditor')
 const monacoEditorRef = ref<any>(null)
 const designer = inject('designer') as Designer
 
-let oldVal = {}
+let oldVal: any = {}
 watch(() => designer.state.checkedNode, (newVal: any) => {
-  if (!deepEqual(oldVal, newVal)) {
+  if (!deepEqual(oldVal, toRaw(newVal))) {
     monacoEditorRef.value?.setValue(JSON.stringify(newVal, null, 2))
   }
 }, {
@@ -26,11 +26,10 @@ const initModelValue = JSON.stringify(designer.state.checkedNode, null, 2)
 
 function setSchemas (e: string) {
   if (!designer.state.checkedNode) { return false }
-  const json = JSON.parse(e)
-  oldVal = json
+  oldVal = JSON.parse(e)
   const keyArray = []
-  for (const i in json) {
-    designer.state.checkedNode[i] = json[i]
+  for (const i in oldVal) {
+    designer.state.checkedNode[i] = deepClone(oldVal[i])
     keyArray.push(i)
   }
   for (const i in designer.state.checkedNode) {
