@@ -1,18 +1,8 @@
 <template>
   <aside class="k-attribute-view">
     <div v-if="checkedNode">
-      <div :key="item.type + checkedNode.id" v-for="item in componentEvents">
-        <div class="">
-          <div class="attr-label" :title="item.describe">
-            {{ item.describe }}
-          </div>
-          <div class="attr-input">
-            <KActionEditor :model-value="getAttrValue(`on.${item.type}`)"
-              @update:model-value="setAttrValue($event, `on.${item.type}`)" />
-          </div>
-        </div>
-      </div>
-
+      <KActionEditor :key="checkedNode.id" :componentEvents="componentEvents" :model-value="getAttrValue(`on`)"
+        @update:model-value="setAttrValue($event, `on`)" />
     </div>
   </aside>
 </template>

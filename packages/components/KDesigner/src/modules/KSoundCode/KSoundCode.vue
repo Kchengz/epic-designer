@@ -1,6 +1,6 @@
 <template>
   <div class="k-sound-code">
-    <component class="editor" ref="monacoEditorRef" v-if="Monaco" :is="Monaco" :modelValue="initModelValue"
+    <MonacoEditor class="editor" ref="monacoEditorRef" :modelValue="initModelValue"
       @update:modelValue="setSchemas" />
   </div>
 </template>
@@ -9,7 +9,7 @@ import { inject, ref, toRaw, watch } from 'vue'
 import { pluginManager, deepEqual, deepClone } from '../../../../../utils/index'
 import { Designer } from '../../../../../types/kDesigner'
 
-const Monaco = pluginManager.getComponent('monacoEditor')
+const MonacoEditor = pluginManager.getComponent('monacoEditor')
 const monacoEditorRef = ref<any>(null)
 const designer = inject('designer') as Designer
 
@@ -41,7 +41,7 @@ function setSchemas (e: string) {
 
 </script>
 
-<style>
+<style scoped>
 .k-sound-code {
   height: 100%;
 }

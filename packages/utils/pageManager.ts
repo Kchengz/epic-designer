@@ -42,8 +42,8 @@ export function usePageManager(): PageManager {
    */
   function setMethods(scriptStr: string) {
     const customFuncs = new Function(
-      `const func = {};${scriptStr}; return func;`
-    ).bind({ getComponentInstance })();
+      `const page = {};${scriptStr}; return page;`
+    ).bind({ getComponent: getComponentInstance })();
     funcs.value = customFuncs;
   }
 

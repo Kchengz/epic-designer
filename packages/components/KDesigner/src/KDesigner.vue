@@ -46,7 +46,7 @@ const formData = reactive<FormDataModel>({})
 watch(() => script.value, e => {
   pageManager.setMethods(e)
 })
-script.value = 'func.k=()=>{console.log(234)}'
+script.value = 'page.test=()=>{console.log(this)}'
 
 provide('schemas', schemas)
 provide('script', script)
