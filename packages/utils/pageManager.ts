@@ -52,7 +52,7 @@ export function usePageManager(): PageManager {
    * @param actions 操作数组
    */
   function doActions(actions: ActionModel[]): void {
-    actions.forEach((action) => {
+    actions?.forEach((action) => {
       const component =
         action.componentId && getComponentInstance(action.componentId);
 

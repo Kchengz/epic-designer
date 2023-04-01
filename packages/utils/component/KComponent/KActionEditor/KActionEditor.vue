@@ -55,16 +55,12 @@ props.componentEvents.forEach((item: any) => {
 })
 
 function handleOpen (type: string) {
-  console.log(KActionModalRef.value)
   KActionModalRef.value?.handleOpen()
   currentType = type
 }
 
 function handleAdd (action: any) {
-  const newEvents: { [type: string]: any } = {}
-  props.componentEvents.forEach((item: any) => {
-    newEvents[item.type] = (events[item.type].value.length ? events[item.type].value : undefined)
-  })
+  const newEvents = getNewEvents(currentType)
 
   newEvents[currentType] = [...events[currentType].value, action]
 
@@ -76,13 +72,29 @@ function handleAdd (action: any) {
  * @param index
  */
 function handleDelete (index: number, type: string) {
-  const newEvents: { [type: string]: any } = {}
-  props.componentEvents.forEach((item: any) => {
-    newEvents[item.type] = (events[item.type].value.length ? events[item.type].value : undefined)
-  })
+  const newEvents = getNewEvents(type)
   newEvents[type] = events[type].value.filter((item: any, i: number) => index !== i)
-
+  newEvents[type].length ?? delete newEvents[type]
   emit('update:modelValue', newEvents)
+}
+
+/**
+ * 获取新的事件数据
+ * @param type
+ */
+function getNewEvents (type: string) {
+  const newEvents: { [type: string]: any } = {}
+
+  props.componentEvents.forEach((item: any) => {
+    if (!events[item.type].value.length) {
+      return false
+    }
+    if (item.type === type) {
+      return false
+    }
+    newEvents[item.type] = events[item.type].value
+  })
+  return newEvents
 }
 
 </script>
