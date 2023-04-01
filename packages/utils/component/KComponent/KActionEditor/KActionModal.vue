@@ -20,7 +20,7 @@
   </Modal>
 </template>
 <script lang="ts" setup>
-import { pluginManager } from '../../../index'
+import { pluginManager, PageManager } from '../../../index'
 import { ref, Ref, inject, toRaw, reactive, computed } from 'vue'
 import KTree from '../../../../components/KTree'
 import { NodeItem, FormDataModel } from '../../../../types/kDesigner'
@@ -30,6 +30,7 @@ const Button = pluginManager.getComponent('button')
 const MonacoEditor = pluginManager.getComponent('monacoEditor')
 const schemas = inject('schemas') as Ref<NodeItem[]>
 const script = inject('script') as Ref<string>
+const pageManager = inject('pageManager', {}) as PageManager
 const visible = ref(false)
 const selectedKeys = ref([])
 const nodeItem = ref<NodeItem | null>(null)
@@ -46,8 +47,10 @@ const methodOptions = computed(() => {
   if (nodeItem.value) {
     return pluginManager.getComponentConfings()[nodeItem.value!.type].config.action?.map(item => ({ label: item.describe, value: item.type }))
   }
-
-  return []
+  ;
+  return Object.entries(pageManager.funcs.value)
+    .filter(([key, value]) => typeof value === 'function')
+    .map(([label]) => ({ label, value: label }))
 })
 
 let actionItem = reactive<FormDataModel>({

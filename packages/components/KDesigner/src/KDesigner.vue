@@ -20,9 +20,9 @@
   </Suspense>
 </template>
 <script lang="ts" setup>
-import { provide, reactive, ref, nextTick } from 'vue'
+import { provide, reactive, ref, watch, nextTick } from 'vue'
 import { DesignerState, NodeItem, FormDataModel } from '../../../types/kDesigner'
-import { getMatchedById, loadAsyncComponent, revoke, PageManager } from '../../../utils/index'
+import { getMatchedById, loadAsyncComponent, revoke, usePageManager } from '../../../utils/index'
 
 const KHeader = loadAsyncComponent(() => import('./modules/KHeader/KHeader.vue'))
 const KActionBar = loadAsyncComponent(() => import('./modules/KActionBar/KActionBar.vue'))
@@ -30,7 +30,7 @@ const KEditContainer = loadAsyncComponent(() => import('./modules/KEditContainer
 const KRightSidebar = loadAsyncComponent(() => import('./modules/KRightSidebar/KRightSidebar.vue'))
 const KFooter = loadAsyncComponent(() => import('./modules/KFooter/KFooter.vue'))
 const KAsyncLoading = loadAsyncComponent(() => import('../../KAsyncLoading/KAsyncLoading.vue'))
-const pageManager = new PageManager()
+const pageManager = usePageManager()
 const emit = defineEmits(['ready'])
 
 const state = reactive<DesignerState>({
@@ -41,12 +41,18 @@ const state = reactive<DesignerState>({
 })
 const schemas = ref<NodeItem[]>([])
 const script = ref('')
-
 const formData = reactive<FormDataModel>({})
+
+watch(() => script.value, e => {
+  pageManager.setMethods(e)
+})
+script.value = 'func.k=()=>{console.log(234)}'
+
 provide('schemas', schemas)
 provide('script', script)
 provide('formData', formData)
 provide('pageManager', pageManager)
+
 const rootSchema = {
   type: 'page',
   id: 'root',

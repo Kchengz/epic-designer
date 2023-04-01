@@ -1,7 +1,7 @@
 <template>
   <div class="k-action-editor-main">
     <div class="k-col-editor-item" v-for="(item, index) in actions" :key="index">
-      {{  getLabel(item.componentId) }}
+      {{  item.componentId && getLabel(item.componentId) }}
       {{ item.methodName }}
       <div class="del-btn">
         <span @click="handleDelete(index)"> <span class="iconfont icon-shanchu"></span></span>

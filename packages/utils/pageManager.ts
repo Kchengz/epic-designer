@@ -1,48 +1,78 @@
 import { pluginManager } from "./index";
+import { ref } from "vue";
 export interface ActionModel {
   componentId?: string;
   args: string;
   methodName: any;
 }
+export interface PageManager {
+  componentInstances: import("vue").Ref<{ [id: string]: any }>;
+  funcs: import("vue").Ref<{ [id: string]: any }>;
+  getComponentInstance: (id: string) => any;
+  addComponentInstance: (id: string, instance: any) => any;
+  setMethods: (scriptStr: string) => void;
+  doActions: (actions: ActionModel[]) => void;
+}
 
-export class PageManager {
-  componentInstances: { [id: string]: any } = {};
-
+export function usePageManager(): PageManager {
+  const componentInstances = ref<{ [id: string]: any }>({});
+  const funcs = ref<{ [id: string]: any }>({});
   /**
    * 获取组件实例
-   * @param id 
-   * @returns 
+   * @param id
+   * @returns
    */
-  getComponentInstance(id: string) {
-    return this.componentInstances[id];
+  function getComponentInstance(id: string) {
+    return componentInstances.value[id];
   }
 
   /**
    * 添加组件实例
-   * @param id 
-   * @param instance 
-   * @returns 
+   * @param id
+   * @param instance
+   * @returns
    */
-  addComponentInstance(id: string, instance: any) {
-    return (this.componentInstances[id] = instance);
+  function addComponentInstance(id: string, instance: any) {
+    return (componentInstances.value[id] = instance);
   }
 
   /**
- * 执行一组操作
- * @param actions 操作数组
- */
-  doActions(actions: ActionModel[]): void {
+   * 动态创建函数
+   * @param scriptStr
+   */
+  function setMethods(scriptStr: string) {
+    const customFuncs = new Function(
+      `const func = {};${scriptStr}; return func;`
+    ).bind({ getComponentInstance })();
+    funcs.value = customFuncs;
+  }
+
+  /**
+   * 执行一组操作
+   * @param actions 操作数组
+   */
+  function doActions(actions: ActionModel[]): void {
     actions.forEach((action) => {
-      const component = action.componentId && this.getComponentInstance(action.componentId);
+      const component =
+        action.componentId && getComponentInstance(action.componentId);
 
       if (component && typeof component[action.methodName] === "function") {
         component[action.methodName](action.args);
-        console.log(component[action.methodName])
-        return
+        console.log(component[action.methodName]);
+        return;
       }
 
-      pluginManager.publicMethods[action.methodName]?.method(action.args)
+      funcs.value[action.methodName]?.(action.args);
+      // pluginManager.publicMethods[action.methodName]?.method(action.args);
     });
   }
-}
 
+  return {
+    componentInstances,
+    funcs,
+    getComponentInstance,
+    addComponentInstance,
+    setMethods,
+    doActions,
+  };
+}

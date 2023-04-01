@@ -18,9 +18,9 @@ import type { PropType } from 'vue'
 import KNode from '../../KNode/'
 import { reactive, provide, ref, useSlots, nextTick } from 'vue'
 import { NodeItem, FormDataModel } from '../../../types/kDesigner'
-import { loadAsyncComponent, PageManager } from '../../../utils/index'
+import { loadAsyncComponent, usePageManager } from '../../../utils/index'
 const KAsyncLoading = loadAsyncComponent(() => import('../../KAsyncLoading/KAsyncLoading.vue'))
-const pageManager = new PageManager()
+const pageManager = usePageManager()
 const emit = defineEmits(['ready'])
 const formData = reactive<FormDataModel>({})
 const slots = useSlots()

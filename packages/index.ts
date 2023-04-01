@@ -3,7 +3,7 @@ import KDesigner from "./components/KDesigner/";
 import { App } from "vue";
 import {
   pluginManager,
-  PageManager,
+  usePageManager,
   useAntd,
   useElementPlus,
 } from "./utils/index";
@@ -22,7 +22,7 @@ const KDesignr = {
     });
   },
   pluginManager,
-  PageManager,
+  usePageManager,
   useAntd,
 };
 
@@ -30,7 +30,7 @@ export {
   KBuilder,
   KDesigner,
   pluginManager,
-  PageManager,
+  usePageManager,
   useAntd,
   useElementPlus,
 };
