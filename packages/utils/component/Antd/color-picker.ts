@@ -1,12 +1,18 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: () => import("ant-design-vue/lib/input"),
   defaultSchema: {
-    label: "文本框",
-    type: "input",
-    field: "input",
+    label: "颜色选择器",
+    type: "color-picker",
+    field: "color-picker",
     icon: "icon-write",
     isInput: true,
+    componentProps: {
+      type: "color",
+      style: {
+        width: "80px",
+      },
+    },
   },
   config: {
     attribute: [
@@ -26,33 +32,10 @@ export default {
         field: "componentProps.defaultValue",
       },
       {
-        label: "输入类型",
-        type: "select",
-        defaultValue: "text",
-        componentProps: {
-          options: [
-            {
-              label: "text",
-              value: "text",
-            },
-            {
-              label: "number",
-              value: "number",
-            },
-            {
-              label: "password",
-              value: "password",
-            },
-          ],
-        },
-        field: "componentProps.type",
-      },
-      {
         label: "显示",
         type: "switch",
         field: "show",
-        componentProps: {
-        }
+        componentProps: {},
       },
       {
         label: "禁用",

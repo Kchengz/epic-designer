@@ -53,12 +53,24 @@ const componentStyles: NodeItem[] = [
   {
     label: '背景色',
     type: 'color-picker',
-    field: 'componentProps.style.backgroundColor'
+    field: 'componentProps.style.backgroundColor',
+    componentProps: {
+      type: 'color',
+      style: {
+        width: '60px'
+      }
+    }
   },
   {
     label: '字体颜色',
     type: 'color-picker',
-    field: 'componentProps.style.color'
+    field: 'componentProps.style.color',
+    componentProps: {
+      type: 'color',
+      style: {
+        width: '60px'
+      }
+    }
   }
 ]
 

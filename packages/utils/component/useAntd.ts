@@ -19,6 +19,8 @@ import Col from "./Antd/col";
 import Tabs from "./Antd/tabs";
 import TabPane from "./Antd/tabPane";
 import KForm from "./Antd/form";
+import Button from "./Antd/button";
+import colorPicker from "./Antd/color-picker";
 
 // 兼容性样式
 import "./Antd/index.less";
@@ -46,6 +48,8 @@ export function useAntd(pluginManager: PluginManager) {
     Col,
     Tabs,
     TabPane,
+    Button,
+    colorPicker
   ];
 
   componentArray.forEach((item) => {
