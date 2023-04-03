@@ -33,6 +33,7 @@ export function usePageManager(): PageManager {
    * @returns
    */
   function addComponentInstance(id: string, instance: any) {
+    console.log(instance)
     return (componentInstances.value[id] = instance);
   }
 

@@ -13,7 +13,9 @@ const props = defineProps({
     require: true
   }
 })
+
 const children = computed(() => {
   return props.record.children ?? []
 })
+
 </script>

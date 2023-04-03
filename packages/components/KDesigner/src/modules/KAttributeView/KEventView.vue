@@ -1,7 +1,7 @@
 <template>
   <aside class="k-attribute-view">
     <div v-if="checkedNode">
-      <KActionEditor :key="checkedNode.id" :componentEvents="componentEvents" :model-value="getAttrValue(`on`)"
+      <KActionEditor :key="checkedNode.id" :eventList="eventList" :model-value="getAttrValue(`on`)"
         @update:model-value="setAttrValue($event, `on`)" />
     </div>
   </aside>
@@ -19,9 +19,49 @@ const checkedNode = computed(() => {
   return designer.state.checkedNode
 })
 
-const componentEvents = computed(() => {
-  return componentConfings[designer.state.checkedNode?.type ?? '']?.config.event ?? []
+const eventList = computed(() => {
+  const eventList:any = [{
+    title: '生命周期',
+    events: [
+      {
+        type: 'vnodeBeforeMount',
+        describe: 'beforeMount'
+      },
+      {
+        type: 'vnodeMounted',
+        describe: 'mounted'
+      },
+      {
+        type: 'vnodeBeforeUpdate',
+        describe: 'beforeUpdate'
+      },
+      {
+        type: 'vnodeUpdated',
+        describe: 'updated'
+      },
+      {
+        type: 'vnodeBeforeUnmount',
+        describe: 'beforeUnmount'
+      },
+      {
+        type: 'vnodeUnmounted',
+        describe: 'unmounted'
+      },
+      {
+        type: 'vnodeErrorCaptured',
+        describe: 'errorCaptured'
+      }
+    ]
+  }]
+  const events = componentConfings[designer.state.checkedNode?.type ?? '']?.config.event ?? []
+  eventList.unshift({
+    title: '组件事件',
+    events
+  })
+  return eventList
 })
+
+// onVnodeMounted
 
 function getAttrValue (field: string) {
   let obj = checkedNode.value ?? {} as { [key: string]: any }
