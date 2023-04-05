@@ -1,0 +1,125 @@
+// 编辑区域
+.k-edit-container {
+  flex: 1;
+  background-image: linear-gradient(#f8f8f8 14px, transparent 0),
+    linear-gradient(90deg, transparent 14px, #373739 0);
+  background-size: 15px 15px;
+  padding: 32px 24px 24px;
+
+  .k-edit-range {
+    height: 100%;
+    background-color: white;
+    overflow-y: auto;
+    // border-radius: 6px;
+    // overflow: auto;
+
+    [name="draggable-range"] {
+      min-height: 60px;
+      height: 100%;
+      background-color: @edit-bg;
+      border: 1px #999 dashed;
+      width: 100%;
+      // padding: 10px;
+    }
+
+    > [name="draggable-range"] {
+      height: 100%;
+      border: 1px transparent;
+      > .item {
+        height: 100%;
+      }
+
+      // 屏蔽label点击事件
+      .ant-form-item-label > label {
+        pointer-events: none;
+      }
+    }
+
+    .root-node > .form-main > form > [name="draggable-range"] {
+      border: transparent;
+    }
+
+    .item {
+      border: 1px solid transparent;
+      position: relative;
+
+      // &.moveing {
+      //   width: 100%;
+      //   height: 6px;
+      //   border-radius: 6px;
+      //   overflow: hidden;
+      //   &::after {
+      //     content: "";
+      //     position: absolute;
+      //     top: 0;
+      //     left: 0;
+      //     width: 100%;
+      //     height: 100%;
+      //     background-color: red;
+      //   }
+      // }
+
+      &::before {
+        content: "";
+        height: 5px;
+        width: 0%;
+        background: @primary-color;
+        position: absolute;
+        top: -5px;
+        right: 0;
+        transition: all 0.3s;
+      }
+
+      // 遮罩层
+      // &::after {
+      //   content: "";
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   width: 100%;
+      //   height: 100%;
+      // }
+
+      &.hover {
+        // background: @primary-hover-bg-color;
+        border: 1px #999 dashed;
+      }
+
+      // 选中样式
+      &.checked {
+        background: @primary-hover-bg-color;
+        position: relative;
+
+        &::before {
+          width: 100%;
+        }
+      }
+
+      .action-box {
+        position: absolute;
+        z-index: 999;
+        top: 0px;
+        // top: -30px;
+        right: 0;
+        height: 30px;
+        background: @primary-color;
+        border-radius: 0 2px 2px 4px;
+        color: white;
+        display: flex;
+        padding: 0 4px;
+
+        .action-item {
+          height: 30px;
+          line-height: 25px;
+          padding: 0 4px;
+          cursor: pointer;
+        }
+      }
+
+      .form-main {
+        padding: 6px;
+        border: 1px solid #f0f0f0;
+      }
+    }
+  }
+}

@@ -119,7 +119,3 @@ async function setDisableHover (disableHover = false) {
 
 init()
 </script>
-
-<style lang="less">
-@import './KDesigner.less';
-</style>

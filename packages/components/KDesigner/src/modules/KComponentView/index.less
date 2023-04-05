@@ -1,0 +1,34 @@
+// 组件选择面板
+.k-component-view {
+  .collapse-header {
+    padding: 10px;
+  }
+
+  [name="list"] {
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 10px;
+
+    .source-componet-item {
+      cursor: pointer;
+      width: calc(50% - 10px);
+      border: 1px solid @component-item-border-color;
+      padding: 0 10px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+
+      .iconfont {
+        margin-right: 5px;
+      }
+
+      &:hover {
+        border-color: @primary-color;
+        color: @primary-color;
+      }
+    }
+  }
+}
