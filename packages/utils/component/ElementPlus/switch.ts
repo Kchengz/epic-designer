@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: async () => (await import("element-plus")).ElSwitch,
   defaultSchema: {
@@ -7,8 +7,7 @@ export default {
     icon: "icon-number",
     field: "switch",
     isInput: true,
-    componentProps: {
-    },
+    componentProps: {},
   },
   config: {
     attribute: [
@@ -28,5 +27,5 @@ export default {
         field: "componentProps.defaultValue",
       },
     ],
-  }
+  },
 } as ComponentConfigModel;

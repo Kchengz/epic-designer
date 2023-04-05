@@ -49,7 +49,7 @@ export function useAntd(pluginManager: PluginManager) {
     Tabs,
     TabPane,
     Button,
-    colorPicker
+    colorPicker,
   ];
 
   componentArray.forEach((item) => {
@@ -89,11 +89,7 @@ export function useAntd(pluginManager: PluginManager) {
     },
     {
       title: "布局组件",
-      list: [
-        "card",
-        "row",
-        "tabs",
-      ]
-    }
-  ])
+      list: ["card", "row", "tabs"],
+    },
+  ]);
 }

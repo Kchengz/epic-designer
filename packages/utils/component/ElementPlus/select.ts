@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: () => import("./src/KSelect"),
   defaultSchema: {
@@ -18,7 +18,7 @@ export default {
           value: "选项2",
         },
       ],
-      placeholder: '请选择'
+      placeholder: "请选择",
     },
   },
   config: {
@@ -48,7 +48,6 @@ export default {
         type: "input",
         field: "componentProps.hidden",
       },
-
     ],
-  }
+  },
 } as ComponentConfigModel;

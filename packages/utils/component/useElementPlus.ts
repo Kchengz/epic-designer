@@ -25,9 +25,18 @@ import DatePicker from "./ElementPlus/datePicker";
 import "./ElementPlus/src/index.less";
 export async function useElementPlus(pluginManager: PluginManager) {
   pluginManager.component("Modal", (await import("element-plus")).ElDialog);
-  pluginManager.component("FormItem", (await import("element-plus")).ElFormItem);
-  pluginManager.component("Collapse", (await import("element-plus")).ElCollapse);
-  pluginManager.component("CollapseItem", (await import("element-plus")).ElCollapseItem);
+  pluginManager.component(
+    "FormItem",
+    (await import("element-plus")).ElFormItem
+  );
+  pluginManager.component(
+    "Collapse",
+    (await import("element-plus")).ElCollapse
+  );
+  pluginManager.component(
+    "CollapseItem",
+    (await import("element-plus")).ElCollapseItem
+  );
 
   const componentArray = [
     Form,
@@ -88,11 +97,7 @@ export async function useElementPlus(pluginManager: PluginManager) {
     },
     {
       title: "布局组件",
-      list: [
-        "card",
-        "row",
-        "tabs",
-      ]
-    }
-  ])
+      list: ["card", "row", "tabs"],
+    },
+  ]);
 }

@@ -2,32 +2,32 @@ import { defineComponent, h, renderSlot, PropType } from "vue";
 import { ElCollapseItem } from "element-plus";
 import { NodeItem } from "../../../../types/kDesigner";
 export default defineComponent({
-    props: {
-        record: {
-            type: Object as PropType<NodeItem>,
-            require: true,
-        },
-        children: {
-            type: Array,
-        },
+  props: {
+    record: {
+      type: Object as PropType<NodeItem>,
+      require: true,
     },
-    setup(props, { attrs, slots }) {
-        return () => {
-            const record = {
-                ...props.record,
-                title: props.record!.label,
-            } as any;
-            const children = record.children;
-            delete record.children;
-    
-            return h(ElCollapseItem, record, {
-                default: () =>
-                    renderSlot(slots, "edit-node", {}, () =>
-                        children!.map((record: any) =>
-                            renderSlot(slots, "node", { record })
-                        )
-                    ),
-            });
-        };
+    children: {
+      type: Array,
     },
+  },
+  setup(props, { attrs, slots }) {
+    return () => {
+      const record = {
+        ...props.record,
+        title: props.record!.label,
+      } as any;
+      const children = record.children;
+      delete record.children;
+
+      return h(ElCollapseItem, record, {
+        default: () =>
+          renderSlot(slots, "edit-node", {}, () =>
+            children!.map((record: any) =>
+              renderSlot(slots, "node", { record })
+            )
+          ),
+      });
+    };
+  },
 });

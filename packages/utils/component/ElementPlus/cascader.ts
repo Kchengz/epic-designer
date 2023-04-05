@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: async () => (await import("element-plus")).ElCascader,
   defaultSchema: {
@@ -18,7 +18,7 @@ export default {
           value: "选项2",
         },
       ],
-      placeholder: '请选择'
+      placeholder: "请选择",
     },
   },
   config: {
@@ -44,5 +44,5 @@ export default {
         field: "componentProps.placeholder",
       },
     ],
-  }
+  },
 } as ComponentConfigModel;

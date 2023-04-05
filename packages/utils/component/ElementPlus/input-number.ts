@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: async () => (await import("element-plus")).ElInputNumber,
   defaultSchema: {
@@ -8,7 +8,7 @@ export default {
     field: "number",
     isInput: true,
     componentProps: {
-      placeholder: '请输入'
+      placeholder: "请输入",
     },
   },
   config: {
@@ -34,10 +34,10 @@ export default {
         field: "componentProps.placeholder",
       },
       {
-        label: '隐藏',
+        label: "隐藏",
         type: "switch",
         field: "componentProps.hidden",
       },
     ],
-  }
+  },
 } as ComponentConfigModel;

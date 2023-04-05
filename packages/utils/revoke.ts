@@ -1,6 +1,5 @@
-
 import { NodeItem } from "../types/kDesigner.d";
-import { ref } from 'vue'
+import { ref } from "vue";
 
 export interface recordModel {
   type: string;
@@ -20,20 +19,19 @@ export function useRevoke() {
   const currentRecord = ref<recordModel | null>(null);
 
   // 最后记录时间
-  let lastPushTime = 0
+  let lastPushTime = 0;
   /**
    * @description: 插入历史记录
    * @param {object}record
    * @return {boolean}
    */
   function push(record: NodeItem[], type = "插入组件") {
-
     // 忽略低于100ms时间差的记录
-    const nowTime = Date.now()
+    const nowTime = Date.now();
     if (lastPushTime + 100 > nowTime) {
-      return
+      return;
     }
-    lastPushTime = nowTime
+    lastPushTime = nowTime;
 
     // 判断之前是否已经存在currentRecord记录，有则存储到recordList
     if (currentRecord.value) {
@@ -45,7 +43,7 @@ export function useRevoke() {
     // 将json转成字符串存储
     currentRecord.value = {
       type,
-      record: JSON.stringify(record)
+      record: JSON.stringify(record),
     };
 
     // 最多存储20条记录，超过20条记录则删除之前的记录
@@ -106,7 +104,7 @@ export function useRevoke() {
     push,
     undo,
     redo,
-  }
+  };
 }
 
 export const revoke = useRevoke();

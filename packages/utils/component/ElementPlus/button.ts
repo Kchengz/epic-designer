@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: () => import("./src/KButton"),
   //component: ElButton,
@@ -61,20 +61,6 @@ export default {
         label: "圆形按钮",
         type: "switch",
         field: "componentProps.circle",
-      },
-
-      {
-        label: "动作",
-        type: "action",
-        field: "componentProps.eventActions",
-        componentProps: {
-          eventActions: [
-            {
-              type: "onClick",
-              actions: [],
-            },
-          ],
-        },
       },
     ],
   },

@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: () => import("./src/KDatePicker"),
   defaultSchema: {
@@ -9,7 +9,7 @@ export default {
     isInput: true,
     componentProps: {
       type: "date",
-      placeholder: '请选择'
+      placeholder: "请选择",
     },
   },
   config: {
@@ -41,30 +41,28 @@ export default {
         componentProps: {
           options: [
             {
-              label: '选择日期',
-              value: 'date'
+              label: "选择日期",
+              value: "date",
             },
             {
-              label: '周',
-              value: 'week'
+              label: "周",
+              value: "week",
             },
             {
-              label: '月份',
-              value: 'month'
+              label: "月份",
+              value: "month",
             },
             {
-              label: '年份',
-              value: 'year'
+              label: "年份",
+              value: "year",
             },
             {
-              label: '多个日期',
-              value: 'dates'
+              label: "多个日期",
+              value: "dates",
             },
-          ]
+          ],
         },
       },
-
-
     ],
-  }
+  },
 } as ComponentConfigModel;

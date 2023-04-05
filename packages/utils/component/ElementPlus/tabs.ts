@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: () => import("./src/KTabs"),
   defaultSchema: {
@@ -21,7 +21,7 @@ export default {
       },
     ],
     componentProps: {
-      defaultValue: '1',
+      defaultValue: "1",
     },
   },
   config: {

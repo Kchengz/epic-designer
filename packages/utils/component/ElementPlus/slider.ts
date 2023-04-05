@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: async () => (await import("element-plus")).ElSlider,
   defaultSchema: {
@@ -26,5 +26,5 @@ export default {
         field: "componentProps.defaultValue",
       },
     ],
-  }
+  },
 } as ComponentConfigModel;

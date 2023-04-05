@@ -1,11 +1,11 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: () => import("./src/KCard"),
   defaultSchema: {
     label: "卡片布局",
     type: "card",
     icon: "icon-xiala",
-    children: []
+    children: [],
   },
   config: {
     attribute: [
@@ -15,5 +15,5 @@ export default {
         field: "label",
       },
     ],
-  }
+  },
 } as ComponentConfigModel;

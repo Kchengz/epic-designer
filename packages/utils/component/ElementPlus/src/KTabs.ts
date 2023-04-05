@@ -2,38 +2,38 @@ import { defineComponent, h, renderSlot, PropType } from "vue";
 import { ElTabs } from "element-plus";
 import { NodeItem } from "../../../../types/kDesigner";
 export default defineComponent({
-    props: {
-        record: {
-            type: Object as PropType<NodeItem>,
-            require: true,
-        },
-        children: {
-            type: Array,
-        },
+  props: {
+    record: {
+      type: Object as PropType<NodeItem>,
+      require: true,
     },
-    setup(props, { attrs, slots }) {
-        return {
-            attrs,
-            slots,
-            props,
-        };
+    children: {
+      type: Array,
     },
-    render() {
-        const record = {
-            // ...this.props.record,
-            ...this.props.record?.componentProps,
-            // title: this.props.record!.label,
-        } as any;
-        const children = this.props.record?.children ?? [];
-        delete record.children;
+  },
+  setup(props, { attrs, slots }) {
+    return {
+      attrs,
+      slots,
+      props,
+    };
+  },
+  render() {
+    const record = {
+      // ...this.props.record,
+      ...this.props.record?.componentProps,
+      // title: this.props.record!.label,
+    } as any;
+    const children = this.props.record?.children ?? [];
+    delete record.children;
 
-        return h(ElTabs, record, {
-            default: () =>
-                renderSlot(this.slots, "edit-node", {}, () =>
-                    children!.map((record: any) =>
-                        renderSlot(this.slots, "node", { record })
-                    )
-                ),
-        });
-    },
+    return h(ElTabs, record, {
+      default: () =>
+        renderSlot(this.slots, "edit-node", {}, () =>
+          children!.map((record: any) =>
+            renderSlot(this.slots, "node", { record })
+          )
+        ),
+    });
+  },
 });

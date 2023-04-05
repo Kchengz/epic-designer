@@ -11,7 +11,7 @@ export function initComponent(pluginManager: PluginManager) {
   pluginManager.component("k-input-size", KInputSize);
   pluginManager.component("k-col-editor", KColEditor);
   pluginManager.component("k-action-editor", KActionEditor);
-  
+
   // 左侧菜单初始化
   pluginManager.registerActivitybar({
     title: "组件",
@@ -44,24 +44,25 @@ export function initComponent(pluginManager: PluginManager) {
       import(
         "../../components/KDesigner/src/modules/KAttributeView/KAttributeView.vue"
       ),
-  })
+  });
 
   pluginManager.registerRightSidebar({
     title: "样式",
     component: () =>
-      import("../../components/KDesigner/src/modules/KAttributeView/KStyleView.vue"),
-  })
+      import(
+        "../../components/KDesigner/src/modules/KAttributeView/KStyleView.vue"
+      ),
+  });
   pluginManager.registerRightSidebar({
     title: "事件",
     component: () =>
-      import("../../components/KDesigner/src/modules/KAttributeView/KEventView.vue"),
-  })
+      import(
+        "../../components/KDesigner/src/modules/KAttributeView/KEventView.vue"
+      ),
+  });
 
-  
   const componentArray = [MonacoEditor, Page];
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item);
   });
 }
-
-

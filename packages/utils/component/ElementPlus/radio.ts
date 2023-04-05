@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: () => import("./src/KRadio"),
   defaultSchema: {
@@ -38,5 +38,5 @@ export default {
         field: "label",
       },
     ],
-  }
+  },
 } as ComponentConfigModel;
