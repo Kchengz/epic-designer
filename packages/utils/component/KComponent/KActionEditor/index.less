@@ -1,3 +1,33 @@
+.event-item {
+  .event-info {
+    display: flex;
+    background-color: #f8f8f8;
+    padding: 0 12px;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
+    border: 1px solid @border-color;
+    margin: 0px -1px -1px 0px;
+  }
+
+  .event-btn > span {
+    cursor: pointer;
+  }
+
+  .k-action-editor-main {
+    // padding: 16px;
+    .k-col-editor-item {
+      margin: 8px 12px;
+      // background-color: #fafafa;
+      border: 1px solid @border-color;
+      padding: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
 .k-modal-action-main {
   display: flex;
   height: 400px;
@@ -8,7 +38,7 @@
     padding: 8px;
 
     .fun-btn {
-      border: 1px solid #ccc;
+      border: 1px solid @border-color;
       padding: 2px 8px;
       border-radius: 3px;
       cursor: pointer;

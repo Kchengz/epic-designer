@@ -1,22 +1,23 @@
 <template>
-  <div :key="item.type" v-for="item in itemEvents">
-    <div class="">
-      <div class="attr-label" :title="item.describe">
+  <div class="event-item" :key="item.type" v-for="item in itemEvents">
+    <div class="event-info">
+      <div class="event-label" :title="item.describe">
         {{ item.describe }}
       </div>
-      <div class="attr-input">
-        <div class="k-action-editor-main">
-          <div class="k-col-editor-item" v-for="(action, index) in events[item.type].value" :key="index">
-            {{ action.componentId && getLabel(action.componentId) }}
-            {{ action.methodName }}
-            <div class="del-btn">
-              <span @click="handleDelete(index, item.type)"> <span class="iconfont icon-shanchu"></span></span>
-            </div>
-          </div>
-          <div class="add-btn" @click="handleOpen(item.type)">添加动作</div>
-        </div>
+      <div class="event-btn">
+        <span @click="handleOpen(item.type)" class="iconfont icon-tianjia1"></span>
       </div>
     </div>
+
+      <div class="k-action-editor-main">
+        <div class="k-col-editor-item" v-for="(action, index) in events[item.type].value" :key="index">
+          {{ action.componentId && getLabel(action.componentId) }}
+          {{ action.methodName }}
+          <div class="del-btn">
+            <span @click="handleDelete(index, item.type)"> <span class="iconfont icon-shanchu"></span></span>
+          </div>
+        </div>
+      </div>
   </div>
   <KActionModal ref="KActionModalRef" @add="handleAdd" />
 </template>
