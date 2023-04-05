@@ -1,27 +1,42 @@
-.el-input {
-  width: 100% !important;
-}
-
-// 表单样式
-.el-form--inline {
-  [name="draggable-range"] {
-    display: flex;
-    flex-wrap: wrap;
+.k-designer-main {
+  .el-input {
+    width: 100% !important;
   }
 
-  .el-form-item__content {
-    width: 175px;
-  }
-}
+  // 表单样式
+  .el-form--inline {
+    [name="draggable-range"] {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-// 折叠面板
-.el-collapse {
-  .el-collapse-item__header {
-    height: 36px;
-    background: #eee;
-    padding-left: 12px;
+    .el-form-item__content {
+      width: 175px;
+    }
   }
-  .el-collapse-item__content {
-    padding: 0;
+
+  // 折叠面板
+  .el-collapse {
+    border: 1px solid #d9d9d9;
+    border-top: 0;
+
+    .el-collapse-item__header {
+      height: 42px;
+      background: #fafafa;
+      padding-left: 12px;
+      border: 1px solid #d9d9d9;
+      border-left: 0;
+      border-right: 0;
+      border-bottom: 1px solid transparent;
+      &.is-active {
+        border-bottom: 1px solid #d9d9d9;
+      }
+    }
+    .el-collapse-item:last-child .el-collapse-item__header {
+      border-bottom: 1px solid #d9d9d9;
+    }
+    .el-collapse-item__content {
+      padding: 8px;
+    }
   }
 }

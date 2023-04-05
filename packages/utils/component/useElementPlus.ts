@@ -23,20 +23,15 @@ import DatePicker from "./ElementPlus/datePicker";
 
 // 组件样式调整
 import "./ElementPlus/src/index.less";
-export async function useElementPlus(pluginManager: PluginManager) {
-  pluginManager.component("Modal", (await import("element-plus")).ElDialog);
-  pluginManager.component(
-    "FormItem",
-    (await import("element-plus")).ElFormItem
-  );
-  pluginManager.component(
-    "Collapse",
-    (await import("element-plus")).ElCollapse
-  );
-  pluginManager.component(
-    "CollapseItem",
-    (await import("element-plus")).ElCollapseItem
-  );
+export function useElementPlus(pluginManager: PluginManager) {
+  // 异步加载组件
+  (async () => {
+    const Elment = await import("element-plus");
+    pluginManager.component("Modal", Elment.ElDialog);
+    pluginManager.component("FormItem", Elment.ElFormItem);
+    pluginManager.component("Collapse", Elment.ElCollapse);
+    pluginManager.component("CollapseItem", Elment.ElCollapseItem);
+  })();
 
   const componentArray = [
     Form,

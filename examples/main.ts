@@ -13,7 +13,6 @@ import { pluginManager, useAntd, useElementPlus } from "../packages/index";
 
 // 使用Antd UI
 // useAntd(pluginManager)
-
 // 使用Elemnt UI
 useElementPlus(pluginManager);
 

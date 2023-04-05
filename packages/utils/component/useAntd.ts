@@ -1,6 +1,5 @@
 // 注册ant-design-vue ui
 import { PluginManager } from "../pluginManager";
-import { Form, FormItem, Modal } from "ant-design-vue";
 import Input from "./Antd/input";
 import InputNumber from "./Antd/inputNumber";
 import InputPassword from "./Antd/inputPassword";
@@ -26,9 +25,16 @@ import colorPicker from "./Antd/color-picker";
 import "./Antd/index.less";
 
 export function useAntd(pluginManager: PluginManager) {
-  pluginManager.component("Form", Form);
-  pluginManager.component("FormItem", FormItem);
-  pluginManager.component("Modal", Modal);
+  // 异步加载组件
+  pluginManager.component("Modal", () => import("ant-design-vue/lib/modal"));
+  pluginManager.component(
+    "FormItem",
+    () => import("ant-design-vue/lib/form/FormItem")
+  );
+  pluginManager.component("Collapse", () => import("ant-design-vue/lib/collapse"));
+  pluginManager.component("CollapseItem", () => import("ant-design-vue/lib/collapse/CollapsePanel"));
+
+
   const componentArray = [
     KForm,
     Input,

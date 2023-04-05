@@ -1,6 +1,6 @@
 <template>
-  <Collapse v-model="activeNames">
-    <CollapseItem :title="item.title" :name="item.title" v-for="(item, index) in filterEventList" :key="index">
+  <Collapse v-model="activeNames" v-model:activeKey="activeNames">
+    <CollapseItem v-for="(item, index) in filterEventList" :title="item.title" :header="item.title" :name="item.title" :key="item.title">
       <KActionEditorItem :itemEvents="item.events" :allEvents="allEvents" v-model="modelValue" />
     </CollapseItem>
   </Collapse>

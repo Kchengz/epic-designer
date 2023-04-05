@@ -1,5 +1,5 @@
 <template>
-  <Modal title="动作配置" v-model:visible="visible" v-model="visible" width="700px">
+  <Modal title="动作配置" v-model:visible="visible" v-model="visible" width="700px" :footer="null">
     <div class="k-modal-action-main">
       <div class="k-modal-left-panel">
         <div class="fun-btn" :class="{ checked: actionItem.componentId === null }" @click="toggleMethod">函数</div>
@@ -7,9 +7,12 @@
         <KTree :options="schemas" v-model:selectedKeys="selectedKeys" @node-click="handleNodeClick" />
       </div>
       <div class="k-modal-right-panel">
-        动作选择
-        <Select v-model="actionItem.methodName" v-model:value="actionItem.methodName" :options="methodOptions" />
-        <Button v-if="actionItem.componentId === null" @click="handleAddMethod">自定义函数</Button>
+        <div class="select-box">
+          <span>动作选择</span>
+          <Select class="action-select" v-model="actionItem.methodName" v-model:value="actionItem.methodName"
+            :options="methodOptions" />
+          <Button v-if="actionItem.componentId === null" @click="handleAddMethod">自定义函数</Button>
+        </div>
         <MonacoEditor class="editor" :config="MonacoEditorConfig" language="javascript" v-model="script" />
       </div>
     </div>
@@ -58,7 +61,7 @@ let actionItem = reactive<FormDataModel>({
   componentId: null
 })
 
-function handleOpen () {
+function handleOpen() {
   visible.value = true
   actionItem = reactive<FormDataModel>({
     methodName: null,
@@ -66,7 +69,7 @@ function handleOpen () {
   })
 }
 
-function handleSave () {
+function handleSave() {
   if (!actionItem.methodName) {
     alert('请先选择动作方法')
     return
@@ -75,24 +78,24 @@ function handleSave () {
   handleClose()
 }
 
-function handleClose () {
+function handleClose() {
   visible.value = false
   selectedKeys.value = []
 }
 
-function toggleMethod () {
+function toggleMethod() {
   actionItem.componentId = null
   actionItem.methodName = null
   nodeItem.value = null
   selectedKeys.value = []
 }
-function handleNodeClick (e: any) {
+function handleNodeClick(e: any) {
   actionItem.componentId = e.id
   nodeItem.value = e.record
   actionItem.methodName = null
 }
 
-function handleAddMethod () {
+function handleAddMethod() {
 
 }
 

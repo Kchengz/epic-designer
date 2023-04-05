@@ -1,17 +1,16 @@
 <template>
   <div class="form-main" style="height: 100%;">
-    <component :is="Form" ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%;" @finish="onFinish">
+    <Form ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%;" @finish="onFinish">
       <slot name="edit-node">
         <slot name="node" :record="item" v-for="item in children"></slot>
       </slot>
-    </component>
+    </Form>
   </div>
 </template>
 <script lang="ts" setup>
 import { ref, computed, inject, useAttrs, onMounted } from 'vue'
-// import { Form } from 'ant-design-vue'
-import { pluginManager } from '../../../index'
-const Form = pluginManager.getComponent('Form')
+import { Form } from 'ant-design-vue'
+
 const attrs = useAttrs()
 const form = ref<any>(null)
 const forms = inject('forms', {}) as any

@@ -61,20 +61,6 @@ export default {
         type: "switch",
         field: "componentProps.circle",
       },
-
-      {
-        label: "动作",
-        type: "action",
-        field: "componentProps.eventActions",
-        componentProps: {
-          eventActions: [
-            {
-              type: "onClick",
-              actions: [],
-            },
-          ],
-        },
-      },
     ],
   },
 } as ComponentConfigModel;

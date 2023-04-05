@@ -1,6 +1,5 @@
 import { ComponentConfigModel } from '../../pluginManager'
 
-
 export default {
   component: () => import("./src/KForm.vue"),
   defaultSchema: {
@@ -25,6 +24,11 @@ export default {
   },
   config: {
     attribute: [
+      {
+        label: "name",
+        type: "input",
+        field: "name",
+      },
       {
         label: "标签布局",
         type: "radio",
@@ -52,7 +56,7 @@ export default {
         type: "input",
         field: "componentProps.labelWidth",
         show: ({values}) => {
-          return values.componentProps.labelLayout === "fixed";
+          return values.componentProps?.labelLayout === "fixed";
         },
       },
       {
@@ -60,7 +64,7 @@ export default {
         type: "input",
         field: "componentProps.labelCol.span",
         show: ({values}) => {
-          return values.componentProps.labelLayout === "flex";
+          return values.componentProps?.labelLayout === "flex";
         },
       },
       {
@@ -68,7 +72,7 @@ export default {
         type: "input",
         field: "componentProps.wrapperCol.span",
         show: ({values}) => {
-          return values.componentProps.labelLayout === "flex";
+          return values.componentProps?.labelLayout === "flex";
         },
       },
     ],
