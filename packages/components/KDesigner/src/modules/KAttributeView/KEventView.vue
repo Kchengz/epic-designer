@@ -1,5 +1,5 @@
 <template>
-  <aside class="k-attribute-view">
+  <aside class="k-attribute-view1">
     <div v-if="checkedNode">
       <KActionEditor :key="checkedNode.id" :eventList="eventList" :model-value="getAttrValue(`on`)"
         @update:model-value="setAttrValue($event, `on`)" />

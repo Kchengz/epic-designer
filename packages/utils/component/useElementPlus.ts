@@ -1,6 +1,5 @@
 // 注册ant-design-vue ui
 import { PluginManager } from "../pluginManager";
-import { ElDialog, ElFormItem } from "element-plus";
 import Input from "./ElementPlus/input";
 import Number from "./ElementPlus/input-number";
 import Form from "./ElementPlus/form";
@@ -9,22 +8,26 @@ import Card from "./ElementPlus/card";
 import Row from "./ElementPlus/row";
 import Col from "./ElementPlus/col";
 import Select from "./ElementPlus/select";
-import Tabs from "./ElementPlus/tabs";
 import Radio from "./ElementPlus/radio";
 import Checkbox from "./ElementPlus/checkbox";
 import Slider from "./ElementPlus/slider";
 
-import colorPicker from "./ElementPlus/color-picker";
+import ColorPicker from "./ElementPlus/color-picker";
 import Switch from "./ElementPlus/switch";
 import Cascader from "./ElementPlus/cascader";
+import Tabs from "./ElementPlus/tabs";
 import TabPane from "./ElementPlus/tabPane";
+import Collapse from "./ElementPlus/collapse";
+import CollapseItem from "./ElementPlus/collapse-item";
 import DatePicker from "./ElementPlus/datePicker";
 
 // 组件样式调整
 import "./ElementPlus/src/index.less";
-export function useElementPlus(pluginManager: PluginManager) {
-  pluginManager.component("Modal", ElDialog);
-  pluginManager.component("FormItem", ElFormItem);
+export async function useElementPlus(pluginManager: PluginManager) {
+  pluginManager.component("Modal", (await import("element-plus")).ElDialog);
+  pluginManager.component("FormItem", (await import("element-plus")).ElFormItem);
+  pluginManager.component("Collapse", (await import("element-plus")).ElCollapse);
+  pluginManager.component("CollapseItem", (await import("element-plus")).ElCollapseItem);
 
   const componentArray = [
     Form,
@@ -35,7 +38,7 @@ export function useElementPlus(pluginManager: PluginManager) {
     DatePicker,
     Select,
     Switch,
-    colorPicker,
+    ColorPicker,
     Cascader,
     Slider,
     Button,
@@ -44,6 +47,8 @@ export function useElementPlus(pluginManager: PluginManager) {
     Col,
     Tabs,
     TabPane,
+    Collapse,
+    CollapseItem,
   ];
 
   componentArray.forEach((item) => {

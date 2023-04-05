@@ -1,14 +1,17 @@
 <template>
-  <div v-for="(item, index) in eventList" :key="index">
-    <div>
-      {{ item.title }}
-    </div>
-    <KActionEditorItem :itemEvents="item.events" :allEvents="allEvents" v-model="modelValue" />
-  </div>
+  <Collapse v-model="activeNames">
+    <CollapseItem :title="item.title" :name="item.title" v-for="(item, index) in filterEventList" :key="index">
+      <KActionEditorItem :itemEvents="item.events" :allEvents="allEvents" v-model="modelValue" />
+    </CollapseItem>
+  </Collapse>
 </template>
 <script lang="ts" setup>
-import { PropType, computed } from 'vue'
+import { PropType, computed, ref, watch } from 'vue'
 import KActionEditorItem from './KActionEditorItem.vue'
+import { pluginManager } from '../../../index'
+const Collapse = pluginManager.getComponent('Collapse')
+const CollapseItem = pluginManager.getComponent('CollapseItem')
+
 const props = defineProps({
   modelValue: {
     type: Object as PropType<any>,
@@ -17,6 +20,19 @@ const props = defineProps({
   eventList: {
     type: Array as PropType<any>
   }
+})
+const activeNames = ref(['组件事件'])
+
+// 过滤无事件
+const filterEventList = computed(() => {
+  return props.eventList.filter((item: { events: string | any[]; }) => item.events.length)
+})
+watch(() => filterEventList.value, (e) => {
+  if (e.length) {
+    activeNames.value = e[0].title
+  }
+}, {
+  immediate: true
 })
 
 const allEvents = computed(() => {
