@@ -14,7 +14,7 @@
       <div class="k-action-select">
         <div class="action-item" v-for="item in methodOptions" :key="item.value">
           <span>{{ item.label }}</span>
-          <span class="action">get</span>
+          <span class="action" @click="handleGetAttr(item)">get</span>
         </div>
       </div>
     </div>
@@ -57,8 +57,20 @@ function handleNodeClick (e: any) {
   nodeItem.value = e.record
 }
 
+/**
+ * 获取组件
+ * @param e
+ */
 function handleGetComponent (e: any) {
   monacoEditorRef.value?.insertText(`this.getComponent('${e.id}')`)
+}
+
+/**
+ * 获取组件或者事件
+ * @param e
+ */
+function handleGetAttr (e: any) {
+  monacoEditorRef.value?.insertText(`this.getComponent('${nodeItem.value!.id}').${e.value}()`)
 }
 
 </script>
