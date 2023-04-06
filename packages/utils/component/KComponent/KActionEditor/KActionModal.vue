@@ -13,7 +13,8 @@
             :options="methodOptions" />
           <Button v-if="actionItem.componentId === null" @click="handleAddMethod">自定义函数</Button>
         </div>
-        <MonacoEditor class="editor" :config="MonacoEditorConfig" language="javascript" v-model="script" />
+        <MonacoEditor @vnodeMounted="handeldd" class="editor" :config="MonacoEditorConfig"
+          language="javascript" v-model="script" />
       </div>
     </div>
     <div class="k-modal-footer">
@@ -44,6 +45,10 @@ const MonacoEditorConfig = {
     enabled: false
   }
 }
+
+function handeldd () {
+  console.log(4545)
+}
 const emit = defineEmits(['add'])
 
 const methodOptions = computed(() => {
@@ -61,7 +66,7 @@ let actionItem = reactive<FormDataModel>({
   componentId: null
 })
 
-function handleOpen() {
+function handleOpen () {
   visible.value = true
   actionItem = reactive<FormDataModel>({
     methodName: null,
@@ -69,7 +74,7 @@ function handleOpen() {
   })
 }
 
-function handleSave() {
+function handleSave () {
   if (!actionItem.methodName) {
     alert('请先选择动作方法')
     return
@@ -78,24 +83,24 @@ function handleSave() {
   handleClose()
 }
 
-function handleClose() {
+function handleClose () {
   visible.value = false
   selectedKeys.value = []
 }
 
-function toggleMethod() {
+function toggleMethod () {
   actionItem.componentId = null
   actionItem.methodName = null
   nodeItem.value = null
   selectedKeys.value = []
 }
-function handleNodeClick(e: any) {
+function handleNodeClick (e: any) {
   actionItem.componentId = e.id
   nodeItem.value = e.record
   actionItem.methodName = null
 }
 
-function handleAddMethod() {
+function handleAddMethod () {
 
 }
 

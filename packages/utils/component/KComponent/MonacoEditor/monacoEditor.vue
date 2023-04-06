@@ -81,7 +81,8 @@ onMounted(() => {
     value: props.modelValue,
     language: props.language,
     readOnly: props.readOnly,
-    ...props.config
+    ...props.config,
+    automaticLayout: true
   })
   // 监听值变化
   monacoEditor.onDidChangeModelContent(() => {
