@@ -10,7 +10,7 @@
     </div>
 
     <div class="k-action-editor-main">
-      <div class="k-col-editor-item" v-for="(action, index) in props.events[item.type]?.value" :key="index">
+      <div class="k-editor-item" v-for="(action, index) in props.events[item.type]?.value" :key="index">
         {{ action.componentId && getLabel(action.componentId) }}
         {{ action.methodName }}
         <div class="del-btn">
@@ -22,8 +22,8 @@
 </template>
 <script lang="ts" setup>
 import { PropType, Ref, inject } from 'vue'
-import { findSchemaById } from '../../../index'
-import { NodeItem } from '../../../../types/kDesigner'
+import { findSchemaById } from '../../../../index'
+import { NodeItem } from '../../../../../types/kDesigner'
 
 const props = defineProps({
   modelValue: {
@@ -95,7 +95,7 @@ function getNewEvents (type: string) {
 <style lang="less" scoped>
 @primary-color: #13c2c2;
 
-.k-col-editor-item {
+.k-editor-item {
   display: flex;
   align-items: center;
   padding-top: 6px;

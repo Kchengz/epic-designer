@@ -70,10 +70,37 @@ const emit = defineEmits(['update:modelValue'])
 
 /**
  * 设置文本
- * @param value
+ * @param text
  */
-function setValue (value: string) {
-  monacoEditor?.setValue(value || '')
+function setValue (text: string) {
+  monacoEditor?.setValue(text || '')
+}
+
+/**
+ * 光标处插入文本
+ * @param text
+ */
+function insertText (text: string) {
+  // 获取光标位置
+  const position = monacoEditor?.getPosition()
+  // 未获取到光标位置信息
+  if (!position) {
+    return
+  }
+  // 插入
+  monacoEditor?.executeEdits('', [
+    {
+      range: new monaco.Range(position.lineNumber,
+        position.column,
+        position.lineNumber,
+        position.column),
+      text
+    }
+  ])
+  // 设置新的光标位置
+  monacoEditor?.setPosition({ ...position, column: position.column + text.length })
+  // 重新聚焦
+  monacoEditor?.focus()
 }
 
 onMounted(() => {
@@ -92,7 +119,8 @@ onMounted(() => {
 })
 
 defineExpose({
-  setValue
+  setValue,
+  insertText
 })
 </script>
 <style lang="less" scoped>

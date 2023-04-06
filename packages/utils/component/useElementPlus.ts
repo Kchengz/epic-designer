@@ -29,6 +29,8 @@ export function useElementPlus(pluginManager: PluginManager) {
     const Elment = await import("element-plus");
     pluginManager.component("Modal", Elment.ElDialog);
     pluginManager.component("FormItem", Elment.ElFormItem);
+    pluginManager.component("Tabs", Elment.ElTabs);
+    pluginManager.component("TabPane", Elment.ElTabPane);
     pluginManager.component("Collapse", Elment.ElCollapse);
     pluginManager.component("CollapseItem", Elment.ElCollapseItem);
   })();

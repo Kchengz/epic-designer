@@ -9,9 +9,9 @@
 </template>
 <script lang="ts" setup>
 import { PropType, computed, ref, watch } from 'vue'
-import KActionEditorItem from './KActionEditorItem.vue'
+import KActionEditorItem from './src/KActionEditorItem.vue'
 import { pluginManager } from '../../../index'
-import KActionModal from './KActionModal.vue'
+import KActionModal from './src/KActionModal.vue'
 const Collapse = pluginManager.getComponent('Collapse')
 const CollapseItem = pluginManager.getComponent('CollapseItem')
 
@@ -77,7 +77,7 @@ function handleOpen (type: string) {
  */
 function handleAdd (action: any) {
   const newEvents = getNewEvents(currentType)
-  newEvents[currentType] = [...events[currentType].value, action]
+  newEvents[currentType] = [...events[currentType]?.value, action]
   emit('update:modelValue', newEvents)
 }
 
@@ -88,7 +88,7 @@ function handleAdd (action: any) {
 function getNewEvents (type: string) {
   const newEvents: { [type: string]: any } = {}
   allEvents.value.forEach((item: any) => {
-    if (!events[item.type].value.length) {
+    if (!events[item.type]?.value?.length) {
       return false
     }
     if (item.type === type) {

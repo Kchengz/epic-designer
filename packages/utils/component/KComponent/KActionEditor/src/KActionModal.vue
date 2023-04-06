@@ -1,22 +1,27 @@
 <template>
-  <Modal title="动作配置" v-model:visible="visible" v-model="visible" width="700px" :footer="null">
-    <div class="k-modal-action-main">
-      <div class="k-modal-left-panel">
-        <div class="fun-btn" :class="{ checked: actionItem.componentId === null }" @click="toggleMethod">函数</div>
-        组件
-        <KTree :options="schemas" v-model:selectedKeys="selectedKeys" @node-click="handleNodeClick" />
-      </div>
-      <div class="k-modal-right-panel">
-        <div class="select-box">
-          <span>动作选择</span>
-          <Select class="action-select" v-model="actionItem.methodName" v-model:value="actionItem.methodName"
-            :options="methodOptions" />
-          <Button v-if="actionItem.componentId === null" @click="handleAddMethod">自定义函数</Button>
+  <Modal v-model:visible="visible" v-model="visible" width="850px" :footer="null">
+    <Tabs v-model="activeTab" v-model:activeKey="activeTab">
+      <TabPane title="动作配置" tab="动作配置" key="动作配置" label="动作配置" name="动作配置">
+        <div class="k-modal-action-main">
+          <div class="k-modal-left-panel">
+            <div class="fun-btn" :class="{ checked: actionItem.componentId === null }" @click="toggleMethod">函数</div>
+            组件
+            <KTree :options="schemas" v-model:selectedKeys="selectedKeys" @node-click="handleNodeClick" />
+          </div>
+          <div class="k-modal-right-panel">
+            <div class="select-box">
+              <span>动作选择</span>
+              <Select class="action-select" v-model="actionItem.methodName" v-model:value="actionItem.methodName"
+                :options="methodOptions" />
+              <Button v-if="actionItem.componentId === null" @click="handleAddMethod">编辑函数</Button>
+            </div>
+          </div>
         </div>
-        <MonacoEditor @vnodeMounted="handeldd" class="editor" :config="MonacoEditorConfig"
-          language="javascript" v-model="script" />
-      </div>
-    </div>
+      </TabPane>
+      <TabPane title="脚本编辑" tab="脚本编辑" key="脚本编辑" label="脚本编辑" name="脚本编辑">
+        <KScriptEdit />
+      </TabPane>
+    </Tabs>
     <div class="k-modal-footer">
       <Button @click="handleClose">取消</Button>
       <Button type="primary" @click="handleSave">保存</Button>
@@ -24,31 +29,23 @@
   </Modal>
 </template>
 <script lang="ts" setup>
-import { pluginManager, PageManager } from '../../../index'
+import { pluginManager, PageManager } from '../../../../index'
 import { ref, Ref, inject, toRaw, reactive, computed } from 'vue'
-import KTree from '../../../../components/KTree'
-import { NodeItem, FormDataModel } from '../../../../types/kDesigner'
+import KTree from '../../../../../components/KTree'
+import KScriptEdit from './KScriptEdit.vue'
+import { NodeItem, FormDataModel } from '../../../../../types/kDesigner'
 const Modal = pluginManager.getComponent('Modal')
 const Select = pluginManager.getComponent('select')
 const Button = pluginManager.getComponent('button')
-const MonacoEditor = pluginManager.getComponent('monacoEditor')
+const Tabs = pluginManager.getComponent('Tabs')
+const TabPane = pluginManager.getComponent('TabPane')
 const schemas = inject('schemas') as Ref<NodeItem[]>
-const script = inject('script') as Ref<string>
 const pageManager = inject('pageManager', {}) as PageManager
 const visible = ref(false)
 const selectedKeys = ref([])
 const nodeItem = ref<NodeItem | null>(null)
-const MonacoEditorConfig = {
-  theme: 'vs-light',
-  selectOnLineNumbers: true,
-  minimap: {
-    enabled: false
-  }
-}
+const activeTab = ref('动作配置')
 
-function handeldd () {
-  console.log(4545)
-}
 const emit = defineEmits(['add'])
 
 const methodOptions = computed(() => {
@@ -101,7 +98,7 @@ function handleNodeClick (e: any) {
 }
 
 function handleAddMethod () {
-
+  activeTab.value = '脚本编辑'
 }
 
 defineExpose({

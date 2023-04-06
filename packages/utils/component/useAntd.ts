@@ -33,7 +33,8 @@ export function useAntd(pluginManager: PluginManager) {
   );
   pluginManager.component("Collapse", () => import("ant-design-vue/lib/collapse"));
   pluginManager.component("CollapseItem", () => import("ant-design-vue/lib/collapse/CollapsePanel"));
-
+  pluginManager.component("Tabs", () => import("ant-design-vue/lib/tabs"));
+  pluginManager.component("TabPane", async() => (await import("ant-design-vue/lib/tabs")).TabPane);
 
   const componentArray = [
     KForm,
