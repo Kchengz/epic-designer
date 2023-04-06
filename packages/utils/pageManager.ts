@@ -33,7 +33,6 @@ export function usePageManager(): PageManager {
    * @returns
    */
   function addComponentInstance(id: string, instance: any) {
-    console.log(instance);
     return (componentInstances.value[id] = instance);
   }
 
@@ -42,10 +41,10 @@ export function usePageManager(): PageManager {
    * @param scriptStr
    */
   function setMethods(scriptStr: string) {
-    const customFuncs = new Function(
-      `const page = {};${scriptStr}; return page;`
+    const {methods} = new Function(
+      `${scriptStr}; return this;`
     ).bind({ getComponent: getComponentInstance })();
-    funcs.value = customFuncs;
+    funcs.value = methods;
   }
 
   /**

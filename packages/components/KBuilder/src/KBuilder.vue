@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KNode from '../../KNode/'
-import { reactive, provide, ref, useSlots, nextTick } from 'vue'
+import { reactive, provide, ref, watch, useSlots, nextTick } from 'vue'
 import { NodeItem, FormDataModel } from '../../../types/kDesigner'
 import { loadAsyncComponent, usePageManager } from '../../../utils/index'
 const KAsyncLoading = loadAsyncComponent(() => import('../../KAsyncLoading/KAsyncLoading.vue'))
@@ -31,12 +31,22 @@ provide('formData', formData)
 provide('slots', slots)
 provide('pageManager', pageManager)
 provide('forms', forms)
+
 const props = defineProps({
   schemas: {
     type: Array as PropType<NodeItem[]>
+  },
+  script: {
+    type: String,
+    default: ''
   }
 })
 
+watch(() => props.script, e => {
+  pageManager.setMethods(e)
+}, {
+  immediate: true
+})
 /**
  * 获取表单数据
  * @param formName 表单name

@@ -46,7 +46,13 @@ const formData = reactive<FormDataModel>({})
 watch(() => script.value, e => {
   pageManager.setMethods(e)
 })
-script.value = 'page.test=()=>{console.log(this)}'
+script.value =
+`// 需要暴露可选择的函数，请放到methods中
+this.methods = {
+    test() {
+        console.log(this)
+    }
+}`
 
 provide('schemas', schemas)
 provide('script', script)
