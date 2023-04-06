@@ -35,7 +35,6 @@
 <script lang="ts" setup>
 import { shallowRef, ref, inject, computed, reactive, PropType, Slots, watch, h } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager } from '../../../utils/index'
-// import { ActionModel } from '../../../utils/pageManager'
 
 import { FormDataModel, NodeItem } from '../../../types/kDesigner'
 
