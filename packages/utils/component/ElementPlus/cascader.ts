@@ -59,5 +59,21 @@ export default {
         field: "componentProps.disabled",
       },
     ],
+    event: [
+      {
+        type: "change",
+        describe: "选中节点变化时",
+      },
+      {
+        type: "close",
+        describe: "面板的关闭事件",
+      },
+    ],
+    action: [
+      {
+        type: "getCheckedNodes",
+        describe: "获取当前选中节点",
+      },
+    ],
   },
 } as ComponentConfigModel;

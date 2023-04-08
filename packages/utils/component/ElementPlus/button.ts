@@ -73,5 +73,11 @@ export default {
         field: "componentProps.disabled",
       },
     ],
+    event: [
+      {
+        type: "click",
+        describe: "点击按钮时",
+      }
+    ],
   },
 } as ComponentConfigModel;
