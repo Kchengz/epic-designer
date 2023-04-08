@@ -29,10 +29,7 @@ const componentStyles: NodeItem[] = [
   {
     label: '宽度',
     type: 'k-input-size',
-    field: 'componentProps.style.width',
-    componentProps: {
-      suffix: 'px'
-    }
+    field: 'componentProps.style.width'
   },
   {
     label: '高度',

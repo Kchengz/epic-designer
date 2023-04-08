@@ -1,8 +1,15 @@
 <template>
-  <Input v-model="size" clearable type="number" min="0" @input="handleUpdate">
+  <Input v-model="size" v-model:value="size" type="number" min="0" @input="handleUpdate">
+  <!-- elment ui slot start -->
   <template #append>
     <Select v-model="unit" style="width: 68px" @change="handleUpdate" :options="unitArray"></Select>
   </template>
+  <!-- elment ui slot end -->
+  <!-- antd ui slot start -->
+  <template #addonAfter>
+    <Select v-model:value="unit" style="width: 68px" @change="handleUpdate" :options="unitArray"></Select>
+  </template>
+  <!-- antd ui slot end -->
   </Input>
 </template>
 <script lang="ts" setup>
@@ -37,7 +44,6 @@ watch(() => props.modelValue, e => {
   }
   size.value = String(num)
   unit.value = e.substring(size.value.length)
-  console.log(unit.value)
 }, {
   immediate: true
 })
