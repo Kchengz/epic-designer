@@ -15,6 +15,9 @@
       <Button @click="handlePreview" size="small">
         <span class="iconfont icon-yulan" style="margin-right:6px"></span>
         预览</Button>
+        <Button @click="handleSave" size="small">
+        <span class="iconfont icon-yulan" style="margin-right:6px"></span>
+        保存</Button>
     </div>
     <KPreview ref="preview" />
 
@@ -27,11 +30,12 @@ import { pluginManager, revoke, getUUID } from '../../../../../utils/index'
 import { NodeItem, Designer } from '../../../../../types/kDesigner'
 const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
-
+const emit = defineEmits(['save'])
 const Button = pluginManager.getComponent('button')
 const preview = ref<any>(null)
 const recordList = revoke.recordList
 const undoList = revoke.undoList
+
 function handlePreview () {
   preview.value.handleOpen()
 }
@@ -56,5 +60,12 @@ function handleRedo () {
   record[0].id = getUUID()
   schemas.value = record
   designer.setCheckedNode(record[0])
+}
+
+/**
+ * 触发保存操作
+ */
+function handleSave () {
+  emit('save')
 }
 </script>

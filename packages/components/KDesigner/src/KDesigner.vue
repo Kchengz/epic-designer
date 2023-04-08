@@ -2,7 +2,7 @@
   <Suspense @resolve="handleReady">
     <template #default>
       <div class="k-designer-main">
-        <KHeader />
+        <KHeader @save="handleSave" />
         <div class="k-split-view-container">
           <!-- <ALoading /> -->
           <KActionBar />
@@ -31,7 +31,7 @@ const KRightSidebar = loadAsyncComponent(() => import('./modules/KRightSidebar/K
 const KFooter = loadAsyncComponent(() => import('./modules/KFooter/KFooter.vue'))
 const KAsyncLoading = loadAsyncComponent(() => import('../../KAsyncLoading/KAsyncLoading.vue'))
 const pageManager = usePageManager()
-const emit = defineEmits(['ready'])
+const emit = defineEmits(['ready', 'save'])
 
 const state = reactive<DesignerState>({
   checkedNode: null,
@@ -121,6 +121,13 @@ function handleReady () {
  */
 async function setDisableHover (disableHover = false) {
   state.disableHover = disableHover
+}
+
+/**
+ * 保存数据
+ */
+function handleSave () {
+  emit('save', { schemas: schemas.value, script: script.value })
 }
 
 init()
