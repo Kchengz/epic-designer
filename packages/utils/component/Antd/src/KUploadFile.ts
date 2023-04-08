@@ -1,7 +1,10 @@
 import { defineComponent, h, PropType, computed, ref, watch } from "vue";
+import { loadAsyncComponent } from "../../../../utils/index";
 import Upload from "ant-design-vue/lib/upload";
-import Button from "ant-design-vue/lib/button";
 import message from "ant-design-vue/lib/message";
+const Button = loadAsyncComponent(
+  async () => (await import("ant-design-vue/lib/button")).default
+);
 // import type { UploadChangeParam } from "ant-design-vue";
 import type {
   UploadChangeParam,
