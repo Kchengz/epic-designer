@@ -1,6 +1,7 @@
 import { ComponentConfigModel } from "../../pluginManager";
+import KSelect from './src/KSelect'
 export default {
-  component: () => import("./src/KSelect"),
+  component: KSelect,
   defaultSchema: {
     label: "选择框",
     type: "select",

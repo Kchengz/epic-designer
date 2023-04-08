@@ -23,7 +23,7 @@
       </TabPane>
     </Tabs>
     <div class="k-modal-footer">
-      <Button @click="handleClose">取消</Button>
+      <Button @click="handleClose">关闭</Button>
       <Button type="primary" @click="handleSave">保存</Button>
     </div>
   </Modal>

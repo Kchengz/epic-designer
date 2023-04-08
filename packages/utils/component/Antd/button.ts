@@ -1,6 +1,6 @@
 import { ComponentConfigModel } from '../../pluginManager'
 export default {
-  component: () => import("./src/KButton"),
+  component: () => import("./src/KButton.vue"),
   defaultSchema: {
     label: "按钮",
     type: "button",

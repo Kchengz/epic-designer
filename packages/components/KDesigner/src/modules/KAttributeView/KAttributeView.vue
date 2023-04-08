@@ -1,19 +1,18 @@
 <template>
   <aside class="k-attribute-view">
-    <div v-if="checkedNode">
-      <div :key="item.field! + checkedNode.id" v-for="item in componentAttributes">
+    <div>
+      <div :key="item.field! + checkedNode?.id" v-for="item in componentAttributes">
         <div v-show="isShow(item)" class="attr-item">
           <div class="attr-label" :title="item.label">
             {{ item.label }}
           </div>
           <div class="attr-input">
             <KNode
-              :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode.componentProps : {}), show: true, hidden: false } }"
+              :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), show: true, hidden: false } }"
               :model-value="getAttrValue(item.field!)" @update:model-value="setAttrValue($event, item.field!)" />
           </div>
         </div>
       </div>
-
     </div>
   </aside>
 </template>
@@ -42,7 +41,11 @@ function isShow (item: NodeItem) {
 }
 
 const componentAttributes = computed(() => {
-  return componentConfings[designer.state.checkedNode?.type ?? '']?.config.attribute ?? []
+  const type = designer.state.checkedNode?.type
+  if (!type) {
+    return []
+  }
+  return componentConfings[type]?.config.attribute ?? []
 })
 
 function getAttrValue (field: string) {

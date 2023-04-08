@@ -1,7 +1,9 @@
 import { ComponentConfigModel } from "../../pluginManager";
+import KForm from './src/KForm.vue'
 
 export default {
-  component: () => import("./src/KForm.vue"),
+  // component: () => import("./src/KForm.vue"),
+  component: KForm,
   defaultSchema: {
     id: "组件Id",
     label: "表单",

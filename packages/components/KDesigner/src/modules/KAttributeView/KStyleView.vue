@@ -8,12 +8,11 @@
           </div>
           <div class="attr-input">
             <KNode
-              :record="{ ...item, show: true, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode.componentProps : {}) } }"
+              :record="{ ...item, componentProps: { ...item.componentProps, show: true } }"
               :model-value="getAttrValue(item.field!)" @update:model-value="setAttrValue($event, item.field!)" />
           </div>
         </div>
       </div>
-
     </div>
   </aside>
 </template>

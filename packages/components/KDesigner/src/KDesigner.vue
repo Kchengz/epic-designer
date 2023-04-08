@@ -47,7 +47,7 @@ watch(() => script.value, e => {
   pageManager.setMethods(e)
 })
 script.value =
-`// 需要暴露可选择的函数，请放到methods中
+`// 需要暴露的函数，请放到methods中
 this.methods = {
     test() {
         console.log(this)
