@@ -88,6 +88,11 @@ export default {
         type: "k-col-editor",
         field: "children",
       },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
+      },
     ],
   },
 } as ComponentConfigModel;

@@ -31,6 +31,11 @@ export default {
         type: "k-tab-pane-editor",
         field: "children",
       },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
+      },
     ],
   },
 } as ComponentConfigModel;

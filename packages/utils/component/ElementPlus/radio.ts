@@ -37,6 +37,16 @@ export default {
         type: "input",
         field: "label",
       },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
+      },
+      {
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled",
+      },
     ],
   },
 } as ComponentConfigModel;

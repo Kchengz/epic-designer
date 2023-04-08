@@ -40,6 +40,11 @@ export default {
         type: "switch",
         field: "componentProps.hidden",
       },
+      {
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled",
+      },
     ],
   },
 } as ComponentConfigModel;

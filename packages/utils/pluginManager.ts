@@ -61,7 +61,7 @@ export class PluginManager {
   schemaGroup: SchemaGroupItem[] = [
     {
       title: "基础组件",
-      list: ["input", "test", "textarea"],
+      list: ["input"],
     },
   ];
   viewsContainers: ViewsContainersModel = {

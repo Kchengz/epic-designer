@@ -58,14 +58,19 @@ export default {
         field: "componentProps.type",
       },
       {
+        label: "可清空",
+        type: "switch",
+        field: "componentProps.clearable",
+      },
+      {
         label: "隐藏",
         type: "switch",
         field: "componentProps.hidden",
       },
       {
-        label: "可清空",
+        label: "禁用",
         type: "switch",
-        field: "componentProps.clearable",
+        field: "componentProps.disabled",
       },
     ],
     event: [

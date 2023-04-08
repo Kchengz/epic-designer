@@ -45,9 +45,19 @@ export default {
         field: "componentProps.placeholder",
       },
       {
+        label: "可清空",
+        type: "switch",
+        field: "componentProps.clearable",
+      },
+      {
         label: "隐藏",
-        type: "input",
+        type: "switch",
         field: "componentProps.hidden",
+      },
+      {
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled",
       },
     ],
   },
