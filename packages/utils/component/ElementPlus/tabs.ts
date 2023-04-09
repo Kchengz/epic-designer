@@ -37,5 +37,26 @@ export default {
         field: "componentProps.hidden",
       },
     ],
+    event: [
+      {
+        type: "tabClick",
+        describe: "tab 被选中时触发",
+      },
+      {
+        type: "tabChange",
+        describe: "activeName 改变时触发",
+      },
+      {
+        type: "tabRemove",
+        describe: "点击 tab 新增按钮时触发",
+      },
+      {
+        type: "tabAdd",
+        describe: "点击 tab 新增按钮时触发",
+      },
+    ],
+    action: [
+
+    ],
   },
 } as ComponentConfigModel;

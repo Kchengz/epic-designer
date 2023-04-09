@@ -36,5 +36,15 @@ export default {
         field: "componentProps.disabled",
       },
     ],
+    event: [
+      {
+        type: "input",
+        describe: "拖拽实时触发",
+      },
+      {
+        type: "change",
+        describe: "拖拽结束改变值时",
+      },
+    ],
   },
 } as ComponentConfigModel;

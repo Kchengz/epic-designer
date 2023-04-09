@@ -93,8 +93,20 @@ export default {
     ],
     action: [
       {
+        type: "focus",
+        describe: "使 input 获取焦点",
+      },
+      {
+        type: "blur",
+        describe: "使 input 失去焦点",
+      },
+      {
+        type: "clear",
+        describe: "清除 input 值",
+      },
+      {
         type: "select",
-        describe: "选中文字",
+        describe: "选中 input 中的文字",
       },
     ],
   },

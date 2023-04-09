@@ -39,5 +39,13 @@ export default {
         field: "componentProps.disabled",
       },
     ],
+    event: [
+      {
+        type: "change",
+        describe: "值变化时",
+      },
+    ],
+    action: [
+    ],
   },
 } as ComponentConfigModel;
