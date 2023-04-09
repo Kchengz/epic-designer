@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: () => import("ant-design-vue/lib/input"),
   defaultSchema: {
@@ -51,8 +51,7 @@ export default {
         label: "显示",
         type: "switch",
         field: "show",
-        componentProps: {
-        }
+        componentProps: {},
       },
       {
         label: "禁用",
@@ -70,6 +69,10 @@ export default {
         describe: "值修改",
       },
       {
+        type: "pressEnter",
+        describe: "按下回车的回调",
+      },
+      {
         type: "focus",
         describe: "获取焦点",
       },
@@ -80,8 +83,16 @@ export default {
     ],
     action: [
       {
+        type: "focus",
+        describe: "使 input 获取焦点",
+      },
+      {
+        type: "blur",
+        describe: "使 input 失去焦点",
+      },
+      {
         type: "select",
-        describe: "选中文字",
+        describe: "选中 input 中的文字",
       },
     ],
   },

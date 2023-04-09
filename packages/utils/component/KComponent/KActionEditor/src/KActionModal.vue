@@ -71,6 +71,7 @@ function handleOpen () {
   nextTick(() => {
     state.actionItem.methodName = null
     state.actionItem.componentId = null
+    nodeItem.value = null
   })
 }
 

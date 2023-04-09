@@ -12,7 +12,7 @@ export default {
   config: {
     attribute: [
       {
-        label: "name",
+        label: "页面名称",
         type: "input",
         field: "name",
       },

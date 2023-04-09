@@ -31,10 +31,19 @@ export function useAntd(pluginManager: PluginManager) {
     "FormItem",
     () => import("ant-design-vue/lib/form/FormItem")
   );
-  pluginManager.component("Collapse", () => import("ant-design-vue/lib/collapse"));
-  pluginManager.component("CollapseItem", () => import("ant-design-vue/lib/collapse/CollapsePanel"));
+  pluginManager.component(
+    "Collapse",
+    () => import("ant-design-vue/lib/collapse")
+  );
+  pluginManager.component(
+    "CollapseItem",
+    () => import("ant-design-vue/lib/collapse/CollapsePanel")
+  );
   pluginManager.component("Tabs", () => import("ant-design-vue/lib/tabs"));
-  pluginManager.component("TabPane", async() => (await import("ant-design-vue/lib/tabs")).TabPane);
+  pluginManager.component(
+    "TabPane",
+    async () => (await import("ant-design-vue/lib/tabs")).TabPane
+  );
 
   const componentArray = [
     KForm,
@@ -87,7 +96,11 @@ export function useAntd(pluginManager: PluginManager) {
     },
     {
       title: "布局组件",
-      list: ["card", "row", "tabs"],
+      list: [
+        "card",
+        "row",
+        // "tabs"
+      ],
     },
   ]);
 }

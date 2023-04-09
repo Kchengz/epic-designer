@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { ComponentConfigModel } from "../../pluginManager";
 export default {
   component: () => import("ant-design-vue/lib/select"),
   defaultSchema: {
@@ -36,6 +36,34 @@ export default {
         label: "默认值",
         type: "select",
         field: "componentProps.defaultValue",
+      },
+    ],
+    event: [
+      {
+        type: "change",
+        describe: "值修改",
+      },
+      {
+        type: "focus",
+        describe: "获取焦点",
+      },
+      {
+        type: "blur",
+        describe: "失去焦点",
+      },
+    ],
+    action: [
+      {
+        type: "focus",
+        describe: "使 input 获取焦点",
+      },
+      {
+        type: "blur",
+        describe: "使 input 失去焦点",
+      },
+      {
+        type: "select",
+        describe: "选中 input 中的文字",
       },
     ],
   },
