@@ -4,16 +4,17 @@
       <TabPane title="动作配置" tab="动作配置" key="动作配置" label="动作配置" name="动作配置">
         <div class="k-modal-action-main">
           <div class="k-modal-left-panel">
-            <div class="fun-btn" :class="{ checked: actionItem.componentId === null }" @click="toggleMethod">函数</div>
+            <div class="fun-btn" :class="{ checked: state.actionItem.componentId === null }" @click="toggleMethod">函数
+            </div>
             组件
             <KTree :options="schemas" v-model:selectedKeys="selectedKeys" @node-click="handleNodeClick" />
           </div>
           <div class="k-modal-right-panel">
             <div class="select-box">
               <span>动作选择</span>
-              <Select class="action-select" v-model="actionItem.methodName" v-model:value="actionItem.methodName"
-                :options="methodOptions" />
-              <Button v-if="actionItem.componentId === null" @click="handleAddMethod">编辑函数</Button>
+              <Select class="action-select" v-model="state.actionItem.methodName"
+                v-model:value="state.actionItem.methodName" placeholder="请选择动作" :options="methodOptions" />
+              <Button v-if="state.actionItem.componentId === null" @click="handleAddMethod">编辑函数</Button>
             </div>
           </div>
         </div>
@@ -24,13 +25,13 @@
     </Tabs>
     <div class="k-modal-footer">
       <Button @click="handleClose">关闭</Button>
-      <Button type="primary" @click="handleSave">保存</Button>
+      <Button type="primary" :disabled="!state.actionItem.methodName" @click="handleSave">保存</Button>
     </div>
   </Modal>
 </template>
 <script lang="ts" setup>
-import { pluginManager, PageManager } from '../../../../index'
-import { ref, Ref, inject, toRaw, reactive, computed } from 'vue'
+import { pluginManager, PageManager, deepClone } from '../../../../index'
+import { ref, Ref, inject, toRaw, reactive, computed, nextTick } from 'vue'
 import KTree from '../../../../../components/KTree'
 import KScriptEdit from './KScriptEdit.vue'
 import { NodeItem, FormDataModel } from '../../../../../types/kDesigner'
@@ -58,25 +59,27 @@ const methodOptions = computed(() => {
     .map(([label]) => ({ label, value: label }))
 })
 
-let actionItem = reactive<FormDataModel>({
-  methodName: null,
-  componentId: null
+const state = reactive({
+  actionItem: {
+    methodName: null,
+    componentId: null
+  } as FormDataModel
 })
 
 function handleOpen () {
   visible.value = true
-  actionItem = reactive<FormDataModel>({
-    methodName: null,
-    componentId: null
+  nextTick(() => {
+    state.actionItem.methodName = null
+    state.actionItem.componentId = null
   })
 }
 
 function handleSave () {
-  if (!actionItem.methodName) {
+  if (!state.actionItem.methodName) {
     alert('请先选择动作方法')
     return
   }
-  emit('add', toRaw(actionItem))
+  emit('add', deepClone(toRaw(state.actionItem)))
   handleClose()
 }
 
@@ -86,15 +89,15 @@ function handleClose () {
 }
 
 function toggleMethod () {
-  actionItem.componentId = null
-  actionItem.methodName = null
+  state.actionItem.componentId = null
+  state.actionItem.methodName = null
   nodeItem.value = null
   selectedKeys.value = []
 }
 function handleNodeClick (e: any) {
-  actionItem.componentId = e.id
+  state.actionItem.componentId = e.id
   nodeItem.value = e.record
-  actionItem.methodName = null
+  state.actionItem.methodName = null
 }
 
 function handleAddMethod () {
