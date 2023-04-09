@@ -92,9 +92,13 @@ import { KDesigner } from 'k-designer';
 
 
 
+## 组件
 
+- 设计器  k-designer
 
-设计器  k-designer
+> 设计器（基于可视化操作快速设计出页面，生成配置json）
 
-生成器 k-builder
+- 生成器 k-builder
+
+> 构建器（根据设计器中获取的配置json数据，快速构建出页面）
 
