@@ -10,8 +10,8 @@ k-designer将不仅仅局限于设计表单，它或许把做一些页面组件�
 
 所以在vue3版本中 k-form-design 改名 k-designer
 
-- [github]([Kchengz/k-designer: vue3 表单设计器 (github.com)](https://github.com/Kchengz/k-designer))
-- [gitee]([k-designer: vue3 版本的k-form-design (gitee.com)](https://gitee.com/kcz66/k-designer))
+- [github](https://github.com/Kchengz/k-designer)
+- [码云 gitee](https://gitee.com/kcz66/k-designer)
 
 #### 功能
 
@@ -105,3 +105,11 @@ import { KDesigner } from 'k-designer';
 
 > 构建器（根据设计器中获取的配置json数据，快速构建出页面）
 
+
+
+## 交流
+点击链接加入qq群聊
+
+- [【k-designer交流群：747609683】](https://jq.qq.com/?_wv=1027&k=CtrM9ce2)
+
+  
