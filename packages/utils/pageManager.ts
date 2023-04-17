@@ -41,10 +41,20 @@ export function usePageManager(): PageManager {
    * @param scriptStr
    */
   function setMethods(scriptStr: string) {
-    const {methods} = new Function(
-      `${scriptStr}; return this;`
-    ).bind({ getComponent: getComponentInstance })();
-    funcs.value = methods;
+    new Function(`${scriptStr}`).bind({
+      getComponent: getComponentInstance,
+      defineExpose,
+    })();
+  }
+
+  /**
+   *  存储自定义脚本暴露的函数及属性
+   * @param exposed
+   */
+  function defineExpose(exposed?: Record<string, any> | undefined) {
+    if (exposed) {
+      funcs.value = exposed;
+    }
   }
 
   /**

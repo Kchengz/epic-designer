@@ -62,7 +62,7 @@ function handleNodeClick (e: any) {
  * @param e
  */
 function handleGetComponent (e: any) {
-  monacoEditorRef.value?.insertText(`this.getComponent('${e.id}')`)
+  monacoEditorRef.value?.insertText(`getComponent('${e.id}')`)
 }
 
 /**
@@ -70,7 +70,7 @@ function handleGetComponent (e: any) {
  * @param e
  */
 function handleGetAttr (e: any) {
-  monacoEditorRef.value?.insertText(`this.getComponent('${nodeItem.value!.id}').${e.value}()`)
+  monacoEditorRef.value?.insertText(`getComponent('${nodeItem.value!.id}').${e.value}()`)
 }
 
 </script>

@@ -47,12 +47,16 @@ watch(() => script.value, e => {
   pageManager.setMethods(e)
 })
 script.value =
-`// 需要暴露的函数，请放到methods中
-this.methods = {
-    test() {
-        console.log(this)
-    }
-}`
+`const { defineExpose, getComponent } = this;
+
+function test (){
+    console.log('test')
+}
+
+// 通过defineExpose暴露的函数或者属性
+defineExpose({
+ test 
+})`
 
 provide('schemas', schemas)
 provide('script', script)
