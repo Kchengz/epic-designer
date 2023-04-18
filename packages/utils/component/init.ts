@@ -11,6 +11,7 @@ export function initComponent(pluginManager: PluginManager) {
   pluginManager.component("k-input-size", KInputSize);
   pluginManager.component("k-col-editor", KColEditor);
   pluginManager.component("k-action-editor", KActionEditor);
+  pluginManager.component("k-rule-editor", ()=>import("./KComponent/KRuleEditor/KRuleEditor.vue"));
 
   // 左侧菜单初始化
   pluginManager.registerActivitybar({

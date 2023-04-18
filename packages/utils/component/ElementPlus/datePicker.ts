@@ -78,6 +78,13 @@ export default {
         type: "switch",
         field: "componentProps.disabled",
       },
+      {
+        label: "表单校验",
+        type: "k-rule-editor",
+        layout: 'vertical',
+        field: "rules",
+        describe: "校验规则需要配合表单使用",
+      },
     ],
     event: [
       {

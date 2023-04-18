@@ -48,37 +48,33 @@ watch(() => props.script, e => {
   immediate: true
 })
 /**
- * 获取表单数据
+ * 跳过验证直接获取表单数据
  * @param formName 表单name
  */
 async function getData (formName = 'default'): Promise<FormDataModel | boolean> {
-  // validateFields
-  // console.log(forms.value, 45454)
   const form = forms.value?.[formName]
-  // 不存在改表单时
+  // 通过表单查询不到表单实例
   if (!form) {
     console.error(`表单 [name=${formName}] 不存在`)
     return false
   }
-  await form?.validateFields()
+
   return formData
 }
 
 /**
- * 验证表单数据
+ * 验证并获取数据
  * @param formName 表单name
  */
-async function validateFields (formName = 'default'): Promise<FormDataModel | boolean> {
-  // validateFields
-  // console.log(forms.value, 45454)
-  // console.log(forms.value?.[formName])
+async function validate (formName = 'default'): Promise<FormDataModel | boolean> {
   const form = forms.value?.[formName]
-  // 不存在改表单时
+  // 通过表单查询不到表单实例
   if (!form) {
     console.error(`表单 [name=${formName}] 不存在`)
     return false
   }
-  return form?.validateFields()
+  await form?.validate()
+  return formData
 }
 
 /**
@@ -86,7 +82,7 @@ async function validateFields (formName = 'default'): Promise<FormDataModel | bo
  * @param data
  */
 function setData (data: FormDataModel) {
-  // validateFields
+  // validate
   Object.assign(formData, data)
 }
 
@@ -103,6 +99,6 @@ function handleReady () {
 defineExpose({
   getData,
   setData,
-  validateFields
+  validate
 })
 </script>

@@ -2,7 +2,7 @@
   <aside class="k-attribute-view">
     <div>
       <div :key="item.field! + checkedNode?.id" v-for="item in componentAttributes">
-        <div v-show="isShow(item)" class="attr-item">
+        <div v-show="isShow(item)" class="attr-item" :class="item.layout">
           <div class="attr-label" :title="item.label">
             {{ item.label }}
           </div>

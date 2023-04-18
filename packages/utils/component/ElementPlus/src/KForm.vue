@@ -1,10 +1,10 @@
 <template>
   <div v-if="visible" class="form-main" style="height: 100%;">
-    <component :is="ElForm" ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%;">
+    <ElForm ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%;">
       <slot name="edit-node">
         <slot name="node" :record="item" v-for="item in children"></slot>
       </slot>
-    </component>
+    </ElForm>
   </div>
 </template>
 <script lang="ts" setup>
@@ -15,7 +15,6 @@ const form = ref<any | undefined>()
 const forms = inject('forms', {}) as any
 
 const visible = ref(true)
-
 const props = defineProps({
   record: {
     type: Object as any,
@@ -27,7 +26,6 @@ const props = defineProps({
 onMounted(async () => {
   if (props.record.type === 'form' && forms.value) {
     const name = props.record.name ?? 'default'
-    form.value.validateFields = form.value.validate
     forms.value[name] = form
     return false
   }

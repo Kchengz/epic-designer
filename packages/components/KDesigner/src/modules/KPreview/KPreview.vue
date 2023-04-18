@@ -28,7 +28,7 @@ function handleOpen () {
 }
 
 async function handleOk () {
-  const values = await kb.value.getData()
+  const values = await kb.value.validate()
   console.log('表单结果为：', values)
 }
 
