@@ -1,3 +1,4 @@
+import { FormItemRule } from '../utils/component/KComponent/KRuleEditor/types'
 export interface RenderCallbackParams {
   values: { [propName: string]: any };
 }
@@ -9,7 +10,7 @@ export interface NodeItem {
   slotName?: string;
   componentProps?: any;
   id?: string;
-  rules?: any;
+  rules?: FormItemRule[];
   labelCol?: any;
   wrapperCol?: any;
   children?: NodeItem[];

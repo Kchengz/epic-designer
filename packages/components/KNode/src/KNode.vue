@@ -1,6 +1,6 @@
 <template>
-  <FormItem v-if="props.record.isInput && component && show"
-    v-bind="{ ...record, rules: show ? record.rules : [] }" :name="props.record.field" :prop="props.record.field">
+  <FormItem v-if="props.record.isInput && component && show" v-bind="getFormItemProps" :name="props.record.field"
+    :prop="props.record.field">
     <component :is="component" ref="componentInstance"
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 递归组件 start -->
@@ -87,6 +87,16 @@ const show = computed(() => {
   }
 
   return props.record.show?.({ values: formData }) ?? true
+})
+
+const getFormItemProps = computed(() => {
+  return {
+    ...props.record,
+    rules: show.value && props.record.rules?.map(item => ({
+      ...item,
+      validator: item.validator && pageManager.funcs.value[item.validator]
+    }))
+  }
 })
 
 /**

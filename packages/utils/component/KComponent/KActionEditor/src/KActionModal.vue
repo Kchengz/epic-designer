@@ -53,7 +53,7 @@ const methodOptions = computed(() => {
   if (nodeItem.value) {
     return pluginManager.getComponentConfings()[nodeItem.value!.type].config.action?.map(item => ({ label: item.describe, value: item.type }))
   }
-  ;
+
   return Object.entries(pageManager.funcs.value)
     .filter(([key, value]) => typeof value === 'function')
     .map(([label]) => ({ label, value: label }))

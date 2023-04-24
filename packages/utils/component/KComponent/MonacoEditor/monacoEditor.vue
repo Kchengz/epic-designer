@@ -126,7 +126,7 @@ defineExpose({
 <style lang="less" scoped>
 .code-editor {
   width: 100%;
-  min-height: 200px;
+  min-height: 150px;
 
   :deep(.monaco-editor) {
     height: 100%;
