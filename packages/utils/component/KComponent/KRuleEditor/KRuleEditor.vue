@@ -1,31 +1,15 @@
 <template>
   <div>
-    <div class="flex">
-      <div class="attr-label">
-        必填项
+    <template v-for="(record, index) in requiredRuleSchemas" :key="index">
+      <div class="flex" v-if="record.show ? record.show() : true">
+        <div class="attr-label">
+          {{ record.label }}
+        </div>
+        <div class="attr-value">
+          <KNode :record="record" v-model="requiredRule[record.model]" @change="handleUpdate" />
+        </div>
       </div>
-      <div class="attr-value">
-        <Switch v-model="requiredRule.required" @change="handleUpdate" />
-      </div>
-    </div>
-    <div class="flex" v-show="requiredRule.required">
-      <div class="attr-label">
-        校验时机
-      </div>
-      <div class="attr-value">
-        <Select mode="multiple" multiple v-model="requiredRule.trigger" :options="triggerOptions" placeholder="校验时机" />
-      </div>
-    </div>
-
-    <div class="flex" v-show="requiredRule.required">
-      <div class="attr-label">
-        提示信息
-      </div>
-      <div class="attr-value">
-        <Input v-model="requiredRule.message" placeholder="必填校验提示信息" @change="handleUpdate" />
-      </div>
-    </div>
-
+    </template>
     <KRuleItem v-for="(item, index) in rules" v-model:rule="rules[index]" @change="handleUpdate" :key="index" />
     <Button @click="handleAdd">添加</Button>
   </div>
@@ -35,10 +19,8 @@ import { pluginManager, deepClone } from '../../../index'
 import { ref, watch, PropType } from 'vue'
 import { FormItemRule } from './types'
 import KRuleItem from './KRuleItem.vue'
-const Input = pluginManager.getComponent('input')
-const Switch = pluginManager.getComponent('switch')
+import KNode from '../../../../components/KNode/index'
 const Button = pluginManager.getComponent('button')
-const Select = pluginManager.getComponent('select')
 const props = defineProps({
   modelValue: {
     type: Array as PropType<FormItemRule[] | undefined>,
@@ -52,7 +34,27 @@ const requiredRule = ref<FormItemRule>({
 })
 
 const triggerOptions = [{ label: 'change', value: 'change' }, { label: 'blur', value: 'blur' }]
-
+const requiredRuleSchemas = [
+  {
+    type: 'switch',
+    label: '必填项',
+    model: 'required'
+  },
+  {
+    type: 'select',
+    label: '校验时机',
+    model: 'trigger',
+    show () { return Boolean(requiredRule.value.required) },
+    componentProps: { options: triggerOptions, placeholder: '校验时机', multiple: true, mode: 'multiple' }
+  },
+  {
+    type: 'input',
+    label: '校验信息',
+    model: 'message',
+    show () { return Boolean(requiredRule.value.required) },
+    componentProps: { placeholder: '校验信息' }
+  }
+]
 const rules = ref<FormItemRule[]>([])
 const emit = defineEmits(['update:modelValue'])
 
@@ -77,7 +79,6 @@ watch(() => props.modelValue, (e) => {
  */
 function handleAdd () {
   rules.value.push({
-    type: 'string',
     message: '',
     trigger: ['change']
   })

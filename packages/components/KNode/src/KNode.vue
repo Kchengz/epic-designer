@@ -40,7 +40,7 @@ const formData = inject('formData', {}) as FormDataModel
 const slots = inject('slots', {}) as Slots
 const pageManager = inject('pageManager', {}) as PageManager
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'change'])
 const FormItem = pluginManager.getComponent('form-item')
 const componentInstance = ref(null)
 
@@ -188,6 +188,7 @@ function fetchData (api: string | Function, record: NodeItem) {
  */
 function handleUpdate (v: any) {
   emit('update:modelValue', v)
+  emit('change', v)
   if (props.record.field) {
     formData[props.record.field!] = v
   }

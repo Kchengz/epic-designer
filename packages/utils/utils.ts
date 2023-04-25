@@ -1,7 +1,6 @@
 import { NodeItem } from "../types/kDesigner";
 import { defineAsyncComponent, AsyncComponentLoader, toRaw } from "vue";
 import KAsyncLoading from "../components/KAsyncLoading/KAsyncLoading.vue";
-import kk from "element-plus/es/locale/lang/kk";
 /**
  * 生成一个用不重复的ID
  * @param randomLength 随机id长度

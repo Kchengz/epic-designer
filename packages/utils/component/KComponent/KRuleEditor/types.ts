@@ -13,4 +13,5 @@ export interface RuleItem {
 }
 export interface FormItemRule extends RuleItem {
   trigger?: string | string[];
+  [model: string]: any;
 }
