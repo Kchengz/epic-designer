@@ -26,6 +26,7 @@ const props = defineProps({
 onMounted(async () => {
   if (props.record.type === 'form' && forms.value) {
     const name = props.record.name ?? 'default'
+    form.value.validate = form.value.validateFields
     forms.value[name] = form
     return false
   }

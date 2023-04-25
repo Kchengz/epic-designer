@@ -1,6 +1,5 @@
 <template>
-  <FormItem v-if="props.record.isInput && component && show" v-bind="getFormItemProps" :name="props.record.field"
-    :prop="props.record.field">
+  <FormItem v-if="props.record.isInput && component && show" v-bind="getFormItemProps">
     <component :is="component" ref="componentInstance"
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 递归组件 start -->
@@ -35,7 +34,6 @@
 <script lang="ts" setup>
 import { shallowRef, ref, inject, computed, reactive, PropType, Slots, watch, h } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager } from '../../../utils/index'
-
 import { FormDataModel, NodeItem } from '../../../types/kDesigner'
 
 const formData = inject('formData', {}) as FormDataModel
@@ -43,7 +41,7 @@ const slots = inject('slots', {}) as Slots
 const pageManager = inject('pageManager', {}) as PageManager
 
 const emit = defineEmits(['update:modelValue'])
-const FormItem = pluginManager.getComponent('FormItem')
+const FormItem = pluginManager.getComponent('form-item')
 const componentInstance = ref(null)
 
 const props = defineProps({
@@ -189,8 +187,10 @@ function fetchData (api: string | Function, record: NodeItem) {
  * @param v value值
  */
 function handleUpdate (v: any) {
-  formData[props.record.field!] = v
   emit('update:modelValue', v)
+  if (props.record.field) {
+    formData[props.record.field!] = v
+  }
 }
 
 let oldData: string | null = null

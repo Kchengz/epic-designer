@@ -3,6 +3,7 @@ import { PluginManager } from "../pluginManager";
 import Input from "./ElementPlus/input";
 import Number from "./ElementPlus/input-number";
 import Form from "./ElementPlus/form";
+import FormItem from "./ElementPlus/formItem";
 import Button from "./ElementPlus/button";
 import Card from "./ElementPlus/card";
 import Row from "./ElementPlus/row";
@@ -37,6 +38,7 @@ export function useElementPlus(pluginManager: PluginManager) {
 
   const componentArray = [
     Form,
+    FormItem,
     Input,
     Number,
     Radio,

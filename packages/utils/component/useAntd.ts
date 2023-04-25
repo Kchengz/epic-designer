@@ -17,20 +17,17 @@ import Row from "./Antd/row";
 import Col from "./Antd/col";
 import Tabs from "./Antd/tabs";
 import TabPane from "./Antd/tabPane";
-import KForm from "./Antd/form";
+import Form from "./Antd/form";
+import FormItem from "./Antd/formItem";
 import Button from "./Antd/button";
 import colorPicker from "./Antd/color-picker";
 
 // 兼容性样式
-import "./Antd/index.less";
+import "./Antd/src/index.less";
 
 export function useAntd(pluginManager: PluginManager) {
   // 异步加载组件
   pluginManager.component("Modal", () => import("ant-design-vue/lib/modal"));
-  pluginManager.component(
-    "FormItem",
-    () => import("ant-design-vue/lib/form/FormItem")
-  );
   pluginManager.component(
     "Collapse",
     () => import("ant-design-vue/lib/collapse")
@@ -46,7 +43,8 @@ export function useAntd(pluginManager: PluginManager) {
   );
 
   const componentArray = [
-    KForm,
+    Form,
+    FormItem,
     Input,
     InputNumber,
     InputPassword,
