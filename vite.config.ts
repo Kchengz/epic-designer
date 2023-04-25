@@ -4,9 +4,11 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 import dts from "vite-plugin-dts";
 import eslintPlugin from "vite-plugin-eslint";
+import UnoCSS from 'unocss/vite'
 export default defineConfig({
   plugins: [
     vue(),
+    UnoCSS(),
     dts({
       entryRoot: "packages",
       outputDir: "lib/types",
