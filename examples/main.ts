@@ -13,8 +13,8 @@ import { useAntd } from "../packages/ui/useAntd";
 import { useElementPlus } from "../packages/ui/useElementPlus";
 
 // 使用Antd UI
-// useAntd(pluginManager)
+useAntd(pluginManager)
 // 使用Elemnt UI
-useElementPlus(pluginManager);
+// useElementPlus(pluginManager);
 
 createApp(App).mount("#app");

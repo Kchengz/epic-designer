@@ -1,6 +1,6 @@
 <template>
     <section class="k-edit-container">
-        <div class="k-edit-range">
+        <div class="k-edit-range rounded-md">
             <KEditNodeItem v-model:schemas="schemas" />
         </div>
 

@@ -4,27 +4,36 @@
   background-image: linear-gradient(#f8f8f8 14px, transparent 0),
     linear-gradient(90deg, transparent 14px, #373739 0);
   background-size: 15px 15px;
-  padding: 32px 24px 24px;
+  padding: 56px 36px;
 
   .k-edit-range {
     height: 100%;
     background-color: white;
     overflow-y: auto;
-    // border-radius: 6px;
-    // overflow: auto;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+
+
 
     [name="draggable-range"] {
       min-height: 60px;
       height: 100%;
-      background-color: @edit-bg;
-      border: 1px #999 dashed;
+      border: 1px @border-color dashed;
       width: 100%;
-      // padding: 10px;
     }
 
     > [name="draggable-range"] {
       height: 100%;
-      border: 1px transparent;
+      background-color: transparent;
+      border: transparent;
+      .item.root-node {
+        border: transparent;
+      }
+      // 默认页面组件无内容颜色
+      & > div > div > [name="draggable-range"] {
+        background-color: transparent;
+        border: transparent;
+      }
+
       > .item {
         height: 100%;
       }
@@ -81,7 +90,6 @@
       // }
 
       &.hover {
-        // background: @primary-hover-bg-color;
         border: 1px #999 dashed;
       }
 

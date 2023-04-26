@@ -92,30 +92,3 @@ function getNewEvents (type: string) {
 }
 
 </script>
-<style lang="less" scoped>
-@primary-color: #13c2c2;
-
-.k-editor-item {
-  display: flex;
-  align-items: center;
-  padding-top: 6px;
-
-  .del-btn {
-    width: 50px;
-    height: 100%;
-    text-align: center;
-    cursor: pointer;
-
-    &:hover {
-      color: #f22;
-    }
-  }
-
-}
-
-.add-btn {
-  cursor: pointer;
-  margin-top: 6px;
-  color: @primary-color;
-}
-</style>

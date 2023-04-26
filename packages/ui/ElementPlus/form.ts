@@ -3,7 +3,6 @@ import { ComponentConfigModel } from "../../utils/pluginManager";
 export default {
   component: () => import("./src/KForm.vue"),
   defaultSchema: {
-    id: "组件Id",
     label: "表单",
     type: "form",
     icon: "icon-qiapian",
@@ -22,11 +21,6 @@ export default {
   },
   config: {
     attribute: [
-      {
-        label: "组件ID",
-        type: "input",
-        field: "id",
-      },
       {
         label: "name",
         type: "input",

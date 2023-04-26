@@ -47,7 +47,7 @@ watch(() => script.value, e => {
   pageManager.setMethods(e)
 })
 script.value =
-`const { defineExpose, getComponent } = this;
+  `const { defineExpose, getComponent } = this;
 
 function test (){
     console.log('test')
@@ -66,7 +66,12 @@ provide('pageManager', pageManager)
 const rootSchema = {
   type: 'page',
   id: 'root',
-  children: []
+  children: [],
+  componentProps: {
+    style: {
+      padding: '16px'
+    }
+  }
 }
 
 function init () {

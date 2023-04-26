@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div>
+    <div class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative">
       <template v-for="(record, index) in requiredRuleSchemas" :key="index">
-        <div class="flex" v-if="record.show ? record.show() : true">
+        <div class="flex m-t-2 first:m-0" v-if="record.show ? record.show() : true">
           <div class="attr-label">
             {{ record.label }}
           </div>

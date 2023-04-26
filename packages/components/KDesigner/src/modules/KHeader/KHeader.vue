@@ -8,7 +8,7 @@
         <span class="iconfont icon-fanhui2x"></span>
       </Button>
     </div>
-    <div class="k-header-item">
+    <div class="k-header-item font-bold font-md">
       k-designer
     </div>
     <div class="k-header-item">
