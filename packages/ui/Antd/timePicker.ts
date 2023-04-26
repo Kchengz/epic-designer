@@ -1,12 +1,15 @@
-import { ComponentConfigModel } from "../../pluginManager";
+import { ComponentConfigModel } from "../../utils/pluginManager";
 export default {
-  component: () => import("./MonacoEditor/monacoEditor.vue"),
+  component: () => import("ant-design-vue/lib/time-picker"),
   defaultSchema: {
-    label: "代码编辑器",
-    type: "monacoEditor",
-    field: "monacoEditor",
-    icon: "icon-write",
+    label: "时间选择器",
+    type: "time",
+    icon: "icon-xiala",
+    field: "time",
     isInput: true,
+    componentProps: {
+      valueFormat: "HH:mm:ss",
+    },
   },
   config: {
     attribute: [
@@ -16,13 +19,13 @@ export default {
         field: "field",
       },
       {
-        label: "标题",
+        label: "文字",
         type: "input",
         field: "label",
       },
       {
         label: "默认值",
-        type: "monacoEditor",
+        type: "time",
         field: "componentProps.defaultValue",
       },
     ],

@@ -5,8 +5,6 @@ import { App } from "vue";
 import {
   pluginManager,
   usePageManager,
-  useAntd,
-  useElementPlus,
 } from "./utils/index";
 import { initComponent } from "./utils/component/init";
 import "./index.less";
@@ -24,7 +22,6 @@ const KDesignr = {
   },
   pluginManager,
   usePageManager,
-  useAntd,
 };
 
 export {
@@ -32,7 +29,5 @@ export {
   KDesigner,
   pluginManager,
   usePageManager,
-  useAntd,
-  useElementPlus,
 };
 export default KDesignr;
