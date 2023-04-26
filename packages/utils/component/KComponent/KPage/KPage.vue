@@ -1,9 +1,9 @@
 <template>
-    <div style="background:white;height: 100%;">
-        <slot name="edit-node">
-            <slot name="node" :record="item" v-for="item in children"></slot>
-        </slot>
-    </div>
+  <div class="h-full bg-white">
+    <slot name="edit-node">
+      <slot name="node" :record="item" v-for="item in children"></slot>
+    </slot>
+  </div>
 </template>
 <script lang="ts" setup>
 import { computed } from 'vue'

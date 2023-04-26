@@ -1,17 +1,19 @@
 <template>
   <div>
-    <template v-for="(record, index) in requiredRuleSchemas" :key="index">
-      <div class="flex" v-if="record.show ? record.show() : true">
-        <div class="attr-label">
-          {{ record.label }}
+    <div>
+      <template v-for="(record, index) in requiredRuleSchemas" :key="index">
+        <div class="flex" v-if="record.show ? record.show() : true">
+          <div class="attr-label">
+            {{ record.label }}
+          </div>
+          <div class="flex-1">
+            <KNode :record="record" v-model="requiredRule[record.model]" @change="handleUpdate" />
+          </div>
         </div>
-        <div class="attr-value">
-          <KNode :record="record" v-model="requiredRule[record.model]" @change="handleUpdate" />
-        </div>
-      </div>
-    </template>
-    <KRuleItem v-for="(item, index) in rules" v-model:rule="rules[index]" @change="handleUpdate" :key="index" />
-    <Button @click="handleAdd">添加</Button>
+      </template>
+    </div>
+    <KRuleItem v-for="(item, index) in rules" v-model:rule="rules[index]" @delete="handleDelete(index)" @change="handleUpdate" :key="index" />
+    <Button class="m-t-2" @click="handleAdd">添加规则</Button>
   </div>
 </template>
 <script lang="ts" setup>
@@ -103,5 +105,14 @@ function handleUpdate () {
 
   // 没有任何校验规则
   emit('update:modelValue', undefined)
+}
+
+/**
+ * 通过下标删除校验规则项
+ * @param index
+ */
+function handleDelete (index:number) {
+  rules.value.splice(index, 1)
+  handleUpdate()
 }
 </script>
