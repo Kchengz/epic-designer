@@ -1,5 +1,5 @@
 // 注册ant-design-vue ui
-import { PluginManager } from "../pluginManager";
+import { PluginManager } from "../utils/pluginManager";
 import Input from "./ElementPlus/input";
 import Number from "./ElementPlus/input-number";
 import Form from "./ElementPlus/form";

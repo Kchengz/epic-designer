@@ -1,7 +1,7 @@
 import { defineComponent, h, renderSlot, PropType } from "vue";
 import { ElButton } from "element-plus";
 // import { handleActions } from "./util";
-import { NodeItem } from "../../../../types/kDesigner";
+import { NodeItem } from "../../../types/kDesigner";
 
 // 二次封装组件
 export default defineComponent({
