@@ -7,8 +7,7 @@
             {{ item.label }}
           </div>
           <div class="attr-input">
-            <KNode
-              :record="{ ...item, componentProps: { ...item.componentProps, show: true } }"
+            <KNode :record="{ ...item, componentProps: { ...item.componentProps }, show: true }"
               :model-value="getAttrValue(item.field!)" @update:model-value="setAttrValue($event, item.field!)" />
           </div>
         </div>

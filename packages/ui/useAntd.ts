@@ -75,6 +75,7 @@ export function useAntd(pluginManager: PluginManager) {
     {
       title: "输入组件",
       list: [
+        "form",
         "input",
         "number",
         "password",
@@ -88,7 +89,6 @@ export function useAntd(pluginManager: PluginManager) {
         "cascader",
         "switch",
         "button",
-        "form",
         "color-picker",
       ],
     },

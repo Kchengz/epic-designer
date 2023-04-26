@@ -8,7 +8,7 @@
           </div>
           <div class="attr-input">
             <KNode
-              :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), show: true, hidden: false } }"
+              :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}) }, show: true }"
               :model-value="getAttrValue(item.field!)" @update:model-value="setAttrValue($event, item.field!)" />
           </div>
         </div>
@@ -37,7 +37,13 @@ function isShow (item: NodeItem) {
   if (typeof item.show === 'boolean') {
     return item.show
   }
-  return item.show?.({ values: checkedNode.value! }) ?? true
+
+  // show属性为function类型则执行
+  if (typeof item.show === 'function') {
+    return item.show?.({ values: checkedNode.value! })
+  }
+
+  return true
 }
 
 const componentAttributes = computed(() => {
