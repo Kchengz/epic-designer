@@ -26,17 +26,6 @@ const props = defineProps({
 
 const element = props.element as NodeItem
 
-// const firstNodeId = ref('')
-
-// const element = computed({
-//   get () {
-//     // 判断props.schemas是否存在值
-//     return props.element
-//   },
-//   set (e) {
-//     emit('update:element', e)
-//   }
-// })
 onBeforeUpdate(() => { console.log('更新了22') })
 
 </script>

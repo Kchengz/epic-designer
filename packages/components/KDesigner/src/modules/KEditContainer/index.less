@@ -10,9 +10,8 @@
     height: 100%;
     background-color: white;
     overflow-y: auto;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-
-
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 
     [name="draggable-range"] {
       min-height: 60px;
@@ -21,27 +20,26 @@
       width: 100%;
     }
 
-    > [name="draggable-range"] {
-      height: 100%;
-      background-color: transparent;
+    > div > [name="draggable-range"] {
+      // height: 100%;
+      // background-color: transparent;
       border: transparent;
-      .item.root-node {
-        border: transparent;
-      }
+      // .item.root-node {
+      //   border: transparent;
+      // }
       // 默认页面组件无内容颜色
-      & > div > div > [name="draggable-range"] {
-        background-color: transparent;
-        border: transparent;
-      }
+      // & > div > div > [name="draggable-range"] {
+      //   background-color: transparent;
+      //   border: transparent;
+      // }
+      // > .item {
+      //   height: 100%;
+      // }
 
-      > .item {
-        height: 100%;
-      }
-
-      // 屏蔽label点击事件
-      .ant-form-item-label > label {
-        pointer-events: none;
-      }
+      // // 屏蔽label点击事件
+      // .ant-form-item-label > label {
+      //   pointer-events: none;
+      // }
     }
 
     .root-node > .form-main > form > [name="draggable-range"] {
