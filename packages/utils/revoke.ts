@@ -26,9 +26,9 @@ export function useRevoke() {
    * @return {boolean}
    */
   function push(record: NodeItem[], type = "插入组件") {
-    // 忽略低于100ms时间差的记录
+    // 忽略低于150ms时间差的记录
     const nowTime = Date.now();
-    if (lastPushTime + 100 > nowTime) {
+    if (lastPushTime + 150 > nowTime) {
       return;
     }
     lastPushTime = nowTime;

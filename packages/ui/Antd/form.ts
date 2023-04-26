@@ -56,7 +56,6 @@ export default {
         type: "input",
         field: "componentProps.labelWidth",
         show: ({values}) => {
-          console.log(values.componentProps?.labelLayout,'--------')
           return values.componentProps?.labelLayout === "fixed";
         },
       },

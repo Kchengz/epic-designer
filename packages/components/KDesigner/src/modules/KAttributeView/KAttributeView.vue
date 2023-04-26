@@ -51,7 +51,19 @@ const componentAttributes = computed(() => {
   if (!type) {
     return []
   }
-  return componentConfings[type]?.config.attribute ?? []
+  const attribute = componentConfings[type]?.config.attribute ?? []
+  return attribute
+  // return [
+  //   {
+  //     label: '组件ID',
+  //     type: 'input',
+  //     field: 'id',
+  //     componentProps: {
+  //       disabled: true
+  //     }
+  //   },
+  //   ...attribute
+  // ]
 })
 
 function getAttrValue (field: string) {
