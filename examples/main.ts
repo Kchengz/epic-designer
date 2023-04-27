@@ -8,12 +8,10 @@ import "ant-design-vue/dist/antd.css";
 // 引入Element plus样式
 import "element-plus/dist/index.css";
 
-import { pluginManager } from "../packages/index";
-import { useAntd } from "../packages/ui/useAntd";
-import { useElementPlus } from "../packages/ui/useElementPlus";
+import { pluginManager, useAntd, useElementPlus } from "../packages/index";
 
 // 使用Antd UI
-useAntd(pluginManager)
+useAntd(pluginManager);
 // 使用Elemnt UI
 // useElementPlus(pluginManager);
 
