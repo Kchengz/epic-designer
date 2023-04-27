@@ -1,22 +1,23 @@
 <template>
   <div class="k-component-view">
-    <div v-for="(item, index) in sourceSchema" :key="index">
-      <div class="collapse-header">
-        {{ item.title }}
-      </div>
-      <draggable v-model="item.list" v-bind="{
-        group: { name: 'edit-draggable', pull: 'clone', put: false },
-        sort: false,
-        animation: 180,
-        ghostClass: 'moving'
-      }" item-key="id" :component-data="{ name: 'list' }" @end="handleDraggableEnd($event, item.list)">
-        <template #item="{ element }">
-          <div class="source-componet-item" @click="handleClick(element)">
-            <span class="iconfont" :class="element.icon"></span> {{ element.label }}
-          </div>
-        </template>
-      </draggable>
-    </div>
+    <Collapse v-model="collapseActiveNames" v-model:activeKey="collapseActiveNames">
+      <CollapseItem v-for="(item) in sourceSchema" :title="item.title" :header="item.title" :name="item.title"
+        :key="item.title">
+        <draggable v-model="item.list" v-bind="{
+          group: { name: 'edit-draggable', pull: 'clone', put: false },
+          sort: false,
+          animation: 180,
+          ghostClass: 'moving'
+        }" item-key="id" :component-data="{ name: 'list' }" @end="handleDraggableEnd($event, item.list)">
+          <template #item="{ element }">
+            <div class="source-componet-item" @click="handleClick(element)">
+              <span class="iconfont" :class="element.icon"></span> {{ element.label }}
+            </div>
+          </template>
+
+        </draggable>
+      </CollapseItem>
+    </Collapse>
   </div>
 </template>
 <script lang="ts" setup>
@@ -24,11 +25,15 @@ import draggable from 'vuedraggable'
 import { ref, Ref, toRaw, inject } from 'vue'
 import { getUUID, deepClone, findSchemaById, pluginManager, revoke } from '../../../../../utils/index'
 import { SchemaNodeGroupItem, NodeItem, Designer } from '../../../../../types/kDesigner'
-
+const Collapse = pluginManager.getComponent('Collapse')
+const CollapseItem = pluginManager.getComponent('CollapseItem')
 const sourceSchema = ref<SchemaNodeGroupItem[]>([])
 sourceSchema.value = pluginManager.getSchemaByGroup()
 const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
+
+// 默认展开所有面板
+const collapseActiveNames = ref(sourceSchema.value.map(item => item.title))
 
 /**
  * 拖拽结束,深拷贝一次数据,防止重复引用
