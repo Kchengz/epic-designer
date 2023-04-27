@@ -52,8 +52,10 @@ main.ts 或者 main.js引入注册组件
 ```javascript
 // 引入Element plus样式
 import 'element-plus/dist/index.css'
-import { pluginManager, useElementPlus } from "k-designer";
-
+// 引入k-designer样式
+import "k-designer/dist/style.css";
+import { pluginManager } from "k-designer";
+import { useElementPlus } from "k-designer/dist/ui/useElementPlus";
 // 使用Elemnt UI
 useElementPlus(pluginManager);
 ```
@@ -67,8 +69,10 @@ main.ts 或者 main.js引入注册组件
 ```javascript
 // 引入antd UI样式
 import "ant-design-vue/dist/antd.css";
-import { pluginManager, useAntd } from "k-designer";
-
+// 引入k-designer样式
+import "k-designer/dist/style.css";
+import { pluginManager } from "k-designer";
+import { useAntd } from "k-designer/dist/ui/useAntd";
 // 使用Antd UI
 useAntd(pluginManager);
 ```

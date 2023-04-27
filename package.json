@@ -1,11 +1,11 @@
 {
   "name": "k-designer",
   "private": false,
-  "version": "0.0.32",
+  "version": "0.0.34",
   "type": "module",
-  "main": "es/k-designer.js",
-  "module": "es/k-designer.js",
-  "typings": "es/types/index.d.ts",
+  "main": "dist/k-designer.js",
+  "module": "dist/k-designer.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

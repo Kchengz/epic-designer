@@ -11,7 +11,7 @@ export default defineConfig({
     UnoCSS(),
     dts({
       entryRoot: "packages",
-      outputDir: "es",
+      outputDir: "dist",
     }),
     eslintPlugin({
       include: ["src/**/*.ts", "src/**/*.vue", "src/*.ts", "src/*.vue"],
@@ -33,7 +33,7 @@ export default defineConfig({
   },
   // rollup打包配置
   build: {
-    outDir: "es", //输出文件名称
+    outDir: "dist", //输出文件名称
     lib: {
       entry: [
         path.resolve(__dirname, "./packages/index.ts"),
