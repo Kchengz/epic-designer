@@ -3,9 +3,9 @@
   "private": false,
   "version": "0.0.32",
   "type": "module",
-  "main": "lib/k-designer.js",
-  "module": "lib/k-designer.js",
-  "typings": "lib/types/index.d.ts",
+  "main": "es/k-designer.js",
+  "module": "es/k-designer.js",
+  "typings": "es/types/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

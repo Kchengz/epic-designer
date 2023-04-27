@@ -4,14 +4,14 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 import dts from "vite-plugin-dts";
 import eslintPlugin from "vite-plugin-eslint";
-import UnoCSS from 'unocss/vite'
+import UnoCSS from "unocss/vite";
 export default defineConfig({
   plugins: [
     vue(),
     UnoCSS(),
     dts({
       entryRoot: "packages",
-      outputDir: "lib/types",
+      outputDir: "es",
     }),
     eslintPlugin({
       include: ["src/**/*.ts", "src/**/*.vue", "src/*.ts", "src/*.vue"],
@@ -33,13 +33,23 @@ export default defineConfig({
   },
   // rollup打包配置
   build: {
-    outDir: "lib", //输出文件名称
+    outDir: "es", //输出文件名称
     lib: {
-      entry: path.resolve(__dirname, "./packages/index.ts"), //指定组件编译入口文件
-      name: "k-designer",
-      // formats: ["es"],
-      fileName: "k-designer",
-    }, //库编译模式配置
+      entry: [
+        path.resolve(__dirname, "./packages/index.ts"),
+        path.resolve(__dirname, "./packages/ui/useAntd.ts"),
+        path.resolve(__dirname, "./packages/ui/useElementPlus.ts"),
+      ], //指定组件编译入口文件
+      name: "k-designer", // formats: ["es"],
+      fileName: (ModuleFormat, entryName) => {
+        const extension = ModuleFormat === "es" ? "js" : ModuleFormat;
+         // 区分默认入口文件和UI注册文件
+        const isIndexEntry = entryName === "index";
+        const path = isIndexEntry ? `k-designer.${extension}` : `ui/${entryName}.${extension}`;
+        return path;
+      },
+    },
+    //库编译模式配置
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
       external: ["vue"],

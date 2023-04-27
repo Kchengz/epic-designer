@@ -6,8 +6,6 @@ import { pluginManager, usePageManager } from "./utils/index";
 import { initComponent } from "./utils/component/init";
 import "./index.less";
 
-import { useAntd } from "./ui/useAntd";
-import { useElementPlus } from "./ui/useElementPlus";
 // 初始化设计器
 initComponent(pluginManager);
 const components = [KBuilder, KDesigner];
@@ -28,7 +26,5 @@ export {
   KDesigner,
   pluginManager,
   usePageManager,
-  useAntd,
-  useElementPlus,
 };
 export default KDesignr;
