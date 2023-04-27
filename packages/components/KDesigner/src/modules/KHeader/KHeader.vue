@@ -32,12 +32,12 @@ const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
 const emit = defineEmits(['save'])
 const Button = pluginManager.getComponent('button')
-const preview = ref<any>(null)
+const preview = ref<InstanceType<typeof KPreview> | null>(null)
 const recordList = revoke.recordList
 const undoList = revoke.undoList
 
 function handlePreview () {
-  preview.value.handleOpen()
+  preview.value!.handleOpen()
 }
 
 /**

@@ -10,22 +10,18 @@ export default defineComponent({
       emit(`update:modelValue`, e);
     }
 
-    return {
-      attrs,
-      handleUpdate,
+    return () => {
+      const props: { [propName: string]: any } = {
+        ...attrs,
+        "onUpdate:modelValue": handleUpdate,
+      };
+      return h(ElRadioGroup, props, {
+        default: () => [
+          props.options?.map((option: any) =>
+            h(ElRadio, { label: option.value }, { default: () => option.label })
+          ),
+        ],
+      });
     };
-  },
-  render() {
-    const props: { [propName: string]: any } = {
-      ...this.attrs,
-      "onUpdate:modelValue": this.handleUpdate,
-    };
-    return h(ElRadioGroup, props, {
-      default: () => [
-        props.options?.map((option: any) =>
-          h(ElRadio, { label: option.value }, { default: () => option.label })
-        ),
-      ],
-    });
   },
 });

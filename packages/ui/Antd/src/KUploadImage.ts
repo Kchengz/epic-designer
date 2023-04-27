@@ -114,51 +114,44 @@ export default defineComponent({
       message.error("图片地址无法访问!");
     }
 
-    return {
-      getUploadProps,
-      setVisible,
-      visible,
-      imgUrl,
-      previewError,
+    return () => {
+      // const type = attrs.type;
+      return h(
+        "div",
+        {
+          class: "k-upload-image",
+        },
+        {
+          default: () => [
+            h(Upload, getUploadProps, {
+              default: () => [
+                h("div", null, {
+                  default: () => [
+                    h("span", {
+                      class: "iconfont icon-shangchuan1",
+                      style: { "margin-right": "2px" },
+                    }),
+                    h(
+                      "div",
+                      { class: "ant-upload-text" },
+                      { default: () => "点击上传" }
+                    ),
+                  ],
+                }),
+              ],
+            }),
+            h(()=>Image, {
+              style: { display: "none" },
+              src: imgUrl,
+              preview: {
+                visible: visible,
+                onVisibleChange: setVisible,
+              },
+              onError: previewError,
+            }),
+          ],
+        }
+      );
     };
-  },
-  render() {
-    // const type = this.attrs.type;
-    return h(
-      "div",
-      {
-        class: "k-upload-image",
-      },
-      {
-        default: () => [
-          h(Upload, this.getUploadProps, {
-            default: () => [
-              h("div", null, {
-                default: () => [
-                  h("span", {
-                    class: "iconfont icon-shangchuan1",
-                    style: { "margin-right": "2px" },
-                  }),
-                  h(
-                    "div",
-                    { class: "ant-upload-text" },
-                    { default: () => "点击上传" }
-                  ),
-                ],
-              }),
-            ],
-          }),
-          h(Image, {
-            style: { display: "none" },
-            src: this.imgUrl,
-            preview: {
-              visible: this.visible,
-              onVisibleChange: this.setVisible,
-            },
-            onError: this.previewError,
-          }),
-        ],
-      }
-    );
   },
 });

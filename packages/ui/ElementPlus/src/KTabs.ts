@@ -12,28 +12,21 @@ export default defineComponent({
     },
   },
   setup(props, { attrs, slots }) {
-    return {
-      attrs,
-      slots,
-      props,
-    };
-  },
-  render() {
-    const record = {
-      // ...this.props.record,
-      ...this.props.record?.componentProps,
-      // title: this.props.record!.label,
-    } as any;
-    const children = this.props.record?.children ?? [];
-    delete record.children;
+    return () => {
+      const record = {
+        ...props.record?.componentProps,
+      } as any;
+      const children = props.record?.children ?? [];
+      delete record.children;
 
-    return h(ElTabs, record, {
-      default: () =>
-        renderSlot(this.slots, "edit-node", {}, () =>
-          children!.map((record: any) =>
-            renderSlot(this.slots, "node", { record })
-          )
-        ),
-    });
+      return h(ElTabs, record, {
+        default: () =>
+          renderSlot(slots, "edit-node", {}, () =>
+            children!.map((record: any) =>
+              renderSlot(slots, "node", { record })
+            )
+          ),
+      });
+    };
   },
 });

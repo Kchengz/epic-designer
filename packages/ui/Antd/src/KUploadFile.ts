@@ -87,35 +87,28 @@ export default defineComponent({
       onChange: handleChange,
     }));
 
-    return {
-      attrs,
-      fileList,
-      getUploadProps,
+    return () => {
+      return h("div", null, {
+        default: () => [
+          h(Upload, getUploadProps, {
+            default: () => [
+              h(
+                Button,
+                {},
+                {
+                  default: () => [
+                    h("span", {
+                      class: "iconfont icon-shangchuan1",
+                      style: { "margin-right": "2px" },
+                    }),
+                    h("span", null, { default: () => "上传文件" }),
+                  ],
+                }
+              ),
+            ],
+          }),
+        ],
+      });
     };
-  },
-  render() {
-    // const type = this.attrs.type;
-
-    return h("div", null, {
-      default: () => [
-        h(Upload, this.getUploadProps, {
-          default: () => [
-            h(
-              Button,
-              {},
-              {
-                default: () => [
-                  h("span", {
-                    class: "iconfont icon-shangchuan1",
-                    style: { "margin-right": "2px" },
-                  }),
-                  h("span", null, { default: () => "上传文件" }),
-                ],
-              }
-            ),
-          ],
-        }),
-      ],
-    });
   },
 });

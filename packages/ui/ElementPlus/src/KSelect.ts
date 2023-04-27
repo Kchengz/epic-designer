@@ -1,4 +1,4 @@
-import { defineComponent, h, watch } from "vue";
+import { defineComponent, h } from "vue";
 import "element-plus/es/components/select/style/css";
 import { ElSelect, ElOption } from "element-plus";
 
@@ -10,23 +10,19 @@ export default defineComponent({
       emit(`update:modelValue`, e);
     }
 
-    return {
-      attrs,
-      handleUpdate,
-    };
-  },
-  render() {
-    const props: { [propName: string]: any } = {
-      ...this.attrs,
-      "onUpdate:modelValue": this.handleUpdate,
-    };
+    return () => {
+      const props: { [propName: string]: any } = {
+        ...attrs,
+        "onUpdate:modelValue": handleUpdate,
+      };
 
-    return h(ElSelect, props, {
-      default: () => [
-        props.options?.map((option: any) =>
-          h(ElOption, { label: option.label, value: option.value })
-        ),
-      ],
-    });
+      return h(ElSelect, props, {
+        default: () => [
+          props.options?.map((option: any) =>
+            h(ElOption, { label: option.label, value: option.value })
+          ),
+        ],
+      });
+    };
   },
 });

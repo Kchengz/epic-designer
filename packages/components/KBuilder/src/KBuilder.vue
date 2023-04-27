@@ -25,7 +25,6 @@ const emit = defineEmits(['ready'])
 const formData = reactive<FormDataModel>({})
 const slots = useSlots()
 const forms = ref<any>({})
-// const form = ref<any>(null)
 
 provide('formData', formData)
 provide('slots', slots)

@@ -8,7 +8,6 @@ import { PropType } from 'vue'
 import { NodeItem } from '../../../types/kDesigner'
 import { loadAsyncComponent } from '../../../utils/index'
 const Button = loadAsyncComponent(async () => (await import('ant-design-vue/lib/button')).default)
-
 const props = defineProps({
   record: {
     type: Object as PropType<NodeItem>

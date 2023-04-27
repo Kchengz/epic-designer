@@ -8,31 +8,31 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, computed, inject, useAttrs, onMounted } from 'vue'
+import { ref, Ref, PropType, computed, inject, useAttrs, onMounted } from 'vue'
 import { ElForm } from 'element-plus'
+import { NodeItem } from '../../../types/kDesigner'
 const attrs = useAttrs()
-const form = ref<any | undefined>()
-const forms = inject('forms', {}) as any
-
+const form = ref<InstanceType<typeof ElForm> | null>(null)
+const forms = inject('forms', {}) as Ref<{ [name: string]: InstanceType<typeof ElForm> }>
 const visible = ref(true)
 const props = defineProps({
   record: {
-    type: Object as any,
+    type: Object as PropType<NodeItem>,
     require: true
   }
 })
 
 // form组件需要特殊处理
 onMounted(async () => {
-  if (props.record.type === 'form' && forms.value) {
-    const name = props.record.name ?? 'default'
-    forms.value[name] = form
+  if (props.record!.type === 'form' && forms.value) {
+    const name = props.record!.name ?? 'default' as string
+    forms.value[name] = form.value!
     return false
   }
 })
 
 const componentProps = computed(() => {
-  const recordProps = props.record.componentProps
+  const recordProps = props.record!.componentProps
   let labelCol = recordProps.labelCol
   let wrapperCol = recordProps.wrapperCol
   if (recordProps.labelLayout === 'fixed') {
@@ -47,12 +47,8 @@ const componentProps = computed(() => {
   }
 })
 
-// function onFinish (e: any) {
-//   console.log(e)
-// }
-
 const children = computed(() => {
-  return props.record.children ?? []
+  return props.record!.children ?? []
 })
 
 defineExpose({

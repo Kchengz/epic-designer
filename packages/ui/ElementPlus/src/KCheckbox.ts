@@ -10,22 +10,18 @@ export default defineComponent({
       emit(`update:modelValue`, e);
     }
 
-    return {
-      attrs,
-      handleUpdate,
+    return () => {
+      const props: { [propName: string]: any } = {
+        ...attrs,
+        "onUpdate:modelValue": handleUpdate,
+      };
+      return h(ElCheckboxGroup, props, {
+        default: () => [
+          props.options?.map((option: any) =>
+            h(ElCheckbox, { label: option.label, value: option.value })
+          ),
+        ],
+      });
     };
-  },
-  render() {
-    const props: { [propName: string]: any } = {
-      ...this.attrs,
-      "onUpdate:modelValue": this.handleUpdate,
-    };
-    return h(ElCheckboxGroup, props, {
-      default: () => [
-        props.options?.map((option: any) =>
-          h(ElCheckbox, { label: option.label, value: option.value })
-        ),
-      ],
-    });
   },
 });

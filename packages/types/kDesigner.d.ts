@@ -7,6 +7,7 @@ export interface NodeItem {
   type: string;
   label?: string;
   field?: string;
+  name?: string;
   slotName?: string;
   componentProps?: any;
   id?: string;

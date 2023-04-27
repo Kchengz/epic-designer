@@ -12,27 +12,22 @@ export default defineComponent({
     },
   },
   setup(props, { attrs, slots }) {
-    return {
-      attrs,
-      slots,
-      props,
+    return ()=> {
+      const record = {
+        ...props.record,
+        title: props.record!.label,
+      } as any;
+      const children = record.children;
+      delete record.children;
+  
+      return h(ElCol, record, {
+        default: () =>
+          renderSlot(slots, "edit-node", {}, () =>
+            children!.map((record: any) =>
+              renderSlot(slots, "node", { record })
+            )
+          ),
+      });
     };
-  },
-  render() {
-    const record = {
-      ...this.props.record,
-      title: this.props.record!.label,
-    } as any;
-    const children = record.children;
-    delete record.children;
-
-    return h(ElCol, record, {
-      default: () =>
-        renderSlot(this.slots, "edit-node", {}, () =>
-          children!.map((record: any) =>
-            renderSlot(this.slots, "node", { record })
-          )
-        ),
-    });
   },
 });
