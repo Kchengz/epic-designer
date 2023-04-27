@@ -1,6 +1,7 @@
 import { NodeItem } from "../types/kDesigner";
 import { defineAsyncComponent, AsyncComponentLoader, toRaw } from "vue";
-import KAsyncLoading from "../components/KAsyncLoading/KAsyncLoading.vue";
+import KAsyncLoader from "../components/KAsyncLoader/KAsyncLoader.vue";
+
 /**
  * 生成一个用不重复的ID
  * @param randomLength 随机id长度
@@ -56,6 +57,44 @@ export function deepClone(
 }
 
 /**
+ * 递归比较两个对象，将obj2的属性复制给obj1。
+ * 如果obj1中有obj2没有的属性，则删除该属性。
+ * @param obj1 - 要修改的对象。
+ * @param obj2 - 要比较的对象。
+ */
+export function deepCompareAndModify(
+  obj1: Record<string, any>,
+  obj2: Record<string, any>
+): void {
+  // 循环遍历obj2的所有属性
+  for (const [key, val2] of Object.entries(obj2)) {
+    const val1 = obj1?.[key];
+    // 如果obj1的属性值是对象或数组，则递归调用该函数
+    if (typeof val1 === "object" && typeof val2 === "object") {
+      deepCompareAndModify(val1, val2);
+    } else {
+      // 如果属性值不相等，则将obj2的属性值复制给obj1
+      obj1[key] = val2;
+    }
+  }
+
+  Object.keys(obj1).forEach((key) => {
+    // 如果obj2中存在obj1的属性跳过
+    if (obj2.hasOwnProperty(key)) {
+      return;
+    }
+    // 如果obj2中没有obj1的属性，则从obj1中删除该属性
+    if (Array.isArray(obj2)) {
+      // obj1 是数组
+      obj1.splice(key, 1);
+    } else {
+      // obj1 是对象
+      delete obj1[key];
+    }
+  });
+}
+
+/**
  * 深度比较两个对象是否相等
  * @param obj1
  * @param obj2
@@ -107,7 +146,7 @@ export function deepEqual(
 export const loadAsyncComponent = (loader: AsyncComponentLoader<any>) =>
   defineAsyncComponent({
     loader,
-    loadingComponent: KAsyncLoading,
+    loadingComponent: KAsyncLoader,
     delay: 80,
   });
 
@@ -140,7 +179,6 @@ export function findSchemaById(schemas: NodeItem[], id: string) {
       stack.push(...children);
     }
   }
-
   throw `没有查询到id为${id}的节点`;
 }
 

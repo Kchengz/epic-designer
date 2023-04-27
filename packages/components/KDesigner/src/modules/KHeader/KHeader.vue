@@ -26,7 +26,7 @@
 <script lang="ts" setup>
 import KPreview from '../KPreview/KPreview.vue'
 import { ref, Ref, inject } from 'vue'
-import { pluginManager, revoke } from '../../../../../utils/index'
+import { pluginManager, revoke, deepCompareAndModify } from '../../../../../utils/index'
 import { NodeItem, Designer } from '../../../../../types/kDesigner'
 const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
@@ -46,10 +46,7 @@ function handlePreview () {
 function handleUndo () {
   const record = revoke.undo()
   if (!record) return
-  const root = record[0]
-  Object.keys(root).forEach(key => {
-    schemas.value[0][key] = root[key]
-  })
+  deepCompareAndModify(schemas.value, record)
   designer.setCheckedNode(schemas.value[0])
 }
 
@@ -59,12 +56,8 @@ function handleUndo () {
 function handleRedo () {
   const record = revoke.redo()
   if (!record) return
-  const root = record[0]
-  Object.keys(root).forEach(key => {
-    schemas.value[0][key] = root[key]
-  })
-
-  designer.setCheckedNode(record[0])
+  deepCompareAndModify(schemas.value, record)
+  designer.setCheckedNode(schemas.value[0])
 }
 
 /**

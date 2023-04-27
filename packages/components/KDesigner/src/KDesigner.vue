@@ -4,7 +4,6 @@
       <div class="k-designer-main">
         <KHeader @save="handleSave" />
         <div class="k-split-view-container">
-          <!-- <ALoading /> -->
           <KActionBar />
           <KEditContainer />
           <KRightSidebar />
@@ -14,7 +13,7 @@
     </template>
     <template #fallback>
       <div class="loading-box">
-        <KAsyncLoading />
+        <KAsyncLoader />
       </div>
     </template>
   </Suspense>
@@ -29,7 +28,7 @@ const KActionBar = loadAsyncComponent(() => import('./modules/KActionBar/KAction
 const KEditContainer = loadAsyncComponent(() => import('./modules/KEditContainer/KEditContainer.vue'))
 const KRightSidebar = loadAsyncComponent(() => import('./modules/KRightSidebar/KRightSidebar.vue'))
 const KFooter = loadAsyncComponent(() => import('./modules/KFooter/KFooter.vue'))
-const KAsyncLoading = loadAsyncComponent(() => import('../../KAsyncLoading/KAsyncLoading.vue'))
+const KAsyncLoader = loadAsyncComponent(() => import('../../KAsyncLoader/KAsyncLoader.vue'))
 const pageManager = usePageManager()
 const emit = defineEmits(['ready', 'save'])
 
