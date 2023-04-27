@@ -57,6 +57,7 @@ export function deepClone(
 }
 
 /**
+ * 不改变obj1引用，将obj2所有属性遍历复制给obj1。
  * 递归比较两个对象，将obj2的属性复制给obj1。
  * 如果obj1中有obj2没有的属性，则删除该属性。
  * @param obj1 - 要修改的对象。
