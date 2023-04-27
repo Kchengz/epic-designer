@@ -42,7 +42,6 @@ const props = defineProps({
 })
 
 const firstNodeId = ref('')
-
 const emit = defineEmits(['update:schemas'])
 const schemas = computed({
   get () {

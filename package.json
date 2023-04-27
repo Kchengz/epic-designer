@@ -1,11 +1,11 @@
 {
   "name": "k-designer",
   "private": false,
-  "version": "0.0.33",
+  "version": "0.0.34",
   "type": "module",
-  "main": "lib/k-designer.js",
-  "module": "lib/k-designer.js",
-  "typings": "lib/types/index.d.ts",
+  "main": "dist/k-designer.js",
+  "module": "dist/k-designer.js",
+  "typings": "dist/index.d.ts",
   "description": "基于vue3的设计器,可视化开发页面表单",
   "author": "kchengz",
   "keywords": [

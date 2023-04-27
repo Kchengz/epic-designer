@@ -81,10 +81,6 @@ function isShow (item: NodeItem) {
   return item.show?.({ values: checkedNode.value! }) ?? true
 }
 
-// const componentStyleList = computed(() => {
-//   return componentStyles[designer.state.checkedNode?.type ?? '']
-// })
-
 function getAttrValue (field: string) {
   let obj = checkedNode.value ?? {} as { [key: string]: any }
   const arr = field.split('.')

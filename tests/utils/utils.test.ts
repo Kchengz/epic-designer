@@ -1,42 +1,13 @@
 import { describe, it, expect } from "vitest";
-import { findSchemaById } from "../../packages/utils";
+import { deepCompareAndModify } from "../../packages/utils";
 
 describe("utils.ts", () => {
-  it("通过id查询schemas -> findSchemaById", () => {
-    const schemas = [
-      {
-        type: "form",
-        name: "default",
-        id: "root",
-        children: [
-          {
-            label: "文本框",
-            type: "input",
-            field: "input2",
-            isInput: true,
-            id: "glyhrunicr400",
-            componentProps: {
-              type: "text",
-            },
-          },
-          {
-            label: "文本框",
-            type: "input",
-            field: "input",
-            isInput: true,
-            id: "kluewssswzk00",
-            componentProps: {},
-            rules: [
-              {
-                required: true,
-                message: "请输入",
-              },
-            ],
-          },
-        ],
-      },
-    ];
-    // console.log(findSchemaById(schemas, "kluewssswzk00"))
-    expect(findSchemaById(schemas, "kluewssswzk001")).toEqual(false);
+  it("深度赋值对象 -> deepCompareAndModify", () => {
+    const obj1:Record<string, any> = { name: "小王", age: 12, home: {} };
+    const obj2 = { name: "小黎", gender: "男", home: { lo: "23" } };
+    deepCompareAndModify(obj1, obj2);
+    expect(obj1.name === "小黎").toEqual(true);
+    expect(obj1.age === 12).toEqual(false);
+    expect(obj1.home.lo === "23").toEqual(true);
   });
 });

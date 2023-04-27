@@ -1,12 +1,11 @@
 <template>
   <div class="k-sound-code">
-    <MonacoEditor class="editor" ref="monacoEditorRef" :modelValue="initModelValue"
-      @update:modelValue="setSchemas" />
+    <MonacoEditor class="editor" ref="monacoEditorRef" :modelValue="initModelValue" @update:modelValue="setSchemas" />
   </div>
 </template>
 <script lang="ts" setup>
 import { inject, ref, toRaw, watch } from 'vue'
-import { pluginManager, deepEqual, deepClone } from '../../../../../utils/index'
+import { pluginManager, deepEqual, deepCompareAndModify } from '../../../../../utils/index'
 import { Designer } from '../../../../../types/kDesigner'
 
 const MonacoEditor = pluginManager.getComponent('monacoEditor')
@@ -27,16 +26,7 @@ const initModelValue = JSON.stringify(designer.state.checkedNode, null, 2)
 function setSchemas (e: string) {
   if (!designer.state.checkedNode) { return false }
   oldVal = JSON.parse(e)
-  const keyArray = []
-  for (const i in oldVal) {
-    designer.state.checkedNode[i] = deepClone(oldVal[i])
-    keyArray.push(i)
-  }
-  for (const i in designer.state.checkedNode) {
-    if (!keyArray.includes(i)) {
-      delete designer.state.checkedNode[i]
-    }
-  }
+  deepCompareAndModify(designer.state.checkedNode, oldVal)
 }
 
 </script>

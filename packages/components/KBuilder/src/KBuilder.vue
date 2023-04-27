@@ -8,7 +8,7 @@
     </template>
     <template #fallback>
       <div class="loading-box">
-        <KAsyncLoading />
+        <KAsyncLoader />
       </div>
     </template>
   </Suspense>
@@ -19,7 +19,7 @@ import KNode from '../../KNode/'
 import { reactive, provide, ref, watch, useSlots, nextTick } from 'vue'
 import { NodeItem, FormDataModel } from '../../../types/kDesigner'
 import { loadAsyncComponent, usePageManager } from '../../../utils/index'
-const KAsyncLoading = loadAsyncComponent(() => import('../../KAsyncLoading/KAsyncLoading.vue'))
+const KAsyncLoader = loadAsyncComponent(() => import('../../KAsyncLoader/KAsyncLoader.vue'))
 const pageManager = usePageManager()
 const emit = defineEmits(['ready'])
 const formData = reactive<FormDataModel>({})
