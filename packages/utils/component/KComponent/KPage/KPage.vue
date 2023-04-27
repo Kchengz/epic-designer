@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full bg-white">
+  <div class="h-full box-border bg-white">
     <slot name="edit-node">
       <slot name="node" :record="item" v-for="item in children"></slot>
     </slot>
