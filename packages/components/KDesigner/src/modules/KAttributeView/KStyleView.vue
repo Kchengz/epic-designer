@@ -9,7 +9,7 @@
           <div class="attr-input">
             <KNode :record="{ ...item, componentProps: { ...item.componentProps }, show: true }"
               :model-value="getAttributeValue(item.field!, checkedNode!)"
-              @update:model-value="setAttrValue($event, item.field!)" />
+              @update:model-value="handleSetValue($event, item.field!)" />
           </div>
         </div>
       </div>
@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import KNode from '../../../../KNode/index'
 import { Designer, NodeItem } from '../../../../../types/kDesigner'
-import { revoke, getAttributeValue } from '../../../../../utils/index'
+import { revoke, getAttributeValue, setAttributeValue } from '../../../../../utils/index'
 
 import { inject, computed, Ref } from 'vue'
 const designer = inject('designer') as Designer
@@ -82,21 +82,29 @@ function isShow (item: NodeItem) {
   return item.show?.({ values: checkedNode.value! }) ?? true
 }
 
-function setAttrValue (value: any, field: string) {
-  let obj = checkedNode.value ?? {} as { [key: string]: any }
-  const arr = field.split('.')
-  arr.forEach((item, index) => {
-    if (index === (arr.length - 1)) {
-      obj[item] = value
-      return false
-    }
-    if (!obj[item]) {
-      obj[item] = {}
-    }
-    obj = obj[item]
-  })
-
+/**
+ * 设置属性值
+ */
+function handleSetValue (value: any, field: string) {
+  setAttributeValue(value, field, checkedNode.value!)
+  // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(schemas.value, '编辑组件属性')
 }
+// function setAttrValue (value: any, field: string) {
+//   let obj = checkedNode.value ?? {} as { [key: string]: any }
+//   const arr = field.split('.')
+//   arr.forEach((item, index) => {
+//     if (index === (arr.length - 1)) {
+//       obj[item] = value
+//       return false
+//     }
+//     if (!obj[item]) {
+//       obj[item] = {}
+//     }
+//     obj = obj[item]
+//   })
+
+//   revoke.push(schemas.value, '编辑组件属性')
+// }
 
 </script>

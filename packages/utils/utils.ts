@@ -267,6 +267,6 @@ export function setAttributeValue(
       return false;
     }
     // 否则，进入子属性对象中
-    obj = obj[item] ?? {};
+    obj = obj[item] ?? (obj[item] = {});
   });
 }
