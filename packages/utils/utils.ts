@@ -235,8 +235,8 @@ export function getAttributeValue(
   for (let i = 0; i < fieldList.length; i++) {
     // 更新obj为obj中当前字段的值。
     obj = obj[fieldList[i]];
-    // 如果字段的值是null，则返回null。
-    if (!obj) return null;
+    // 如果字段的值不存在，则返回空。
+    if (!obj && obj !== false && obj !== 0) return;
   }
 
   // 返回从obj中检索到的最终字段的值。
