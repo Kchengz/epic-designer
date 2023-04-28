@@ -1,14 +1,14 @@
 <template>
   <aside class="k-event-view">
     <div v-if="checkedNode">
-      <KActionEditor :eventList="eventList" :model-value="getAttrValue(`on`)"
-        @update:model-value="setAttrValue($event, `on`)" />
+      <KActionEditor :eventList="eventList" :model-value="getAttributeValue(`on`, checkedNode!)"
+        @update:model-value="handleSetValue($event, `on`)" />
     </div>
   </aside>
 </template>
 <script lang="ts" setup>
 import { Designer, NodeItem } from '../../../../../types/kDesigner'
-import { pluginManager, revoke } from '../../../../../utils/index'
+import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '../../../../../utils/index'
 import { inject, computed, Ref } from 'vue'
 const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
@@ -20,7 +20,7 @@ const checkedNode = computed(() => {
 })
 
 const eventList = computed(() => {
-  const eventList:any = [{
+  const eventList: any = [{
     title: '生命周期',
     events: [
       {
@@ -61,37 +61,12 @@ const eventList = computed(() => {
   return eventList
 })
 
-// onVnodeMounted
-
-function getAttrValue (field: string) {
-  let obj = checkedNode.value ?? {} as { [key: string]: any }
-  const arr = field.split('.')
-  for (const i in arr) {
-    obj = obj[arr[i]] ?? null
-    if (obj === null) {
-      return obj
-    }
-  }
-
-  return obj
-}
-
-function setAttrValue (value: any, field: string) {
-  console.log(value, field)
-  let obj = checkedNode.value ?? {} as { [key: string]: any }
-  const arr = field.split('.')
-  arr.forEach((item, index) => {
-    if (index === (arr.length - 1)) {
-      obj[item] = value
-      return false
-    }
-    if (!obj[item]) {
-      obj[item] = {}
-    }
-    obj = obj[item]
-  })
-
+/**
+ * 设置属性值
+ */
+function handleSetValue (value: any, field: string) {
+  setAttributeValue(value, field, checkedNode.value!)
+  // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(schemas.value, '编辑组件属性')
 }
-
 </script>

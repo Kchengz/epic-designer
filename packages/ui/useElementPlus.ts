@@ -22,18 +22,27 @@ import Collapse from "./ElementPlus/collapse";
 import CollapseItem from "./ElementPlus/collapse-item";
 import DatePicker from "./ElementPlus/datePicker";
 
+import {
+  ElDialog,
+  ElFormItem,
+  ElTabs,
+  ElTabPane,
+  ElCollapse,
+  ElCollapseItem,
+} from "element-plus";
+
 // 组件样式调整
 import "./ElementPlus/src/index.less";
 export function useElementPlus(pluginManager: PluginManager) {
   // 异步加载组件
   (async () => {
-    const Elment = await import("element-plus");
-    pluginManager.component("Modal", Elment.ElDialog);
-    pluginManager.component("FormItem", Elment.ElFormItem);
-    pluginManager.component("Tabs", Elment.ElTabs);
-    pluginManager.component("TabPane", Elment.ElTabPane);
-    pluginManager.component("Collapse", Elment.ElCollapse);
-    pluginManager.component("CollapseItem", Elment.ElCollapseItem);
+    pluginManager.component("Modal", ElDialog);
+    // const Elment = await import("element-plus");
+    pluginManager.component("FormItem", ElFormItem);
+    pluginManager.component("Tabs", ElTabs);
+    pluginManager.component("TabPane", ElTabPane);
+    pluginManager.component("Collapse", ElCollapse);
+    pluginManager.component("CollapseItem", ElCollapseItem);
   })();
 
   const componentArray = [

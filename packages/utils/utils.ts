@@ -216,3 +216,57 @@ export function getMatchedById(schemas: NodeItem[], id: string) {
 
   return matched;
 }
+
+/**
+ * 此函数接受一个字符串参数，表示对象中的字段 和 对象
+ * 它通过将参数使用点“.”作为分隔符拆分成部分来检索字段的值
+ * 然后通过迭代每一部分从对象中获取字段的值
+ * 如果找不到字段值，则该函数返回null
+ * @param field 属性路径
+ */
+export function getAttributeValue(
+  field: string,
+  obj: NodeItem | Record<string, any> = {}
+) {
+  // 使用“.”作为分隔符拆分field字符串，以创建字段数组。
+  const fieldList = field.split(".");
+
+  // 遍历fieldList中每个字段，以从obj中检索字段的值
+  for (let i = 0; i < fieldList.length; i++) {
+    // 更新obj为obj中当前字段的值。
+    obj = obj[fieldList[i]];
+    // 如果字段的值是null，则返回null。
+    if (!obj) return null;
+  }
+
+  // 返回从obj中检索到的最终字段的值。
+  return obj;
+}
+
+/**
+ * 设置属性值的函数
+ * 这是一个设置属性值的函数，传入三个参数，一个是要设置的属性值，一个是要设置的属性路径,一个要设置的对象。
+ * 函数主要工作是将属性路径拆分成数组，然后遍历这个数组，依次进入对象中的子属性，直到最后一个子属性，然后将属性值设置到这个子属性上。
+ * @param value 属性值
+ * @param field 属性路径
+ * @param obj 属性路径
+ */
+export function setAttributeValue(
+  value: any,
+  field: string,
+  obj: NodeItem | Record<string, any> = {}
+) {
+  // 将属性路径拆分成数组
+  const arr = field.split(".");
+
+  // 遍历属性路径数组
+  arr.forEach((item, index) => {
+    // 如果当前遍历到数组的最后一个元素，则将属性值设置到这个子属性上
+    if (index === arr.length - 1) {
+      obj[item] = value;
+      return false;
+    }
+    // 否则，进入子属性对象中
+    obj = obj[item] ?? {};
+  });
+}

@@ -12,6 +12,7 @@
     overflow-y: auto;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
       rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    cursor: pointer;
 
     [name="draggable-range"] {
       min-height: 60px;
@@ -21,25 +22,13 @@
     }
 
     > div > [name="draggable-range"] {
-      // height: 100%;
-      // background-color: transparent;
       border: transparent;
-      // .item.root-node {
-      //   border: transparent;
-      // }
-      // 默认页面组件无内容颜色
-      // & > div > div > [name="draggable-range"] {
-      //   background-color: transparent;
-      //   border: transparent;
-      // }
-      // > .item {
-      //   height: 100%;
-      // }
 
-      // // 屏蔽label点击事件
-      // .ant-form-item-label > label {
-      //   pointer-events: none;
-      // }
+      // 屏蔽antd element-plus label点击事件
+      .ant-form-item-label > label,
+      .el-form-item > .el-form-item__label {
+        pointer-events: none;
+      }
     }
 
     .root-node > .form-main > form > [name="draggable-range"] {

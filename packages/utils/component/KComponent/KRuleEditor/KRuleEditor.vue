@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative">
+    <div
+      class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative">
       <template v-for="(record, index) in requiredRuleSchemas" :key="index">
         <div class="flex m-t-2 first:m-0" v-if="record.show ? record.show() : true">
           <div class="attr-label">
@@ -12,7 +13,8 @@
         </div>
       </template>
     </div>
-    <KRuleItem v-for="(item, index) in rules" v-model:rule="rules[index]" @delete="handleDelete(index)" @change="handleUpdate" :key="index" />
+    <KRuleItem v-for="(item, index) in rules" v-model:rule="rules[index]" @delete="handleDelete(index)"
+      @change="handleUpdate" :key="index" />
     <Button class="m-t-2" @click="handleAdd">添加规则</Button>
   </div>
 </template>
@@ -62,6 +64,7 @@ const emit = defineEmits(['update:modelValue'])
 
 watch(() => props.modelValue, (e) => {
   if (e) {
+    if (!e) return
     rules.value = []
     e.forEach(item => {
       // 必填项单独存储
@@ -111,7 +114,7 @@ function handleUpdate () {
  * 通过下标删除校验规则项
  * @param index
  */
-function handleDelete (index:number) {
+function handleDelete (index: number) {
   rules.value.splice(index, 1)
   handleUpdate()
 }

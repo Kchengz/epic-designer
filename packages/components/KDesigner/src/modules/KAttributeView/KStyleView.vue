@@ -8,7 +8,8 @@
           </div>
           <div class="attr-input">
             <KNode :record="{ ...item, componentProps: { ...item.componentProps }, show: true }"
-              :model-value="getAttrValue(item.field!)" @update:model-value="setAttrValue($event, item.field!)" />
+              :model-value="getAttributeValue(item.field!, checkedNode!)"
+              @update:model-value="setAttrValue($event, item.field!)" />
           </div>
         </div>
       </div>
@@ -18,7 +19,7 @@
 <script lang="ts" setup>
 import KNode from '../../../../KNode/index'
 import { Designer, NodeItem } from '../../../../../types/kDesigner'
-import { revoke } from '../../../../../utils/index'
+import { revoke, getAttributeValue } from '../../../../../utils/index'
 
 import { inject, computed, Ref } from 'vue'
 const designer = inject('designer') as Designer
@@ -79,18 +80,6 @@ function isShow (item: NodeItem) {
     return item.show
   }
   return item.show?.({ values: checkedNode.value! }) ?? true
-}
-
-function getAttrValue (field: string) {
-  let obj = checkedNode.value ?? {} as { [key: string]: any }
-  const arr = field.split('.')
-  for (const i in arr) {
-    obj = obj[arr[i]] ?? null
-    if (obj === null) {
-      return obj
-    }
-  }
-  return obj
 }
 
 function setAttrValue (value: any, field: string) {

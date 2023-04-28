@@ -1,16 +1,15 @@
 <template>
   <aside class="k-attribute-view">
-    <div>
-      <div :key="item.field! + checkedNode?.id" v-for="item in componentAttributes">
-        <div v-show="isShow(item)" class="attr-item" :class="item.layout">
-          <div class="attr-label" :title="item.label">
-            {{ item.label }}
-          </div>
-          <div class="attr-input">
-            <KNode
-              :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}) }, show: true }"
-              :model-value="getAttrValue(item.field!)" @update:model-value="setAttrValue($event, item.field!)" />
-          </div>
+    <div :key="item.field! + checkedNode?.id" v-for="item in componentAttributes">
+      <div v-show="isShow(item)" class="attr-item" :class="item.layout">
+        <div class="attr-label" :title="item.label">
+          {{ item.label }}
+        </div>
+        <div class="attr-input">
+          <KNode
+            :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}) }, show: true }"
+            :model-value="getAttributeValue(item.field!, checkedNode!)"
+            @update:model-value="handleSetValue($event, item.field!)" />
         </div>
       </div>
     </div>
@@ -19,7 +18,7 @@
 <script lang="ts" setup>
 import KNode from '../../../../KNode/index'
 import { Designer, NodeItem, FormDataModel } from '../../../../../types/kDesigner'
-import { pluginManager, revoke } from '../../../../../utils/index'
+import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '../../../../../utils/index'
 import { inject, computed, Ref, reactive, provide } from 'vue'
 const designer = inject('designer') as Designer
 const schemas = inject('schemas') as Ref<NodeItem[]>
@@ -52,46 +51,25 @@ const componentAttributes = computed(() => {
     return []
   }
   const attribute = componentConfings[type]?.config.attribute ?? []
-  return attribute
-  // return [
-  //   {
-  //     label: '组件ID',
-  //     type: 'input',
-  //     field: 'id',
-  //     componentProps: {
-  //       disabled: true
-  //     }
-  //   },
-  //   ...attribute
-  // ]
+  return [
+    {
+      label: '组件ID',
+      type: 'input',
+      field: 'id',
+      componentProps: {
+        disabled: true
+      }
+    },
+    ...attribute
+  ]
 })
 
-function getAttrValue (field: string) {
-  let obj = checkedNode.value ?? {} as { [key: string]: any }
-  const arr = field.split('.')
-  for (const i in arr) {
-    obj = obj[arr[i]] ?? null
-    if (obj === null) {
-      return obj
-    }
-  }
-  return obj
-}
-
-function setAttrValue (value: any, field: string) {
-  let obj = checkedNode.value ?? {} as { [key: string]: any }
-  const arr = field.split('.')
-  arr.forEach((item, index) => {
-    if (index === (arr.length - 1)) {
-      obj[item] = value
-      return false
-    }
-    if (!obj[item]) {
-      obj[item] = {}
-    }
-    obj = obj[item]
-  })
-
+/**
+ * 设置属性值
+ */
+function handleSetValue (value: any, field: string) {
+  setAttributeValue(value, field, checkedNode.value!)
+  // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(schemas.value, '编辑组件属性')
 }
 
