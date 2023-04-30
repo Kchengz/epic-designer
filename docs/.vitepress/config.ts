@@ -17,12 +17,18 @@ export default defineConfig({
       text: "为此页提供修改建议",
       pattern: "https://github.com/Kchengz/k-designer/issues",
     },
-    socialLinks: [{ icon: "github", link: "https://github.com/Kchengz/k-designer" }],
+    socialLinks: [
+      { icon: "github", link: "https://github.com/Kchengz/k-designer" },
+    ],
     footer: {
       copyright: "本文档内容版权为 KDesigner 作者所有，保留所有权利。",
     },
     nav: [
-      { text: "文档", link: "/guide/start/index", activeMatch: "/guide/start/index" },
+      {
+        text: "文档",
+        link: "/guide/start/index",
+        activeMatch: "/guide/start/index",
+      },
       { text: "更新日志", link: "/updateLog", activeMatch: "/updateLog" },
       // { text: "个人博客", link: "https://www.kcz66.com" },
       {
@@ -46,15 +52,15 @@ export default defineConfig({
     sidebar: {
       "/guide/start/": [
         {
-          text: "简介",
+          text: "介绍",
           items: [
             {
-              text: "开始",
+              text: "简介",
               link: "/guide/start/index",
             },
             {
-              text: "开始333",
-              link: "/guide/start/index",
+              text: "快速上手",
+              link: "/guide/start/quick-start",
             },
           ],
         },

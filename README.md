@@ -1,17 +1,12 @@
 ## 简介
-基于vue和ant-design-vue实现的设计器，样式使用less作为开发语言，主要功能是能通过简单操作来生成配置表单，生成可保存的JSON数据，并能将JSON还原成页面，使开发更简单更快速
-
-k-designer的前身是[k-form-design](https://gitee.com/kcz66/k-form-design)
-
-k-form-design是基于vue2开发一个表单设计器，
-在升级vue3时，参考了很多用户反馈的意见，在设计时，不仅仅只是设计表单，还可以用来设计页面等等
-
-k-designer将不仅仅局限于设计表单，它或许把做一些页面组件进行封装，例如H5页面设计器
-
-所以在vue3版本中 k-form-design 改名 k-designer
+可以简称“K 设计器”，是一个功能强大、开箱即用的拖拽式低代码设计器。它基于 Vue3 开发，兼容多套 UI，除了基础的页面设计功能，KDesigner 还提供了强大的扩展功能，可以让开发者根据自己的需求自由扩展和定制组件。此外，KDesigner 使用 JSON 配置来生成页面，使得页面开发更快速、更方便，节约开发成本，提高开发效率。
 
 - [github](https://github.com/Kchengz/k-designer)
 - [码云 gitee](https://gitee.com/kcz66/k-designer)
+
+## 最新版本
+
+[![](https://img.shields.io/npm/v/k-designer.svg?style=flat-square)](https://www.npmjs.com/package/k-designer)
 
 #### 功能
 
