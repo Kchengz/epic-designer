@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as s,a as n}from"./app.9f8eebf2.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"components/kDesigner.md"}'),o={name:"components/kDesigner.md"},a=n("p",null,"234234",-1),r=[a];function c(_,i,p,d,l,m){return t(),s("div",null,r)}const h=e(o,[["render",c]]);export{u as __pageData,h as default};

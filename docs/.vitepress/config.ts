@@ -5,7 +5,7 @@ export default defineConfig({
   // 网站描述
   description: "低代码可视化设计器及生成器",
   lang: "zh-CN",
-
+  base: "k-designer",
   // 打包目录
   head: [
     // 添加图标
@@ -21,7 +21,7 @@ export default defineConfig({
       { icon: "github", link: "https://github.com/Kchengz/k-designer" },
     ],
     footer: {
-      copyright: "本文档内容版权为 KDesigner 作者所有，保留所有权利。",
+      copyright: "本文档内容版权为 KDesigner 作者kchengz所有，保留所有权利。",
     },
     nav: [
       {
