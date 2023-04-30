@@ -4,7 +4,7 @@
 npm i k-designer
 ```
 
-> k-designer 目标是支持多 UI 兼容,目前支持以下 UI
+k-designer 目标是支持多 UI 兼容,目前支持以下 UI
 
 - element-plus
 - ant-design-vue

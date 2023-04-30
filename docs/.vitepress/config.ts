@@ -50,7 +50,7 @@ export default defineConfig({
       },
     ],
     sidebar: {
-      "/guide/start/": [
+      "/guide/": [
         {
           text: "介绍",
           items: [
@@ -61,6 +61,19 @@ export default defineConfig({
             {
               text: "快速上手",
               link: "/guide/start/quick-start",
+            },
+          ],
+        },
+        {
+          text: "组件",
+          items: [
+            {
+              text: "k-designer 设计器",
+              link: "/guide/components/k-designer",
+            },
+            {
+              text: "k-builder 生成器",
+              link: "/guide/components/k-builder",
             },
           ],
         },
