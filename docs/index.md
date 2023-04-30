@@ -1,7 +1,7 @@
 ---
 layout: home
 
-title: KDesigner
+title: KDesigner设计器
 titleTemplate: 低代码可视化设计器
 hero:
   name: KDesigner
@@ -14,7 +14,7 @@ hero:
   actions:
     - theme: brand
       text: 开始 👆
-      link: /guide/start
+      link: /guide/start/index
     - theme: alt
       text: KDesigner 源码
       link: https://gitee.com/kcz66

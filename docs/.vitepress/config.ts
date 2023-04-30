@@ -1,7 +1,7 @@
 import { defineConfig } from "vitepress";
 export default defineConfig({
   // 网站标题
-  title: "KDesigner",
+  title: "KDesigner设计器",
   // 网站描述
   description: "低代码可视化设计器及生成器",
   lang: "zh-CN",
@@ -15,16 +15,16 @@ export default defineConfig({
   themeConfig: {
     editLink: {
       text: "为此页提供修改建议",
-      pattern: "https://gitee.com/kcz66",
+      pattern: "https://github.com/Kchengz/k-designer/issues",
     },
-    socialLinks: [{ icon: "github", link: "https://gitee.com/kcz66" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/Kchengz/k-designer" }],
     footer: {
       copyright: "本文档内容版权为 KDesigner 作者所有，保留所有权利。",
     },
     nav: [
-      { text: "指引", link: "/guide/start", activeMatch: "/guide/start" },
+      { text: "文档", link: "/guide/start/index", activeMatch: "/guide/start/index" },
       { text: "更新日志", link: "/updateLog", activeMatch: "/updateLog" },
-      { text: "个人博客", link: "https://www.kcz66.com" },
+      // { text: "个人博客", link: "https://www.kcz66.com" },
       {
         text: "相关链接",
         items: [
@@ -44,29 +44,16 @@ export default defineConfig({
       },
     ],
     sidebar: {
-      "/components": [
+      "/guide/start/": [
         {
-          text: "引导",
+          text: "简介",
           items: [
             {
               text: "开始",
               link: "/guide/start/index",
             },
             {
-              text: "开始3",
-              link: "/guide/start/index",
-            },
-          ],
-        },
-        {
-          text: "引导",
-          items: [
-            {
-              text: "开始",
-              link: "/guide/start/index",
-            },
-            {
-              text: "开始3",
+              text: "开始333",
               link: "/guide/start/index",
             },
           ],
