@@ -5,11 +5,11 @@ export default defineConfig({
   // 网站描述
   description: "低代码可视化设计器及生成器",
   lang: "zh-CN",
-  base: "k-designer",
+  base: "./",
   // 打包目录
   head: [
     // 添加图标
-    ["link", { rel: "icon", href: "/favicon.ico" }],
+    ["link", { rel: "icon", href: "/public/favicon.ico" }],
   ],
   // 主题配置
   themeConfig: {
