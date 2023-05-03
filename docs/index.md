@@ -8,7 +8,7 @@ hero:
   text: 低代码可视化设计器
   tagline: '开源、规范、可视化、可扩展'
   image:
-    src: /public/logo.png
+    src: /logo.png
     alt: KDesigner
     width: 140
   actions:
