@@ -1,3 +1,17 @@
+![](.\docs\public\logo.png)
+<h3 align="center" style="background-image:-webkit-linear-gradient(left,#44c0fa,#c26cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">KDesigner</h3>
+
+
+<h4 align="center">一个开箱即用的拖拽式的可视化低代码设计器</h4>
+
+
+
+📦github仓库：[https://github.com/Kchengz/k-designer](https://github.com/Kchengz/k-designer)
+
+📦gitee仓库：[https://gitee.com/kcz66/k-designer](https://gitee.com/kcz66/k-designer)
+
+💎文档地址：[https://kcz66.gitee.io/k-designer/](https://kcz66.gitee.io/k-designer/)
+
 ## 简介
 
 可以简称`K设计器`，是一个功能强大、开箱即用的拖拽式低代码设计器。它基于 Vue3 开发，兼容多套 UI 组件库，除了基础的页面设计功能，KDesigner 还提供了强大的扩展功能，可以让开发者根据自己的需求自由扩展和定制组件。此外，KDesigner 使用 JSON 配置来生成页面，可帮助开发者快速生成页面，提高开发效率。它提供了两个重要组件：`k-designer` 设计器和 `k-builder` 生成器。
@@ -19,7 +33,9 @@
 - [ ] 支持不同 UI
 - [ ] 插件扩展
 
-## 组件
+
+
+## 组件介绍
 
 #### k-designer 设计器
 
@@ -28,9 +44,6 @@
 #### k-builder 生成器
 
 `k-builder` 是一个页面构建组件，它可以将设计器生成的 JSON 配置构建成页面，完成组件的渲染、事件绑定和数据回显等操作。
-
-- [github](https://github.com/Kchengz/k-designer)
-- [码云 gitee](https://gitee.com/kcz66/k-designer)
 
 ## 安装 k-designer
 

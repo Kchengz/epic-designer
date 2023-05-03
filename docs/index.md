@@ -44,6 +44,5 @@ features:
 import { onMounted } from 'vue'
 
 onMounted(() => {
-  fetchReleaseTag('v0.0.1')
 })
 </script>
