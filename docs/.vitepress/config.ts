@@ -9,7 +9,10 @@ export default defineConfig({
   // 打包目录
   head: [
     // 添加图标
-    ["link", { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    [
+      "link",
+      { rel: "icon", type: "image/x-icon", href: "/k-designer/favicon.ico" },
+    ],
   ],
   // 主题配置
   themeConfig: {
