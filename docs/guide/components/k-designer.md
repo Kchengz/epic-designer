@@ -22,8 +22,36 @@
 ## 基础用法
 
 <div class="k-designer-container">
-    <KDesigner />
+	<KDesigner  @save="handleSubmit"  />
 </div>
+
+```vue
+<template>
+  <div class="k-designer-container">
+    <KDesigner @save="handleSubmit" />
+  </div>
+</template>
+<script setup>
+import { KDesigner } from 'k-designer'
+    
+/**
+ * 点击保存按钮操作
+ * @param e
+ */
+function handleSubmit (e) {
+  console.log(e)
+}
+</script>
+<style>
+.k-designer-container {
+  width: 1100px;
+  height: 800px;
+  border: 1px solid #ccc;
+}
+</style>
+```
+
+
 
 <script setup>
 import "k-designer/dist/style.css";
@@ -34,7 +62,11 @@ useElementPlus(pluginManager);
 
 import { KDesigner } from 'k-designer';
 
+function handleSubmit (e) {
+  console.log(e)
+}
 </script>
+
 <style>
 .k-designer-container{
 width:1100px;
@@ -42,3 +74,15 @@ height:800px;
 border:1px solid #ccc;
 }
 </style>
+
+
+## API
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| ---- | ---- | ---- | ------ | ---- |
+| -    | -    | -    | -      | -    |
+
+## 事件
+| 事件名称 | 说明               | 参数 |
+| -------- | ------------------ | ---- |
+| save     | 点击保存按钮时回调 | json |

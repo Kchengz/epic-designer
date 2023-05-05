@@ -19,7 +19,7 @@
   </Suspense>
 </template>
 <script lang="ts" setup>
-import { provide, reactive, ref, watch, nextTick } from 'vue'
+import { provide, reactive, toRaw, ref, watch, nextTick } from 'vue'
 import { DesignerState, NodeItem, FormDataModel } from '../../../types/kDesigner'
 import { getMatchedById, loadAsyncComponent, revoke, usePageManager } from '../../../utils/index'
 
@@ -135,8 +135,9 @@ async function setDisableHover (disableHover = false) {
  * 保存数据
  */
 function handleSave () {
-  emit('save', { schemas: schemas.value, script: script.value })
+  emit('save', { schemas: toRaw(schemas.value), script: script.value })
 }
 
 init()
+
 </script>
