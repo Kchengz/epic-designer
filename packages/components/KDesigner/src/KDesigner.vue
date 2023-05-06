@@ -20,8 +20,8 @@
 </template>
 <script lang="ts" setup>
 import { provide, reactive, toRaw, ref, watch, nextTick } from 'vue'
-import { DesignerState, NodeItem, FormDataModel } from '../../../types/kDesigner'
-import { getMatchedById, loadAsyncComponent, revoke, usePageManager } from '../../../utils/index'
+import { DesignerState, NodeItem, FormDataModel, PageSchema } from '../../../types/kDesigner'
+import { getMatchedById, loadAsyncComponent, revoke, usePageManager, deepCompareAndModify } from '../../../utils/index'
 
 const KHeader = loadAsyncComponent(() => import('./modules/KHeader/KHeader.vue'))
 const KActionBar = loadAsyncComponent(() => import('./modules/KActionBar/KActionBar.vue'))
@@ -132,6 +132,29 @@ async function setDisableHover (disableHover = false) {
 }
 
 /**
+ * 接受一个PageSchema对象作为参数。根据传入的schemas和script属性，更新页面对应的数据
+ * @param pageSchema
+ */
+function setData (pageSchema: PageSchema) {
+  // 调用 deepCompareAndModify 函数比较 schemas.value 和传入的 schemas，进行修改
+  deepCompareAndModify(schemas.value, pageSchema.schemas)
+
+  // 更新 script.value
+  script.value = pageSchema.script
+}
+
+/**
+ * 返回当前页面数据的 PageSchema 对象，包含页面当前的 schemas 和 script 数据。
+ */
+function getData (): PageSchema {
+  // 返回一个对象，包含当前 schemas 对象的普通对象表示和当前 script 的值
+  return {
+    schemas: toRaw(schemas.value), // 将响应式对象 schemas 转换为普通对象
+    script: script.value // 返回脚本的值
+  }
+}
+
+/**
  * 保存数据
  */
 function handleSave () {
@@ -140,4 +163,8 @@ function handleSave () {
 
 init()
 
+defineExpose({
+  setData,
+  getData
+})
 </script>

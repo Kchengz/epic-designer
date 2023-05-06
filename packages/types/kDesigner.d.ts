@@ -1,4 +1,4 @@
-import { FormItemRule } from '../utils/component/KComponent/KRuleEditor/types'
+import { FormItemRule } from "../utils/component/KComponent/KRuleEditor/types";
 export interface RenderCallbackParams {
   values: { [propName: string]: any };
 }
@@ -56,6 +56,9 @@ export interface DesignerState {
   hoverNode: NodeItem | null;
   disableHover: boolean;
   matched: NodeItem[];
+}
 
-  // actionBarCheckedIndex: number | null;
+export interface PageSchema {
+  schemas: NodeItem[];
+  script: string;
 }
