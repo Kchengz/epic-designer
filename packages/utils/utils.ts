@@ -79,7 +79,7 @@ export function deepCompareAndModify(
     }
   }
 
-  Object.keys(obj1).forEach((key) => {
+  Object.keys(obj1).reverse().forEach((key) => {
     // 如果obj2中存在obj1的属性跳过
     if (obj2.hasOwnProperty(key)) {
       return;
