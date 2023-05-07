@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { provide, reactive, toRaw, ref, watch, nextTick } from 'vue'
 import { DesignerState, NodeItem, FormDataModel, PageSchema } from '../../../types/kDesigner'
-import { getMatchedById, loadAsyncComponent, revoke, usePageManager, deepCompareAndModify } from '../../../utils/index'
+import { getMatchedById, loadAsyncComponent, revoke, usePageManager, deepCompareAndModify, deepClone } from '../../../utils/index'
 
 const KHeader = loadAsyncComponent(() => import('./modules/KHeader/KHeader.vue'))
 const KActionBar = loadAsyncComponent(() => import('./modules/KActionBar/KActionBar.vue'))
@@ -45,8 +45,19 @@ const formData = reactive<FormDataModel>({})
 watch(() => script.value, e => {
   pageManager.setMethods(e)
 })
-script.value =
-  `const { defineExpose, getComponent } = this;
+
+const defaultSchemas = [{
+  type: 'page',
+  id: 'root',
+  children: [],
+  componentProps: {
+    style: {
+      padding: '16px'
+    }
+  }
+}]
+
+const defaultScript = `const { defineExpose, getComponent } = this;
 
 function test (){
     console.log('test')
@@ -57,27 +68,19 @@ defineExpose({
  test 
 })`
 
+script.value = defaultScript
+
 provide('schemas', schemas)
 provide('script', script)
 provide('formData', formData)
 provide('pageManager', pageManager)
 
-const rootSchema = {
-  type: 'page',
-  id: 'root',
-  children: [],
-  componentProps: {
-    style: {
-      padding: '16px'
-    }
-  }
-}
-
 function init () {
-  // 添加根节点
-  schemas.value.push(rootSchema)
+  // 初始化默认节点
+  schemas.value = deepClone(defaultSchemas)
+
   // 选中根节点
-  setCheckedNode(rootSchema)
+  setCheckedNode(schemas.value[0])
   revoke.push(schemas.value, '初始化撤销功能')
 }
 
@@ -92,7 +95,7 @@ provide('designer', {
  * 选中节点
  * @param schema
  */
-async function setCheckedNode (schema: NodeItem = rootSchema) {
+async function setCheckedNode (schema: NodeItem = schemas.value[0]) {
   state.checkedNode = schema
   state.matched = getMatchedById(schemas.value, schema.id!)
 }
@@ -155,6 +158,20 @@ function getData (): PageSchema {
 }
 
 /**
+ * 重置页面数据为默认数据。
+ */
+function reset () {
+  // 调用 deepCompareAndModify 函数比较 schemas.value 和 defaultSchemas，进行修改
+
+  deepCompareAndModify(schemas.value, defaultSchemas)
+  // 更新 script.value
+  script.value = defaultScript
+  // 选中根节点
+  setCheckedNode(schemas.value[0])
+  revoke.push(schemas.value, '重置操作')
+}
+
+/**
  * 保存数据
  */
 function handleSave () {
@@ -165,6 +182,7 @@ init()
 
 defineExpose({
   setData,
-  getData
+  getData,
+  reset
 })
 </script>
