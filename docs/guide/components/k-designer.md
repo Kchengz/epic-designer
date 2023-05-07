@@ -32,14 +32,14 @@
   </div>
 </template>
 <script setup>
-import { KDesigner } from 'k-designer'
-    
+import { KDesigner } from "k-designer";
+
 /**
  * 点击保存按钮操作
  * @param e
  */
-function handleSubmit (e) {
-  console.log(e)
+function handleSubmit(e) {
+  console.log(e);
 }
 </script>
 <style>
@@ -50,8 +50,6 @@ function handleSubmit (e) {
 }
 </style>
 ```
-
-
 
 <script setup>
 import "k-designer/dist/style.css";
@@ -75,14 +73,22 @@ border:1px solid #ccc;
 }
 </style>
 
-
 ## API
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | ---- | ---- | ---- | ------ | ---- |
 | -    | -    | -    | -      | -    |
 
+## 函数
+
+| 函数名称 | 说明                     | 参数 | 回调参数 | 版本   |
+| -------- | ------------------------ | ---- | -------- | ------ |
+| setData  | 导入 json 数据，继续编辑 | json | Boolean  | 0.0.36 |
+| getData  | 获取 json 数据           | -    | Object   | 0.0.36 |
+| reset    | 清除表单                 | -    | Boolean  | 0.0.36 |
+
 ## 事件
-| 事件名称 | 说明               | 参数 |
-| -------- | ------------------ | ---- |
-| save     | 点击保存按钮时回调 | json |
+
+| 事件名称 | 说明               | 参数 | 版本   |
+| -------- | ------------------ | ---- | ------ |
+| save     | 点击保存按钮时回调 | json | 0.0.35 |
