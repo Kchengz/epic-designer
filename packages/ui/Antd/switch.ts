@@ -7,27 +7,26 @@ export default {
     icon: "icon-number",
     field: "switch",
     isInput: true,
-    componentProps: {
-    },
+    componentProps: {},
   },
   config: {
     attribute: [
-    {
-      label: "字段名",
-      type: "input",
-      field: "field",
-    },
-    {
-      label: "文字",
-      type: "input",
-      field: "label",
-    },
-    {
-      label: "默认值",
-      type: "switch",
-      field: "componentProps.defaultValue",
-    },
-  ],
-},
+      {
+        label: "字段名",
+        type: "input",
+        field: "field",
+      },
+      {
+        label: "文字",
+        type: "input",
+        field: "label",
+      },
+      {
+        label: "默认值",
+        type: "switch",
+        field: "componentProps.defaultValue",
+      },
+    ],
+  },
   bindModel: "checked",
 } as ComponentConfigModel;

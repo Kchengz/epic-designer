@@ -7,9 +7,6 @@ export default defineComponent({
       type: Object as PropType<NodeItem>,
       require: true,
     },
-    children: {
-      type: Array,
-    },
   },
   setup(props, { attrs, slots }) {
     return () => {

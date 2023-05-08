@@ -1,9 +1,12 @@
 <template>
-  <component :is="Modal" title="预览" v-model:visible="visible" v-model="visible" width="800px" :footer="null">
-    <KBuilder :key="kBuilderKey" ref="kb" :schemas="schemas" :script="script" />
-    <div class="k-modal-footer">
-      <Button @click="handleClose">关闭</Button>
-      <Button type="primary" @click="handleOk">输出结果</Button>
+  <component :is="Modal" title="预览" v-model:visible="visible" v-model:show="visible" v-model="visible" width="800px"
+    :footer="null">
+    <div class="k-preview-container">
+      <KBuilder :key="kBuilderKey" ref="kb" :schemas="schemas" :script="script" />
+      <div class="k-modal-footer">
+        <Button @click="handleClose">关闭</Button>
+        <Button type="primary" @click="handleOk">输出结果</Button>
+      </div>
     </div>
   </component>
 </template>

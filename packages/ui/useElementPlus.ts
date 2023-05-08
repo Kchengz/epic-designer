@@ -1,7 +1,7 @@
 // 注册ant-design-vue ui
 import { PluginManager } from "../utils/pluginManager";
 import Input from "./ElementPlus/input";
-import Number from "./ElementPlus/input-number";
+import InputNumber from "./ElementPlus/input-number";
 import Form from "./ElementPlus/form";
 import FormItem from "./ElementPlus/formItem";
 import Button from "./ElementPlus/button";
@@ -49,7 +49,7 @@ export function useElementPlus(pluginManager: PluginManager) {
     Form,
     FormItem,
     Input,
-    Number,
+    InputNumber,
     Radio,
     Checkbox,
     DatePicker,

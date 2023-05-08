@@ -88,12 +88,14 @@ const show = computed(() => {
 })
 
 const getFormItemProps = computed(() => {
+  const rules = show.value && props.record.rules?.map(item => ({
+    ...item,
+    validator: item.validator && pageManager.funcs.value[item.validator]
+  }))
   return {
     ...props.record,
-    rules: show.value && props.record.rules?.map(item => ({
-      ...item,
-      validator: item.validator && pageManager.funcs.value[item.validator]
-    }))
+    rules,
+    rule: rules
   }
 })
 

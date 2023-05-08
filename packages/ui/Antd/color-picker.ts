@@ -32,10 +32,9 @@ export default {
         field: "componentProps.defaultValue",
       },
       {
-        label: "显示",
+        label: "隐藏",
         type: "switch",
-        field: "show",
-        componentProps: {},
+        field: "componentProps.hidden",
       },
       {
         label: "禁用",
@@ -45,28 +44,11 @@ export default {
     ],
     event: [
       {
-        type: "input",
-        describe: "输入值",
-      },
-      {
         type: "change",
-        describe: "值修改",
-      },
-      {
-        type: "focus",
-        describe: "获取焦点",
-      },
-      {
-        type: "blur",
-        describe: "失去焦点",
+        describe: "值变化时",
       },
     ],
-    action: [
-      {
-        type: "select",
-        describe: "选中文字",
-      },
-    ],
+    action: [],
   },
   bindModel: "value",
 } as ComponentConfigModel;
