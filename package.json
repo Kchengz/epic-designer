@@ -1,7 +1,7 @@
 {
   "name": "k-designer",
   "private": false,
-  "version": "0.0.36",
+  "version": "0.0.41",
   "type": "module",
   "main": "dist/k-designer.js",
   "module": "dist/k-designer.js",
@@ -56,7 +56,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.10.0",
     "jsdom": "^20.0.3",
-    "k-designer": "^0.0.35",
+    "k-designer": "0.0.41",
     "naive-ui": "^2.34.3",
     "typescript": "^5.0.3",
     "unocss": "^0.51.8",

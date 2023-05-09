@@ -55,7 +55,7 @@ function handleSubmit(e) {
 import "k-designer/dist/style.css";
 import { pluginManager } from "k-designer";
 import 'element-plus/dist/index.css'
-import { useElementPlus } from "k-designer/dist/ui/useElementPlus";
+import { useElementPlus } from "k-designer/dist/ui/elementPlus";
 useElementPlus(pluginManager);
 
 import { KDesigner } from 'k-designer';

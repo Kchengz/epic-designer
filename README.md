@@ -55,6 +55,7 @@ k-designer 目标是支持多 UI 兼容,目前支持以下 UI
 
 - element-plus
 - ant-design-vue
+- naive-ui
 
 ## 选择 UI 组件库
 
@@ -72,8 +73,8 @@ import "element-plus/dist/index.css";
 // 引入k-designer样式
 import "k-designer/dist/style.css";
 import { pluginManager } from "k-designer";
-import { useElementPlus } from "k-designer/dist/ui/useElementPlus";
-// 使用Elemnt UI
+import { useElementPlus } from "k-designer/dist/ui/elementPlus";
+// 注册Element UI
 useElementPlus(pluginManager);
 ```
 
@@ -91,11 +92,26 @@ import "ant-design-vue/dist/antd.css";
 // 引入k-designer样式
 import "k-designer/dist/style.css";
 import { pluginManager } from "k-designer";
-import { useAntd } from "k-designer/dist/ui/useAntd";
+import { useAntd } from "k-designer/dist/ui/antd";
 // 使用Antd UI
 useAntd(pluginManager);
 ```
+- ### 选择 naive-ui
 
+```bash
+npm i naive-ui
+```
+
+main.ts 或者 main.js 引入注册组件
+
+```javascript
+// 引入k-designer样式
+import "k-designer/dist/style.css";
+import { pluginManager } from "k-designer";
+import { useNaiveUi } from "k-designer/dist/ui/naiveUi";
+// 注册Naive Ui
+useNaiveUi(pluginManager);
+```
 ## 在页面使用 k-designer
 
 ```vue
