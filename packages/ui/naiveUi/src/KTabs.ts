@@ -21,7 +21,7 @@ export default defineComponent({
       return h(NTabs, record, {
         default: () =>
           renderSlot(slots, 'edit-node', {}, () =>
-            children!.map((node: NodeItem) => renderSlot(slots, 'node', { node }))
+            children!.map((node: NodeItem) => renderSlot(slots, 'node', { record: node }))
           )
       });
     };

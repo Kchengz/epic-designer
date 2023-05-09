@@ -7,24 +7,21 @@ export default defineComponent({
       type: Object as PropType<NodeItem>,
       require: true,
     },
-    children: {
-      type: Array,
-    },
   },
   setup(props, { attrs, slots }) {
-    return ()=> {
+    return () => {
       const record = {
         ...props.record,
         header: props.record!.label,
       } as any;
       const children = record.children;
       delete record.children;
-  
+
       return h(ElCard, record, {
         default: () =>
           renderSlot(slots, "edit-node", {}, () =>
-            children!.map((record: any) =>
-              renderSlot(slots, "node", { record })
+            children!.map((node: NodeItem) =>
+              renderSlot(slots, "node", { record: node })
             )
           ),
       });

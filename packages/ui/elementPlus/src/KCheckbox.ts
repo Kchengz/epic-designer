@@ -9,7 +9,6 @@ export default defineComponent({
     function handleUpdate(e = null) {
       emit(`update:modelValue`, e);
     }
-
     return () => {
       const props: { [propName: string]: any } = {
         ...attrs,
