@@ -1,4 +1,3 @@
-import { pluginManager } from "./index";
 import { ref } from "vue";
 export interface ActionModel {
   componentId?: string;

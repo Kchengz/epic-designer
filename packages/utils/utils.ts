@@ -1,5 +1,5 @@
 import { NodeItem } from "../types/kDesigner";
-import { defineAsyncComponent, AsyncComponentLoader, toRaw } from "vue";
+import { defineAsyncComponent, AsyncComponentLoader } from "vue";
 import KAsyncLoader from "../components/KAsyncLoader/KAsyncLoader.vue";
 
 /**
