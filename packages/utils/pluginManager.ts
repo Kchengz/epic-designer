@@ -41,7 +41,7 @@ export interface ComponentConfigModel {
   bindModel?: string;
 }
 
-export interface ComponentConfigsModel {
+export interface ComponentConfigModelRecords {
   [type: string]: ComponentConfigModel;
 }
 
@@ -57,7 +57,7 @@ export interface PublicMethodsModel {
 
 export class PluginManager {
   components: Components = {};
-  componentConfigs: ComponentConfigsModel = {};
+  componentConfigs: ComponentConfigModelRecords = {};
   schemaGroup: SchemaGroupItem[] = [
     {
       title: "基础组件",

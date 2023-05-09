@@ -12,6 +12,7 @@ export interface NodeItem {
   componentProps?: any;
   id?: string;
   rules?: FormItemRule[];
+  noFormItem?: boolean;
   labelCol?: any;
   wrapperCol?: any;
   children?: NodeItem[];

@@ -7,7 +7,7 @@
         </div>
         <div class="attr-input">
           <KNode
-            :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}) }, show: true }"
+            :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}) }, show: true, noFormItem: true }"
             :model-value="getAttributeValue(item.field!, checkedNode!)"
             @update:model-value="handleSetValue($event, item.field!)" />
         </div>

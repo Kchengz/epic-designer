@@ -8,7 +8,7 @@
             {{ record.label }}
           </div>
           <div class="flex-1">
-            <KNode :record="record" v-model="requiredRule[record.model]" @change="handleUpdate" />
+            <KNode :record="{ ...record, noFormItem: true }" v-model="requiredRule[record.model]" @change="handleUpdate" />
           </div>
         </div>
       </template>

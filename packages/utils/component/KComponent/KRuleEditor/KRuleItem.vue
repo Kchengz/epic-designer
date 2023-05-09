@@ -7,7 +7,7 @@
           {{ record.label }}
         </div>
         <div class="attr-input">
-          <KNode :record="record" v-model="rule[record.model]" @change="handleUpdate" />
+          <KNode :record="{ ...record, noFormItem: true }" v-model="rule[record.model]" @change="handleUpdate" />
         </div>
       </div>
     </template>

@@ -1,5 +1,5 @@
 <template>
-  <FormItem v-if="props.record.input && component && show" v-bind="getFormItemProps">
+  <FormItem v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show" v-bind="getFormItemProps">
     <component :is="component" ref="componentInstance"
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 递归组件 start -->
@@ -90,13 +90,18 @@ const show = computed(() => {
 const getFormItemProps = computed(() => {
   const rules = show.value && props.record.rules?.map(item => ({
     ...item,
-    validator: item.validator && pageManager.funcs.value[item.validator]
+    validator: item.validator && pageManager.funcs.value[item.validator] // 自定义校验函数
   }))
   return {
     ...props.record,
     rules,
     rule: rules
   }
+})
+
+// 获取组件原配置
+const getComponentConfing = computed(() => {
+  return pluginManager.getComponentConfingByType(props.record.type) ?? null
 })
 
 /**
@@ -144,7 +149,7 @@ async function initComponent () {
     console.error(`组件${props.record.type}未注册`)
     return false
   }
-  const bindModel = pluginManager.getComponentConfingByType(props.record.type)?.bindModel ?? 'modelValue'
+  const bindModel = getComponentConfing.value?.bindModel ?? 'modelValue'
 
   // 如果数据项为函数，则判定为懒加载组件
   if (typeof cmp === 'function') {
