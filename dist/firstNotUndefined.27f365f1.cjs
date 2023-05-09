@@ -1,1 +1,0 @@
-"use strict";var e={},t;function f(){if(t)return e;t=1,Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;function d(){for(var n=arguments.length>0&&arguments[0]!==void 0?arguments[0]:[],r=0,i=n.length;r<i;r++)if(n[r]!==void 0)return n[r]}var u=d;return e.default=u,e}exports.requireFirstNotUndefined=f;

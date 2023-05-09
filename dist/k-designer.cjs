@@ -1,1 +1,0 @@
-"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e=require("./index.89664b5e.cjs");require("./revoke.800898d2.cjs");require("vue");exports.KBuilder=e._sfc_main;exports.KDesigner=e._sfc_main$3;exports.default=e.KDesignr;exports.pluginManager=e.pluginManager;exports.usePageManager=e.usePageManager;

@@ -1,1 +1,0 @@
-"use strict";const a=require("./_vue_commonjs-external.db6f8c6f.cjs");var e={},c;function v(){if(c)return e;c=1,Object.defineProperty(e,"__esModule",{value:!0}),e.default=i;var n=a.require$$1;function i(r,s,o){var u=(0,n.ref)(r());return(0,n.watch)(s,function(t,f){o?o(t,f)&&(u.value=r()):u.value=r()}),u}return e}exports.requireUseMemo=v;
