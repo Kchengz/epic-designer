@@ -1,0 +1,50 @@
+// 活动视图切换器
+.k-action-bar {
+  width: 50px;
+  background-color: @action-bar-bg;
+
+  .action-item {
+    text-align: center;
+    height: 48px;
+    line-height: 48px;
+    position: relative;
+    font-size: 20px;
+    cursor: pointer;
+
+    &:hover {
+      color: @primary-color;
+    }
+
+    &.checked {
+      color: @primary-color;
+
+      &::before {
+        content: "";
+        height: 100%;
+        width: 1px;
+        background-color: @primary-color;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}
+
+// 左侧栏
+.k-left-sidebar {
+  width: 280px;
+  background-color: @view-bg;
+  overflow: hidden;
+  transition: all 0.3s;
+  height: 100%;
+
+  .sidebar-container {
+    min-width: 280px;
+    height: 100%;
+  }
+
+  &.hide {
+    width: 0;
+  }
+}
