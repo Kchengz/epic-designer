@@ -85,11 +85,7 @@ export class PluginManager {
    * @param component 组件
    */
   component(componentName: string, component: any) {
-    // 检查是否已注册组件
-    if (this.components[componentName]) {
-      console.warn(`${componentName}组件已在pluginManager中注册`);
-      return false;
-    }
+
     if (typeof component === "function") {
       component = loadAsyncComponent(component);
     }
