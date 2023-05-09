@@ -6,7 +6,7 @@ export default {
     type: "checkbox",
     icon: "icon-duoxuan1",
     field: "checkbox",
-    isInput: true,
+    input: true,
     componentProps: {
       options: [
         {

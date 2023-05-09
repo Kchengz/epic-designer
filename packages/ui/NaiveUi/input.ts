@@ -6,7 +6,7 @@ export default {
     type: 'input',
     field: 'input',
     icon: 'icon-write',
-    isInput: true,
+    input: true,
     componentProps: {
       defaultValue: '',
       placeholder: '请输入'

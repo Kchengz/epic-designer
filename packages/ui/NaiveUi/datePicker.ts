@@ -6,7 +6,7 @@ export default {
     type: 'date',
     icon: 'icon-xiala',
     field: 'date',
-    isInput: true,
+    input: true,
     componentProps: {
       type: 'date',
       placeholder: '请选择'

@@ -6,7 +6,7 @@ export default {
     type: 'radio',
     icon: 'icon-danxuan-cuxiantiao',
     field: 'radio',
-    isInput: true,
+    input: true,
     componentProps: {
       options: [
         {

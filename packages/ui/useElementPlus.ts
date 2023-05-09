@@ -1,4 +1,4 @@
-// 注册ant-design-vue ui
+// 注册element-plus ui
 import { PluginManager } from "../utils/pluginManager";
 import Input from "./ElementPlus/input";
 import InputNumber from "./ElementPlus/input-number";

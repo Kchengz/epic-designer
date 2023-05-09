@@ -6,7 +6,7 @@ export default {
     type: "cascader",
     icon: "icon-number",
     field: "cascader",
-    isInput: true,
+    input: true,
     componentProps: {
       options: [
         {

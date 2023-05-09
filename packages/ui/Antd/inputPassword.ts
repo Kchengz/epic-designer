@@ -7,7 +7,7 @@ export default {
     type: "password",
     icon: "icon-number",
     field: "password",
-    isInput: true,
+    input: true,
   },
   config: {
     attribute: [

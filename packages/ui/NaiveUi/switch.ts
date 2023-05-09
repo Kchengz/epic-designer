@@ -6,7 +6,7 @@ export default {
     type: 'switch',
     icon: 'icon-number',
     field: 'switch',
-    isInput: true,
+    input: true,
     componentProps: {}
   },
   config: {

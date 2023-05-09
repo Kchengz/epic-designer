@@ -1,5 +1,5 @@
 <template>
-  <FormItem v-if="props.record.isInput && component && show" v-bind="getFormItemProps">
+  <FormItem v-if="props.record.input && component && show" v-bind="getFormItemProps">
     <component :is="component" ref="componentInstance"
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 递归组件 start -->

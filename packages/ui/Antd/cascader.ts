@@ -6,7 +6,7 @@ export default {
     type: "cascader",
     field: "cascader",
     icon: "icon-write",
-    isInput: true,
+    input: true,
   },
   config: {
     attribute: [

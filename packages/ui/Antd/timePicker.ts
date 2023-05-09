@@ -6,7 +6,7 @@ export default {
     type: "time",
     icon: "icon-xiala",
     field: "time",
-    isInput: true,
+    input: true,
     componentProps: {
       valueFormat: "HH:mm:ss",
     },

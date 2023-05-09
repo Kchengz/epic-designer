@@ -6,7 +6,7 @@ export default {
     type: "monacoEditor",
     field: "monacoEditor",
     icon: "icon-write",
-    isInput: true,
+    input: true,
   },
   config: {
     attribute: [

@@ -7,7 +7,7 @@ export default {
     type: "button",
     field: "input",
     icon: "icon-write",
-    isInput: false,
+    input: false,
   },
   config: {
     attribute: [

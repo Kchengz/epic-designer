@@ -6,7 +6,7 @@ export default {
     type: "upload-image",
     icon: "icon-number",
     field: "uploadImage",
-    isInput: true,
+    input: true,
     componentProps: {
       action: "http://cdn.kcz66.com/upload-img.txt",
     },

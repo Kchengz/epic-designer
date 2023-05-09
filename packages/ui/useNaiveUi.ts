@@ -1,4 +1,4 @@
-// 注册ant-design-vue ui
+// 注册naive-ui
 import { PluginManager } from "../utils/pluginManager";
 import Input from "./NaiveUi/input";
 import InputNumber from "./NaiveUi/inputNumber";

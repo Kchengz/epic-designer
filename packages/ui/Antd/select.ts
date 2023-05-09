@@ -6,7 +6,7 @@ export default {
     type: "select",
     icon: "icon-xiala",
     field: "select",
-    isInput: true,
+    input: true,
     componentProps: {
       options: [
         {

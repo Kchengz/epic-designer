@@ -6,7 +6,7 @@ export default {
     type: "color-picker",
     icon: "icon-number",
     field: "color-picker",
-    isInput: true,
+    input: true,
     componentProps: {
       style: { width: "100%" },
     },

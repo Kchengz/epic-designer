@@ -42,7 +42,7 @@ const schemas: NodeItem[] = [{
       field: 'input',
       slotName: 'sdff',
       icon: 'icon-write',
-      isInput: true,
+      input: true,
       id: '6jewjjk2jho00',
 
       componentProps: {
@@ -54,7 +54,7 @@ const schemas: NodeItem[] = [{
       type: 'number',
       icon: 'icon-number',
       field: 'number',
-      isInput: true,
+      input: true,
       show: ({ values }) => {
         return values.input !== '4444'
       },

@@ -6,7 +6,7 @@ export default {
     type: "slider",
     icon: "icon-number",
     field: "slider",
-    isInput: true,
+    input: true,
   },
   config: {
     attribute: [

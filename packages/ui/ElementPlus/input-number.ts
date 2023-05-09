@@ -8,7 +8,7 @@ export default {
     type: "number",
     icon: "icon-number",
     field: "number",
-    isInput: true,
+    input: true,
     componentProps: {
       placeholder: "请输入",
     },
