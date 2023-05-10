@@ -8,10 +8,10 @@ import { pluginManager } from "../packages/index";
 
 
 // 引入Element plus样式
-// import "element-plus/dist/index.css";
-// import { setupElementPlus } from '../packages/ui/elementPlus'
-// // 使用Elemnt UI
-// setupElementPlus(pluginManager);
+import "element-plus/dist/index.css";
+import { setupElementPlus } from '../packages/ui/elementPlus'
+// 使用Elemnt UI
+setupElementPlus(pluginManager);
 
 
 // // 引入antd UI样式
@@ -21,8 +21,8 @@ import { pluginManager } from "../packages/index";
 // setupAntd(pluginManager);
 
 
-import { setupNaiveUi } from '../packages/ui/naiveUi'
-// 使用NaiveUi UI
-setupNaiveUi(pluginManager);
+// import { setupNaiveUi } from '../packages/ui/naiveUi'
+// // 使用NaiveUi UI
+// setupNaiveUi(pluginManager);
 
 createApp(App).mount("#app");
