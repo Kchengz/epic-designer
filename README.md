@@ -73,9 +73,9 @@ import "element-plus/dist/index.css";
 // 引入k-designer样式
 import "k-designer/dist/style.css";
 import { pluginManager } from "k-designer";
-import { useElementPlus } from "k-designer/dist/ui/elementPlus";
+import { setupElementPlus } from "k-designer/dist/ui/elementPlus";
 // 注册Element UI
-useElementPlus(pluginManager);
+setupElementPlus(pluginManager);
 ```
 
 - ### 选择 ant-design-vue
@@ -92,9 +92,9 @@ import "ant-design-vue/dist/antd.css";
 // 引入k-designer样式
 import "k-designer/dist/style.css";
 import { pluginManager } from "k-designer";
-import { useAntd } from "k-designer/dist/ui/antd";
+import { setupAntd } from "k-designer/dist/ui/antd";
 // 使用Antd UI
-useAntd(pluginManager);
+setupAntd(pluginManager);
 ```
 - ### 选择 naive-ui
 
@@ -108,9 +108,9 @@ main.ts 或者 main.js 引入注册组件
 // 引入k-designer样式
 import "k-designer/dist/style.css";
 import { pluginManager } from "k-designer";
-import { useNaiveUi } from "k-designer/dist/ui/naiveUi";
+import { setupNaiveUi } from "k-designer/dist/ui/naiveUi";
 // 注册Naive Ui
-useNaiveUi(pluginManager);
+setupNaiveUi(pluginManager);
 ```
 ## 在页面使用 k-designer
 
