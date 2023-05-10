@@ -1,10 +1,10 @@
 <template>
-    <section class="k-edit-container">
-        <div class="k-edit-range rounded-md">
-            <!-- <KEditNodeItem v-model:schemas="schemas" /> -->
-            <KNodeItem :element="pageSchema" />
-        </div>
-    </section>
+  <section class="k-edit-container">
+    <div class="k-edit-range rounded-md">
+      <!-- <KEditNodeItem v-model:schemas="schemas" /> -->
+      <KNodeItem :element="pageSchema" />
+    </div>
+  </section>
 </template>
 <script lang="ts" setup>
 import { NodeItem } from '../../../../../types/kDesigner'

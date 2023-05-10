@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
   component: async () => async () => (await import('naive-ui/lib/color-picker')).NColorPicker,
   defaultSchema: {
@@ -57,5 +57,5 @@ export default {
     ],
     action: []
   },
-  bindModel: "value",
-} as ComponentConfigModel;
+  bindModel: 'value'
+} as ComponentConfigModel

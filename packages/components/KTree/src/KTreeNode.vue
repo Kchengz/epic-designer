@@ -1,12 +1,26 @@
 <template>
   <li class="k-tree-node">
     <a>
-      <span @click="handleExpanded" v-if="props.record.children?.length" class="icon-expanded" :class="{ expanded }"><span
-          class="iconfont icon-zhankai"></span></span>
+      <span
+        v-if="props.record.children?.length"
+        class="icon-expanded"
+        :class="{ expanded }"
+        @click="handleExpanded"
+      ><span
+        class="iconfont icon-zhankai"
+      /></span>
       <TreeNodeText />
     </a>
-    <ul class="k-tree-sublist" v-if="props.record.children?.length" :class="{ expanded }">
-      <KTreeNode v-for="(item) in props.record.children" :record="item" :key="item.id" />
+    <ul
+      v-if="props.record.children?.length"
+      class="k-tree-sublist"
+      :class="{ expanded }"
+    >
+      <KTreeNode
+        v-for="(item) in props.record.children"
+        :key="item.id"
+        :record="item"
+      />
     </ul>
   </li>
 </template>

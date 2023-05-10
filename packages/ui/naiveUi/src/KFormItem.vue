@@ -1,6 +1,10 @@
 <template>
-  <NFormItem ref="form" v-bind="attrs" :path="attrs.field">
-    <slot></slot>
+  <NFormItem
+    ref="form"
+    v-bind="attrs"
+    :path="attrs.field"
+  >
+    <slot />
   </NFormItem>
 </template>
 <script lang="ts" setup>

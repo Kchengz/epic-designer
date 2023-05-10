@@ -1,98 +1,98 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 
 export default {
-  component: () => import("../src/KForm.vue"),
+  component: async () => await import('../src/KForm.vue'),
   defaultSchema: {
-    label: "表单",
-    type: "form",
-    icon: "icon-qiapian",
-    name: "default",
+    label: '表单',
+    type: 'form',
+    icon: 'icon-qiapian',
+    name: 'default',
     componentProps: {
       labelWidth: 100,
       labelCol: {
-        span: 5,
+        span: 5
       },
       wrapperCol: {
-        span: 19,
+        span: 19
       },
-      hideRequiredMark: false,
+      hideRequiredMark: false
     },
-    children: [],
+    children: []
   },
   config: {
     attribute: [
       {
-        label: "name",
-        type: "input",
-        field: "name",
+        label: 'name',
+        type: 'input',
+        field: 'name'
       },
       {
-        label: "标签长度",
-        type: "input",
-        field: "componentProps.labelWidth",
+        label: '标签长度',
+        type: 'input',
+        field: 'componentProps.labelWidth'
       },
       {
-        label: "标签位置",
-        type: "select",
-        field: "componentProps.labelPosition",
+        label: '标签位置',
+        type: 'select',
+        field: 'componentProps.labelPosition',
         componentProps: {
           options: [
             {
-              label: "left",
-              value: "left",
+              label: 'left',
+              value: 'left'
             },
             {
-              label: "right",
-              value: "right",
+              label: 'right',
+              value: 'right'
             },
             {
-              label: "top",
-              value: "top",
-            },
-          ],
-        },
+              label: 'top',
+              value: 'top'
+            }
+          ]
+        }
       },
       {
-        label: "表单尺寸",
-        type: "select",
-        field: "componentProps.size",
+        label: '表单尺寸',
+        type: 'select',
+        field: 'componentProps.size',
         componentProps: {
           options: [
             {
-              label: "large",
-              value: "large",
+              label: 'large',
+              value: 'large'
             },
             {
-              label: "default",
-              value: "default",
+              label: 'default',
+              value: 'default'
             },
             {
-              label: "small",
-              value: "small",
-            },
-          ],
-        },
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        }
       },
       {
-        label: "scrollToError",
-        type: "switch",
-        field: "componentProps.scrollToError",
+        label: 'scrollToError',
+        type: 'switch',
+        field: 'componentProps.scrollToError'
       },
       {
-        label: "行内模式",
-        type: "switch",
-        field: "componentProps.inline",
+        label: '行内模式',
+        type: 'switch',
+        field: 'componentProps.inline'
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
       },
       {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled",
-      },
-    ],
-  },
-} as ComponentConfigModel;
+        label: '禁用',
+        type: 'switch',
+        field: 'componentProps.disabled'
+      }
+    ]
+  }
+} as ComponentConfigModel

@@ -1,23 +1,30 @@
 <template>
-    <header class="k-footer">
-        <div class="left">
-            <div>
-                <span v-for="(item, index) in designer.state.matched" :key="index">
-                    <span v-if="index !== 0"> > </span>
-                    <span class="node-item" @click="handleSelect(item)" @mouseenter.stop="designer.setHoverNode(item)"
-                        @mouseleave.stop="designer.setHoverNode(null)">{{ pluginManager.getComponentConfingByType(item.type)?.defaultSchema.label }}</span>
-                </span>
-            </div>
-        </div>
-        <div class="right">
-            <div class="author">
-                kcz
-            </div>
-            <div class="package-name">
-                k-designer
-            </div>
-        </div>
-    </header>
+  <header class="k-footer">
+    <div class="left">
+      <div>
+        <span
+          v-for="(item, index) in designer.state.matched"
+          :key="index"
+        >
+          <span v-if="index !== 0"> > </span>
+          <span
+            class="node-item"
+            @click="handleSelect(item)"
+            @mouseenter.stop="designer.setHoverNode(item)"
+            @mouseleave.stop="designer.setHoverNode(null)"
+          >{{ pluginManager.getComponentConfingByType(item.type)?.defaultSchema.label }}</span>
+        </span>
+      </div>
+    </div>
+    <div class="right">
+      <div class="author">
+        kcz
+      </div>
+      <div class="package-name">
+        k-designer
+      </div>
+    </div>
+  </header>
 </template>
 <script lang="ts" setup>
 import { inject } from 'vue'

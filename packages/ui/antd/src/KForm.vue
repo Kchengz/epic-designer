@@ -1,8 +1,21 @@
 <template>
-  <div class="form-main" style="height: 100%;">
-    <Form ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%;" @finish="onFinish">
+  <div
+    class="form-main"
+    style="height: 100%;"
+  >
+    <Form
+      ref="form"
+      :model="attrs.model"
+      v-bind="componentProps"
+      style="height: 100%;"
+      @finish="onFinish"
+    >
       <slot name="edit-node">
-        <slot name="node" :record="item" v-for="item in children"></slot>
+        <slot
+          v-for="item in children"
+          name="node"
+          :record="item"
+        />
       </slot>
     </Form>
   </div>
@@ -23,7 +36,8 @@ const forms = inject('forms', {}) as Ref<{ [name: string]: KForm }>
 const props = defineProps({
   record: {
     type: Object as PropType<NodeItem>,
-    require: true
+    require: true,
+    default: () => ({})
   }
 })
 

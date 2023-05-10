@@ -1,6 +1,11 @@
 <template>
   <div class="k-sound-code">
-    <MonacoEditor class="editor" ref="monacoEditorRef" :modelValue="initModelValue" @update:modelValue="setSchemas" />
+    <MonacoEditor
+      ref="monacoEditorRef"
+      class="editor"
+      :model-value="initModelValue"
+      @update:modelValue="setSchemas"
+    />
   </div>
 </template>
 <script lang="ts" setup>

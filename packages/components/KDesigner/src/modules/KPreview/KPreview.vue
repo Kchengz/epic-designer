@@ -1,11 +1,30 @@
 <template>
-  <component :is="Modal" title="预览" v-model:visible="visible" v-model:show="visible" v-model="visible" width="800px"
-    :footer="null">
+  <component
+    :is="Modal"
+    v-model:visible="visible"
+    v-model:show="visible"
+    v-model="visible"
+    title="预览"
+    width="800px"
+    :footer="null"
+  >
     <div class="k-preview-container">
-      <KBuilder :key="kBuilderKey" ref="kb" :schemas="schemas" :script="script" />
+      <KBuilder
+        :key="kBuilderKey"
+        ref="kb"
+        :schemas="schemas"
+        :script="script"
+      />
       <div class="k-modal-footer">
-        <Button @click="handleClose">关闭</Button>
-        <Button type="primary" @click="handleOk">输出结果</Button>
+        <Button @click="handleClose">
+          关闭
+        </Button>
+        <Button
+          type="primary"
+          @click="handleOk"
+        >
+          输出结果
+        </Button>
       </div>
     </div>
   </component>

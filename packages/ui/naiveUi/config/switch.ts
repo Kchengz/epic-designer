@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
   component: async () => (await import('naive-ui/lib/switch')).NSwitch,
   defaultSchema: {
@@ -51,5 +51,5 @@ export default {
       }
     ]
   },
-  bindModel: "value",
-} as ComponentConfigModel;
+  bindModel: 'value'
+} as ComponentConfigModel

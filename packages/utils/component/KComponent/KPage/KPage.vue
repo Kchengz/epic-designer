@@ -1,7 +1,11 @@
 <template>
   <div class="h-full box-border bg-white">
     <slot name="edit-node">
-      <slot name="node" :record="item" v-for="item in children"></slot>
+      <slot
+        v-for="item in children"
+        name="node"
+        :record="item"
+      />
     </slot>
   </div>
 </template>
@@ -10,7 +14,8 @@ import { computed } from 'vue'
 const props = defineProps({
   record: {
     type: Object as any,
-    require: true
+    require: true,
+    default: () => ({})
   }
 })
 

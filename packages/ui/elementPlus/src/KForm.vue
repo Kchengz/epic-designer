@@ -1,8 +1,21 @@
 <template>
-  <div v-if="visible" class="form-main" style="height: 100%;">
-    <ElForm ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%;">
+  <div
+    v-if="visible"
+    class="form-main"
+    style="height: 100%;"
+  >
+    <ElForm
+      ref="form"
+      :model="attrs.model"
+      v-bind="componentProps"
+      style="height: 100%;"
+    >
       <slot name="edit-node">
-        <slot name="node" :record="item" v-for="item in children"></slot>
+        <slot
+          v-for="item in children"
+          name="node"
+          :record="item"
+        />
       </slot>
     </ElForm>
   </div>
@@ -18,7 +31,8 @@ const visible = ref(true)
 const props = defineProps({
   record: {
     type: Object as PropType<NodeItem>,
-    require: true
+    require: true,
+    default: () => ({})
   }
 })
 

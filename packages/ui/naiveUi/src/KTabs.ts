@@ -1,7 +1,7 @@
-import type { PropType } from 'vue';
-import { defineComponent, h, renderSlot } from 'vue';
-import { NTabs } from 'naive-ui';
-import { NodeItem } from '../../../types/kDesigner';
+import type { PropType } from 'vue'
+import { defineComponent, h, renderSlot } from 'vue'
+import { NTabs } from 'naive-ui'
+import { NodeItem } from '../../../types/kDesigner'
 export default defineComponent({
   props: {
     record: {
@@ -10,20 +10,20 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  setup(props, { slots }) {
+  setup (props, { slots }) {
     return () => {
       const record = {
         ...props.record?.componentProps
-      } as any;
-      const children = props.record?.children ?? [];
-      delete record.children;
+      }
+      const children = props.record?.children ?? []
+      delete record.children
 
       return h(NTabs, record, {
         default: () =>
           renderSlot(slots, 'edit-node', {}, () =>
-            children!.map((node: NodeItem) => renderSlot(slots, 'node', { record: node }))
+            children.map((node: NodeItem) => renderSlot(slots, 'node', { record: node }))
           )
-      });
-    };
+      })
+    }
   }
-});
+})

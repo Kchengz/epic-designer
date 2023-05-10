@@ -1,28 +1,28 @@
-import { ref } from "vue";
+import { ref } from 'vue'
 export interface ActionModel {
-  componentId?: string;
-  args: string;
-  methodName: any;
+  componentId?: string
+  args: string
+  methodName: any
 }
 export interface PageManager {
-  componentInstances: import("vue").Ref<{ [id: string]: any }>;
-  funcs: import("vue").Ref<{ [id: string]: any }>;
-  getComponentInstance: (id: string) => any;
-  addComponentInstance: (id: string, instance: any) => any;
-  setMethods: (scriptStr: string) => void;
-  doActions: (actions: ActionModel[]) => void;
+  componentInstances: import('vue').Ref<Record<string, any>>
+  funcs: import('vue').Ref<Record<string, any>>
+  getComponentInstance: (id: string) => any
+  addComponentInstance: (id: string, instance: any) => any
+  setMethods: (scriptStr: string) => void
+  doActions: (actions: ActionModel[]) => void
 }
 
-export function usePageManager(): PageManager {
-  const componentInstances = ref<{ [id: string]: any }>({});
-  const funcs = ref<{ [id: string]: any }>({});
+export function usePageManager (): PageManager {
+  const componentInstances = ref<Record<string, any>>({})
+  const funcs = ref<Record<string, any>>({})
   /**
    * 获取组件实例
    * @param id
    * @returns
    */
-  function getComponentInstance(id: string) {
-    return componentInstances.value[id];
+  function getComponentInstance (id: string): any {
+    return componentInstances.value[id]
   }
 
   /**
@@ -31,28 +31,28 @@ export function usePageManager(): PageManager {
    * @param instance
    * @returns
    */
-  function addComponentInstance(id: string, instance: any) {
-    return (componentInstances.value[id] = instance);
+  function addComponentInstance (id: string, instance: any): any {
+    return (componentInstances.value[id] = instance)
   }
 
   /**
    * 动态创建函数
    * @param scriptStr
    */
-  function setMethods(scriptStr: string) {
+  function setMethods (scriptStr: string): void {
     new Function(`${scriptStr}`).bind({
       getComponent: getComponentInstance,
-      defineExpose,
-    })();
+      defineExpose
+    })()
   }
 
   /**
    *  存储自定义脚本暴露的函数及属性
    * @param exposed
    */
-  function defineExpose(exposed?: Record<string, any> | undefined) {
-    if (exposed) {
-      funcs.value = exposed;
+  function defineExpose (exposed?: Record<string, any> | undefined): void {
+    if (exposed != null) {
+      funcs.value = exposed
     }
   }
 
@@ -60,20 +60,19 @@ export function usePageManager(): PageManager {
    * 执行一组操作
    * @param actions 操作数组
    */
-  function doActions(actions: ActionModel[]): void {
+  function doActions (actions: ActionModel[]): void {
     actions?.forEach((action) => {
-      const component =
-        action.componentId && getComponentInstance(action.componentId);
+      const component = (action.componentId != null) && getComponentInstance(action.componentId)
 
-      if (component && typeof component[action.methodName] === "function") {
-        component[action.methodName](action.args);
-        console.log(component[action.methodName]);
-        return;
+      if (Boolean(component) && typeof component[action.methodName] === 'function') {
+        component[action.methodName](action.args)
+        console.log(component[action.methodName])
+        return
       }
 
-      funcs.value[action.methodName]?.(action.args);
+      funcs.value[action.methodName]?.(action.args)
       // pluginManager.publicMethods[action.methodName]?.method(action.args);
-    });
+    })
   }
 
   return {
@@ -82,6 +81,6 @@ export function usePageManager(): PageManager {
     getComponentInstance,
     addComponentInstance,
     setMethods,
-    doActions,
-  };
+    doActions
+  }
 }

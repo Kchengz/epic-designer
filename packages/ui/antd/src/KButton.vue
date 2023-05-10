@@ -10,7 +10,9 @@ import { loadAsyncComponent } from '../../../utils/index'
 const Button = loadAsyncComponent(async () => (await import('ant-design-vue/lib/button')).default)
 const props = defineProps({
   record: {
-    type: Object as PropType<NodeItem>
+    type: Object as PropType<NodeItem>,
+    require: true,
+    default: () => ({})
   }
 })
 </script>

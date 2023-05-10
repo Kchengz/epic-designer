@@ -1,6 +1,6 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: () => import('../src/KButton'),
+  component: async () => await import('../src/KButton'),
   // component: ElButton,
   defaultSchema: {
     label: '按钮',
@@ -80,4 +80,4 @@ export default {
       }
     ]
   }
-} as ComponentConfigModel;
+} as ComponentConfigModel

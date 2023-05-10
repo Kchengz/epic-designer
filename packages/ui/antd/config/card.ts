@@ -1,19 +1,19 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: () => import("../src/KCard"),
+  component: async () => await import('../src/KCard'),
   defaultSchema: {
-    label: "卡片布局",
-    type: "card",
-    icon: "icon-xiala",
+    label: '卡片布局',
+    type: 'card',
+    icon: 'icon-xiala',
     children: []
   },
   config: {
     attribute: [
       {
-        label: "标题",
-        type: "input",
-        field: "label",
-      },
-    ],
-  },
-} as ComponentConfigModel;
+        label: '标题',
+        type: 'input',
+        field: 'label'
+      }
+    ]
+  }
+} as ComponentConfigModel

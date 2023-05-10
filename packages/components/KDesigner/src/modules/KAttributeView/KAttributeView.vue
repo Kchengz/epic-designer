@@ -1,15 +1,26 @@
 <template>
   <aside class="k-attribute-view">
-    <div :key="item.field! + checkedNode?.id" v-for="item in componentAttributes">
-      <div v-show="isShow(item)" class="attr-item" :class="item.layout">
-        <div class="attr-label" :title="item.label">
+    <div
+      v-for="item in componentAttributes"
+      :key="item.field! + checkedNode?.id"
+    >
+      <div
+        v-show="isShow(item)"
+        class="attr-item"
+        :class="item.layout"
+      >
+        <div
+          class="attr-label"
+          :title="item.label"
+        >
           {{ item.label }}
         </div>
         <div class="attr-input">
           <KNode
             :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}) }, show: true, noFormItem: true }"
             :model-value="getAttributeValue(item.field!, checkedNode!)"
-            @update:model-value="handleSetValue($event, item.field!)" />
+            @update:model-value="handleSetValue($event, item.field!)"
+          />
         </div>
       </div>
     </div>

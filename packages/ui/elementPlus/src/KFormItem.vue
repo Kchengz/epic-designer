@@ -1,7 +1,11 @@
 <template>
-    <ElFormItem ref="form" v-bind="attrs" :prop="attrs.field">
-        <slot></slot>
-    </ElFormItem>
+  <ElFormItem
+    ref="form"
+    v-bind="attrs"
+    :prop="attrs.field"
+  >
+    <slot />
+  </ElFormItem>
 </template>
 <script lang="ts" setup>
 import { ref, useAttrs } from 'vue'

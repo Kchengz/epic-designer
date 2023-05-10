@@ -1,20 +1,34 @@
 <template>
-  <div class="event-item" :key="item.type" v-for="item in itemEvents">
+  <div
+    v-for="item in itemEvents"
+    :key="item.type"
+    class="event-item"
+  >
     <div class="event-info">
-      <div class="event-label" :title="item.describe">
+      <div
+        class="event-label"
+        :title="item.describe"
+      >
         {{ item.describe }}
       </div>
       <div class="event-btn">
-        <span @click="handleOpen(item.type)" class="iconfont icon-tianjia1"></span>
+        <span
+          class="iconfont icon-tianjia1"
+          @click="handleOpen(item.type)"
+        />
       </div>
     </div>
 
     <div class="k-action-editor-main">
-      <div class="k-editor-item" v-for="(action, index) in props.events[item.type]?.value" :key="index">
+      <div
+        v-for="(action, index) in props.events[item.type]?.value"
+        :key="index"
+        class="k-editor-item"
+      >
         {{ action.componentId && getLabel(action.componentId) }}
         {{ action.methodName }}
         <div class="del-btn">
-          <span @click="handleDelete(index, item.type)"> <span class="iconfont icon-shanchu"></span></span>
+          <span @click="handleDelete(index, item.type)"> <span class="iconfont icon-shanchu" /></span>
         </div>
       </div>
     </div>
@@ -31,13 +45,16 @@ const props = defineProps({
     default: () => ({})
   },
   itemEvents: {
-    type: Array as PropType<any>
+    type: Array as PropType<any>,
+    default: () => []
   },
   allEvents: {
-    type: Array as PropType<any>
+    type: Array as PropType<any>,
+    default: () => []
   },
   events: {
-    type: Object as PropType<any>
+    type: Object as PropType<any>,
+    default: () => ({})
   }
 
 })

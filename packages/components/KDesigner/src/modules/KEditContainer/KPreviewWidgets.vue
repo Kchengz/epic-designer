@@ -2,19 +2,27 @@
 该文件暂时未使用
 -->
 <template>
-    <div class="k-preview-widgets">
-        <div class="action-box">
-            <div class="action-item">
-                {{ designer.state.checkedNode?.type && pluginManager.getComponentConfingByType(designer.state.checkedNode.type)?.defaultSchema.label }}
-            </div>
-            <div title="复制" class="action-item" @click.stop="handleCopy()">
-                <span class="iconfont icon-fuzhi3"></span>
-            </div>
-            <div title="删除" class="action-item" @click.stop="handleDelete()">
-                <span class="iconfont icon-shanchu1"></span>
-            </div>
-        </div>
+  <div class="k-preview-widgets">
+    <div class="action-box">
+      <div class="action-item">
+        {{ designer.state.checkedNode?.type && pluginManager.getComponentConfingByType(designer.state.checkedNode.type)?.defaultSchema.label }}
+      </div>
+      <div
+        title="复制"
+        class="action-item"
+        @click.stop="handleCopy()"
+      >
+        <span class="iconfont icon-fuzhi3" />
+      </div>
+      <div
+        title="删除"
+        class="action-item"
+        @click.stop="handleDelete()"
+      >
+        <span class="iconfont icon-shanchu1" />
+      </div>
     </div>
+  </div>
 </template>
 <script lang="ts" setup>
 

@@ -1,21 +1,21 @@
-import { ComponentConfigModel } from "../../pluginManager";
+import { ComponentConfigModel } from '../../pluginManager'
 
 export default {
-  component: () => import("./KPage/KPage.vue"),
+  component: async () => await import('./KPage/KPage.vue'),
   defaultSchema: {
-    label: "页面",
-    type: "page",
+    label: '页面',
+    type: 'page',
     componentProps: {
     },
-    children: [],
+    children: []
   },
   config: {
     attribute: [
       {
-        label: "页面名称",
-        type: "input",
-        field: "name",
-      },
-    ],
+        label: '页面名称',
+        type: 'input',
+        field: 'name'
+      }
+    ]
   }
-} as ComponentConfigModel;
+} as ComponentConfigModel

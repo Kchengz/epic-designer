@@ -1,6 +1,6 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: () => import('../src/KCollapse'),
+  component: async () => await import('../src/KCollapse'),
   defaultSchema: {
     label: '折叠面板',
     type: 'collapse',
@@ -38,4 +38,4 @@ export default {
       }
     ]
   }
-} as ComponentConfigModel;
+} as ComponentConfigModel

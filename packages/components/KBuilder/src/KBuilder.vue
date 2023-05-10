@@ -2,8 +2,12 @@
   <Suspense @resolve="handleReady">
     <template #default>
       <div>
-        <KNode ref="Knode" v-for="item, index in props.schemas" :key="index" :record="item">
-        </KNode>
+        <KNode
+          v-for="item, index in props.schemas"
+          ref="Knode"
+          :key="index"
+          :record="item"
+        />
       </div>
     </template>
     <template #fallback>
@@ -33,7 +37,9 @@ provide('forms', forms)
 
 const props = defineProps({
   schemas: {
-    type: Array as PropType<NodeItem[]>
+    type: Array as PropType<NodeItem[]>,
+    require: true,
+    default: () => []
   },
   script: {
     type: String,

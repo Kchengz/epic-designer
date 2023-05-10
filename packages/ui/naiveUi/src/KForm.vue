@@ -1,8 +1,21 @@
 <template>
-  <div v-if="visible" class="form-main" style="height: 100%">
-    <NForm ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%">
+  <div
+    v-if="visible"
+    class="form-main"
+    style="height: 100%"
+  >
+    <NForm
+      ref="form"
+      :model="attrs.model"
+      v-bind="componentProps"
+      style="height: 100%"
+    >
       <slot name="edit-node">
-        <slot v-for="item in children" name="node" :record="item"></slot>
+        <slot
+          v-for="item in children"
+          name="node"
+          :record="item"
+        />
       </slot>
     </NForm>
   </div>

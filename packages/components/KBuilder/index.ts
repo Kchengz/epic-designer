@@ -1,3 +1,3 @@
-import KBuilder from "./src/KBuilder.vue";
+import KBuilder from './src/KBuilder.vue'
 
 export default KBuilder

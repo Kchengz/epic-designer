@@ -1,6 +1,6 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: () => import('../src/KCard'),
+  component: async () => await import('../src/KCard'),
   defaultSchema: {
     label: '卡片布局',
     type: 'card',
@@ -21,4 +21,4 @@ export default {
       }
     ]
   }
-} as ComponentConfigModel;
+} as ComponentConfigModel

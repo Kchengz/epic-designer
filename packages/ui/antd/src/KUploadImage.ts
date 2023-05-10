@@ -1,81 +1,78 @@
-import { defineComponent, h, PropType, computed, ref, watch } from "vue";
-import Upload from "ant-design-vue/lib/upload";
-import message from "ant-design-vue/lib/message";
-import Image from "ant-design-vue/lib/image";
+import { defineComponent, h, PropType, computed, ref, watch } from 'vue'
+import Upload from 'ant-design-vue/lib/upload'
+import message from 'ant-design-vue/lib/message'
+import Image from 'ant-design-vue/lib/image'
 import type {
   UploadChangeParam,
   UploadProps,
-  UploadFile,
-} from "ant-design-vue";
+  UploadFile
+} from 'ant-design-vue'
 
 // 封装上传文件组件
 export default defineComponent({
-  emits: ["update:modelValue"],
   props: {
     modelValue: {
-      type: Array as PropType<UploadProps["fileList"]>,
-      default: [],
-    },
+      type: Array as PropType<UploadProps['fileList']>,
+      default: () => []
+    }
   },
-  setup(props, { emit, attrs }) {
-    const fileList = ref<UploadProps["fileList"]>([]);
+  emits: ['update:modelValue'],
+  setup (props, { emit, attrs }) {
+    const fileList = ref<UploadProps['fileList']>([])
 
-    const imgUrl = ref("");
-    const visible = ref(false);
+    const imgUrl = ref('')
+    const visible = ref(false)
     const setVisible = (value: boolean): void => {
-      visible.value = value;
-    };
+      visible.value = value
+    }
 
     watch(fileList, (e) => {
-      emit("update:modelValue", e);
-    });
+      emit('update:modelValue', e)
+    })
     // 处理传递进来的值
     watch(
       () => props.modelValue,
       (e) => {
-        if (e && e.length > 0 && fileList.value) {
+        if (e != null && e.length > 0 && fileList.value != null) {
           // props modelValue 等于 data 不进行处理
-          if (fileList.value === e) return;
-          fileList.value.length = 0;
-          fileList.value.push(...e);
+          if (fileList.value === e) return
+          fileList.value.length = 0
+          fileList.value.push(...e)
         }
       },
       { deep: true, immediate: true }
-    );
+    )
 
-    function handleUpdate(e: UploadProps["fileList"]) {
-      fileList.value = e;
+    function handleUpdate (e: UploadProps['fileList']): void {
+      fileList.value = e
     }
 
     // 处理数据结果
-    const handleChange = (info: UploadChangeParam) => {
-      if (info.file.status === "uploading") {
-        return;
+    const handleChange = (info: UploadChangeParam): void => {
+      if (info.file.status === 'uploading') {
+        return
       }
 
-      if (info.file.status === "done") {
+      if (info.file.status === 'done') {
         // Get this url from response in real world.
-        console.log(info.file.response);
-        const url = info.file.response?.data?.url;
-        console.log(url);
-
-        if (!info.file.url && !url) {
-          info.file.status = "error";
-          message.error("上传失败");
-          return;
+        const url: string | undefined = info.file.response?.data?.url
+        if (!info.file.url && url != null) {
+          info.file.status = 'error'
+          message.error('上传失败')
+          return
         }
         // 赋值url
-        info.file.url = url;
-        info.file.thumbUrl = url;
+        info.file.url = url
+        info.file.thumbUrl = url
       }
 
-      if (info.file.status === "error") {
-        message.error("upload error");
+      if (info.file.status === 'error') {
+        message.error('upload error')
       }
-    };
+    }
 
     // 上传前处理
-    const beforeUpload = (file: any) => {
+    const beforeUpload = (file: any): void => {
       // const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
       // if (!isJpgOrPng) {
       //   message.error('您只能上传JPG/PNG文件!');
@@ -85,73 +82,73 @@ export default defineComponent({
       //   message.error('图片大小超过 2MB!');
       // }
       // return isJpgOrPng && isLt2M;
-    };
+    }
 
     const getUploadProps = computed<UploadProps>(() => ({
       ...attrs,
-      "list-type": "picture-card",
-      "onUpdate:file-list": handleUpdate,
-      "onBefore-upload": beforeUpload,
+      'list-type': 'picture-card',
+      'onUpdate:file-list': handleUpdate,
+      'onBefore-upload': beforeUpload,
       onChange: handleChange,
-      onPreview: handlePreview,
-    }));
+      onPreview: handlePreview
+    }))
 
     /**
      * 预览功能
      * @param {*} e
      */
-    function handlePreview(e: UploadFile) {
-      if (!e.url) return;
-      imgUrl.value = e.url;
-      setVisible(true);
+    function handlePreview (e: UploadFile): void {
+      if (!e.url) return
+      imgUrl.value = e.url
+      setVisible(true)
     }
 
     /**
      * 预览异常处理
      */
-    function previewError() {
-      if (!imgUrl.value) return false;
-      message.error("图片地址无法访问!");
+    function previewError (): void {
+      if (!imgUrl.value) return
+      message.error('图片地址无法访问!')
     }
 
     return () => {
       // const type = attrs.type;
       return h(
-        "div",
+        'div',
         {
-          class: "k-upload-image",
+          class: 'k-upload-image'
         },
         {
           default: () => [
             h(Upload, getUploadProps, {
               default: () => [
-                h("div", null, {
+                h('div', null, {
                   default: () => [
-                    h("span", {
-                      class: "iconfont icon-shangchuan1",
-                      style: { "margin-right": "2px" },
+                    h('span', {
+                      class: 'iconfont icon-shangchuan1',
+                      style: { 'margin-right': '2px' }
                     }),
                     h(
-                      "div",
-                      { class: "ant-upload-text" },
-                      { default: () => "点击上传" }
-                    ),
-                  ],
-                }),
-              ],
+                      'div',
+                      { class: 'ant-upload-text' },
+                      { default: () => '点击上传' }
+                    )
+                  ]
+                })
+              ]
             }),
-            h(()=>Image, {
-              style: { display: "none" },
+            h(() => Image, {
+              style: { display: 'none' },
               src: imgUrl,
               preview: {
-                visible: visible,
-                onVisibleChange: setVisible,
+                visible,
+                onVisibleChange: setVisible
               },
-              onError: previewError,
-            }),
-          ],
+              onError: previewError
+            })
+          ]
         }
-      );
-    };
-  },
-});
+      )
+    }
+  }
+})

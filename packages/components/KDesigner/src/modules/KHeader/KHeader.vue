@@ -1,26 +1,47 @@
 <template>
   <header class="k-header">
     <div class="k-header-item">
-      <Button @click="handleUndo" size="small" :disabled="!recordList.length">
-        <span class="iconfont icon-chexiao2x"></span>
+      <Button
+        size="small"
+        :disabled="!recordList.length"
+        @click="handleUndo"
+      >
+        <span class="iconfont icon-chexiao2x" />
       </Button>
-      <Button @click="handleRedo" size="small" :disabled="!undoList.length">
-        <span class="iconfont icon-fanhui2x"></span>
+      <Button
+        size="small"
+        :disabled="!undoList.length"
+        @click="handleRedo"
+      >
+        <span class="iconfont icon-fanhui2x" />
       </Button>
     </div>
     <div class="k-header-item font-bold font-md">
       k-designer
     </div>
     <div class="k-header-item">
-      <Button @click="handlePreview" size="small">
-        <span class="iconfont icon-yulan" style="margin-right:6px"></span>
-        预览</Button>
-      <Button @click="handleSave" size="small">
-        <span class="iconfont icon-yulan" style="margin-right:6px"></span>
-        保存</Button>
+      <Button
+        size="small"
+        @click="handlePreview"
+      >
+        <span
+          class="iconfont icon-yulan"
+          style="margin-right:6px"
+        />
+        预览
+      </Button>
+      <Button
+        size="small"
+        @click="handleSave"
+      >
+        <span
+          class="iconfont icon-yulan"
+          style="margin-right:6px"
+        />
+        保存
+      </Button>
     </div>
     <KPreview ref="preview" />
-
   </header>
 </template>
 <script lang="ts" setup>

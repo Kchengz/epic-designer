@@ -1,11 +1,28 @@
 <template>
-  <Collapse v-model="activeNames" v-model:activeKey="activeNames">
-    <CollapseItem v-for="(item) in filterEventList" :title="item.title" :header="item.title" :name="item.title"
-      :key="item.title">
-      <KActionEditorItem @add="handleOpen" :itemEvents="item.events" :allEvents="allEvents" :events="events" v-model="modelValue" />
+  <Collapse
+    v-model="activeNames"
+    v-model:activeKey="activeNames"
+  >
+    <CollapseItem
+      v-for="(item) in filterEventList"
+      :key="item.title"
+      :title="item.title"
+      :header="item.title"
+      :name="item.title"
+    >
+      <KActionEditorItem
+        v-model="modelValue"
+        :item-events="item.events"
+        :all-events="allEvents"
+        :events="events"
+        @add="handleOpen"
+      />
     </CollapseItem>
   </Collapse>
-  <KActionModal ref="KActionModalRef" @add="handleAdd" />
+  <KActionModal
+    ref="KActionModalRef"
+    @add="handleAdd"
+  />
 </template>
 <script lang="ts" setup>
 import { PropType, computed, ref, watch } from 'vue'
@@ -22,7 +39,8 @@ const props = defineProps({
     default: () => ({})
   },
   eventList: {
-    type: Array as PropType<any>
+    type: Array as PropType<any>,
+    default: () => []
   }
 })
 const activeNames = ref(['组件事件'])

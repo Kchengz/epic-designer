@@ -1,6 +1,6 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: () => import('../src/KCol'),
+  component: async () => await import('../src/KCol'),
   defaultSchema: {
     label: '栅格布局-列',
     type: 'col',
@@ -19,4 +19,4 @@ export default {
       }
     ]
   }
-} as ComponentConfigModel;
+} as ComponentConfigModel

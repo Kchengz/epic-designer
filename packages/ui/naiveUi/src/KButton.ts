@@ -1,7 +1,7 @@
-import type { PropType } from 'vue';
-import { defineComponent, h, renderSlot } from 'vue';
-import { NButton } from 'naive-ui';
-import { NodeItem } from '../../../types/kDesigner';
+import type { PropType } from 'vue'
+import { defineComponent, h, renderSlot } from 'vue'
+import { NButton } from 'naive-ui'
+import { NodeItem } from '../../../types/kDesigner'
 
 // 二次封装组件
 export default defineComponent({
@@ -12,15 +12,15 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  setup(props, { slots }) {
+  setup (props, { slots }) {
     return () => {
-      const componentProps: { [propName: string]: any } = {
+      const componentProps: Record<string, any> = {
         ...props.record?.componentProps
-      };
+      }
 
       return h(NButton, componentProps, {
         default: () => renderSlot(slots, 'default', {}, () => [props.record?.label])
-      });
-    };
+      })
+    }
   }
-});
+})

@@ -1,6 +1,6 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: () => import('../src/KRadio'),
+  component: async () => await import('../src/KRadio'),
   defaultSchema: {
     label: '单选框',
     type: 'radio',
@@ -62,4 +62,4 @@ export default {
       }
     ]
   }
-} as ComponentConfigModel;
+} as ComponentConfigModel

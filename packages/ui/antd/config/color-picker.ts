@@ -1,54 +1,54 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: () => import("ant-design-vue/lib/input"),
+  component: async () => await import('ant-design-vue/lib/input'),
   defaultSchema: {
-    label: "颜色选择器",
-    type: "color-picker",
-    field: "color-picker",
-    icon: "icon-write",
+    label: '颜色选择器',
+    type: 'color-picker',
+    field: 'color-picker',
+    icon: 'icon-write',
     input: true,
     componentProps: {
-      type: "color",
+      type: 'color',
       style: {
-        width: "80px",
-      },
-    },
+        width: '80px'
+      }
+    }
   },
   config: {
     attribute: [
       {
-        label: "字段名",
-        type: "input",
-        field: "field",
+        label: '字段名',
+        type: 'input',
+        field: 'field'
       },
       {
-        label: "标题",
-        type: "input",
-        field: "label",
+        label: '标题',
+        type: 'input',
+        field: 'label'
       },
       {
-        label: "默认值",
-        type: "input",
-        field: "componentProps.defaultValue",
+        label: '默认值',
+        type: 'input',
+        field: 'componentProps.defaultValue'
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
       },
       {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled",
-      },
+        label: '禁用',
+        type: 'switch',
+        field: 'componentProps.disabled'
+      }
     ],
     event: [
       {
-        type: "change",
-        describe: "值变化时",
-      },
+        type: 'change',
+        describe: '值变化时'
+      }
     ],
-    action: [],
+    action: []
   },
-  bindModel: "value",
-} as ComponentConfigModel;
+  bindModel: 'value'
+} as ComponentConfigModel

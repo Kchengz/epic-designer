@@ -1,17 +1,26 @@
 <template>
-    <div class="k-right-sidebar" v-if="sidebarComponent">
-        <ul class="actions-container">
-            <li class="action-item" :title="item.title" v-for="(item, index) in rightSidebars" :key="index"
-                :class="{ checked: actionBarCheckedIndex === index }" @click="handleClick(item, index)">
-                {{ item.title }}
-            </li>
-        </ul>
-        <div class="sidebar-content">
-            <aside :class="{ hide: actionBarCheckedIndex === null }">
-                <component :is="sidebarComponent" />
-            </aside>
-        </div>
+  <div
+    v-if="sidebarComponent"
+    class="k-right-sidebar"
+  >
+    <ul class="actions-container">
+      <li
+        v-for="(item, index) in rightSidebars"
+        :key="index"
+        class="action-item"
+        :title="item.title"
+        :class="{ checked: actionBarCheckedIndex === index }"
+        @click="handleClick(item, index)"
+      >
+        {{ item.title }}
+      </li>
+    </ul>
+    <div class="sidebar-content">
+      <aside :class="{ hide: actionBarCheckedIndex === null }">
+        <component :is="sidebarComponent" />
+      </aside>
     </div>
+  </div>
 </template>
 <script lang="ts" setup>
 import { ref, shallowRef } from 'vue'

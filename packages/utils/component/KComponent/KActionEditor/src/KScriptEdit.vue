@@ -2,25 +2,44 @@
   <div class="k-script-edit">
     <div class="k-script-left-panel">
       <div class="k-tree-select">
-        <KTree :options="schemas" v-model:selectedKeys="selectedKeys" @node-click="handleNodeClick">
+        <KTree
+          v-model:selectedKeys="selectedKeys"
+          :options="schemas"
+          @node-click="handleNodeClick"
+        >
           <template #tree-node="{ record }">
             <div class="tree-node-item">
               <span>{{ pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}</span>
-              <span class="action" @click="handleGetComponent(record)">get</span>
+              <span
+                class="action"
+                @click="handleGetComponent(record)"
+              >get</span>
             </div>
           </template>
         </KTree>
       </div>
       <div class="k-action-select">
-        <div class="action-item" v-for="item in methodOptions" :key="item.value">
+        <div
+          v-for="item in methodOptions"
+          :key="item.value"
+          class="action-item"
+        >
           <span>{{ item.label }}</span>
-          <span class="action" @click="handleGetAttr(item)">get</span>
+          <span
+            class="action"
+            @click="handleGetAttr(item)"
+          >get</span>
         </div>
       </div>
     </div>
     <div class="k-script-right-panel">
-      <MonacoEditor ref="monacoEditorRef" class="editor" :config="MonacoEditorConfig" language="javascript"
-        v-model="script" />
+      <MonacoEditor
+        ref="monacoEditorRef"
+        v-model="script"
+        class="editor"
+        :config="MonacoEditorConfig"
+        language="javascript"
+      />
     </div>
   </div>
 </template>

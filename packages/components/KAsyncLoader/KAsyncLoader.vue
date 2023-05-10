@@ -1,10 +1,10 @@
 <template>
-    <div class="loading">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-    </div>
+  <div class="loading">
+    <div class="shape shape-1" />
+    <div class="shape shape-2" />
+    <div class="shape shape-3" />
+    <div class="shape shape-4" />
+  </div>
 </template>
 
 <style>

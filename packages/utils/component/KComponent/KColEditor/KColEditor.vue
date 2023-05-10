@@ -1,13 +1,31 @@
 <template>
-    <div>
-        <div class="k-col-editor-item" v-for="(item, index) in colList" :key="index">
-            <Number style="width:100%" v-model:value="item.componentProps.span" v-model="item.componentProps.span" :min="1" :max="24" />
-            <div class="del-btn" v-if="colList.length > 1">
-                <span @click="handleDelete(index)"> <span class="iconfont icon-shanchu"></span></span>
-            </div>
-        </div>
-        <div class="add-btn" @click="handleAdd">添加</div>
+  <div>
+    <div
+      v-for="(item, index) in colList"
+      :key="index"
+      class="k-col-editor-item"
+    >
+      <Number
+        v-model:value="item.componentProps.span"
+        v-model="item.componentProps.span"
+        style="width:100%"
+        :min="1"
+        :max="24"
+      />
+      <div
+        v-if="colList.length > 1"
+        class="del-btn"
+      >
+        <span @click="handleDelete(index)"> <span class="iconfont icon-shanchu" /></span>
+      </div>
     </div>
+    <div
+      class="add-btn"
+      @click="handleAdd"
+    >
+      添加
+    </div>
+  </div>
 </template>
 <script lang="ts" setup>
 import { pluginManager, getUUID } from '../../../index'

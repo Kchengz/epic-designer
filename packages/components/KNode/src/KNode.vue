@@ -1,7 +1,13 @@
 <template>
-  <FormItem v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show" v-bind="getFormItemProps">
-    <component :is="component" ref="componentInstance"
-      v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
+  <FormItem
+    v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show"
+    v-bind="getFormItemProps"
+  >
+    <component
+      :is="component"
+      ref="componentInstance"
+      v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }"
+    >
       <!-- 递归组件 start -->
       <template #node="data">
         <KNode v-bind="data" />
@@ -9,15 +15,20 @@
       <!-- 递归组件 end -->
       <!-- 递归组件 start -->
       <template #edit-node>
-        <slot name="edit-node"></slot>
+        <slot name="edit-node" />
       </template>
       <!-- 递归组件 end -->
     </component>
   </FormItem>
 
   <!-- 无需FormItem start -->
-  <component v-else-if="component && show" :model="formData" :is="component" ref="componentInstance"
-    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }">
+  <component
+    :is="component"
+    v-else-if="component && show"
+    ref="componentInstance"
+    :model="formData"
+    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }"
+  >
     <!-- 递归组件 start -->
     <template #node="data">
       <KNode v-bind="data" />
@@ -25,7 +36,7 @@
     <!-- 递归组件 end -->
     <!-- 递归组件 start -->
     <template #edit-node>
-      <slot name="edit-node"></slot>
+      <slot name="edit-node" />
     </template>
     <!-- 递归组件 end -->
   </component>
@@ -47,9 +58,13 @@ const componentInstance = ref(null)
 const props = defineProps({
   record: {
     type: Object as PropType<NodeItem>,
-    required: true
+    required: true,
+    default: () => ({})
   },
-  modelValue: {}
+  modelValue: {
+    type: [Object, Array, String, Number, Boolean] as PropType<any>,
+    default: null
+  }
 })
 
 // 判断是否存在字段名称

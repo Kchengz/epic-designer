@@ -1,10 +1,10 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: () => import("../src/KTabPane"),
+  component: async () => await import('../src/KTabPane'),
   defaultSchema: {
-    label: "标签内容",
-    type: "tab-pane",
-    icon: "icon-xiala",
+    label: '标签内容',
+    type: 'tab-pane',
+    icon: 'icon-xiala',
     children: [],
     componentProps: {
       tab: '标签',
@@ -14,10 +14,10 @@ export default {
   config: {
     attribute: [
       {
-        label: "垂直对齐方式",
-        type: "input",
-        field: "componentProps.tab",
-      },
-    ],
-  },
-} as ComponentConfigModel;
+        label: '垂直对齐方式',
+        type: 'input',
+        field: 'componentProps.tab'
+      }
+    ]
+  }
+} as ComponentConfigModel

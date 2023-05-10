@@ -1,5 +1,8 @@
 <template>
-  <div ref="editContainer" class="code-editor"></div>
+  <div
+    ref="editContainer"
+    class="code-editor"
+  />
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'

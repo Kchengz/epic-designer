@@ -1,14 +1,22 @@
 <template>
   <div class="k-outline">
-    <KTree :options="schemas" :selectedKeys="selectedKeys" @node-click="handleNodeClick"
-      :hoverKey="designer.state.hoverNode?.id">
+    <KTree
+      :options="schemas"
+      :selected-keys="selectedKeys"
+      :hover-key="designer.state.hoverNode?.id"
+      @node-click="handleNodeClick"
+    >
       <template #tree-node="{ record }">
-        <div class="text-padding" @mouseenter.stop="designer.setHoverNode(record)"
-          @mouseleave.stop="designer.setHoverNode(null)"> {{
-            pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}</div>
+        <div
+          class="text-padding"
+          @mouseenter.stop="designer.setHoverNode(record)"
+          @mouseleave.stop="designer.setHoverNode(null)"
+        >
+          {{
+            pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}
+        </div>
       </template>
     </KTree>
-
   </div>
 </template>
 <script lang="ts" setup>

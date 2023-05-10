@@ -1,6 +1,10 @@
 <template>
   <ul class="k-tree-main">
-    <KTreeNode v-for="(item) in props.options" :record="item" :key="item.id" />
+    <KTreeNode
+      v-for="(item) in props.options"
+      :key="item.id"
+      :record="item"
+    />
   </ul>
 </template>
 <script lang="ts" setup>
@@ -14,13 +18,16 @@ provide('slots', slots)
 const expandedKeys = ref([])
 const props = defineProps({
   options: {
-    type: Array as PropType<NodeItem[]>
+    type: Array as PropType<NodeItem[]>,
+    default: () => []
   },
   selectedKeys: {
-    type: Array as PropType<string[]>
+    type: Array as PropType<string[]>,
+    default: () => []
   },
   hoverKey: {
-    type: String
+    type: String,
+    default: ''
   }
 })
 

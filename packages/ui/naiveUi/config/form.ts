@@ -1,7 +1,7 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 
 export default {
-  component: () => import('../src/KForm.vue'),
+  component: async () => await import('../src/KForm.vue'),
   defaultSchema: {
     label: '表单',
     type: 'form',
@@ -95,4 +95,4 @@ export default {
       }
     ]
   }
-} as ComponentConfigModel;
+} as ComponentConfigModel

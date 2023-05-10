@@ -1,23 +1,27 @@
-import { defineComponent, h } from 'vue';
-import { NCheckboxGroup, NCheckbox } from 'naive-ui';
+import { defineComponent, h } from 'vue'
+import { NCheckboxGroup, NCheckbox } from 'naive-ui'
 
 // 二次封装组件
 export default defineComponent({
   emits: ['update:modelValue'],
-  setup(_, { emit, attrs }) {
-    function handleUpdate(e = null) {
-      emit(`update:modelValue`, e);
+  setup (_, { emit, attrs }) {
+    function handleUpdate (e = null): void {
+      emit('update:modelValue', e)
     }
 
     return () => {
-      const props: { [propName: string]: any } = {
+      const props: Record<string, any> = {
         ...attrs,
         value: attrs.modelValue,
-        'onUpdate:value': handleUpdate,
-      };
+        'onUpdate:value': handleUpdate
+      }
       return h(NCheckboxGroup, props, {
-        default: () => [props.options?.map((option: any) => h(NCheckbox, { label: option.label, value: option.value }))]
-      });
-    };
+        default: () => [
+          props.options?.map((option: any) =>
+            h(NCheckbox, { label: option.label, value: option.value })
+          )
+        ]
+      })
+    }
   }
-});
+})

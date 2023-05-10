@@ -1,20 +1,39 @@
 <template>
   <div class="k-component-view">
-    <Collapse v-model="collapseActiveNames" v-model:activeKey="collapseActiveNames">
-      <CollapseItem v-for="(item) in sourceSchema" :title="item.title" :header="item.title" :name="item.title"
-        :key="item.title">
-        <draggable v-model="item.list" v-bind="{
-          group: { name: 'edit-draggable', pull: 'clone', put: false },
-          sort: false,
-          animation: 180,
-          ghostClass: 'moving'
-        }" item-key="id" :component-data="{ name: 'list' }" @end="handleDraggableEnd($event, item.list)">
+    <Collapse
+      v-model="collapseActiveNames"
+      v-model:activeKey="collapseActiveNames"
+    >
+      <CollapseItem
+        v-for="(item) in sourceSchema"
+        :key="item.title"
+        :title="item.title"
+        :header="item.title"
+        :name="item.title"
+      >
+        <draggable
+          v-model="item.list"
+          v-bind="{
+            group: { name: 'edit-draggable', pull: 'clone', put: false },
+            sort: false,
+            animation: 180,
+            ghostClass: 'moving'
+          }"
+          item-key="id"
+          :component-data="{ name: 'list' }"
+          @end="handleDraggableEnd($event, item.list)"
+        >
           <template #item="{ element }">
-            <div class="source-componet-item" @click="handleClick(element)">
-              <span class="iconfont" :class="element.icon"></span> {{ element.label }}
+            <div
+              class="source-componet-item"
+              @click="handleClick(element)"
+            >
+              <span
+                class="iconfont"
+                :class="element.icon"
+              /> {{ element.label }}
             </div>
           </template>
-
         </draggable>
       </CollapseItem>
     </Collapse>

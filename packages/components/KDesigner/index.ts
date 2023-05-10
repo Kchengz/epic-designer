@@ -1,3 +1,3 @@
-import KDesigner from "./src/KDesigner.vue";
+import KDesigner from './src/KDesigner.vue'
 
-export default KDesigner;
+export default KDesigner

@@ -1,21 +1,42 @@
 <template>
   <div>
     <div
-      class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative">
-      <template v-for="(record, index) in requiredRuleSchemas" :key="index">
-        <div class="flex m-t-2 first:m-0" v-if="record.show ? record.show() : true">
+      class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative"
+    >
+      <template
+        v-for="(record, index) in requiredRuleSchemas"
+        :key="index"
+      >
+        <div
+          v-if="record.show ? record.show() : true"
+          class="flex m-t-2 first:m-0"
+        >
           <div class="attr-label">
             {{ record.label }}
           </div>
           <div class="flex-1">
-            <KNode :record="{ ...record, noFormItem: true }" v-model="requiredRule[record.model]" @change="handleUpdate" />
+            <KNode
+              v-model="requiredRule[record.model]"
+              :record="{ ...record, noFormItem: true }"
+              @change="handleUpdate"
+            />
           </div>
         </div>
       </template>
     </div>
-    <KRuleItem v-for="(item, index) in rules" v-model:rule="rules[index]" @delete="handleDelete(index)"
-      @change="handleUpdate" :key="index" />
-    <Button class="m-t-2" @click="handleAdd">添加规则</Button>
+    <KRuleItem
+      v-for="(item, index) in rules"
+      :key="index"
+      v-model:rule="rules[index]"
+      @delete="handleDelete(index)"
+      @change="handleUpdate"
+    />
+    <Button
+      class="m-t-2"
+      @click="handleAdd"
+    >
+      添加规则
+    </Button>
   </div>
 </template>
 <script lang="ts" setup>

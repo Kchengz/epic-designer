@@ -1,6 +1,6 @@
-import { ComponentConfigModel } from "../../../utils/pluginManager";
+import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: () => import('../src/KTabs'),
+  component: async () => await import('../src/KTabs'),
   defaultSchema: {
     label: '标签页',
     type: 'tabs',
@@ -57,4 +57,4 @@ export default {
     ],
     action: []
   }
-} as ComponentConfigModel;
+} as ComponentConfigModel

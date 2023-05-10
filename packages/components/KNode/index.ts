@@ -1,3 +1,3 @@
-import KNode from "./src/KNode.vue";
+import KNode from './src/KNode.vue'
 
 export default KNode

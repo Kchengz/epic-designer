@@ -1,12 +1,28 @@
 <template>
   <div>
-    <div class="k-col-editor-item" v-for="(item, index) in tabList" :key="index">
-      <Input style="width:100%" v-model:value="item.label" v-model="item.label" />
-      <div class="del-btn" v-if="tabList.length > 1">
-        <span @click="handleDelete(index)"> <span class="iconfont icon-shanchu"></span></span>
+    <div
+      v-for="(item, index) in tabList"
+      :key="index"
+      class="k-col-editor-item"
+    >
+      <Input
+        v-model:value="item.label"
+        v-model="item.label"
+        style="width:100%"
+      />
+      <div
+        v-if="tabList.length > 1"
+        class="del-btn"
+      >
+        <span @click="handleDelete(index)"> <span class="iconfont icon-shanchu" /></span>
       </div>
     </div>
-    <div class="add-btn" @click="handleAdd">添加</div>
+    <div
+      class="add-btn"
+      @click="handleAdd"
+    >
+      添加
+    </div>
   </div>
 </template>
 <script lang="ts" setup>

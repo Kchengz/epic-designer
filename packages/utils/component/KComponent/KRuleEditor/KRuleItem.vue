@@ -1,20 +1,35 @@
 <template>
   <div
-    class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative">
-    <template v-for="(record, index) in ruleItemSchemas" :key="index">
-      <div class="flex m-t-2 first:m-0" v-if="record.show ? record.show() : true">
-        <div class="attr-label" title="校验时机">
+    class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative"
+  >
+    <template
+      v-for="(record, index) in ruleItemSchemas"
+      :key="index"
+    >
+      <div
+        v-if="record.show ? record.show() : true"
+        class="flex m-t-2 first:m-0"
+      >
+        <div
+          class="attr-label"
+          title="校验时机"
+        >
           {{ record.label }}
         </div>
         <div class="attr-input">
-          <KNode :record="{ ...record, noFormItem: true }" v-model="rule[record.model]" @change="handleUpdate" />
+          <KNode
+            v-model="rule[record.model]"
+            :record="{ ...record, noFormItem: true }"
+            @change="handleUpdate"
+          />
         </div>
       </div>
     </template>
     <div
       class="rule-btn-delete absolute top-0 right-0 transition-all w-6 h-6 cursor-pointer rounded-bl-1 flex-center color-white"
-      @click="handleDelete">
-      <span class="iconfont icon-shanchu1"></span>
+      @click="handleDelete"
+    >
+      <span class="iconfont icon-shanchu1" />
     </div>
   </div>
 </template>

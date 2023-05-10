@@ -1,25 +1,48 @@
 <template>
-  <draggable v-model="schemas" :group="firstNodeId === 'root' || 'edit-draggable'" item-key="id"
-    @start="handleSelect($event.oldIndex); designer.setDisableHover(true)" @end="handleEnd()"
-    @add="handleSelect($event.newIndex); handleAdd()" ghostClass="moveing" :component-data="{ name: 'draggable-range' }">
+  <draggable
+    v-model="schemas"
+    :group="firstNodeId === 'root' || 'edit-draggable'"
+    item-key="id"
+    ghost-class="moveing"
+    :component-data="{ name: 'draggable-range' }"
+    @start="handleSelect($event.oldIndex); designer.setDisableHover(true)"
+    @end="handleEnd()"
+    @add="handleSelect($event.newIndex); handleAdd()"
+  >
     <template #item="{ element, index }">
-      <div class="item" :class="{
-        checked: designer.state.checkedNode?.id === element.id,
-        hover: designer.state.hoverNode?.id === element.id,
-        'root-node': element.id === 'root'
-      }" @click.stop="designer.setCheckedNode(element)" @mouseover.stop="designer.setHoverNode(element)"
-        @mouseout.stop="designer.setHoverNode(null)">
-        <div class="action-box" v-show="designer.state.checkedNode?.id === element.id">
+      <div
+        class="item"
+        :class="{
+          checked: designer.state.checkedNode?.id === element.id,
+          hover: designer.state.hoverNode?.id === element.id,
+          'root-node': element.id === 'root'
+        }"
+        @click.stop="designer.setCheckedNode(element)"
+        @mouseover.stop="designer.setHoverNode(element)"
+        @mouseout.stop="designer.setHoverNode(null)"
+      >
+        <div
+          v-show="designer.state.checkedNode?.id === element.id"
+          class="action-box"
+        >
           <div class="action-item">
             {{ pluginManager.getComponentConfingByType(element.type)?.defaultSchema.label }}
           </div>
-          <div v-if="firstNodeId !== 'root'" title="复制" class="action-item"
-            @click.stop="handleCopy(schemas!, element, index)">
-            <span class="iconfont icon-fuzhi3"></span>
+          <div
+            v-if="firstNodeId !== 'root'"
+            title="复制"
+            class="action-item"
+            @click.stop="handleCopy(schemas!, element, index)"
+          >
+            <span class="iconfont icon-fuzhi3" />
           </div>
-          <div v-if="firstNodeId !== 'root'" title="删除" class="action-item"
-            @click.stop="handleDelete(schemas!, element, index)">
-            <span class="iconfont icon-shanchu1"></span>
+          <div
+            v-if="firstNodeId !== 'root'"
+            title="删除"
+            class="action-item"
+            @click.stop="handleDelete(schemas!, element, index)"
+          >
+            <span class="iconfont icon-shanchu1" />
           </div>
         </div>
         <KNodeItem :element="element" />
@@ -37,7 +60,9 @@ const designer = inject('designer') as Designer
 const globalSchemas = inject('schemas') as Ref<NodeItem[]>
 const props = defineProps({
   schemas: {
-    type: Array as PropType<NodeItem[]>
+    type: Array as PropType<NodeItem[]>,
+    require: true,
+    default: () => []
   }
 })
 

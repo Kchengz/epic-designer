@@ -1,8 +1,11 @@
 <template>
   <aside class="k-event-view">
     <div v-if="checkedNode">
-      <KActionEditor :eventList="eventList" :model-value="getAttributeValue(`on`, checkedNode!)"
-        @update:model-value="handleSetValue($event, `on`)" />
+      <KActionEditor
+        :event-list="eventList"
+        :model-value="getAttributeValue(`on`, checkedNode!)"
+        @update:model-value="handleSetValue($event, `on`)"
+      />
     </div>
   </aside>
 </template>

@@ -1,14 +1,30 @@
 <template>
-  <Input v-model="size" v-model:value="size" type="number" min="0" @input="handleUpdate">
-  <!-- elment ui slot start -->
-  <template #append>
-    <Select v-model="unit" style="width: 68px" @change="handleUpdate" :options="unitArray"></Select>
-  </template>
-  <!-- elment ui slot end -->
-  <!-- antd ui slot start -->
-  <template #addonAfter>
-    <Select v-model:value="unit" style="width: 68px" @change="handleUpdate" :options="unitArray"></Select>
-  </template>
+  <Input
+    v-model="size"
+    v-model:value="size"
+    type="number"
+    min="0"
+    @input="handleUpdate"
+  >
+    <!-- elment ui slot start -->
+    <template #append>
+      <Select
+        v-model="unit"
+        style="width: 68px"
+        :options="unitArray"
+        @change="handleUpdate"
+      />
+    </template>
+    <!-- elment ui slot end -->
+    <!-- antd ui slot start -->
+    <template #addonAfter>
+      <Select
+        v-model:value="unit"
+        style="width: 68px"
+        :options="unitArray"
+        @change="handleUpdate"
+      />
+    </template>
   <!-- antd ui slot end -->
   </Input>
 </template>
@@ -24,7 +40,7 @@ const props = defineProps({
   }
 })
 const emit = defineEmits(['update:modelValue'])
-const size = ref<string | null>(null)
+const size = ref < string | null >(null)
 const unit = ref('px')
 const unitArray = [
   { label: 'px', value: 'px' },
