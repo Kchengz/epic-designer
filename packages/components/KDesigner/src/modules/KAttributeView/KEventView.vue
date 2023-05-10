@@ -15,7 +15,7 @@ import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '../
 import { inject, computed, Ref } from 'vue'
 const schemas = inject('schemas') as Ref<NodeItem[]>
 const designer = inject('designer') as Designer
-const KActionEditor = pluginManager.getComponent('k-action-editor')
+const KActionEditor = pluginManager.getComponent('KActionEditor')
 
 const componentConfings = pluginManager.getComponentConfings()
 const checkedNode = computed(() => {

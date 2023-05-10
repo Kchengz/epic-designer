@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in tabList"
       :key="index"
-      class="k-col-editor-item"
+      class="KColEditor-item"
     >
       <Input
         v-model:value="item.label"

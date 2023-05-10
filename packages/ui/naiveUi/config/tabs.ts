@@ -28,7 +28,7 @@ export default {
     attribute: [
       {
         label: '标签页配置',
-        type: 'k-tab-pane-editor',
+        type: 'KTabPaneEditor',
         field: 'children'
       },
       {

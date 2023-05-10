@@ -14,7 +14,7 @@ export default defineComponent({
     return () => {
       const record = {
         ...props.record,
-        header: props.record.label
+        title: props.record.label
       } as NodeItem
       const children = record.children ?? []
       delete record.children

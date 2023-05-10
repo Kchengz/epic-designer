@@ -85,7 +85,7 @@ export default {
       },
       {
         label: '列编辑',
-        type: 'k-col-editor',
+        type: 'KColEditor',
         field: 'children'
       },
       {

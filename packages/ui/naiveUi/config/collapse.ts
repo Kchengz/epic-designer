@@ -28,7 +28,7 @@ export default {
     attribute: [
       {
         label: '折叠项管理',
-        type: 'k-col-editor',
+        type: 'KColEditor',
         field: 'children'
       },
       {

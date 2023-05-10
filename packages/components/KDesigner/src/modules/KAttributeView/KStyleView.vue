@@ -39,22 +39,22 @@ const schemas = inject('schemas') as Ref<NodeItem[]>
 const componentStyles: NodeItem[] = [
   {
     label: '宽度',
-    type: 'k-input-size',
+    type: 'KInputSize',
     field: 'componentProps.style.width'
   },
   {
     label: '高度',
-    type: 'k-input-size',
+    type: 'KInputSize',
     field: 'componentProps.style.height'
   },
   {
     label: '内边距',
-    type: 'k-input-size',
+    type: 'KInputSize',
     field: 'componentProps.style.padding'
   },
   {
     label: '外边距',
-    type: 'k-input-size',
+    type: 'KInputSize',
     field: 'componentProps.style.margin'
   },
   {

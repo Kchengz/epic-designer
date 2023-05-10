@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in colList"
       :key="index"
-      class="k-col-editor-item"
+      class="KColEditor-item"
     >
       <Number
         v-model:value="item.componentProps.span"

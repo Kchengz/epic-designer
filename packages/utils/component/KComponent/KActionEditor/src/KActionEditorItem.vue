@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div class="k-action-editor-main">
+    <div class="KActionEditor-main">
       <div
         v-for="(action, index) in props.events[item.type]?.value"
         :key="index"

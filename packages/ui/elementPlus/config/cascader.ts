@@ -60,7 +60,7 @@ export default {
       },
       {
         label: '表单校验',
-        type: 'k-rule-editor',
+        type: 'KRuleEditor',
         layout: 'vertical',
         field: 'rules',
         describe: '校验规则需要配合表单使用'
