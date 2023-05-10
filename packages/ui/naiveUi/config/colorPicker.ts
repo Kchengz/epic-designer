@@ -1,6 +1,6 @@
 import { ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: async () => async () => (await import('naive-ui/lib/color-picker')).NColorPicker,
+  component: async () => (await import('naive-ui/lib/color-picker')).NColorPicker,
   defaultSchema: {
     label: '颜色选择器',
     type: 'color-picker',
@@ -9,9 +9,6 @@ export default {
     input: true,
     componentProps: {
       type: 'color',
-      style: {
-        width: '80px'
-      }
     }
   },
   config: {
