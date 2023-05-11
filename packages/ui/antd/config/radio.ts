@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../../utils/pluginManager'
+import { type ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
   component: async () => await import('ant-design-vue/lib/radio/Group'),
   defaultSchema: {

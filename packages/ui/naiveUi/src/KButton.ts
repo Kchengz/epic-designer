@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
 import { defineComponent, h, renderSlot } from 'vue'
 import { NButton } from 'naive-ui'
-import { NodeItem } from '../../../types/kDesigner'
+import { type NodeItem } from '../../../types/kDesigner'
 
 // 二次封装组件
 export default defineComponent({

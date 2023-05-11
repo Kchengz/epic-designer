@@ -1,12 +1,12 @@
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 export interface ActionModel {
   componentId?: string
   args: string
   methodName: any
 }
 export interface PageManager {
-  componentInstances: import('vue').Ref<Record<string, any>>
-  funcs: import('vue').Ref<Record<string, any>>
+  componentInstances: Ref<Record<string, any>>
+  funcs: Ref<Record<string, any>>
   getComponentInstance: (id: string) => any
   addComponentInstance: (id: string, instance: any) => any
   setMethods: (scriptStr: string) => void

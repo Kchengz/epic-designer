@@ -1,4 +1,4 @@
-import { defineComponent, h, PropType, computed, ref, watch } from 'vue'
+import { defineComponent, h, type PropType, computed, ref, watch } from 'vue'
 import Upload from 'ant-design-vue/lib/upload'
 import message from 'ant-design-vue/lib/message'
 import Image from 'ant-design-vue/lib/image'

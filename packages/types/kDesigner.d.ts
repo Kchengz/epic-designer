@@ -1,4 +1,4 @@
-import { FormItemRule } from '../utils/component/KComponent/KRuleEditor/types'
+import { type FormItemRule } from '../utils/component/KComponent/KRuleEditor/types'
 export interface RenderCallbackParams {
   values: Record<string, any>
 }
@@ -43,9 +43,9 @@ export interface SchemaNodeGroupItem {
 }
 
 export interface Designer {
-  setCheckedNode: (record: NodeItem) => {}
-  setHoverNode: (record: NodeItem | null) => {}
-  setDisableHover: (disableHover = false) => {}
+  setCheckedNode: (record: NodeItem) => void
+  setHoverNode: (record: NodeItem | null) => void
+  setDisableHover: (disableHover = false) => void
   state: DesignerState
   // schemas: NodeItem[];
 }

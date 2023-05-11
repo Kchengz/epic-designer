@@ -4,7 +4,7 @@
       ref="monacoEditorRef"
       class="editor"
       :model-value="initModelValue"
-      @update:modelValue="setSchemas"
+      @update:model-value="setSchemas"
     />
   </div>
 </template>

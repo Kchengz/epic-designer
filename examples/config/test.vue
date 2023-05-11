@@ -1,8 +1,14 @@
 <template>
   <div style="withd: 350px;background:#ff889966;padding:20px;">
-    <div style="text-align: center">{{ record.label }}</div>
+    <div style="text-align: center">
+      {{ record.label }}
+    </div>
     <slot name="edit-node">
-      <slot name="node" :record="item" v-for="item in children"></slot>
+      <slot
+        v-for="item in children"
+        name="node"
+        :record="item"
+      />
     </slot>
   </div>
 </template>
@@ -11,7 +17,8 @@ import { computed } from 'vue'
 const props = defineProps({
   record: {
     type: Object as any,
-    require: true
+    require: true,
+    default: () => ({})
   }
 })
 const children = computed(() => {

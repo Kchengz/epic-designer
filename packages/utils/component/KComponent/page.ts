@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../pluginManager'
+import { type ComponentConfigModel } from '../../pluginManager'
 
 export default {
   component: async () => await import('./KPage/KPage.vue'),

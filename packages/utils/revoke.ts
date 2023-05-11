@@ -1,5 +1,5 @@
-import { NodeItem } from '../types/kDesigner.d'
-import { ref, Ref } from 'vue'
+import { type NodeItem } from '../types/kDesigner.d'
+import { ref, type Ref } from 'vue'
 
 /**
 历史记录模型

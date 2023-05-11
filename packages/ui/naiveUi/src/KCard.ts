@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
 import { defineComponent, h, renderSlot } from 'vue'
 import { NCard } from 'naive-ui'
-import { NodeItem } from '../../../types/kDesigner'
+import { type NodeItem } from '../../../types/kDesigner'
 export default defineComponent({
   props: {
     record: {

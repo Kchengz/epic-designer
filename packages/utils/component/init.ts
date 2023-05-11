@@ -1,4 +1,4 @@
-import { PluginManager } from '../pluginManager'
+import { type PluginManager } from '../pluginManager'
 import MonacoEditor from './KComponent/monacoEditor'
 import Page from './KComponent/page'
 import KColEditor from './KComponent/KColEditor/KColEditor.vue'

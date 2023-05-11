@@ -1,7 +1,10 @@
 <template>
   <!-- <button @click="handleGet">获取值</button> -->
   <!-- <button @click="handleReset">重置操作</button> -->
-  <KDesigner ref="designerRef" @save="handleSubmit" />
+  <KDesigner
+    ref="designerRef"
+    @save="handleSubmit"
+  />
 </template>
 <script lang="ts" setup>
 import { KDesigner } from '../../../packages'

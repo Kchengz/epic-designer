@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../../utils/pluginManager'
+import { type ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
   component: async () => (await import('naive-ui/lib/color-picker')).NColorPicker,
   defaultSchema: {
@@ -8,7 +8,7 @@ export default {
     icon: 'icon-write',
     input: true,
     componentProps: {
-      type: 'color',
+      type: 'color'
     }
   },
   config: {

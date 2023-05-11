@@ -1,5 +1,5 @@
-import { NodeItem } from '../types/kDesigner'
-import { defineAsyncComponent, AsyncComponentLoader } from 'vue'
+import { type NodeItem } from '../types/kDesigner'
+import { defineAsyncComponent, type AsyncComponentLoader } from 'vue'
 import KAsyncLoader from '../components/KAsyncLoader/KAsyncLoader.vue'
 
 /**
@@ -181,7 +181,7 @@ export function findSchemaById (
     for (let i = 0; i < children.length; i++) {
       if (children[i].id === id) {
         return {
-          list: item?.children as NodeItem[],
+          list: item?.children ?? [],
           schema: children[i],
           index: i
         }

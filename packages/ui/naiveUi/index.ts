@@ -1,5 +1,5 @@
 // 注册naive-ui
-import { PluginManager } from '../../utils/pluginManager'
+import { type PluginManager } from '../../utils/pluginManager'
 import Input from './config/input'
 import InputNumber from './config/inputNumber'
 import Form from './config/form'

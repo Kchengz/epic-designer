@@ -1,4 +1,4 @@
-import { NodeItem, SchemaGroupItem } from '../types/kDesigner.d'
+import { type NodeItem, type SchemaGroupItem } from '../types/kDesigner.d'
 import { loadAsyncComponent } from './utils'
 import { getUUID } from './index'
 
@@ -44,7 +44,7 @@ export type ComponentConfigModelRecords = Record<string, ComponentConfigModel>
 export interface MethodModel {
   describe: string
   methodName: string
-  method: Function
+  method: (...args) => any
 }
 
 export type PublicMethodsModel = Record<string, MethodModel>
@@ -203,7 +203,7 @@ export class PluginManager {
       // 映射defaultSchema,并过滤未查询到的组件
       const list = item.list
         .map((type) => {
-          const schema = this.componentConfigs[type]?.defaultSchema as NodeItem | undefined
+          const schema = this.componentConfigs[type]?.defaultSchema
           if (schema == null) {
             console.warn(`${type} 组件未注册到pluginManager中`)
             return false

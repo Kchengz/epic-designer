@@ -1,6 +1,6 @@
-import { defineComponent, h, renderSlot, PropType } from 'vue'
+import { defineComponent, h, renderSlot, type PropType } from 'vue'
 import { ElTabPane } from 'element-plus'
-import { NodeItem } from '../../../types/kDesigner'
+import { type NodeItem } from '../../../types/kDesigner'
 export default defineComponent({
   props: {
     record: {

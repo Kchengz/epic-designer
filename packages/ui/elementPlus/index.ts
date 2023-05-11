@@ -1,5 +1,5 @@
 // 注册element-plus ui
-import { PluginManager } from '../../utils/pluginManager'
+import { type PluginManager } from '../../utils/pluginManager'
 import Input from './config/input'
 import InputNumber from './config/input-number'
 import Form from './config/form'

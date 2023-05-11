@@ -1,6 +1,6 @@
-import { defineComponent, h, renderSlot, PropType } from 'vue'
+import { defineComponent, h, renderSlot, type PropType } from 'vue'
 import Card from 'ant-design-vue/lib/card'
-import { NodeItem } from '../../../types/kDesigner'
+import { type NodeItem } from '../../../types/kDesigner'
 export default defineComponent({
   props: {
     record: {
@@ -14,8 +14,8 @@ export default defineComponent({
       const record = {
         ...props.record,
         title: props.record?.label ?? ''
-      } as any
-      const children = record.children
+      } as Record<string, any>
+      const children = record.children ?? []
       delete record.children
 
       return h(Card, record, {

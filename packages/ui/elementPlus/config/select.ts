@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../../utils/pluginManager'
+import { type ComponentConfigModel } from '../../../utils/pluginManager'
 import KSelect from '../src/KSelect'
 export default {
   component: KSelect,

@@ -1,4 +1,4 @@
-import { ComponentConfigModel } from '../../../utils/pluginManager'
+import { type ComponentConfigModel } from '../../../utils/pluginManager'
 import { ElInputNumber } from 'element-plus'
 export default {
   // component: async () => (await import("element-plus")).ElInputNumber,

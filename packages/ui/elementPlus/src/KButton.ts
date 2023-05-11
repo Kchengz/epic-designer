@@ -1,6 +1,6 @@
-import { defineComponent, h, renderSlot, PropType } from 'vue'
+import { defineComponent, h, renderSlot, type PropType } from 'vue'
 import { ElButton } from 'element-plus'
-import { NodeItem } from '../../../types/kDesigner'
+import { type NodeItem } from '../../../types/kDesigner'
 
 // 二次封装组件
 export default defineComponent({

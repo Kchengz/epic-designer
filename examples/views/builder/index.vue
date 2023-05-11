@@ -1,11 +1,16 @@
 <template>
   <div>
-    <KBuilder ref="kfb" :schemas="schemas">
+    <KBuilder
+      ref="kfb"
+      :schemas="schemas"
+    >
       <template #sdff="{ model, record }">
-        <input v-model="model[record.field]" />
+        <input v-model="model[record.field]">
       </template>
     </KBuilder>
-    <div @click="handleGetData">获取数据</div>
+    <div @click="handleGetData">
+      获取数据
+    </div>
   </div>
 </template>
 
