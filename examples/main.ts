@@ -11,13 +11,13 @@ import { pluginManager } from '../packages/index'
 // setupElementPlus(pluginManager)
 
 // // 引入antd UI样式
-// import 'ant-design-vue/dist/antd.css'
-// import { setupAntd } from '../packages/ui/antd'
-// // 使用Antd UI
-// setupAntd(pluginManager)
+import 'ant-design-vue/dist/antd.css'
+import { setupAntd } from '../packages/ui/antd'
+// 使用Antd UI
+setupAntd(pluginManager)
 
-import { setupNaiveUi } from '../packages/ui/naiveUi'
-// 使用NaiveUi UI
-setupNaiveUi(pluginManager)
+// import { setupNaiveUi } from '../packages/ui/naiveUi'
+// // 使用NaiveUi UI
+// setupNaiveUi(pluginManager)
 
 createApp(App).mount('#app')

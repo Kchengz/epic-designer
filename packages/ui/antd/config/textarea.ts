@@ -1,16 +1,12 @@
 import { type ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: async () => (await import('naive-ui/lib/input')).NInput,
+  component: async () => (await import('ant-design-vue/lib/input')).Textarea,
   defaultSchema: {
-    label: '输入框',
-    type: 'input',
-    field: 'input',
-    icon: 'icon-write',
-    input: true,
-    componentProps: {
-      defaultValue: '',
-      placeholder: '请输入'
-    }
+    label: '文本域',
+    type: 'textarea',
+    field: 'textarea',
+    icon: 'icon-edit',
+    input: true
   },
   config: {
     attribute: [
@@ -24,53 +20,30 @@ export default {
         type: 'input',
         field: 'label'
       },
-
       {
         label: '默认值',
         type: 'input',
         field: 'componentProps.defaultValue'
       },
       {
-        label: '占位内容',
-        type: 'input',
-        field: 'componentProps.placeholder'
+        label: '最小行数',
+        type: 'number',
+        field: 'componentProps.autoSize.minRows'
       },
       {
-        label: '输入类型',
-        type: 'select',
-        defaultValue: 'text',
-        componentProps: {
-          options: [
-            {
-              label: 'text',
-              value: 'text'
-            },
-            {
-              label: 'textarea',
-              value: 'textarea'
-            },
-            {
-              label: 'number',
-              value: 'number'
-            },
-            {
-              label: 'password',
-              value: 'password'
-            }
-
-          ]
-        },
-        field: 'componentProps.type'
+        label: '最大行数',
+        type: 'number',
+        field: 'componentProps.autoSize.maxRows'
       },
       {
-        label: '可清空',
+        label: '可清除',
         type: 'switch',
-        field: 'componentProps.clearable'
+        field: 'componentProps.allowClear'
       },
       {
-        label: '隐藏',
+        label: '显示',
         type: 'switch',
-        field: 'componentProps.hidden'
+        field: 'show'
       },
       {
         label: '禁用',
@@ -95,6 +68,10 @@ export default {
         describe: '值修改'
       },
       {
+        type: 'pressEnter',
+        describe: '按下回车的回调'
+      },
+      {
         type: 'focus',
         describe: '获取焦点'
       },
@@ -111,10 +88,6 @@ export default {
       {
         type: 'blur',
         describe: '使 input 失去焦点'
-      },
-      {
-        type: 'clear',
-        describe: '清除 input 值'
       },
       {
         type: 'select',

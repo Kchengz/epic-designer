@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
   component: async () => (await import('element-plus')).ElInput,
   defaultSchema: {
-    label: '文本框',
+    label: '输入框',
     type: 'input',
     field: 'input',
     icon: 'icon-write',

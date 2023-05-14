@@ -1,6 +1,7 @@
 // 注册ant-design-vue ui
 import { type PluginManager } from '../../utils/pluginManager'
 import Input from './config/input'
+import Textarea from './config/textarea'
 import InputNumber from './config/inputNumber'
 import InputPassword from './config/inputPassword'
 import Radio from './config/radio'
@@ -46,6 +47,7 @@ export function setupAntd (pluginManager: PluginManager): void {
     Form,
     FormItem,
     Input,
+    Textarea,
     InputNumber,
     InputPassword,
     Radio,
@@ -77,6 +79,7 @@ export function setupAntd (pluginManager: PluginManager): void {
       list: [
         'form',
         'input',
+        'textarea',
         'number',
         'password',
         'select',

@@ -42,7 +42,7 @@ const schemas: NodeItem[] = [{
   },
   children: [
     {
-      label: '文本框',
+      label: '输入框',
       type: 'slot',
       field: 'input',
       slotName: 'sdff',
