@@ -46,6 +46,10 @@ export default {
               value: 'text'
             },
             {
+              label: 'textarea',
+              value: 'textarea'
+            },
+            {
               label: 'number',
               value: 'number'
             },
@@ -53,6 +57,7 @@ export default {
               label: 'password',
               value: 'password'
             }
+
           ]
         },
         field: 'componentProps.type'

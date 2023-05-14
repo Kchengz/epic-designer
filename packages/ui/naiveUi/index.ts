@@ -99,7 +99,7 @@ export function setupNaiveUi (pluginManager: PluginManager): void {
       list: [
         'card',
         'row'
-        // "tabs"
+        // 'tabs'
       ]
     }
   ])
