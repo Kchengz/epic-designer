@@ -1,78 +1,82 @@
 <template>
   <Modal
     v-model:visible="visible"
+    v-model:show="visible"
     v-model="visible"
     width="850px"
     :footer="null"
   >
-    <Tabs
-      v-model="activeTab"
-      v-model:activeKey="activeTab"
-    >
-      <TabPane
-        key="动作配置"
-        title="动作配置"
-        tab="动作配置"
-        label="动作配置"
-        name="动作配置"
+    <div class="w-850px p-4 rounded bg-white">
+      <Tabs
+        v-model="activeTab"
+        v-model:activeKey="activeTab"
+        :default-value="activeTab"
       >
-        <div class="k-modal-action-main">
-          <div class="k-modal-left-panel">
-            <div
-              class="fun-btn"
-              :class="{ checked: state.actionItem.componentId === null }"
-              @click="toggleMethod"
-            >
-              函数
-            </div>
-            组件
-            <KTree
-              v-model:selectedKeys="selectedKeys"
-              :options="schemas"
-              @node-click="handleNodeClick"
-            />
-          </div>
-          <div class="k-modal-right-panel">
-            <div class="select-box">
-              <span>动作选择</span>
-              <Select
-                v-model="state.actionItem.methodName"
-                v-model:value="state.actionItem.methodName"
-                class="action-select"
-                placeholder="请选择动作"
-                :options="methodOptions"
-              />
-              <Button
-                v-if="state.actionItem.componentId === null"
-                @click="handleAddMethod"
+        <TabPane
+          key="动作配置"
+          title="动作配置"
+          label="动作配置"
+          tab="动作配置"
+          name="动作配置"
+        >
+          <div class="k-modal-action-main">
+            <div class="k-modal-left-panel">
+              <div
+                class="fun-btn"
+                :class="{ checked: state.actionItem.componentId === null }"
+                @click="toggleMethod"
               >
-                编辑函数
-              </Button>
+                函数
+              </div>
+              组件
+              <KTree
+                v-model:selectedKeys="selectedKeys"
+                :options="schemas"
+                @node-click="handleNodeClick"
+              />
+            </div>
+            <div class="k-modal-right-panel">
+              <div class="select-box">
+                <span>动作选择</span>
+                <Select
+                  v-model="state.actionItem.methodName"
+                  v-model:value="state.actionItem.methodName"
+                  class="action-select"
+                  placeholder="请选择动作"
+                  :options="methodOptions"
+                />
+                <Button
+                  v-if="state.actionItem.componentId === null"
+                  @click="handleAddMethod"
+                >
+                  编辑函数
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      </TabPane>
-      <TabPane
-        key="脚本编辑"
-        title="脚本编辑"
-        tab="脚本编辑"
-        label="脚本编辑"
-        name="脚本编辑"
-      >
-        <KScriptEdit />
-      </TabPane>
-    </Tabs>
-    <div class="k-modal-footer">
-      <Button @click="handleClose">
-        关闭
-      </Button>
-      <Button
-        type="primary"
-        :disabled="!state.actionItem.methodName"
-        @click="handleSave"
-      >
-        保存
-      </Button>
+        </TabPane>
+        <TabPane
+          key="脚本编辑"
+          title="脚本编辑"
+          label="脚本编辑"
+          tab="脚本编辑"
+          name="脚本编辑"
+        >
+          <KScriptEdit />
+        </TabPane>
+      </Tabs>
+      <div class="k-modal-footer">
+        <Button @click="handleClose">
+          关闭
+        </Button>
+        <Button
+          type="primary"
+          :disabled="!state.actionItem.methodName"
+          @click="handleSave"
+        >
+          保存
+        </Button>
+      </div>
     </div>
   </Modal>
 </template>
@@ -87,6 +91,7 @@ const Select = pluginManager.getComponent('select')
 const Button = pluginManager.getComponent('button')
 const Tabs = pluginManager.getComponent('Tabs')
 const TabPane = pluginManager.getComponent('TabPane')
+
 const schemas = inject('schemas') as Ref<NodeItem[]>
 const pageManager = inject('pageManager', {}) as PageManager
 const visible = ref(false)

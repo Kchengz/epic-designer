@@ -25,7 +25,7 @@
     "url": "https://github.com/Kchengz/k-designer"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest",

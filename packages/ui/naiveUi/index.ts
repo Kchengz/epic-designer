@@ -20,7 +20,7 @@ import TabPane from './config/tabPane'
 import Collapse from './config/collapse'
 import CollapseItem from './config/collapseItem'
 import DatePicker from './config/datePicker'
-
+import { NTabPane } from 'naive-ui'
 // 组件样式调整
 import './src/index.less'
 export function setupNaiveUi (pluginManager: PluginManager): void {
@@ -35,14 +35,9 @@ export function setupNaiveUi (pluginManager: PluginManager): void {
     async () => (await import('naive-ui/lib/form')).NFormItem
   )
   // eslint-disable-next-line vue/multi-word-component-names
-  pluginManager.component(
-    'Tabs',
-    async () => (await import('naive-ui/lib/tabs')).NTabs
-  )
-  pluginManager.component(
-    'TabPane',
-    async () => (await import('naive-ui/lib/tabs')).NTabPane
-  )
+  pluginManager.component('Tabs', async () => (await import('naive-ui/lib/tabs')).NTabs)
+
+  pluginManager.component('TabPane', NTabPane)
   // eslint-disable-next-line vue/multi-word-component-names
   pluginManager.component(
     'Collapse',
