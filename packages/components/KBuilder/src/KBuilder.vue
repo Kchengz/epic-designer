@@ -3,7 +3,7 @@
     <template #default>
       <div>
         <KNode
-          v-for="item, index in props.schemas"
+          v-for="item, index in props.pageSchema.schemas"
           ref="Knode"
           :key="index"
           :record="item"
@@ -21,7 +21,7 @@
 import type { PropType } from 'vue'
 import KNode from '../../KNode/'
 import { reactive, provide, ref, watch, useSlots, nextTick } from 'vue'
-import { NodeItem, FormDataModel } from '../../../types/kDesigner'
+import { NodeItem, PageSchema, FormDataModel } from '../../../types/kDesigner'
 import { loadAsyncComponent, usePageManager } from '../../../utils/index'
 const KAsyncLoader = loadAsyncComponent(() => import('../../KAsyncLoader/KAsyncLoader.vue'))
 const pageManager = usePageManager()
@@ -36,18 +36,14 @@ provide('pageManager', pageManager)
 provide('forms', forms)
 
 const props = defineProps({
-  schemas: {
-    type: Array as PropType<NodeItem[]>,
+  pageSchema: {
+    type: Object as PropType<PageSchema>,
     require: true,
-    default: () => []
-  },
-  script: {
-    type: String,
-    default: ''
+    default: () => ({})
   }
 })
 
-watch(() => props.script, e => {
+watch(() => props.pageSchema.script, e => {
   pageManager.setMethods(e)
 }, {
   immediate: true

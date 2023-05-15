@@ -12,8 +12,7 @@
       <KBuilder
         :key="kBuilderKey"
         ref="kb"
-        :schemas="schemas"
-        :script="script"
+        :page-schema="{ schemas, script }"
       />
       <div class="k-modal-footer">
         <Button @click="handleClose">
