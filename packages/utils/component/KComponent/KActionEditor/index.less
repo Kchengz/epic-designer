@@ -14,7 +14,7 @@
     cursor: pointer;
   }
 
-  .KActionEditor-main {
+  .k-action-editor-main {
     // padding: 16px;
     .k-editor-item {
       margin: 8px 0px;
@@ -24,6 +24,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    .el-dialog__body {
+      padding: 16px;
     }
   }
 }
@@ -63,12 +67,6 @@
   .action-select {
     margin-right: 8px;
     min-width: 175px;
-  }
-}
-
-.KActionEditor-main {
-  .el-dialog__body {
-    padding: 16px;
   }
 }
 
@@ -148,4 +146,10 @@
   cursor: pointer;
   margin-top: 6px;
   color: @primary-color;
+}
+
+// 移除事件antd、element plus弹出框的边距，去除差异
+.k-event-view .el-dialog__body,
+.k-action-modal .ant-modal-body {
+  padding: 0;
 }

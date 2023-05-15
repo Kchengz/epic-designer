@@ -5,8 +5,9 @@
     v-model="visible"
     width="850px"
     :footer="null"
+    wrap-class-name="k-action-modal"
   >
-    <div class="w-850px p-4 rounded bg-white">
+    <div class="min-w-750px p-4 rounded bg-white">
       <Tabs
         v-model="activeTab"
         v-model:activeKey="activeTab"
