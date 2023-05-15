@@ -1,4 +1,4 @@
-import { defineComponent, h, type PropType, computed, ref, watch } from 'vue'
+import { type PropType, defineComponent, h, nextTick, computed, ref, watch } from 'vue'
 import Upload from 'ant-design-vue/lib/upload'
 import message from 'ant-design-vue/lib/message'
 import Button from 'ant-design-vue/lib/button'
@@ -39,7 +39,7 @@ export default defineComponent({
     )
 
     function handleUpdate (e: UploadProps['fileList']): void {
-      fileList.value = e
+      nextTick(() => { fileList.value = e })
     }
 
     // 处理数据结果
@@ -88,7 +88,7 @@ export default defineComponent({
     return () => {
       return h('div', null, {
         default: () => [
-          h(Upload, getUploadProps, {
+          h(Upload, getUploadProps.value, {
             default: () => [
               h(
                 Button,

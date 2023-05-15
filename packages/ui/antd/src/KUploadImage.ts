@@ -1,7 +1,7 @@
-import { defineComponent, h, type PropType, computed, ref, watch } from 'vue'
+import { type PropType, defineComponent, h, nextTick, computed, ref, watch } from 'vue'
 import Upload from 'ant-design-vue/lib/upload'
 import message from 'ant-design-vue/lib/message'
-import Image from 'ant-design-vue/lib/image'
+import * as AImage from 'ant-design-vue/lib/image'
 import type {
   UploadChangeParam,
   UploadProps,
@@ -44,7 +44,7 @@ export default defineComponent({
     )
 
     function handleUpdate (e: UploadProps['fileList']): void {
-      fileList.value = e
+      nextTick(() => { fileList.value = e })
     }
 
     // 处理数据结果
@@ -56,7 +56,7 @@ export default defineComponent({
       if (info.file.status === 'done') {
         // Get this url from response in real world.
         const url: string | undefined = info.file.response?.data?.url
-        if (!info.file.url && url != null) {
+        if (!info.file.url && !url) {
           info.file.status = 'error'
           message.error('上传失败')
           return
@@ -120,7 +120,7 @@ export default defineComponent({
         },
         {
           default: () => [
-            h(Upload, getUploadProps, {
+            h(Upload, getUploadProps.value, {
               default: () => [
                 h('div', null, {
                   default: () => [
@@ -137,9 +137,9 @@ export default defineComponent({
                 })
               ]
             }),
-            h(() => Image, {
+            h(AImage, {
               style: { display: 'none' },
-              src: imgUrl,
+              src: imgUrl.value,
               preview: {
                 visible,
                 onVisibleChange: setVisible
