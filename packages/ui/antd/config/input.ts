@@ -48,10 +48,14 @@ export default {
         field: 'componentProps.type'
       },
       {
-        label: '显示',
+        label: '可清空',
         type: 'switch',
-        field: 'show',
-        componentProps: {}
+        field: 'componentProps.allowClear'
+      },
+      {
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
       },
       {
         label: '禁用',
