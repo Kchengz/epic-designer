@@ -63,7 +63,7 @@ const props = defineProps({
   },
   modelValue: {
     type: [Object, Array, String, Number, Boolean] as PropType<any>,
-    default: null
+    default: undefined
   }
 })
 

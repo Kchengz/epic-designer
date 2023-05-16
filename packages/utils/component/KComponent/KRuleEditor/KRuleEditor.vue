@@ -49,7 +49,7 @@ const Button = pluginManager.getComponent('button')
 const props = defineProps({
   modelValue: {
     type: Array as PropType<FormItemRule[] | undefined>,
-    default: null
+    default: undefined
   }
 })
 const requiredRule = ref<FormItemRule>({

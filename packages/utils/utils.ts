@@ -240,17 +240,17 @@ export function getAttributeValue (
 ): NodeItem | undefined {
   // 使用“.”作为分隔符拆分field字符串，以创建字段数组。
   const fieldList = field.split('.')
-  let nodeItem: NodeItem | undefined = obj
+  let data: NodeItem | undefined = obj
   // 遍历fieldList中每个字段，以从obj中检索字段的值
   for (let i = 0; i < fieldList.length; i++) {
     // 更新nodeItem为nodeItem中当前字段的值。
-    nodeItem = nodeItem[fieldList[i]]
+    data = data[fieldList[i]]
     // 如果字段的值不存在，则返回空。
-    if (nodeItem == null && nodeItem !== false && nodeItem !== 0) return
+    if (data == null && data !== false && data !== 0) return
   }
 
-  // 返回从nodeItem中检索到的最终字段的值。
-  return nodeItem
+  // 返回从obj中检索到的最终字段的值。
+  return data
 }
 
 /**
@@ -266,17 +266,19 @@ export function setAttributeValue (
   field: string,
   obj: NodeItem
 ): void {
-  // 将属性路径拆分成数组
-  const arr = field.split('.')
+  // 使用“.”作为分隔符拆分field字符串，以创建字段数组。
+  const fieldList = field.split('.')
+  let data: NodeItem = obj
 
   // 遍历属性路径数组
-  arr.forEach((item, index) => {
+  fieldList.forEach((item, index) => {
     // 如果当前遍历到数组的最后一个元素，则将属性值设置到这个子属性上
-    if (index === arr.length - 1) {
-      obj[item] = value
-      return false
+    if (index === fieldList.length - 1) {
+      data[item] = value
+      return
     }
+
     // 否则，进入子属性对象中
-    obj = obj[item] ?? (obj[item] = {})
+    data = data[item] ?? (data[item] = {})
   })
 }
