@@ -1,5 +1,4 @@
-export { pluginManager } from './pluginManager'
-export { usePageManager } from './pageManager'
+export * from './pluginManager'
+export * from './pageManager'
 export { revoke } from './revoke'
 export * from './utils'
-export type { PageManager } from './pageManager'
