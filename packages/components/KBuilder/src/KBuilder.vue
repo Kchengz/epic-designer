@@ -1,7 +1,7 @@
 <template>
   <Suspense @resolve="handleReady">
     <template #default>
-      <div>
+      <div class="k-builder-main">
         <KNode
           v-for="item, index in props.pageSchema.schemas"
           ref="Knode"

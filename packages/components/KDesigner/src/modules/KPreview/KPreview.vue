@@ -8,7 +8,7 @@
     width="800px"
     :footer="null"
   >
-    <div class="k-preview-container">
+    <div class="min-w-750px p-4 rounded bg-white">
       <KBuilder
         :key="kBuilderKey"
         ref="kb"
