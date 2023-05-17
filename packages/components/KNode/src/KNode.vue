@@ -128,11 +128,6 @@ async function initComponent () {
     handleUpdate(props.record.componentProps?.defaultValue)
   }
 
-  // 数据处理
-  if (props.record.dataSource?.api) {
-    fetchData(props.record.dataSource?.api, props.record)
-  }
-
   // 组件为slot类型时
   if (props.record.type === 'slot') {
     const slotName = props.record.slotName
@@ -188,20 +183,6 @@ async function initComponent () {
     [`onUpdate:${bindModel}`]: handleUpdate,
     ...onEvent
   }
-}
-
-// dataSource
-function fetchData (api: string | Function, record: NodeItem) {
-  // const data = reactive({})
-  const dataField = record.dataSource.dataField ?? 'options'
-  async function asyncFetchData () {
-    if (typeof api === 'function') {
-      dataSource[dataField] = await api()
-    }
-  }
-
-  asyncFetchData()
-  // return data
 }
 
 /**
