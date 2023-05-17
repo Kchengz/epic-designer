@@ -15,6 +15,7 @@ export function initComponent (pluginManager: PluginManager): void {
 
   // 左侧菜单初始化
   pluginManager.registerActivitybar({
+    id: 'component_view',
     title: '组件',
     icon: 'icon-mokuai_1',
     component: async () =>
@@ -24,6 +25,7 @@ export function initComponent (pluginManager: PluginManager): void {
   })
 
   pluginManager.registerActivitybar({
+    id: 'sound_code',
     title: '源码',
     icon: 'icon-daima1',
     component: async () =>
@@ -33,6 +35,7 @@ export function initComponent (pluginManager: PluginManager): void {
   })
 
   pluginManager.registerActivitybar({
+    id: 'outline',
     title: '大纲',
     icon: 'icon-juxingkaobei',
     component: async () =>
@@ -40,6 +43,7 @@ export function initComponent (pluginManager: PluginManager): void {
   })
 
   pluginManager.registerRightSidebar({
+    id: 'attribute_view',
     title: '属性',
     component: async () =>
       await import(
@@ -48,6 +52,7 @@ export function initComponent (pluginManager: PluginManager): void {
   })
 
   pluginManager.registerRightSidebar({
+    id: 'style_view',
     title: '样式',
     component: async () =>
       await import(
@@ -55,6 +60,7 @@ export function initComponent (pluginManager: PluginManager): void {
       )
   })
   pluginManager.registerRightSidebar({
+    id: 'event_view',
     title: '事件',
     component: async () =>
       await import(

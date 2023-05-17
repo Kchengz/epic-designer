@@ -3,14 +3,14 @@ import { loadAsyncComponent } from './utils'
 import { getUUID } from './index'
 
 export interface ActivitybarModel {
-  id?: string
+  id: string
   title: string
   icon: string
   component: any
 }
 
 export interface RightSidebarModel {
-  id?: string
+  id: string
   title: string
   component: any
 }
@@ -127,7 +127,14 @@ export class PluginManager {
     if (typeof activitybar.component === 'function') {
       activitybar.component = loadAsyncComponent(activitybar.component)
     }
-    this.viewsContainers.activitybars.push(activitybar)
+
+    const index = this.viewsContainers.activitybars.findIndex(item => item.id === activitybar.id)
+
+    if (index !== -1) {
+      this.viewsContainers.activitybars[index] = activitybar
+    } else {
+      this.viewsContainers.activitybars.push(activitybar)
+    }
   }
 
   /**
@@ -145,7 +152,14 @@ export class PluginManager {
     if (typeof rightSidebar.component === 'function') {
       rightSidebar.component = loadAsyncComponent(rightSidebar.component)
     }
-    this.viewsContainers.rightSidebars.push(rightSidebar)
+
+    const index = this.viewsContainers.rightSidebars.findIndex(sidebar => sidebar.id === rightSidebar.id)
+
+    if (index !== -1) {
+      this.viewsContainers.rightSidebars[index] = rightSidebar
+    } else {
+      this.viewsContainers.rightSidebars.push(rightSidebar)
+    }
   }
 
   /**
