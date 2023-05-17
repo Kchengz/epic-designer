@@ -1,7 +1,7 @@
 import { type NodeItem, type SchemaGroupItem } from '../types/kDesigner.d'
 import { loadAsyncComponent } from './utils'
 import { getUUID } from './index'
-
+import { ref } from 'vue'
 export interface ActivitybarModel {
   id: string
   title: string
@@ -49,15 +49,19 @@ export interface MethodModel {
 
 export type PublicMethodsModel = Record<string, MethodModel>
 
+export interface SchemaGroup {
+  list: NodeItem[]
+  title: string
+}
+
+export type SchemaGroupList = SchemaGroup[]
+
 export class PluginManager {
   components: Components = {}
   componentConfigs: ComponentConfigModelRecords = {}
-  schemaGroup: SchemaGroupItem[] = [
-    {
-      title: '基础组件',
-      list: ['input']
-    }
-  ]
+  schemaGroup: SchemaGroupItem[] = []
+
+  schemaGroupList = ref<SchemaGroupList>([])
 
   viewsContainers: ViewsContainersModel = {
     activitybars: [],
@@ -194,6 +198,7 @@ export class PluginManager {
    */
   setSchemaGroup (schemaGroup: SchemaGroupItem[]): void {
     this.schemaGroup = schemaGroup
+    this.computedSchemaGroupList()
   }
 
   /**
@@ -203,16 +208,13 @@ export class PluginManager {
    */
   addSchemaGroup (schemaGroupItem: SchemaGroupItem): void {
     this.schemaGroup.push(schemaGroupItem)
+    this.computedSchemaGroupList()
   }
 
   /**
-   * 按照分组获取schemaGroupList
-   * @returns schemaGroupList
+   * 计算schemaGroupList
    */
-  getSchemaByGroup (): Array<{
-    list: NodeItem[]
-    title: string
-  }> {
+  computedSchemaGroupList () {
     const schemaGroupList = this.schemaGroup.map((item) => {
       // 映射defaultSchema,并过滤未查询到的组件
       const list = item.list
@@ -233,7 +235,15 @@ export class PluginManager {
         list
       }
     })
-    return schemaGroupList
+    this.schemaGroupList.value = schemaGroupList
+  }
+
+  /**
+   * 按照分组获取schemaGroupList
+   * @returns schemaGroupList
+   */
+  getSchemaByGroup () {
+    return this.schemaGroupList
   }
 
   /**

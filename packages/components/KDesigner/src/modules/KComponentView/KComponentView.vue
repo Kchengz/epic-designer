@@ -43,11 +43,10 @@
 import draggable from 'vuedraggable'
 import { ref, toRaw, inject } from 'vue'
 import { getUUID, deepClone, findSchemaById, pluginManager, revoke } from '../../../../../utils/index'
-import { SchemaNodeGroupItem, NodeItem, PageSchema, Designer } from '../../../../../types/kDesigner'
+import { NodeItem, PageSchema, Designer } from '../../../../../types/kDesigner'
 const Collapse = pluginManager.getComponent('Collapse')
 const CollapseItem = pluginManager.getComponent('CollapseItem')
-const sourceSchema = ref<SchemaNodeGroupItem[]>([])
-sourceSchema.value = pluginManager.getSchemaByGroup()
+const sourceSchema = pluginManager.getSchemaByGroup()
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
 

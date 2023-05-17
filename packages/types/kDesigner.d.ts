@@ -37,11 +37,6 @@ export interface SchemaGroupItem {
   list: string[]
 }
 
-export interface SchemaNodeGroupItem {
-  title: string
-  list: NodeItem[]
-}
-
 export interface Designer {
   setCheckedNode: (record: NodeItem) => void
   setHoverNode: (record: NodeItem | null) => void
