@@ -57,7 +57,12 @@ export interface DesignerState {
   matched: NodeItem[]
 }
 
+export interface GlobalApiConfig {
+  apis: any
+  [configItem: string]: any
+}
 export interface PageSchema {
   schemas: NodeItem[]
   script: string
+  globalApiConfig?: GlobalApiConfig
 }
