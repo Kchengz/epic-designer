@@ -12,7 +12,7 @@
       <KBuilder
         :key="kBuilderKey"
         ref="kb"
-        :page-schema="{ schemas, script }"
+        :page-schema="pageSchema"
       />
       <div class="k-modal-footer">
         <Button @click="handleClose">
@@ -32,14 +32,13 @@
 import KBuilder from '../../../../KBuilder'
 import { pluginManager, getUUID } from '../../../../../utils'
 import { ref, inject } from 'vue'
-import { NodeItem } from '../../../../../types/kDesigner'
+import { PageSchema } from '../../../../../types/kDesigner'
 
 const Modal = pluginManager.getComponent('Modal')
 const Button = pluginManager.getComponent('button')
 
 const visible = ref(false)
-const schemas = inject('schemas') as NodeItem[]
-const script = inject('script') as string
+const pageSchema = inject('pageSchema') as PageSchema
 const kb = ref<any>(null)
 const kBuilderKey = ref('')
 function handleClose () {

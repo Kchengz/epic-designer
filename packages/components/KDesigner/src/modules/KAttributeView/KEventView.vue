@@ -10,10 +10,10 @@
   </aside>
 </template>
 <script lang="ts" setup>
-import { Designer, NodeItem } from '../../../../../types/kDesigner'
+import { Designer, PageSchema } from '../../../../../types/kDesigner'
 import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '../../../../../utils/index'
-import { inject, computed, Ref } from 'vue'
-const schemas = inject('schemas') as Ref<NodeItem[]>
+import { inject, computed } from 'vue'
+const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
 const KActionEditor = pluginManager.getComponent('KActionEditor')
 
@@ -70,6 +70,6 @@ const eventList = computed(() => {
 function handleSetValue (value: any, field: string) {
   setAttributeValue(value, field, checkedNode.value!)
   // 将修改过的组件属性推入撤销操作的栈中
-  revoke.push(schemas.value, '编辑组件属性')
+  revoke.push(pageSchema.schemas, '编辑组件属性')
 }
 </script>

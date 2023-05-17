@@ -46,10 +46,10 @@
 </template>
 <script lang="ts" setup>
 import KPreview from '../KPreview/KPreview.vue'
-import { ref, Ref, inject } from 'vue'
+import { ref, inject } from 'vue'
 import { pluginManager, revoke, deepCompareAndModify } from '../../../../../utils/index'
-import { NodeItem, Designer } from '../../../../../types/kDesigner'
-const schemas = inject('schemas') as Ref<NodeItem[]>
+import { PageSchema, Designer } from '../../../../../types/kDesigner'
+const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
 const emit = defineEmits(['save'])
 const Button = pluginManager.getComponent('button')
@@ -67,8 +67,8 @@ function handlePreview () {
 function handleUndo () {
   const record = revoke.undo()
   if (!record) return
-  deepCompareAndModify(schemas.value, record)
-  designer.setCheckedNode(schemas.value[0])
+  deepCompareAndModify(pageSchema.schemas, record)
+  designer.setCheckedNode(pageSchema.schemas[0])
 }
 
 /**
@@ -77,8 +77,8 @@ function handleUndo () {
 function handleRedo () {
   const record = revoke.redo()
   if (!record) return
-  deepCompareAndModify(schemas.value, record)
-  designer.setCheckedNode(schemas.value[0])
+  deepCompareAndModify(pageSchema.schemas, record)
+  designer.setCheckedNode(pageSchema.schemas[0])
 }
 
 /**

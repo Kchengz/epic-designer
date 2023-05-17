@@ -4,7 +4,7 @@
       <div class="k-tree-select">
         <KTree
           v-model:selectedKeys="selectedKeys"
-          :options="schemas"
+          :options="pageSchema.schemas"
           @node-click="handleNodeClick"
         >
           <template #tree-node="{ record }">
@@ -35,7 +35,7 @@
     <div class="k-script-right-panel">
       <MonacoEditor
         ref="monacoEditorRef"
-        v-model="script"
+        v-model="pageSchema.script"
         class="editor"
         :config="MonacoEditorConfig"
         language="javascript"
@@ -45,9 +45,9 @@
 </template>
 <script lang="ts" setup>
 import { pluginManager, PageManager } from '../../../../index'
-import { ref, Ref, inject, computed } from 'vue'
+import { ref, inject, computed } from 'vue'
 import KTree from '../../../../../components/KTree'
-import { NodeItem } from '../../../../../types/kDesigner'
+import { NodeItem, PageSchema } from '../../../../../types/kDesigner'
 const MonacoEditor = pluginManager.getComponent('monacoEditor')
 const MonacoEditorConfig = {
   theme: 'vs-light',
@@ -58,8 +58,7 @@ const MonacoEditorConfig = {
 }
 const monacoEditorRef = ref<any>(null)
 const pageManager = inject('pageManager', {}) as PageManager
-const schemas = inject('schemas') as Ref<NodeItem[]>
-const script = inject('script') as Ref<string>
+const pageSchema = inject('pageSchema') as PageSchema
 const selectedKeys = ref([])
 const nodeItem = ref<NodeItem | null>(null)
 const methodOptions = computed(() => {

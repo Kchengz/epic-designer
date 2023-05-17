@@ -1,7 +1,7 @@
 <template>
   <div class="k-outline">
     <KTree
-      :options="schemas"
+      :options="pageSchema.schemas"
       :selected-keys="selectedKeys"
       :hover-key="designer.state.hoverNode?.id"
       @node-click="handleNodeClick"
@@ -21,11 +21,11 @@
 </template>
 <script lang="ts" setup>
 import KTree from '../../../../KTree'
-import { Ref, inject, computed } from 'vue'
-import { NodeItem, Designer } from '../../../../../types/kDesigner'
+import { inject, computed } from 'vue'
+import { PageSchema, Designer } from '../../../../../types/kDesigner'
 import { pluginManager } from '../../../../../utils/index'
 const designer = inject('designer') as Designer
-const schemas = inject('schemas') as Ref<NodeItem[]>
+const pageSchema = inject('pageSchema') as PageSchema
 
 // 计算选中节点值
 const selectedKeys = computed(() => {

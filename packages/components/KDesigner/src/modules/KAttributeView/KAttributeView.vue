@@ -28,11 +28,12 @@
 </template>
 <script lang="ts" setup>
 import KNode from '../../../../KNode/index'
-import { Designer, NodeItem, FormDataModel } from '../../../../../types/kDesigner'
+import { Designer, NodeItem, PageSchema, FormDataModel } from '../../../../../types/kDesigner'
 import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '../../../../../utils/index'
 import { inject, computed, Ref, reactive, provide } from 'vue'
 const designer = inject('designer') as Designer
-const schemas = inject('schemas') as Ref<NodeItem[]>
+const pageSchema = inject('pageSchema') as PageSchema
+
 const formData = reactive<FormDataModel>({})
 
 provide('formData', formData)
@@ -81,7 +82,7 @@ const componentAttributes = computed(() => {
 function handleSetValue (value: any, field: string) {
   setAttributeValue(value, field, checkedNode.value!)
   // 将修改过的组件属性推入撤销操作的栈中
-  revoke.push(schemas.value, '编辑组件属性')
+  revoke.push(pageSchema.schemas, '编辑组件属性')
 }
 
 </script>

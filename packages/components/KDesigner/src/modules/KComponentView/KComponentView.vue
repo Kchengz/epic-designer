@@ -41,14 +41,14 @@
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { ref, Ref, toRaw, inject } from 'vue'
+import { ref, toRaw, inject } from 'vue'
 import { getUUID, deepClone, findSchemaById, pluginManager, revoke } from '../../../../../utils/index'
-import { SchemaNodeGroupItem, NodeItem, Designer } from '../../../../../types/kDesigner'
+import { SchemaNodeGroupItem, NodeItem, PageSchema, Designer } from '../../../../../types/kDesigner'
 const Collapse = pluginManager.getComponent('Collapse')
 const CollapseItem = pluginManager.getComponent('CollapseItem')
 const sourceSchema = ref<SchemaNodeGroupItem[]>([])
 sourceSchema.value = pluginManager.getSchemaByGroup()
-const schemas = inject('schemas') as Ref<NodeItem[]>
+const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
 
 // 默认展开所有面板
@@ -71,7 +71,7 @@ function handleDraggableEnd (e: any, list: NodeItem[]) {
  * @param e
  */
 function handleClick (e: NodeItem) {
-  const data = findSchemaById(schemas.value, designer.state.checkedNode?.id ?? 'root')
+  const data = findSchemaById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
   if (!data) {
     return false
   }
@@ -90,6 +90,6 @@ function handleClick (e: NodeItem) {
 
   list.splice(index + 1, 0, node)
   designer.setCheckedNode(node)
-  revoke.push(schemas.value, '插入组件')
+  revoke.push(pageSchema.schemas, '插入组件')
 }
 </script>

@@ -52,12 +52,13 @@
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { computed, watch, toRaw, PropType, inject, ref, Ref } from 'vue'
+import { computed, watch, toRaw, PropType, inject, ref } from 'vue'
 import { getUUID, deepClone, pluginManager, revoke } from '../../../../../utils/index'
-import { NodeItem, Designer } from '../../../../../types/kDesigner'
+import { NodeItem, PageSchema, Designer } from '../../../../../types/kDesigner'
 import KNodeItem from './KNodeItem.vue'
 const designer = inject('designer') as Designer
-const globalSchemas = inject('schemas') as Ref<NodeItem[]>
+const pageSchema = inject('pageSchema') as PageSchema
+
 const props = defineProps({
   schemas: {
     type: Array as PropType<NodeItem[]>,
@@ -98,11 +99,11 @@ function handleSelect (index: number) {
 
 function handleEnd () {
   designer.setDisableHover()
-  revoke.push(globalSchemas.value, '拖拽组件')
+  revoke.push(pageSchema.schemas, '拖拽组件')
 }
 
 function handleAdd () {
-  revoke.push(globalSchemas.value, '插入组件')
+  revoke.push(pageSchema.schemas, '插入组件')
 }
 
 /**
@@ -128,7 +129,7 @@ function handleCopy (schemas: NodeItem[], schema: NodeItem, index: number) {
   }
   designer.setCheckedNode(node)
 
-  revoke.push(globalSchemas.value, '复制组件')
+  revoke.push(pageSchema.schemas, '复制组件')
 }
 
 /**
@@ -144,7 +145,7 @@ function handleDelete (schemas: NodeItem[], schema: NodeItem, index: number) {
     index--
   }
   designer.setCheckedNode(schemas[index])
-  revoke.push(globalSchemas.value, '删除组件')
+  revoke.push(pageSchema.schemas, '删除组件')
 }
 
 </script>

@@ -29,12 +29,12 @@
 </template>
 <script lang="ts" setup>
 import KNode from '../../../../KNode/index'
-import { Designer, NodeItem } from '../../../../../types/kDesigner'
+import { Designer, NodeItem, PageSchema } from '../../../../../types/kDesigner'
 import { revoke, getAttributeValue, setAttributeValue } from '../../../../../utils/index'
 
-import { inject, computed, Ref } from 'vue'
+import { inject, computed } from 'vue'
 const designer = inject('designer') as Designer
-const schemas = inject('schemas') as Ref<NodeItem[]>
+const pageSchema = inject('pageSchema') as PageSchema
 
 const componentStyles: NodeItem[] = [
   {
@@ -99,7 +99,7 @@ function isShow (item: NodeItem) {
 function handleSetValue (value: any, field: string) {
   setAttributeValue(value, field, checkedNode.value!)
   // 将修改过的组件属性推入撤销操作的栈中
-  revoke.push(schemas.value, '编辑组件属性')
+  revoke.push(pageSchema.schemas, '编辑组件属性')
 }
 // function setAttrValue (value: any, field: string) {
 //   let obj = checkedNode.value ?? {} as { [key: string]: any }
@@ -115,7 +115,7 @@ function handleSetValue (value: any, field: string) {
 //     obj = obj[item]
 //   })
 
-//   revoke.push(schemas.value, '编辑组件属性')
+//   revoke.push(pageSchema.schemas, '编辑组件属性')
 // }
 
 </script>

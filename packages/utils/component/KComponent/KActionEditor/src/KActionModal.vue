@@ -32,7 +32,7 @@
               组件
               <KTree
                 v-model:selectedKeys="selectedKeys"
-                :options="schemas"
+                :options="pageSchema.schemas"
                 @node-click="handleNodeClick"
               />
             </div>
@@ -83,17 +83,17 @@
 </template>
 <script lang="ts" setup>
 import { pluginManager, PageManager, deepClone } from '../../../../index'
-import { ref, Ref, inject, toRaw, reactive, computed, nextTick } from 'vue'
+import { ref, inject, toRaw, reactive, computed, nextTick } from 'vue'
 import KTree from '../../../../../components/KTree'
 import KScriptEdit from './KScriptEdit.vue'
-import { NodeItem, FormDataModel } from '../../../../../types/kDesigner'
+import { NodeItem, PageSchema, FormDataModel } from '../../../../../types/kDesigner'
 const Modal = pluginManager.getComponent('Modal')
 const Select = pluginManager.getComponent('select')
 const Button = pluginManager.getComponent('button')
 const Tabs = pluginManager.getComponent('Tabs')
 const TabPane = pluginManager.getComponent('TabPane')
 
-const schemas = inject('schemas') as Ref<NodeItem[]>
+const pageSchema = inject('pageSchema') as PageSchema
 const pageManager = inject('pageManager', {}) as PageManager
 const visible = ref(false)
 const selectedKeys = ref([])

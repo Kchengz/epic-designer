@@ -38,11 +38,14 @@ const state = reactive<DesignerState>({
   disableHover: false,
   matched: []
 })
-const schemas = ref<NodeItem[]>([])
-const script = ref('')
+
+const pageSchema = reactive<PageSchema>({
+  schemas: [],
+  script: ''
+})
 const formData = reactive<FormDataModel>({})
 
-watch(() => script.value, e => {
+watch(() => pageSchema.script, e => {
   pageManager.setMethods(e)
 })
 
@@ -68,20 +71,19 @@ defineExpose({
  test 
 })`
 
-script.value = defaultScript
+pageSchema.script = defaultScript
 
-provide('schemas', schemas)
-provide('script', script)
+provide('pageSchema', pageSchema)
 provide('formData', formData)
 provide('pageManager', pageManager)
 
 function init () {
   // 初始化默认节点
-  schemas.value = deepClone(defaultSchemas)
+  pageSchema.schemas = deepClone(defaultSchemas)
 
   // 选中根节点
-  setCheckedNode(schemas.value[0])
-  revoke.push(schemas.value, '初始化撤销功能')
+  setCheckedNode(pageSchema.schemas[0])
+  revoke.push(pageSchema.schemas, '初始化撤销功能')
 }
 
 provide('designer', {
@@ -95,9 +97,9 @@ provide('designer', {
  * 选中节点
  * @param schema
  */
-async function setCheckedNode (schema: NodeItem = schemas.value[0]) {
+async function setCheckedNode (schema: NodeItem = pageSchema.schemas[0]) {
   state.checkedNode = schema
-  state.matched = getMatchedById(schemas.value, schema.id!)
+  state.matched = getMatchedById(pageSchema.schemas, schema.id!)
 }
 
 /**
@@ -138,12 +140,9 @@ async function setDisableHover (disableHover = false) {
  * 接受一个PageSchema对象作为参数。根据传入的schemas和script属性，更新页面对应的数据
  * @param pageSchema
  */
-function setData (pageSchema: PageSchema) {
-  // 调用 deepCompareAndModify 函数比较 schemas.value 和传入的 schemas，进行修改
-  deepCompareAndModify(schemas.value, pageSchema.schemas)
-
-  // 更新 script.value
-  script.value = pageSchema.script
+function setData (schema: PageSchema) {
+  // 调用 deepCompareAndModify 函数比较 pageSchema 和传入的 schema，进行修改
+  deepCompareAndModify(pageSchema, schema)
 }
 
 /**
@@ -151,31 +150,28 @@ function setData (pageSchema: PageSchema) {
  */
 function getData (): PageSchema {
   // 返回一个对象，包含当前 schemas 对象的普通对象表示和当前 script 的值
-  return {
-    schemas: toRaw(schemas.value), // 将响应式对象 schemas 转换为普通对象
-    script: script.value // 返回脚本的值
-  }
+  return toRaw(pageSchema)
 }
 
 /**
  * 重置页面数据为默认数据。
  */
 function reset () {
-  // 调用 deepCompareAndModify 函数比较 schemas.value 和 defaultSchemas，进行修改
+  // 调用 deepCompareAndModify 函数比较 pageSchema.schemas 和 defaultSchemas，进行修改
 
-  deepCompareAndModify(schemas.value, defaultSchemas)
+  deepCompareAndModify(pageSchema.schemas, defaultSchemas)
   // 更新 script.value
-  script.value = defaultScript
+  pageSchema.script = defaultScript
   // 选中根节点
-  setCheckedNode(schemas.value[0])
-  revoke.push(schemas.value, '重置操作')
+  setCheckedNode(pageSchema.schemas[0])
+  revoke.push(pageSchema.schemas, '重置操作')
 }
 
 /**
  * 保存数据
  */
 function handleSave () {
-  emit('save', { schemas: toRaw(schemas.value), script: script.value })
+  emit('save', toRaw(pageSchema))
 }
 
 init()

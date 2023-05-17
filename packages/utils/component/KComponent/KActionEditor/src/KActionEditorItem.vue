@@ -35,9 +35,9 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { PropType, Ref, inject } from 'vue'
+import { PropType, inject } from 'vue'
 import { findSchemaById } from '../../../../index'
-import { NodeItem } from '../../../../../types/kDesigner'
+import { PageSchema } from '../../../../../types/kDesigner'
 
 const props = defineProps({
   modelValue: {
@@ -59,8 +59,7 @@ const props = defineProps({
 
 })
 const emit = defineEmits(['update:modelValue', 'add'])
-
-const schemas = inject('schemas') as Ref<NodeItem[]>
+const pageSchema = inject('pageSchema') as PageSchema
 
 /**
  * 打开动作配置窗口
@@ -75,7 +74,7 @@ function handleOpen (type: string) {
  * @param id
  */
 function getLabel (id: string) {
-  const { schema } = findSchemaById(schemas.value, id)
+  const { schema } = findSchemaById(pageSchema.schemas, id)
   return schema.label
 }
 
