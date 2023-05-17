@@ -5,12 +5,14 @@ import KColEditor from './KComponent/KColEditor/KColEditor.vue'
 import KTabPaneEditor from './KComponent/KTabPaneEditor/KTabPaneEditor.vue'
 import KInputSize from './KComponent/KInputSize/index.vue'
 import KActionEditor from './KComponent/KActionEditor/KActionEditor.vue'
+import KNode from '../../components/KNode/index'
 
 export function initComponent (pluginManager: PluginManager): void {
   pluginManager.component('KTabPaneEditor', KTabPaneEditor)
   pluginManager.component('KInputSize', KInputSize)
   pluginManager.component('KColEditor', KColEditor)
   pluginManager.component('KActionEditor', KActionEditor)
+  pluginManager.component('KNode', KNode)
   pluginManager.component('KRuleEditor', async () => await import('./KComponent/KRuleEditor/KRuleEditor.vue'))
 
   // 左侧菜单初始化
