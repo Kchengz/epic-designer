@@ -29,12 +29,6 @@ const emit = defineEmits(['ready'])
 const formData = reactive<FormDataModel>({})
 const slots = useSlots()
 const forms = ref<any>({})
-
-provide('formData', formData)
-provide('slots', slots)
-provide('pageManager', pageManager)
-provide('forms', forms)
-
 const props = defineProps({
   pageSchema: {
     type: Object as PropType<PageSchema>,
@@ -42,7 +36,11 @@ const props = defineProps({
     default: () => ({})
   }
 })
-
+provide('formData', formData)
+provide('slots', slots)
+provide('pageManager', pageManager)
+provide('forms', forms)
+provide('pageSchema', props.pageSchema)
 watch(() => props.pageSchema.script, e => {
   pageManager.setMethods(e)
 }, {
