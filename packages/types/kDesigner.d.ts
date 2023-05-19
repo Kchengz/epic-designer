@@ -54,5 +54,5 @@ export interface DesignerState {
 
 export interface PageSchema {
   schemas: NodeItem[]
-  script: string
+  script?: string
 }

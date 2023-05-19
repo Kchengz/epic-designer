@@ -46,7 +46,9 @@ const pageSchema = reactive<PageSchema>({
 const formData = reactive<FormDataModel>({})
 
 watch(() => pageSchema.script, e => {
-  pageManager.setMethods(e)
+  if (e && e !== '') {
+    pageManager.setMethods(e)
+  }
 })
 
 const defaultSchemas = [{

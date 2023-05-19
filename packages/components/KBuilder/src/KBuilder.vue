@@ -42,7 +42,9 @@ provide('pageManager', pageManager)
 provide('forms', forms)
 provide('pageSchema', props.pageSchema)
 watch(() => props.pageSchema.script, e => {
-  pageManager.setMethods(e)
+  if (e && e !== '') {
+    pageManager.setMethods(e)
+  }
 }, {
   immediate: true
 })
