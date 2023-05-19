@@ -3,7 +3,7 @@
     <template #default>
       <div class="k-builder-main">
         <KNode
-          v-for="item, index in props.pageSchema.schemas"
+          v-for="item, index in pageSchema.schemas"
           ref="Knode"
           :key="index"
           :record="item"
@@ -21,8 +21,8 @@
 import type { PropType } from 'vue'
 import KNode from '../../KNode/'
 import { reactive, provide, ref, watch, useSlots, nextTick } from 'vue'
-import { NodeItem, PageSchema, FormDataModel } from '../../../types/kDesigner'
-import { loadAsyncComponent, usePageManager } from '../../../utils/index'
+import { PageSchema, FormDataModel } from '../../../types/kDesigner'
+import { loadAsyncComponent, deepCompareAndModify, usePageManager } from '../../../utils/index'
 const KAsyncLoader = loadAsyncComponent(() => import('../../KAsyncLoader/KAsyncLoader.vue'))
 const pageManager = usePageManager()
 const emit = defineEmits(['ready'])
@@ -36,18 +36,32 @@ const props = defineProps({
     default: () => ({})
   }
 })
-provide('formData', formData)
-provide('slots', slots)
-provide('pageManager', pageManager)
-provide('forms', forms)
-provide('pageSchema', props.pageSchema)
-watch(() => props.pageSchema.script, e => {
+
+const pageSchema = reactive<PageSchema>({
+  schemas: []
+})
+
+watch(() => props.pageSchema, e => {
+  deepCompareAndModify(pageSchema, e)
+}, {
+  immediate: true,
+  deep: true
+})
+
+watch(() => pageSchema.script, e => {
   if (e && e !== '') {
     pageManager.setMethods(e)
   }
 }, {
   immediate: true
 })
+
+provide('formData', formData)
+provide('slots', slots)
+provide('pageManager', pageManager)
+provide('forms', forms)
+provide('pageSchema', pageSchema)
+
 /**
  * 跳过验证直接获取表单数据
  * @param formName 表单name
