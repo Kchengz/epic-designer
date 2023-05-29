@@ -1,7 +1,6 @@
 <template>
   <draggable
     v-model="schemas"
-    :group="firstNodeId === 'root' || 'edit-draggable'"
     item-key="id"
     ghost-class="moveing"
     :component-data="{ name: 'draggable-range' }"
@@ -11,40 +10,9 @@
   >
     <template #item="{ element, index }">
       <div
-        class="item"
-        :class="{
-          checked: designer.state.checkedNode?.id === element.id,
-          hover: designer.state.hoverNode?.id === element.id,
-          'root-node': element.id === 'root'
-        }"
+        :index="index"
         @click.stop="designer.setCheckedNode(element)"
-        @mouseover.stop="designer.setHoverNode(element)"
-        @mouseout.stop="designer.setHoverNode(null)"
       >
-        <div
-          v-show="designer.state.checkedNode?.id === element.id"
-          class="action-box"
-        >
-          <div class="action-item">
-            {{ pluginManager.getComponentConfingByType(element.type)?.defaultSchema.label }}
-          </div>
-          <div
-            v-if="firstNodeId !== 'root'"
-            title="复制"
-            class="action-item"
-            @click.stop="handleCopy(schemas!, element, index)"
-          >
-            <span class="iconfont icon-fuzhi3" />
-          </div>
-          <div
-            v-if="firstNodeId !== 'root'"
-            title="删除"
-            class="action-item"
-            @click.stop="handleDelete(schemas!, element, index)"
-          >
-            <span class="iconfont icon-shanchu1" />
-          </div>
-        </div>
         <KNodeItem :element="element" />
       </div>
     </template>
@@ -67,7 +35,6 @@ const props = defineProps({
   }
 })
 
-const firstNodeId = ref('')
 const emit = defineEmits(['update:schemas'])
 const schemas = computed({
   get () {
@@ -77,16 +44,6 @@ const schemas = computed({
   set (e) {
     emit('update:schemas', e)
   }
-})
-
-watch(schemas, (e) => {
-  // 判断props.schemas是否存在值
-  if (e?.length) {
-    // 读取第一个节点id 如果节点id等于root 则判定该节点为根节点
-    firstNodeId.value = e[0].id ?? ''
-  }
-}, {
-  immediate: true
 })
 
 /**
@@ -105,47 +62,4 @@ function handleEnd () {
 function handleAdd () {
   revoke.push(pageSchema.schemas, '插入组件')
 }
-
-/**
- * 复制选中节点元素
- * @param schemas
- * @param schema
- * @param index
- */
-function handleCopy (schemas: NodeItem[], schema: NodeItem, index: number) {
-  const node = deepClone({
-    ...toRaw(schema),
-    id: getUUID()
-  })
-  schemas.splice(index + 1, 0, node)
-  const nodeArray = node.children ? [...node.children] : []
-  // 存在子节点时，需要遍历修改子节点id
-  while (nodeArray.length > 0) {
-    const item = nodeArray.pop()
-    item.id = getUUID()
-    if (item.children?.length > 0) {
-      nodeArray.push(...item.children)
-    }
-  }
-  designer.setCheckedNode(node)
-
-  revoke.push(pageSchema.schemas, '复制组件')
-}
-
-/**
- * 删除元素
- * @param schemas
- * @param schema
- * @param index
- */
-function handleDelete (schemas: NodeItem[], schema: NodeItem, index: number) {
-  schemas = schemas.filter((item, i) => index !== i)
-  emit('update:schemas', schemas)
-  if (index === schemas.length) {
-    index--
-  }
-  designer.setCheckedNode(schemas[index])
-  revoke.push(pageSchema.schemas, '删除组件')
-}
-
 </script>

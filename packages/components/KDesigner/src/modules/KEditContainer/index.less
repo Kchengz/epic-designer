@@ -10,6 +10,7 @@
     height: 100%;
     background-color: white;
     overflow-y: auto;
+    position: relative;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
       rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     cursor: pointer;
@@ -37,7 +38,7 @@
 
     .item {
       border: 1px solid transparent;
-      position: relative;
+      // position: relative;
 
       // &.moveing {
       //   width: 100%;
@@ -83,7 +84,7 @@
       // 选中样式
       &.checked {
         background: @primary-hover-bg-color;
-        position: relative;
+        // position: relative;
 
         &::before {
           width: 100%;

@@ -56,7 +56,6 @@ module.exports = {
         '@typescript-eslint/strict-boolean-expressions': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
         'no-undef': 'off'
-
       }
     }
   ],
@@ -70,8 +69,8 @@ module.exports = {
   plugins: [
     'vue'
   ],
-  ignorePatterns: ['node_modules/**', '**/static/**', '*.json'],
+  ignorePatterns: ['node_modules/**', 'dist/**', 'docs/**', '**/static/**', '*.json'],
   rules: {
-
+    'vue/no-dupe-keys': 'error'
   }
 }

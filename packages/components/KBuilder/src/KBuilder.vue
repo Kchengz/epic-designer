@@ -17,6 +17,7 @@
     </template>
   </Suspense>
 </template>
+
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import KNode from '../../KNode/'
