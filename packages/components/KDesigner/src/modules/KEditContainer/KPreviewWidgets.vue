@@ -89,7 +89,7 @@ const getComponentElement = computed<HTMLBaseElement | null>(() => {
   if (componentConfing?.defaultSchema.input && designer.state.checkedNode?.noFormItem !== true) {
     return componentInstances[id + 'formItem']?.$el
   }
-  const componentInstance = componentInstances[id] as ComponentPublicInstance
+  const componentInstance = componentInstances[id]
   return componentInstance?.$el
 })
 

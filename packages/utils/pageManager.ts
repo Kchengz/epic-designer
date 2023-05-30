@@ -2,7 +2,7 @@ import { ref, type Ref, type ComponentPublicInstance } from 'vue'
 export interface ActionModel {
   componentId?: string
   args: string
-  methodName: any
+  methodName: string
 }
 export interface PageManager {
   componentInstances: Ref<Record<string, ComponentPublicInstance>>
@@ -33,7 +33,7 @@ export function usePageManager (): PageManager {
    * @returns
    */
   function addComponentInstance (id: string, instance: ComponentPublicInstance) {
-    (componentInstances.value[id] = instance)
+    componentInstances.value[id] = instance
   }
   /**
    * 移除组件实例
@@ -72,14 +72,14 @@ export function usePageManager (): PageManager {
   function doActions (actions: ActionModel[]): void {
     actions?.forEach((action) => {
       const component =
-        action.componentId != null && getComponentInstance(action.componentId)
+        action.componentId != null &&
+        (getComponentInstance(action.componentId) as any)
 
       if (
         Boolean(component) &&
         typeof component[action.methodName] === 'function'
       ) {
         component[action.methodName](action.args)
-        console.log(component[action.methodName])
         return
       }
 
