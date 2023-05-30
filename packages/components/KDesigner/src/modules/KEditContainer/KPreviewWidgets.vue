@@ -26,7 +26,7 @@
 </template>
 <script lang="ts" setup>
 import { PageSchema, Designer } from '../../../../../types/kDesigner'
-import { inject, computed, ref, watch, type ComponentPublicInstance } from 'vue'
+import { inject, computed, ref, onMounted, watch, type ComponentPublicInstance } from 'vue'
 import { pluginManager, getUUID, deepClone, revoke, findSchemaById, type PageManager } from '../../../../../utils/index'
 
 const pageManager = inject('pageManager', {}) as PageManager
@@ -34,16 +34,45 @@ const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
 
 const selectorRef = ref()
+let rangeTop = 0; let rangeLeft = 0; let rangeDom: HTMLBaseElement | null = null
+onMounted(() => {
+  rangeDom = document.querySelector('.k-edit-range')
 
+  if (rangeDom) {
+    const { top, left } = rangeDom.getBoundingClientRect()
+    rangeTop = top
+    rangeLeft = left
+  }
+})
+
+/**
+ * 设置选择部件 样式 定位 宽高
+ */
 function setSeletorStyle () {
   const element = getComponentElement.value
+  let scrollTop = 0
+  let scrollLeft = 0
+  let isScroll = false
+
   if (!element) return
 
-  const h = element.offsetHeight
-  const w = element.offsetWidth
-  const top = element.offsetTop
-  const left = element.offsetLeft
-  selectorRef.value.style = `width:${w}px;height:${h}px;top:${top}px;left:${left}px;`
+  // 判断rangeDom是否存在，存在则获取相应属性
+  if (rangeDom) {
+    scrollTop = rangeDom.scrollTop
+    scrollLeft = rangeDom.scrollLeft
+    isScroll = rangeDom.scrollHeight > rangeDom.clientHeight
+  }
+
+  const { top, left, width, height } = element.getBoundingClientRect()
+
+  // 计算选择器部件位置
+  let selectorTop = top - rangeTop + scrollTop
+  const selectorLeft = left - rangeLeft + scrollLeft
+  // 判断是否出现滚动条，出现滚动条则需要增加15px
+  if (isScroll) {
+    selectorTop += 15
+  }
+  selectorRef.value.style = `width:${width}px;height:${height}px;top:${selectorTop}px;left:${selectorLeft}px;`
 }
 
 /**
@@ -53,15 +82,13 @@ const getComponentElement = computed<HTMLBaseElement | null>(() => {
   const componentInstances = pageManager.componentInstances.value
   const id = designer.state.checkedNode?.id
   const componentConfing = pluginManager.getComponentConfingByType(designer.state.checkedNode?.type!) ?? null
-
-  if (!id || !componentInstances?.[id]) {
+  if (id === 'root' || !id || !componentInstances?.[id]) {
     return null
   }
-  let componentInstance = componentInstances[id] as ComponentPublicInstance
-  if (componentConfing?.defaultSchema.input && componentInstance.$parent?.$parent) {
-    componentInstance = componentInstance.$parent.$parent
+  if (componentConfing?.defaultSchema.input && designer.state.checkedNode?.noFormItem !== true) {
+    return componentInstances[id + 'formItem'].$el
   }
-
+  const componentInstance = componentInstances[id] as ComponentPublicInstance
   return componentInstance.$el
 })
 
@@ -73,7 +100,7 @@ const DocumentObserverConfig = {
 }
 const observer = new MutationObserver(setSeletorStyle)
 
-watch(() => getComponentElement.value, (e, oldVal) => {
+watch(() => getComponentElement.value, (e) => {
   if (e) {
     observer.observe(e, DocumentObserverConfig)
     setSeletorStyle()

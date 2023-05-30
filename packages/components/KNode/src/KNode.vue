@@ -1,11 +1,13 @@
 <template>
   <FormItem
     v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show"
+    ref="formItemRef"
     v-bind="getFormItemProps"
   >
     <component
       :is="component"
       ref="componentInstance"
+      v-instance
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }"
     >
       <!-- 递归组件 start -->
@@ -26,6 +28,7 @@
     :is="component"
     v-else-if="component && show"
     ref="componentInstance"
+    v-instance
     :model="formData"
     v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }"
   >
@@ -43,7 +46,7 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, ref, inject, computed, reactive, PropType, Slots, watch, h } from 'vue'
+import { shallowRef, ref, inject, computed, reactive, PropType, Slots, watch, h, ComponentPublicInstance } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager } from '../../../utils/index'
 import { FormDataModel, NodeItem } from '../../../types/kDesigner'
 
@@ -53,7 +56,8 @@ const pageManager = inject('pageManager', {}) as PageManager
 
 const emit = defineEmits(['update:modelValue', 'change'])
 const FormItem = pluginManager.getComponent('form-item')
-const componentInstance = ref(null)
+const componentInstance = ref<ComponentPublicInstance>()
+const formItemRef = ref<ComponentPublicInstance>()
 
 const props = defineProps({
   record: {
@@ -65,20 +69,6 @@ const props = defineProps({
     type: [Object, Array, String, Number, Boolean] as PropType<any>,
     default: undefined
   }
-})
-
-// 判断是否存在字段名称
-if (props.record.field) {
-  // 存在则更新表单状态
-  watch(() => props.modelValue, (e) => {
-    formData[props.record.field!] = e
-  }, {
-    immediate: true
-  })
-}
-
-watch(() => componentInstance.value, (instance: any) => {
-  props.record.id && pageManager.addComponentInstance(props.record.id, instance)
 })
 
 // const { record } = props
@@ -118,6 +108,45 @@ const getFormItemProps = computed(() => {
 const getComponentConfing = computed(() => {
   return pluginManager.getComponentConfingByType(props.record.type) ?? null
 })
+
+// 判断是否存在字段名称
+if (props.record.field) {
+  // 存在则更新表单状态
+  watch(() => props.modelValue, (e) => {
+    formData[props.record.field!] = e
+  }, {
+    immediate: true
+  })
+}
+
+watch(() => componentInstance.value, () => {
+  if (componentInstance.value && props.record.id) {
+    pageManager.addComponentInstance(props.record.id, componentInstance.value)
+    if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true) {
+      pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef)
+    }
+  }
+})
+
+// 保存实例
+const vInstance = {
+  mounted () {
+    if (props.record.id) {
+      // 添加实例
+      pageManager.addComponentInstance(props.record.id, componentInstance.value)
+      if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true) {
+        pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef)
+      }
+    }
+  },
+  unmounted () {
+    if (props.record.id) {
+      // 移除实例
+      pageManager.removeComponentInstance(props.record.id)
+      console.log(pageManager)
+    }
+  }
+}
 
 /**
  * 初始化组件

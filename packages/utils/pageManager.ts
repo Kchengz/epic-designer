@@ -1,27 +1,28 @@
-import { ref, type Ref } from 'vue'
+import { ref, type Ref, type ComponentPublicInstance } from 'vue'
 export interface ActionModel {
   componentId?: string
   args: string
   methodName: any
 }
 export interface PageManager {
-  componentInstances: Ref<Record<string, any>>
+  componentInstances: Ref<Record<string, ComponentPublicInstance>>
   funcs: Ref<Record<string, any>>
   getComponentInstance: (id: string) => any
   addComponentInstance: (id: string, instance: any) => any
+  removeComponentInstance: (id: string) => void
   setMethods: (scriptStr: string) => void
   doActions: (actions: ActionModel[]) => void
 }
 
 export function usePageManager (): PageManager {
-  const componentInstances = ref<Record<string, any>>({})
+  const componentInstances = ref<Record<string, ComponentPublicInstance>>({})
   const funcs = ref<Record<string, any>>({})
   /**
    * 获取组件实例
    * @param id
    * @returns
    */
-  function getComponentInstance (id: string): any {
+  function getComponentInstance (id: string): ComponentPublicInstance {
     return componentInstances.value[id]
   }
 
@@ -31,8 +32,16 @@ export function usePageManager (): PageManager {
    * @param instance
    * @returns
    */
-  function addComponentInstance (id: string, instance: any): any {
+  function addComponentInstance (id: string, instance: any): ComponentPublicInstance {
     return (componentInstances.value[id] = instance)
+  }
+  /**
+   * 移除组件实例
+   * @param id
+   * @returns
+   */
+  function removeComponentInstance (id: string): void {
+    delete componentInstances.value[id]
   }
 
   /**
@@ -62,9 +71,13 @@ export function usePageManager (): PageManager {
    */
   function doActions (actions: ActionModel[]): void {
     actions?.forEach((action) => {
-      const component = (action.componentId != null) && getComponentInstance(action.componentId)
+      const component =
+        action.componentId != null && getComponentInstance(action.componentId)
 
-      if (Boolean(component) && typeof component[action.methodName] === 'function') {
+      if (
+        Boolean(component) &&
+        typeof component[action.methodName] === 'function'
+      ) {
         component[action.methodName](action.args)
         console.log(component[action.methodName])
         return
@@ -80,6 +93,7 @@ export function usePageManager (): PageManager {
     funcs,
     getComponentInstance,
     addComponentInstance,
+    removeComponentInstance,
     setMethods,
     doActions
   }
