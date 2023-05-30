@@ -122,8 +122,8 @@ if (props.record.field) {
 watch(() => componentInstance.value, () => {
   if (componentInstance.value && props.record.id) {
     pageManager.addComponentInstance(props.record.id, componentInstance.value)
-    if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true) {
-      pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef)
+    if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true && formItemRef.value) {
+      pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef.value)
     }
   }
 })
@@ -131,11 +131,11 @@ watch(() => componentInstance.value, () => {
 // 保存实例
 const vInstance = {
   mounted () {
-    if (props.record.id) {
+    if (props.record.id && componentInstance.value) {
       // 添加实例
       pageManager.addComponentInstance(props.record.id, componentInstance.value)
-      if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true) {
-        pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef)
+      if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true && formItemRef.value) {
+        pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef.value)
       }
     }
   },
