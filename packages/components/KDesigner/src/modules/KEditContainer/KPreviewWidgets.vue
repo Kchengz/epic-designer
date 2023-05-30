@@ -1,26 +1,27 @@
 <template>
-  <div
-    v-show="designer.state.checkedNode?.id !== 'root'"
-    ref="selectorRef"
-    class="item checked absolute transition-all pointer-events-none z-1200"
-  >
-    <div class="action-box">
-      <div class="action-item">
-        {{ pluginManager.getComponentConfingByType(designer.state.checkedNode?.type ?? '')?.defaultSchema.label }}
-      </div>
-      <div
-        title="复制"
-        class="action-item pointer-events-auto"
-        @click="handleCopy"
-      >
-        <span class="iconfont icon-fuzhi3" />
-      </div>
-      <div
-        title="删除"
-        class="action-item pointer-events-auto"
-        @click="handleDelete"
-      >
-        <span class="iconfont icon-shanchu1" />
+  <div v-show="designer.state.checkedNode?.id !== 'root'">
+    <div
+      ref="selectorRef"
+      class="item checked absolute transition-all pointer-events-none z-1200"
+    >
+      <div class="action-box">
+        <div class="action-item">
+          {{ pluginManager.getComponentConfingByType(designer.state.checkedNode?.type ?? '')?.defaultSchema.label }}
+        </div>
+        <div
+          title="复制"
+          class="action-item pointer-events-auto"
+          @click="handleCopy"
+        >
+          <span class="iconfont icon-fuzhi3" />
+        </div>
+        <div
+          title="删除"
+          class="action-item pointer-events-auto"
+          @click="handleDelete"
+        >
+          <span class="iconfont icon-shanchu1" />
+        </div>
       </div>
     </div>
   </div>
