@@ -7,8 +7,8 @@ export interface ActionModel {
 export interface PageManager {
   componentInstances: Ref<Record<string, ComponentPublicInstance>>
   funcs: Ref<Record<string, any>>
-  getComponentInstance: (id: string) => any
-  addComponentInstance: (id: string, instance: any) => any
+  getComponentInstance: (id: string) => ComponentPublicInstance
+  addComponentInstance: (id: string, instance: any) => void
   removeComponentInstance: (id: string) => void
   setMethods: (scriptStr: string) => void
   doActions: (actions: ActionModel[]) => void
@@ -32,8 +32,8 @@ export function usePageManager (): PageManager {
    * @param instance
    * @returns
    */
-  function addComponentInstance (id: string, instance: any): ComponentPublicInstance {
-    return (componentInstances.value[id] = instance)
+  function addComponentInstance (id: string, instance: any) {
+    (componentInstances.value[id] = instance)
   }
   /**
    * 移除组件实例
