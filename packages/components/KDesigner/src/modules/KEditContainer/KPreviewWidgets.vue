@@ -62,8 +62,7 @@ function setSeletorStyle () {
     scrollLeft = rangeDom.scrollLeft
     isScroll = rangeDom.scrollHeight > rangeDom.clientHeight
   }
-
-  const { top, left, width, height } = element.getBoundingClientRect()
+  const { top, left, width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
 
   // 计算选择器部件位置
   let selectorTop = top - rangeTop + scrollTop
