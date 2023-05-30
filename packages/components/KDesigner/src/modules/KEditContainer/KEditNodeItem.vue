@@ -2,6 +2,7 @@
   <draggable
     v-model="schemas"
     item-key="id"
+    group="edit-draggable"
     ghost-class="moveing"
     :component-data="{ name: 'draggable-range' }"
     @start="handleSelect($event.oldIndex); designer.setDisableHover(true)"
@@ -20,8 +21,8 @@
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { computed, watch, toRaw, PropType, inject, ref } from 'vue'
-import { getUUID, deepClone, pluginManager, revoke } from '../../../../../utils/index'
+import { computed, PropType, inject } from 'vue'
+import { revoke } from '../../../../../utils/index'
 import { NodeItem, PageSchema, Designer } from '../../../../../types/kDesigner'
 import KNodeItem from './KNodeItem.vue'
 const designer = inject('designer') as Designer

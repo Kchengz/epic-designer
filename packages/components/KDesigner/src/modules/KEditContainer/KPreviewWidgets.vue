@@ -86,10 +86,10 @@ const getComponentElement = computed<HTMLBaseElement | null>(() => {
     return null
   }
   if (componentConfing?.defaultSchema.input && designer.state.checkedNode?.noFormItem !== true) {
-    return componentInstances[id + 'formItem'].$el
+    return componentInstances[id + 'formItem']?.$el
   }
   const componentInstance = componentInstances[id] as ComponentPublicInstance
-  return componentInstance.$el
+  return componentInstance?.$el
 })
 
 const MutationObserver = window.MutationObserver
