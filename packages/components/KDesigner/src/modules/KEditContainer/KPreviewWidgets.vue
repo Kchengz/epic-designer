@@ -1,5 +1,6 @@
 <template>
   <div
+    v-show="designer.state.checkedNode?.id !== 'root'"
     ref="selectorRef"
     class="item checked absolute transition-all pointer-events-none z-1200"
   >
@@ -81,7 +82,7 @@ const getComponentElement = computed<HTMLBaseElement | null>(() => {
   const componentInstances = pageManager.componentInstances.value
   const id = designer.state.checkedNode?.id
   const componentConfing = pluginManager.getComponentConfingByType(designer.state.checkedNode?.type!) ?? null
-  if (id === 'root' || !id || !componentInstances?.[id]) {
+  if (!id || !componentInstances?.[id]) {
     return null
   }
   if (componentConfing?.defaultSchema.input && designer.state.checkedNode?.noFormItem !== true) {
