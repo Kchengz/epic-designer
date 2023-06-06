@@ -16,6 +16,10 @@
 
 可以简称`K设计器`，是一个功能强大、开箱即用的拖拽式低代码设计器。它基于 Vue3 开发，兼容多套 UI 组件库，除了基础的页面设计功能，KDesigner 还提供了强大的扩展功能，可以让开发者根据自己的需求自由扩展和定制组件。此外，KDesigner 使用 JSON 配置来生成页面，可帮助开发者快速生成页面，提高开发效率。它提供了两个重要组件：`k-designer` 设计器和 `k-builder` 生成器。
 
+> 目前还处于 Alpha 阶段，所有的 API 及 Props 都可能在后续迭代中发生变化
+>
+> 同时因为需要维护多套UI组件，也会增加兼容性和测试工作，且作者需要保证不影响到工作，所以开发进度会相对慢一点，但是会尽量利用业余时间更新功能，同时也欢迎各位大佬提供建议和pr
+
 ## 最新版本
 
 [![](https://img.shields.io/npm/v/k-designer.svg?style=flat-square)](https://www.npmjs.com/package/k-designer)
