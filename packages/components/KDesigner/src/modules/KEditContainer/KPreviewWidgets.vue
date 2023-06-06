@@ -94,16 +94,24 @@ const getComponentElement = computed<HTMLBaseElement | null>(() => {
 })
 
 const MutationObserver = window.MutationObserver
+const ResizeObserver = window.ResizeObserver
+
 const DocumentObserverConfig = {
   childList: true,
   attributes: true,
   subtree: true
 }
-const observer = new MutationObserver(setSeletorStyle)
+
+// 初始化观察者实例
+const mutationObserver = new MutationObserver(setSeletorStyle)
+const resizeObserver = new ResizeObserver(setSeletorStyle)
 
 watch(() => getComponentElement.value, (e) => {
   if (e) {
-    observer.observe(e, DocumentObserverConfig)
+    // 监听dom元素及子元素的变化
+    mutationObserver.observe(e, DocumentObserverConfig)
+    // 监听元素视窗变化
+    resizeObserver.observe(e)
     setSeletorStyle()
   }
 })
