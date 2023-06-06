@@ -1,8 +1,11 @@
 <template>
-  <div v-show="designer.state.checkedNode?.id !== 'root'">
+  <div
+    v-show="designer.state.checkedNode?.id !== 'root'"
+    class="k-preview-widgets"
+  >
     <div
       ref="selectorRef"
-      class="item checked absolute transition-all pointer-events-none z-1200"
+      class="item checked absolute transition-all pointer-events-none z-1000"
     >
       <div class="action-box">
         <div class="action-item">
