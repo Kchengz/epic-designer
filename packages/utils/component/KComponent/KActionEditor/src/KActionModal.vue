@@ -5,7 +5,7 @@
     v-model="visible"
     width="850px"
     :footer="null"
-    wrap-class-name="k-action-modal"
+    :body-style="{ padding: 0 }"
   >
     <div class="min-w-750px p-4 rounded bg-white">
       <Tabs

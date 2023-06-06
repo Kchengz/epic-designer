@@ -7,6 +7,7 @@
     title="预览"
     width="800px"
     :footer="null"
+    :body-style="{ padding: 0 }"
   >
     <div class="min-w-750px p-4 rounded bg-white">
       <KBuilder
