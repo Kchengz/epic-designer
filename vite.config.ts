@@ -7,7 +7,11 @@ import eslintPlugin from 'vite-plugin-eslint'
 import UnoCSS from 'unocss/vite'
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      script: {
+        defineModel: true
+      }
+    }),
     UnoCSS(),
     dts({
       entryRoot: 'packages',

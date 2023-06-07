@@ -35,17 +35,13 @@
 </template>
 <script lang="ts" setup>
 import { FormItemRule } from './types'
-import { watch, ref, computed, inject, PropType } from 'vue'
+import { computed, inject } from 'vue'
 import { PageManager } from '../../../index'
 import KNode from '../../../../components/KNode/index'
+const emit = defineEmits(['change', 'delete'])
 
+const rule = defineModel<FormItemRule>('rule', { required: true })
 const pageManager = inject('pageManager', {}) as PageManager
-const props = defineProps({
-  rule: {
-    type: Object as PropType<FormItemRule>,
-    required: true
-  }
-})
 
 const methodOptions = computed(() => {
   return Object.entries(pageManager.funcs.value)
@@ -135,15 +131,6 @@ const ruleItemSchemas = [
   }
 ]
 
-const emit = defineEmits(['update:rule', 'change', 'delete'])
-const rule = ref<FormItemRule>({})
-watch(() => props.rule, (e) => {
-  rule.value = e
-}, {
-  deep: true,
-  immediate: true
-})
-
 /**
  * 更新校验规则
  */
@@ -158,7 +145,7 @@ function handleUpdate () {
   } else {
     delete v.validator
   }
-  emit('update:rule', v)
+  // emit('update:rule', v)
   emit('change', v)
 }
 

@@ -3,7 +3,7 @@
     <template #default>
       <div class="k-builder-main">
         <KNode
-          v-for="item, index in pageSchema.schemas"
+          v-for="item, index in pageSchemaReactive.schemas"
           ref="Knode"
           :key="index"
           :record="item"
@@ -19,7 +19,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
 import KNode from '../../KNode/'
 import { reactive, provide, ref, watch, useSlots, nextTick } from 'vue'
 import { PageSchema, FormDataModel } from '../../../types/kDesigner'
@@ -30,26 +29,22 @@ const emit = defineEmits(['ready'])
 const formData = reactive<FormDataModel>({})
 const slots = useSlots()
 const forms = ref<any>({})
-const props = defineProps({
-  pageSchema: {
-    type: Object as PropType<PageSchema>,
-    require: true,
-    default: () => ({})
-  }
-})
+const props = defineProps<{
+  pageSchema: PageSchema
+}>()
 
-const pageSchema = reactive<PageSchema>({
+const pageSchemaReactive = reactive<PageSchema>({
   schemas: []
 })
 
 watch(() => props.pageSchema, e => {
-  deepCompareAndModify(pageSchema, e)
+  deepCompareAndModify(pageSchemaReactive, e)
 }, {
   immediate: true,
   deep: true
 })
 
-watch(() => pageSchema.script, e => {
+watch(() => pageSchemaReactive.script, e => {
   if (e && e !== '') {
     pageManager.setMethods(e)
   }
@@ -61,7 +56,7 @@ provide('formData', formData)
 provide('slots', slots)
 provide('pageManager', pageManager)
 provide('forms', forms)
-provide('pageSchema', pageSchema)
+provide('pageSchema', pageSchemaReactive)
 
 /**
  * 跳过验证直接获取表单数据
