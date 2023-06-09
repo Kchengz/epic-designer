@@ -5,7 +5,7 @@
   >
     <div
       ref="selectorRef"
-      class="item checked absolute transition-all pointer-events-none z-1000"
+      class="checked-widget absolute transition-all pointer-events-none z-1000"
     >
       <div class="action-box">
         <div class="action-item">
@@ -27,11 +27,16 @@
         </div>
       </div>
     </div>
+    <div
+      v-show="showHover"
+      ref="hoverWidgetRef"
+      class="hover-widget absolute transition-all pointer-events-none z-998"
+    />
   </div>
 </template>
 <script lang="ts" setup>
 import { PageSchema, Designer } from '../../../../../types/kDesigner'
-import { inject, computed, ref, onMounted, watch, type ComponentPublicInstance } from 'vue'
+import { inject, computed, ref, onMounted, watch } from 'vue'
 import { pluginManager, getUUID, deepClone, revoke, findSchemaById, type PageManager } from '../../../../../utils/index'
 
 const pageManager = inject('pageManager', {}) as PageManager
@@ -39,10 +44,12 @@ const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
 
 const selectorRef = ref()
+const hoverWidgetRef = ref()
+const showHover = ref(false)
+
 let rangeTop = 0; let rangeLeft = 0; let rangeDom: HTMLBaseElement | null = null
 onMounted(() => {
   rangeDom = document.querySelector('.k-edit-range')
-
   if (rangeDom) {
     const { top, left } = rangeDom.getBoundingClientRect()
     rangeTop = top
@@ -51,10 +58,81 @@ onMounted(() => {
 })
 
 /**
+ * 获取选中组件dom元素
+ */
+const getSelectComponentElement = computed<HTMLBaseElement | null>(() => {
+  const componentInstances = pageManager.componentInstances.value
+  const id = designer.state.checkedNode?.id
+  const componentConfing = pluginManager.getComponentConfingByType(designer.state.checkedNode?.type!) ?? null
+  if (!id || !componentInstances?.[id]) {
+    return null
+  }
+  if (componentConfing?.defaultSchema.input && designer.state.checkedNode?.noFormItem !== true) {
+    return componentInstances[id + 'formItem']?.$el
+  }
+  const componentInstance = componentInstances[id]
+  return componentInstance?.$el
+})
+
+/**
+ * 获取悬停组件dom元素
+ */
+const getHoverComponentElement = computed<HTMLBaseElement | null>(() => {
+  const componentInstances = pageManager.componentInstances.value
+  const id = designer.state.hoverNode?.id
+  const componentConfing = pluginManager.getComponentConfingByType(designer.state.hoverNode?.type!) ?? null
+  if (!id || !componentInstances?.[id]) {
+    return null
+  }
+  if (componentConfing?.defaultSchema.input && designer.state.hoverNode?.noFormItem !== true) {
+    return componentInstances[id + 'formItem']?.$el
+  }
+  const componentInstance = componentInstances[id]
+  return componentInstance?.$el
+})
+
+const { mutationObserver, resizeObserver, observerConfig: DocumentObserverConfig } = initObserve(setSeletorStyle)
+
+// 监听选中dom元素变化
+watch(() => getSelectComponentElement.value, (selectComponentElement) => {
+  if (selectComponentElement) {
+    // 监听dom元素及子元素的变化
+    mutationObserver.observe(selectComponentElement, DocumentObserverConfig)
+    // 监听元素视窗变化
+    resizeObserver.observe(selectComponentElement)
+    setSeletorStyle()
+  }
+})
+
+const { mutationObserver: hoverMutationObserver, resizeObserver: hoverResizeObserver, observerConfig: hoverObserverConfig } = initObserve(setHoverStyle)
+
+// 监听悬停dom元素变化
+watch(() => getHoverComponentElement.value, (hoverComponentElement) => {
+  if (hoverComponentElement) {
+    // 监听dom元素及子元素的变化
+    hoverMutationObserver.observe(hoverComponentElement, hoverObserverConfig)
+    // 监听元素视窗变化
+    hoverResizeObserver.observe(hoverComponentElement)
+    setHoverStyle()
+  }
+})
+
+// 添加悬停节点监听，当悬停节点消失超过300ms,则隐藏悬停部件
+let hideTimer: NodeJS.Timeout | number = 0
+watch(() => designer.state.hoverNode?.id, e => {
+  showHover.value = true
+  clearTimeout(hideTimer)
+  if (e) return
+  hideTimer = setTimeout(() => {
+    showHover.value = false
+  }, 300)
+})
+
+/**
  * 设置选择部件 样式 定位 宽高
  */
 function setSeletorStyle () {
-  const element = getComponentElement.value
+  const element = getSelectComponentElement.value
   let scrollTop = 0
   let scrollLeft = 0
   let isScroll = false
@@ -80,44 +158,57 @@ function setSeletorStyle () {
 }
 
 /**
- * 获取组件dom元素
+ * 设置悬停部件 样式 定位 宽高
  */
-const getComponentElement = computed<HTMLBaseElement | null>(() => {
-  const componentInstances = pageManager.componentInstances.value
-  const id = designer.state.checkedNode?.id
-  const componentConfing = pluginManager.getComponentConfingByType(designer.state.checkedNode?.type!) ?? null
-  if (!id || !componentInstances?.[id]) {
-    return null
-  }
-  if (componentConfing?.defaultSchema.input && designer.state.checkedNode?.noFormItem !== true) {
-    return componentInstances[id + 'formItem']?.$el
-  }
-  const componentInstance = componentInstances[id]
-  return componentInstance?.$el
-})
+function setHoverStyle () {
+  const element = getHoverComponentElement.value
+  let scrollTop = 0
+  let scrollLeft = 0
+  let isScroll = false
 
-const MutationObserver = window.MutationObserver
-const ResizeObserver = window.ResizeObserver
+  if (!element) return
 
-const DocumentObserverConfig = {
-  childList: true,
-  attributes: true,
-  subtree: true
+  // 判断rangeDom是否存在，存在则获取相应属性
+  if (rangeDom) {
+    scrollTop = rangeDom.scrollTop
+    scrollLeft = rangeDom.scrollLeft
+    isScroll = rangeDom.scrollHeight > rangeDom.clientHeight
+  }
+  const { top, left, width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
+
+  // 计算选择器部件位置
+  let selectorTop = top - rangeTop + scrollTop
+  const selectorLeft = left - rangeLeft + scrollLeft
+  // 判断是否出现滚动条，出现滚动条则需要增加15px
+  if (isScroll) {
+    selectorTop += 15
+  }
+  hoverWidgetRef.value.style = `width:${width}px;height:${height}px;top:${selectorTop}px;left:${selectorLeft}px;`
 }
 
-// 初始化观察者实例
-const mutationObserver = new MutationObserver(setSeletorStyle)
-const resizeObserver = new ResizeObserver(setSeletorStyle)
+/**
+ * 实例化观察者对象
+ */
+function initObserve (func: () => void) {
+  const MutationObserver = window.MutationObserver
+  const ResizeObserver = window.ResizeObserver
 
-watch(() => getComponentElement.value, (e) => {
-  if (e) {
-    // 监听dom元素及子元素的变化
-    mutationObserver.observe(e, DocumentObserverConfig)
-    // 监听元素视窗变化
-    resizeObserver.observe(e)
-    setSeletorStyle()
+  const observerConfig = {
+    childList: true,
+    attributes: true,
+    subtree: true
   }
-})
+
+  // 初始化观察者实例
+  const mutationObserver = new MutationObserver(func)
+  const resizeObserver = new ResizeObserver(func)
+
+  return {
+    mutationObserver,
+    resizeObserver,
+    observerConfig
+  }
+}
 
 /**
  * 复制选中节点元素

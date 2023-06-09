@@ -13,6 +13,8 @@
       <div
         :index="index"
         @click.stop="designer.setCheckedNode(element)"
+        @mouseover.stop="designer.setHoverNode(element)"
+        @mouseout.stop="designer.setHoverNode(null)"
       >
         <KNodeItem :element="element" />
       </div>

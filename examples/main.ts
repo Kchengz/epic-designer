@@ -4,20 +4,18 @@ import App from './App.vue'
 
 import { pluginManager } from '../packages/index'
 
-// 引入Element plus样式
+// 使用Elemnt UI
 // import 'element-plus/dist/index.css'
 // import { setupElementPlus } from '../packages/ui/elementPlus'
-// // 使用Elemnt UI
 // setupElementPlus(pluginManager)
 
-// // 引入antd UI样式
-import 'ant-design-vue/dist/antd.css'
-import { setupAntd } from '../packages/ui/antd'
-// 使用Antd UI
-setupAntd(pluginManager)
+// // 使用Antd UI
+// import 'ant-design-vue/dist/antd.css'
+// import { setupAntd } from '../packages/ui/antd'
+// setupAntd(pluginManager)
 
-// import { setupNaiveUi } from '../packages/ui/naiveUi'
 // // 使用NaiveUi UI
-// setupNaiveUi(pluginManager)
+import { setupNaiveUi } from '../packages/ui/naiveUi'
+setupNaiveUi(pluginManager)
 
 createApp(App).mount('#app')
