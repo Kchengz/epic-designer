@@ -4,6 +4,7 @@
     class="k-preview-widgets"
   >
     <div
+      v-show="showSelector"
       ref="selectorRef"
       class="checked-widget absolute transition-all pointer-events-none z-1000"
     >
@@ -45,6 +46,7 @@ const designer = inject('designer') as Designer
 
 const selectorRef = ref()
 const hoverWidgetRef = ref()
+const showSelector = ref(false)
 const showHover = ref(false)
 
 let rangeTop = 0; let rangeLeft = 0; let rangeDom: HTMLBaseElement | null = null
@@ -96,11 +98,14 @@ const { mutationObserver, resizeObserver, observerConfig: DocumentObserverConfig
 // 监听选中dom元素变化
 watch(() => getSelectComponentElement.value, (selectComponentElement) => {
   if (selectComponentElement) {
+    showSelector.value = true
     // 监听dom元素及子元素的变化
     mutationObserver.observe(selectComponentElement, DocumentObserverConfig)
     // 监听元素视窗变化
     resizeObserver.observe(selectComponentElement)
     setSeletorStyle()
+  } else {
+    showSelector.value = false
   }
 })
 
@@ -154,7 +159,10 @@ function setSeletorStyle () {
   if (isScroll) {
     selectorTop += 15
   }
-  selectorRef.value.style = `width:${width}px;height:${height}px;top:${selectorTop}px;left:${selectorLeft}px;`
+
+  if (selectorRef.value) {
+    selectorRef.value.style = `width:${width}px;height:${height}px;top:${selectorTop}px;left:${selectorLeft}px;`
+  }
 }
 
 /**
@@ -183,7 +191,10 @@ function setHoverStyle () {
   if (isScroll) {
     selectorTop += 15
   }
-  hoverWidgetRef.value.style = `width:${width}px;height:${height}px;top:${selectorTop}px;left:${selectorLeft}px;`
+
+  if (hoverWidgetRef.value) {
+    hoverWidgetRef.value.style = `width:${width}px;height:${height}px;top:${selectorTop}px;left:${selectorLeft}px;`
+  }
 }
 
 /**
