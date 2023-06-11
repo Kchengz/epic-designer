@@ -1,39 +1,34 @@
 <template>
   <div
-    v-show="designer.state.checkedNode?.id !== 'root'"
-    class="k-preview-widgets"
+    v-show="showSelector && designer.state.checkedNode?.id !== 'root'"
+    ref="selectorRef"
+    class="checked-widget absolute transition-all pointer-events-none z-1000"
   >
-    <div
-      v-show="showSelector"
-      ref="selectorRef"
-      class="checked-widget absolute transition-all pointer-events-none z-1000"
-    >
-      <div class="action-box">
-        <div class="action-item">
-          {{ pluginManager.getComponentConfingByType(designer.state.checkedNode?.type ?? '')?.defaultSchema.label }}
-        </div>
-        <div
-          title="复制"
-          class="action-item pointer-events-auto"
-          @click="handleCopy"
-        >
-          <span class="iconfont icon-fuzhi3" />
-        </div>
-        <div
-          title="删除"
-          class="action-item pointer-events-auto"
-          @click="handleDelete"
-        >
-          <span class="iconfont icon-shanchu1" />
-        </div>
+    <div class="action-box">
+      <div class="action-item">
+        {{ pluginManager.getComponentConfingByType(designer.state.checkedNode?.type ?? '')?.defaultSchema.label }}
+      </div>
+      <div
+        title="复制"
+        class="action-item pointer-events-auto"
+        @click="handleCopy"
+      >
+        <span class="iconfont icon-fuzhi3" />
+      </div>
+      <div
+        title="删除"
+        class="action-item pointer-events-auto"
+        @click="handleDelete"
+      >
+        <span class="iconfont icon-shanchu1" />
       </div>
     </div>
-    <div
-      v-show="showHover"
-      ref="hoverWidgetRef"
-      class="hover-widget absolute transition-all pointer-events-none z-998"
-    />
   </div>
+  <div
+    v-show="showHover"
+    ref="hoverWidgetRef"
+    class="hover-widget absolute transition-all pointer-events-none z-998"
+  />
 </template>
 <script lang="ts" setup>
 import { PageSchema, Designer } from '../../../../../types/kDesigner'
@@ -161,7 +156,10 @@ function setSeletorStyle () {
   }
 
   if (selectorRef.value) {
-    selectorRef.value.style = `width:${width}px;height:${height}px;top:${selectorTop}px;left:${selectorLeft}px;`
+    selectorRef.value.style.width = `${width}px`
+    selectorRef.value.style.height = `${height}px`
+    selectorRef.value.style.top = `${selectorTop}px`
+    selectorRef.value.style.left = `${selectorLeft}px`
   }
 }
 
@@ -193,7 +191,10 @@ function setHoverStyle () {
   }
 
   if (hoverWidgetRef.value) {
-    hoverWidgetRef.value.style = `width:${width}px;height:${height}px;top:${selectorTop}px;left:${selectorLeft}px;`
+    hoverWidgetRef.value.style.width = `${width}px`
+    hoverWidgetRef.value.style.height = `${height}px`
+    hoverWidgetRef.value.style.top = `${selectorTop}px`
+    hoverWidgetRef.value.style.left = `${selectorLeft}px`
   }
 }
 
