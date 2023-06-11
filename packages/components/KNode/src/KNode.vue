@@ -132,7 +132,7 @@ watch(() => componentInstance.value, () => {
 const vInstance = {
   mounted () {
     if (props.record.id && componentInstance.value) {
-      // 添加实例
+      // 添加实例 及 formItem实例
       pageManager.addComponentInstance(props.record.id, componentInstance.value)
       if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true && formItemRef.value) {
         pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef.value)
@@ -141,9 +141,11 @@ const vInstance = {
   },
   unmounted () {
     if (props.record.id) {
-      // 移除实例
+      // 移除实例 及 formItem实例
       pageManager.removeComponentInstance(props.record.id)
-      console.log(pageManager)
+      if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true) {
+        pageManager.removeComponentInstance(props.record.id + 'formItem')
+      }
     }
   }
 }
