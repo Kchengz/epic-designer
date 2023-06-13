@@ -1,4 +1,5 @@
 import { ref, type Ref, type ComponentPublicInstance } from 'vue'
+import { pluginManager } from './pluginManager'
 export interface ActionModel {
   componentId?: string
   args: string
@@ -49,9 +50,19 @@ export function usePageManager (): PageManager {
    * @param scriptStr
    */
   function setMethods (scriptStr: string): void {
+    // 将PublicMethodsModel 映射为 Record<string, () => any>
+    const publicMethods: Record<string, () => any> = Object.entries(pluginManager.publicMethods).reduce(
+      (acc, [key, value]) => {
+        acc[key] = value.method
+        return acc
+      },
+      {}
+    )
+
     new Function(`${scriptStr}`).bind({
       getComponent: getComponentInstance,
-      defineExpose
+      defineExpose,
+      ...publicMethods
     })()
   }
 
