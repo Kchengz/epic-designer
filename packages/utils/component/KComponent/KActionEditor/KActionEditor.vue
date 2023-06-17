@@ -16,12 +16,14 @@
         :all-events="allEvents"
         :events="events"
         @add="handleOpen"
+        @edit="handleOpenEdit"
       />
     </CollapseItem>
   </Collapse>
   <KActionModal
     ref="KActionModalRef"
     @add="handleAdd"
+    @edit="handleEdit"
   />
 </template>
 <script lang="ts" setup>
@@ -89,6 +91,19 @@ function handleOpen (type: string) {
   currentType = type
 }
 
+function handleOpenEdit (index:number, type:string, action) {
+  KActionModalRef.value?.handleOpenEdit(index, action)
+  currentType = type
+}
+
+function handleEdit (action: any) {
+  const newEvents = getNewEvents(currentType)
+  events[currentType].value[action.index] = action
+  newEvents[currentType] = [...events[currentType]?.value]
+  console.log(newEvents, action)
+  emit('update:modelValue', events)
+}
+
 /**
  * 添加组件事件
  * @param action
@@ -96,6 +111,7 @@ function handleOpen (type: string) {
 function handleAdd (action: any) {
   const newEvents = getNewEvents(currentType)
   newEvents[currentType] = [...events[currentType]?.value, action]
+  console.log(action, currentType, newEvents)
   emit('update:modelValue', newEvents)
 }
 

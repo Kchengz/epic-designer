@@ -27,8 +27,13 @@
       >
         {{ action.componentId && getLabel(action.componentId) }}
         {{ action.methodName }}
-        <div class="del-btn">
-          <span @click="handleDelete(index, item.type)"> <span class="iconfont icon-shanchu" /></span>
+        <div class="opr-box">
+          <div class="edit-btn">
+            <span @click="handleEdit(index, item.type, action)"> <span class="iconfont icon-edit" /></span>
+          </div>
+          <div class="del-btn">
+            <span @click="handleDelete(index, item.type)"> <span class="iconfont icon-shanchu" /></span>
+          </div>
         </div>
       </div>
     </div>
@@ -58,7 +63,7 @@ const props = defineProps({
   }
 
 })
-const emit = defineEmits(['update:modelValue', 'add'])
+const emit = defineEmits(['update:modelValue', 'add', 'edit'])
 const pageSchema = inject('pageSchema') as PageSchema
 
 /**
@@ -87,6 +92,16 @@ function handleDelete (index: number, type: string) {
   newEvents[type] = props.events[type].value.filter((item: any, i: number) => index !== i)
   newEvents[type].length ?? delete newEvents[type]
   emit('update:modelValue', newEvents)
+}
+
+/**
+ * 修改事件
+ * @param index
+ * @param type
+ * @param action
+ */
+function handleEdit (index:number, type:string, action:any) {
+  emit('edit', index, type, action)
 }
 
 /**

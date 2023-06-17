@@ -100,7 +100,7 @@ const selectedKeys = ref([])
 const nodeItem = ref<NodeItem | null>(null)
 const activeTab = ref('动作配置')
 
-const emit = defineEmits(['add'])
+const emit = defineEmits(['add', 'edit'])
 
 const methodOptions = computed(() => {
   if (nodeItem.value) {
@@ -115,7 +115,9 @@ const methodOptions = computed(() => {
 const state = reactive({
   actionItem: {
     methodName: null,
-    componentId: null
+    componentId: null,
+    isnew: null, // 判斷新增或修改
+    index: null // 修改事件的索引
   } as FormDataModel
 })
 
@@ -124,16 +126,26 @@ function handleOpen () {
   nextTick(() => {
     state.actionItem.methodName = null
     state.actionItem.componentId = null
+    state.actionItem.isnew = true
     nodeItem.value = null
   })
 }
-
+function handleOpenEdit (index: number, action: any) {
+  visible.value = true
+  nextTick(() => {
+    state.actionItem.methodName = action.componentId
+    state.actionItem.componentId = action.methodName
+    state.actionItem.isnew = false
+    state.actionItem.index = index
+    nodeItem.value = null
+  })
+}
 function handleSave () {
   if (!state.actionItem.methodName) {
     alert('请先选择动作方法')
     return
   }
-  emit('add', deepClone(toRaw(state.actionItem)))
+  emit(state.actionItem.isnew ? 'add' : 'edit', deepClone(toRaw(state.actionItem)))
   handleClose()
 }
 
@@ -159,7 +171,8 @@ function handleAddMethod () {
 }
 
 defineExpose({
-  handleOpen
+  handleOpen,
+  handleOpenEdit
 })
 
 </script>
