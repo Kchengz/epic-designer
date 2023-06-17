@@ -6,7 +6,8 @@
   >
     <div class="action-box">
       <div class="action-item">
-        {{ pluginManager.getComponentConfingByType(designer.state.checkedNode?.type ?? '')?.defaultSchema.label }}
+        {{ designer.state.checkedNode?.type }}
+        {{ designer.state.checkedNode?.label ?? pluginManager.getComponentConfingByType(designer.state.checkedNode?.type ?? '')?.defaultSchema.label }}
       </div>
       <div
         title="复制"

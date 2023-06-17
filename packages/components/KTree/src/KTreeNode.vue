@@ -51,7 +51,24 @@ const selectedKeys = computed(() => {
 
 const TreeNodeText = defineComponent({
   setup () {
-    return () => h('span', { class: { text: true, hover: treeProps.hoverKey === props.record.id, checked: selectedKeys.value.includes(props.record.id!) }, onClick: () => handleSelect(props.record.id!, props.record) }, slots['tree-node']?.(props) ?? h('span', { class: { 'text-padding': true } }, pluginManager.getComponentConfingByType(props.record.type)?.defaultSchema.label))
+    return () => h('span', {
+      class: {
+        text: true,
+        hover: treeProps.hoverKey === props.record.id,
+        checked: selectedKeys.value.includes(props.record.id!)
+      },
+      onClick: () => handleSelect(props.record.id!, props.record)
+    },
+    slots['tree-node']?.(props) ??
+      h('span', { class: 'text-padding' },
+        {
+          default: () => [
+            props.record.label ?? pluginManager.getComponentConfingByType(props.record.type)?.defaultSchema.label,
+            h('span', { class: 'k-node-type-text' }, props.record.type)
+          ]
+        }
+      )
+    )
   }
 })
 
