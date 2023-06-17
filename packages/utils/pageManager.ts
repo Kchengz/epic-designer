@@ -52,7 +52,7 @@ export function usePageManager (): PageManager {
   function setMethods (scriptStr: string): void {
     // 将PublicMethodsModel 映射为 Record<string, () => any>
     const publicMethods: Record<string, () => any> = Object.entries(pluginManager.publicMethods).reduce(
-      (acc, [key, value]) => {
+      (acc: any, [key, value]) => {
         acc[key] = value.method
         return acc
       },

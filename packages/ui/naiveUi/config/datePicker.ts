@@ -9,6 +9,7 @@ export default {
     input: true,
     componentProps: {
       type: 'date',
+      valueFormat: 'yyyy-MM-dd HH:mm:ss',
       placeholder: '请选择'
     }
   },
@@ -23,6 +24,11 @@ export default {
         label: '文字',
         type: 'input',
         field: 'label'
+      },
+      {
+        label: '格式',
+        type: 'input',
+        field: 'componentProps.valueFormat'
       },
       {
         label: '默认值',
