@@ -99,8 +99,7 @@ function handleOpenEdit (index:number, type:string, action) {
 function handleEdit (action: any) {
   const newEvents = getNewEvents(currentType)
   events[currentType].value[action.index] = action
-  newEvents[currentType] = [...events[currentType]?.value]
-  console.log(newEvents, action)
+  newEvents[currentType] = events[currentType]
   emit('update:modelValue', events)
 }
 
