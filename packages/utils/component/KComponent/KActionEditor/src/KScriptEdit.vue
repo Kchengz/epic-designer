@@ -9,7 +9,11 @@
         >
           <template #tree-node="{ record }">
             <div class="tree-node-item">
-              <span>{{ pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}</span>
+              <span>
+                {{ record.label ?? pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}<span class="k-node-type-text">
+                  {{ record.type }}
+                </span>
+              </span>
               <span
                 class="action"
                 @click="handleGetComponent(record)"

@@ -12,8 +12,10 @@
           @mouseenter.stop="designer.setHoverNode(record)"
           @mouseleave.stop="designer.setHoverNode(null)"
         >
-          {{
-            pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}
+          {{ record.label ??
+            pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}<span class="k-node-type-text">
+            {{ record.type }}
+          </span>
         </div>
       </template>
     </KTree>

@@ -12,7 +12,9 @@
             @click="handleSelect(item)"
             @mouseenter.stop="designer.setHoverNode(item)"
             @mouseleave.stop="designer.setHoverNode(null)"
-          >{{ pluginManager.getComponentConfingByType(item.type)?.defaultSchema.label }}</span>
+          >
+            {{ item.label ?? pluginManager.getComponentConfingByType(item.type)?.defaultSchema.label }}
+          </span>
         </span>
       </div>
     </div>
