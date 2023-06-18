@@ -134,7 +134,7 @@ function handleOpenEdit (index: number, action: any) {
   visible.value = true
   nextTick(() => {
     state.actionItem.methodName = action.methodName
-    state.actionItem.componentId = action.componentId
+    state.actionItem.componentId = null
     state.actionItem.isnew = false
     state.actionItem.index = index
     nodeItem.value = null

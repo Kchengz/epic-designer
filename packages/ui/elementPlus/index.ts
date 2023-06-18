@@ -20,7 +20,7 @@ import TabPane from './config/tabPane'
 import Collapse from './config/collapse'
 import CollapseItem from './config/collapse-item'
 import DatePicker from './config/datePicker'
-
+import UploadFile from './config/uploadFile'
 import {
   ElDialog,
   ElFormItem,
@@ -62,7 +62,8 @@ export function setupElementPlus (pluginManager: PluginManager): void {
     Tabs,
     TabPane,
     Collapse,
-    CollapseItem
+    CollapseItem,
+    UploadFile
   ]
 
   componentArray.forEach((item) => {
@@ -86,7 +87,7 @@ export function setupElementPlus (pluginManager: PluginManager): void {
         // "time",
         // "rate",
         'slider',
-        // "upload-file",
+        'upload-file',
         // "upload-image",
         'cascader',
         // "treeSelect",
