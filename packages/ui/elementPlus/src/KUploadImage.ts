@@ -1,5 +1,5 @@
 import { type PropType, defineComponent, h, nextTick, computed, ref, watch } from 'vue'
-import { ElUpload, ElMessage, ElImage, type UploadProps, type UploadUserFile } from 'element-plus'
+import { ElUpload, ElMessage, ElImageViewer, type UploadProps, type UploadUserFile } from 'element-plus'
 
 // 封装上传文件组件
 export default defineComponent({
@@ -106,13 +106,6 @@ export default defineComponent({
       setVisible(true)
     }
 
-    /**
-     * 预览异常处理
-     */
-    function previewError (): void {
-      if (!imgUrl.value) return
-      ElMessage.error('图片地址无法访问!')
-    }
     return () => {
       // const type = attrs.type;
       return h(
@@ -124,10 +117,10 @@ export default defineComponent({
           default: () => [
             h(ElUpload, getUploadProps.value, {
               default: () => [
-                h('div', null, {
+                h('div', { style: { 'text-align': 'center' } }, {
                   default: () => [
                     h('span', {
-                      class: 'iconfont icon-shangchuan1',
+                      class: 'iconfont icon-shangchuan1 text-md',
                       style: { 'margin-right': '2px' }
                     }),
                     h(
@@ -139,15 +132,15 @@ export default defineComponent({
                 })
               ]
             }),
-            h(ElImage, {
-              style: { display: 'none' },
-              src: imgUrl.value,
-              preview: {
-                visible,
-                onVisibleChange: setVisible
-              },
-              onError: previewError
-            })
+            (() => {
+              if (!visible.value) {
+                return
+              }
+              return h(ElImageViewer, {
+                urlList: [imgUrl.value],
+                onClose: () => { setVisible(false) }
+              })
+            })()
           ]
         }
       )
