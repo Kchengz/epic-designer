@@ -1,5 +1,7 @@
 import { type PropType, defineComponent, h, nextTick, computed, ref, watch } from 'vue'
-import { ElMessage, ElUpload, ElButton, type UploadProps, type UploadUserFile, type UploadRawFile } from 'element-plus'
+import { ElUpload, ElMessage, ElImage, type UploadProps, type UploadUserFile } from 'element-plus'
+
+// 封装上传文件组件
 export default defineComponent({
   props: {
     modelValue: {
@@ -10,6 +12,13 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup (props, { emit, attrs }) {
     const fileList = ref<UploadUserFile[]>([])
+
+    const imgUrl = ref('')
+    const visible = ref(false)
+    const setVisible = (value: boolean): void => {
+      visible.value = value
+    }
+
     watch(fileList, (e) => {
       emit('update:modelValue', e)
     })
@@ -17,7 +26,7 @@ export default defineComponent({
     watch(
       () => props.modelValue,
       (e) => {
-        if ((e != null) && e.length > 0 && (fileList.value != null)) {
+        if (e != null && e.length > 0 && fileList.value != null) {
           // props modelValue 等于 data 不进行处理
           if (fileList.value === e) return
           fileList.value.length = 0
@@ -27,12 +36,10 @@ export default defineComponent({
       { deep: true, immediate: true }
     )
 
-    // function handleChange : UploadProps['onChange']  (e: UploadUserFile[]) => {
-    //   nextTick(() => { fileList.value = e })
-    // }
     const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles): void => {
       nextTick(() => { fileList.value = uploadFiles })
     }
+
     // 处理数据结果
     // const handleChange = (info: UploadChangeParam): void => {
     //   if (info.file.status === 'uploading') {
@@ -41,23 +48,32 @@ export default defineComponent({
     //
     //   if (info.file.status === 'done') {
     //     // Get this url from response in real world.
-    //     const url = info.file.response?.data?.url
+    //     const url: string | undefined = info.file.response?.data?.url
     //     if (!info.file.url && !url) {
     //       info.file.status = 'error'
-    //       ElMessage.error('上传失败')
+    //       message.error('上传失败')
     //       return
     //     }
     //     // 赋值url
     //     info.file.url = url
+    //     info.file.thumbUrl = url
     //   }
     //
     //   if (info.file.status === 'error') {
-    //     ElMessage.error('upload error')
+    //     message.error('upload error')
     //   }
     // }
 
+    const handleSuccess: UploadProps['onSuccess'] = (response, uploadFile, uploadFiles) => {
+      console.log(uploadFiles)
+    }
+    const handleError: UploadProps['onError'] = (error, uploadFile, uploadFiles) => {
+      ElMessage.error('上传失败')
+      console.error(error)
+    }
+
     // 上传前处理
-    const beforeUpload: UploadProps['beforeUpload'] = (file: UploadRawFile): void => {
+    const beforeUpload = (file: any): void => {
       // const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
       // if (!isJpgOrPng) {
       //   message.error('您只能上传JPG/PNG文件!');
@@ -68,46 +84,73 @@ export default defineComponent({
       // }
       // return isJpgOrPng && isLt2M;
     }
-    const handleSuccess: UploadProps['onSuccess'] = (response, uploadFile, uploadFiles) => {
-      console.log(uploadFiles)
-    }
-    const handleError: UploadProps['onError'] = (error, uploadFile, uploadFiles) => {
-      ElMessage.error('上传失败')
-      console.error(error)
-    }
-    // ts报错先忽略了
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     const getUploadProps = computed<UploadProps>(() => ({
       ...attrs,
+      'list-type': 'picture-card',
       onBeforeUpload: beforeUpload,
       onChange: handleChange,
       onSuccess: handleSuccess,
-      onError: handleError
+      onError: handleError,
+      onPreview: handlePreview
     }))
 
+    /**
+     * 预览功能
+     * @param {*} e
+     */
+    const handlePreview: UploadProps['onPreview'] = (uploadFile) => {
+      if (!uploadFile.url) return
+      imgUrl.value = uploadFile.url
+      setVisible(true)
+    }
+
+    /**
+     * 预览异常处理
+     */
+    function previewError (): void {
+      if (!imgUrl.value) return
+      ElMessage.error('图片地址无法访问!')
+    }
     return () => {
-      return h('div', null, {
-        default: () => [
-          h(ElUpload, getUploadProps.value, {
-            default: () => [
-              h(
-                ElButton,
-                {},
-                {
+      // const type = attrs.type;
+      return h(
+        'div',
+        {
+          class: 'k-upload-image'
+        },
+        {
+          default: () => [
+            h(ElUpload, getUploadProps.value, {
+              default: () => [
+                h('div', null, {
                   default: () => [
                     h('span', {
                       class: 'iconfont icon-shangchuan1',
                       style: { 'margin-right': '2px' }
                     }),
-                    h('span', null, { default: () => '上传文件' })
+                    h(
+                      'div',
+                      { class: 'ant-upload-text' },
+                      { default: () => '点击上传' }
+                    )
                   ]
-                }
-              )
-            ]
-          })
-        ]
-      })
+                })
+              ]
+            }),
+            h(ElImage, {
+              style: { display: 'none' },
+              src: imgUrl.value,
+              preview: {
+                visible,
+                onVisibleChange: setVisible
+              },
+              onError: previewError
+            })
+          ]
+        }
+      )
     }
   }
 })
