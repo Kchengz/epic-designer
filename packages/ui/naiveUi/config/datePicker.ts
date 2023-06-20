@@ -99,5 +99,5 @@ export default {
       }
     ]
   },
-  bindModel: 'value'
+  bindModel: 'formatted-value'
 } as ComponentConfigModel
