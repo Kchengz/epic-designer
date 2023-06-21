@@ -35,6 +35,7 @@
     "lint": "eslint . --fix --ext .js,.jsx,.json,.ts,.tsx,.vue"
   },
   "dependencies": {
+    "@vueuse/core": "^10.2.0",
     "less": "^4.1.3",
     "monaco-editor": "^0.34.1",
     "vuedraggable": "4.1.0"
