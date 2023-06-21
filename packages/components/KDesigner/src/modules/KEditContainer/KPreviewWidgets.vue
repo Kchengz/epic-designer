@@ -7,7 +7,8 @@
     <div class="action-box">
       <div class="action-item">
         {{ designer.state.checkedNode?.type }}
-        {{ designer.state.checkedNode?.label ?? pluginManager.getComponentConfingByType(designer.state.checkedNode?.type ?? '')?.defaultSchema.label }}
+        {{ designer.state.checkedNode?.label ?? pluginManager.getComponentConfingByType(designer.state.checkedNode?.type
+          ?? '')?.defaultSchema.label }}
       </div>
       <div
         title="复制"
@@ -35,7 +36,7 @@
 import { PageSchema, Designer } from '../../../../../types/kDesigner'
 import { inject, computed, ref, onMounted, watch } from 'vue'
 import { pluginManager, getUUID, deepClone, revoke, findSchemaById, type PageManager } from '../../../../../utils/index'
-
+import { useResizeObserver, useMutationObserver } from '@vueuse/core'
 const pageManager = inject('pageManager', {}) as PageManager
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
@@ -89,34 +90,40 @@ const getHoverComponentElement = computed<HTMLBaseElement | null>(() => {
   return componentInstance?.$el
 })
 
-const { mutationObserver, resizeObserver, observerConfig: DocumentObserverConfig } = initObserve(setSeletorStyle)
-
 // 监听选中dom元素变化
 watch(() => getSelectComponentElement.value, (selectComponentElement) => {
   if (selectComponentElement) {
     showSelector.value = true
-    // 监听dom元素及子元素的变化
-    mutationObserver.observe(selectComponentElement, DocumentObserverConfig)
-    // 监听元素视窗变化
-    resizeObserver.observe(selectComponentElement)
     setSeletorStyle()
   } else {
     showSelector.value = false
   }
 })
 
-const { mutationObserver: hoverMutationObserver, resizeObserver: hoverResizeObserver, observerConfig: hoverObserverConfig } = initObserve(setHoverStyle)
-
 // 监听悬停dom元素变化
 watch(() => getHoverComponentElement.value, (hoverComponentElement) => {
   if (hoverComponentElement) {
-    // 监听dom元素及子元素的变化
-    hoverMutationObserver.observe(hoverComponentElement, hoverObserverConfig)
-    // 监听元素视窗变化
-    hoverResizeObserver.observe(hoverComponentElement)
     setHoverStyle()
   }
 })
+
+// 监听选中dom元素及子元素的变化
+useMutationObserver(getSelectComponentElement, setSeletorStyle, {
+  childList: true,
+  attributes: true,
+  subtree: true
+})
+// 监听选中元素视窗变化
+useResizeObserver(getSelectComponentElement, setSeletorStyle)
+
+// 监听悬停dom元素及子元素的变化
+useMutationObserver(getHoverComponentElement, setSeletorStyle, {
+  childList: true,
+  attributes: true,
+  subtree: true
+})
+// 监听悬停元素视窗变化
+useResizeObserver(getHoverComponentElement, setSeletorStyle)
 
 // 添加悬停节点监听，当悬停节点消失超过300ms,则隐藏悬停部件
 let hideTimer: NodeJS.Timeout | number = 0
@@ -196,30 +203,6 @@ function setHoverStyle () {
     hoverWidgetRef.value.style.height = `${height}px`
     hoverWidgetRef.value.style.top = `${selectorTop}px`
     hoverWidgetRef.value.style.left = `${selectorLeft}px`
-  }
-}
-
-/**
- * 实例化观察者对象
- */
-function initObserve (func: () => void) {
-  const MutationObserver = window.MutationObserver
-  const ResizeObserver = window.ResizeObserver
-
-  const observerConfig = {
-    childList: true,
-    attributes: true,
-    subtree: true
-  }
-
-  // 初始化观察者实例
-  const mutationObserver = new MutationObserver(func)
-  const resizeObserver = new ResizeObserver(func)
-
-  return {
-    mutationObserver,
-    resizeObserver,
-    observerConfig
   }
 }
 
