@@ -35,6 +35,7 @@
 import { PageSchema, Designer } from '../../../../../types/kDesigner'
 import { inject, computed, ref, onMounted, watch } from 'vue'
 import { pluginManager, getUUID, deepClone, revoke, findSchemaById, type PageManager } from '../../../../../utils/index'
+import { useResizeObserver } from '@vueuse/core'
 
 const pageManager = inject('pageManager', {}) as PageManager
 const pageSchema = inject('pageSchema') as PageSchema
@@ -89,7 +90,7 @@ const getHoverComponentElement = computed<HTMLBaseElement | null>(() => {
   return componentInstance?.$el
 })
 
-const { mutationObserver, resizeObserver, observerConfig: DocumentObserverConfig } = initObserve(setSeletorStyle)
+const { mutationObserver, observerConfig: DocumentObserverConfig } = initObserve(setSeletorStyle)
 
 // 监听选中dom元素变化
 watch(() => getSelectComponentElement.value, (selectComponentElement) => {
@@ -97,27 +98,26 @@ watch(() => getSelectComponentElement.value, (selectComponentElement) => {
     showSelector.value = true
     // 监听dom元素及子元素的变化
     mutationObserver.observe(selectComponentElement, DocumentObserverConfig)
-    // 监听元素视窗变化
-    resizeObserver.observe(selectComponentElement)
     setSeletorStyle()
   } else {
     showSelector.value = false
   }
 })
+// 监听选中元素视窗变化
+useResizeObserver(getSelectComponentElement, setSeletorStyle)
 
-const { mutationObserver: hoverMutationObserver, resizeObserver: hoverResizeObserver, observerConfig: hoverObserverConfig } = initObserve(setHoverStyle)
+const { mutationObserver: hoverMutationObserver, observerConfig: hoverObserverConfig } = initObserve(setHoverStyle)
 
 // 监听悬停dom元素变化
 watch(() => getHoverComponentElement.value, (hoverComponentElement) => {
   if (hoverComponentElement) {
     // 监听dom元素及子元素的变化
     hoverMutationObserver.observe(hoverComponentElement, hoverObserverConfig)
-    // 监听元素视窗变化
-    hoverResizeObserver.observe(hoverComponentElement)
     setHoverStyle()
   }
 })
-
+// 监听悬停元素视窗变化
+useResizeObserver(getHoverComponentElement, setSeletorStyle)
 // 添加悬停节点监听，当悬停节点消失超过300ms,则隐藏悬停部件
 let hideTimer: NodeJS.Timeout | number = 0
 watch(() => designer.state.hoverNode?.id, e => {
@@ -204,7 +204,6 @@ function setHoverStyle () {
  */
 function initObserve (func: () => void) {
   const MutationObserver = window.MutationObserver
-  const ResizeObserver = window.ResizeObserver
 
   const observerConfig = {
     childList: true,
@@ -214,11 +213,9 @@ function initObserve (func: () => void) {
 
   // 初始化观察者实例
   const mutationObserver = new MutationObserver(func)
-  const resizeObserver = new ResizeObserver(func)
 
   return {
     mutationObserver,
-    resizeObserver,
     observerConfig
   }
 }
