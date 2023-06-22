@@ -15,7 +15,9 @@
         @dragend="handleElementDragEnd"
         @drag="handleElementDrag"
       >
-        <div :class="{ 'pointer-events-none': pressSpace }">
+        <div
+          :class="{ 'pointer-events-none': pressSpace }"
+        >
           <slot />
         </div>
       </div>
@@ -25,7 +27,7 @@
 <script lang="ts" setup>
 import { onKeyUp, onKeyDown, watchOnce, useElementSize } from '@vueuse/core'
 import type { NodeItem } from '../../../../../types/kDesigner'
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, watch } from 'vue'
 const props = defineProps<{
   rootSchema: NodeItem
 }>()
@@ -49,6 +51,19 @@ const scrollBoxStyle = ref<{
 }>({})
 
 watchOnce(width, () => {
+  const rootSchemaWidth = parseFloat(props.rootSchema.componentProps.style.width)
+  const rootSchemaHeight = parseFloat(props.rootSchema.componentProps.style.height)
+  updateScrollBoxStyle()
+  nextTick(() => {
+    const scrollTop = rootSchemaHeight / 2
+    const scrollLeft = rootSchemaWidth / 2
+    editScreenContainerRef.value!.scrollTo(scrollLeft, scrollTop)
+  })
+})
+
+watch(() => props.rootSchema.componentProps.style.width, updateScrollBoxStyle)
+
+function updateScrollBoxStyle () {
   let rootSchemaWidth = parseFloat(props.rootSchema.componentProps.style.width)
   let rootSchemaHeight = parseFloat(props.rootSchema.componentProps.style.height)
   if (Number.isNaN(rootSchemaWidth) || rootSchemaWidth < 100) {
@@ -58,13 +73,7 @@ watchOnce(width, () => {
     rootSchemaHeight = 100
   }
   scrollBoxStyle.value = { width: width.value + rootSchemaWidth + 'px', height: height.value + rootSchemaHeight + 'px' }
-
-  nextTick(() => {
-    const scrollTop = rootSchemaHeight / 2
-    const scrollLeft = rootSchemaWidth / 2
-    editScreenContainerRef.value!.scrollTo(scrollLeft, scrollTop)
-  })
-})
+}
 
 let startX = 0
 let startY = 0

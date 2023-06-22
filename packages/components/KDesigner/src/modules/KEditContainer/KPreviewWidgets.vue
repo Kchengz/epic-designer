@@ -146,21 +146,22 @@ function setSeletorStyle () {
     scrollLeft = rangeDom.scrollLeft
     isScroll = rangeDom.scrollHeight > rangeDom.clientHeight
   }
-  const { top, left, width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
+  const { width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
 
-  // 计算选择器部件位置
-  let selectorTop = top - rangeTop + scrollTop
-  const selectorLeft = left - rangeLeft + scrollLeft
+  const selectorTop = element.offsetTop
+  const selectorLeft = element.offsetLeft
   // 判断是否出现滚动条，出现滚动条则需要增加15px
-  if (isScroll) {
-    selectorTop += 15
-  }
+  // if (isScroll) {
+  //   selectorTop += 15
+  // }
 
   if (selectorRef.value) {
     selectorRef.value.style.width = `${width}px`
     selectorRef.value.style.height = `${height}px`
     selectorRef.value.style.top = `${selectorTop}px`
     selectorRef.value.style.left = `${selectorLeft}px`
+    // selectorRef.value.style.top = '0px'
+    // selectorRef.value.style.left = '0px'
   }
 }
 
@@ -181,21 +182,21 @@ function setHoverStyle () {
     scrollLeft = rangeDom.scrollLeft
     isScroll = rangeDom.scrollHeight > rangeDom.clientHeight
   }
-  const { top, left, width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
+  const { width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
 
   // 计算选择器部件位置
-  let selectorTop = top - rangeTop + scrollTop
-  const selectorLeft = left - rangeLeft + scrollLeft
+  const hoverTop = element.offsetTop
+  const hoverLeft = element.offsetLeft
   // 判断是否出现滚动条，出现滚动条则需要增加15px
-  if (isScroll) {
-    selectorTop += 15
-  }
+  // if (isScroll) {
+  //   hoverTop += 15
+  // }
 
   if (hoverWidgetRef.value) {
     hoverWidgetRef.value.style.width = `${width}px`
     hoverWidgetRef.value.style.height = `${height}px`
-    hoverWidgetRef.value.style.top = `${selectorTop}px`
-    hoverWidgetRef.value.style.left = `${selectorLeft}px`
+    hoverWidgetRef.value.style.top = `${hoverTop}px`
+    hoverWidgetRef.value.style.left = `${hoverLeft}px`
   }
 }
 
