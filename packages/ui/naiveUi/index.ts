@@ -21,6 +21,8 @@ import Collapse from './config/collapse'
 import CollapseItem from './config/collapseItem'
 import DatePicker from './config/datePicker'
 import { NTabPane } from 'naive-ui'
+import UploadFile from './config/uploadFile'
+import UploadImage from './config/uploadImage'
 // 组件样式调整
 import './src/index.less'
 export function setupNaiveUi (pluginManager: PluginManager): void {
@@ -68,7 +70,9 @@ export function setupNaiveUi (pluginManager: PluginManager): void {
     Tabs,
     TabPane,
     Collapse,
-    CollapseItem
+    CollapseItem,
+    UploadFile,
+    UploadImage
   ]
 
   componentArray.forEach((item) => {
@@ -88,6 +92,8 @@ export function setupNaiveUi (pluginManager: PluginManager): void {
         'radio',
         'date',
         'slider',
+        'upload-file',
+        'upload-image',
         'cascader',
         'switch',
         'button',

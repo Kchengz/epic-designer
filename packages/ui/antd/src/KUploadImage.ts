@@ -87,6 +87,7 @@ export default defineComponent({
     const getUploadProps = computed<UploadProps>(() => ({
       ...attrs,
       'list-type': 'picture-card',
+      accept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
       'onUpdate:file-list': handleUpdate,
       'onBefore-upload': beforeUpload,
       onChange: handleChange,
