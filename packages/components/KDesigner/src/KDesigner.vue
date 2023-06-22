@@ -5,7 +5,7 @@
         <KHeader @save="handleSave" />
         <div class="k-split-view-container">
           <KActionBar />
-          <KEditContainer />
+          <KEditCanvas />
           <KRightSidebar />
         </div>
         <KFooter />
@@ -25,7 +25,7 @@ import { getMatchedById, loadAsyncComponent, revoke, usePageManager, deepCompare
 
 const KHeader = loadAsyncComponent(() => import('./modules/KHeader/KHeader.vue'))
 const KActionBar = loadAsyncComponent(() => import('./modules/KActionBar/KActionBar.vue'))
-const KEditContainer = loadAsyncComponent(() => import('./modules/KEditContainer/KEditContainer.vue'))
+const KEditCanvas = loadAsyncComponent(() => import('./modules/KEditContainer/KEditCanvas.vue'))
 const KRightSidebar = loadAsyncComponent(() => import('./modules/KRightSidebar/KRightSidebar.vue'))
 const KFooter = loadAsyncComponent(() => import('./modules/KFooter/KFooter.vue'))
 const KAsyncLoader = loadAsyncComponent(() => import('../../KAsyncLoader/KAsyncLoader.vue'))
@@ -57,7 +57,9 @@ const defaultSchemas = [{
   children: [],
   componentProps: {
     style: {
-      padding: '16px'
+      padding: '16px',
+      width: '1300px',
+      height: '800px'
     }
   }
 }]

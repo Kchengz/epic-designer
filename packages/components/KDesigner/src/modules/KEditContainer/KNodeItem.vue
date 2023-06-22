@@ -1,24 +1,27 @@
 <template>
   <!-- 栅格布局、标签布局暂时不可拖拽设计 start -->
   <KNode
-    v-if="['row', 'tabs'].includes(props.element.type)"
-    :record="props.element"
+    v-if="['row', 'tabs'].includes(props.schema.type)"
+    :record="props.schema"
   >
     <template #edit-node>
       <KNodeItem
-        v-for="item in element.children"
+        v-for="item in currentSchema.children"
         :key="item.id"
-        :element="item"
+        :schema="item"
       />
     </template>
   </KNode>
   <!-- 栅格布局、标签布局暂时不可拖拽设计 end -->
   <KNode
     v-else
-    :record="props.element"
+    :record="props.schema"
   >
     <template #edit-node>
-      <KEditNodeItem v-model:schemas="element.children" />
+      <KEditNodeItem
+        v-if="currentSchema.children"
+        v-model:schemas="currentSchema.children"
+      />
     </template>
   </KNode>
 </template>
@@ -27,14 +30,11 @@ import { PropType, onBeforeUpdate } from 'vue'
 import KNode from '../../../../KNode'
 import { NodeItem } from '../../../../../types/kDesigner'
 import KEditNodeItem from './KEditNodeItem.vue'
-const props = defineProps({
-  element: {
-    type: Object as PropType<NodeItem>,
-    required: true
-  }
-})
+const props = defineProps<{
+  schema: NodeItem
+}>()
 
-const element = props.element as NodeItem
+const currentSchema = props.schema as NodeItem
 
 onBeforeUpdate(() => { console.log('更新了22') })
 

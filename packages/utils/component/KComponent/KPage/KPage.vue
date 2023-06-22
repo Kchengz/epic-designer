@@ -1,5 +1,7 @@
 <template>
-  <div class="h-full box-border bg-white">
+  <div
+    class="h-full box-border bg-white wh-full!"
+  >
     <slot name="edit-node">
       <slot
         v-for="item in children"

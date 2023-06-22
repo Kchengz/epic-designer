@@ -1,6 +1,6 @@
 <template>
   <draggable
-    v-model="schemas"
+    v-model="modelSchemas"
     item-key="id"
     group="edit-draggable"
     ghost-class="moveing"
@@ -16,30 +16,26 @@
         @mouseover.stop="designer.setHoverNode(element)"
         @mouseout.stop="designer.setHoverNode(null)"
       >
-        <KNodeItem :element="element" />
+        <KNodeItem :schema="element" />
       </div>
     </template>
   </draggable>
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { computed, PropType, inject } from 'vue'
+import { computed, inject } from 'vue'
 import { revoke } from '../../../../../utils/index'
 import { NodeItem, PageSchema, Designer } from '../../../../../types/kDesigner'
 import KNodeItem from './KNodeItem.vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
 
-const props = defineProps({
-  schemas: {
-    type: Array as PropType<NodeItem[]>,
-    require: true,
-    default: () => []
-  }
-})
+const props = defineProps<{
+  schemas: NodeItem[]
+}>()
 
 const emit = defineEmits(['update:schemas'])
-const schemas = computed({
+const modelSchemas = computed({
   get () {
     // 判断props.schemas是否存在值
     return props.schemas
@@ -54,7 +50,7 @@ const schemas = computed({
  * @param index
  */
 function handleSelect (index: number) {
-  designer.setCheckedNode(schemas.value![index])
+  designer.setCheckedNode(modelSchemas.value![index])
 }
 
 function handleEnd () {

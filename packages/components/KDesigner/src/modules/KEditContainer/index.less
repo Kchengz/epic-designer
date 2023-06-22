@@ -1,16 +1,15 @@
-// 编辑区域
-.k-edit-container {
-  flex: 1;
+// 编辑画布
+.k-edit-canvas {
+  flex: auto;
   background-image: linear-gradient(#f8f8f8 14px, transparent 0),
     linear-gradient(90deg, transparent 14px, #373739 0);
   background-size: 15px 15px;
-  padding: 56px 36px;
+  overflow: hidden;
+  width: 0;
 
   .k-edit-range {
-    height: 100%;
     background-color: white;
     overflow-y: auto;
-    position: relative;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
       rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     cursor: pointer;

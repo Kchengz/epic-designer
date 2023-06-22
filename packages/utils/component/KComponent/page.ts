@@ -6,6 +6,7 @@ export default {
     label: '页面',
     type: 'page',
     componentProps: {
+
     },
     children: []
   },
