@@ -15,9 +15,7 @@
         @dragend="handleElementDragEnd"
         @drag="handleElementDrag"
       >
-        <div
-          :class="{ 'pointer-events-none': pressSpace }"
-        >
+        <div :class="{ 'pointer-events-none': pressSpace }">
           <slot />
         </div>
       </div>
@@ -51,9 +49,7 @@ const scrollBoxStyle = ref<{
 }>({})
 
 watchOnce(width, () => {
-  const rootSchemaWidth = parseFloat(props.rootSchema.componentProps.style.width)
-  const rootSchemaHeight = parseFloat(props.rootSchema.componentProps.style.height)
-  updateScrollBoxStyle()
+  const { rootSchemaWidth, rootSchemaHeight } = updateScrollBoxStyle()
   nextTick(() => {
     const scrollTop = rootSchemaHeight / 2
     const scrollLeft = rootSchemaWidth / 2
@@ -66,13 +62,15 @@ watch(() => props.rootSchema.componentProps.style.width, updateScrollBoxStyle)
 function updateScrollBoxStyle () {
   let rootSchemaWidth = parseFloat(props.rootSchema.componentProps.style.width)
   let rootSchemaHeight = parseFloat(props.rootSchema.componentProps.style.height)
-  if (Number.isNaN(rootSchemaWidth) || rootSchemaWidth < 100) {
-    rootSchemaWidth = 100
+  if (Number.isNaN(rootSchemaWidth) || rootSchemaWidth < width.value) {
+    rootSchemaWidth = width.value
   }
-  if (Number.isNaN(rootSchemaHeight) || rootSchemaWidth < 100) {
-    rootSchemaHeight = 100
+
+  if (Number.isNaN(rootSchemaHeight) || rootSchemaWidth < height.value) {
+    rootSchemaHeight = height.value
   }
   scrollBoxStyle.value = { width: width.value + rootSchemaWidth + 'px', height: height.value + rootSchemaHeight + 'px' }
+  return { rootSchemaWidth, rootSchemaHeight }
 }
 
 let startX = 0
