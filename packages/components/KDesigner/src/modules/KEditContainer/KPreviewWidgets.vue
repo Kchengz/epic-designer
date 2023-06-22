@@ -7,7 +7,8 @@
     <div class="action-box">
       <div class="action-item">
         {{ designer.state.checkedNode?.type }}
-        {{ designer.state.checkedNode?.label ?? pluginManager.getComponentConfingByType(designer.state.checkedNode?.type ?? '')?.defaultSchema.label }}
+        {{ designer.state.checkedNode?.label ?? pluginManager.getComponentConfingByType(designer.state.checkedNode?.type
+          ?? '')?.defaultSchema.label }}
       </div>
       <div
         title="复制"
@@ -45,16 +46,6 @@ const selectorRef = ref()
 const hoverWidgetRef = ref()
 const showSelector = ref(false)
 const showHover = ref(false)
-
-let rangeTop = 0; let rangeLeft = 0; let rangeDom: HTMLBaseElement | null = null
-onMounted(() => {
-  rangeDom = document.querySelector('.k-edit-range')
-  if (rangeDom) {
-    const { top, left } = rangeDom.getBoundingClientRect()
-    rangeTop = top
-    rangeLeft = left
-  }
-})
 
 /**
  * 获取选中组件dom元素
@@ -134,34 +125,19 @@ watch(() => designer.state.hoverNode?.id, e => {
  */
 function setSeletorStyle () {
   const element = getSelectComponentElement.value
-  let scrollTop = 0
-  let scrollLeft = 0
-  let isScroll = false
 
   if (!element) return
 
-  // 判断rangeDom是否存在，存在则获取相应属性
-  if (rangeDom) {
-    scrollTop = rangeDom.scrollTop
-    scrollLeft = rangeDom.scrollLeft
-    isScroll = rangeDom.scrollHeight > rangeDom.clientHeight
-  }
   const { width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
 
   const selectorTop = element.offsetTop
   const selectorLeft = element.offsetLeft
-  // 判断是否出现滚动条，出现滚动条则需要增加15px
-  // if (isScroll) {
-  //   selectorTop += 15
-  // }
 
   if (selectorRef.value) {
     selectorRef.value.style.width = `${width}px`
     selectorRef.value.style.height = `${height}px`
     selectorRef.value.style.top = `${selectorTop}px`
     selectorRef.value.style.left = `${selectorLeft}px`
-    // selectorRef.value.style.top = '0px'
-    // selectorRef.value.style.left = '0px'
   }
 }
 
@@ -170,27 +146,14 @@ function setSeletorStyle () {
  */
 function setHoverStyle () {
   const element = getHoverComponentElement.value
-  let scrollTop = 0
-  let scrollLeft = 0
-  let isScroll = false
 
   if (!element) return
 
-  // 判断rangeDom是否存在，存在则获取相应属性
-  if (rangeDom) {
-    scrollTop = rangeDom.scrollTop
-    scrollLeft = rangeDom.scrollLeft
-    isScroll = rangeDom.scrollHeight > rangeDom.clientHeight
-  }
   const { width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
 
   // 计算选择器部件位置
   const hoverTop = element.offsetTop
   const hoverLeft = element.offsetLeft
-  // 判断是否出现滚动条，出现滚动条则需要增加15px
-  // if (isScroll) {
-  //   hoverTop += 15
-  // }
 
   if (hoverWidgetRef.value) {
     hoverWidgetRef.value.style.width = `${width}px`
