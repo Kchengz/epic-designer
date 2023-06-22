@@ -2,7 +2,7 @@
   <div
     v-show="showSelector && designer.state.checkedNode?.id !== 'root'"
     ref="selectorRef"
-    class="checked-widget absolute transition-all pointer-events-none z-1000"
+    class="checked-widget absolute pointer-events-none z-20"
   >
     <div class="action-box">
       <div class="action-item">
@@ -46,6 +46,14 @@ const selectorRef = ref()
 const hoverWidgetRef = ref()
 const showSelector = ref(false)
 const showHover = ref(false)
+
+onMounted(() => {
+  const editScreenContainer = document.querySelector('#edit-screen-container')
+
+  editScreenContainer?.addEventListener('scroll', () => {
+    setSeletorStyle()
+  })
+})
 
 /**
  * 获取选中组件dom元素
@@ -125,13 +133,18 @@ watch(() => designer.state.hoverNode?.id, e => {
  */
 function setSeletorStyle () {
   const element = getSelectComponentElement.value
-
   if (!element) return
 
-  const { width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
+  const { top, left, width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
 
-  const selectorTop = element.offsetTop
-  const selectorLeft = element.offsetLeft
+  // 计算选择器部件位置
+  const selectorTop = top
+  const selectorLeft = left
+
+  // 判断是否出现滚动条，出现滚动条则需要增加15px
+  // if (isScroll) {
+  //   selectorTop += 15
+  // }
 
   if (selectorRef.value) {
     selectorRef.value.style.width = `${width}px`
@@ -149,11 +162,11 @@ function setHoverStyle () {
 
   if (!element) return
 
-  const { width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
+  const { top, left, width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
 
   // 计算选择器部件位置
-  const hoverTop = element.offsetTop
-  const hoverLeft = element.offsetLeft
+  const hoverTop = top
+  const hoverLeft = left
 
   if (hoverWidgetRef.value) {
     hoverWidgetRef.value.style.width = `${width}px`

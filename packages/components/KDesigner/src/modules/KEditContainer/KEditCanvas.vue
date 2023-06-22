@@ -2,7 +2,7 @@
   <section class="k-edit-canvas">
     <KEditScreenContainer :root-schema="rootSchema">
       <div
-        class="k-edit-range relative rounded-md"
+        class="k-edit-range overflow-hidden rounded-md"
         :style="{
           width: rootSchema.componentProps.style.width,
           height: rootSchema.componentProps.style.height,
