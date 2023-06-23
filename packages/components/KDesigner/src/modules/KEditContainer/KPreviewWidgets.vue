@@ -47,10 +47,11 @@ const hoverWidgetRef = ref()
 const showSelector = ref(false)
 const showHover = ref(false)
 
+let kEditRange: HTMLDivElement | null = null
 onMounted(() => {
-  const editScreenContainer = document.querySelector('#edit-screen-container')
+  kEditRange = document.querySelector('.k-edit-range')
 
-  editScreenContainer?.addEventListener('scroll', () => {
+  kEditRange?.addEventListener('scroll', () => {
     setSeletorStyle()
   })
 })
@@ -135,16 +136,13 @@ function setSeletorStyle () {
   const element = getSelectComponentElement.value
   if (!element) return
 
-  const { top, left, width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
+  const { top: offsetY, left: offsetX } = kEditRange?.getBoundingClientRect() ?? { top: 0, left: 0 }
+
+  const { top, left, width, height } = element.getBoundingClientRect()
 
   // 计算选择器部件位置
-  const selectorTop = top
-  const selectorLeft = left
-
-  // 判断是否出现滚动条，出现滚动条则需要增加15px
-  // if (isScroll) {
-  //   selectorTop += 15
-  // }
+  const selectorTop = top - offsetY + (kEditRange?.scrollTop ?? 0)
+  const selectorLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0)
 
   if (selectorRef.value) {
     selectorRef.value.style.width = `${width}px`
@@ -161,12 +159,12 @@ function setHoverStyle () {
   const element = getHoverComponentElement.value
 
   if (!element) return
-
+  const { top: offsetY, left: offsetX } = kEditRange?.getBoundingClientRect() ?? { top: 0, left: 0 }
   const { top, left, width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
 
   // 计算选择器部件位置
-  const hoverTop = top
-  const hoverLeft = left
+  const hoverTop = top - offsetY + (kEditRange?.scrollTop ?? 0)
+  const hoverLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0)
 
   if (hoverWidgetRef.value) {
     hoverWidgetRef.value.style.width = `${width}px`

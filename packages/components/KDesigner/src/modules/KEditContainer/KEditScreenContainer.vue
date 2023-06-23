@@ -1,6 +1,5 @@
 <template>
   <div
-    id="edit-screen-container"
     ref="editScreenContainerRef"
     class="wh-full overflow-auto"
   >
