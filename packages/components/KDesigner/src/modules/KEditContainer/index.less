@@ -115,4 +115,13 @@
       box-sizing: border-box;
     }
   }
+
+  // 隐藏设计区域滚动条
+  .k-edit-screen-container {
+    &::-webkit-scrollbar {
+      // display: none;
+      width: 6px;
+      height: 6px;
+    }
+  }
 }

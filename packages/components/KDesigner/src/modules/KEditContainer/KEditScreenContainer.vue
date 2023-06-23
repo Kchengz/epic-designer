@@ -1,7 +1,7 @@
 <template>
   <div
     ref="editScreenContainerRef"
-    class="wh-full overflow-auto"
+    class="wh-full overflow-auto k-edit-screen-container"
   >
     <div
       class="flex items-center justify-center"
