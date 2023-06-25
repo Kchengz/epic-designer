@@ -8,7 +8,6 @@ import { initComponent } from './utils/component/init'
 import './index.less'
 export * from './utils/index'
 export type { NodeItem, PageSchema } from './types/kDesigner.d'
-
 // 初始化设计器
 initComponent(pluginManager)
 const components = [KBuilder, KDesigner]

@@ -1,30 +1,46 @@
 <template>
-  <div
-    ref="editScreenContainerRef"
-    class="wh-full overflow-auto k-edit-screen-container"
-  >
+  <div class="h-full flex flex-col">
     <div
-      class="flex items-center justify-center"
-      :style="scrollBoxStyle"
+      ref="editScreenContainerRef"
+      class="flex-1 overflow-auto k-edit-screen-container"
+      @wheel="handleZoom"
     >
       <div
-        ref="draggableElRef"
-        :class="{ 'cursor-grab': pressSpace }"
-        :draggable="pressSpace"
-        @dragstart="handleElementDragStart"
-        @dragend="handleElementDragEnd"
-        @drag="handleElementDrag"
+        id="canvasContainer"
+        class="flex items-center justify-center"
+        :style="scrollBoxStyle"
       >
-        <div :class="{ 'pointer-events-none': pressSpace }">
-          <slot />
+        <div
+          ref="draggableElRef"
+          class="transition-all"
+          :class="{ 'cursor-grab': pressSpace }"
+          :draggable="pressSpace"
+          @dragstart="handleElementDragStart"
+          @dragend="handleElementDragEnd"
+          @drag="handleElementDrag"
+        >
+          <div :class="{ 'pointer-events-none': pressSpace }">
+            <slot />
+          </div>
         </div>
+      </div>
+    </div>
+    <div
+      class="h-30px flex items-center justify-end bg-gray-100 border-l-3 border-r-3 border-t-0 border-b-0 border-white border-solid"
+    >
+      <div
+        class="mr-4"
+        @click="handleClick"
+      >
+        {{ (canvasScale * 100).toFixed(0) }}%
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { onKeyUp, onKeyDown, watchOnce, useElementSize } from '@vueuse/core'
+import { watchOnce, useElementSize } from '@vueuse/core'
 import type { NodeItem } from '../../../../../types/kDesigner'
+import { useShareKeyPress, useElementDrag, useElementZoom } from '../../../../../utils/index'
 import { ref, nextTick, watch } from 'vue'
 const props = defineProps<{
   rootSchema: NodeItem
@@ -32,22 +48,16 @@ const props = defineProps<{
 const editScreenContainerRef = ref<HTMLDivElement | null>(null)
 const draggableElRef = ref<HTMLDivElement | null>(null)
 
-const pressSpace = ref(false)
-onKeyDown(' ', (e) => {
-  e.preventDefault()
-  pressSpace.value = true
-})
-onKeyUp(' ', () => {
-  pressSpace.value = false
-})
-
+const { pressSpace } = useShareKeyPress()
+const { handleElementDragStart, handleElementDrag, handleElementDragEnd } = useElementDrag(editScreenContainerRef)
 const { width, height } = useElementSize(editScreenContainerRef)
-
+const { canvasScale, handleZoom } = useElementZoom(draggableElRef)
 const scrollBoxStyle = ref<{
   width?: string,
   height?: string,
 }>({})
 
+// 初始化页面样式
 watchOnce(width, () => {
   const { rootSchemaWidth, rootSchemaHeight } = updateScrollBoxStyle()
   nextTick(() => {
@@ -57,6 +67,7 @@ watchOnce(width, () => {
   })
 })
 
+// 动态适配设计区域宽度
 watch(() => props.rootSchema.componentProps.style.width, updateScrollBoxStyle)
 
 function updateScrollBoxStyle () {
@@ -73,35 +84,9 @@ function updateScrollBoxStyle () {
   return { rootSchemaWidth, rootSchemaHeight }
 }
 
-let startX = 0
-let startY = 0
-function handleElementDragStart (e) {
-  startX = e.x
-  startY = e.y
-  e.dataTransfer.setDragImage(
-    document.createElement('div'), 0, 0
-  )
-}
-/**
- * 拖拽设计区域
- * @param e
- */
-function handleElementDrag (e) {
-  e.preventDefault()
-  // 计算新的光标位置：
-  if (!e.x || !e.y || !pressSpace.value) {
-    return
-  }
-  const offsetX = e.x - startX
-  const offsetY = e.y - startY
-  startX = e.x
-  startY = e.y
-  editScreenContainerRef.value!.scrollTop -= offsetY
-  editScreenContainerRef.value!.scrollLeft -= offsetX
-}
-
-function handleElementDragEnd () {
-  pressSpace.value = false
+function handleClick () {
+  canvasScale.value = 1
+  draggableElRef.value!.style.transform = `scale(${canvasScale.value})`
 }
 
 </script>

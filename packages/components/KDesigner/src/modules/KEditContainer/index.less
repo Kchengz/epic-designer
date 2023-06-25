@@ -36,83 +36,87 @@
       border: transparent;
     }
 
-    .checked-widget {
-      border: 1px solid transparent;
-      background: @primary-hover-bg-color;
-      // position: relative;
-      &::before {
-        content: "";
-        height: 5px;
-        width: 0%;
-        background: @primary-color;
-        position: absolute;
-        top: -5px;
-        right: 0;
-        transition: all 0.3s;
-      }
-      &::before {
-        width: 100%;
-      }
-      // position: relative;
 
-      // &.moveing {
-      //   width: 100%;
-      //   height: 6px;
-      //   border-radius: 6px;
-      //   overflow: hidden;
-      //   &::after {
-      //     content: "";
-      //     position: absolute;
-      //     top: 0;
-      //     left: 0;
-      //     width: 100%;
-      //     height: 100%;
-      //     background-color: red;
-      //   }
-      // }
 
-      // 遮罩层
-      // &::after {
-      //   content: "";
-      //   position: absolute;
-      //   top: 0;
-      //   left: 0;
-      //   width: 100%;
-      //   height: 100%;
-      // }
+   
+  }
 
-     
+  .hover-widget {
+    border: 1px #999 dashed;
+    box-sizing: border-box;
+  }
 
-      .action-box {
-        position: absolute;
-        z-index: 999;
-        top: 0px;
-        // top: -30px;
-        right: 0;
+  .checked-widget {
+    border: 1px solid transparent;
+    background: @primary-hover-bg-color;
+    // position: relative;
+    &::before {
+      content: "";
+      height: 5px;
+      width: 0%;
+      background: @primary-color;
+      position: absolute;
+      top: -5px;
+      right: 0;
+      transition: all 0.3s;
+    }
+    &::before {
+      width: 100%;
+    }
+    // position: relative;
+
+    // &.moveing {
+    //   width: 100%;
+    //   height: 6px;
+    //   border-radius: 6px;
+    //   overflow: hidden;
+    //   &::after {
+    //     content: "";
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     background-color: red;
+    //   }
+    // }
+
+    // 遮罩层
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   width: 100%;
+    //   height: 100%;
+    // }
+
+   
+
+    .action-box {
+      position: absolute;
+      z-index: 999;
+      top: 0px;
+      // top: -30px;
+      right: 0;
+      height: 30px;
+      background: @primary-color;
+      border-radius: 0 2px 2px 4px;
+      color: white;
+      display: flex;
+      padding: 0 4px;
+
+      .action-item {
         height: 30px;
-        background: @primary-color;
-        border-radius: 0 2px 2px 4px;
-        color: white;
-        display: flex;
+        line-height: 25px;
         padding: 0 4px;
-
-        .action-item {
-          height: 30px;
-          line-height: 25px;
-          padding: 0 4px;
-          cursor: pointer;
-        }
-      }
-
-      .form-main {
-        padding: 6px;
-        border: 1px solid #f0f0f0;
+        cursor: pointer;
       }
     }
 
-    .hover-widget {
-      border: 1px #999 dashed;
-      box-sizing: border-box;
+    .form-main {
+      padding: 6px;
+      border: 1px solid #f0f0f0;
     }
   }
 

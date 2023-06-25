@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import { PageSchema, Designer } from '../../../../../types/kDesigner'
 import { inject, computed, ref, onMounted, watch } from 'vue'
-import { pluginManager, getUUID, deepClone, revoke, findSchemaById, type PageManager } from '../../../../../utils/index'
+import { pluginManager, getUUID, deepClone, revoke, findSchemaById, useShareStore, type PageManager } from '../../../../../utils/index'
 import { useResizeObserver } from '@vueuse/core'
 
 const pageManager = inject('pageManager', {}) as PageManager
@@ -46,6 +46,8 @@ const selectorRef = ref()
 const hoverWidgetRef = ref()
 const showSelector = ref(false)
 const showHover = ref(false)
+
+const { canvasScale } = useShareStore()
 
 let kEditRange: HTMLDivElement | null = null
 onMounted(() => {
@@ -141,14 +143,14 @@ function setSeletorStyle () {
   const { top, left, width, height } = element.getBoundingClientRect()
 
   // 计算选择器部件位置
-  const selectorTop = top - offsetY + (kEditRange?.scrollTop ?? 0)
-  const selectorLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0)
+  const selectorTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * canvasScale.value
+  const selectorLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0) * canvasScale.value
 
   if (selectorRef.value) {
-    selectorRef.value.style.width = `${width}px`
-    selectorRef.value.style.height = `${height}px`
-    selectorRef.value.style.top = `${selectorTop}px`
-    selectorRef.value.style.left = `${selectorLeft}px`
+    selectorRef.value.style.width = `${width / canvasScale.value}px`
+    selectorRef.value.style.height = `${height / canvasScale.value}px`
+    selectorRef.value.style.top = `${selectorTop / canvasScale.value}px`
+    selectorRef.value.style.left = `${selectorLeft / canvasScale.value}px`
   }
 }
 
@@ -163,14 +165,14 @@ function setHoverStyle () {
   const { top, left, width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
 
   // 计算选择器部件位置
-  const hoverTop = top - offsetY + (kEditRange?.scrollTop ?? 0)
-  const hoverLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0)
+  const hoverTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * canvasScale.value
+  const hoverLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0) * canvasScale.value
 
   if (hoverWidgetRef.value) {
-    hoverWidgetRef.value.style.width = `${width}px`
-    hoverWidgetRef.value.style.height = `${height}px`
-    hoverWidgetRef.value.style.top = `${hoverTop}px`
-    hoverWidgetRef.value.style.left = `${hoverLeft}px`
+    hoverWidgetRef.value.style.width = `${width / canvasScale.value}px`
+    hoverWidgetRef.value.style.height = `${height / canvasScale.value}px`
+    hoverWidgetRef.value.style.top = `${hoverTop / canvasScale.value}px`
+    hoverWidgetRef.value.style.left = `${hoverLeft / canvasScale.value}px`
   }
 }
 
