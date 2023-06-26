@@ -18,26 +18,26 @@ export function useElementDrag (
 
   let startX = 0
   let startY = 0
-  function handleElementDragStart (e) {
-    startX = e.x
-    startY = e.y
-    e.dataTransfer.setDragImage(document.createElement('div'), 0, 0)
+  function handleElementDragStart (event: DragEvent) {
+    startX = event.x
+    startY = event.y
+    event.dataTransfer?.setDragImage(document.createElement('div'), 0, 0)
   }
 
   /**
    * 拖拽设计区域
-   * @param e
+   * @param event
    */
-  function handleElementDrag (e) {
-    e.preventDefault()
+  function handleElementDrag (event: DragEvent) {
+    event.preventDefault()
     // 计算新的光标位置：
-    if (!e.x || !e.y || !pressSpace.value) {
+    if (!event.x || !event.y || !pressSpace.value) {
       return
     }
-    const offsetX = e.x - startX
-    const offsetY = e.y - startY
-    startX = e.x
-    startY = e.y
+    const offsetX = event.x - startX
+    const offsetY = event.y - startY
+    startX = event.x
+    startY = event.y
     if (editScreenContainer.value) {
       editScreenContainer.value.scrollTop -= offsetY
       editScreenContainer.value.scrollLeft -= offsetX
@@ -64,14 +64,14 @@ export function useElementZoom (draggableElRef: Ref<HTMLDivElement | null>) {
    * @param e
    * @returns
    */
-  function handleZoom (e) {
+  function handleZoom (event: WheelEvent) {
     if (!pressCtrl.value) {
       return
     }
-    e.preventDefault()
+    event.preventDefault()
 
     let newScale = 0
-    if (e.wheelDelta > 0) {
+    if (event.deltaY < 0) {
       newScale = canvasScale.value + 0.05
     } else {
       newScale = canvasScale.value - 0.05
