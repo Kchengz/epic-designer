@@ -38,10 +38,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { watchOnce, useElementSize } from '@vueuse/core'
+import { watchOnce, useElementSize, useResizeObserver } from '@vueuse/core'
 import type { NodeItem } from '../../../../../types/kDesigner'
 import { useShareKeyPress, useElementDrag, useElementZoom } from '../../../../../utils/index'
-import { ref, nextTick, watch } from 'vue'
+import { ref, nextTick, watch, computed } from 'vue'
+
 const props = defineProps<{
   rootSchema: NodeItem
 }>()
@@ -57,32 +58,64 @@ const scrollBoxStyle = ref<{
   height?: string,
 }>({})
 
+const getCanvasAttribute = computed(() => {
+  const width = parseFloat(props.rootSchema.componentProps.style.width)
+  const height = parseFloat(props.rootSchema.componentProps.style.height)
+  return { width, height }
+})
+
 // 初始化页面样式
 watchOnce(width, () => {
-  const { rootSchemaWidth, rootSchemaHeight } = updateScrollBoxStyle()
-  nextTick(() => {
-    const scrollTop = rootSchemaHeight / 2
-    const scrollLeft = rootSchemaWidth / 2
-    editScreenContainerRef.value!.scrollTo(scrollLeft, scrollTop)
-  })
+  updateScrollBoxStyle()
+  setScroll()
 })
 
 // 动态适配设计区域宽度
 watch(() => props.rootSchema.componentProps.style.width, updateScrollBoxStyle)
 
 function updateScrollBoxStyle () {
-  let rootSchemaWidth = parseFloat(props.rootSchema.componentProps.style.width)
-  let rootSchemaHeight = parseFloat(props.rootSchema.componentProps.style.height)
-  if (Number.isNaN(rootSchemaWidth) || rootSchemaWidth < width.value) {
-    rootSchemaWidth = width.value
+  let canvasWidth = getCanvasAttribute.value.width
+  let canvasHeight = getCanvasAttribute.value.height
+  if (Number.isNaN(canvasWidth) || canvasWidth < width.value) {
+    canvasWidth = width.value
   }
 
-  if (Number.isNaN(rootSchemaHeight) || rootSchemaWidth < height.value) {
-    rootSchemaHeight = height.value
+  if (Number.isNaN(canvasHeight) || canvasWidth < height.value) {
+    canvasHeight = height.value
   }
-  scrollBoxStyle.value = { width: width.value + rootSchemaWidth + 'px', height: height.value + rootSchemaHeight + 'px' }
-  return { rootSchemaWidth, rootSchemaHeight }
+
+  scrollBoxStyle.value = { width: width.value + canvasWidth + 'px', height: height.value + canvasHeight + 'px' }
 }
+
+function setScroll () {
+  nextTick(() => {
+    let canvasWidth = getCanvasAttribute.value.width
+    let canvasHeight = getCanvasAttribute.value.height
+    if (Number.isNaN(canvasWidth) || canvasWidth < width.value) {
+      canvasWidth = width.value
+    }
+
+    if (Number.isNaN(canvasHeight) || canvasWidth < height.value) {
+      canvasHeight = height.value
+    }
+    const scrollTop = canvasHeight / 2
+    const scrollLeft = canvasWidth / 2
+    editScreenContainerRef.value!.scrollTo(scrollLeft, scrollTop)
+  })
+}
+
+/**
+ * editScreenContainerRef 宽度变化，重置缩放
+ */
+useResizeObserver(editScreenContainerRef, ([{ contentRect }]) => {
+  const scale = (contentRect.width - 20) / getCanvasAttribute.value.width
+  // 超过1.2倍不自动缩放
+  if (scale < 1.2) {
+    canvasScale.value = scale
+  }
+  updateScrollBoxStyle()
+  setScroll()
+})
 
 function handleClick () {
   canvasScale.value = 1

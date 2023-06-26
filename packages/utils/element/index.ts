@@ -1,7 +1,7 @@
 import { createSharedComposable } from '@vueuse/core'
 import { useKeyPress } from './keyboard'
 import { useShareStore } from '../shareStore'
-import { type Ref } from 'vue'
+import { type Ref, watch } from 'vue'
 
 // 将按键状态hooks共享
 export const useShareKeyPress = createSharedComposable(useKeyPress)
@@ -82,10 +82,13 @@ export function useElementZoom (draggableElRef: Ref<HTMLDivElement | null>) {
     }
 
     canvasScale.value = newScale
-    if (draggableElRef.value) {
-      draggableElRef.value.style.transform = `scale(${canvasScale.value})`
-    }
   }
+
+  watch(() => canvasScale.value, (e) => {
+    if (draggableElRef.value) {
+      draggableElRef.value.style.transform = `scale(${e})`
+    }
+  })
 
   return { handleZoom, canvasScale }
 }
