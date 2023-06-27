@@ -57,9 +57,7 @@ const defaultSchemas = [{
   children: [],
   componentProps: {
     style: {
-      padding: '16px',
-      width: '1300px',
-      height: '800px'
+      padding: '16px'
     }
   }
 }]
