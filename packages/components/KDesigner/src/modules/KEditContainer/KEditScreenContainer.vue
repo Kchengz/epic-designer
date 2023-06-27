@@ -41,7 +41,7 @@
 import { watchOnce, useElementSize, useResizeObserver } from '@vueuse/core'
 import type { NodeItem } from '../../../../../types/kDesigner'
 import { useShareKeyPress, useElementDrag, useElementZoom } from '../../../../../utils/index'
-import { ref, nextTick, watch, computed } from 'vue'
+import { ref, nextTick, watch, computed, onMounted } from 'vue'
 
 const props = defineProps<{
   rootSchema: NodeItem
@@ -59,8 +59,8 @@ const scrollBoxStyle = ref<{
 }>({})
 
 const getCanvasAttribute = computed(() => {
-  const width = parseFloat(props.rootSchema.componentProps.style.width)
-  const height = parseFloat(props.rootSchema.componentProps.style.height)
+  const width = parseFloat(props.rootSchema.componentProps.style?.width ?? 1320)
+  const height = parseFloat(props.rootSchema.componentProps.style?.height ?? 800)
   return { width, height }
 })
 
@@ -115,6 +115,21 @@ useResizeObserver(editScreenContainerRef, ([{ contentRect }]) => {
   }
   updateScrollBoxStyle()
   setScroll()
+})
+
+onMounted(() => {
+  /**
+   * editScreenContainerRef 宽度变化，重置缩放
+   */
+  useResizeObserver(editScreenContainerRef, ([{ contentRect }]) => {
+    const scale = (contentRect.width - 20) / getCanvasAttribute.value.width
+    // 超过1.2倍不自动缩放
+    if (scale < 1.2) {
+      canvasScale.value = scale
+    }
+    updateScrollBoxStyle()
+    setScroll()
+  })
 })
 
 function handleClick () {

@@ -3,10 +3,7 @@
     <KEditScreenContainer :root-schema="rootSchema">
       <div
         class="k-edit-range rounded-md overflow-hidden relative"
-        :style="{
-          width: rootSchema.componentProps.style.width,
-          height: rootSchema.componentProps.style.height,
-        }"
+        :style="getEditRangestyle"
       >
         <KNodeItem :schema="rootSchema" />
         <KPreviewWidgets />
@@ -26,4 +23,10 @@ const rootSchema = computed(() => {
   return pageSchema.schemas[0]
 })
 
+const getEditRangestyle = computed(() => {
+  return {
+    width: rootSchema.value.componentProps.style?.width ?? '1320px',
+    height: rootSchema.value.componentProps.style?.height ?? '800px'
+  }
+})
 </script>
