@@ -50,13 +50,6 @@ const showHover = ref(false)
 const { canvasScale } = useShareStore()
 
 let kEditRange: HTMLDivElement | null = null
-onMounted(() => {
-  kEditRange = document.querySelector('.k-edit-range')
-
-  kEditRange?.addEventListener('scroll', () => {
-    setSeletorStyle()
-  })
-})
 
 /**
  * 获取选中组件dom元素
@@ -72,6 +65,9 @@ const getSelectComponentElement = computed<HTMLBaseElement | null>(() => {
     return componentInstances[id + 'formItem']?.$el
   }
   const componentInstance = componentInstances[id]
+  if (componentInstance?.$el.nodeName === '#text') {
+    return null
+  }
   return componentInstance?.$el
 })
 
@@ -89,6 +85,9 @@ const getHoverComponentElement = computed<HTMLBaseElement | null>(() => {
     return componentInstances[id + 'formItem']?.$el
   }
   const componentInstance = componentInstances[id]
+  if (componentInstance?.$el.nodeName === '#text') {
+    return null
+  }
   return componentInstance?.$el
 })
 
@@ -105,8 +104,6 @@ watch(() => getSelectComponentElement.value, (selectComponentElement) => {
     showSelector.value = false
   }
 })
-// 监听选中元素视窗变化
-useResizeObserver(getSelectComponentElement, setSeletorStyle)
 
 const { mutationObserver: hoverMutationObserver, observerConfig: hoverObserverConfig } = initObserve(setHoverStyle)
 
@@ -118,8 +115,7 @@ watch(() => getHoverComponentElement.value, (hoverComponentElement) => {
     setHoverStyle()
   }
 })
-// 监听悬停元素视窗变化
-useResizeObserver(getHoverComponentElement, setSeletorStyle)
+
 // 添加悬停节点监听，当悬停节点消失超过300ms,则隐藏悬停部件
 let hideTimer: NodeJS.Timeout | number = 0
 watch(() => designer.state.hoverNode?.id, e => {
@@ -241,5 +237,18 @@ function handleDelete () {
   designer.setCheckedNode(list[index])
   revoke.push(pageSchema.schemas, '删除组件')
 }
+
+onMounted(() => {
+  kEditRange = document.querySelector('.k-edit-range')
+
+  kEditRange?.addEventListener('scroll', () => {
+    setSeletorStyle()
+  })
+
+  // 监听选中元素视窗变化
+  useResizeObserver(getSelectComponentElement, setSeletorStyle)
+  // 监听悬停元素视窗变化
+  useResizeObserver(getHoverComponentElement, setSeletorStyle)
+})
 
 </script>
