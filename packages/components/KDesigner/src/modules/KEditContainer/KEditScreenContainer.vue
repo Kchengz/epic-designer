@@ -1,9 +1,14 @@
 <template>
-  <div class="h-full flex flex-col">
+  <div class="h-full flex flex-col relative">
     <div
       ref="editScreenContainerRef"
       class="flex-1 overflow-auto k-edit-screen-container"
+      :class="{ 'cursor-grab': pressSpace }"
+      :draggable="pressSpace"
       @wheel="handleZoom"
+      @dragstart="handleElementDragStart"
+      @dragend="handleElementDragEnd"
+      @drag="handleElementDrag"
     >
       <div
         id="canvasContainer"
@@ -13,11 +18,6 @@
         <div
           ref="draggableElRef"
           class="transition-all"
-          :class="{ 'cursor-grab': pressSpace }"
-          :draggable="pressSpace"
-          @dragstart="handleElementDragStart"
-          @dragend="handleElementDragEnd"
-          @drag="handleElementDrag"
         >
           <div :class="{ 'pointer-events-none': pressSpace }">
             <slot />
@@ -25,16 +25,36 @@
         </div>
       </div>
     </div>
+    <!-- 工具栏 start -->
     <div
-      class="h-30px flex items-center justify-end bg-gray-100 border-l-3 border-r-3 border-t-0 border-b-0 border-white border-solid"
+      class="h-48px px-24px rounded-full flex items-center justify-end bg-white text-gray-500 shadow-xl absolute bottom-6 right-8"
     >
       <div
-        class="mr-4"
+        title="导出"
+        class="pr-16px cursor-pointer"
+      >
+        <span class="icon iconfont">&#xe60b;</span>
+      </div>
+      <div
+        title="导入"
+        class="pr-16px cursor-pointer"
+      >
+        <span class="icon iconfont">&#xe60c;</span>
+      </div>
+      <div
+        title="编辑事件"
+        class="pr-16px cursor-pointer"
+      >
+        <span class="icon iconfont">&#xe612;</span>
+      </div>
+      <div
+        class="w-40px cursor-pointer"
         @click="handleClick"
       >
         {{ (canvasScale * 100).toFixed(0) }}%
       </div>
     </div>
+    <!-- 工具栏 end -->
   </div>
 </template>
 <script lang="ts" setup>
