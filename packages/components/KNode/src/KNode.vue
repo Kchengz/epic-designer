@@ -1,6 +1,7 @@
 <template>
   <FormItem
-    v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show"
+    v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component"
+    v-show="show"
     ref="formItemRef"
     v-bind="getFormItemProps"
   >
@@ -26,7 +27,8 @@
   <!-- 无需FormItem start -->
   <component
     :is="component"
-    v-else-if="component && show"
+    v-else-if="component"
+    v-show="show"
     ref="componentInstance"
     v-instance
     :model="formData"
