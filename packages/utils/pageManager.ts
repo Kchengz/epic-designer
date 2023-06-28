@@ -12,7 +12,7 @@ export interface PageManager {
   addComponentInstance: (id: string, instance: ComponentPublicInstance) => void
   removeComponentInstance: (id: string) => void
   setMethods: (scriptStr: string) => void
-  doActions: (actions: ActionModel[]) => void
+  doActions: (actions: ActionModel[], ...args: any) => void
 }
 
 export function usePageManager (): PageManager {
@@ -80,7 +80,7 @@ export function usePageManager (): PageManager {
    * 执行一组操作
    * @param actions 操作数组
    */
-  function doActions (actions: ActionModel[]): void {
+  function doActions (actions: ActionModel[], ...args: any): void {
     actions?.forEach((action) => {
       const component =
         action.componentId != null &&
@@ -90,11 +90,12 @@ export function usePageManager (): PageManager {
         Boolean(component) &&
         typeof component[action.methodName] === 'function'
       ) {
-        component[action.methodName](action.args)
+        // component[action.methodName](action.args, ...args)
+        component[action.methodName](...args)
         return
       }
 
-      funcs.value[action.methodName]?.(action.args)
+      funcs.value[action.methodName]?.(...args)
       // pluginManager.publicMethods[action.methodName]?.method(action.args);
     })
   }
