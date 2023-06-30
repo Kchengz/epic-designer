@@ -1,14 +1,25 @@
 import { type ComponentConfigModel } from '../../../utils/pluginManager'
+import KSelect from './select'
 export default {
-  component: async () => await import('../src/KUploadFile'),
+  component: KSelect,
   defaultSchema: {
-    label: '上传文件',
-    type: 'upload-file',
-    icon: 'icon-number',
-    field: 'uploadFile',
+    label: '选择框',
+    type: 'select',
+    icon: 'icon-xiala',
+    field: 'select',
     input: true,
     componentProps: {
-      action: 'http://cdn.kcz66.com/upload-img.txt'
+      options: [
+        {
+          label: '选项1',
+          value: '选项1'
+        },
+        {
+          label: '选项2',
+          value: '选项2'
+        }
+      ],
+      placeholder: '请选择'
     }
   },
   config: {
@@ -22,6 +33,21 @@ export default {
         label: '文字',
         type: 'input',
         field: 'label'
+      },
+      {
+        label: '默认值',
+        type: 'select',
+        field: 'componentProps.defaultValue'
+      },
+      {
+        label: '占位内容',
+        type: 'input',
+        field: 'componentProps.placeholder'
+      },
+      {
+        label: '可清空',
+        type: 'switch',
+        field: 'componentProps.clearable'
       },
       {
         label: '隐藏',
@@ -41,6 +67,5 @@ export default {
         describe: '校验规则需要配合表单使用'
       }
     ]
-  },
-  bindModel: 'modelValue'
+  }
 } as ComponentConfigModel

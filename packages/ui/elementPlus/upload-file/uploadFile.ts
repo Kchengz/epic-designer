@@ -1,11 +1,11 @@
 import { type ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: async () => await import('../src/KUploadImage'),
+  component: async () => await import('./uploadFile'),
   defaultSchema: {
-    label: '上传图片',
-    type: 'upload-image',
+    label: '上传文件',
+    type: 'upload-file',
     icon: 'icon-number',
-    field: 'uploadImage',
+    field: 'uploadFile',
     input: true,
     componentProps: {
       action: 'http://cdn.kcz66.com/upload-img.txt'

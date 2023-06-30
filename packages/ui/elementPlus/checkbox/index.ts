@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: async () => await import('../src/KCheckbox'),
+  component: async () => await import('./checkbox'),
   defaultSchema: {
     label: '复选框',
     type: 'checkbox',

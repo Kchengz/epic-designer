@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: async () => await import('../src/KRow'),
+  component: async () => await import('./row'),
   defaultSchema: {
     label: '栅格布局',
     type: 'row',

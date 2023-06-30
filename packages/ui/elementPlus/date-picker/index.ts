@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: async () => await import('../src/KDatePicker'),
+  component: async () => await import('./datePicker'),
   defaultSchema: {
     label: '日期选择器',
     type: 'date',

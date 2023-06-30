@@ -1,27 +1,27 @@
 // 注册element-plus ui
 import { type PluginManager } from '../../utils/pluginManager'
-import Input from './config/input'
-import InputNumber from './config/input-number'
-import Form from './config/form'
-import FormItem from './config/formItem'
-import Button from './config/button'
-import Card from './config/card'
-import Row from './config/row'
-import Col from './config/col'
-import Select from './config/select'
-import Radio from './config/radio'
-import Checkbox from './config/checkbox'
-import Slider from './config/slider'
-import ColorPicker from './config/color-picker'
-import Switch from './config/switch'
-import Cascader from './config/cascader'
-import Tabs from './config/tabs'
-import TabPane from './config/tabPane'
-import Collapse from './config/collapse'
-import CollapseItem from './config/collapse-item'
-import DatePicker from './config/datePicker'
-import UploadFile from './config/uploadFile'
-import UploadImage from './config/uploadImage'
+import Input from './input'
+import InputNumber from './input-number'
+import Form from './form'
+import FormItem from './formItem'
+import Button from './button'
+import Card from './card'
+import Row from './row'
+import Col from './col'
+import Select from './select'
+import Radio from './radio'
+import Checkbox from './checkbox'
+import Slider from './slider'
+import ColorPicker from './color-picker'
+import Switch from './switch'
+import Cascader from './cascader'
+import Tabs from './tabs'
+import TabPane from './tab-pane'
+import Collapse from './collapse'
+import CollapseItem from './collapse-item'
+import DatePicker from './date-picker'
+import UploadFile from './upload-file'
+import UploadImage from './upload-image'
 import {
   ElDialog,
   ElFormItem,
@@ -32,7 +32,7 @@ import {
 } from 'element-plus'
 
 // 组件样式调整
-import './src/index.less'
+import './index.less'
 export function setupElementPlus (pluginManager: PluginManager): void {
   // 异步加载组件
 

@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: async () => await import('../src/KTabPane'),
+  component: async () => await import('./tabPane'),
   defaultSchema: {
     label: '标签内容',
     type: 'tab-pane',

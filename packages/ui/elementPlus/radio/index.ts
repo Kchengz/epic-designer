@@ -1,12 +1,11 @@
 import { type ComponentConfigModel } from '../../../utils/pluginManager'
-import KSelect from '../src/KSelect'
 export default {
-  component: KSelect,
+  component: async () => await import('./radio'),
   defaultSchema: {
-    label: '选择框',
-    type: 'select',
-    icon: 'icon-xiala',
-    field: 'select',
+    label: '单选框',
+    type: 'radio',
+    icon: 'icon-danxuan-cuxiantiao',
+    field: 'radio',
     input: true,
     componentProps: {
       options: [
@@ -18,8 +17,7 @@ export default {
           label: '选项2',
           value: '选项2'
         }
-      ],
-      placeholder: '请选择'
+      ]
     }
   },
   config: {
@@ -30,24 +28,14 @@ export default {
         field: 'field'
       },
       {
-        label: '文字',
-        type: 'input',
-        field: 'label'
-      },
-      {
         label: '默认值',
-        type: 'select',
+        type: 'radio',
         field: 'componentProps.defaultValue'
       },
       {
-        label: '占位内容',
+        label: '文字',
         type: 'input',
-        field: 'componentProps.placeholder'
-      },
-      {
-        label: '可清空',
-        type: 'switch',
-        field: 'componentProps.clearable'
+        field: 'label'
       },
       {
         label: '隐藏',
@@ -65,6 +53,12 @@ export default {
         layout: 'vertical',
         field: 'rules',
         describe: '校验规则需要配合表单使用'
+      }
+    ],
+    event: [
+      {
+        type: 'change',
+        describe: '值变化时'
       }
     ]
   }

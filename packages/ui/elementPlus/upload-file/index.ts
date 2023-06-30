@@ -1,23 +1,14 @@
 import { type ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: async () => await import('../src/KRadio'),
+  component: async () => await import('./uploadFile'),
   defaultSchema: {
-    label: '单选框',
-    type: 'radio',
-    icon: 'icon-danxuan-cuxiantiao',
-    field: 'radio',
+    label: '上传文件',
+    type: 'upload-file',
+    icon: 'icon-number',
+    field: 'uploadFile',
     input: true,
     componentProps: {
-      options: [
-        {
-          label: '选项1',
-          value: '选项1'
-        },
-        {
-          label: '选项2',
-          value: '选项2'
-        }
-      ]
+      action: 'http://cdn.kcz66.com/upload-img.txt'
     }
   },
   config: {
@@ -26,11 +17,6 @@ export default {
         label: '字段名',
         type: 'input',
         field: 'field'
-      },
-      {
-        label: '默认值',
-        type: 'radio',
-        field: 'componentProps.defaultValue'
       },
       {
         label: '文字',
@@ -54,12 +40,7 @@ export default {
         field: 'rules',
         describe: '校验规则需要配合表单使用'
       }
-    ],
-    event: [
-      {
-        type: 'change',
-        describe: '值变化时'
-      }
     ]
-  }
+  },
+  bindModel: 'modelValue'
 } as ComponentConfigModel

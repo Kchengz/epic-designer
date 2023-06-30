@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '../../../utils/pluginManager'
 export default {
-  component: async () => await import('../src/KCollapseItem'),
+  component: async () => await import('./collapseItem'),
   defaultSchema: {
     label: '折叠项',
     type: 'collapse-item',
