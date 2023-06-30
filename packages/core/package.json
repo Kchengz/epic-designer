@@ -1,0 +1,68 @@
+{
+  "name": "@k-designer/core",
+  "private": false,
+  "version": "0.0.42",
+  "type": "module",
+  "main": "dist/k-designer.js",
+  "module": "dist/k-designer.js",
+  "typings": "dist/index.d.ts",
+  "description": "基于vue3的设计器,可视化开发页面表单",
+  "author": "kchengz",
+  "keywords": [
+    "form",
+    "k-designer",
+    "设计器",
+    "页面设计",
+    "低代码",
+    "可视化",
+    "工作流"
+  ],
+  "bugs": {
+    "url": "https://github.com/Kchengz/k-designer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kchengz/k-designer"
+  },
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vue-tsc --noEmit && node --max_old_space_size=1024000 ./node_modules/vite/bin/vite.js build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "lint": "eslint . --fix --ext .js,.jsx,.json,.ts,.tsx,.vue"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.34.1",
+    "vuedraggable": "4.1.0"
+  },
+  "devDependencies": {
+    "@algolia/client-search": "^4.17.2",
+    "@babel/core": "^7.22.5",
+    "@babel/eslint-parser": "^7.22.5",
+    "@babel/plugin-transform-typescript": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@types/node": "^18.16.17",
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "@typescript-eslint/parser": "^5.59.9",
+    "@vitejs/plugin-vue": "^3.2.0",
+    "@vue/test-utils": "2.0.0-rc.18",
+    "ant-design-vue": "^3.2.20",
+    "element-plus": "^2.3.6",
+    "naive-ui": "^2.34.4",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.14.1",
+    "jsdom": "^20.0.3",
+    "unocss": "^0.51.13",
+    "vite-plugin-dts": "^1.7.3",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vite-plugin-vue-setup-extend": "^0.4.0",
+    "vitest": "^0.24.5",
+    "vue-eslint-parser": "^9.3.1",
+    "vue-tsc": "^0.40.13"
+  }
+}
