@@ -4,6 +4,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "dependencies": {
@@ -29,6 +32,7 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "vite-plugin-dts": "^1.7.3",
     "vue-tsc": "^0.40.13",
+    "vitepress": "1.0.0-alpha.28",
     "turbo": "latest"
   },
   "packageManager": "pnpm@7.15.0",
