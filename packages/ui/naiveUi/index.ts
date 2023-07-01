@@ -23,8 +23,7 @@ import DatePicker from './config/datePicker'
 import { NTabPane } from 'naive-ui'
 import UploadFile from './config/uploadFile'
 import UploadImage from './config/uploadImage'
-// 组件样式调整
-import './src/index.less'
+
 export function setupNaiveUi (pluginManager: PluginManager): void {
   // 异步加载组件
   // eslint-disable-next-line vue/multi-word-component-names

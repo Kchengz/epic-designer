@@ -31,8 +31,6 @@ import {
   ElCollapseItem
 } from 'element-plus'
 
-// 组件样式调整
-import './index.less'
 export function setupElementPlus (pluginManager: PluginManager): void {
   // 异步加载组件
 

@@ -28,7 +28,6 @@
     "ant-design-vue": "^3.2.20",
     "element-plus": "^2.3.6",
     "naive-ui": "^2.34.4",
-    "unocss": "^0.51.13",
     "@vitejs/plugin-vue": "^3.2.0",
     "vite-plugin-dts": "^1.7.3",
     "vue-tsc": "^0.40.13",

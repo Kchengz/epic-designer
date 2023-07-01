@@ -23,8 +23,6 @@ import FormItem from './config/formItem'
 import Button from './config/button'
 import colorPicker from './config/color-picker'
 
-// 兼容性样式
-import './src/index.less'
 
 export function setupAntd (pluginManager: PluginManager): void {
   // 异步加载组件
