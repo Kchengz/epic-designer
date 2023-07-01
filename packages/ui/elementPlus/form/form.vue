@@ -23,7 +23,7 @@
 <script lang="ts" setup>
 import { ref, Ref, PropType, computed, inject, useAttrs, onMounted } from 'vue'
 import { ElForm } from 'element-plus'
-import { NodeItem } from '@k-designer/core/packages/types/kDesigner'
+import type { NodeItem } from '@k-designer/core/packages/types/kDesigner'
 const attrs = useAttrs()
 const form = ref<InstanceType<typeof ElForm> | null>(null)
 const forms = inject('forms', {}) as Ref<{ [name: string]: InstanceType<typeof ElForm> }>

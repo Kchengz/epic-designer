@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     vue(),
     dts({
-      outputDir: "dist",
+  
     }),
   ],
   resolve: {
