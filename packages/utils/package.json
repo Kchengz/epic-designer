@@ -5,7 +5,7 @@
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build"
+    "build": "vite build && vue-tsc"
   },
   "author": "kchengz"
 }

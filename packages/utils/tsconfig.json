@@ -12,15 +12,11 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "strictNullChecks": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "dist", // 声明文件生成的目录
     "skipLibCheck": true
   },
-  "include": [
-    "packages/**/*",
-    "examples/**/*",
-    "tests/**/*",
-    "*.ts",
-    "*.json",
-    "*.cjs"
-  ],
-  "exclude": ["node_modules"]
+  "include": ["./**/*", "*.ts", "*.json", "*.cjs"],
+  "exclude": ["node_modules", "dist", "vite.config.ts"]
 }
