@@ -40,7 +40,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { pluginManager, deepClone } from '../../../index'
+import { pluginManager, deepClone } from '@k-designer/utils'
 import { ref, watch, PropType } from 'vue'
 import { FormItemRule } from './types'
 import KRuleItem from './KRuleItem.vue'

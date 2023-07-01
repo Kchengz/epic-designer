@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { provide, reactive, toRaw, watch, nextTick } from 'vue'
 import { DesignerState, NodeItem, FormDataModel, PageSchema } from '../../../types/kDesigner'
-import { getMatchedById, loadAsyncComponent, revoke, usePageManager, deepCompareAndModify, deepClone } from '../../../utils/index'
+import { getMatchedById, loadAsyncComponent, revoke, usePageManager, deepCompareAndModify, deepClone } from '@k-designer/utils'
 
 const KHeader = loadAsyncComponent(() => import('./modules/KHeader/KHeader.vue'))
 const KActionBar = loadAsyncComponent(() => import('./modules/KActionBar/KActionBar.vue'))

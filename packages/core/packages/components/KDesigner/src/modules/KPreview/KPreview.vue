@@ -31,7 +31,7 @@
 </template>
 <script lang="ts" setup>
 import KBuilder from '../../../../KBuilder'
-import { pluginManager, getUUID } from '../../../../../utils'
+import { pluginManager, getUUID } from '@k-designer/utils'
 import { ref, inject } from 'vue'
 import { PageSchema } from '../../../../../types/kDesigner'
 

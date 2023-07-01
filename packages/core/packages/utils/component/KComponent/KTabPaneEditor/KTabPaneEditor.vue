@@ -26,7 +26,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { pluginManager, getUUID } from '../../../index'
+import { pluginManager, getUUID } from '@k-designer/utils'
 import { NodeItem } from '../../../../types/kDesigner'
 import { computed, PropType } from 'vue'
 

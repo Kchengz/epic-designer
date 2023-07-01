@@ -25,7 +25,7 @@
 import KTree from '../../../../KTree'
 import { inject, computed } from 'vue'
 import { PageSchema, Designer } from '../../../../../types/kDesigner'
-import { pluginManager } from '../../../../../utils/index'
+import { pluginManager } from '@k-designer/utils'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
 

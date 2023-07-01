@@ -82,7 +82,7 @@
   </Modal>
 </template>
 <script lang="ts" setup>
-import { pluginManager, PageManager, deepClone } from '../../../../index'
+import { pluginManager, PageManager, deepClone } from '@k-designer/utils'
 import { ref, inject, toRaw, reactive, computed, nextTick } from 'vue'
 import KTree from '../../../../../components/KTree'
 import KScriptEdit from './KScriptEdit.vue'

@@ -29,7 +29,7 @@
   </Input>
 </template>
 <script lang="ts" setup>
-import { pluginManager } from '../../../index'
+import { pluginManager } from '@k-designer/utils'
 import { ref, watch } from 'vue'
 const Input = pluginManager.getComponent('input')
 const Select = pluginManager.getComponent('select')

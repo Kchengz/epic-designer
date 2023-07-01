@@ -36,7 +36,7 @@
 <script lang="ts" setup>
 import { FormItemRule } from './types'
 import { computed, inject } from 'vue'
-import { PageManager } from '../../../index'
+import { PageManager } from '@k-designer/utils'
 import KNode from '../../../../components/KNode/index'
 const emit = defineEmits(['change', 'delete'])
 

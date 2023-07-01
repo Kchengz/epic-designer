@@ -60,7 +60,7 @@
 <script lang="ts" setup>
 import { watchOnce, useElementSize, useResizeObserver } from '@vueuse/core'
 import type { NodeItem } from '../../../../../types/kDesigner'
-import { useShareKeyPress, useElementDrag, useElementZoom } from '../../../../../utils/index'
+import { useShareKeyPress, useElementDrag, useElementZoom } from '@k-designer/utils'
 import { ref, nextTick, watch, computed, onMounted } from 'vue'
 
 const props = defineProps<{

@@ -29,7 +29,7 @@
 <script lang="ts" setup>
 import { PropType, computed, ref, watch } from 'vue'
 import KActionEditorItem from './src/KActionEditorItem.vue'
-import { pluginManager } from '../../../index'
+import { pluginManager } from '@k-designer/utils'
 import KActionModal from './src/KActionModal.vue'
 const Collapse = pluginManager.getComponent('Collapse')
 const CollapseItem = pluginManager.getComponent('CollapseItem')

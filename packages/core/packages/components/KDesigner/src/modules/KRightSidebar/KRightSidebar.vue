@@ -24,8 +24,8 @@
 </template>
 <script lang="ts" setup>
 import { ref, shallowRef } from 'vue'
-import { pluginManager } from '../../../../../utils/index'
-import { RightSidebarModel } from '../../../../../utils/pluginManager'
+import { pluginManager } from '@k-designer/utils'
+import { RightSidebarModel } from '@k-designer/utils/pluginManager'
 
 const rightSidebars = pluginManager.getRightSidebars()
 const actionBarCheckedIndex = ref<number | null>(0)

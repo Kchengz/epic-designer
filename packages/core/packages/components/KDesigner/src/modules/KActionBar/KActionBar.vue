@@ -27,8 +27,8 @@
 </template>
 <script lang="ts" setup>
 import { ref, shallowRef } from 'vue'
-import { pluginManager } from '../../../../../utils/index'
-import { ActivitybarModel } from '../../../../../utils/pluginManager'
+import { pluginManager } from '@k-designer/utils'
+import { ActivitybarModel } from '@k-designer/utils/pluginManager'
 
 const activitybars = pluginManager.getActivitybars()
 const actionBarCheckedIndex = ref<number | null>(0)

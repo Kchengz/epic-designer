@@ -10,7 +10,9 @@
           <template #tree-node="{ record }">
             <div class="tree-node-item">
               <span>
-                {{ record.label ?? pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}<span class="k-node-type-text">
+                {{ record.label ?? pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}<span
+                  class="k-node-type-text"
+                >
                   {{ record.type }}
                 </span>
               </span>
@@ -48,7 +50,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { pluginManager, PageManager } from '../../../../index'
+import { pluginManager, PageManager } from '@k-designer/utils'
 import { ref, inject, computed } from 'vue'
 import KTree from '../../../../../components/KTree'
 import { NodeItem, PageSchema } from '../../../../../types/kDesigner'

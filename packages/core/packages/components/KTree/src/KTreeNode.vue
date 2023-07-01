@@ -28,7 +28,7 @@
 import { NodeItem } from '../../../types/kDesigner'
 import type { PropType } from 'vue'
 import { inject, computed, Ref, h, defineComponent, Slots } from 'vue'
-import { pluginManager } from '../../../utils/index'
+import { pluginManager } from '@k-designer/utils'
 const slots = inject('slots', {}) as Slots
 
 const expandedKeys = inject('expandedKeys') as Ref<string[]>

@@ -43,16 +43,17 @@ export default defineConfig({
     outDir: 'dist', // 输出文件名称
     lib: {
       entry: {
-        index: path.resolve(__dirname, './packages/index.ts'),
-        antd: path.resolve(__dirname, './packages/ui/antd/index.ts'),
-        elementPlus: path.resolve(
-          __dirname,
-          './packages/ui/elementPlus/index.ts'
-        ),
-        naiveUi: path.resolve(__dirname, './packages/ui/naiveUi/index.ts')
-      }, // 指定组件编译入口文件
+        index: path.resolve(__dirname, './packages/index.ts')
+        // antd: path.resolve(__dirname, './packages/ui/antd/index.ts'),
+        // elementPlus: path.resolve(
+        //   __dirname,
+        //   './packages/ui/elementPlus/index.ts'
+        // ),
+        // naiveUi: path.resolve(__dirname, './packages/ui/naiveUi/index.ts')
+      },
+      // 指定组件编译入口文件
       name: 'k-designer', // formats: ["es"],
-      fileName: (ModuleFormat, entryName, ...arg) => {
+      fileName: (ModuleFormat, entryName) => {
         const extension = ModuleFormat === 'es' ? 'js' : ModuleFormat
         // 区分默认入口文件和UI注册文件
         const isIndexEntry = entryName === 'index'

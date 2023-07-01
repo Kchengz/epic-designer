@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { deepCompareAndModify } from '../../packages/utils'
+import { deepCompareAndModify } from '@k-designer/utils'
 
 describe('utils.ts', () => {
   it('深度赋值对象 -> deepCompareAndModify', () => {

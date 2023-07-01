@@ -47,7 +47,7 @@
 <script lang="ts" setup>
 import KPreview from '../KPreview/KPreview.vue'
 import { ref, inject } from 'vue'
-import { pluginManager, revoke, deepCompareAndModify } from '../../../../../utils/index'
+import { pluginManager, revoke, deepCompareAndModify } from '@k-designer/utils'
 import { PageSchema, Designer } from '../../../../../types/kDesigner'
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer

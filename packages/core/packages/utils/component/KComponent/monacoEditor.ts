@@ -1,4 +1,4 @@
-import { type ComponentConfigModel } from '../../pluginManager'
+import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
   component: async () => await import('./MonacoEditor/monacoEditor.vue'),
   defaultSchema: {

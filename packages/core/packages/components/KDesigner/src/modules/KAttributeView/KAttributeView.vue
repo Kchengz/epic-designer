@@ -29,7 +29,7 @@
 <script lang="ts" setup>
 import KNode from '../../../../KNode/index'
 import { Designer, NodeItem, PageSchema, FormDataModel } from '../../../../../types/kDesigner'
-import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '../../../../../utils/index'
+import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '@k-designer/utils'
 import { inject, computed, Ref, reactive, provide } from 'vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema

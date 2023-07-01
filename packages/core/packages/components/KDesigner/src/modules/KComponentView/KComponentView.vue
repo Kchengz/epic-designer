@@ -42,7 +42,7 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { ref, toRaw, inject } from 'vue'
-import { getUUID, deepClone, findSchemaById, pluginManager, revoke } from '../../../../../utils/index'
+import { getUUID, deepClone, findSchemaById, pluginManager, revoke } from '@k-designer/utils'
 import { NodeItem, PageSchema, Designer } from '../../../../../types/kDesigner'
 const Collapse = pluginManager.getComponent('Collapse')
 const CollapseItem = pluginManager.getComponent('CollapseItem')

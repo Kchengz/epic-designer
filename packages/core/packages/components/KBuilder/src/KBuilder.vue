@@ -22,7 +22,7 @@
 import KNode from '../../KNode/'
 import { reactive, provide, ref, watch, useSlots, nextTick } from 'vue'
 import { PageSchema, FormDataModel } from '../../../types/kDesigner'
-import { loadAsyncComponent, deepCompareAndModify, usePageManager } from '../../../utils/index'
+import { loadAsyncComponent, deepCompareAndModify, usePageManager } from '@k-designer/utils'
 const KAsyncLoader = loadAsyncComponent(() => import('../../KAsyncLoader/KAsyncLoader.vue'))
 const pageManager = usePageManager()
 const emit = defineEmits(['ready'])

@@ -31,7 +31,7 @@
 <script lang="ts" setup>
 import { inject } from 'vue'
 import { Designer, NodeItem } from '../../../../../types/kDesigner'
-import { pluginManager } from '../../../../../utils/index'
+import { pluginManager } from '@k-designer/utils'
 const designer = inject('designer') as Designer
 /**
  * 选中点击节点元素

@@ -10,7 +10,7 @@
 </template>
 <script lang="ts" setup>
 import { inject, ref, toRaw, watch } from 'vue'
-import { pluginManager, deepEqual, deepCompareAndModify } from '../../../../../utils/index'
+import { pluginManager, deepEqual, deepCompareAndModify } from '@k-designer/utils'
 import { Designer } from '../../../../../types/kDesigner'
 
 const MonacoEditor = pluginManager.getComponent('monacoEditor')

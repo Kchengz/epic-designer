@@ -41,7 +41,7 @@
 </template>
 <script lang="ts" setup>
 import { PropType, inject } from 'vue'
-import { findSchemaById } from '../../../../index'
+import { findSchemaById } from '@k-designer/utils'
 import { PageSchema } from '../../../../../types/kDesigner'
 
 const props = defineProps({
