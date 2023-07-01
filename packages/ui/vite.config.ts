@@ -12,7 +12,6 @@ export default defineConfig({
       },
     }),
     dts({
-      entryRoot: "./",
       outputDir: "dist",
     }),
   ],
@@ -25,7 +24,7 @@ export default defineConfig({
     lib: {
       entry: {
         index: path.resolve(__dirname, "./index.ts"),
-      }, // 指定组件编译入口文件
+      },
       name: "index",
     },
     // 库编译模式配置
