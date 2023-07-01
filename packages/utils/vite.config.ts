@@ -4,13 +4,7 @@ import path from "path";
 import dts from "vite-plugin-dts";
 export default defineConfig({
   plugins: [
-    vue({
-      script: {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        defineModel: true,
-      },
-    }),
+    vue(),
     dts({
       outputDir: "dist",
     }),
