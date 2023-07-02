@@ -1,13 +1,10 @@
 <template>
   <!-- <button @click="handleGet">获取值</button> -->
   <!-- <button @click="handleReset">重置操作</button> -->
-  <KDesigner
-    ref="designerRef"
-    @save="handleSubmit"
-  />
+  <KDesigner ref="designerRef" @save="handleSubmit" />
 </template>
 <script lang="ts" setup>
-import { KDesigner } from '@k-designer/core'
+import { KDesigner, type PageSchema } from '@k-designer/core/packages/index'
 import { ref } from 'vue'
 const designerRef = ref<typeof KDesigner>()
 // function handleGet () {
@@ -24,7 +21,7 @@ const designerRef = ref<typeof KDesigner>()
  * 点击保存按钮操作
  * @param e
  */
-function handleSubmit (e) {
+function handleSubmit(e: PageSchema) {
   console.log(e)
 }
 </script>
