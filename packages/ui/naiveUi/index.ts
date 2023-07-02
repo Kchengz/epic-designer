@@ -31,6 +31,7 @@ export function setupNaiveUi (pluginManager: PluginManager): void {
     'Modal',
     async () => (await import('naive-ui/lib/modal')).NModal
   )
+  
   pluginManager.component(
     'FormItem',
     async () => (await import('naive-ui/lib/form')).NFormItem

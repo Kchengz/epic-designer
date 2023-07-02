@@ -4,8 +4,9 @@
   "description": "k-designer utils",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "vite build && vue-tsc"
+    "build": "vue-tsc --noEmit && vite build"
   },
   "author": "kchengz"
 }

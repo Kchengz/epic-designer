@@ -12,7 +12,7 @@ export default defineConfig({
       },
     }),
     dts({
-      outputDir: "dist",
+      outDir: "dist"
     }),
   ],
   resolve: {
