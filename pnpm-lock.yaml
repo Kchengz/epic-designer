@@ -26,7 +26,7 @@ importers:
         version: link:packages/utils
       '@turbo/gen':
         specifier: ^1.10.6
-        version: registry.npmmirror.com/@turbo/gen@1.10.6(@types/node@20.3.3)(typescript@5.1.6)
+        version: registry.npmmirror.com/@turbo/gen@1.10.6(@types/node@18.16.17)(typescript@5.1.6)
       '@vitejs/plugin-vue':
         specifier: ^3.2.0
         version: registry.npmmirror.com/@vitejs/plugin-vue@3.2.0(vite@3.2.7)(vue@3.3.4)
@@ -59,13 +59,13 @@ importers:
         version: registry.npmmirror.com/typescript@5.1.6
       vite:
         specifier: ^3.2.7
-        version: registry.npmmirror.com/vite@3.2.7(@types/node@20.3.3)(less@4.1.3)
+        version: registry.npmmirror.com/vite@3.2.7(@types/node@18.16.17)(less@4.1.3)
       vite-plugin-dts:
         specifier: ^3.0.2
-        version: registry.npmmirror.com/vite-plugin-dts@3.0.2(@types/node@20.3.3)(less@4.1.3)(typescript@5.1.6)
+        version: registry.npmmirror.com/vite-plugin-dts@3.0.2(@types/node@18.16.17)(less@4.1.3)(typescript@5.1.6)
       vitepress:
         specifier: 1.0.0-alpha.28
-        version: registry.npmmirror.com/vitepress@1.0.0-alpha.28(@algolia/client-search@4.18.0)(@types/node@20.3.3)(less@4.1.3)(search-insights@2.6.0)
+        version: registry.npmmirror.com/vitepress@1.0.0-alpha.28(@algolia/client-search@4.18.0)(@types/node@18.16.17)(less@4.1.3)(search-insights@2.6.0)
       vue:
         specifier: ^3.3.4
         version: registry.npmmirror.com/vue@3.3.4
@@ -74,6 +74,28 @@ importers:
         version: registry.npmmirror.com/vue-tsc@0.40.13(typescript@5.1.6)
 
   docs: {}
+
+  examples:
+    dependencies:
+      vue:
+        specifier: ^3.2.47
+        version: registry.npmmirror.com/vue@3.3.4
+    devDependencies:
+      '@vitejs/plugin-vue':
+        specifier: ^4.1.0
+        version: registry.npmmirror.com/@vitejs/plugin-vue@4.1.0(vite@4.3.9)(vue@3.3.4)
+      typescript:
+        specifier: ^5.0.2
+        version: registry.npmmirror.com/typescript@5.1.6
+      unocss:
+        specifier: ^0.51.13
+        version: registry.npmmirror.com/unocss@0.51.13(postcss@8.4.24)(vite@4.3.9)
+      vite:
+        specifier: ^4.3.9
+        version: registry.npmmirror.com/vite@4.3.9(@types/node@18.16.17)(less@4.1.3)
+      vue-tsc:
+        specifier: ^1.4.2
+        version: registry.npmmirror.com/vue-tsc@1.8.3(typescript@5.1.6)
 
   packages/core:
     dependencies:
@@ -3133,7 +3155,7 @@ packages:
     version: 3.4.0
     dev: true
 
-  registry.npmmirror.com/@microsoft/api-extractor-model@7.27.3(@types/node@20.3.3):
+  registry.npmmirror.com/@microsoft/api-extractor-model@7.27.3(@types/node@18.16.17):
     resolution: {integrity: sha512-fSFvw7otYHduOkyshjTbapKKgwF8bgquVHvgF8VgeKtMYvqXkoaj7W6VcM7PNY7E2bbblhUgC4XNdqZLD4SJGw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@microsoft/api-extractor-model/-/api-extractor-model-7.27.3.tgz}
     id: registry.npmmirror.com/@microsoft/api-extractor-model/7.27.3
     name: '@microsoft/api-extractor-model'
@@ -3141,22 +3163,22 @@ packages:
     dependencies:
       '@microsoft/tsdoc': registry.npmmirror.com/@microsoft/tsdoc@0.14.2
       '@microsoft/tsdoc-config': registry.npmmirror.com/@microsoft/tsdoc-config@0.16.2
-      '@rushstack/node-core-library': registry.npmmirror.com/@rushstack/node-core-library@3.59.4(@types/node@20.3.3)
+      '@rushstack/node-core-library': registry.npmmirror.com/@rushstack/node-core-library@3.59.4(@types/node@18.16.17)
     transitivePeerDependencies:
       - '@types/node'
     dev: true
 
-  registry.npmmirror.com/@microsoft/api-extractor@7.36.0(@types/node@20.3.3):
+  registry.npmmirror.com/@microsoft/api-extractor@7.36.0(@types/node@18.16.17):
     resolution: {integrity: sha512-P+kYgJFDXIr+UNzhRMhlpM/dderi6ab4lxn35vdhfAIMPtGCSXIJxrrtpTOQmQW8CZtmoZX06LYoUsKCc1zjow==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@microsoft/api-extractor/-/api-extractor-7.36.0.tgz}
     id: registry.npmmirror.com/@microsoft/api-extractor/7.36.0
     name: '@microsoft/api-extractor'
     version: 7.36.0
     hasBin: true
     dependencies:
-      '@microsoft/api-extractor-model': registry.npmmirror.com/@microsoft/api-extractor-model@7.27.3(@types/node@20.3.3)
+      '@microsoft/api-extractor-model': registry.npmmirror.com/@microsoft/api-extractor-model@7.27.3(@types/node@18.16.17)
       '@microsoft/tsdoc': registry.npmmirror.com/@microsoft/tsdoc@0.14.2
       '@microsoft/tsdoc-config': registry.npmmirror.com/@microsoft/tsdoc-config@0.16.2
-      '@rushstack/node-core-library': registry.npmmirror.com/@rushstack/node-core-library@3.59.4(@types/node@20.3.3)
+      '@rushstack/node-core-library': registry.npmmirror.com/@rushstack/node-core-library@3.59.4(@types/node@18.16.17)
       '@rushstack/rig-package': registry.npmmirror.com/@rushstack/rig-package@0.4.0
       '@rushstack/ts-command-line': registry.npmmirror.com/@rushstack/ts-command-line@4.15.1
       colors: registry.npmmirror.com/colors@1.2.5
@@ -3252,7 +3274,7 @@ packages:
       rollup: registry.npmmirror.com/rollup@3.26.0
     dev: true
 
-  registry.npmmirror.com/@rushstack/node-core-library@3.59.4(@types/node@20.3.3):
+  registry.npmmirror.com/@rushstack/node-core-library@3.59.4(@types/node@18.16.17):
     resolution: {integrity: sha512-YAKJDC6Mz/KA1D7bvB88WaRX3knt/ZuLzkRu5G9QADGSjLtvTWzCNCytRF2PCSaaHOZaZsWul4F1KQdgFgUDqA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@rushstack/node-core-library/-/node-core-library-3.59.4.tgz}
     id: registry.npmmirror.com/@rushstack/node-core-library/3.59.4
     name: '@rushstack/node-core-library'
@@ -3263,7 +3285,7 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@types/node': registry.npmmirror.com/@types/node@20.3.3
+      '@types/node': registry.npmmirror.com/@types/node@18.16.17
       colors: registry.npmmirror.com/colors@1.2.5
       fs-extra: registry.npmmirror.com/fs-extra@7.0.1
       import-lazy: registry.npmmirror.com/import-lazy@4.0.0
@@ -3346,7 +3368,7 @@ packages:
     version: 1.0.4
     dev: true
 
-  registry.npmmirror.com/@turbo/gen@1.10.6(@types/node@20.3.3)(typescript@5.1.6):
+  registry.npmmirror.com/@turbo/gen@1.10.6(@types/node@18.16.17)(typescript@5.1.6):
     resolution: {integrity: sha512-sZWqL7VVBaLz4iFdMUpGg0n8agl7aLauGAVsrwC/0EQSmCh4tHzNeJQA4GSOjMwDBpa2ZO46/8KKdl2m0zDFRA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@turbo/gen/-/gen-1.10.6.tgz}
     id: registry.npmmirror.com/@turbo/gen/1.10.6
     name: '@turbo/gen'
@@ -3360,7 +3382,7 @@ packages:
       minimatch: registry.npmmirror.com/minimatch@9.0.2
       node-plop: registry.npmmirror.com/node-plop@0.26.3
       semver: registry.npmmirror.com/semver@7.5.3
-      ts-node: registry.npmmirror.com/ts-node@10.9.1(@types/node@20.3.3)(typescript@5.1.6)
+      ts-node: registry.npmmirror.com/ts-node@10.9.1(@types/node@18.16.17)(typescript@5.1.6)
       update-check: registry.npmmirror.com/update-check@1.5.4
       validate-npm-package-name: registry.npmmirror.com/validate-npm-package-name@5.0.0
     transitivePeerDependencies:
@@ -3637,7 +3659,7 @@ packages:
       '@typescript-eslint/typescript-estree': registry.npmmirror.com/@typescript-eslint/typescript-estree@5.59.9(typescript@5.1.6)
       eslint: registry.npmmirror.com/eslint@8.44.0
       eslint-scope: registry.npmmirror.com/eslint-scope@5.1.1
-      semver: registry.npmmirror.com/semver@7.5.0
+      semver: registry.npmmirror.com/semver@7.5.3
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -3900,7 +3922,21 @@ packages:
       vite: ^3.0.0
       vue: ^3.2.25
     dependencies:
-      vite: registry.npmmirror.com/vite@3.2.7(@types/node@20.3.3)(less@4.1.3)
+      vite: registry.npmmirror.com/vite@3.2.7(@types/node@18.16.17)(less@4.1.3)
+      vue: registry.npmmirror.com/vue@3.3.4
+    dev: true
+
+  registry.npmmirror.com/@vitejs/plugin-vue@4.1.0(vite@4.3.9)(vue@3.3.4):
+    resolution: {integrity: sha512-++9JOAFdcXI3lyer9UKUV4rfoQ3T1RN8yDqoCLar86s0xQct5yblxAE+yWgRnU5/0FOlVCpTZpYSBV/bGWrSrQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vitejs/plugin-vue/-/plugin-vue-4.1.0.tgz}
+    id: registry.npmmirror.com/@vitejs/plugin-vue/4.1.0
+    name: '@vitejs/plugin-vue'
+    version: 4.1.0
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      vite: ^4.0.0
+      vue: ^3.2.25
+    dependencies:
+      vite: registry.npmmirror.com/vite@4.3.9(@types/node@18.16.17)(less@4.1.3)
       vue: registry.npmmirror.com/vue@3.3.4
     dev: true
 
@@ -4719,7 +4755,7 @@ packages:
     name: builtins
     version: 5.0.1
     dependencies:
-      semver: registry.npmmirror.com/semver@7.5.0
+      semver: registry.npmmirror.com/semver@7.5.3
     dev: true
 
   registry.npmmirror.com/cac@6.7.14:
@@ -9812,7 +9848,7 @@ packages:
     version: 0.3.11
     dev: true
 
-  registry.npmmirror.com/ts-node@10.9.1(@types/node@20.3.3)(typescript@5.1.6):
+  registry.npmmirror.com/ts-node@10.9.1(@types/node@18.16.17)(typescript@5.1.6):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ts-node/-/ts-node-10.9.1.tgz}
     id: registry.npmmirror.com/ts-node/10.9.1
     name: ts-node
@@ -9834,7 +9870,7 @@ packages:
       '@tsconfig/node12': registry.npmmirror.com/@tsconfig/node12@1.0.11
       '@tsconfig/node14': registry.npmmirror.com/@tsconfig/node14@1.0.3
       '@tsconfig/node16': registry.npmmirror.com/@tsconfig/node16@1.0.4
-      '@types/node': registry.npmmirror.com/@types/node@20.3.3
+      '@types/node': registry.npmmirror.com/@types/node@18.16.17
       acorn: registry.npmmirror.com/acorn@8.9.0
       acorn-walk: registry.npmmirror.com/acorn-walk@8.2.0
       arg: registry.npmmirror.com/arg@4.1.3
@@ -10268,7 +10304,7 @@ packages:
       vue: registry.npmmirror.com/vue@3.3.4
     dev: true
 
-  registry.npmmirror.com/vite-plugin-dts@3.0.2(@types/node@20.3.3)(less@4.1.3)(typescript@5.1.6):
+  registry.npmmirror.com/vite-plugin-dts@3.0.2(@types/node@18.16.17)(less@4.1.3)(typescript@5.1.6):
     resolution: {integrity: sha512-NcBOWlP94B79uB8gR2Y3h8Go7nDozqpD8GYkPZ7zTmg4xG8H2H5ituSht8aL4jYMCPwKH0cmqMRtRa2lrsDa9A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-plugin-dts/-/vite-plugin-dts-3.0.2.tgz}
     id: registry.npmmirror.com/vite-plugin-dts/3.0.2
     name: vite-plugin-dts
@@ -10277,9 +10313,9 @@ packages:
     peerDependencies:
       typescript: '*'
     dependencies:
-      '@microsoft/api-extractor': registry.npmmirror.com/@microsoft/api-extractor@7.36.0(@types/node@20.3.3)
+      '@microsoft/api-extractor': registry.npmmirror.com/@microsoft/api-extractor@7.36.0(@types/node@18.16.17)
       '@rollup/pluginutils': registry.npmmirror.com/@rollup/pluginutils@5.0.2(rollup@3.26.0)
-      '@rushstack/node-core-library': registry.npmmirror.com/@rushstack/node-core-library@3.59.4(@types/node@20.3.3)
+      '@rushstack/node-core-library': registry.npmmirror.com/@rushstack/node-core-library@3.59.4(@types/node@18.16.17)
       '@vue/language-core': registry.npmmirror.com/@vue/language-core@1.8.3(typescript@5.1.6)
       debug: registry.npmmirror.com/debug@4.3.4
       kolorist: registry.npmmirror.com/kolorist@1.8.0
@@ -10287,7 +10323,7 @@ packages:
       vue-tsc: registry.npmmirror.com/vue-tsc@1.8.3(typescript@5.1.6)
     optionalDependencies:
       rollup: registry.npmmirror.com/rollup@3.26.0
-      vite: registry.npmmirror.com/vite@3.2.7(@types/node@20.3.3)(less@4.1.3)
+      vite: registry.npmmirror.com/vite@4.3.9(@types/node@18.16.17)(less@4.1.3)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -10386,44 +10422,6 @@ packages:
       fsevents: registry.npmmirror.com/fsevents@2.3.2
     dev: true
 
-  registry.npmmirror.com/vite@3.2.7(@types/node@20.3.3)(less@4.1.3):
-    resolution: {integrity: sha512-29pdXjk49xAP0QBr0xXqu2s5jiQIXNvE/xwd0vUizYT2Hzqe4BksNNoWllFVXJf4eLZ+UlVQmXfB4lWrc+t18g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-3.2.7.tgz}
-    id: registry.npmmirror.com/vite/3.2.7
-    name: vite
-    version: 3.2.7
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      '@types/node': registry.npmmirror.com/@types/node@20.3.3
-      esbuild: registry.npmmirror.com/esbuild@0.15.18
-      less: registry.npmmirror.com/less@4.1.3
-      postcss: registry.npmmirror.com/postcss@8.4.24
-      resolve: registry.npmmirror.com/resolve@1.22.2
-      rollup: registry.npmmirror.com/rollup@2.79.1
-    optionalDependencies:
-      fsevents: registry.npmmirror.com/fsevents@2.3.2
-    dev: true
-
   registry.npmmirror.com/vite@4.3.9(@types/node@18.16.17)(less@4.1.3):
     resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-4.3.9.tgz}
     id: registry.npmmirror.com/vite/4.3.9
@@ -10461,7 +10459,7 @@ packages:
       fsevents: registry.npmmirror.com/fsevents@2.3.2
     dev: true
 
-  registry.npmmirror.com/vitepress@1.0.0-alpha.28(@algolia/client-search@4.18.0)(@types/node@20.3.3)(less@4.1.3)(search-insights@2.6.0):
+  registry.npmmirror.com/vitepress@1.0.0-alpha.28(@algolia/client-search@4.18.0)(@types/node@18.16.17)(less@4.1.3)(search-insights@2.6.0):
     resolution: {integrity: sha512-pvbLssDMgLUN1terajmPlFBxHSDGO4DqwexKbjFyr7LeELerVuwGrG6F2J1hxmwOlbpLd1kHXEDqGm9JX/kTDQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vitepress/-/vitepress-1.0.0-alpha.28.tgz}
     id: registry.npmmirror.com/vitepress/1.0.0-alpha.28
     name: vitepress
@@ -10475,7 +10473,7 @@ packages:
       '@vueuse/core': registry.npmmirror.com/@vueuse/core@9.13.0(vue@3.3.4)
       body-scroll-lock: registry.npmmirror.com/body-scroll-lock@4.0.0-beta.0
       shiki: registry.npmmirror.com/shiki@0.11.1
-      vite: registry.npmmirror.com/vite@3.2.7(@types/node@20.3.3)(less@4.1.3)
+      vite: registry.npmmirror.com/vite@3.2.7(@types/node@18.16.17)(less@4.1.3)
       vue: registry.npmmirror.com/vue@3.3.4
     transitivePeerDependencies:
       - '@algolia/client-search'

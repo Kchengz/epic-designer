@@ -7,7 +7,7 @@
   />
 </template>
 <script lang="ts" setup>
-import { KDesigner } from '../../../packages'
+import { KDesigner } from '@k-designer/core'
 import { ref } from 'vue'
 const designerRef = ref<typeof KDesigner>()
 // function handleGet () {

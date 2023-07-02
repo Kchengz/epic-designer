@@ -1,29 +1,17 @@
 <template>
-  <div
-    class="form-main"
-    style="height: 100%;"
-  >
-    <Form
-      ref="form"
-      :model="attrs.model"
-      v-bind="componentProps"
-      style="height: 100%;"
-      @finish="onFinish"
-    >
+  <div class="form-main" style="height: 100%;">
+    <Form ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%;" @finish="onFinish">
       <slot name="edit-node">
-        <slot
-          v-for="item in children"
-          name="node"
-          :record="item"
-        />
+        <slot v-for="item in children" name="node" :record="item" />
       </slot>
     </Form>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, Ref, PropType, computed, inject, useAttrs, onMounted } from 'vue'
+import { ref, type Ref, type PropType, computed, inject, useAttrs, onMounted } from 'vue'
 import { Form } from 'ant-design-vue'
-import { NodeItem } from '@k-designer/core/packages/types/kDesigner'
+import type { NodeItem } from '@k-designer/core/packages/types/kDesigner'
+
 
 interface KForm extends InstanceType<typeof Form> {
   [attr: string]: any
@@ -67,7 +55,7 @@ const componentProps = computed(() => {
   }
 })
 
-function onFinish (e: any) {
+function onFinish(e: any) {
   console.log(e)
 }
 

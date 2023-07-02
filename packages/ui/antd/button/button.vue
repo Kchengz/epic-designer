@@ -5,7 +5,7 @@
 </template>
 <script lang="ts" setup>
 import { PropType } from 'vue'
-import { NodeItem } from '@k-designer/core/packages/types/kDesigner'
+import type { NodeItem } from '@k-designer/core/packages/types/kDesigner'
 import { loadAsyncComponent } from '@k-designer/utils'
 const Button = loadAsyncComponent(async () => (await import('ant-design-vue/lib/button')).default)
 const props = defineProps({
