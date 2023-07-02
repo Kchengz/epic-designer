@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import dts from 'vite-plugin-dts'
-import eslintPlugin from 'vite-plugin-eslint'
+// import eslintPlugin from 'vite-plugin-eslint'
 import UnoCSS from 'unocss/vite'
 export default defineConfig({
   plugins: [
@@ -17,12 +17,17 @@ export default defineConfig({
     UnoCSS(),
     dts({
       entryRoot: 'packages',
-      outputDir: 'dist'
-    }),
-    eslintPlugin({
-      include: ['packages/**/*.ts', 'packages/**/*.vue', 'packages/*.ts', 'packages/*.vue'],
-      cache: true
+      outDir: 'dist'
     })
+    // eslintPlugin({
+    //   include: [
+    //     'packages/**/*.ts',
+    //     'packages/**/*.vue',
+    //     'packages/*.ts',
+    //     'packages/*.vue'
+    //   ],
+    //   cache: true
+    // })
   ],
   resolve: {
     alias: {
@@ -46,14 +51,14 @@ export default defineConfig({
         index: path.resolve(__dirname, './packages/index.ts')
       },
       // 指定组件编译入口文件
-      name: 'k-designer',
+      name: 'k-designer'
       // formats: ["es"],
-      fileName: (ModuleFormat) => {
-        const extension = ModuleFormat === 'es' ? 'js' : ModuleFormat
-        // 区分默认入口文件和UI注册文件
-        const path = `k-designer.${extension}`
-        return path
-      }
+      // fileName: (ModuleFormat) => {
+      //   const extension = ModuleFormat === 'es' ? 'js' : ModuleFormat
+      //   // 区分默认入口文件和UI注册文件
+      //   const path = `k-designer.${extension}`
+      //   return path
+      // }
     },
     // 库编译模式配置
     rollupOptions: {

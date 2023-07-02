@@ -4,6 +4,7 @@
   "description": "k-designer base ui",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
+  "typings": "dist/ui/index.d.ts",
   "scripts": {
     "build": "vue-tsc --noEmit && vite build"
   },
