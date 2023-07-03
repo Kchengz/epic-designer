@@ -17,6 +17,14 @@
 }
 
 .k-designer-main {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  color: @text-main;
+  min-width: 900px;
+  height: 100%;
+  cursor: default;
+
   // 覆盖iconfont样式
   .iconfont {
     font-size: 1em;
@@ -39,18 +47,11 @@
     }
   }
 
-  user-select: none;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: @text-main;
-  min-width: 900px;
-  cursor: default;
-
   .k-split-view-container {
     display: flex;
     flex: 1;
     height: calc(100% - 32px - 20px);
+    max-height: calc(100vh - 68px);
   }
 
   ul {
