@@ -8,5 +8,8 @@
   "scripts": {
     "build": "vue-tsc --noEmit && vite build"
   },
-  "author": "kchengz"
+  "author": "kchengz",
+  "devDependencies": {
+    "vite-plugin-dts": "^3.0.3"
+  }
 }

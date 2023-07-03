@@ -1,19 +1,18 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
+import { defineConfig, type PluginOption } from "vite";
+import vue, { type Options } from "@vitejs/plugin-vue";
+
 import path from "path";
 import dts from "vite-plugin-dts";
 export default defineConfig({
   plugins: [
     vue({
       script: {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
         defineModel: true,
       },
-    }),
+    } as Options),
     dts({
-      outDir: "dist"
-    }),
+      outDir: "dist",
+    }) as PluginOption,
   ],
   resolve: {
     dedupe: ["vue"],
