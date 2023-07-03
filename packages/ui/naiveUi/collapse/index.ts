@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('../src/KCollapse'),
+  component: async () => await import('./collapse'),
   defaultSchema: {
     label: '折叠面板',
     type: 'collapse',

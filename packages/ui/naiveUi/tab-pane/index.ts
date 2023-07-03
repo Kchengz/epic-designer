@@ -1,21 +1,21 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('../src/KCol'),
+  component: async () => await import('./tabPane'),
   defaultSchema: {
-    label: '栅格布局-列',
-    type: 'col',
+    label: '标签内容',
+    type: 'tab-pane',
     icon: 'icon-xiala',
     children: [],
     componentProps: {
-      span: 6
+      tab: '标签'
     }
   },
   config: {
     attribute: [
       {
-        label: '占位格数',
-        type: 'number',
-        field: 'componentProps.span'
+        label: '垂直对齐方式',
+        type: 'input',
+        field: 'componentProps.tab'
       }
     ]
   }

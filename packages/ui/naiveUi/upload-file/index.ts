@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('../src/KUploadFile'),
+  component: async () => await import('./uploadFile'),
   defaultSchema: {
     label: '上传文件',
     type: 'upload-file',
