@@ -22,7 +22,6 @@
     "ant-design-vue": "^3.2.20",
     "element-plus": "^2.3.7",
     "eslint": "^8.44.0",
-    "eslint-config-custom": "workspace:*",
     "k-designer": "0.0.41",
     "naive-ui": "^2.34.4",
     "prettier": "^2.8.8",
