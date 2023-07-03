@@ -32,6 +32,11 @@ export default {
         field: 'componentProps.labelWidth'
       },
       {
+        label: '域内标签后缀',
+        type: 'input',
+        field: 'componentProps.labelSuffix'
+      },
+      {
         label: '标签位置',
         type: 'select',
         field: 'componentProps.labelPosition',
@@ -87,6 +92,33 @@ export default {
         label: '隐藏',
         type: 'switch',
         field: 'componentProps.hidden'
+      },
+      {
+        label: '星号位置',
+        type: 'select',
+        field: 'componentProps.requireAsteriskPosition',
+        componentProps: {
+          options: [
+            {
+              label: 'left',
+              value: 'left'
+            },
+            {
+              label: 'right',
+              value: 'right'
+            }
+          ]
+        }
+      },
+      {
+        label: '行内展示校验信息',
+        type: 'switch',
+        field: 'componentProps.inlineMessage'
+      },
+      {
+        label: '校验反馈图标',
+        type: 'switch',
+        field: 'componentProps.statusIcon'
       },
       {
         label: '禁用',
