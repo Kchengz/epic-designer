@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 import { defineConfig, type PluginOption } from 'vite'
-import vue, { type Options } from '@vitejs/plugin-vue'
+import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import dts from 'vite-plugin-dts'
 // import eslintPlugin from 'vite-plugin-eslint'
@@ -11,7 +11,7 @@ export default defineConfig({
       script: {
         defineModel: true
       }
-    } as Options),
+    }),
     UnoCSS(),
     dts({
       entryRoot: 'packages',

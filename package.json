@@ -18,7 +18,7 @@
     "@k-designer/ui": "workspace:*",
     "@k-designer/utils": "workspace:*",
     "@turbo/gen": "^1.10.7",
-    "@vitejs/plugin-vue": "^3.2.0",
+    "@vitejs/plugin-vue": "^4.2.3",
     "ant-design-vue": "^3.2.20",
     "element-plus": "^2.3.7",
     "eslint": "^8.44.0",

@@ -1,5 +1,5 @@
 import { defineConfig, type PluginOption } from "vite";
-import vue, { type Options } from "@vitejs/plugin-vue";
+import vue from "@vitejs/plugin-vue";
 
 import path from "path";
 import dts from "vite-plugin-dts";
@@ -9,7 +9,7 @@ export default defineConfig({
       script: {
         defineModel: true,
       },
-    } as Options),
+    }),
     dts({
       outDir: "dist",
     }) as PluginOption,
