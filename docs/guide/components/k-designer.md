@@ -32,7 +32,7 @@
   </div>
 </template>
 <script setup>
-import { KDesigner } from "k-designer";
+import { KDesigner } from "@k-designer/core";
 
 /**
  * 点击保存按钮操作
@@ -52,13 +52,12 @@ function handleSubmit(e) {
 ```
 
 <script setup>
-import "k-designer/dist/style.css";
-import { pluginManager } from "k-designer";
+import "@k-designer/core/dist/style.css";
+import { pluginManager,KDesigner } from "@k-designer/core";
 import 'element-plus/dist/index.css'
-import { useElementPlus } from "k-designer/dist/ui/elementPlus";
-useElementPlus(pluginManager);
+import { setupElementPlus } from "@k-designer/ui";
+setupElementPlus(pluginManager);
 
-import { KDesigner } from 'k-designer';
 
 function handleSubmit (e) {
   console.log(e)
