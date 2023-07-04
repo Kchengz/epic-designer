@@ -24,7 +24,38 @@ export default {
         type: 'input',
         field: 'label'
       },
-
+      {
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'default',
+              value: 'default'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: '最大输入长度',
+        type: 'input',
+        field: 'componentProps.maxlength'
+      },
+      {
+        label: '统计字数',
+        type: 'switch',
+        field: 'componentProps.showWordLimit'
+      },
       {
         label: '默认值',
         type: 'input',
@@ -56,6 +87,11 @@ export default {
           ]
         },
         field: 'componentProps.type'
+      },
+      {
+        label: '显示密码',
+        type: 'switch',
+        field: 'componentProps.showPassword'
       },
       {
         label: '可清空',
