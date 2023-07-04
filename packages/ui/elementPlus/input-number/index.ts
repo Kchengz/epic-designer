@@ -26,6 +26,71 @@ export default {
         field: 'label'
       },
       {
+        label: '最大值',
+        type: 'number',
+        field: 'componentProps.max'
+      },
+      {
+        label: '最小值',
+        type: 'number',
+        field: 'componentProps.min'
+      },
+      {
+        label: '步长',
+        type: 'number',
+        field: 'componentProps.step'
+      },
+      {
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'default',
+              value: 'default'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: '控制按钮位置',
+        type: 'select',
+        defaultValue: '',
+        componentProps: {
+          options: [
+            {
+              label: 'default',
+              value: ''
+            },
+            {
+              label: 'right',
+              value: 'right'
+            }
+          ]
+        },
+        field: 'componentProps.controlsPosition'
+      },
+      {
+        label: '精度',
+        type: 'number',
+        field: 'componentProps.precision'
+      },
+      {
+        label: '输入控制为步长的倍数',
+        type: 'switch',
+        field: 'componentProps.stepStrictly'
+      },
+      {
         label: '默认值',
         type: 'number',
         field: 'componentProps.defaultValue'
