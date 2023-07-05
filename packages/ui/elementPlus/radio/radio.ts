@@ -1,6 +1,6 @@
 import { defineComponent, h } from 'vue'
 import 'element-plus/es/components/select/style/css'
-import { ElRadioGroup, ElRadio } from 'element-plus'
+import { ElRadioGroup, ElRadio, ElRadioButton } from "element-plus";
 
 // 二次封装组件
 export default defineComponent({
@@ -17,7 +17,12 @@ export default defineComponent({
       }
       return h(ElRadioGroup, props, {
         default: () => [
-          props.options?.map((option: any) =>
+          props?.radioButton ?
+            props.options?.map((option: any) =>
+              h(ElRadioButton, { label: option.value }, { default: () => option.label })
+            )
+            :
+            props.options?.map((option: any) =>
             h(ElRadio, { label: option.value }, { default: () => option.label })
           )
         ]

@@ -38,9 +38,53 @@ export default {
         field: 'label'
       },
       {
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'default',
+              value: 'default'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
         label: '隐藏',
         type: 'switch',
         field: 'componentProps.hidden'
+      },
+      {
+        label: "按钮模式",
+        type: "switch",
+        field: "componentProps.radioButton",
+        onChange: ({value, values})=> {
+          console.log(value,values)
+        }
+      },
+      {
+        label: '选项文本颜色',
+        type: 'color-picker',
+        layout: 'horizontal',
+        field: 'componentProps.textColor',
+        describe: '按钮模式下生效'
+      },
+      {
+        label: '选项按钮颜色',
+        type: 'color-picker',
+        layout: 'horizontal',
+        field: 'componentProps.fill',
+        describe: '按钮模式下生效'
       },
       {
         label: '禁用',
