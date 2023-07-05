@@ -1,41 +1,26 @@
 <template>
-  <div
-    v-show="showSelector && designer.state.checkedNode?.id !== 'root'"
-    ref="selectorRef"
-    class="checked-widget absolute pointer-events-none z-20"
-  >
+  <div v-show="showSelector && designer.state.checkedNode?.id !== 'root'" ref="selectorRef"
+    class="checked-widget absolute pointer-events-none z-20" :class="{ 'transition-all': selectorTransition }">
     <div class="action-box">
       <div class="action-item">
         {{ designer.state.checkedNode?.type }}
         {{ designer.state.checkedNode?.label ?? pluginManager.getComponentConfingByType(designer.state.checkedNode?.type
           ?? '')?.defaultSchema.label }}
       </div>
-      <div
-        title="复制"
-        class="action-item pointer-events-auto"
-        @click="handleCopy"
-      >
+      <div title="复制" class="action-item pointer-events-auto" @click="handleCopy">
         <span class="iconfont icon-fuzhi3" />
       </div>
-      <div
-        title="删除"
-        class="action-item pointer-events-auto"
-        @click="handleDelete"
-      >
+      <div title="删除" class="action-item pointer-events-auto" @click="handleDelete">
         <span class="iconfont icon-shanchu1" />
       </div>
     </div>
   </div>
-  <div
-    v-show="showHover"
-    ref="hoverWidgetRef"
-    class="hover-widget absolute transition-all pointer-events-none z-998"
-  />
+  <div v-show="showHover" ref="hoverWidgetRef" class="hover-widget absolute transition-all pointer-events-none z-998" />
 </template>
 <script lang="ts" setup>
 import { PageSchema, Designer } from '../../../../../types/kDesigner'
 import { inject, computed, ref, onMounted, watch } from 'vue'
-import { pluginManager, getUUID, deepClone, revoke, findSchemaById, useShareStore, type PageManager } from '@k-designer/utils'
+import { pluginManager, getUUID, deepClone, revoke, findSchemaById, useShareStore, useTimedQuery, type PageManager } from '@k-designer/utils'
 import { useResizeObserver } from '@vueuse/core'
 
 const pageManager = inject('pageManager', {}) as PageManager
@@ -46,6 +31,7 @@ const selectorRef = ref()
 const hoverWidgetRef = ref()
 const showSelector = ref(false)
 const showHover = ref(false)
+const selectorTransition = ref(true)
 
 const { canvasScale } = useShareStore()
 
@@ -93,17 +79,36 @@ const getHoverComponentElement = computed<HTMLBaseElement | null>(() => {
 
 const { mutationObserver, observerConfig: DocumentObserverConfig } = initObserve(setSeletorStyle)
 
+const { startTimedQuery, stopTimedQuery } = useTimedQuery(setSeletorStyle)
+
 // 监听选中dom元素变化
 watch(() => getSelectComponentElement.value, (selectComponentElement) => {
   if (selectComponentElement) {
     showSelector.value = true
     // 监听dom元素及子元素的变化
     mutationObserver.observe(selectComponentElement, DocumentObserverConfig)
+
+
+    const parentNode = selectComponentElement.parentNode as HTMLBaseElement
+
+    if (parentNode) {
+      parentNode.ondragstart = () => {
+        selectorTransition.value = false
+        startTimedQuery()
+      }
+      parentNode.ondragend = () => {
+        selectorTransition.value = true
+        stopTimedQuery()
+      }
+
+    }
     setSeletorStyle()
   } else {
     showSelector.value = false
   }
 })
+
+
 
 const { mutationObserver: hoverMutationObserver, observerConfig: hoverObserverConfig } = initObserve(setHoverStyle)
 
@@ -130,7 +135,8 @@ watch(() => designer.state.hoverNode?.id, e => {
 /**
  * 设置选择部件 样式 定位 宽高
  */
-function setSeletorStyle () {
+function setSeletorStyle() {
+  console.log('---')
   const element = getSelectComponentElement.value
   if (!element) return
 
@@ -153,7 +159,7 @@ function setSeletorStyle () {
 /**
  * 设置悬停部件 样式 定位 宽高
  */
-function setHoverStyle () {
+function setHoverStyle() {
   const element = getHoverComponentElement.value
 
   if (!element) return
@@ -175,7 +181,7 @@ function setHoverStyle () {
 /**
  * 实例化观察者对象
  */
-function initObserve (func: () => void) {
+function initObserve(func: () => void) {
   const MutationObserver = window.MutationObserver
 
   const observerConfig = {
@@ -196,7 +202,7 @@ function initObserve (func: () => void) {
 /**
  * 复制选中节点元素
  */
-function handleCopy () {
+function handleCopy() {
   const data = findSchemaById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
   if (!data) {
     return false
@@ -224,7 +230,7 @@ function handleCopy () {
 /**
  * 删除元素
  */
-function handleDelete () {
+function handleDelete() {
   const data = findSchemaById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
   if (!data) {
     return false

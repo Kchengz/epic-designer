@@ -1,8 +1,8 @@
-var N = Object.defineProperty;
-var G = (t, e, n) => e in t ? N(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n;
-var m = (t, e, n) => (G(t, typeof e != "symbol" ? e + "" : e, n), n);
-import { defineAsyncComponent as I, ref as p, effectScope as B, getCurrentScope as x, onScopeDispose as k, unref as K, watch as A } from "vue";
-function b(t = 10) {
+var M = Object.defineProperty;
+var N = (t, e, n) => e in t ? M(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n;
+var m = (t, e, n) => (N(t, typeof e != "symbol" ? e + "" : e, n), n);
+import { defineAsyncComponent as G, ref as p, effectScope as B, getCurrentScope as x, onScopeDispose as T, unref as k, watch as A } from "vue";
+function K(t = 10) {
   return Number(
     `${Math.random().toString().substring(3, t)}${Date.now()}`
   ).toString(36);
@@ -24,10 +24,10 @@ function S(t, e = /* @__PURE__ */ new WeakMap()) {
     n[r] = S(t[r], e);
   }), n;
 }
-function J(t, e) {
+function b(t, e) {
   for (const [n, r] of Object.entries(e)) {
     const o = t == null ? void 0 : t[n];
-    o && r && typeof o == "object" && typeof r == "object" ? J(o, r) : t[n] = r;
+    o && r && typeof o == "object" && typeof r == "object" ? b(o, r) : t[n] = r;
   }
   Object.keys(t).reverse().forEach((n) => {
     e.hasOwnProperty(n) || (Array.isArray(e) ? t.splice(n, 1) : delete t[n]);
@@ -50,7 +50,7 @@ function se(t, e, n = /* @__PURE__ */ new WeakMap()) {
   };
   return JSON.stringify(r(t)) === JSON.stringify(r(e));
 }
-const v = (t, e) => I({
+const v = (t, e) => G({
   loader: t,
   loadingComponent: e,
   delay: 80
@@ -104,7 +104,7 @@ function le(t, e, n) {
     o = (u = o[s]) != null ? u : o[s] = {};
   });
 }
-class T {
+class J {
   constructor() {
     m(this, "components", {});
     m(this, "componentConfigs", {});
@@ -174,7 +174,7 @@ class T {
         const s = (i = this.componentConfigs[o]) == null ? void 0 : i.defaultSchema;
         return s == null ? (console.warn(`${o} \u7EC4\u4EF6\u672A\u6CE8\u518C\u5230pluginManager\u4E2D`), !1) : {
           ...s,
-          id: b()
+          id: K()
         };
       }).filter((o) => o);
       return {
@@ -191,7 +191,7 @@ class T {
     this.publicMethods[e.methodName] = e;
   }
 }
-const U = new T();
+const U = new J();
 function ce() {
   const t = p({}), e = p({});
   function n(a) {
@@ -271,7 +271,7 @@ function V() {
 }
 const fe = V();
 function D(t) {
-  return x() ? (k(t), !0) : !1;
+  return x() ? (T(t), !0) : !1;
 }
 function O(t) {
   let e = 0, n, r;
@@ -281,7 +281,7 @@ function O(t) {
   return (...s) => (e += 1, n || (r = B(!0), n = r.run(() => t(...s))), D(o), n);
 }
 function C(t) {
-  return typeof t == "function" ? t() : K(t);
+  return typeof t == "function" ? t() : k(t);
 }
 const W = typeof window < "u", z = () => {
 };
@@ -291,7 +291,7 @@ function F(t) {
   return (e = n == null ? void 0 : n.$el) != null ? e : n;
 }
 const P = W ? window : void 0;
-function R(...t) {
+function Q(...t) {
   let e, n, r, o;
   if (typeof t[0] == "string" || Array.isArray(t[0]) ? ([n, r, o] = t, e = P) : [e, n, r, o] = t, !e)
     return z;
@@ -311,18 +311,18 @@ function R(...t) {
   };
   return D(c), c;
 }
-var Y = Object.defineProperty, X = Object.defineProperties, Z = Object.getOwnPropertyDescriptors, w = Object.getOwnPropertySymbols, q = Object.prototype.hasOwnProperty, H = Object.prototype.propertyIsEnumerable, E = (t, e, n) => e in t ? Y(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n, _ = (t, e) => {
+var R = Object.defineProperty, Y = Object.defineProperties, X = Object.getOwnPropertyDescriptors, w = Object.getOwnPropertySymbols, Z = Object.prototype.hasOwnProperty, q = Object.prototype.propertyIsEnumerable, E = (t, e, n) => e in t ? R(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n, _ = (t, e) => {
   for (var n in e || (e = {}))
-    q.call(e, n) && E(t, n, e[n]);
+    Z.call(e, n) && E(t, n, e[n]);
   if (w)
     for (var n of w(e))
-      H.call(e, n) && E(t, n, e[n]);
+      q.call(e, n) && E(t, n, e[n]);
   return t;
-}, $ = (t, e) => X(t, Z(e));
-function Q(t) {
+}, I = (t, e) => Y(t, X(e));
+function H(t) {
   return typeof t == "function" ? t : typeof t == "string" ? (e) => e.key === t : Array.isArray(t) ? (e) => t.includes(e.key) : () => !0;
 }
-function L(...t) {
+function $(...t) {
   let e, n, r = {};
   t.length === 3 ? (e = t[0], n = t[1], r = t[2]) : t.length === 2 ? typeof t[1] == "object" ? (e = !0, n = t[0], r = t[1]) : (e = t[0], n = t[1]) : (e = !0, n = t[0]);
   const {
@@ -330,16 +330,16 @@ function L(...t) {
     eventName: s = "keydown",
     passive: i = !1,
     dedupe: u = !1
-  } = r, a = Q(e);
-  return R(o, s, (l) => {
+  } = r, a = H(e);
+  return Q(o, s, (l) => {
     l.repeat && C(u) || a(l) && n(l);
   }, i);
 }
 function y(t, e, n = {}) {
-  return L(t, e, $(_({}, n), { eventName: "keydown" }));
+  return $(t, e, I(_({}, n), { eventName: "keydown" }));
 }
 function g(t, e, n = {}) {
-  return L(t, e, $(_({}, n), { eventName: "keyup" }));
+  return $(t, e, I(_({}, n), { eventName: "keyup" }));
 }
 function j() {
   const t = p(!1), e = p(!1), n = p(!1);
@@ -362,9 +362,9 @@ function ee() {
     canvasScale: p(1)
   };
 }
-const te = O(ee), M = O(j);
+const te = O(ee), L = O(j);
 function pe(t) {
-  const { pressSpace: e } = M();
+  const { pressSpace: e } = L();
   let n = 0, r = 0;
   function o(u) {
     var a;
@@ -382,7 +382,7 @@ function pe(t) {
   return { handleElementDragStart: o, handleElementDrag: s, handleElementDragEnd: i };
 }
 function de(t) {
-  const { pressCtrl: e } = M(), { canvasScale: n } = te();
+  const { pressCtrl: e } = L(), { canvasScale: n } = te();
   function r(o) {
     if (!e.value)
       return;
@@ -390,20 +390,36 @@ function de(t) {
     let s = 0;
     o.deltaY < 0 ? s = n.value + 0.05 : s = n.value - 0.05, !(s > 2 || s < 0.2) && (n.value = s);
   }
-  return A(() => n.value, (o) => {
-    t.value && (t.value.style.transform = `scale(${o})`);
-  }), { handleZoom: r, canvasScale: n };
+  return A(
+    () => n.value,
+    (o) => {
+      t.value && (t.value.style.transform = `scale(${o})`);
+    }
+  ), { handleZoom: r, canvasScale: n };
+}
+function he(t, e = 16.66) {
+  let n;
+  function r() {
+    clearInterval(n), n = setInterval(t, e);
+  }
+  function o() {
+    clearInterval(n);
+  }
+  return {
+    startTimedQuery: r,
+    stopTimedQuery: o
+  };
 }
 export {
-  T as PluginManager,
+  J as PluginManager,
   oe as capitalizeFirstLetter,
   S as deepClone,
-  J as deepCompareAndModify,
+  b as deepCompareAndModify,
   se as deepEqual,
   ue as findSchemaById,
   ae as getAttributeValue,
   ie as getMatchedById,
-  b as getUUID,
+  K as getUUID,
   v as loadAsyncComponent,
   U as pluginManager,
   fe as revoke,
@@ -411,7 +427,8 @@ export {
   pe as useElementDrag,
   de as useElementZoom,
   ce as usePageManager,
-  M as useShareKeyPress,
+  L as useShareKeyPress,
   te as useShareStore,
-  ee as useStore
+  ee as useStore,
+  he as useTimedQuery
 };

@@ -1,21 +1,20 @@
 <template>
-  <draggable
-    v-model="modelSchemas"
-    item-key="id"
-    group="edit-draggable"
-    ghost-class="moveing"
-    :component-data="{ name: 'draggable-range' }"
-    @start="handleSelect($event.oldIndex); designer.setDisableHover(true)"
-    @end="handleEnd()"
-    @add="handleSelect($event.newIndex); handleAdd()"
-  >
+  <draggable v-model="modelSchemas" item-key="id" 
+  :component-data="{
+    name: 'draggable-range',
+    type: 'transition-group',
+  }"
+  class="draggable-range"
+   v-bind="{
+  animation: 200,
+  group: 'edit-draggable',
+  ghostClass: 'moveing'
+}"
+ @start="handleSelect($event.oldIndex); designer.setDisableHover(true)" @end="handleEnd()"
+    @add="handleSelect($event.newIndex); handleAdd()">
     <template #item="{ element, index }">
-      <div
-        :index="index"
-        @click.stop="designer.setCheckedNode(element)"
-        @mouseover.stop="designer.setHoverNode(element)"
-        @mouseout.stop="designer.setHoverNode(null)"
-      >
+      <div :index="index" @click.stop="designer.setCheckedNode(element)" @mouseover.stop="designer.setHoverNode(element)"
+        @mouseout.stop="designer.setHoverNode(null)">
         <KNodeItem :schema="element" />
       </div>
     </template>
@@ -36,11 +35,11 @@ const props = defineProps<{
 
 const emit = defineEmits(['update:schemas'])
 const modelSchemas = computed({
-  get () {
+  get() {
     // 判断props.schemas是否存在值
     return props.schemas
   },
-  set (e) {
+  set(e) {
     emit('update:schemas', e)
   }
 })
@@ -49,16 +48,16 @@ const modelSchemas = computed({
  * 选中点击节点元素
  * @param index
  */
-function handleSelect (index: number) {
+function handleSelect(index: number) {
   designer.setCheckedNode(modelSchemas.value![index])
 }
 
-function handleEnd () {
+function handleEnd() {
   designer.setDisableHover()
   revoke.push(pageSchema.schemas, '拖拽组件')
 }
 
-function handleAdd () {
+function handleAdd() {
   revoke.push(pageSchema.schemas, '插入组件')
 }
 </script>

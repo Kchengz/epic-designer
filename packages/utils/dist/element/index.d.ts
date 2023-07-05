@@ -1,5 +1,5 @@
-import { useKeyPress } from './keyboard';
-import { type Ref } from 'vue';
+import { useKeyPress } from "./keyboard";
+import { type Ref } from "vue";
 export declare const useShareKeyPress: typeof useKeyPress;
 /**
  * 拖拽元素
@@ -19,4 +19,8 @@ export declare function useElementDrag(editScreenContainer: Ref<HTMLDivElement |
 export declare function useElementZoom(draggableElRef: Ref<HTMLDivElement | null>): {
     handleZoom: (event: WheelEvent) => void;
     canvasScale: Ref<number>;
+};
+export declare function useTimedQuery(handler: () => void, timeout?: number): {
+    startTimedQuery: () => void;
+    stopTimedQuery: () => void;
 };
