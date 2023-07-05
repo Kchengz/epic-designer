@@ -67,10 +67,7 @@ export default {
       {
         label: "按钮模式",
         type: "switch",
-        field: "componentProps.radioButton",
-        onChange: ({value, values})=> {
-          console.log(value,values)
-        }
+        field: "componentProps.radioButton"
       },
       {
         label: '选项文本颜色',
