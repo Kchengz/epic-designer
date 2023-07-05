@@ -18,13 +18,19 @@ export default defineComponent({
       const children = record.children ?? []
       delete record.children
 
+      let vNodeClildren:any = null
+      if(children.length){
+        vNodeClildren =  children.map((node: NodeItem) =>
+          renderSlot(slots, 'node', { record: node })
+        )
+      }else{
+        vNodeClildren = ()=> [renderSlot(slots, 'default')]
+      }
+
       return h(ElCard, record, {
         default: () =>
-          renderSlot(slots, 'edit-node', {}, () =>
-            children.map((node: NodeItem) =>
-              renderSlot(slots, 'node', { record: node })
-            )
-          )
+          renderSlot(slots, 'edit-node', {},vNodeClildren),
+        header:()=> renderSlot(slots, 'header'),
       })
     }
   }
