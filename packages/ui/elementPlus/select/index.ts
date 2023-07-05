@@ -56,6 +56,150 @@ export default {
         },
       },
       {
+        label: "多选隐藏",
+        type: "switch",
+        field: "componentProps.collapseTags",
+      },
+      {
+        label: "隐藏提示",
+        type: "switch",
+        field: "componentProps.collapseTagsTooltip",
+      },
+      {
+        label: "可筛选",
+        type: "switch",
+        field: "componentProps.filterable",
+      },
+      {
+        label: "允许创建条目",
+        type: "switch",
+        field: "componentProps.allowCreate",
+      },
+      {
+        label: "保留搜索关键字",
+        type: "switch",
+        field: "componentProps.reserveKeyword",
+      },
+      {
+        label: '下拉框位置',
+        type: 'select',
+        defaultValue: 'bottom-start',
+        componentProps: {
+          options: [
+            {
+              label: 'top',
+              value: 'top'
+            },
+            {
+              label: 'top-start',
+              value: 'top-start'
+            },
+            {
+              label: 'top-end',
+              value: 'top-end'
+            },
+            {
+              label: 'bottom',
+              value: 'bottom'
+            }
+            ,
+            {
+              label: 'bottom-start',
+              value: 'bottom-start'
+            },
+            {
+              label: 'bottom-end',
+              value: 'bottom-end'
+            },
+            {
+              label: 'left',
+              value: 'left'
+            }
+            ,
+            {
+              label: 'left-start',
+              value: 'left-start'
+            },
+            {
+              label: 'left-end',
+              value: 'left-end'
+            },
+            {
+              label: 'right',
+              value: 'right'
+            },
+            {
+              label: 'right-start',
+              value: 'right-start'
+            },
+            {
+              label: 'right-end',
+              value: 'right-end'
+            }
+          ]
+        },
+        field: 'componentProps.placement'
+      },
+      {
+        label: "下拉框宽度与输入框相同",
+        type: "switch",
+        field: "componentProps.fitInputWidth",
+      },
+      {
+        label: '提示主题',
+        type: 'select',
+        defaultValue: 'light',
+        componentProps: {
+          options: [
+            {
+              label: 'light',
+              value: 'light'
+            },
+            {
+              label: 'dark',
+              value: 'dark'
+            },
+          ]
+        },
+        field: 'componentProps.effect'
+      },
+      {
+        label: '标签类型',
+        type: 'select',
+        defaultValue: 'info',
+        componentProps: {
+          options: [
+            {
+              label: 'success',
+              value: 'success'
+            },
+            {
+              label: 'info',
+              value: 'info'
+            },
+            {
+              label: 'warning',
+              value: 'warning'
+            },
+            {
+              label: 'danger',
+              value: 'danger'
+            },
+          ]
+        },
+        field: 'componentProps.tagType'
+      },
+      {
+        label: '多选限制',
+        type: 'number',
+        field: 'componentProps.multipleLimit'
+      },
+      {
+        label: '无数据时文本',
+        type: 'input',
+        field: 'componentProps.noDataText'
+      },
+      {
         label: "可清空",
         type: "switch",
         field: "componentProps.clearable",
