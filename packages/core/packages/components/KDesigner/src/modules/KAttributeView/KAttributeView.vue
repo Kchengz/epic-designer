@@ -1,26 +1,15 @@
 <template>
   <aside class="k-attribute-view">
-    <div
-      v-for="item in componentAttributes"
-      :key="item.field! + checkedNode?.id"
-    >
-      <div
-        v-show="isShow(item)"
-        class="attr-item"
-        :class="item.layout"
-      >
-        <div
-          class="attr-label"
-          :title="item.label"
-        >
+    <div v-for="item in componentAttributes" :key="item.field! + checkedNode?.id">
+      <div v-show="isShow(item)" class="attr-item" :class="item.layout">
+        <div class="attr-label" :title="item.label">
           {{ item.label }}
         </div>
         <div class="attr-input">
           <KNode
             :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), hidden: false }, show: true, noFormItem: true }"
             :model-value="getAttributeValue(item.field!, checkedNode!)"
-            @update:model-value="handleSetValue($event, item.field!)"
-          />
+            @update:model-value="handleSetValue($event, item.field!, item)" />
         </div>
       </div>
     </div>
@@ -30,7 +19,7 @@
 import KNode from '../../../../KNode/index'
 import { Designer, NodeItem, PageSchema, FormDataModel } from '../../../../../types/kDesigner'
 import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '@k-designer/utils'
-import { inject, computed, Ref, reactive, provide } from 'vue'
+import { inject, computed, reactive, nextTick, provide } from 'vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
 
@@ -43,7 +32,7 @@ const checkedNode = computed(() => {
   return designer.state.checkedNode
 })
 
-function isShow (item: NodeItem) {
+function isShow(item: NodeItem) {
   // show属性为boolean类型则直接返回
   if (typeof item.show === 'boolean') {
     return item.show
@@ -79,10 +68,18 @@ const componentAttributes = computed(() => {
 /**
  * 设置属性值
  */
-function handleSetValue (value: any, field: string) {
-  setAttributeValue(value, field, checkedNode.value!)
-  // 将修改过的组件属性推入撤销操作的栈中
-  revoke.push(pageSchema.schemas, '编辑组件属性')
+function handleSetValue(value: any, field: string, item: NodeItem) {
+  if (typeof item.onChange === 'function') {
+    item.onChange({ value, values: checkedNode.value! })
+  }
+
+  nextTick(() => {
+    setAttributeValue(value, field, checkedNode.value!)
+    // 将修改过的组件属性推入撤销操作的栈中
+    revoke.push(pageSchema.schemas, '编辑组件属性')
+  })
+
+
 }
 
 </script>

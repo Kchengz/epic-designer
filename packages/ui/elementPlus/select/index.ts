@@ -1,71 +1,82 @@
-import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
-import KSelect from './select'
+import { type ComponentConfigModel } from "@k-designer/utils/pluginManager";
 export default {
-  component: KSelect,
+  component: () => import("./select"),
   defaultSchema: {
-    label: '选择框',
-    type: 'select',
-    icon: 'icon-xiala',
-    field: 'select',
+    label: "选择框",
+    type: "select",
+    icon: "icon-xiala",
+    field: "select",
     input: true,
     componentProps: {
       options: [
         {
-          label: '选项1',
-          value: '选项1'
+          label: "选项1",
+          value: "选项1",
         },
         {
-          label: '选项2',
-          value: '选项2'
-        }
+          label: "选项2",
+          value: "选项2",
+        },
       ],
-      placeholder: '请选择'
-    }
+      placeholder: "请选择",
+    },
   },
   config: {
     attribute: [
       {
-        label: '字段名',
-        type: 'input',
-        field: 'field'
+        label: "字段名",
+        type: "input",
+        field: "field",
       },
       {
-        label: '文字',
-        type: 'input',
-        field: 'label'
+        label: "文字",
+        type: "input",
+        field: "label",
       },
       {
-        label: '默认值',
-        type: 'select',
-        field: 'componentProps.defaultValue'
+        label: "默认值",
+        type: "select",
+        field: "componentProps.defaultValue",
       },
       {
-        label: '占位内容',
-        type: 'input',
-        field: 'componentProps.placeholder'
+        label: "占位内容",
+        type: "input",
+        field: "componentProps.placeholder",
       },
       {
-        label: '可清空',
-        type: 'switch',
-        field: 'componentProps.clearable'
+        label: "可多选",
+        type: "switch",
+        field: "componentProps.multiple",
+        onChange: ({ value, values }) => {
+          if (value) {
+            values.componentProps.defaultValue = [];
+          } else {
+            values.componentProps.defaultValue = null;
+          }
+        },
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
+        label: "可清空",
+        type: "switch",
+        field: "componentProps.clearable",
       },
       {
-        label: '禁用',
-        type: 'switch',
-        field: 'componentProps.disabled'
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
       },
       {
-        label: '表单校验',
-        type: 'KRuleEditor',
-        layout: 'vertical',
-        field: 'rules',
-        describe: '校验规则需要配合表单使用'
-      }
-    ]
-  }
-} as ComponentConfigModel
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled",
+      },
+      {
+        label: "表单校验",
+        type: "KRuleEditor",
+        layout: "vertical",
+        field: "rules",
+        describe: "校验规则需要配合表单使用",
+      },
+    ],
+  },
+} as ComponentConfigModel;
