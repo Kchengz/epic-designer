@@ -8,7 +8,7 @@
           <KEditCanvas />
           <KRightSidebar />
         </div>
-        <KFooter />
+        <!-- <KFooter /> -->
       </div>
     </template>
     <template #fallback>

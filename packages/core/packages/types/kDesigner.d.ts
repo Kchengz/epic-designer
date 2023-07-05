@@ -38,8 +38,8 @@ export interface SchemaGroupItem {
 }
 
 export interface Designer {
-  setCheckedNode: (record: NodeItem) => void
-  setHoverNode: (record: NodeItem | null) => void
+  setCheckedNode: (schema?: NodeItem) => void
+  setHoverNode: (schema: NodeItem | null) => void
   setDisableHover: (disableHover = false) => void
   state: DesignerState
   // schemas: NodeItem[];

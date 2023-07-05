@@ -1,12 +1,16 @@
 <template>
-  <draggable v-model="modelSchemas" item-key="id" :component-data="{
+  <draggable v-model="modelSchemas" item-key="id" 
+  :component-data="{
     name: 'draggable-range',
     type: 'transition-group',
-  }" class="draggable-range" v-bind="{
+  }"
+  class="draggable-range"
+   v-bind="{
   animation: 200,
   group: 'edit-draggable',
   ghostClass: 'moveing'
-}" @start="handleSelect($event.oldIndex); designer.setDisableHover(true)" @end="handleEnd()"
+}"
+ @start="handleSelect($event.oldIndex); designer.setDisableHover(true)" @end="handleEnd()"
     @add="handleSelect($event.newIndex); handleAdd()">
     <template #item="{ element, index }">
       <div :index="index" @click.stop="designer.setCheckedNode(element)" @mouseover.stop="designer.setHoverNode(element)"
