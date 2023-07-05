@@ -14,6 +14,7 @@ export function initComponent (pluginManager: PluginManager): void {
   pluginManager.component('KActionEditor', KActionEditor)
   pluginManager.component('KNode', KNode)
   pluginManager.component('KRuleEditor', async () => await import('./KComponent/KRuleEditor/KRuleEditor.vue'))
+  pluginManager.component('KOptionsEditor', async () => await import('./KComponent/KOptionsEditor/KOptionsEditor.vue'))
 
   // 左侧菜单初始化
   pluginManager.registerActivitybar({
