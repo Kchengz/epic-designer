@@ -65,7 +65,7 @@ const getSelectComponentElement = computed<HTMLBaseElement | null>(() => {
     return componentInstances[id + 'formItem']?.$el
   }
   const componentInstance = componentInstances[id]
-  if (componentInstance?.$el.nodeName === '#text') {
+  if (componentInstance?.$el?.nodeName === '#text') {
     return null
   }
   return componentInstance?.$el

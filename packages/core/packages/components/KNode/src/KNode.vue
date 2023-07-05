@@ -1,16 +1,8 @@
 <template>
-  <FormItem
-    v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component"
-    v-show="show"
-    ref="formItemRef"
-    v-bind="getFormItemProps"
-  >
-    <component
-      :is="component"
-      ref="componentInstance"
-      v-instance
-      v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }"
-    >
+  <FormItem v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component" v-show="show"
+    ref="formItemRef" v-bind="getFormItemProps">
+    <component :is="component" ref="componentInstance" v-instance
+      v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 递归组件 start -->
       <template #node="data">
         <KNode v-bind="data" />
@@ -25,15 +17,8 @@
   </FormItem>
 
   <!-- 无需FormItem start -->
-  <component
-    :is="component"
-    v-else-if="component"
-    v-show="show"
-    ref="componentInstance"
-    v-instance
-    :model="formData"
-    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }"
-  >
+  <component :is="component" v-else-if="component" v-show="show" ref="componentInstance" v-instance :model="formData"
+    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }">
     <!-- 递归组件 start -->
     <template #node="data">
       <KNode v-bind="data" />
@@ -48,7 +33,7 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, ref, inject, computed, reactive, PropType, Slots, watch, h, ComponentPublicInstance } from 'vue'
+import { shallowRef, ref, inject, computed, reactive, PropType, Slots, watch, h,nextTick, ComponentPublicInstance } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager } from '@k-designer/utils'
 import { FormDataModel, NodeItem } from '../../../types/kDesigner'
 
@@ -122,26 +107,15 @@ if (props.record.field) {
 }
 
 watch(() => componentInstance.value, () => {
-  if (componentInstance.value && props.record.id) {
-    pageManager.addComponentInstance(props.record.id, componentInstance.value)
-    if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true && formItemRef.value) {
-      pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef.value)
-    }
-  }
+  addComponentInstance()
 })
 
 // 保存实例
 const vInstance = {
-  mounted () {
-    if (props.record.id && componentInstance.value) {
-      // 添加实例 及 formItem实例
-      pageManager.addComponentInstance(props.record.id, componentInstance.value)
-      if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true && formItemRef.value) {
-        pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef.value)
-      }
-    }
+  mounted() {
+    addComponentInstance()
   },
-  unmounted () {
+  unmounted() {
     if (props.record.id) {
       // 移除实例 及 formItem实例
       pageManager.removeComponentInstance(props.record.id)
@@ -152,10 +126,22 @@ const vInstance = {
   }
 }
 
+// 添加组件实例
+function addComponentInstance() {
+  if (props.record.id && componentInstance.value) {
+    console.log(componentInstance.value)
+    pageManager.addComponentInstance(props.record.id, componentInstance.value)
+    // 添加实例 及 formItem实例
+    if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true && formItemRef.value) {
+      pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef.value)
+    }
+  }
+}
+
 /**
  * 初始化组件
  */
-async function initComponent () {
+async function initComponent() {
   // 如果存在默认值，则会在初始化之后赋值
   if (props.record.componentProps?.defaultValue) {
     handleUpdate(props.record.componentProps?.defaultValue)
@@ -222,7 +208,7 @@ async function initComponent () {
  * 通过函数更新值
  * @param v value值
  */
-function handleUpdate (v: any) {
+function handleUpdate(v: any) {
   emit('update:modelValue', v)
   emit('change', v)
   if (props.record.field) {
