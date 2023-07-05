@@ -1,60 +1,34 @@
 <template>
   <div class="h-full flex flex-col relative">
-    <div
-      ref="editScreenContainerRef"
-      class="flex-1 overflow-auto k-edit-screen-container"
-      :class="{ 'cursor-grab': pressSpace }"
-      :draggable="pressSpace"
-      @wheel="handleZoom"
-      @dragstart="handleElementDragStart"
-      @dragend="handleElementDragEnd"
-      @drag="handleElementDrag"
-    >
-      <div
-        id="canvasContainer"
-        class="flex items-center justify-center"
-        :style="scrollBoxStyle"
-      >
-        <div
-          ref="draggableElRef"
-          class="transition-all"
-        >
+    <!-- 工具条 start  -->
+    <div class="edit-toolbar flex items-center justify-end text-gray-500 px-4">
+      <div title="导出" class="pr-16px cursor-pointer">
+        <span class="icon iconfont">&#xe60b;</span>
+      </div>
+      <div title="导入" class="pr-16px cursor-pointer">
+        <span class="icon iconfont">&#xe60c;</span>
+      </div>
+      <div title="编辑事件" class="pr-16px cursor-pointer">
+        <span class="icon iconfont">&#xe612;</span>
+      </div>
+      <div class="w-40px cursor-pointer" @click="handleClick">
+        {{ (canvasScale * 100).toFixed(0) }}%
+      </div>
+    </div>
+    <!-- 工具条 end  -->
+
+    <div ref="editScreenContainerRef" class="flex-1 overflow-auto k-edit-screen-container"
+      :class="{ 'cursor-grab': pressSpace }" :draggable="pressSpace" @wheel="handleZoom"
+      @dragstart="handleElementDragStart" @dragend="handleElementDragEnd" @drag="handleElementDrag">
+      <div id="canvasContainer" class="flex items-center justify-center" :style="scrollBoxStyle">
+        <div ref="draggableElRef" class="transition-all">
           <div :class="{ 'pointer-events-none': pressSpace }">
             <slot />
           </div>
         </div>
       </div>
     </div>
-    <!-- 工具栏 start -->
-    <div
-      class="h-48px px-24px rounded-full flex items-center justify-end bg-white text-gray-500 shadow-xl absolute bottom-6 right-8"
-    >
-      <div
-        title="导出"
-        class="pr-16px cursor-pointer"
-      >
-        <span class="icon iconfont">&#xe60b;</span>
-      </div>
-      <div
-        title="导入"
-        class="pr-16px cursor-pointer"
-      >
-        <span class="icon iconfont">&#xe60c;</span>
-      </div>
-      <div
-        title="编辑事件"
-        class="pr-16px cursor-pointer"
-      >
-        <span class="icon iconfont">&#xe612;</span>
-      </div>
-      <div
-        class="w-40px cursor-pointer"
-        @click="handleClick"
-      >
-        {{ (canvasScale * 100).toFixed(0) }}%
-      </div>
-    </div>
-    <!-- 工具栏 end -->
+
   </div>
 </template>
 <script lang="ts" setup>
@@ -93,7 +67,7 @@ watchOnce(width, () => {
 // 动态适配设计区域宽度
 watch(() => props.rootSchema.componentProps.style.width, updateScrollBoxStyle)
 
-function updateScrollBoxStyle () {
+function updateScrollBoxStyle() {
   let canvasWidth = getCanvasAttribute.value.width
   let canvasHeight = getCanvasAttribute.value.height
   if (Number.isNaN(canvasWidth) || canvasWidth < width.value) {
@@ -107,7 +81,7 @@ function updateScrollBoxStyle () {
   scrollBoxStyle.value = { width: width.value + canvasWidth + 'px', height: height.value + canvasHeight + 'px' }
 }
 
-function setScroll () {
+function setScroll() {
   nextTick(() => {
     let canvasWidth = getCanvasAttribute.value.width
     let canvasHeight = getCanvasAttribute.value.height
@@ -152,7 +126,7 @@ onMounted(() => {
   })
 })
 
-function handleClick () {
+function handleClick() {
   canvasScale.value = 1
   draggableElRef.value!.style.transform = `scale(${canvasScale.value})`
 }
