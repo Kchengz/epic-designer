@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('./button'),
+  component: () => import('./button'),
   // component: ElButton,
   defaultSchema: {
     label: '按钮',

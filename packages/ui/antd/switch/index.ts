@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('ant-design-vue/lib/switch'),
+  component: () => import('ant-design-vue/lib/switch'),
   defaultSchema: {
     label: '开关',
     type: 'switch',

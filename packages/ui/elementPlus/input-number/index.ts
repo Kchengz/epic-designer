@@ -1,8 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
-import { ElInputNumber } from 'element-plus'
 export default {
-  // component: async () => (await import("element-plus")).ElInputNumber,
-  component: ElInputNumber,
+  component: async () => (await import('element-plus')).ElInputNumber,
   defaultSchema: {
     label: '数字输入框',
     type: 'number',

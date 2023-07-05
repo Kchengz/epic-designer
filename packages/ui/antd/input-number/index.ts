@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('ant-design-vue/lib/input-number'),
+  component: () => import('ant-design-vue/lib/input-number'),
   defaultSchema: {
     label: '数字输入框',
     type: 'number',

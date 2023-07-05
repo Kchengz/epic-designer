@@ -1,7 +1,7 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 
 export default {
-  component: async () => await import('./form.vue'),
+  component: () => import('./form.vue'),
   defaultSchema: {
     label: '表单',
     type: 'form',

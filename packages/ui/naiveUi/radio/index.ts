@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('./radio'),
+  component: () => import('./radio'),
   defaultSchema: {
     label: '单选框',
     type: 'radio',

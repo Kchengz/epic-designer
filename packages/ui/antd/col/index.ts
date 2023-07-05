@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('./col'),
+  component:  () => import('./col'),
   defaultSchema: {
     label: '栅格布局-列',
     type: 'col',

@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('ant-design-vue/lib/checkbox/Group'),
+  component:  () => import('ant-design-vue/lib/checkbox/Group'),
   defaultSchema: {
     label: '多选框',
     type: 'checkbox',

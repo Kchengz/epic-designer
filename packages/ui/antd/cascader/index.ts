@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('ant-design-vue/lib/cascader'),
+  component:  () => import('ant-design-vue/lib/cascader'),
   defaultSchema: {
     label: '级联选择器',
     type: 'cascader',

@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('ant-design-vue/lib/time-picker'),
+  component: () => import('ant-design-vue/lib/time-picker'),
   defaultSchema: {
     label: '时间选择器',
     type: 'time',

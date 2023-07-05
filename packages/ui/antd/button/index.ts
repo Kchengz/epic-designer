@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('./button.vue'),
+  component:  () => import('./button.vue'),
   defaultSchema: {
     label: '按钮',
     type: 'button',

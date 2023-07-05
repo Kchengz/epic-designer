@@ -129,7 +129,6 @@ const vInstance = {
 // 添加组件实例
 function addComponentInstance() {
   if (props.record.id && componentInstance.value) {
-    console.log(componentInstance.value)
     pageManager.addComponentInstance(props.record.id, componentInstance.value)
     // 添加实例 及 formItem实例
     if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true && formItemRef.value) {

@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('ant-design-vue/lib/select'),
+  component: () => import('ant-design-vue/lib/select'),
   defaultSchema: {
     label: '选择框',
     type: 'select',

@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('ant-design-vue/lib/radio/Group'),
+  component: () => import('ant-design-vue/lib/radio/Group'),
   defaultSchema: {
     label: '单选框',
     type: 'radio',

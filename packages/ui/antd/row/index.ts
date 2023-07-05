@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: async () => await import('./row'),
+  component: () => import('./row'),
   defaultSchema: {
     label: '栅格布局',
     type: 'row',
