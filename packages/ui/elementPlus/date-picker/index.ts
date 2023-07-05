@@ -35,6 +35,33 @@ export default {
         field: 'componentProps.placeholder'
       },
       {
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'default',
+              value: 'default'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: '可输入',
+        type: 'switch',
+        field: 'componentProps.editable'
+      },
+      {
         label: '显示类型',
         type: 'select',
         field: 'componentProps.type',
@@ -57,11 +84,47 @@ export default {
               value: 'year'
             },
             {
+              label: '时间',
+              value: 'datetime'
+            },
+            {
+              label: '时间范围',
+              value: 'datetimerange'
+            },
+            {
+              label: '日期范围',
+              value: 'daterange'
+            },
+            {
+              label: '月份范围',
+              value: 'monthrange'
+            },
+            {
               label: '多个日期',
               value: 'dates'
             }
           ]
         }
+      },
+      {
+        label: '开始日期占位符',
+        type: 'input',
+        field: 'componentProps.startPlaceholder'
+      },
+      {
+        label: '结束日期占位符',
+        type: 'input',
+        field: 'componentProps.endPlaceholder'
+      },
+      {
+        label: '格式',
+        type: 'input',
+        field: 'componentProps.format'
+      },
+      {
+        label: '分割符',
+        type: 'input',
+        field: 'componentProps.rangeSeparator'
       },
       {
         label: '可清空',
