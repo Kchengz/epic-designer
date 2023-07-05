@@ -77,6 +77,13 @@ export default {
         field: "rules",
         describe: "校验规则需要配合表单使用",
       },
+      {
+        label: "选项管理",
+        type: "KOptionsEditor",
+        layout: "vertical",
+        field: "componentProps.options",
+        describe: "校验规则需要配合表单使用",
+      }
     ],
   },
 } as ComponentConfigModel;
