@@ -74,6 +74,9 @@ export default {
         type: 'color-picker',
         layout: 'horizontal',
         field: 'componentProps.textColor',
+        show: ({values})=> {
+          return values.componentProps.radioButton
+        },
         describe: '按钮模式下生效'
       },
       {
@@ -81,6 +84,9 @@ export default {
         type: 'color-picker',
         layout: 'horizontal',
         field: 'componentProps.fill',
+        show: ({values})=> {
+          return values.componentProps.radioButton
+        },
         describe: '按钮模式下生效'
       },
       {
