@@ -91,7 +91,10 @@ export default {
       {
         label: '显示密码',
         type: 'switch',
-        field: 'componentProps.showPassword'
+        field: 'componentProps.showPassword',
+        show: ({values})=>{
+          return values.componentProps.type === 'password'
+        }
       },
       {
         label: '可清空',
