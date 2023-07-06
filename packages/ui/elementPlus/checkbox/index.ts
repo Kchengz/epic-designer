@@ -66,6 +66,16 @@ export default {
         field: 'componentProps.hidden'
       },
       {
+        label: '最大选中数',
+        type: 'number',
+        field: 'componentProps.max'
+      },
+      {
+        label: '最小选中数',
+        type: 'number',
+        field: 'componentProps.min'
+      },
+      {
         label: "按钮模式",
         type: "switch",
         field: "componentProps.radioButton"
@@ -75,6 +85,9 @@ export default {
         type: 'color-picker',
         layout: 'horizontal',
         field: 'componentProps.textColor',
+        show: ({values})=> {
+          return values.componentProps.radioButton
+        },
         describe: '按钮模式下生效'
       },
       {
@@ -82,6 +95,9 @@ export default {
         type: 'color-picker',
         layout: 'horizontal',
         field: 'componentProps.fill',
+        show: ({values})=> {
+          return values.componentProps.radioButton
+        },
         describe: '按钮模式下生效'
       },
       {
