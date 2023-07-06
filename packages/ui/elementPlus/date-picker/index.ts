@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
 export default {
-  component: () => import('./datePicker'),
+  component: async () => (await import('element-plus')).ElDatePicker,
   defaultSchema: {
     label: '日期选择器',
     type: 'date',
