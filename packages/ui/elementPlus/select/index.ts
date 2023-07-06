@@ -81,11 +81,80 @@ export default {
         label: "多选隐藏",
         type: "switch",
         field: "componentProps.collapseTags",
+        show: ({values})=>{
+          return values.componentProps.multiple
+        }
       },
       {
         label: "隐藏提示",
         type: "switch",
         field: "componentProps.collapseTagsTooltip",
+        show: ({values})=>{
+          return values.componentProps.multiple
+        }
+      },
+      {
+        label: "保留搜索关键字",
+        type: "switch",
+        field: "componentProps.reserveKeyword",
+        show: ({values})=>{
+          return values.componentProps.multiple
+        }
+      },
+      {
+        label: '标签类型',
+        type: 'select',
+        defaultValue: 'info',
+        componentProps: {
+          options: [
+            {
+              label: 'success',
+              value: 'success'
+            },
+            {
+              label: 'info',
+              value: 'info'
+            },
+            {
+              label: 'warning',
+              value: 'warning'
+            },
+            {
+              label: 'danger',
+              value: 'danger'
+            },
+          ]
+        },
+        show: ({values})=>{
+          return values.componentProps.multiple
+        },
+        field: 'componentProps.tagType'
+      },
+      {
+        label: '多选限制',
+        type: 'number',
+        field: 'componentProps.multipleLimit',
+        show: ({values})=>{
+          return values.componentProps.multiple
+        }
+      },
+      {
+        label: '提示主题',
+        type: 'select',
+        defaultValue: 'light',
+        componentProps: {
+          options: [
+            {
+              label: 'light',
+              value: 'light'
+            },
+            {
+              label: 'dark',
+              value: 'dark'
+            },
+          ]
+        },
+        field: 'componentProps.effect'
       },
       {
         label: "可筛选",
@@ -96,11 +165,6 @@ export default {
         label: "允许创建条目",
         type: "switch",
         field: "componentProps.allowCreate",
-      },
-      {
-        label: "保留搜索关键字",
-        type: "switch",
-        field: "componentProps.reserveKeyword",
       },
       {
         label: '下拉框位置',
@@ -166,55 +230,6 @@ export default {
         label: "下拉框宽度与输入框相同",
         type: "switch",
         field: "componentProps.fitInputWidth",
-      },
-      {
-        label: '提示主题',
-        type: 'select',
-        defaultValue: 'light',
-        componentProps: {
-          options: [
-            {
-              label: 'light',
-              value: 'light'
-            },
-            {
-              label: 'dark',
-              value: 'dark'
-            },
-          ]
-        },
-        field: 'componentProps.effect'
-      },
-      {
-        label: '标签类型',
-        type: 'select',
-        defaultValue: 'info',
-        componentProps: {
-          options: [
-            {
-              label: 'success',
-              value: 'success'
-            },
-            {
-              label: 'info',
-              value: 'info'
-            },
-            {
-              label: 'warning',
-              value: 'warning'
-            },
-            {
-              label: 'danger',
-              value: 'danger'
-            },
-          ]
-        },
-        field: 'componentProps.tagType'
-      },
-      {
-        label: '多选限制',
-        type: 'number',
-        field: 'componentProps.multipleLimit'
       },
       {
         label: '无数据时文本',
