@@ -1,7 +1,7 @@
-var M = Object.defineProperty;
-var N = (t, e, n) => e in t ? M(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n;
-var m = (t, e, n) => (N(t, typeof e != "symbol" ? e + "" : e, n), n);
-import { defineAsyncComponent as G, ref as p, effectScope as B, getCurrentScope as x, onScopeDispose as T, unref as k, watch as A } from "vue";
+var L = Object.defineProperty;
+var M = (t, e, n) => e in t ? L(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n;
+var m = (t, e, n) => (M(t, typeof e != "symbol" ? e + "" : e, n), n);
+import { defineAsyncComponent as G, ref as p, effectScope as B, getCurrentScope as T, onScopeDispose as x, unref as k, watch as A } from "vue";
 function K(t = 10) {
   return Number(
     `${Math.random().toString().substring(3, t)}${Date.now()}`
@@ -238,7 +238,7 @@ function ce() {
     doActions: u
   };
 }
-function V() {
+function R() {
   const t = p([]), e = p([]), n = p(null);
   let r = 0;
   function o(u, a = "\u63D2\u5165\u7EC4\u4EF6") {
@@ -269,9 +269,9 @@ function V() {
     redo: i
   };
 }
-const fe = V();
+const fe = R();
 function D(t) {
-  return x() ? (T(t), !0) : !1;
+  return T() ? (x(t), !0) : !1;
 }
 function O(t) {
   let e = 0, n, r;
@@ -283,23 +283,23 @@ function O(t) {
 function C(t) {
   return typeof t == "function" ? t() : k(t);
 }
-const W = typeof window < "u", z = () => {
+const V = typeof window < "u", W = () => {
 };
-function F(t) {
+function z(t) {
   var e;
   const n = C(t);
   return (e = n == null ? void 0 : n.$el) != null ? e : n;
 }
-const P = W ? window : void 0;
-function Q(...t) {
+const P = V ? window : void 0;
+function F(...t) {
   let e, n, r, o;
   if (typeof t[0] == "string" || Array.isArray(t[0]) ? ([n, r, o] = t, e = P) : [e, n, r, o] = t, !e)
-    return z;
+    return W;
   Array.isArray(n) || (n = [n]), Array.isArray(r) || (r = [r]);
   const s = [], i = () => {
     s.forEach((l) => l()), s.length = 0;
   }, u = (l, f, d, h) => (l.addEventListener(f, d, h), () => l.removeEventListener(f, d, h)), a = A(
-    () => [F(e), C(o)],
+    () => [z(e), C(o)],
     ([l, f]) => {
       i(), l && s.push(
         ...n.flatMap((d) => r.map((h) => u(l, d, h, f)))
@@ -311,18 +311,18 @@ function Q(...t) {
   };
   return D(c), c;
 }
-var R = Object.defineProperty, Y = Object.defineProperties, X = Object.getOwnPropertyDescriptors, w = Object.getOwnPropertySymbols, Z = Object.prototype.hasOwnProperty, q = Object.prototype.propertyIsEnumerable, E = (t, e, n) => e in t ? R(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n, _ = (t, e) => {
+var Q = Object.defineProperty, X = Object.defineProperties, Y = Object.getOwnPropertyDescriptors, w = Object.getOwnPropertySymbols, Z = Object.prototype.hasOwnProperty, q = Object.prototype.propertyIsEnumerable, E = (t, e, n) => e in t ? Q(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n, _ = (t, e) => {
   for (var n in e || (e = {}))
     Z.call(e, n) && E(t, n, e[n]);
   if (w)
     for (var n of w(e))
       q.call(e, n) && E(t, n, e[n]);
   return t;
-}, I = (t, e) => Y(t, X(e));
+}, I = (t, e) => X(t, Y(e));
 function H(t) {
   return typeof t == "function" ? t : typeof t == "string" ? (e) => e.key === t : Array.isArray(t) ? (e) => t.includes(e.key) : () => !0;
 }
-function $(...t) {
+function N(...t) {
   let e, n, r = {};
   t.length === 3 ? (e = t[0], n = t[1], r = t[2]) : t.length === 2 ? typeof t[1] == "object" ? (e = !0, n = t[0], r = t[1]) : (e = t[0], n = t[1]) : (e = !0, n = t[0]);
   const {
@@ -331,20 +331,21 @@ function $(...t) {
     passive: i = !1,
     dedupe: u = !1
   } = r, a = H(e);
-  return Q(o, s, (l) => {
+  return F(o, s, (l) => {
     l.repeat && C(u) || a(l) && n(l);
   }, i);
 }
 function y(t, e, n = {}) {
-  return $(t, e, I(_({}, n), { eventName: "keydown" }));
+  return N(t, e, I(_({}, n), { eventName: "keydown" }));
 }
 function g(t, e, n = {}) {
-  return $(t, e, I(_({}, n), { eventName: "keyup" }));
+  return N(t, e, I(_({}, n), { eventName: "keyup" }));
 }
 function j() {
   const t = p(!1), e = p(!1), n = p(!1);
   return y(" ", (r) => {
-    r.preventDefault(), t.value = !0;
+    var o = r.target;
+    ["INPUT", "TEXTAREA"].includes(o.tagName) || r.preventDefault(), t.value = !0;
   }), g(" ", () => {
     t.value = !1;
   }), y("Shift", (r) => {
@@ -362,9 +363,9 @@ function ee() {
     canvasScale: p(1)
   };
 }
-const te = O(ee), L = O(j);
+const te = O(ee), $ = O(j);
 function pe(t) {
-  const { pressSpace: e } = L();
+  const { pressSpace: e } = $();
   let n = 0, r = 0;
   function o(u) {
     var a;
@@ -382,7 +383,7 @@ function pe(t) {
   return { handleElementDragStart: o, handleElementDrag: s, handleElementDragEnd: i };
 }
 function de(t) {
-  const { pressCtrl: e } = L(), { canvasScale: n } = te();
+  const { pressCtrl: e } = $(), { canvasScale: n } = te();
   function r(o) {
     if (!e.value)
       return;
@@ -427,7 +428,7 @@ export {
   pe as useElementDrag,
   de as useElementZoom,
   ce as usePageManager,
-  L as useShareKeyPress,
+  $ as useShareKeyPress,
   te as useShareStore,
   ee as useStore,
   he as useTimedQuery

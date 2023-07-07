@@ -13,7 +13,10 @@ export function useKeyPress () {
   // 是否按住ctrl键
   const pressCtrl = ref(false)
   onKeyDown(' ', (e) => {
-    e.preventDefault()
+    var element = e.target as HTMLElement;
+    if(!['INPUT','TEXTAREA'].includes(element.tagName)){
+      e.preventDefault()
+    }
     pressSpace.value = true
   })
   onKeyUp(' ', () => {

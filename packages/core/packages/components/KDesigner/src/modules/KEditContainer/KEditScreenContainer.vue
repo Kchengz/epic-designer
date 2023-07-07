@@ -19,7 +19,8 @@
 
     <div ref="editScreenContainerRef" class="flex-1 overflow-auto k-edit-screen-container"
       :class="{ 'cursor-grab': pressSpace }" :draggable="pressSpace" @wheel="handleZoom"
-      @dragstart="handleElementDragStart" @dragend="handleElementDragEnd" @drag="handleElementDrag">
+      @dragstart="handleElementDragStart" @dragend="handleElementDragEnd"
+      @drag="handleElementDrag">
       <div id="canvasContainer" class="flex items-center justify-center" :style="scrollBoxStyle">
         <div ref="draggableElRef" class="transition-all">
           <div :class="{ 'pointer-events-none': pressSpace }">
