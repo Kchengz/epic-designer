@@ -19,7 +19,7 @@
 import KNode from '../../../../KNode/index'
 import { Designer, NodeItem, PageSchema, FormDataModel } from '../../../../../types/kDesigner'
 import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '@k-designer/utils'
-import { inject, computed, reactive, nextTick, provide } from 'vue'
+import { inject, computed, ref, watch, reactive, nextTick, provide } from 'vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
 
@@ -46,13 +46,15 @@ function isShow(item: NodeItem) {
   return true
 }
 
-const componentAttributes = computed(() => {
+const componentAttributes= ref<NodeItem[]>([])
+watch(()=>designer.state.checkedNode?.type,()=>{
+  console.log('23234')
   const type = designer.state.checkedNode?.type
   if (!type) {
     return []
   }
   const attribute = componentConfings[type]?.config.attribute ?? []
-  return [
+  componentAttributes.value = [
     {
       label: '组件ID',
       type: 'input',
@@ -63,14 +65,34 @@ const componentAttributes = computed(() => {
     },
     ...attribute
   ]
+},{
+  immediate:true
 })
+// const componentAttributes = computed(() => {
+//   const type = designer.state.checkedNode?.type
+//   if (!type) {
+//     return []
+//   }
+//   const attribute = componentConfings[type]?.config.attribute ?? []
+//   return [
+//     {
+//       label: '组件ID',
+//       type: 'input',
+//       field: 'id',
+//       componentProps: {
+//         disabled: true
+//       }
+//     },
+//     ...attribute
+//   ]
+// })
 
 /**
  * 设置属性值
  */
 function handleSetValue(value: any, field: string, item: NodeItem) {
   if (typeof item.onChange === 'function') {
-    item.onChange({ value, values: checkedNode.value! })
+    item.onChange({ value, values: checkedNode.value!,componentAttributes })
   }
 
   nextTick(() => {
