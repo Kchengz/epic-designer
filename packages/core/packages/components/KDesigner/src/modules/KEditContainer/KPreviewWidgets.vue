@@ -1,8 +1,8 @@
 <template>
   <div v-show="showSelector && designer.state.checkedNode?.id !== 'root'" ref="selectorRef"
     class="checked-widget absolute pointer-events-none z-20" :class="{ 'transition-all': selectorTransition }">
-    <div class="action-box">
-      <div class="action-item">
+    <div class="action-box" ref="actionBoxRef">
+      <div class="action-item whitespace-nowrap">
         {{ designer.state.checkedNode?.type }}
         {{ designer.state.checkedNode?.label ?? pluginManager.getComponentConfingByType(designer.state.checkedNode?.type
           ?? '')?.defaultSchema.label }}
@@ -27,8 +27,10 @@ const pageManager = inject('pageManager', {}) as PageManager
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
 
-const selectorRef = ref()
-const hoverWidgetRef = ref()
+const selectorRef = ref<HTMLDivElement | null>(null)
+const hoverWidgetRef = ref<HTMLDivElement | null>(null)
+const actionBoxRef = ref<HTMLDivElement | null>(null)
+
 const showSelector = ref(false)
 const showHover = ref(false)
 const selectorTransition = ref(true)
@@ -136,7 +138,6 @@ watch(() => designer.state.hoverNode?.id, e => {
  * 设置选择部件 样式 定位 宽高
  */
 function setSeletorStyle() {
-  console.log('---')
   const element = getSelectComponentElement.value
   if (!element) return
 
@@ -148,12 +149,41 @@ function setSeletorStyle() {
   const selectorTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * canvasScale.value
   const selectorLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0) * canvasScale.value
 
+  const selectorRefHeight = height / canvasScale.value
+
   if (selectorRef.value) {
     selectorRef.value.style.width = `${width / canvasScale.value}px`
-    selectorRef.value.style.height = `${height / canvasScale.value}px`
+    selectorRef.value.style.height = `${selectorRefHeight}px`
     selectorRef.value.style.top = `${selectorTop / canvasScale.value}px`
     selectorRef.value.style.left = `${selectorLeft / canvasScale.value}px`
   }
+
+  console.log(selectorRefHeight)
+  // 调整操作调位置 start
+
+  // 判断actionBoxRef是否有值
+  if (!actionBoxRef.value) {
+    return
+  }
+
+  // 判断actionBoxRef位置是否置于底部
+  if (selectorTop < 45 && selectorRefHeight < 100) {
+    actionBoxRef.value.style.top = ''
+    actionBoxRef.value.style.bottom = '-30px'
+    actionBoxRef.value.style['border-radius'] = '0px 0px 4px 4px'
+
+  } else if (selectorTop < 45) {
+  // 判断actionBoxRef位置置于中间
+    actionBoxRef.value.style.top = '0px'
+    actionBoxRef.value.style['border-radius'] = '0px 0px 4px 0'
+  } else {
+  // actionBoxRef位置置于顶部
+    actionBoxRef.value.style.top = '-30px'
+    actionBoxRef.value.style['border-radius'] = '4px 4px 0px 0px'
+  }
+  // 调整操作调位置 end
+
+
 }
 
 /**

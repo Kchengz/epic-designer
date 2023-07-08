@@ -41,22 +41,22 @@
   }
 
   .checked-widget {
-    border: 1px solid transparent;
+    border: 1px solid @primary-color;
     background: @primary-hover-bg-color;
     // position: relative;
-    &::before {
-      content: "";
-      height: 5px;
-      width: 0%;
-      background: @primary-color;
-      position: absolute;
-      top: -5px;
-      right: 0;
-      transition: all 0.3s;
-    }
-    &::before {
-      width: 100%;
-    }
+    // &::before {
+    //   content: "";
+    //   height: 5px;
+    //   width: 0%;
+    //   background: @primary-color;
+    //   position: absolute;
+    //   top: -5px;
+    //   right: 0;
+    //   transition: all 0.3s;
+    // }
+    // &::before {
+    //   width: 100%;
+    // }
     // position: relative;
 
     // &.moveing {
@@ -88,12 +88,9 @@
     .action-box {
       position: absolute;
       z-index: 999;
-      top: 0px;
-      // top: -30px;
-      right: 0;
       height: 30px;
       background: @primary-color;
-      border-radius: 0 2px 2px 4px;
+      border-radius: 4px 4px 0px 0px;
       color: white;
       display: flex;
       padding: 0 4px;

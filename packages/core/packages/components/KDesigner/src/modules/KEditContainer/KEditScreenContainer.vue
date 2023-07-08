@@ -121,6 +121,8 @@ onMounted(() => {
     // 超过1.2倍不自动缩放
     if (scale < 1.2) {
       canvasScale.value = scale
+    }else{
+      canvasScale.value = 1.2
     }
     updateScrollBoxStyle()
     setScroll()
