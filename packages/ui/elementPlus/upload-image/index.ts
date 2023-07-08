@@ -8,7 +8,9 @@ export default {
     field: 'uploadImage',
     input: true,
     componentProps: {
-      action: 'http://cdn.kcz66.com/upload-img.txt'
+      action: 'http://cdn.kcz66.com/upload-img.txt',
+      name: 'file',
+      showFileList: true
     }
   },
   config: {
@@ -22,6 +24,39 @@ export default {
         label: '文字',
         type: 'input',
         field: 'label'
+      },
+      {
+        label: '请求地址',
+        type: 'input',
+        field: 'componentProps.action'
+      },
+      {
+        label: '上传文件字段',
+        type: 'input',
+        field: 'componentProps.name'
+      },
+      {
+        label: '多选',
+        type: 'switch',
+        field: 'componentProps.multiple'
+      },
+      {
+        label: '展示文件列表',
+        type: 'switch',
+        field: 'componentProps.showFileList'
+      },
+      {
+        label: '拖拽上传',
+        type: 'switch',
+        field: 'componentProps.drag'
+      },
+      {
+        label: '允许上传最大数量',
+        type: 'number',
+        field: 'componentProps.limit',
+        componentProps: {
+          min:0
+        }
       },
       {
         label: '隐藏',
