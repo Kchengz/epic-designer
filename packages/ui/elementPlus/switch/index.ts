@@ -27,6 +27,51 @@ export default {
         field: 'componentProps.defaultValue'
       },
       {
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'default',
+              value: 'default'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: '宽度',
+        type: 'number',
+        field: 'componentProps.width',
+        componentProps: {
+          min: 50
+        }
+      },
+      {
+        label: '激活时文本',
+        type: 'input',
+        field: 'componentProps.activeText'
+      },
+      {
+        label: '未激活时文本',
+        type: 'input',
+        field: 'componentProps.inactiveText'
+      },
+      {
+        label: '文本点内显示',
+        type: 'switch',
+        field: 'componentProps.inlinePrompt'
+      },
+      {
         label: '隐藏',
         type: 'switch',
         field: 'componentProps.hidden'
