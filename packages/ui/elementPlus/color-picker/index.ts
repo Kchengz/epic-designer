@@ -29,6 +29,59 @@ export default {
         field: 'componentProps.defaultValue'
       },
       {
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'default',
+              value: 'default'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: '透明度选择',
+        type: 'switch',
+        field: 'componentProps.showAlpha'
+      },
+      {
+        label: '格式',
+        type: 'select',
+        defaultValue: 'hex',
+        componentProps: {
+          options: [
+            {
+              label: 'hsl',
+              value: 'hsl'
+            },
+            {
+              label: 'hsv',
+              value: 'hsv'
+            },
+            {
+              label: 'hex',
+              value: 'hex'
+            },
+            {
+              label: 'rgb',
+              value: 'rgb'
+            }
+          ]
+        },
+        field: 'componentProps.colorFormat'
+      },
+      {
         label: '隐藏',
         type: 'switch',
         field: 'componentProps.hidden'
