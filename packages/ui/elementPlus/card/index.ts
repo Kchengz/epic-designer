@@ -18,7 +18,29 @@ export default {
         label: '隐藏',
         type: 'switch',
         field: 'componentProps.hidden'
-      }
+      },
+      {
+        label: '阴影时机',
+        type: 'select',
+        defaultValue: 'always',
+        componentProps: {
+          options: [
+            {
+              label: 'always',
+              value: 'always'
+            },
+            {
+              label: 'hover',
+              value: 'hover'
+            },
+            {
+              label: 'never',
+              value: 'never'
+            }
+          ]
+        },
+        field: 'componentProps.shadow'
+      },
     ]
   }
 } as ComponentConfigModel
