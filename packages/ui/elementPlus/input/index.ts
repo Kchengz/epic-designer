@@ -48,7 +48,7 @@ export default {
       },
       {
         label: '最大输入长度',
-        type: 'input',
+        type: 'number',
         field: 'componentProps.maxlength'
       },
       {
