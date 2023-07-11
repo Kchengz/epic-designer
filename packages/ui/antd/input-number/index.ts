@@ -24,6 +24,68 @@ export default {
         field: 'label'
       },
       {
+        label: '默认值',
+        type: 'input',
+        field: 'componentProps.defaultValue'
+      },
+      {
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'middle',
+              value: 'middle'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: '键盘快捷行为',
+        type: 'switch',
+        field: 'componentProps.keyboard'
+      },
+      {
+        label: '最大值',
+        type: 'number',
+        field: 'componentProps.max'
+      },
+      {
+        label: '最小值',
+        type: 'number',
+        field: 'componentProps.min'
+      },
+      {
+        label: '精度',
+        type: 'number',
+        field: 'componentProps.precision'
+      },
+      {
+        label: '步长',
+        type: 'number',
+        field: 'componentProps.step'
+      },
+      {
+        label: '字符模式',
+        type: 'switch',
+        field: 'componentProps.stringMode'
+      },
+      {
+        label: '有边框',
+        type: 'switch',
+        field: 'componentProps.bordered'
+      },
+      {
         label: '可清空',
         type: 'switch',
         field: 'componentProps.allowClear'
