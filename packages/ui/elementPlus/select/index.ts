@@ -44,26 +44,26 @@ export default {
         field: "componentProps.placeholder",
       },
       {
-        label: '尺寸',
-        type: 'select',
-        defaultValue: 'default',
+        label: "尺寸",
+        type: "select",
+        defaultValue: "default",
         componentProps: {
           options: [
             {
-              label: 'large',
-              value: 'large'
+              label: "large",
+              value: "large",
             },
             {
-              label: 'default',
-              value: 'default'
+              label: "default",
+              value: "default",
             },
             {
-              label: 'small',
-              value: 'small'
-            }
-          ]
+              label: "small",
+              value: "small",
+            },
+          ],
         },
-        field: 'componentProps.size'
+        field: "componentProps.size",
       },
       {
         label: "可多选",
@@ -81,80 +81,80 @@ export default {
         label: "多选隐藏",
         type: "switch",
         field: "componentProps.collapseTags",
-        show: ({values})=>{
-          return values.componentProps.multiple
-        }
+        show: ({ values }) => {
+          return values.componentProps.multiple;
+        },
       },
       {
         label: "隐藏提示",
         type: "switch",
         field: "componentProps.collapseTagsTooltip",
-        show: ({values})=>{
-          return values.componentProps.multiple
-        }
+        show: ({ values }) => {
+          return values.componentProps.multiple;
+        },
       },
       {
         label: "保留搜索关键字",
         type: "switch",
         field: "componentProps.reserveKeyword",
-        show: ({values})=>{
-          return values.componentProps.multiple
-        }
+        show: ({ values }) => {
+          return values.componentProps.multiple;
+        },
       },
       {
-        label: '标签类型',
-        type: 'select',
-        defaultValue: 'info',
+        label: "标签类型",
+        type: "select",
+        defaultValue: "info",
         componentProps: {
           options: [
             {
-              label: 'success',
-              value: 'success'
+              label: "success",
+              value: "success",
             },
             {
-              label: 'info',
-              value: 'info'
+              label: "info",
+              value: "info",
             },
             {
-              label: 'warning',
-              value: 'warning'
+              label: "warning",
+              value: "warning",
             },
             {
-              label: 'danger',
-              value: 'danger'
+              label: "danger",
+              value: "danger",
             },
-          ]
+          ],
         },
-        show: ({values})=>{
-          return values.componentProps.multiple
+        show: ({ values }) => {
+          return values.componentProps.multiple;
         },
-        field: 'componentProps.tagType'
+        field: "componentProps.tagType",
       },
       {
-        label: '多选限制',
-        type: 'number',
-        field: 'componentProps.multipleLimit',
-        show: ({values})=>{
-          return values.componentProps.multiple
-        }
+        label: "多选限制",
+        type: "number",
+        field: "componentProps.multipleLimit",
+        show: ({ values }) => {
+          return values.componentProps.multiple;
+        },
       },
       {
-        label: '提示主题',
-        type: 'select',
-        defaultValue: 'light',
+        label: "提示主题",
+        type: "select",
+        defaultValue: "light",
         componentProps: {
           options: [
             {
-              label: 'light',
-              value: 'light'
+              label: "light",
+              value: "light",
             },
             {
-              label: 'dark',
-              value: 'dark'
+              label: "dark",
+              value: "dark",
             },
-          ]
+          ],
         },
-        field: 'componentProps.effect'
+        field: "componentProps.effect",
       },
       {
         label: "可筛选",
@@ -167,64 +167,62 @@ export default {
         field: "componentProps.allowCreate",
       },
       {
-        label: '下拉框位置',
-        type: 'select',
-        defaultValue: 'bottom-start',
+        label: "下拉框位置",
+        type: "select",
+        defaultValue: "bottom-start",
         componentProps: {
           options: [
             {
-              label: 'top',
-              value: 'top'
+              label: "top",
+              value: "top",
             },
             {
-              label: 'top-start',
-              value: 'top-start'
+              label: "top-start",
+              value: "top-start",
             },
             {
-              label: 'top-end',
-              value: 'top-end'
+              label: "top-end",
+              value: "top-end",
             },
             {
-              label: 'bottom',
-              value: 'bottom'
-            }
-            ,
-            {
-              label: 'bottom-start',
-              value: 'bottom-start'
+              label: "bottom",
+              value: "bottom",
             },
             {
-              label: 'bottom-end',
-              value: 'bottom-end'
+              label: "bottom-start",
+              value: "bottom-start",
             },
             {
-              label: 'left',
-              value: 'left'
-            }
-            ,
-            {
-              label: 'left-start',
-              value: 'left-start'
+              label: "bottom-end",
+              value: "bottom-end",
             },
             {
-              label: 'left-end',
-              value: 'left-end'
+              label: "left",
+              value: "left",
             },
             {
-              label: 'right',
-              value: 'right'
+              label: "left-start",
+              value: "left-start",
             },
             {
-              label: 'right-start',
-              value: 'right-start'
+              label: "left-end",
+              value: "left-end",
             },
             {
-              label: 'right-end',
-              value: 'right-end'
-            }
-          ]
+              label: "right",
+              value: "right",
+            },
+            {
+              label: "right-start",
+              value: "right-start",
+            },
+            {
+              label: "right-end",
+              value: "right-end",
+            },
+          ],
         },
-        field: 'componentProps.placement'
+        field: "componentProps.placement",
       },
       {
         label: "下拉框宽度与输入框相同",
@@ -232,9 +230,9 @@ export default {
         field: "componentProps.fitInputWidth",
       },
       {
-        label: '无数据时文本',
-        type: 'input',
-        field: 'componentProps.noDataText'
+        label: "无数据时文本",
+        type: "input",
+        field: "componentProps.noDataText",
       },
       {
         label: "可清空",
@@ -252,19 +250,19 @@ export default {
         field: "componentProps.disabled",
       },
       {
+        label: "选项管理",
+        type: "KOptionsEditor",
+        layout: "vertical",
+        field: "componentProps.options",
+        describe: "配置选项",
+      },
+      {
         label: "表单校验",
         type: "KRuleEditor",
         layout: "vertical",
         field: "rules",
         describe: "校验规则需要配合表单使用",
       },
-      {
-        label: "选项管理",
-        type: "KOptionsEditor",
-        layout: "vertical",
-        field: "componentProps.options",
-        describe: "校验规则需要配合表单使用",
-      }
     ],
   },
 } as ComponentConfigModel;
