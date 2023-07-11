@@ -3,18 +3,14 @@
     <div class="py-4 my-2 text-center text-gray-400 bg-white" v-show="!modelValue?.length">暂无选项</div>
     <draggable v-model="modelValue" item-key="id" :component-data="{
       type: 'transition-group',
-    }"
-    handle=".handle"
-    :animation="200"
-   >
+    }" handle=".handle" :animation="200">
       <template #item="{ element, index }">
-        <div class="option-item flex items-center mb-2">
+        <div class="option-item grid gap-2 grid-cols-[16px_auto_auto_16px] items-center mb-2">
           <span class="iconfont icon-bianji2 mr-2 text-lg cursor-move handle"></span>
-          <Input style="flex: 2; padding: 0 2px" v-model="element.label"></Input>
-          <Input style="flex: 2; padding: 0 2px" v-model="element.value"></Input>
+          <Input v-model="element.label" v-model:value="element.label" placeholder="请输入"></Input>
+          <Input v-model="element.value" v-model:value="element.value" placeholder="请输入"></Input>
           <!--      <span class="iconfont icon-tianjia1 mx-2 text-lg"></span>-->
-          <span class="iconfont icon-shanchu1 text-lg ml-2 hover:text-red cursor-pointer"
-            @click="handleRemove(index)"></span>
+          <span class="iconfont icon-shanchu1 text-lg hover:text-red cursor-pointer" @click="handleRemove(index)"></span>
         </div>
       </template>
     </draggable>
