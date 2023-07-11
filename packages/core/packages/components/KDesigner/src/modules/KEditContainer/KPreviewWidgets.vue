@@ -123,6 +123,7 @@ watch(() => getHoverComponentElement.value, (hoverComponentElement) => {
   }
 })
 
+
 // 添加悬停节点监听，当悬停节点消失超过300ms,则隐藏悬停部件
 let hideTimer: NodeJS.Timeout | number = 0
 watch(() => designer.state.hoverNode?.id, e => {
@@ -133,6 +134,9 @@ watch(() => designer.state.hoverNode?.id, e => {
     showHover.value = false
   }, 300)
 })
+
+
+
 
 /**
  * 设置选择部件 样式 定位 宽高
@@ -173,11 +177,11 @@ function setSeletorStyle() {
     actionBoxRef.value.style['border-radius'] = '0px 0px 4px 4px'
 
   } else if (selectorTop < 45) {
-  // 判断actionBoxRef位置置于中间
+    // 判断actionBoxRef位置置于中间
     actionBoxRef.value.style.top = '0px'
     actionBoxRef.value.style['border-radius'] = '0px 0px 4px 0'
   } else {
-  // actionBoxRef位置置于顶部
+    // actionBoxRef位置置于顶部
     actionBoxRef.value.style.top = '-30px'
     actionBoxRef.value.style['border-radius'] = '4px 4px 0px 0px'
   }
