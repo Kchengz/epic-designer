@@ -36,6 +36,21 @@ export default {
         field: 'componentProps.autoSize.maxRows'
       },
       {
+        label: '有边框',
+        type: 'switch',
+        field: 'componentProps.bordered'
+      },
+      {
+        label: '最大输入长度',
+        type: 'number',
+        field: 'componentProps.maxLength'
+      },
+      {
+        label: '统计字数',
+        type: 'switch',
+        field: 'componentProps.showCount'
+      },
+      {
         label: '可清除',
         type: 'switch',
         field: 'componentProps.allowClear'

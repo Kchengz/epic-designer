@@ -17,7 +17,8 @@ export default {
           label: '选项2',
           value: '选项2'
         }
-      ]
+      ],
+      listHeight:256
     }
   },
   config: {
@@ -33,9 +34,90 @@ export default {
         field: 'label'
       },
       {
+        label: "占位内容",
+        type: "input",
+        field: "componentProps.placeholder",
+      },
+      {
         label: '默认值',
         type: 'select',
         field: 'componentProps.defaultValue'
+      },
+      {
+        label: 'label包装到value中',
+        type: 'switch',
+        field: 'componentProps.labelInValue'
+      },
+      {
+        label: '设置弹窗高度',
+        type: 'number',
+        field: 'componentProps.listHeight'
+      },
+      {
+        label: '模式',
+        type: 'select',
+        componentProps: {
+          options: [
+            {
+              label: 'multiple',
+              value: 'multiple'
+            },
+            {
+              label: 'tags',
+              value: 'tags'
+            }
+          ],
+          allowClear: true
+        },
+        field: 'componentProps.mode'
+      },
+      {
+        label: '可搜索',
+        type: 'switch',
+        field: 'componentProps.showSearch'
+      },
+      {
+        label: '选中选项后清空搜索框',
+        type: 'switch',
+        field: 'componentProps.autoClearSearchValue',
+        show: ({values})=> values.componentProps.mode && values.componentProps.showSearch
+      },
+      {
+        label: '最大tag文本长度',
+        type: 'number',
+        field: 'componentProps.maxTagTextLength',
+        show: ({values})=>values.componentProps.mode
+      },
+      {
+        label: '最大tag显示数',
+        type: 'number',
+        field: 'componentProps.maxTagCount',
+        show: ({values})=>values.componentProps.mode
+      },
+      {
+        label: '弹出框位置',
+        type: 'select',
+        componentProps: {
+          options: [
+            {
+              label: 'bottomLeft',
+              value: 'bottomLeft'
+            },
+            {
+              label: 'bottomRight',
+              value: 'bottomRight'
+            },
+            {
+              label: 'topLeft',
+              value: 'topLeft'
+            },
+            {
+              label: 'topRight',
+              value: 'topRight'
+            }
+          ]
+        },
+        field: 'componentProps.placement'
       },
       {
         label: '可清空',
@@ -58,6 +140,13 @@ export default {
         layout: 'vertical',
         field: 'rules',
         describe: '校验规则需要配合表单使用'
+      },
+      {
+        label: "选项管理",
+        type: "KOptionsEditor",
+        layout: "vertical",
+        field: "componentProps.options",
+        describe: "校验规则需要配合表单使用",
       }
     ],
     event: [

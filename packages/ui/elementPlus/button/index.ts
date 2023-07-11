@@ -40,8 +40,8 @@ export default {
               value: 'warning'
             },
             {
-              label: 'warning',
-              value: 'warning'
+              label: 'danger',
+              value: 'danger'
             }
           ]
         },
@@ -61,6 +61,11 @@ export default {
         label: '圆形按钮',
         type: 'switch',
         field: 'componentProps.circle'
+      },
+      {
+        label: '文字按钮',
+        type: 'switch',
+        field: 'componentProps.text'
       },
       {
         label: '隐藏',
