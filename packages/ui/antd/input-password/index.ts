@@ -22,6 +22,43 @@ export default {
         field: 'label'
       },
       {
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'middle',
+              value: 'middle'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: '有边框',
+        type: 'switch',
+        field: 'componentProps.bordered'
+      },
+      {
+        label: '最大输入长度',
+        type: 'number',
+        field: 'componentProps.maxLength'
+      },
+      {
+        label: '统计字数',
+        type: 'switch',
+        field: 'componentProps.showCount'
+      },
+      {
         label: '可清空',
         type: 'switch',
         field: 'componentProps.allowClear'
