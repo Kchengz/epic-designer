@@ -17,7 +17,8 @@ export default {
           label: '选项2',
           value: '选项2'
         }
-      ]
+      ],
+      optionType: 'default'
     }
   },
   config: {
@@ -36,6 +37,45 @@ export default {
         label: '文字',
         type: 'input',
         field: 'label'
+      },
+      {
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'middle',
+              value: 'middle'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: 'option类型',
+        type: 'select',
+        componentProps: {
+          options: [
+            {
+              label: 'default',
+              value: 'default'
+            },
+            {
+              label: 'button',
+              value: 'button'
+            }
+          ]
+        },
+        field: 'componentProps.optionType'
       },
       {
         label: '隐藏',
