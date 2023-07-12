@@ -9,7 +9,9 @@ export default {
     input: true,
     componentProps: {
       valueFormat: 'YYYY-MM-DD',
-      type: 'daterange'
+      type: 'daterange',
+      size: 'middle',
+      placement: 'bottomLeft'
     }
   },
   config: {
@@ -23,6 +25,58 @@ export default {
         label: '文字',
         type: 'input',
         field: 'label'
+      },
+      {
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'middle',
+              value: 'middle'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: '有边框',
+        type: 'switch',
+        field: 'componentProps.bordered'
+      },
+      {
+        label: '弹出框位置',
+        type: 'select',
+        componentProps: {
+          options: [
+            {
+              label: 'bottomLeft',
+              value: 'bottomLeft'
+            },
+            {
+              label: 'bottomRight',
+              value: 'bottomRight'
+            },
+            {
+              label: 'topLeft',
+              value: 'topLeft'
+            },
+            {
+              label: 'topRight',
+              value: 'topRight'
+            }
+          ]
+        },
+        field: 'componentProps.placement'
       },
       {
         label: '默认值',
