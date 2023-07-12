@@ -24,6 +24,73 @@ export default {
         field: 'label'
       },
       {
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'middle',
+              value: 'middle'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: '有边框',
+        type: 'switch',
+        field: 'componentProps.bordered'
+      },
+      {
+        label: '小时选项间隔',
+        type: 'number',
+        field: 'componentProps.hourStep'
+      },
+      {
+        label: '分钟选项间隔',
+        type: 'number',
+        field: 'componentProps.minuteStep'
+      },
+      {
+        label: '秒选项间隔',
+        type: 'number',
+        field: 'componentProps.secondStep'
+      },
+      {
+        label: '弹出框位置',
+        type: 'select',
+        componentProps: {
+          options: [
+            {
+              label: 'bottomLeft',
+              value: 'bottomLeft'
+            },
+            {
+              label: 'bottomRight',
+              value: 'bottomRight'
+            },
+            {
+              label: 'topLeft',
+              value: 'topLeft'
+            },
+            {
+              label: 'topRight',
+              value: 'topRight'
+            }
+          ]
+        },
+        field: 'componentProps.placement'
+      },
+      {
         label: '默认值',
         type: 'time',
         field: 'componentProps.defaultValue'
