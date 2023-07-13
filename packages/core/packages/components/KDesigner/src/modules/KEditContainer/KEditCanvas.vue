@@ -2,7 +2,7 @@
   <section class="k-edit-canvas">
     <KEditScreenContainer :root-schema="rootSchema">
       <div
-        class="k-edit-range rounded-md overflow-hidden relative"
+        class="k-edit-range rounded-md overflow-auto relative"
         :style="getEditRangestyle"
       >
         <KNodeItem :schema="rootSchema" />
