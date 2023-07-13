@@ -73,7 +73,7 @@ export function setupAntd (pluginManager: PluginManager): void {
   // 设置分组显示
   pluginManager.setSchemaGroup([
     {
-      title: '输入组件',
+      title: '输入',
       list: [
         'form',
         'input',
@@ -94,7 +94,7 @@ export function setupAntd (pluginManager: PluginManager): void {
       ]
     },
     {
-      title: '布局组件',
+      title: '布局',
       list: [
         'card',
         'row'

@@ -4,31 +4,54 @@
   background-color: @action-bar-bg;
   border-right: 1px solid #eaeaea;
 
-
   .action-item {
     text-align: center;
-    height: 56px;
-    line-height: 56px;
+    height: 72px;
     position: relative;
-    font-size: 24px;
     cursor: pointer;
     color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: all .3s;
+
+    > span {
+      font-size: 20px;
+    }
 
     &:hover {
       color: @primary-color;
     }
 
+    &::before {
+      content: "";
+      height: 80%;
+      width: 80%;
+      border-radius: 6px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: @primary-hover-bg-color;
+      opacity: 0;
+      transition: all .3s;
+    }
+
     &.checked {
       color: @primary-color;
+      // &::after {
+      //   content: "";
+      //   height: 100%;
+      //   width: 2px;
+      //   background-color: @primary-color;
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      // }
 
       &::before {
-        content: "";
-        height: 100%;
-        width: 1px;
-        background-color: @primary-color;
-        position: absolute;
-        top: 0;
-        left: 0;
+        opacity: 1;
       }
     }
   }
@@ -36,13 +59,13 @@
 
 // 左侧栏
 .k-left-sidebar {
-  width: 280px;
+  width: 320px;
   background-color: @view-bg;
   overflow-x: hidden;
   overflow-y: auto;
   transition: all 0.3s;
   height: 100%;
-
+  border-right: 1px solid #eaeaea;
 
   .sidebar-container {
     min-width: 280px;

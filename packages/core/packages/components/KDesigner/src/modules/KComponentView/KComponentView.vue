@@ -1,66 +1,104 @@
 <template>
-  <div class="k-component-view">
-    <Collapse
-      v-model="collapseActiveNames"
-      v-model:activeKey="collapseActiveNames"
-    >
-      <CollapseItem
-        v-for="(item) in sourceSchema"
-        :key="item.title"
-        :title="item.title"
-        :header="item.title"
-        :name="item.title"
-      >
-        <draggable
-          v-model="item.list"
-          v-bind="{
-            group: { name: 'edit-draggable', pull: 'clone', put: false },
-            sort: false,
-            animation: 180,
-            ghostClass: 'moving'
-          }"
-          item-key="id"
-          :component-data="{ name: 'list' }"
-          @end="handleDraggableEnd($event, item.list)"
-        >
+  <div class="k-component-view flex flex-col">
+    <!-- 搜素框 start -->
+    <div class="search-box px-10px pr-14px py-6px">
+      <Input placeholder="请输入组件名称" v-model="keyword">
+      <template #prefix>
+        <span class="iconfont icon-chexiao2x" />
+      </template>
+      </Input>
+    </div>
+    <!-- 搜素框 end -->
+    <div class="flex flex-1 overflow-auto">
+      <!-- 分类选项 start  -->
+      <div class="tabs-box">
+        <div class="tab cursor-pointer truncate" :class="{ checked: activeItem.title === item.title }"
+          v-for="(item, index) in getSchemaTypeList" :key="index" :title="item.title" @click="handelChecked(item)">
+          {{ item.title }}
+        </div>
+      </div>
+      <!-- 分类选项 end  -->
+
+      <div class="h-full flex-1 overflow-auto py-2 box-border">
+        <draggable v-model="getSourceSchemaList" v-bind="{
+          group: { name: 'edit-draggable', pull: 'clone', put: false },
+          sort: false,
+          animation: 180,
+          ghostClass: 'moving'
+        }" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2" @end="handleDraggableEnd($event)">
           <template #item="{ element }">
-            <div
-              class="source-componet-item"
-              @click="handleClick(element)"
-            >
-              <span
-                class="iconfont"
-                :class="element.icon"
-              /> {{ element.label }}
+            <div class="source-componet-item flex items-center truncate" @click="handleClick(element)">
+              <span class="iconfont" :class="element.icon" />
+              <div>{{ element.label }}</div>
             </div>
           </template>
         </draggable>
-      </CollapseItem>
-    </Collapse>
+        <div v-show="!getSourceSchemaList.length" class="text-center pt-42px text-gray-400">没有查询到的组件</div>
+      </div>
+
+    </div>
+
   </div>
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { ref, toRaw, inject } from 'vue'
+import { ref, toRaw, computed, inject } from 'vue'
 import { getUUID, deepClone, findSchemaById, pluginManager, revoke } from '@k-designer/utils'
 import { NodeItem, PageSchema, Designer } from '../../../../../types/kDesigner'
-const Collapse = pluginManager.getComponent('Collapse')
-const CollapseItem = pluginManager.getComponent('CollapseItem')
-const sourceSchema = pluginManager.getSchemaByGroup()
+const Input = pluginManager.getComponent('input')
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
+const sourceSchema = pluginManager.getSchemaByGroup()
+const keyword = ref("")
+const allSchema = {
+  title: '全部',
+  list: []
+}
+const activeItem = ref(allSchema)
 
-// 默认展开所有面板
-const collapseActiveNames = ref(sourceSchema.value.map(item => item.title))
+/**
+ * 计算组件分类列表
+ */
+const getSchemaTypeList = computed(() => {
+  return [
+    allSchema,
+    ...sourceSchema.value
+  ]
+})
+
+/**
+ * 计算当前需要展示的组件列表
+ */
+const getSourceSchemaList = computed(() => {
+  let sourceSchemaList: NodeItem[] = activeItem.value.list
+  if (activeItem.value.title === '全部') {
+    const sourceSchemaAllList = sourceSchema.value.map(item => {
+      return item.list
+    })
+    sourceSchemaList = ([] as NodeItem[]).concat(...sourceSchemaAllList)
+  }
+
+  if (keyword.value) {
+    return sourceSchemaList.filter(item => item.label?.includes(keyword.value))
+  }
+
+  return sourceSchemaList
+})
+
+
+function handelChecked(item) {
+  activeItem.value = item
+}
+
 
 /**
  * 拖拽结束,深拷贝一次数据,防止重复引用
  * @param e
  * @param list
  */
-function handleDraggableEnd (e: any, list: NodeItem[]) {
-  list[e.oldIndex] = deepClone({
-    ...toRaw(list[e.oldIndex]),
+function handleDraggableEnd(e: any) {
+  getSourceSchemaList.value[e.oldIndex] = deepClone({
+    ...toRaw(getSourceSchemaList.value[e.oldIndex]),
     id: getUUID()
   })
 }
@@ -69,7 +107,7 @@ function handleDraggableEnd (e: any, list: NodeItem[]) {
  * 点击添加节点
  * @param e
  */
-function handleClick (e: NodeItem) {
+function handleClick(e: NodeItem) {
   const data = findSchemaById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
   if (!data) {
     return false
