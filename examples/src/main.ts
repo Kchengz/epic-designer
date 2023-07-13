@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import { pluginManager } from '@k-designer/core/packages/index'
-// 使用Elemnt UI
+// // // 使用Elemnt UI
 // import 'element-plus/dist/index.css'
 // import { setupElementPlus } from '@k-designer/ui/elementPlus'
 // setupElementPlus(pluginManager)

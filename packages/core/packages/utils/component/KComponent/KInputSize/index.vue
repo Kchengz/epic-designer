@@ -1,21 +1,9 @@
 <template>
   <Input class="k-input-size" v-model="size" v-model:value="size" type="number" min="0" placeholder="请输入"
     @input="handleUpdate">
-  <!-- elment ui slot start -->
-  <template #append>
-    <Select v-model="unit" style="width: 68px" :options="unitArray" @change="handleUpdate" />
-  </template>
-  <!-- elment ui slot end -->
-  <!-- antd ui slot start -->
-  <template #addonAfter>
-    <Select v-model:value="unit" style="width: 68px" :options="unitArray" @change="handleUpdate" />
-  </template>
-  <!-- antd ui slot end -->
-  <!-- naive ui slot start -->
   <template #suffix>
-    <Select v-model:value="unit" style="width: 68px" :options="unitArray" @change="handleUpdate" />
+    <Select v-model:value="unit" v-model="unit" style="width: 68px" :options="unitArray" @change="handleUpdate" />
   </template>
-  <!-- naive ui slot end -->
   </Input>
 </template>
 <script lang="ts" setup>

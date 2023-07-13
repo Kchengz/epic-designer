@@ -1,26 +1,15 @@
 <template>
   <aside class="k-attribute-view">
     <div v-if="checkedNode">
-      <div
-        v-for="item in componentStyles"
-        :key="item.field! + checkedNode.id"
-      >
-        <div
-          v-show="isShow(item)"
-          class="attr-item"
-        >
-          <div
-            class="attr-label"
-            :title="item.label"
-          >
+      <div v-for="item in componentStyles" :key="item.field! + checkedNode.id">
+        <div v-show="isShow(item)" class="attr-item">
+          <div class="attr-label" :title="item.label">
             {{ item.label }}
           </div>
           <div class="attr-input">
-            <KNode
-              :record="{ ...item, componentProps: { ...item.componentProps }, show: true, noFormItem: true }"
+            <KNode :record="{ ...item, componentProps: { ...item.componentProps }, show: true, noFormItem: true }"
               :model-value="getAttributeValue(item.field!, checkedNode!)"
-              @update:model-value="handleSetValue($event, item.field!)"
-            />
+              @update:model-value="handleSetValue($event, item.field!)" />
           </div>
         </div>
       </div>
@@ -64,7 +53,7 @@ const componentStyles: NodeItem[] = [
     componentProps: {
       type: 'color',
       style: {
-        width: '60px'
+        // width: '60px'
       }
     }
   },
@@ -75,7 +64,7 @@ const componentStyles: NodeItem[] = [
     componentProps: {
       type: 'color',
       style: {
-        width: '60px'
+        // width: '60px'
       }
     }
   }
@@ -85,7 +74,7 @@ const checkedNode = computed(() => {
   return designer.state.checkedNode
 })
 
-function isShow (item: NodeItem) {
+function isShow(item: NodeItem) {
   // show属性为boolean类型则直接返回
   if (typeof item.show === 'boolean') {
     return item.show
@@ -96,7 +85,7 @@ function isShow (item: NodeItem) {
 /**
  * 设置属性值
  */
-function handleSetValue (value: any, field: string) {
+function handleSetValue(value: any, field: string) {
   setAttributeValue(value, field, checkedNode.value!)
   // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(pageSchema.schemas, '编辑组件属性')
