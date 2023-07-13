@@ -24,6 +24,24 @@ export default {
         field: 'label'
       },
       {
+        label: '请求地址',
+        type: 'input',
+        field: 'componentProps.action'
+      },
+      {
+        label: '多选',
+        type: 'switch',
+        field: 'componentProps.multiple'
+      },
+      {
+        label: '允许上传最大数量',
+        type: 'number',
+        field: 'componentProps.maxCount',
+        componentProps: {
+          min:0
+        }
+      },
+      {
         label: '隐藏',
         type: 'switch',
         field: 'componentProps.hidden'
