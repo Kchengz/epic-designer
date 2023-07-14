@@ -11,7 +11,8 @@ export default {
       type: 'color',
       style: {
         width: '80px'
-      }
+      },
+      size: 'middle'
     }
   },
   config: {
@@ -30,6 +31,27 @@ export default {
         label: '默认值',
         type: 'input',
         field: 'componentProps.defaultValue'
+      },
+      {
+        label: '尺寸',
+        type: 'select',
+        componentProps: {
+          options: [
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'middle',
+              value: 'middle'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
       },
       {
         label: '可清空',
