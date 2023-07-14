@@ -7,7 +7,9 @@ export default {
     icon: 'icon-number',
     field: 'switch',
     input: true,
-    componentProps: {}
+    componentProps: {
+      size:'default'
+    }
   },
   config: {
     attribute: [
@@ -25,6 +27,33 @@ export default {
         label: '默认值',
         type: 'switch',
         field: 'componentProps.defaultValue'
+      },
+      {
+        label: '选中时内容',
+        type: 'input',
+        field: 'componentProps.checkedChildren'
+      },
+      {
+        label: '非选中时内容',
+        type: 'input',
+        field: 'componentProps.unCheckedChildren'
+      },
+      {
+        label: '尺寸',
+        type: 'select',
+        componentProps: {
+          options: [
+            {
+              label: 'default',
+              value: 'default'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
       },
       {
         label: '隐藏',
