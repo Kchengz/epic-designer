@@ -6,7 +6,13 @@ export default {
     type: 'button',
     field: 'input',
     icon: 'icon-write',
-    input: false
+    input: false,
+    componentProps: {
+      type: 'default',
+      size:'default',
+      shape: 'default',
+      target: '_self'
+    }
   },
   config: {
     attribute: [
@@ -27,40 +33,120 @@ export default {
               value: 'primary'
             },
             {
-              label: 'success',
-              value: 'success'
+              label: 'ghost',
+              value: 'ghost'
             },
             {
-              label: 'info',
-              value: 'info'
+              label: 'dashed',
+              value: 'dashed'
             },
             {
-              label: 'warning',
-              value: 'warning'
+              label: 'link',
+              value: 'link'
             },
             {
-              label: 'warning',
-              value: 'warning'
+              label: 'text',
+              value: 'text'
+            },
+            {
+              label: 'default',
+              value: 'default'
             }
           ]
         },
         field: 'componentProps.type'
       },
       {
-        label: '朴素按钮',
-        type: 'switch',
-        field: 'componentProps.plain'
+        label: '链接',
+        type: 'input',
+        field: 'componentProps.href',
+        componentProps: {
+          allowClear: true
+        }
       },
       {
-        label: '圆角按钮',
-        type: 'switch',
-        field: 'componentProps.round'
+        label: '链接打开方式',
+        type: 'select',
+        field: 'componentProps.target',
+        show: ({values}) => values.componentProps.href,
+        componentProps: {
+          options: [
+            {
+              label: 'blank',
+              value: '_blank'
+            },
+            {
+              label: 'parent',
+              value: '_parent'
+            },
+            {
+              label: 'self',
+              value: '_self'
+            },
+            {
+              label: 'top',
+              value: '_top'
+            },
+          ]
+        }
       },
       {
-        label: '圆形按钮',
+        label: '尺寸',
+        type: 'select',
+        componentProps: {
+          options: [
+            {
+              label: 'default',
+              value: 'default'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            },
+            {
+              label: 'large',
+              value: 'large'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: '形状',
+        type: 'select',
+        componentProps: {
+          options: [
+            {
+              label: 'default',
+              value: 'default'
+            },
+            {
+              label: 'circle',
+              value: 'circle'
+            },
+            {
+              label: 'round',
+              value: 'round'
+            }
+          ]
+        },
+        field: 'componentProps.shape'
+      },
+      {
+        label: '危险按钮',
         type: 'switch',
-        field: 'componentProps.circle'
-      }
+        field: 'componentProps.danger'
+      },
+      {
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
+      },
+      {
+        label: '禁用',
+        type: 'switch',
+        field: 'componentProps.disabled'
+      },
     ]
   }
 } as ComponentConfigModel
