@@ -34,9 +34,77 @@ export default {
         field: 'componentProps.placeholder'
       },
       {
+        label: '尺寸',
+        type: 'select',
+        field: 'componentProps.size',
+        componentProps: {
+          options: [
+            {
+              label: 'tiny',
+              value: 'tiny'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            },
+            {
+              label: 'medium',
+              value: 'medium'
+            },
+            {
+              label: 'large',
+              value: 'large'
+            }
+          ],
+          clearable: true
+        }
+      },
+      {
+        label: '控制按钮位置',
+        type: 'select',
+        field: 'componentProps.buttonPlacement',
+        componentProps: {
+          options: [
+            {
+              label: 'both',
+              value: 'both'
+            },
+            {
+              label: 'right',
+              value: 'right'
+            }
+          ]
+        }
+      },
+      {
+        label: '最大值',
+        type: 'number',
+        field: 'componentProps.max'
+      },
+      {
+        label: '最小值',
+        type: 'number',
+        field: 'componentProps.min'
+      },
+      {
+        label: '步长',
+        type: 'number',
+        field: 'componentProps.step'
+      },
+      {
+        label: '精度',
+        type: 'input',
+        field: 'componentProps.precision'
+      },
+      {
         label: '隐藏',
         type: 'switch',
         field: 'componentProps.hidden'
+      },
+      {
+        label: '可清空',
+        type: 'switch',
+        field: 'componentProps.clearable'
       },
       {
         label: '禁用',
