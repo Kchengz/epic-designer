@@ -44,6 +44,112 @@ export default {
         field: 'componentProps.placeholder'
       },
       {
+        label: '尺寸',
+        type: 'select',
+        field: 'componentProps.size',
+        componentProps: {
+          options: [
+            {
+              label: 'tiny',
+              value: 'tiny'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            },
+            {
+              label: 'medium',
+              value: 'medium'
+            },
+            {
+              label: 'large',
+              value: 'large'
+            }
+          ],
+          clearable: true
+        }
+      },
+      {
+        label: '菜单弹出的位置',
+        type: 'select',
+        field: 'componentProps.placement',
+        componentProps: {
+          options: [
+            {
+              label: 'top-start',
+              value: 'top-start'
+            },
+            {
+              label: 'top',
+              value: 'top'
+            },
+            {
+              label: 'top-end',
+              value: 'top-end'
+            },
+            {
+              label: 'right-start',
+              value: 'right-start'
+            },
+            {
+              label: 'right',
+              value: 'right'
+            },
+            {
+              label: 'right-end',
+              value: 'right-end'
+            },
+            {
+              label: 'bottom-start',
+              value: 'bottom-start'
+            },
+            {
+              label: 'bottom',
+              value: 'bottom'
+            },
+            {
+              label: 'bottom-end',
+              value: 'bottom-end'
+            },
+            {
+              label: 'left-start',
+              value: 'left-start'
+            },
+            {
+              label: 'left',
+              value: 'left'
+            },
+            {
+              label: 'left-end',
+              value: 'left-end'
+            }
+          ],
+          clearable: true
+        }
+      },
+      {
+        label: '可过滤',
+        type: 'switch',
+        field: 'componentProps.filterable'
+      },
+      {
+        label: '允许创建新选项',
+        type: 'switch',
+        field: 'componentProps.tag',
+        show: ({values})=> values.componentProps.filterable
+      },
+      {
+        label: '多选',
+        type: 'switch',
+        field: 'componentProps.multiple'
+      },
+      {
+        label: '最大tag数',
+        type: 'number',
+        field: 'componentProps.maxTagCount',
+        show: ({values})=> values.componentProps.multiple
+      },
+      {
         label: '可清空',
         type: 'switch',
         field: 'componentProps.clearable'
@@ -64,7 +170,14 @@ export default {
         layout: 'vertical',
         field: 'rules',
         describe: '校验规则需要配合表单使用'
-      }
+      },
+      {
+        label: "选项管理",
+        type: "KOptionsEditor",
+        layout: "vertical",
+        field: "componentProps.options",
+        describe: "配置选项",
+      },
     ],
     event: [
       {
