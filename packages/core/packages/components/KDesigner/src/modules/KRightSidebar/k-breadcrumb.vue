@@ -3,7 +3,7 @@
     <span v-for="(item, index) in designer.state.matched" :key="index">
       <span v-if="index > (designer.state.matched.length - 4)">
         <span v-if="designer.state.matched.length > 3 && index === (designer.state.matched.length - 3)">...</span>
-        <span v-if="index !== 0" class="iconfont icon-zhankai">
+        <span v-if="index !== 0" class="iconfont icon-zhankai m-1">
         </span>
         <span class="node-item cursor-pointer" @click="handleSelect(item)" @mouseenter.stop="designer.setHoverNode(item)"
           @mouseleave.stop="designer.setHoverNode(null)">

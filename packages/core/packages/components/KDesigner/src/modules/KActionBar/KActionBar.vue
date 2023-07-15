@@ -10,7 +10,7 @@
         @click="handleClick(item, index)"
       >
         <span
-          class="iconfont relative m-1"
+          class="iconfont relative"
           :class="item.icon"
         />
         <div class="text-14px">{{ item.title }}</div>
