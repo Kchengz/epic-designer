@@ -1,20 +1,7 @@
 <template>
   <div class="h-full flex flex-col relative">
     <!-- 工具条 start  -->
-    <div class="edit-toolbar flex items-center justify-end text-gray-500 px-4">
-      <div title="导出" class="pr-16px cursor-pointer">
-        <span class="icon iconfont">&#xe60b;</span>
-      </div>
-      <div title="导入" class="pr-16px cursor-pointer">
-        <span class="icon iconfont">&#xe60c;</span>
-      </div>
-      <div title="编辑事件" class="pr-16px cursor-pointer">
-        <span class="icon iconfont">&#xe612;</span>
-      </div>
-      <div class="w-40px cursor-pointer" @click="handleClick">
-        {{ (canvasScale * 100).toFixed(0) }}%
-      </div>
-    </div>
+    <Toolbar />
     <!-- 工具条 end  -->
 
     <div ref="editScreenContainerRef" class="flex-1 overflow-auto k-edit-screen-container"
@@ -37,7 +24,7 @@ import { watchOnce, useElementSize, useResizeObserver } from '@vueuse/core'
 import type { NodeItem } from '../../../../../types/kDesigner'
 import { useShareKeyPress, useElementDrag, useElementZoom } from '@k-designer/utils'
 import { ref, nextTick, watch, computed, onMounted } from 'vue'
-
+import Toolbar from './toolbar.vue'
 const props = defineProps<{
   rootSchema: NodeItem
 }>()
@@ -129,9 +116,6 @@ onMounted(() => {
   })
 })
 
-function handleClick() {
-  canvasScale.value = 1
-  draggableElRef.value!.style.transform = `scale(${canvasScale.value})`
-}
+
 
 </script>
