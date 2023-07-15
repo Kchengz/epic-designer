@@ -17,7 +17,8 @@ export default {
           label: '选项2',
           value: '选项2'
         }
-      ]
+      ],
+      size: 'medium'
     }
   },
   config: {
@@ -38,6 +39,27 @@ export default {
         field: 'label'
       },
       {
+        label: '尺寸',
+        type: 'select',
+        field: 'componentProps.size',
+        componentProps: {
+          options:[
+            {
+              label: 'small',
+              value: 'small'
+            },
+            {
+              label: 'medium',
+              value: 'medium'
+            },
+            {
+              label: 'large',
+              value: 'large'
+            }
+          ]
+        }
+      },
+      {
         label: '隐藏',
         type: 'switch',
         field: 'componentProps.hidden'
@@ -53,6 +75,13 @@ export default {
         layout: 'vertical',
         field: 'rules',
         describe: '校验规则需要配合表单使用'
+      },
+      {
+        label: "选项管理",
+        type: "KOptionsEditor",
+        layout: "vertical",
+        field: "componentProps.options",
+        describe: "配置选项",
       }
     ],
     event: [
