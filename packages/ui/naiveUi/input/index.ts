@@ -9,7 +9,8 @@ export default {
     input: true,
     componentProps: {
       defaultValue: '',
-      placeholder: '请输入'
+      placeholder: '请输入',
+      type: 'text'
     }
   },
   config: {
@@ -24,16 +25,36 @@ export default {
         type: 'input',
         field: 'label'
       },
-
       {
         label: '默认值',
         type: 'input',
         field: 'componentProps.defaultValue'
       },
       {
-        label: '占位内容',
-        type: 'input',
-        field: 'componentProps.placeholder'
+        label: '尺寸',
+        type: 'select',
+        field: 'componentProps.size',
+        componentProps: {
+          options: [
+            {
+              label: 'tiny',
+              value: 'tiny'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            },
+            {
+              label: 'medium',
+              value: 'medium'
+            },
+            {
+              label: 'large',
+              value: 'large'
+            }
+          ],
+          clearable: true
+        }
       },
       {
         label: '输入类型',
@@ -50,17 +71,79 @@ export default {
               value: 'textarea'
             },
             {
-              label: 'number',
-              value: 'number'
-            },
-            {
               label: 'password',
               value: 'password'
             }
-
           ]
         },
-        field: 'componentProps.type'
+        field: 'componentProps.type',
+        onChange: ({value, values})=> {
+          if (value != 'text')
+            values.componentProps.pair = false
+        }
+      },
+      {
+        label: '最大输入长度',
+        type: 'number',
+        field: 'componentProps.maxlength'
+      },
+      {
+        label: '显示密码的时机',
+        type: 'select',
+        field: 'componentProps.showPasswordOn',
+        componentProps: {
+          options: [
+            {
+              label: 'click',
+              value: 'click'
+            },
+            {
+              label: 'mousedown',
+              value: 'mousedown'
+            }
+          ],
+          clearable: true
+        },
+        show: ({values})=>values.componentProps.type==='password'
+      },
+      {
+        label: '行数',
+        type: 'number',
+        field: 'componentProps.rows',
+        show: ({values}) => values.componentProps.type === 'textarea',
+      },
+      {
+        label: '是否输入成对值',
+        type: 'switch',
+        field: 'componentProps.pair',
+        show: ({values})=>values.componentProps.type==='text'
+      },
+      {
+        label: '分割符',
+        type: 'input',
+        field: 'componentProps.separator',
+        show: ({values})=>values.componentProps.type==='text'&&values.componentProps.pair
+      },
+      {
+        label: '是否圆角',
+        type: 'switch',
+        field: 'componentProps.round'
+      },
+      {
+        label: '是否统计字数',
+        type: 'switch',
+        field: 'componentProps.showCount'
+      },
+      {
+        label: '自适应内容高度',
+        type: 'switch',
+        field: 'componentProps.autosize',
+        show: ({values}) => values.componentProps.type === 'textarea',
+      },
+      {
+        label: '占位内容',
+        type: 'input',
+        field: 'componentProps.placeholder'
       },
       {
         label: '可清空',
