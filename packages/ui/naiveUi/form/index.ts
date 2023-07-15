@@ -15,7 +15,11 @@ export default {
       wrapperCol: {
         span: 19
       },
-      hideRequiredMark: false
+      hideRequiredMark: false,
+      labelPlacement:'left',
+      labelAlign: 'right',
+      requireMarkPlacement: 'right',
+      size: 'medium'
     },
     children: []
   },
@@ -34,7 +38,24 @@ export default {
       {
         label: '标签位置',
         type: 'select',
-        field: 'componentProps.labelPosition',
+        field: 'componentProps.labelPlacement',
+        componentProps: {
+          options: [
+            {
+              label: 'left',
+              value: 'left'
+            },
+            {
+              label: 'top',
+              value: 'top'
+            }
+          ]
+        }
+      },
+      {
+        label: '标签文本对齐方式',
+        type: 'select',
+        field: 'componentProps.labelAlign',
         componentProps: {
           options: [
             {
@@ -44,10 +65,23 @@ export default {
             {
               label: 'right',
               value: 'right'
+            }
+          ]
+        }
+      },
+      {
+        label: '必填星号的位置',
+        type: 'select',
+        field: 'componentProps.requireMarkPlacement',
+        componentProps: {
+          options: [
+            {
+              label: 'left',
+              value: 'left'
             },
             {
-              label: 'top',
-              value: 'top'
+              label: 'right',
+              value: 'right'
             }
           ]
         }
@@ -63,8 +97,8 @@ export default {
               value: 'large'
             },
             {
-              label: 'default',
-              value: 'default'
+              label: 'medium',
+              value: 'medium'
             },
             {
               label: 'small',
