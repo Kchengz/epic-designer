@@ -3,6 +3,7 @@
     v-if="sidebarComponent"
     class="k-right-sidebar"
   >
+  <KBreadcrumb />
     <ul class="actions-container">
       <li
         v-for="(item, index) in rightSidebars"
@@ -26,6 +27,7 @@
 import { ref, shallowRef } from 'vue'
 import { pluginManager } from '@k-designer/utils'
 import { RightSidebarModel } from '@k-designer/utils/pluginManager'
+import KBreadcrumb from './k-breadcrumb.vue'
 
 const rightSidebars = pluginManager.getRightSidebars()
 const actionBarCheckedIndex = ref<number | null>(0)

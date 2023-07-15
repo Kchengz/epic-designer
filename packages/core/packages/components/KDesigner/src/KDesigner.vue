@@ -8,7 +8,6 @@
           <KEditCanvas />
           <KRightSidebar />
         </div>
-        <!-- <KFooter /> -->
       </div>
     </template>
     <template #fallback>
@@ -27,7 +26,6 @@ const KHeader = loadAsyncComponent(() => import('./modules/KHeader/KHeader.vue')
 const KActionBar = loadAsyncComponent(() => import('./modules/KActionBar/KActionBar.vue'))
 const KEditCanvas = loadAsyncComponent(() => import('./modules/KEditContainer/KEditCanvas.vue'))
 const KRightSidebar = loadAsyncComponent(() => import('./modules/KRightSidebar/KRightSidebar.vue'))
-const KFooter = loadAsyncComponent(() => import('./modules/KFooter/KFooter.vue'))
 const KAsyncLoader = loadAsyncComponent(() => import('../../KAsyncLoader/KAsyncLoader.vue'))
 const pageManager = usePageManager()
 const emit = defineEmits(['ready', 'save'])
