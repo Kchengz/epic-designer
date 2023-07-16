@@ -9,8 +9,8 @@ export default {
     input: true,
     componentProps: {
       type: 'date',
-      valueFormat: 'yyyy-MM-dd HH:mm:ss',
-      placeholder: '请选择'
+      placeholder: '请选择',
+      size: 'medium'
     }
   },
   config: {
@@ -26,19 +26,43 @@ export default {
         field: 'label'
       },
       {
-        label: '格式',
-        type: 'input',
-        field: 'componentProps.valueFormat'
-      },
-      {
         label: '默认值',
         type: 'date',
         field: 'componentProps.defaultValue'
       },
       {
+        label: '尺寸',
+        type: 'select',
+        field: 'componentProps.size',
+        componentProps: {
+          options:[
+            {
+              label: 'small',
+              value: 'small'
+            },
+            {
+              label: 'medium',
+              value: 'medium'
+            },
+            {
+              label: 'large',
+              value: 'large'
+            }
+          ]
+        }
+      },
+      {
         label: '占位内容',
         type: 'input',
         field: 'componentProps.placeholder'
+      },
+      {
+        label: '格式',
+        type: 'input',
+        field: 'componentProps.format',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '显示类型',
@@ -51,23 +75,65 @@ export default {
               value: 'date'
             },
             {
-              label: '周',
-              value: 'week'
+              label: '日期时间',
+              value: 'datetime'
+            },
+            {
+              label: '日期范围',
+              value: 'daterange'
+            },
+            {
+              label: '日期时间范围',
+              value: 'datetimerange'
             },
             {
               label: '月份',
               value: 'month'
             },
             {
+              label: '月份范围',
+              value: 'monthrange'
+            },
+            {
               label: '年份',
               value: 'year'
             },
             {
-              label: '多个日期',
-              value: 'dates'
+              label: '季度',
+              value: 'quarter'
             }
           ]
         }
+      },
+      {
+        label: '分割符',
+        type: 'input',
+        field: 'componentProps.separator',
+        componentProps: {
+          placeholder: '请输入',
+          clearable: true
+        },
+        show: ({values})=>['daterange','datetimerange','monthrange'].includes(values.componentProps.type)
+      },
+      {
+        label: 'start框占位符',
+        type: 'input',
+        field: 'componentProps.startPlaceholder',
+        componentProps: {
+          placeholder: '请输入',
+          clearable: true
+        },
+        show: ({values})=>['daterange','datetimerange','monthrange'].includes(values.componentProps.type)
+      },
+      {
+        label: 'end框占位符',
+        type: 'input',
+        field: 'componentProps.endPlaceholder',
+        componentProps: {
+          placeholder: '请输入',
+          clearable: true
+        },
+        show: ({values})=>['daterange','datetimerange','monthrange'].includes(values.componentProps.type)
       },
       {
         label: '可清空',
