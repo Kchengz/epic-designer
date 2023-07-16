@@ -48,7 +48,6 @@ function isShow(item: NodeItem) {
 
 const componentAttributes= ref<NodeItem[]>([])
 watch(()=>designer.state.checkedNode?.type,()=>{
-  console.log('23234')
   const type = designer.state.checkedNode?.type
   if (!type) {
     return []
@@ -94,12 +93,17 @@ function handleSetValue(value: any, field: string, item: NodeItem) {
   if (typeof item.onChange === 'function') {
     item.onChange({ value, values: checkedNode.value!,componentAttributes })
   }
-
+  // 判断是否同步修改属性值
+if(item.changeSync){
+  setAttributeValue(value, field, checkedNode.value!)
+}else {
   nextTick(() => {
     setAttributeValue(value, field, checkedNode.value!)
-    // 将修改过的组件属性推入撤销操作的栈中
-    revoke.push(pageSchema.schemas, '编辑组件属性')
   })
+}
+  // 将修改过的组件属性推入撤销操作的栈中
+  revoke.push(pageSchema.schemas, '编辑组件属性')
+
 
 
 }
