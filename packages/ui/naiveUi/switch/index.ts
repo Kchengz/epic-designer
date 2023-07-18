@@ -7,7 +7,10 @@ export default {
     icon: 'icon-number',
     field: 'switch',
     input: true,
-    componentProps: {}
+    componentProps: {
+      round:true,
+      size: 'medium'
+    }
   },
   config: {
     attribute: [
@@ -25,6 +28,49 @@ export default {
         label: '默认值',
         type: 'switch',
         field: 'componentProps.defaultValue'
+      },
+      {
+        label: '尺寸',
+        type: 'select',
+        field: 'componentProps.size',
+        componentProps: {
+          options: [
+            {
+              label: 'small',
+              value: 'small'
+            },
+            {
+              label: 'medium',
+              value: 'medium'
+            },
+            {
+              label: 'large',
+              value: 'large'
+            }
+          ],
+          clearable: true
+        }
+      },
+      {
+        label: '原型按钮',
+        type: 'switch',
+        field: 'componentProps.round'
+      },
+      {
+        label: '选中时对应值',
+        type: 'input',
+        field: 'componentProps.checkedValue',
+        componentProps: {
+          placeholder:'请输入'
+        }
+      },
+      {
+        label: '非选中时对应值',
+        type: 'input',
+        field: 'componentProps.uncheckedValue',
+        componentProps: {
+          placeholder:'请输入'
+        }
       },
       {
         label: '隐藏',

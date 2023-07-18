@@ -24,6 +24,38 @@ export default {
         field: 'label'
       },
       {
+        label: '请求地址',
+        type: 'input',
+        field: 'componentProps.action'
+      },
+      {
+        label: '上传文件字段',
+        type: 'input',
+        field: 'componentProps.name',
+        componentProps: {
+          placeholder: '请输入'
+        }
+      },
+      {
+        label: '允许上传最大数量',
+        type: 'number',
+        field: 'componentProps.max',
+        componentProps: {
+          min:0,
+          placeholder: '请输入'
+        }
+      },
+      {
+        label: '展示文件列表',
+        type: 'switch',
+        field: 'componentProps.showFileList'
+      },
+      {
+        label: '多选',
+        type: 'switch',
+        field: 'componentProps.multiple'
+      },
+      {
         label: '隐藏',
         type: 'switch',
         field: 'componentProps.hidden'

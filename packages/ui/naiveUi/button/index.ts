@@ -6,7 +6,10 @@ export default {
     type: 'button',
     field: 'input',
     icon: 'icon-write',
-    input: false
+    input: false,
+    componentProps: {
+      bordered: true
+    }
   },
   config: {
     attribute: [
@@ -22,6 +25,14 @@ export default {
           placeholder: '请选择',
           clearable: true,
           options: [
+            {
+              label: 'default',
+              value: 'default'
+            },
+            {
+              label: 'tertiary',
+              value: 'tertiary'
+            },
             {
               label: 'primary',
               value: 'primary'
@@ -39,17 +50,54 @@ export default {
               value: 'warning'
             },
             {
-              label: 'warning',
-              value: 'warning'
+              label: 'error',
+              value: 'error'
             }
           ]
         },
         field: 'componentProps.type'
       },
       {
-        label: '朴素按钮',
+        label: '尺寸',
+        type: 'select',
+        defaultValue: 'default',
+        componentProps: {
+          "placeholder": "请选择",
+          options: [
+            {
+              label: 'tiny',
+              value: 'tiny'
+            },
+            {
+              label: 'large',
+              value: 'large'
+            },
+            {
+              label: 'medium',
+              value: 'medium'
+            },
+            {
+              label: 'small',
+              value: 'small'
+            }
+          ]
+        },
+        field: 'componentProps.size'
+      },
+      {
+        label: '是否块级',
         type: 'switch',
-        field: 'componentProps.plain'
+        field: 'componentProps.block'
+      },
+      {
+        label: '显示边框',
+        type: 'switch',
+        field: 'componentProps.bordered'
+      },
+      {
+        label: '虚线框',
+        type: 'switch',
+        field: 'componentProps.dashed'
       },
       {
         label: '圆角按钮',
@@ -60,6 +108,16 @@ export default {
         label: '圆形按钮',
         type: 'switch',
         field: 'componentProps.circle'
+      },
+      {
+        label: '按钮颜色',
+        type: 'color-picker',
+        field: 'componentProps.color'
+      },
+      {
+        label: '是否透明',
+        type: 'switch',
+        field: 'componentProps.ghost'
       },
       {
         label: '隐藏',
