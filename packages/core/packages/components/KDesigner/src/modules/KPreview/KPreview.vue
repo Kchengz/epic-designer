@@ -1,33 +1,21 @@
 <template>
-  <component
-    :is="Modal"
-    v-model:visible="visible"
-    v-model:show="visible"
+  <Modal
     v-model="visible"
     title="预览"
-    width="800px"
-    :footer="null"
-    :body-style="{ padding: 0 }"
+    class="w-900px"
+    width="900px"
+    @close="handleClose"
+    @ok="handleOk"
+    okText="输出结果"
   >
-    <div class="min-w-750px p-4 rounded bg-white">
+    <div class="min-w-750px rounded bg-white">
       <KBuilder
         :key="kBuilderKey"
         ref="kb"
         :page-schema="pageSchema"
       />
-      <div class="k-modal-footer">
-        <Button @click="handleClose">
-          关闭
-        </Button>
-        <Button
-          type="primary"
-          @click="handleOk"
-        >
-          输出结果
-        </Button>
-      </div>
     </div>
-  </component>
+  </Modal>
 </template>
 <script lang="ts" setup>
 import KBuilder from '../../../../KBuilder'
@@ -35,8 +23,7 @@ import { pluginManager, getUUID } from '@k-designer/utils'
 import { ref, inject } from 'vue'
 import { PageSchema } from '../../../../../types/kDesigner'
 
-const Modal = pluginManager.getComponent('Modal')
-const Button = pluginManager.getComponent('button')
+const Modal = pluginManager.getComponent('modal')
 
 const visible = ref(false)
 const pageSchema = inject('pageSchema') as PageSchema

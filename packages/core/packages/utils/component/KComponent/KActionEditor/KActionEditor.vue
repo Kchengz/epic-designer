@@ -2,6 +2,7 @@
   <Collapse
     v-model="activeNames"
     v-model:activeKey="activeNames"
+    v-model:expanded-names="activeNames"
   >
     <CollapseItem
       v-for="(item) in filterEventList"
