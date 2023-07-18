@@ -21,12 +21,12 @@ import TabPane from './tab-pane'
 import Form from './form'
 import FormItem from './form-item'
 import Button from './button'
+import Modal from './modal'
 import colorPicker from './color-picker'
 
 
 export function setupAntd (pluginManager: PluginManager): void {
   // 异步加载组件
-  pluginManager.component('Modal', async () => await import('ant-design-vue/lib/modal'))
   pluginManager.component(
     'Collapse',
     async () => await import('ant-design-vue/lib/collapse')
@@ -63,6 +63,7 @@ export function setupAntd (pluginManager: PluginManager): void {
     Tabs,
     TabPane,
     Button,
+    Modal,
     colorPicker
   ]
 
