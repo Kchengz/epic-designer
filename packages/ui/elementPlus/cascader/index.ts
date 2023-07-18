@@ -19,6 +19,12 @@ export default {
         },
       ],
       placeholder: "请选择",
+      showAllLevels: true,
+      separator: '/',
+      size: 'default',
+      props: {
+        expandTrigger: 'click'
+      }
     },
   },
   config: {
@@ -42,6 +48,84 @@ export default {
         label: "占位内容",
         type: "input",
         field: "componentProps.placeholder",
+      },
+      {
+        label: "尺寸",
+        type: "select",
+        defaultValue: "default",
+        componentProps: {
+          options: [
+            {
+              label: "large",
+              value: "large",
+            },
+            {
+              label: "default",
+              value: "default",
+            },
+            {
+              label: "small",
+              value: "small",
+            },
+          ],
+        },
+        field: "componentProps.size",
+      },
+      {
+        label: "可多选",
+        type: "switch",
+        field: "componentProps.props.multiple",
+        onChange: ({ value, values }) => {
+          if (value) {
+            values.componentProps.defaultValue = [];
+          } else {
+            values.componentProps.defaultValue = null;
+          }
+        },
+      },
+      {
+        label: "折叠Tag",
+        type: "switch",
+        field: "componentProps.collapseTags",
+        show: ({values})=>values.componentProps.props.multiple
+      },
+      {
+        label: "显示被折叠标签",
+        type: "switch",
+        field: "componentProps.collapseTagsTooltip",
+        show: ({values})=>values.componentProps.props.multiple&&values.componentProps.collapseTags
+      },
+      {
+        label: "展示完整路径",
+        type: "switch",
+        field: "componentProps.showAllLevels",
+      },
+      {
+        label: "次级菜单展开方式",
+        type: "select",
+        field: "componentProps.props.expandTrigger",
+        componentProps: {
+          options:  [
+            {
+              label: 'click',
+              value: 'click'
+            },
+            {
+              label: 'hover',
+              value: 'hover'
+            }
+          ]
+        }
+      },
+      {
+        label: "可搜索",
+        type: "switch",
+        field: "componentProps.filterable",
+      },
+      {
+        label: "分割符",
+        type: "input",
+        field: "componentProps.separator",
       },
       {
         label: "可清空",
