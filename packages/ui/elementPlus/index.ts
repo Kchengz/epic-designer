@@ -22,8 +22,8 @@ import CollapseItem from './collapse-item'
 import DatePicker from './date-picker'
 import UploadFile from './upload-file'
 import UploadImage from './upload-image'
+import Modal from './modal'
 import {
-  ElDialog,
   ElFormItem,
   ElTabs,
   ElTabPane,
@@ -34,7 +34,6 @@ import {
 export function setupElementPlus (pluginManager: PluginManager): void {
   // 异步加载组件
 
-  pluginManager.component('Modal', ElDialog)
   pluginManager.component('FormItem', ElFormItem)
   pluginManager.component('Tabs', ElTabs)
   pluginManager.component('TabPane', ElTabPane)
@@ -63,6 +62,7 @@ export function setupElementPlus (pluginManager: PluginManager): void {
     Collapse,
     CollapseItem,
     UploadFile,
+    Modal,
     UploadImage
   ]
 
