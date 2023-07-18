@@ -162,9 +162,7 @@ function setSeletorStyle() {
     selectorRef.value.style.left = `${selectorLeft / canvasScale.value}px`
   }
 
-  console.log(selectorRefHeight)
   // 调整操作调位置 start
-
   // 判断actionBoxRef是否有值
   if (!actionBoxRef.value) {
     return

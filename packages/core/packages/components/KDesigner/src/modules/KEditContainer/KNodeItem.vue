@@ -26,7 +26,6 @@
   </KNode>
 </template>
 <script lang="ts" setup>
-import { PropType, onBeforeUpdate } from 'vue'
 import KNode from '../../../../KNode'
 import { NodeItem } from '../../../../../types/kDesigner'
 import KEditNodeItem from './KEditNodeItem.vue'
@@ -35,7 +34,5 @@ const props = defineProps<{
 }>()
 
 const currentSchema = props.schema as NodeItem
-
-onBeforeUpdate(() => { console.log('更新了22') })
 
 </script>

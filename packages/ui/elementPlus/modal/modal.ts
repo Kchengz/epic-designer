@@ -16,9 +16,9 @@ export default defineComponent({
         ...props.record,
         ...attrs,
         title: props.record?.label ?? "",
-        'modal-class': "k-modal",
-        modalValue: attrs.modelValue,
-        "onUpdate:modalValue": handleClose,
+        "modal-class": "k-modal",
+        'destroy-on-close': true,
+        "onUpdate:modelValue": handleClose,
       } as Record<string, any>;
       const children = record.children ?? [];
       delete record.children;
@@ -37,7 +37,8 @@ export default defineComponent({
         emit("ok");
       }
 
-      function handleClose() {
+      function handleClose(e) {
+        console.log(e)
         emit("update:modelValue", false);
         emit("close");
       }
