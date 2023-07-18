@@ -23,15 +23,10 @@ import DatePicker from "./date-picker";
 import { NTabPane } from "naive-ui";
 import UploadFile from "./upload-file";
 import UploadImage from "./upload-image";
+import Modal from "./modal";
 
 export function setupNaiveUi(pluginManager: PluginManager): void {
   // 异步加载组件
-  // eslint-disable-next-line vue/multi-word-component-names
-  pluginManager.component(
-    "Modal",
-    async () => (await import("naive-ui/lib/modal")).NModal
-  );
-
   pluginManager.component(
     "FormItem",
     async () => (await import("naive-ui/lib/form")).NFormItem
@@ -76,6 +71,7 @@ export function setupNaiveUi(pluginManager: PluginManager): void {
     CollapseItem,
     UploadFile,
     UploadImage,
+    Modal
   ];
 
   componentArray.forEach((item) => {
