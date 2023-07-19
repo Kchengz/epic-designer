@@ -5,7 +5,10 @@ export default {
     label: '卡片布局',
     type: 'card',
     icon: 'icon-xiala',
-    children: []
+    children: [],
+    componentProps: {
+      shadow: 'hover'
+    }
   },
   config: {
     attribute: [
@@ -37,7 +40,8 @@ export default {
               label: 'never',
               value: 'never'
             }
-          ]
+          ],
+          placeholder: '请选择'
         },
         field: 'componentProps.shadow'
       },

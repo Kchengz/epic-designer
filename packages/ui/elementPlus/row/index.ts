@@ -45,6 +45,7 @@ export default {
               value: "bottom",
             },
           ],
+          placeholder: '请选择'
         },
         field: "componentProps.align",
       },
@@ -75,6 +76,7 @@ export default {
               value: "space-around",
             },
           ],
+          placeholder: '请选择'
         },
         field: "componentProps.justify",
       },
@@ -82,6 +84,9 @@ export default {
         label: "栅格间距",
         type: "number",
         field: "componentProps.gutter",
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: "列编辑",

@@ -7,7 +7,9 @@ export default {
     icon: 'icon-number',
     field: 'switch',
     input: true,
-    componentProps: {}
+    componentProps: {
+      size: 'default'
+    }
   },
   config: {
     attribute: [
@@ -53,18 +55,25 @@ export default {
         type: 'number',
         field: 'componentProps.width',
         componentProps: {
-          min: 50
+          min: 50,
+          placeholder: '请输入'
         }
       },
       {
         label: '激活时文本',
         type: 'input',
-        field: 'componentProps.activeText'
+        field: 'componentProps.activeText',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '未激活时文本',
         type: 'input',
-        field: 'componentProps.inactiveText'
+        field: 'componentProps.inactiveText',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '文本点内显示',

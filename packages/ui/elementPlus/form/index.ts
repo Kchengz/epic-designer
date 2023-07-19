@@ -15,7 +15,10 @@ export default {
       wrapperCol: {
         span: 19
       },
-      hideRequiredMark: false
+      hideRequiredMark: false,
+      labelPosition: 'right',
+      size: 'default',
+      requireAsteriskPosition: 'left'
     },
     children: []
   },
@@ -34,7 +37,10 @@ export default {
       {
         label: '域内标签后缀',
         type: 'input',
-        field: 'componentProps.labelSuffix'
+        field: 'componentProps.labelSuffix',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '标签位置',
@@ -79,21 +85,6 @@ export default {
         }
       },
       {
-        label: 'scrollToError',
-        type: 'switch',
-        field: 'componentProps.scrollToError'
-      },
-      {
-        label: '行内模式',
-        type: 'switch',
-        field: 'componentProps.inline'
-      },
-      {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
-      },
-      {
         label: '星号位置',
         type: 'select',
         field: 'componentProps.requireAsteriskPosition',
@@ -119,6 +110,21 @@ export default {
         label: '校验反馈图标',
         type: 'switch',
         field: 'componentProps.statusIcon'
+      },
+      {
+        label: 'scrollToError',
+        type: 'switch',
+        field: 'componentProps.scrollToError'
+      },
+      {
+        label: '行内模式',
+        type: 'switch',
+        field: 'componentProps.inline'
+      },
+      {
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
       },
       {
         label: '禁用',

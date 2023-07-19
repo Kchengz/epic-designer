@@ -14,6 +14,7 @@ export default {
       placeholder: "请选择",
       startPlaceholder: "请选择",
       endPlaceholder: "请选择",
+      size: 'default'
     },
   },
   config: {

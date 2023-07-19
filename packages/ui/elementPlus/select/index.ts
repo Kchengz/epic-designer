@@ -19,6 +19,9 @@ export default {
         },
       ],
       placeholder: "请选择",
+      size: 'default',
+      effect: 'light',
+      placement: 'bottom-start'
     },
   },
   config: {
@@ -90,7 +93,7 @@ export default {
         type: "switch",
         field: "componentProps.collapseTagsTooltip",
         show: ({ values }) => {
-          return values.componentProps.multiple;
+          return values.componentProps.multiple && values.componentProps.collapseTags;
         },
       },
       {
@@ -141,7 +144,6 @@ export default {
       {
         label: "提示主题",
         type: "select",
-        defaultValue: "light",
         componentProps: {
           options: [
             {
@@ -233,6 +235,9 @@ export default {
         label: "无数据时文本",
         type: "input",
         field: "componentProps.noDataText",
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: "可清空",

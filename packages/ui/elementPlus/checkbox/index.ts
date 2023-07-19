@@ -18,7 +18,8 @@ export default {
           label: '选项2',
           value: '选项2'
         }
-      ]
+      ],
+      size: 'default'
     }
   },
   config: {
@@ -68,12 +69,18 @@ export default {
       {
         label: '最大选中数',
         type: 'number',
-        field: 'componentProps.max'
+        field: 'componentProps.max',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '最小选中数',
         type: 'number',
-        field: 'componentProps.min'
+        field: 'componentProps.min',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: "按钮模式",

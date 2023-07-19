@@ -8,7 +8,9 @@ export default {
     field: 'color-picker',
     input: true,
     componentProps: {
-      style: { width: '100%' }
+      style: { width: '100%' },
+      size: 'default',
+      colorFormat: 'hex'
     }
   },
   config: {
@@ -58,7 +60,6 @@ export default {
       {
         label: '格式',
         type: 'select',
-        defaultValue: 'hex',
         componentProps: {
           options: [
             {

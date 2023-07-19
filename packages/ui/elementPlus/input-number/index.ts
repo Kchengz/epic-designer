@@ -8,7 +8,9 @@ export default {
     field: 'number',
     input: true,
     componentProps: {
-      placeholder: '请输入'
+      placeholder: '请输入',
+      size: 'default',
+      controlsPosition: 'default'
     }
   },
   config: {
@@ -24,19 +26,14 @@ export default {
         field: 'label'
       },
       {
-        label: '最大值',
+        label: '默认值',
         type: 'number',
-        field: 'componentProps.max'
+        field: 'componentProps.defaultValue'
       },
       {
-        label: '最小值',
-        type: 'number',
-        field: 'componentProps.min'
-      },
-      {
-        label: '步长',
-        type: 'number',
-        field: 'componentProps.step'
+        label: '占位内容',
+        type: 'input',
+        field: 'componentProps.placeholder'
       },
       {
         label: '尺寸',
@@ -61,6 +58,30 @@ export default {
         field: 'componentProps.size'
       },
       {
+        label: '最大值',
+        type: 'number',
+        field: 'componentProps.max',
+        componentProps: {
+          placeholder:'请输入'
+        }
+      },
+      {
+        label: '最小值',
+        type: 'number',
+        field: 'componentProps.min',
+        componentProps: {
+          placeholder:'请输入'
+        }
+      },
+      {
+        label: '步长',
+        type: 'number',
+        field: 'componentProps.step',
+        componentProps: {
+          placeholder:'请输入'
+        }
+      },
+      {
         label: '控制按钮位置',
         type: 'select',
         defaultValue: '',
@@ -68,7 +89,7 @@ export default {
           options: [
             {
               label: 'default',
-              value: ''
+              value: 'default'
             },
             {
               label: 'right',
@@ -81,22 +102,15 @@ export default {
       {
         label: '精度',
         type: 'number',
-        field: 'componentProps.precision'
+        field: 'componentProps.precision',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '输入控制为步长的倍数',
         type: 'switch',
         field: 'componentProps.stepStrictly'
-      },
-      {
-        label: '默认值',
-        type: 'number',
-        field: 'componentProps.defaultValue'
-      },
-      {
-        label: '占位内容',
-        type: 'input',
-        field: 'componentProps.placeholder'
       },
       {
         label: '隐藏',

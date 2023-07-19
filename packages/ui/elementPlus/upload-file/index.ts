@@ -55,7 +55,8 @@ export default {
         type: 'number',
         field: 'componentProps.limit',
         componentProps: {
-          min:0
+          min:0,
+          placeholder: '请输入'
         }
       },
       {

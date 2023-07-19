@@ -17,7 +17,8 @@ export default {
           label: '选项2',
           value: '选项2'
         }
-      ]
+      ],
+      size: 'default'
     }
   },
   config: {
@@ -40,7 +41,6 @@ export default {
       {
         label: '尺寸',
         type: 'select',
-        defaultValue: 'default',
         componentProps: {
           options: [
             {

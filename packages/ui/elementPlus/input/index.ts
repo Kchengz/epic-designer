@@ -9,7 +9,9 @@ export default {
     input: true,
     componentProps: {
       defaultValue: '',
-      placeholder: '请输入'
+      placeholder: '请输入',
+      size: 'default',
+      type: 'text'
     }
   },
   config: {
@@ -49,7 +51,10 @@ export default {
       {
         label: '最大输入长度',
         type: 'number',
-        field: 'componentProps.maxlength'
+        field: 'componentProps.maxlength',
+        componentProps: {
+          placeholder:'请输入'
+        }
       },
       {
         label: '统计字数',
