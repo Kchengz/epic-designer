@@ -44,7 +44,8 @@ export default {
               label: 'bottom',
               value: 'bottom'
             }
-          ]
+          ],
+          placeholder: '请选择'
         },
         field: 'componentProps.align'
       },
@@ -74,14 +75,18 @@ export default {
               label: 'space-around',
               value: 'space-around'
             }
-          ]
+          ],
+          placeholder: '请选择'
         },
         field: 'componentProps.justify'
       },
       {
         label: '栅格间距',
         type: 'number',
-        field: 'componentProps.gutter'
+        field: 'componentProps.gutter',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '列编辑',
