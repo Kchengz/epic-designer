@@ -10,7 +10,9 @@ export default {
     componentProps: {
       type: 'color',
       modes: ['hex'],
-      showAlpha: true
+      showAlpha: true,
+      size: 'medium',
+      placement: 'bottom-start'
     }
   },
   config: {
@@ -107,8 +109,7 @@ export default {
               label: 'left-end',
               value: 'left-end'
             }
-          ],
-          clearable: true
+          ]
         }
       },
       {

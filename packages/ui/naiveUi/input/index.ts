@@ -10,7 +10,8 @@ export default {
     componentProps: {
       defaultValue: '',
       placeholder: '请输入',
-      type: 'text'
+      type: 'text',
+      size: 'medium'
     }
   },
   config: {
@@ -29,6 +30,11 @@ export default {
         label: '默认值',
         type: 'input',
         field: 'componentProps.defaultValue'
+      },
+      {
+        label: '占位内容',
+        type: 'input',
+        field: 'componentProps.placeholder'
       },
       {
         label: '尺寸',
@@ -52,8 +58,7 @@ export default {
               label: 'large',
               value: 'large'
             }
-          ],
-          clearable: true
+          ]
         }
       },
       {
@@ -85,7 +90,10 @@ export default {
       {
         label: '最大输入长度',
         type: 'number',
-        field: 'componentProps.maxlength'
+        field: 'componentProps.maxlength',
+        componentProps: {
+          placeholder: '请输入',
+        }
       },
       {
         label: '显示密码的时机',
@@ -122,7 +130,10 @@ export default {
         label: '分割符',
         type: 'input',
         field: 'componentProps.separator',
-        show: ({values})=>values.componentProps.type==='text'&&values.componentProps.pair
+        show: ({values})=>values.componentProps.type==='text'&&values.componentProps.pair,
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '是否圆角',
@@ -139,11 +150,6 @@ export default {
         type: 'switch',
         field: 'componentProps.autosize',
         show: ({values}) => values.componentProps.type === 'textarea',
-      },
-      {
-        label: '占位内容',
-        type: 'input',
-        field: 'componentProps.placeholder'
       },
       {
         label: '可清空',

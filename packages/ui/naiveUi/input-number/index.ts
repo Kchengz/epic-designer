@@ -8,7 +8,9 @@ export default {
     field: 'number',
     input: true,
     componentProps: {
-      placeholder: '请输入'
+      placeholder: '请输入',
+      size: 'medium',
+      buttonPlacement: 'right'
     }
   },
   config: {
@@ -55,8 +57,7 @@ export default {
               label: 'large',
               value: 'large'
             }
-          ],
-          clearable: true
+          ]
         }
       },
       {
@@ -79,22 +80,34 @@ export default {
       {
         label: '最大值',
         type: 'number',
-        field: 'componentProps.max'
+        field: 'componentProps.max',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '最小值',
         type: 'number',
-        field: 'componentProps.min'
+        field: 'componentProps.min',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '步长',
         type: 'number',
-        field: 'componentProps.step'
+        field: 'componentProps.step',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '精度',
-        type: 'input',
-        field: 'componentProps.precision'
+        type: 'number',
+        field: 'componentProps.precision',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '隐藏',

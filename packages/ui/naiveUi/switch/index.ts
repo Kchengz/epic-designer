@@ -47,8 +47,7 @@ export default {
               label: 'large',
               value: 'large'
             }
-          ],
-          clearable: true
+          ]
         }
       },
       {

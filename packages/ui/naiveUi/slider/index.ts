@@ -9,6 +9,7 @@ export default {
     field: 'slider',
     input: true,
     componentProps: {
+      placement: 'top-start'
     }
   },
   config: {

@@ -20,7 +20,9 @@ export default {
       ],
       placeholder: '请选择',
       cascade: false,
-      showPath: true
+      showPath: true,
+      size: 'medium',
+      placement: 'bottom-start'
     }
   },
   config: {
@@ -67,8 +69,7 @@ export default {
               label: 'large',
               value: 'large'
             }
-          ],
-          clearable: true
+          ]
         }
       },
       {
@@ -151,8 +152,7 @@ export default {
               label: 'left-end',
               value: 'left-end'
             }
-          ],
-          clearable: true
+          ]
         }
       },
       {

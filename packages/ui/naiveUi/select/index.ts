@@ -18,7 +18,9 @@ export default {
           value: '选项2'
         }
       ],
-      placeholder: '请选择'
+      placeholder: '请选择',
+      size: 'medium',
+      placement: 'bottom-start'
     }
   },
   config: {
@@ -65,8 +67,7 @@ export default {
               label: 'large',
               value: 'large'
             }
-          ],
-          clearable: true
+          ]
         }
       },
       {
@@ -123,8 +124,7 @@ export default {
               label: 'left-end',
               value: 'left-end'
             }
-          ],
-          clearable: true
+          ]
         }
       },
       {
@@ -147,7 +147,10 @@ export default {
         label: '最大tag数',
         type: 'number',
         field: 'componentProps.maxTagCount',
-        show: ({values})=> values.componentProps.multiple
+        show: ({values})=> values.componentProps.multiple,
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '可清空',

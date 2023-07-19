@@ -8,7 +8,9 @@ export default {
     icon: 'icon-write',
     input: false,
     componentProps: {
-      bordered: true
+      bordered: true,
+      type: 'default',
+      size: 'medium'
     }
   },
   config: {
@@ -23,7 +25,6 @@ export default {
         type: 'select',
         componentProps: {
           placeholder: '请选择',
-          clearable: true,
           options: [
             {
               label: 'default',
