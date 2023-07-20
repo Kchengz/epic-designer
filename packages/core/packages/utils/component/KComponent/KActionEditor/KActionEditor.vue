@@ -9,7 +9,7 @@
   <KActionModal ref="KActionModalRef" @add="handleAdd" @edit="handleEdit" />
 </template>
 <script lang="ts" setup>
-import { PropType, computed, ref, watch } from 'vue'
+import { PropType, computed, ref, nextTick, toRaw, watch } from 'vue'
 import KActionEditorItem from './src/KActionEditorItem.vue'
 import { pluginManager } from '@k-designer/utils'
 import KActionModal from './src/KActionModal.vue'
@@ -19,15 +19,13 @@ const CollapseItem = pluginManager.getComponent('CollapseItem')
 const KActionModalRef = ref<any>(null)
 let editIndex = 0
 const props = defineProps({
-  modelValue: {
-    type: Object as PropType<any>,
-    default: () => ({})
-  },
   eventList: {
     type: Array as PropType<any>,
     default: () => []
   }
 })
+
+const modelValue = defineModel<any>("modelValue")
 const activeNames = ref(['组件事件'])
 
 // 过滤无事件
@@ -46,23 +44,29 @@ const allEvents = computed(() => {
   return props.eventList.map((item: { events: any; }) => item.events).flat()
 })
 
-const emit = defineEmits(['update:modelValue'])
 
-const modelValue = computed({
-  get() {
-    return props.modelValue
-  },
-  set(e) {
-    emit('update:modelValue', e)
-  }
-})
 
-const events: any = {}
+const events = ref<any>({})
+
 allEvents.value.forEach((item: any) => {
-  events[item.type] = computed(() => {
-    return props.modelValue?.[item.type] ?? []
+
+  events.value[item.type] = computed({
+    get() {
+      return modelValue.value?.[item.type] ?? []
+    },
+    set(e) {
+      if (e && e.length) {
+        modelValue.value[item.type] = e.map(item => toRaw(item))
+      } else {
+        // 事件动作为空时，则清除该事件列表
+        delete modelValue.value[item.type]
+      }
+    }
   })
+
 })
+
+
 
 let currentType: string = ''
 /**
@@ -85,10 +89,8 @@ function handleOpenEdit(index: number, type: string, action) {
 }
 
 function handleEdit(action: any) {
-  const newEvents = getNewEvents(currentType)
-  events[currentType].value[editIndex] = action
-  newEvents[currentType] = [...events[currentType]?.value]
-  emit('update:modelValue', newEvents)
+  events.value[currentType][editIndex] = action
+  modelValue.value[currentType] = [...(events.value[currentType] ?? [])]
 }
 
 /**
@@ -96,26 +98,14 @@ function handleEdit(action: any) {
  * @param action
  */
 function handleAdd(action: any) {
-  const newEvents = getNewEvents(currentType)
-  newEvents[currentType] = [...events[currentType]?.value, action]
-  emit('update:modelValue', newEvents)
+  // const newEvents = getNewEvents(currentType)
+  // newEvents[currentType] = [...(events.value[currentType] ?? []), action]
+  // modelValue.value = newEvents
+  if (!modelValue.value) {
+    modelValue.value = { [currentType]: [...(events.value[currentType] ?? []), action] }
+    return
+  }
+  modelValue.value[currentType] = [...(events.value[currentType] ?? []), action]
 }
 
-/**
- * 获取新的事件数据，过滤空数据
- * @param type
- */
-function getNewEvents(type: string) {
-  const newEvents: { [type: string]: any } = {}
-  allEvents.value.forEach((item: any) => {
-    if (!events[item.type]?.value?.length) {
-      return false
-    }
-    if (item.type === type) {
-      return false
-    }
-    newEvents[item.type] = events[item.type].value
-  })
-  return newEvents
-}
 </script>
