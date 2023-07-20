@@ -132,6 +132,8 @@ function toggleMethod(type: string) {
   state.actionItem.componentId = null
   state.actionItem.type = type
   nodeItem.value = null
+  state.actionItem.methodName = null
+
   selectedKeys.value = []
   if (methodOptions.value?.length) {
     handleCheckedMethod(methodOptions.value[0].value)
@@ -140,6 +142,7 @@ function toggleMethod(type: string) {
 function handleNodeClick(e: any) {
   state.actionItem.componentId = e.id
   state.actionItem.type = 'component'
+  state.actionItem.methodName = null
   nodeItem.value = e.record
   if (methodOptions.value?.length) {
     handleCheckedMethod(methodOptions.value[0].value)
