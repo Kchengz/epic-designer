@@ -9,9 +9,11 @@ export default {
     input: true,
     componentProps: {
       valueFormat: 'YYYY-MM-DD',
-      type: 'daterange',
+      type: 'date',
       size: 'middle',
-      placement: 'bottomLeft'
+      placement: 'bottomLeft',
+      bordered: true,
+      placeholder: '请选择'
     }
   },
   config: {
@@ -25,6 +27,11 @@ export default {
         label: '文字',
         type: 'input',
         field: 'label'
+      },
+      {
+        label: '默认值',
+        type: 'date',
+        field: 'componentProps.defaultValue'
       },
       {
         label: '尺寸',
@@ -79,9 +86,22 @@ export default {
         field: 'componentProps.placement'
       },
       {
-        label: '默认值',
-        type: 'date',
-        field: 'componentProps.defaultValue'
+        label: '占位内容',
+        type: 'input',
+        field: 'componentProps.placeholder',
+        show: ({values})=>values.componentProps.type !== 'daterange'
+      },
+      {
+        label: '开始时间占位符',
+        type: 'input',
+        field: 'componentProps.placeholder.0',
+        show: ({values})=>values.componentProps.type === 'daterange'
+      },
+      {
+        label: '开始时间占位符',
+        type: 'input',
+        field: 'componentProps.placeholder.1',
+        show: ({values})=>values.componentProps.type === 'daterange'
       },
       {
         label: '格式',
@@ -107,6 +127,13 @@ export default {
               value: 'daterange'
             }
           ]
+        },
+        onChange: ({value, values})=> {
+          if (value === 'daterange') {
+            values.componentProps.placeholder = ['开始日期', '结束日期'];
+          } else {
+            values.componentProps.placeholder = '请输入';
+          }
         }
       },
       {

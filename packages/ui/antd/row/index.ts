@@ -22,7 +22,7 @@ export default {
         },
         id: 'gy5z9jtfb3s00'
       }
-    ]
+    ],
   },
   config: {
     attribute: [
@@ -44,7 +44,8 @@ export default {
               label: 'bottom',
               value: 'bottom'
             }
-          ]
+          ],
+          placeholder: '请选择'
         },
         field: 'componentProps.align'
       },
@@ -74,14 +75,18 @@ export default {
               label: 'space-around',
               value: 'space-around'
             }
-          ]
+          ],
+          placeholder: '请选择'
         },
         field: 'componentProps.justify'
       },
       {
         label: '栅格间距',
         type: 'input',
-        field: 'componentProps.gutter'
+        field: 'componentProps.gutter',
+        componentProps: {
+        placeholder: '请输入'
+        }
       },
       {
         label: '列编辑',

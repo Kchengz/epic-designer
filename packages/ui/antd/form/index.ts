@@ -20,7 +20,8 @@ export default {
       },
       hideRequiredMark: false,
       colon: true,
-      labelAlign: 'right'
+      labelAlign: 'right',
+      size: 'middle'
     },
     children: []
   },
@@ -47,11 +48,6 @@ export default {
             }
           ]
         }
-      },
-      {
-        label: 'name',
-        type: 'input',
-        field: 'name'
       },
       {
         label: 'labelWidth',

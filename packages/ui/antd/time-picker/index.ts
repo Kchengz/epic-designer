@@ -8,7 +8,10 @@ export default {
     field: 'time',
     input: true,
     componentProps: {
-      valueFormat: 'HH:mm:ss'
+      valueFormat: 'HH:mm:ss',
+      size: 'middle',
+      placement: 'bottomLeft',
+      placeholder: '请输入'
     }
   },
   config: {
@@ -22,6 +25,16 @@ export default {
         label: '文字',
         type: 'input',
         field: 'label'
+      },
+      {
+        label: '默认值',
+        type: 'time',
+        field: 'componentProps.defaultValue'
+      },
+      {
+        label: '占位内容',
+        type: 'input',
+        field: 'componentProps.placeholder'
       },
       {
         label: '尺寸',
@@ -53,17 +66,26 @@ export default {
       {
         label: '小时选项间隔',
         type: 'number',
-        field: 'componentProps.hourStep'
+        field: 'componentProps.hourStep',
+        componentProps: {
+          placeholder:'请输入'
+        }
       },
       {
         label: '分钟选项间隔',
         type: 'number',
-        field: 'componentProps.minuteStep'
+        field: 'componentProps.minuteStep',
+        componentProps: {
+          placeholder:'请输入'
+        }
       },
       {
         label: '秒选项间隔',
         type: 'number',
-        field: 'componentProps.secondStep'
+        field: 'componentProps.secondStep',
+        componentProps: {
+          placeholder:'请输入'
+        }
       },
       {
         label: '弹出框位置',
@@ -89,11 +111,6 @@ export default {
           ]
         },
         field: 'componentProps.placement'
-      },
-      {
-        label: '默认值',
-        type: 'time',
-        field: 'componentProps.defaultValue'
       },
       {
         label: '可清空',

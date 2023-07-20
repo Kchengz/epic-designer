@@ -19,6 +19,7 @@ export default {
         },
       ],
       placeholder: "请选择",
+      placement: 'bottomLeft'
     }
   },
   config: {
@@ -39,6 +40,11 @@ export default {
         field: 'componentProps.defaultValue'
       },
       {
+        label: '占位内容',
+        type: 'input',
+        field: 'componentProps.placeholder'
+      },
+      {
         label: '多选',
         type: 'switch',
         field: 'componentProps.multiple'
@@ -52,12 +58,18 @@ export default {
         label: '最大tag文本长度',
         type: 'number',
         field: 'componentProps.maxTagTextLength',
+        componentProps: {
+          placeholder: '请输入'
+        },
         show: ({values})=>values.componentProps.multiple
       },
       {
         label: '最大tag显示数',
         type: 'number',
         field: 'componentProps.maxTagCount',
+        componentProps: {
+          placeholder: '请输入'
+        },
         show: ({values})=>values.componentProps.multiple
       },
       {

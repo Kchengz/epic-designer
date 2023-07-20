@@ -7,7 +7,12 @@ export default {
     type: 'password',
     icon: 'icon-number',
     field: 'password',
-    input: true
+    input: true,
+    componentProps: {
+      placeholder: '请输入',
+      bordered: true,
+      size: 'middle'
+    }
   },
   config: {
     attribute: [
@@ -22,9 +27,13 @@ export default {
         field: 'label'
       },
       {
+        label: '占位内容',
+        type: 'input',
+        field: 'componentProps.placeholder'
+      },
+      {
         label: '尺寸',
         type: 'select',
-        defaultValue: 'default',
         componentProps: {
           options: [
             {
@@ -51,7 +60,10 @@ export default {
       {
         label: '最大输入长度',
         type: 'number',
-        field: 'componentProps.maxLength'
+        field: 'componentProps.maxLength',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '统计字数',
