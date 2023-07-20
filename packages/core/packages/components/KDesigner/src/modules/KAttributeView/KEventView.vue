@@ -2,6 +2,7 @@
   <aside class="k-event-view">
     <div v-if="checkedNode">
       <KActionEditor
+        :key="checkedNode.id"
         :event-list="eventList"
         :model-value="getAttributeValue(`on`, checkedNode!)"
         @update:model-value="handleSetValue($event, `on`)"
