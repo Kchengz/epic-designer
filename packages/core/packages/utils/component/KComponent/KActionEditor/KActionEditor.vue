@@ -1,31 +1,12 @@
 <template>
-  <Collapse
-    v-model="activeNames"
-    v-model:activeKey="activeNames"
-    v-model:expanded-names="activeNames"
-  >
-    <CollapseItem
-      v-for="(item) in filterEventList"
-      :key="item.title"
-      :title="item.title"
-      :header="item.title"
-      :name="item.title"
-    >
-      <KActionEditorItem
-        v-model="modelValue"
-        :item-events="item.events"
-        :all-events="allEvents"
-        :events="events"
-        @add="handleOpen"
-        @edit="handleOpenEdit"
-      />
+  <Collapse v-model="activeNames" v-model:activeKey="activeNames" v-model:expanded-names="activeNames">
+    <CollapseItem v-for="(item) in filterEventList" :key="item.title" :title="item.title" :header="item.title"
+      :name="item.title">
+      <KActionEditorItem v-model="modelValue" :item-events="item.events" :all-events="allEvents" :events="events"
+        @add="handleOpen" @edit="handleOpenEdit" />
     </CollapseItem>
   </Collapse>
-  <KActionModal
-    ref="KActionModalRef"
-    @add="handleAdd"
-    @edit="handleEdit"
-  />
+  <KActionModal ref="KActionModalRef" @add="handleAdd" @edit="handleEdit" />
 </template>
 <script lang="ts" setup>
 import { PropType, computed, ref, watch } from 'vue'
@@ -36,6 +17,7 @@ const Collapse = pluginManager.getComponent('Collapse')
 const CollapseItem = pluginManager.getComponent('CollapseItem')
 
 const KActionModalRef = ref<any>(null)
+let editIndex = 0
 const props = defineProps({
   modelValue: {
     type: Object as PropType<any>,
@@ -67,10 +49,10 @@ const allEvents = computed(() => {
 const emit = defineEmits(['update:modelValue'])
 
 const modelValue = computed({
-  get () {
+  get() {
     return props.modelValue
   },
-  set (e) {
+  set(e) {
     emit('update:modelValue', e)
   }
 })
@@ -87,29 +69,33 @@ let currentType: string = ''
  * 打开动作配置窗口
  * @param type
  */
-function handleOpen (type: string) {
+function handleOpen(type: string) {
   KActionModalRef.value?.handleOpen()
   currentType = type
 }
 
-function handleOpenEdit (index:number, type:string, action) {
-  KActionModalRef.value?.handleOpenEdit(index, action)
+/**
+ * 打开动作配置窗口-编辑
+ * @param type
+ */
+function handleOpenEdit(index: number, type: string, action) {
+  KActionModalRef.value?.handleOpenEdit(action)
+  editIndex = index
   currentType = type
 }
 
-function handleEdit (action: any) {
-  // const newEvents = getNewEvents(currentType)
-  events[currentType].value[action.index] = action
-  console.log(action, events)
-  // newEvents[currentType] = events[currentType]
-  emit('update:modelValue', events)
+function handleEdit(action: any) {
+  const newEvents = getNewEvents(currentType)
+  events[currentType].value[editIndex] = action
+  newEvents[currentType] = [...events[currentType]?.value]
+  emit('update:modelValue', newEvents)
 }
 
 /**
  * 添加组件事件
  * @param action
  */
-function handleAdd (action: any) {
+function handleAdd(action: any) {
   const newEvents = getNewEvents(currentType)
   newEvents[currentType] = [...events[currentType]?.value, action]
   emit('update:modelValue', newEvents)
@@ -119,7 +105,7 @@ function handleAdd (action: any) {
  * 获取新的事件数据，过滤空数据
  * @param type
  */
-function getNewEvents (type: string) {
+function getNewEvents(type: string) {
   const newEvents: { [type: string]: any } = {}
   allEvents.value.forEach((item: any) => {
     if (!events[item.type]?.value?.length) {

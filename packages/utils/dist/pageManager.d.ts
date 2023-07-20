@@ -1,8 +1,9 @@
-import { type Ref, type ComponentPublicInstance } from 'vue';
+import { type Ref, type ComponentPublicInstance } from "vue";
 export interface ActionModel {
     componentId?: string;
     args: string;
     methodName: string;
+    type: "component" | "public" | "custom";
 }
 export interface PageManager {
     componentInstances: Ref<Record<string, ComponentPublicInstance>>;

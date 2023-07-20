@@ -1,23 +1,46 @@
 <template>
   <Modal v-model="visible" class="w-1000px" width="1000px" @close="handleClose" @ok="handleSave" title="动作配置">
     <div class="rounded bg-white k-modal-action-main">
-      <div class="k-modal-left-panel">
-        <div class="fun-btn" :class="{ checked: state.actionItem.componentId === null }" @click="toggleMethod">
-          自定义函数
+      <div class="k-modal-left-panel h-full flex flex-col">
+        <!-- 动作所属对象 start -->
+        <div class="flex-1">
+          <div class="fun-btn" :class="{ checked: state.actionItem.type === 'public' }" @click="toggleMethod('public')">
+            公共函数
+          </div>
+          <div class="fun-btn" :class="{ checked: state.actionItem.type === 'custom' }" @click="toggleMethod('custom')">
+            自定义函数
+          </div>
+          组件
+          <div class="h-360px overflow-auto">
+            <KTree v-model:selectedKeys="selectedKeys" :options="pageSchema.schemas" @node-click="handleNodeClick" />
+          </div>
         </div>
-        组件
-        <KTree v-model:selectedKeys="selectedKeys" :options="pageSchema.schemas" @node-click="handleNodeClick" />
+        <!-- 动作选择 start -->
+        <div class="k-action-select h-240px flex flex-col">
+          <div class="mb-2">动作选择</div>
+          <div class="flex-1 overflow-auto">
+            <div v-for="item in methodOptions" :class="{ checked: item.value === state.actionItem.methodName }"
+              @click="handleCheckedMethod(item.value)" :key="item.value" class="action-item">
+              <span>{{ item.label }}</span>
+            </div>
+          </div>
+        </div>
+        <!-- 动作所属对象 end -->
+        <!-- 动作选择 end -->
       </div>
+      <!-- 动作配置 start -->
       <div class="k-modal-right-panel">
         <div class="select-box">
-          <span>动作选择</span>
+          <!-- <span>动作选择</span>
           <Select v-model="state.actionItem.methodName" v-model:value="state.actionItem.methodName" class="action-select"
-            placeholder="请选择动作" :options="methodOptions" />
-          <Button v-if="state.actionItem.componentId === null" @click="handleAddMethod">
+            placeholder="请选择动作" :options="methodOptions" /> -->
+          <!-- <Button v-if="state.actionItem.componentId === null" @click="handleAddMethod">
             编辑函数
-          </Button>
+          </Button> -->
         </div>
       </div>
+      <!-- 动作配置 end -->
+
     </div>
   </Modal>
 </template>
@@ -27,53 +50,67 @@ import { ref, inject, toRaw, reactive, computed, nextTick } from 'vue'
 import KTree from '../../../../../components/KTree'
 import { NodeItem, PageSchema, FormDataModel } from '../../../../../types/kDesigner'
 const Modal = pluginManager.getComponent('modal')
-const Select = pluginManager.getComponent('select')
-const Button = pluginManager.getComponent('button')
+// const Select = pluginManager.getComponent('select')
+// const Button = pluginManager.getComponent('button')
+const isAdd = ref(true)
 
 const pageSchema = inject('pageSchema') as PageSchema
 const pageManager = inject('pageManager', {}) as PageManager
 const visible = ref(false)
 const selectedKeys = ref([])
 const nodeItem = ref<NodeItem | null>(null)
-const activeTab = ref('动作配置')
+// const activeTab = ref('动作配置')
 
 const emit = defineEmits(['add', 'edit'])
 
 const methodOptions = computed(() => {
-  if (nodeItem.value) {
+
+  // 组件动作列表
+  if (state.actionItem.type === 'component') {
     return pluginManager.getComponentConfings()[nodeItem.value!.type].config.action?.map(item => ({ label: item.describe, value: item.type }))
   }
 
-  return Object.entries(pageManager.funcs.value)
-    .filter(([key, value]) => typeof value === 'function')
-    .map(([label]) => ({ label, value: label }))
+  // 自定义函数列表
+  if (state.actionItem.type === 'custom') {
+    return Object.entries(pageManager.funcs.value)
+      .filter(([_key, value]) => typeof value === 'function')
+      .map(([label]) => ({ label, value: label }))
+  }
+
+  // 公共函数列表
+  if (state.actionItem.type === 'public') {
+    return Object.entries(pluginManager.publicMethods)
+      .map(([label]) => ({ label, value: label }))
+  }
+
+  return []
 })
 
 const state = reactive({
   actionItem: {
-    methodName: null,
+    type: 'public',
+    methodName: 'test',
     componentId: null,
-    isnew: null, // 判斷新增或修改
-    index: null // 修改事件的索引
   } as FormDataModel
 })
 
 function handleOpen() {
   visible.value = true
-  nextTick(() => {
-    state.actionItem.methodName = null
-    state.actionItem.componentId = null
-    state.actionItem.isnew = true
-    nodeItem.value = null
-  })
+  isAdd.value = true
+  state.actionItem.type = 'public'
+  state.actionItem.componentId = null
+  if (methodOptions.value?.length) {
+    handleCheckedMethod(methodOptions.value[0].value)
+  }
+
 }
-function handleOpenEdit(index: number, action: any) {
+function handleOpenEdit(action: any) {
   visible.value = true
+  isAdd.value = false
   nextTick(() => {
     state.actionItem.methodName = action.methodName
-    state.actionItem.componentId = null
-    state.actionItem.isnew = false
-    state.actionItem.index = index
+    state.actionItem.componentId = action.componentId
+    state.actionItem.type = action.type
     nodeItem.value = null
   })
 }
@@ -82,7 +119,7 @@ function handleSave() {
     alert('请先选择动作方法')
     return
   }
-  emit(state.actionItem.isnew ? 'add' : 'edit', deepClone(toRaw(state.actionItem)))
+  emit(isAdd.value ? 'add' : 'edit', deepClone(toRaw(state.actionItem)))
   handleClose()
 }
 
@@ -91,20 +128,27 @@ function handleClose() {
   selectedKeys.value = []
 }
 
-function toggleMethod() {
+function toggleMethod(type: string) {
   state.actionItem.componentId = null
-  state.actionItem.methodName = null
+  state.actionItem.type = type
   nodeItem.value = null
   selectedKeys.value = []
+  if (methodOptions.value?.length) {
+    handleCheckedMethod(methodOptions.value[0].value)
+  }
 }
 function handleNodeClick(e: any) {
   state.actionItem.componentId = e.id
+  state.actionItem.type = 'component'
   nodeItem.value = e.record
-  state.actionItem.methodName = null
+  if (methodOptions.value?.length) {
+    handleCheckedMethod(methodOptions.value[0].value)
+  }
 }
 
-function handleAddMethod() {
-  activeTab.value = '脚本编辑'
+function handleCheckedMethod(value: string) {
+  // activeTab.value = '脚本编辑'
+  state.actionItem.methodName = value
 }
 
 defineExpose({
