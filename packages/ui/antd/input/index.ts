@@ -9,7 +9,9 @@ export default {
     input: true,
     componentProps: {
       bordered: true,
-      size: 'middle'
+      size: 'middle',
+       type: 'text',
+      placeholder: '请输入'
     }
   },
   config: {
@@ -25,14 +27,21 @@ export default {
         field: 'label'
       },
       {
+        label: '占位内容',
+        type: 'input',
+        field: 'componentProps.placeholder'
+      },
+      {
         label: '默认值',
         type: 'input',
-        field: 'componentProps.defaultValue'
+        field: 'componentProps.defaultValue',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '输入类型',
         type: 'select',
-        defaultValue: 'text',
         componentProps: {
           options: [
             {
@@ -86,7 +95,10 @@ export default {
       {
         label: '最大输入长度',
         type: 'number',
-        field: 'componentProps.maxLength'
+        field: 'componentProps.maxLength',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '统计字数',

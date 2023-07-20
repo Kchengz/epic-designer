@@ -61,7 +61,8 @@ export default {
         type: 'input',
         field: 'componentProps.href',
         componentProps: {
-          allowClear: true
+          allowClear: true,
+          placeholder: '请输入'
         }
       },
       {

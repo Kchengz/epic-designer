@@ -31,12 +31,18 @@ export default {
       {
         label: '选中时内容',
         type: 'input',
-        field: 'componentProps.checkedChildren'
+        field: 'componentProps.checkedChildren',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '非选中时内容',
         type: 'input',
-        field: 'componentProps.unCheckedChildren'
+        field: 'componentProps.unCheckedChildren',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '尺寸',

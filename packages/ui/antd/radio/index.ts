@@ -18,7 +18,8 @@ export default {
           value: '选项2'
         }
       ],
-      optionType: 'default'
+      optionType: 'default',
+      size: 'middle'
     }
   },
   config: {

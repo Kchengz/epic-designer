@@ -6,7 +6,10 @@ export default {
     type: 'textarea',
     field: 'textarea',
     icon: 'icon-edit',
-    input: true
+    input: true,
+    componentProps: {
+      placeholder: '请输入'
+    }
   },
   config: {
     attribute: [
@@ -23,17 +26,31 @@ export default {
       {
         label: '默认值',
         type: 'input',
-        field: 'componentProps.defaultValue'
+        field: 'componentProps.defaultValue',
+        componentProps: {
+          placeholder: '请输入'
+        }
+      },
+      {
+        label: '占位内容',
+        type: 'input',
+        field: 'componentProps.placeholder'
       },
       {
         label: '最小行数',
         type: 'number',
-        field: 'componentProps.autoSize.minRows'
+        field: 'componentProps.autoSize.minRows',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '最大行数',
         type: 'number',
-        field: 'componentProps.autoSize.maxRows'
+        field: 'componentProps.autoSize.maxRows',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '有边框',
@@ -43,7 +60,10 @@ export default {
       {
         label: '最大输入长度',
         type: 'number',
-        field: 'componentProps.maxLength'
+        field: 'componentProps.maxLength',
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '统计字数',

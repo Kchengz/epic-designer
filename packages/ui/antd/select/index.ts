@@ -18,7 +18,9 @@ export default {
           value: '选项2'
         }
       ],
-      listHeight:256
+      listHeight:256,
+      placeholder: '请选择',
+      placement: 'bottomLeft'
     }
   },
   config: {
@@ -37,6 +39,9 @@ export default {
         label: "占位内容",
         type: "input",
         field: "componentProps.placeholder",
+        componentProps: {
+          placeholder: '请输入'
+        }
       },
       {
         label: '默认值',
@@ -65,8 +70,9 @@ export default {
             {
               label: 'tags',
               value: 'tags'
-            }
+            },
           ],
+          placeholder: '请选择',
           allowClear: true
         },
         field: 'componentProps.mode'
