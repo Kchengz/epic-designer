@@ -1,5 +1,5 @@
 <template>
-  <Modal v-model="visible" class="w-1000px" width="1000px" @close="handleClose" @ok="handleSave" title="动作配置">
+  <Modal v-model="visible" class="w-1100px" width="1100px" @close="handleClose" @ok="handleSave" title="动作配置">
     <div class="rounded bg-white k-modal-action-main">
       <div class="k-modal-left-panel h-full flex flex-col">
         <!-- 动作所属对象 start -->
@@ -30,14 +30,7 @@
       </div>
       <!-- 动作配置 start -->
       <div class="k-modal-right-panel">
-        <div class="select-box">
-          <!-- <span>动作选择</span>
-          <Select v-model="state.actionItem.methodName" v-model:value="state.actionItem.methodName" class="action-select"
-            placeholder="请选择动作" :options="methodOptions" /> -->
-          <!-- <Button v-if="state.actionItem.componentId === null" @click="handleAddMethod">
-            编辑函数
-          </Button> -->
-        </div>
+        <KScriptEdit v-if="state.actionItem.type === 'custom'" />
       </div>
       <!-- 动作配置 end -->
 
@@ -49,6 +42,8 @@ import { pluginManager, PageManager, deepClone } from '@k-designer/utils'
 import { ref, inject, toRaw, reactive, computed, nextTick } from 'vue'
 import KTree from '../../../../../components/KTree'
 import { NodeItem, PageSchema, FormDataModel } from '../../../../../types/kDesigner'
+import KScriptEdit from './KScriptEdit.vue'
+
 const Modal = pluginManager.getComponent('modal')
 // const Select = pluginManager.getComponent('select')
 // const Button = pluginManager.getComponent('button')
