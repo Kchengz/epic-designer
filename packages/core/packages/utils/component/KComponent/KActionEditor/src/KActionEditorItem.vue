@@ -50,10 +50,6 @@ import { PageSchema } from '../../../../../types/kDesigner'
 import draggable from 'vuedraggable'
 
 const props = defineProps({
-  modelValue: {
-    type: Object as PropType<any>,
-    default: () => ({})
-  },
   itemEvents: {
     type: Array as PropType<any>,
     default: () => []
@@ -67,7 +63,9 @@ const props = defineProps({
     default: () => ({})
   }
 })
-const emit = defineEmits(['update:modelValue', 'add', 'edit'])
+const emit = defineEmits(['add', 'edit'])
+const modelValue = defineModel<any>("modelValue")
+
 const pageSchema = inject('pageSchema') as PageSchema
 
 /**
@@ -97,7 +95,7 @@ function handleDelete(index: number, type: string) {
   if (!newEvents[type]?.length) {
     delete newEvents[type]
   }
-  emit('update:modelValue', newEvents)
+  modelValue.value = newEvents
 }
 
 /**

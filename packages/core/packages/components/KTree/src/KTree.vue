@@ -1,10 +1,6 @@
 <template>
   <ul class="k-tree-main">
-    <KTreeNode
-      v-for="(item) in props.options"
-      :key="item.id"
-      :record="item"
-    />
+    <KTreeNode v-for="(item) in props.options" :key="item.id" :record="item" />
   </ul>
 </template>
 <script lang="ts" setup>
@@ -21,24 +17,22 @@ const props = defineProps({
     type: Array as PropType<NodeItem[]>,
     default: () => []
   },
-  selectedKeys: {
-    type: Array as PropType<string[]>,
-    default: () => []
-  },
   hoverKey: {
     type: String,
     default: ''
   }
 })
+const selectedKeys = defineModel<string[]>("selectedKeys")
 
-const emit = defineEmits(['update:selectedKeys', 'node-click'])
+const emit = defineEmits(['node-click'])
 
-function handleSelect (id: string, record: NodeItem) {
-  emit('update:selectedKeys', [id])
+function handleSelect(id: string, record: NodeItem) {
+  selectedKeys.value = [id]
   emit('node-click', { id, record })
 }
 
 provide('expandedKeys', expandedKeys)
+provide('selectedKeys', selectedKeys)
 provide('treeProps', props)
 provide('handleSelect', handleSelect)
 

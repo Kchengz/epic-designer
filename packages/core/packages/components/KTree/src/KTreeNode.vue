@@ -1,26 +1,12 @@
 <template>
   <li class="k-tree-node">
     <a>
-      <span
-        v-if="props.record.children?.length"
-        class="icon-expanded"
-        :class="{ expanded }"
-        @click="handleExpanded"
-      ><span
-        class="iconfont icon-zhankai"
-      /></span>
+      <span v-if="props.record.children?.length" class="icon-expanded" :class="{ expanded }" @click="handleExpanded"><span
+          class="iconfont icon-zhankai" /></span>
       <TreeNodeText />
     </a>
-    <ul
-      v-if="props.record.children?.length"
-      class="k-tree-sublist"
-      :class="{ expanded }"
-    >
-      <KTreeNode
-        v-for="(item) in props.record.children"
-        :key="item.id"
-        :record="item"
-      />
+    <ul v-if="props.record.children?.length" class="k-tree-sublist" :class="{ expanded }">
+      <KTreeNode v-for="(item) in props.record.children" :key="item.id" :record="item" />
     </ul>
   </li>
 </template>
@@ -33,6 +19,8 @@ const slots = inject('slots', {}) as Slots
 
 const expandedKeys = inject('expandedKeys') as Ref<string[]>
 const treeProps = inject('treeProps') as any
+const selectedKeys = inject('selectedKeys') as Ref<string[]>
+
 const handleSelect = inject('handleSelect') as (id: string, record: NodeItem) => {}
 
 const expanded = computed(() => {
@@ -45,12 +33,11 @@ const props = defineProps({
   }
 })
 
-const selectedKeys = computed(() => {
-  return treeProps.selectedKeys.value ?? treeProps.selectedKeys
-})
+console.log(selectedKeys.value,'---')
+
 
 const TreeNodeText = defineComponent({
-  setup () {
+  setup() {
     return () => h('span', {
       class: {
         text: true,
@@ -59,7 +46,7 @@ const TreeNodeText = defineComponent({
       },
       onClick: () => handleSelect(props.record.id!, props.record)
     },
-    slots['tree-node']?.(props) ??
+      slots['tree-node']?.(props) ??
       h('span', { class: 'text-padding' },
         {
           default: () => [
@@ -72,7 +59,7 @@ const TreeNodeText = defineComponent({
   }
 })
 
-function handleExpanded () {
+function handleExpanded() {
   const id = props.record.id
   if (!id) {
     return false
@@ -85,7 +72,7 @@ function handleExpanded () {
   }
 }
 
-function init () {
+function init() {
   const id = props.record.id
   if (!id || !props.record.children?.length) {
     return false

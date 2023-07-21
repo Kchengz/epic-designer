@@ -57,7 +57,7 @@ const isAdd = ref(true)
 const pageSchema = inject('pageSchema') as PageSchema
 const pageManager = inject('pageManager', {}) as PageManager
 const visible = ref(false)
-const selectedKeys = ref([])
+const selectedKeys = ref<string[]>([])
 const nodeItem = ref<NodeItem | null>(null)
 // const activeTab = ref('动作配置')
 
@@ -107,6 +107,9 @@ function handleOpen() {
 function handleOpenEdit(action: any) {
   visible.value = true
   isAdd.value = false
+  if(action.componentId){
+      selectedKeys.value = [action.componentId]
+    }
   nextTick(() => {
     state.actionItem.methodName = action.methodName
     state.actionItem.componentId = action.componentId
