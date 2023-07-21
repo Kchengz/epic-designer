@@ -1,8 +1,5 @@
 <template>
-  <div
-    ref="editContainer"
-    class="code-editor"
-  />
+  <div ref="editContainer" class="code-editor" />
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
@@ -23,7 +20,7 @@ import TsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
 
 // 解决vite Monaco提示错误
 self.MonacoEnvironment = {
-  getWorker (_: string, label: string) {
+  getWorker(_: string, label: string) {
     if (label === 'json') {
       return new JsonWorker()
     }
@@ -41,10 +38,6 @@ self.MonacoEnvironment = {
 }
 
 const props = defineProps({
-  modelValue: {
-    type: String,
-    default: ''
-  },
   language: {
     type: String,
     default: 'json'
@@ -52,6 +45,10 @@ const props = defineProps({
   readOnly: {
     type: Boolean,
     default: false
+  },
+  valueFormat: {
+    type: String,
+    default: 'string'
   },
   config: {
     type: Object,
@@ -66,16 +63,17 @@ const props = defineProps({
   }
 })
 
+const modelValue = defineModel<string>('modelValue')
+
 const editContainer = ref<HTMLElement | null>(null)
 
 let monacoEditor: monaco.editor.IStandaloneCodeEditor | null = null
-const emit = defineEmits(['update:modelValue'])
 
 /**
  * 设置文本
  * @param text
  */
-function setValue (text: string) {
+function setValue(text: string) {
   monacoEditor?.setValue(text || '')
 }
 
@@ -83,7 +81,7 @@ function setValue (text: string) {
  * 光标处插入文本
  * @param text
  */
-function insertText (text: string) {
+function insertText(text: string) {
   // 获取光标位置
   const position = monacoEditor?.getPosition()
   // 未获取到光标位置信息
@@ -108,16 +106,32 @@ function insertText (text: string) {
 
 onMounted(() => {
   monacoEditor = monaco.editor.create(editContainer.value as HTMLElement, {
-    value: props.modelValue,
+    value: getValue(),
     language: props.language,
     readOnly: props.readOnly,
     ...props.config,
     automaticLayout: true
   })
+
+  // 获取值
+  function getValue() {
+    // valueFormat 为json 格式，需要转换处理
+    if (props.valueFormat === 'json') {
+      return JSON.stringify(modelValue.value, null, 2)
+    }
+    return modelValue.value
+  }
+
+
   // 监听值变化
   monacoEditor.onDidChangeModelContent(() => {
     const currenValue = monacoEditor?.getValue()
-    emit('update:modelValue', currenValue)
+    // valueFormat 为json 格式，需要转换处理
+    if (props.valueFormat === 'json' && currenValue) {
+      modelValue.value = JSON.parse(currenValue)
+      return
+    }
+    modelValue.value = currenValue
   })
 })
 
