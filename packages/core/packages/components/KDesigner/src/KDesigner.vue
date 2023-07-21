@@ -2,7 +2,17 @@
   <Suspense @resolve="handleReady">
     <template #default>
       <div class="k-designer-main">
-        <KHeader @save="handleSave" />
+        <KHeader @save="handleSave">
+          <template #prefix>
+            <slot name="header-prefix"></slot>
+          </template>
+          <template #title>
+            <slot name="header-title"></slot>
+          </template>
+          <template #suffix>
+            <slot name="header-suffix"></slot>
+          </template>
+        </KHeader>
         <div class="k-split-view-container">
           <KActionBar />
           <KEditCanvas />
@@ -77,7 +87,7 @@ provide('pageSchema', pageSchema)
 provide('formData', formData)
 provide('pageManager', pageManager)
 
-function init () {
+function init() {
   // 初始化默认节点
   pageSchema.schemas = deepClone(defaultSchemas)
 
@@ -97,7 +107,7 @@ provide('designer', {
  * 选中节点
  * @param schema
  */
-async function setCheckedNode (schema: NodeItem = pageSchema.schemas[0]) {
+async function setCheckedNode(schema: NodeItem = pageSchema.schemas[0]) {
   state.checkedNode = schema
   state.matched = getMatchedById(pageSchema.schemas, schema.id!)
 }
@@ -106,7 +116,7 @@ async function setCheckedNode (schema: NodeItem = pageSchema.schemas[0]) {
  * 设置悬停节点
  * @param schema
  */
-async function setHoverNode (schema: NodeItem | null = null) {
+async function setHoverNode(schema: NodeItem | null = null) {
   if (!schema || state.disableHover) {
     state.hoverNode = null
     return false
@@ -121,7 +131,7 @@ async function setHoverNode (schema: NodeItem | null = null) {
 /**
  * 组件（包含异步组件）加载完成后
  */
-function handleReady () {
+function handleReady() {
   // 等待DOM更新循环结束后
   nextTick(() => {
     emit('ready', { pageManager })
@@ -132,7 +142,7 @@ function handleReady () {
  * 设置hover状态
  * @param disableHover
  */
-async function setDisableHover (disableHover = false) {
+async function setDisableHover(disableHover = false) {
   state.disableHover = disableHover
 }
 
@@ -140,7 +150,7 @@ async function setDisableHover (disableHover = false) {
  * 接受一个PageSchema对象作为参数。根据传入的schemas和script属性，更新页面对应的数据
  * @param pageSchema
  */
-function setData (schema: PageSchema) {
+function setData(schema: PageSchema) {
   // 调用 deepCompareAndModify 函数比较 pageSchema 和传入的 schema，进行修改
   deepCompareAndModify(pageSchema, schema)
 }
@@ -148,7 +158,7 @@ function setData (schema: PageSchema) {
 /**
  * 返回当前页面数据的 PageSchema 对象，包含页面当前的 schemas 和 script 数据。
  */
-function getData (): PageSchema {
+function getData(): PageSchema {
   // 返回一个对象，包含当前 schemas 对象的普通对象表示和当前 script 的值
   return toRaw(pageSchema)
 }
@@ -156,7 +166,7 @@ function getData (): PageSchema {
 /**
  * 重置页面数据为默认数据。
  */
-function reset () {
+function reset() {
   // 调用 deepCompareAndModify 函数比较 pageSchema.schemas 和 defaultSchemas，进行修改
 
   deepCompareAndModify(pageSchema.schemas, defaultSchemas)
@@ -170,7 +180,7 @@ function reset () {
 /**
  * 保存数据
  */
-function handleSave () {
+function handleSave() {
   emit('save', toRaw(pageSchema))
 }
 

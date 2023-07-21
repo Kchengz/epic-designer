@@ -1,13 +1,16 @@
 <template>
-  <header class="k-header">
+  <header class="k-header relative">
     <div class="k-header-item items-center flex text-12px text-#3d3d3d">
-      <img src="../../../../../static/logo.png" class="w-17px h-17px" alt="" srcset="">
-      <span class="ml-4"> k-designer</span>
+      <slot name="prefix">
+        <img src="../../../../../static/logo.png" class="w-17px h-17px" alt="" srcset="">
+        <span class="ml-4"> k-designer</span>
+      </slot>
     </div>
-    <div class="k-header-item text-12px text-#3d3d3d">
-      k-designer默认项目
+
+    <div class="k-header-item k-header-title absolute text-12px text-#3d3d3d">
+      <slot name="title">k-designer默认项目</slot>
     </div>
-    <div class="k-header-item">
+    <div class="k-header-item flex flex items-center">
       <Button size="small" :disabled="!recordList.length" @click="handleUndo">
         <span class="iconfont icon-chexiao2x" />
       </Button>
@@ -22,7 +25,9 @@
         <span class="iconfont icon-yulan" style="margin-right:6px" />
         保存
       </Button>
+      <slot name="suffix"></slot>
     </div>
+
     <KPreview ref="preview" />
   </header>
 </template>
