@@ -101,12 +101,12 @@ export function useTimedQuery(handler: () => void, timeout = 16.66) {
   let timer: number;
 
   function startTimedQuery() {
-    clearInterval(timer);
-    timer = setInterval(handler, timeout);
+    stopTimedQuery()
+    timer = window.setInterval(handler, timeout);
   }
 
   function stopTimedQuery() {
-    clearInterval(timer);
+    window.clearInterval(timer);
   }
   return {
     startTimedQuery,
