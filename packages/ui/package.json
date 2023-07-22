@@ -10,6 +10,6 @@
   },
   "author": "kchengz",
   "devDependencies": {
-    "vite-plugin-dts": "^3.0.3"
+    "vite-plugin-dts": "^3.3.1"
   }
 }
