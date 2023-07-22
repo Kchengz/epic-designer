@@ -1,1 +1,0 @@
-import{c9 as s}from"../guide_components_k-designer.md.83922ad6.js";import{f as a,M as f,r as n,o as p,h as l,i as m,B as u,y as c,u as e}from"../app.759f2024.js";const B=a({__name:"KFormItem",setup(d){const r=f(),t=n(null);return(o,i)=>(p(),l(e(s),c({ref_key:"form",ref:t},e(r),{prop:e(r).field}),{default:m(()=>[u(o.$slots,"default")]),_:3},16,["prop"]))}});export{B as default};

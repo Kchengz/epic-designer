@@ -1,0 +1,1 @@
+import{ai as s}from"../guide_components_k-designer.md.c908a8ef.js";import{d as a,a7 as f,f as n,o as m,n as p,j as l,G as u,C as d,k as e}from"../app.eaa969de.js";const C=a({__name:"formItem",setup(i){const r=f(),o=n(null);return(t,c)=>(m(),p(e(s),d({ref_key:"form",ref:o},e(r),{prop:e(r).field}),{default:l(()=>[u(t.$slots,"default")]),_:3},16,["prop"]))}});export{C as default};
