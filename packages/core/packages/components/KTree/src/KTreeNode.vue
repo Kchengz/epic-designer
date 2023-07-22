@@ -33,8 +33,6 @@ const props = defineProps({
   }
 })
 
-console.log(selectedKeys.value,'---')
-
 
 const TreeNodeText = defineComponent({
   setup() {

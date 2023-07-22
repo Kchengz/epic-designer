@@ -23,6 +23,7 @@
               @click="handleCheckedMethod(item.value)" :key="item.value" class="action-item">
               <span>{{ item.label }}</span>
             </div>
+            <div v-show="!methodOptions?.length" class="text-center pt-42px text-gray-400">当前组件暂无动作</div>
           </div>
         </div>
         <!-- 动作所属对象 end -->
@@ -31,6 +32,7 @@
       <!-- 动作配置 start -->
       <div class="k-modal-right-panel">
         <KScriptEdit v-if="state.actionItem.type === 'custom'" />
+        <div v-else class="text-center pt-42px text-gray-400">暂无配置</div>
       </div>
       <!-- 动作配置 end -->
 
@@ -102,9 +104,9 @@ function handleOpen() {
 function handleOpenEdit(action: any) {
   visible.value = true
   isAdd.value = false
-  if(action.componentId){
-      selectedKeys.value = [action.componentId]
-    }
+  if (action.componentId) {
+    selectedKeys.value = [action.componentId]
+  }
   nextTick(() => {
     state.actionItem.methodName = action.methodName
     state.actionItem.componentId = action.componentId
