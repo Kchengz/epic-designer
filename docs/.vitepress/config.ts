@@ -1,30 +1,30 @@
 import { defineConfig } from "vitepress";
 export default defineConfig({
   // 网站标题
-  title: "KDesigner设计器",
+  title: "EDesigner设计器",
   // 网站描述
   description: "低代码可视化设计器及生成器",
   lang: "zh-CN",
-  base: "/k-designer",
+  base: "/epic-designer",
   // 打包目录
   head: [
     // 添加图标
     [
       "link",
-      { rel: "icon", type: "image/x-icon", href: "/k-designer/favicon.ico" },
+      { rel: "icon", type: "image/x-icon", href: "/epic-designer/favicon.ico" },
     ],
   ],
   // 主题配置
   themeConfig: {
     editLink: {
       text: "为此页提供修改建议",
-      pattern: "https://github.com/Kchengz/k-designer/issues",
+      pattern: "https://github.com/Kchengz/epic-designer/issues",
     },
     socialLinks: [
-      { icon: "github", link: "https://github.com/Kchengz/k-designer" },
+      { icon: "github", link: "https://github.com/Kchengz/epic-designer" },
     ],
     footer: {
-      copyright: "本文档内容版权为 KDesigner 作者kchengz所有，保留所有权利。",
+      copyright: "本文档内容版权为 EDesigner 作者kchengz所有，保留所有权利。",
     },
     nav: [
       {
@@ -71,12 +71,12 @@ export default defineConfig({
           text: "组件",
           items: [
             {
-              text: "k-designer 设计器",
-              link: "/guide/components/k-designer",
+              text: "epic-designer 设计器",
+              link: "/guide/components/epic-designer",
             },
             {
-              text: "k-builder 生成器",
-              link: "/guide/components/k-builder",
+              text: "epic-builder 生成器",
+              link: "/guide/components/epic-builder",
             },
           ],
         },

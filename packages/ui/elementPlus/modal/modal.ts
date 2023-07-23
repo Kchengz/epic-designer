@@ -1,5 +1,5 @@
 import { defineComponent, h, renderSlot, type PropType } from "vue";
-import { type NodeItem } from "@k-designer/core/packages/types/kDesigner";
+import { type NodeItem } from "@epic-designer/core/packages/types/epic-designer";
 import { ElDialog, ElButton } from "element-plus";
 
 export default defineComponent({
@@ -16,7 +16,7 @@ export default defineComponent({
         ...props.record,
         ...attrs,
         title: props.record?.label ?? "",
-        "modal-class": "k-modal",
+        "modal-class": "epic-modal",
         'destroy-on-close': true,
         "onUpdate:modelValue": handleClose,
       } as Record<string, any>;
@@ -46,7 +46,7 @@ export default defineComponent({
       return h(ElDialog, record, {
         default: () => [
           renderSlot(slots, "edit-node", {}, vNodeClildren),
-          h("div", { class: "k-modal-footer" }, [
+          h("div", { class: "epic-modal-footer" }, [
             h(ElButton, { onClick: handleClose }, "关闭"),
             h(
               ElButton,

@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
 import { defineComponent, h, renderSlot } from 'vue'
 import { NButton } from 'naive-ui'
-import { type NodeItem } from '@k-designer/core/packages/types/kDesigner'
+import { type NodeItem } from '@epic-designer/core/packages/types/epic-designer'
 
 // 二次封装组件
 export default defineComponent({

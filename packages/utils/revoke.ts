@@ -1,4 +1,4 @@
-import { type NodeItem } from '@k-designer/core/packages/types/kDesigner'
+import { type NodeItem } from '@epic-designer/core/packages/types/epic-designer'
 import { ref, type Ref } from 'vue'
 
 /**

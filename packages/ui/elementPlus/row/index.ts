@@ -1,4 +1,4 @@
-import { type ComponentConfigModel } from "@k-designer/utils/pluginManager";
+import { type ComponentConfigModel } from "@epic-designer/utils/pluginManager";
 export default {
   component: () => import("./row"),
   defaultSchema: {
@@ -90,7 +90,7 @@ export default {
       },
       {
         label: "列编辑",
-        type: "KColEditor",
+        type: "EColEditor",
         field: "children",
       },
       {

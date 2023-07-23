@@ -1,4 +1,4 @@
-import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
+import { type ComponentConfigModel } from '@epic-designer/utils/pluginManager'
 export default {
   component: () => import('./button'),
   defaultSchema: {

@@ -1,7 +1,7 @@
 {
-  "name": "@k-designer/utils",
+  "name": "@epic-designer/utils",
   "version": "1.0.0",
-  "description": "k-designer utils",
+  "description": "epic-designer utils",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",

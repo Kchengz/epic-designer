@@ -1,0 +1,70 @@
+@import "./modules/rightSidebar/index.less";
+@import "./modules/outline/index.less";
+@import "./modules/header/index.less";
+@import "./modules/actionBar/index.less";
+@import "./modules/componentView/index.less";
+@import "./modules/editContainer/index.less";
+@import "./modules/attributeView/index.less";
+@import "./modules/preview/index.less";
+
+.loading-box {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.epic-designer-main {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  color: @text-main;
+  min-width: 900px;
+  height: 100%;
+  cursor: default;
+
+  // 覆盖iconfont样式
+  .iconfont {
+    font-size: 1em;
+  }
+
+  div,aside {
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #0000002d;
+      border-radius: 6px;
+      -webkit-box-shadow: none;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  }
+
+  .epic-split-view-container {
+    display: flex;
+    flex: 1;
+    // height: calc(100% - 32px - 20px);
+    height: calc(100% - 32px);
+    max-height: calc(100vh - 40px);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.epic-modal-footer {
+  text-align: right;
+  margin-top: 8px;
+  .ant-btn {
+    margin-left: 8px;
+  }
+}

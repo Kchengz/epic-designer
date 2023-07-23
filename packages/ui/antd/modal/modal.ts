@@ -1,5 +1,5 @@
 import { defineComponent, h, renderSlot, type PropType } from "vue";
-import { type NodeItem } from "@k-designer/core/packages/types/kDesigner";
+import { type NodeItem } from "@epic-designer/core/packages/types/epic-designer";
 import Modal from 'ant-design-vue/lib/modal'
 import Button from 'ant-design-vue/lib/button'
 import Space from 'ant-design-vue/lib/space'
@@ -19,7 +19,7 @@ export default defineComponent({
         ...props.record,
         ...attrs,
         title: props.record?.label ?? "",
-        class: "k-modal",
+        class: "epic-modal",
         visible:attrs.modelValue,
         "onUpdate:visible": handleClose,
         'body-style':{ padding: '12px' },
@@ -52,7 +52,7 @@ export default defineComponent({
           renderSlot(slots, "edit-node", {}, vNodeClildren),
           h(
             "div",
-            { class: "k-modal-footer" },
+            { class: "epic-modal-footer" },
             h(Space, { align: "end" }, [
               h(Button, { onClick: handleClose }, "关闭"),
               h(

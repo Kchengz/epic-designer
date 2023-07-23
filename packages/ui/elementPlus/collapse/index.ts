@@ -1,4 +1,4 @@
-import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
+import { type ComponentConfigModel } from '@epic-designer/utils/pluginManager'
 export default {
   component: () => import('./collapse'),
   defaultSchema: {
@@ -28,7 +28,7 @@ export default {
     attribute: [
       {
         label: '折叠项管理',
-        type: 'KColEditor',
+        type: 'EColEditor',
         field: 'children'
       },
       {

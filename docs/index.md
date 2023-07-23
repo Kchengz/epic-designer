@@ -1,22 +1,22 @@
 ---
 layout: home
 
-title: KDesigner设计器
+title: EDesigner设计器
 titleTemplate: 低代码可视化设计器
 hero:
-  name: KDesigner
+  name: EDesigner
   text: 低代码可视化设计器
   tagline: '开源、规范、可视化、可扩展'
   image:
     src: /logo.png
-    alt: KDesigner
+    alt: EDesigner
     width: 140
   actions:
     - theme: brand
       text: 开始 👆
       link: /guide/start/index
     - theme: alt
-      text: KDesigner 源码
+      text: EDesigner 源码
       link: https://gitee.com/kcz66
 
 features:

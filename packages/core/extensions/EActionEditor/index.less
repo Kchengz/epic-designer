@@ -1,0 +1,169 @@
+.event-item {
+  .event-info {
+    display: flex;
+    background-color: #f8f8f8;
+    padding: 0 12px;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
+    border: 1px solid @border-color;
+    margin: 0px -1px -1px 0px;
+  }
+
+  .event-btn > span {
+    cursor: pointer;
+  }
+
+  .epic-action-editor-main {
+    // padding: 16px;
+    .epic-editor-item {
+      margin: 8px 0px;
+      // background-color: #fafafa;
+      border: 1px solid @border-color;
+      padding: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+
+  }
+}
+
+.epic-modal-action-main {
+  display: flex;
+  min-height: 560px;
+}
+
+.epic-modal-left-panel,
+.epic-script-left-panel {
+  width: 240px;
+  border: 1px solid @border-color;
+  overflow: auto;
+  padding: 8px;
+
+  .fun-btn {
+    border: 1px solid @border-color;
+    padding: 8px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 6px;
+    
+    &.checked {
+      background-color: @primary-hover-bg-color;
+      border-color: @primary-color;
+      color: @primary-color;
+    }
+  }
+}
+
+.epic-modal-right-panel,
+.epic-script-right-panel {
+  flex: 1;
+  border: 1px solid @border-color;
+  margin-left: 8px;
+  padding: 8px;
+
+  .action-select {
+    margin-right: 8px;
+    min-width: 175px;
+  }
+}
+
+.epic-script-edit {
+  display: flex;
+
+  .epic-script-left-panel {
+    .epic-tree-select {
+      height: 240px;
+      overflow: auto;
+    }
+
+    .tree-node-item,
+    .action-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 8px;
+      .action {
+        opacity: 0;
+        pointer-events: none;
+        color: @primary-color;
+      }
+      &:hover .action {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+
+  }
+  .epic-script-right-panel {
+    // width: 240px;
+    // flex: none;
+  }
+}
+
+.epic-action-select {
+  border-top: 1px solid @border-color;
+  margin-top: 12px;
+  padding: 8px;
+  overflow: auto;
+
+  .action-item {
+    height: 32px;
+    line-height: 32px;
+    padding-left: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid transparent;
+
+    &:hover {
+      background-color: @primary-hover-bg-color;
+      color: @primary-color;
+    }
+    &.checked {
+      background-color: @primary-hover-bg-color;
+      border-color: @primary-color;
+      color: @primary-color;
+    }
+  }
+}
+
+.epic-editor-item {
+  display: flex;
+  align-items: center;
+  padding-top: 6px;
+
+  .opr-box {
+    display: flex;
+
+    .del-btn {
+      width: 30px;
+      height: 100%;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        color: #f22;
+      }
+    }
+
+    .edit-btn {
+      width: 30px;
+      height: 100%;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        color: @primary-color;
+      }
+    }
+  }
+}
+
+.add-btn {
+  cursor: pointer;
+  margin-top: 6px;
+  color: @primary-color;
+}

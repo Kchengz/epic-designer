@@ -1,0 +1,53 @@
+// 组件选择面板
+.epic-component-view {
+  height: 100%;
+  .source-componet-item {
+    cursor: pointer;
+    border: 1px solid @border-color;
+    padding: 8px 10px;
+    // height: 32px;
+    border-radius: 4px;
+    .iconfont {
+      margin-right: 5px;
+    }
+
+    &:hover {
+      border-color: @primary-color;
+      color: @primary-color;
+      background-color: @primary-hover-bg-color;
+    }
+  }
+
+  .tabs-box {
+    width: 62px;
+    height: 100%;
+    background: #f8f8f8;
+    padding: 12px 6px;
+    box-sizing: border-box;
+    .tab {
+      height: 28px;
+      line-height: 28px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0em;
+      color: #3d3d3d;
+      margin-bottom: 10px;
+      text-align: center;
+
+      &.checked {
+        color: #3e8bf2;
+        background-color: @primary-hover-bg-color;
+      }
+    }
+  }
+
+  .search-box {
+    border-bottom: 1px solid #eaeaea;
+
+    // element 搜素框样式
+    .el-input__wrapper {
+      background-color: #f7f7f7;
+    }
+  }
+}

@@ -1,20 +1,20 @@
 ![](.\docs\public\logo.png)
-<h3 align="center" style="background-image:-webkit-linear-gradient(left,#44c0fa,#c26cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">KDesigner</h3>
+<h3 align="center" style="background-image:-webkit-linear-gradient(left,#44c0fa,#c26cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">EDesigner</h3>
 
 
 <h4 align="center">一个开箱即用的拖拽式的可视化低代码设计器</h4>
 
 
 
-📦github仓库：[https://github.com/Kchengz/k-designer](https://github.com/Kchengz/k-designer)
+📦github仓库：[https://github.com/Kchengz/epic-designer](https://github.com/Kchengz/epic-designer)
 
-📦gitee仓库：[https://gitee.com/kcz66/k-designer](https://gitee.com/kcz66/k-designer)
+📦gitee仓库：[https://gitee.com/kcz66/epic-designer](https://gitee.com/kcz66/epic-designer)
 
-💎文档地址：[https://kcz66.gitee.io/k-designer/](https://kcz66.gitee.io/k-designer/)
+💎文档地址：[https://kcz66.gitee.io/epic-designer/](https://kcz66.gitee.io/epic-designer/)
 
 ## 简介
 
-可以简称`K设计器`，是一个功能强大、开箱即用的拖拽式低代码设计器。它基于 Vue3 开发，兼容多套 UI 组件库，除了基础的页面设计功能，KDesigner 还提供了强大的扩展功能，可以让开发者根据自己的需求自由扩展和定制组件。此外，KDesigner 使用 JSON 配置来生成页面，可帮助开发者快速生成页面，提高开发效率。它提供了两个重要组件：`k-designer` 设计器和 `k-builder` 生成器。
+`epic-designer`是一个功能强大、开箱即用的拖拽式低代码设计器。它基于 Vue3 开发，兼容多套 UI 组件库，除了基础的页面设计功能，EDesigner 还提供了强大的扩展功能，可以让开发者根据自己的需求自由扩展和定制组件。此外，EDesigner 使用 JSON 配置来生成页面，可帮助开发者快速生成页面，提高开发效率。它提供了两个重要组件：`e-designer` 设计器和 `e-builder` 生成器。
 
 > 目前还处于 Alpha 阶段，所有的 API 及 Props 都可能在后续迭代中发生变化
 >
@@ -22,7 +22,7 @@
 
 ## 最新版本
 
-[![](https://img.shields.io/npm/v/k-designer.svg?style=flat-square)](https://www.npmjs.com/package/k-designer)
+[![](https://img.shields.io/npm/v/epic-designer.svg?style=flat-square)](https://www.npmjs.com/package/epic-designer)
 
 #### 功能
 
@@ -41,21 +41,21 @@
 
 ## 组件介绍
 
-#### k-designer 设计器
+#### e-designer 设计器
 
-`k-designer` 是一个可视化设计器组件，用户可以通过拖拽组件的方式快速生成 JSON 配置。它提供了丰富的组件库和配置项，用户可以根据需要选择合适的组件并配置相应的属性、事件和动作。设计器还提供了实时预览功能，用户可以随时查看所设计页面的效果。最终，用户可以将 JSON 配置导出，用于页面的生成和修改。
+`e-designer` 是一个可视化设计器组件，用户可以通过拖拽组件的方式快速生成 JSON 配置。它提供了丰富的组件库和配置项，用户可以根据需要选择合适的组件并配置相应的属性、事件和动作。设计器还提供了实时预览功能，用户可以随时查看所设计页面的效果。最终，用户可以将 JSON 配置导出，用于页面的生成和修改。
 
-#### k-builder 生成器
+#### e-builder 生成器
 
-`k-builder` 是一个页面构建组件，它可以将设计器生成的 JSON 配置构建成页面，完成组件的渲染、事件绑定和数据回显等操作。
+`e-builder` 是一个页面构建组件，它可以将设计器生成的 JSON 配置构建成页面，完成组件的渲染、事件绑定和数据回显等操作。
 
-## 安装 k-designer
+## 安装 epic-designer
 
 ```bash
-npm i k-designer
+npm i epic-designer
 ```
 
-k-designer 目标是支持多 UI 兼容,目前支持以下 UI
+epic-designer 目标是支持多 UI 兼容,目前支持以下 UI
 
 - element-plus
 - ant-design-vue
@@ -75,9 +75,9 @@ main.ts 或者 main.js 引入注册组件
 // 引入Element plus样式
 import "element-plus/dist/index.css";
 // 引入k-designer样式
-import "k-designer/dist/style.css";
-import { pluginManager } from "k-designer";
-import { setupElementPlus } from "k-designer/dist/ui/elementPlus";
+import "epic-designer/dist/style.css";
+import { pluginManager } from "epic-designer";
+import { setupElementPlus } from "epic-designer/dist/ui/elementPlus";
 // 注册Element UI
 setupElementPlus(pluginManager);
 ```
@@ -94,9 +94,9 @@ main.ts 或者 main.js 引入注册组件
 // 引入antd UI样式
 import "ant-design-vue/dist/antd.css";
 // 引入k-designer样式
-import "k-designer/dist/style.css";
-import { pluginManager } from "k-designer";
-import { setupAntd } from "k-designer/dist/ui/antd";
+import "epic-designer/dist/style.css";
+import { pluginManager } from "epic-designer";
+import { setupAntd } from "epic-designer/dist/ui/antd";
 // 使用Antd UI
 setupAntd(pluginManager);
 ```
@@ -110,22 +110,22 @@ main.ts 或者 main.js 引入注册组件
 
 ```javascript
 // 引入k-designer样式
-import "k-designer/dist/style.css";
-import { pluginManager } from "k-designer";
-import { setupNaiveUi } from "k-designer/dist/ui/naiveUi";
+import "epic-designer/dist/style.css";
+import { pluginManager } from "epic-designer";
+import { setupNaiveUi } from "epic-designer/dist/ui/naiveUi";
 // 注册Naive Ui
 setupNaiveUi(pluginManager);
 ```
-## 在页面使用 k-designer
+## 在页面使用设计器
 
 ```vue
 <template>
   <div class="h-full">
-    <KDesigner />
+    <EDesigner />
   </div>
 </template>
 <script setup lang="ts">
-import { KDesigner } from "k-designer";
+import { EDesigner } from "epic-designer";
 </script>
 <style>
 .h-full {
@@ -138,4 +138,4 @@ import { KDesigner } from "k-designer";
 
 点击链接加入 qq 群聊
 
-- [【k-designer 交流群：747609683】](https://jq.qq.com/?_wv=1027&k=CtrM9ce2)
+- [【epic-designer 交流群：747609683】](https://jq.qq.com/?_wv=1027&k=CtrM9ce2)

@@ -1,0 +1,127 @@
+// 编辑画布
+.epic-edit-canvas {
+  flex: 1;
+  background-image: linear-gradient(#f8f8f8 14px, transparent 0),
+    linear-gradient(90deg, transparent 14px, #373739 0);
+  background-size: 15px 15px;
+  overflow: hidden;
+
+  .epic-edit-range {
+    background-color: white;
+    overflow-y: auto;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    cursor: pointer;
+
+    [name="draggable-range"] {
+      min-height: 60px;
+      height: 100%;
+      border: 1px @border-color dashed;
+      width: 100%;
+    }
+
+    > div > [name="draggable-range"] {
+      border: transparent;
+
+      // 屏蔽antd element-plus label点击事件
+      .ant-form-item-label > label,
+      .el-form-item > .el-form-item__label {
+        pointer-events: none;
+      }
+    }
+
+    .root-node > .form-main > form > [name="draggable-range"] {
+      border: transparent;
+    }
+  }
+
+  .hover-widget {
+    border: 1px @primary-color dashed;
+    box-sizing: border-box;
+  }
+
+  .checked-widget {
+    border: 1px solid @primary-color;
+    background: @primary-hover-bg-color;
+    // position: relative;
+    // &::before {
+    //   content: "";
+    //   height: 5px;
+    //   width: 0%;
+    //   background: @primary-color;
+    //   position: absolute;
+    //   top: -5px;
+    //   right: 0;
+    //   transition: all 0.3s;
+    // }
+    // &::before {
+    //   width: 100%;
+    // }
+    // position: relative;
+
+    // &.moveing {
+    //   width: 100%;
+    //   height: 6px;
+    //   border-radius: 6px;
+    //   overflow: hidden;
+    //   &::after {
+    //     content: "";
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     background-color: red;
+    //   }
+    // }
+
+    // 遮罩层
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   width: 100%;
+    //   height: 100%;
+    // }
+
+    .action-box {
+      position: absolute;
+      z-index: 999;
+      height: 30px;
+      background: @primary-color;
+      border-radius: 4px 4px 0px 0px;
+      color: white;
+      display: flex;
+      padding: 0 4px;
+
+      .action-item {
+        height: 30px;
+        line-height: 25px;
+        padding: 0 4px;
+        cursor: pointer;
+      }
+    }
+
+    .form-main {
+      padding: 6px;
+      border: 1px solid #f0f0f0;
+    }
+  }
+
+  // 隐藏设计区域滚动条
+  .epic-edit-screen-container {
+    &::-webkit-scrollbar {
+      // display: none;
+      width: 6px;
+      height: 6px;
+    }
+  }
+}
+
+.edit-toolbar {
+  height: 40px;
+  background: #ffffff;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eaeaea;
+}

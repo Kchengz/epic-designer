@@ -1,5 +1,5 @@
 import { defineComponent, h, renderSlot, type PropType } from "vue";
-import { type NodeItem } from "@k-designer/core/packages/types/kDesigner";
+import { type NodeItem } from "@epic-designer/core/packages/types/epic-designer";
 import { NModal, NButton, NSpace } from "naive-ui";
 
 export default defineComponent({
@@ -16,7 +16,7 @@ export default defineComponent({
         ...props.record,
         ...attrs,
         title: props.record?.label ?? "",
-        class: "k-modal",
+        class: "epic-modal",
         preset: "card",
         show:attrs.modelValue,
         "onUpdate:show": handleClose,
@@ -48,7 +48,7 @@ export default defineComponent({
           renderSlot(slots, "edit-node", {}, vNodeClildren),
           h(
             "div",
-            { class: "k-modal-footer" },
+            { class: "epic-modal-footer" },
             h(NSpace, { justify: "end" }, [
               h(NButton, { onClick: handleClose }, "关闭"),
               h(

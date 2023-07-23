@@ -1,4 +1,4 @@
-import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
+import { type ComponentConfigModel } from '@epic-designer/utils/pluginManager'
 export default {
   component: async () => (await import('element-plus')).ElSlider,
   defaultSchema: {
@@ -119,7 +119,7 @@ export default {
       },
       {
         label: '高度',
-        type: 'KInputSize',
+        type: 'EInputSize',
         field: 'componentProps.height',
         show: ({values})=> {
           return values.componentProps.vertical
@@ -211,7 +211,7 @@ export default {
       },
       {
         label: '表单校验',
-        type: 'KRuleEditor',
+        type: 'ERuleEditor',
         layout: 'vertical',
         field: 'rules',
         describe: '校验规则需要配合表单使用'

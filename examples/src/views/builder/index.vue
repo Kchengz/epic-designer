@@ -1,13 +1,13 @@
 <template>
   <div>
-    <KBuilder
+    <EBuilder
       ref="kfb"
       :schemas="schemas"
     >
       <template #sdff="{ model, record }">
         <input v-model="model[record.field]">
       </template>
-    </KBuilder>
+    </EBuilder>
     <div @click="handleGetData">
       获取数据
     </div>
@@ -16,8 +16,8 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { KBuilder } from '@k-designer/core/packages'
-import { NodeItem } from '@k-designer/core/packages/types/kDesigner'
+import { EBuilder } from '@epic-designer/core/packages'
+import { NodeItem } from '@epic-designer/core/packages/types/epic-designer'
 
 const kfb = ref<any>(null)
 async function handleGetData () {

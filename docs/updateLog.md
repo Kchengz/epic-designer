@@ -14,7 +14,7 @@
 ### ✨ refactor
 
 - 允许重复注册组件，后注册的组件将覆盖已注册组件
-- 重构KNode组件,组件配置input属性读取默认配置，新增noFormItem属性用于移除输入组件外层的formItem
+- 重构ENode组件,组件配置input属性读取默认配置，新增noFormItem属性用于移除输入组件外层的formItem
 
 ## 0.0.41（2023-05-09）
 

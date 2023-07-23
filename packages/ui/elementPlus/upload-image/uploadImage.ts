@@ -112,7 +112,7 @@ export default defineComponent({
       return h(
         'div',
         {
-          class: 'k-upload-image'
+          class: 'epic-upload-image'
         },
         {
           default: () => [

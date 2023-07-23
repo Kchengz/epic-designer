@@ -15,13 +15,13 @@ importers:
         specifier: ^4.1.3
         version: registry.npmmirror.com/less@4.1.3
     devDependencies:
-      '@k-designer/core':
+      '@epic-designer/core':
         specifier: workspace:*
         version: link:packages/core
-      '@k-designer/ui':
+      '@epic-designer/ui':
         specifier: workspace:*
         version: link:packages/ui
-      '@k-designer/utils':
+      '@epic-designer/utils':
         specifier: workspace:*
         version: link:packages/utils
       '@turbo/gen':

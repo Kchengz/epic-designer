@@ -1,6 +1,6 @@
 import { defineComponent, h, renderSlot, type PropType } from "vue";
 import { ElCard } from "element-plus";
-import { type NodeItem } from "@k-designer/core/packages/types/kDesigner";
+import { type NodeItem } from "@epic-designer/core/packages/types/epic-designer";
 export default defineComponent({
   props: {
     record: {

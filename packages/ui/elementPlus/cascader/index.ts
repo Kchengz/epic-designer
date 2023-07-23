@@ -1,4 +1,4 @@
-import { type ComponentConfigModel } from "@k-designer/utils/pluginManager";
+import { type ComponentConfigModel } from "@epic-designer/utils/pluginManager";
 export default {
   component: async () => (await import("element-plus")).ElCascader,
   defaultSchema: {
@@ -144,7 +144,7 @@ export default {
       },
       {
         label: "选项管理",
-        type: "KOptionsEditor",
+        type: "EOptionsEditor",
         layout: "vertical",
         field: "componentProps.options",
         componentProps: {
@@ -154,7 +154,7 @@ export default {
       },
       {
         label: "表单校验",
-        type: "KRuleEditor",
+        type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
         describe: "校验规则需要配合表单使用",

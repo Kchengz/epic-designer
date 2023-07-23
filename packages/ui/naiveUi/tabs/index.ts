@@ -1,4 +1,4 @@
-import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
+import { type ComponentConfigModel } from '@epic-designer/utils/pluginManager'
 export default {
   component: () => import('./tabs'),
   defaultSchema: {
@@ -28,7 +28,7 @@ export default {
     attribute: [
       {
         label: '标签页配置',
-        type: 'KTabPaneEditor',
+        type: 'ETabPaneEditor',
         field: 'children'
       },
       {

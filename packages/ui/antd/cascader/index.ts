@@ -1,4 +1,4 @@
-import { type ComponentConfigModel } from '@k-designer/utils/pluginManager'
+import { type ComponentConfigModel } from '@epic-designer/utils/pluginManager'
 export default {
   component:  () => import('ant-design-vue/lib/cascader'),
   defaultSchema: {
@@ -114,14 +114,14 @@ export default {
       },
       {
         label: '表单校验',
-        type: 'KRuleEditor',
+        type: 'ERuleEditor',
         layout: 'vertical',
         field: 'rules',
         describe: '校验规则需要配合表单使用'
       },
       {
         label: "选项管理",
-        type: "KOptionsEditor",
+        type: "EOptionsEditor",
         layout: "vertical",
         field: "componentProps.options",
         describe: "校验规则需要配合表单使用",
