@@ -1,22 +1,22 @@
 ---
 layout: home
 
-title: EDesigner设计器
+title: EpicDesigner设计器
 titleTemplate: 低代码可视化设计器
 hero:
-  name: EDesigner
+  name: EpicDesigner
   text: 低代码可视化设计器
   tagline: '开源、规范、可视化、可扩展'
   image:
     src: /logo.png
-    alt: EDesigner
+    alt: EpicDesigner
     width: 140
   actions:
     - theme: brand
       text: 开始 👆
       link: /guide/start/index
     - theme: alt
-      text: EDesigner 源码
+      text: EpicDesigner 源码
       link: https://gitee.com/kcz66
 
 features:

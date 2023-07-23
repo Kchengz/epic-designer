@@ -1,7 +1,7 @@
 import { defineConfig } from "vitepress";
 export default defineConfig({
   // 网站标题
-  title: "EDesigner设计器",
+  title: "EpicDesigner",
   // 网站描述
   description: "低代码可视化设计器及生成器",
   lang: "zh-CN",
@@ -24,7 +24,7 @@ export default defineConfig({
       { icon: "github", link: "https://github.com/Kchengz/epic-designer" },
     ],
     footer: {
-      copyright: "本文档内容版权为 EDesigner 作者kchengz所有，保留所有权利。",
+      copyright: "本文档内容版权为 EpicDesigner 作者kchengz所有，保留所有权利。",
     },
     nav: [
       {
@@ -71,12 +71,12 @@ export default defineConfig({
           text: "组件",
           items: [
             {
-              text: "epic-designer 设计器",
-              link: "/guide/components/epic-designer",
+              text: "e-designer 设计器",
+              link: "/guide/components/e-designer",
             },
             {
-              text: "epic-builder 生成器",
-              link: "/guide/components/epic-builder",
+              text: "e-builder 生成器",
+              link: "/guide/components/e-builder",
             },
           ],
         },

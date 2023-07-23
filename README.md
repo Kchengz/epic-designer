@@ -1,5 +1,5 @@
 ![](.\docs\public\logo.png)
-<h3 align="center" style="background-image:-webkit-linear-gradient(left,#44c0fa,#c26cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">EDesigner</h3>
+<h3 align="center" style="background-image:-webkit-linear-gradient(left,#44c0fa,#c26cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">EpicDesigner</h3>
 
 
 <h4 align="center">一个开箱即用的拖拽式的可视化低代码设计器</h4>
