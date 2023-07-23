@@ -3,32 +3,34 @@
     ref="formItemRef" v-bind="getFormItemProps">
     <component :is="component" ref="componentInstance" v-instance
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
-      <!-- 递归组件 start -->
+      <!-- 嵌套组件递归 start -->
+      <!-- 渲染组件 start -->
       <template #node="data">
         <ENode v-bind="data" />
       </template>
-      <!-- 递归组件 end -->
-      <!-- 递归组件 start -->
+      <!-- 渲染组件 end -->
+      <!-- 渲染子组件列表 start -->
       <template #edit-node>
         <slot name="edit-node" />
       </template>
-      <!-- 递归组件 end -->
+      <!-- 渲染子组件列表 end -->
     </component>
   </FormItem>
 
   <!-- 无需FormItem start -->
   <component :is="component" v-else-if="component" v-show="show" ref="componentInstance" v-instance :model="formData"
     v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }">
-    <!-- 递归组件 start -->
+    <!-- 嵌套组件递归 start -->
+    <!-- 渲染组件 start -->
     <template #node="data">
       <ENode v-bind="data" />
     </template>
-    <!-- 递归组件 end -->
-    <!-- 递归组件 start -->
+    <!-- 渲染组件 end -->
+    <!-- 渲染子组件列表 start -->
     <template #edit-node>
       <slot name="edit-node" />
     </template>
-    <!-- 递归组件 end -->
+    <!-- 渲染子组件列表 end -->
   </component>
   <!-- 无需FormItem end -->
 </template>

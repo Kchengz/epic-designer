@@ -1,6 +1,6 @@
 import { defineComponent, h, renderSlot, type PropType } from 'vue'
 import Row from 'ant-design-vue/lib/row'
-import { type NodeItem } from '@epic-designer/core/packages/types/epic-designer'
+import { type NodeItem } from '@epic-designer/core/types/epic-designer'
 export default defineComponent({
   props: {
     record: {

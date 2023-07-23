@@ -1,4 +1,4 @@
-import { type NodeItem } from "@epic-designer/core/packages/types/epic-designer";
+import { type NodeItem } from "@epic-designer/core/types/epic-designer";
 import { type AsyncComponentLoader, type Component } from "vue";
 /**
  * 生成一个用不重复的ID

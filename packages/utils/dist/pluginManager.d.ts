@@ -1,4 +1,4 @@
-import { type NodeItem, type SchemaGroupItem } from '@epic-designer/core/packages/types/epic-designer.d';
+import { type NodeItem, type SchemaGroupItem } from '@epic-designer/core/types/epic-designer.d';
 export interface ActivitybarModel {
     id: string;
     title: string;
@@ -97,7 +97,7 @@ export declare class PluginManager {
             labelCol?: any;
             wrapperCol?: any;
             children?: any[] | undefined;
-            show?: boolean | ((renderCallbackParams: import("@epic-designer/core/packages/types/epic-designer.d").RenderCallbackParams) => boolean) | undefined;
+            show?: boolean | ((renderCallbackParams: import("@epic-designer/core/types/epic-designer.d").RenderCallbackParams) => boolean) | undefined;
         }[];
         title: string;
     }[]>;
@@ -226,7 +226,7 @@ export declare class PluginManager {
             labelCol?: any;
             wrapperCol?: any;
             children?: any[] | undefined;
-            show?: boolean | ((renderCallbackParams: import("@epic-designer/core/packages/types/epic-designer.d").RenderCallbackParams) => boolean) | undefined;
+            show?: boolean | ((renderCallbackParams: import("@epic-designer/core/types/epic-designer.d").RenderCallbackParams) => boolean) | undefined;
         }[];
         title: string;
     }[]>;

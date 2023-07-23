@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import { ref, type Ref, type PropType, computed, inject, useAttrs, onMounted } from 'vue'
 import { Form } from 'ant-design-vue'
-import type { NodeItem } from '@epic-designer/core/packages/types/epic-designer'
+import type { NodeItem } from '@epic-designer/core/types/epic-designer'
 
 
 interface KForm extends InstanceType<typeof Form> {

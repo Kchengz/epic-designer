@@ -24,7 +24,7 @@
 import type { Ref, PropType } from 'vue'
 import { ref, computed, inject, useAttrs, onMounted } from 'vue'
 import { NForm } from 'naive-ui/lib/form'
-import { NodeItem } from '@epic-designer/core/packages/types/epic-designer'
+import { NodeItem } from '@epic-designer/core/types/epic-designer'
 const attrs = useAttrs()
 const form = ref<InstanceType<typeof NForm> | null>(null)
 const forms = inject('forms', {}) as Ref<{ [name: string]: InstanceType<typeof NForm> }>

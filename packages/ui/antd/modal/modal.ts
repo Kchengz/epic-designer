@@ -1,5 +1,5 @@
 import { defineComponent, h, renderSlot, type PropType } from "vue";
-import { type NodeItem } from "@epic-designer/core/packages/types/epic-designer";
+import { type NodeItem } from "@epic-designer/core/types/epic-designer";
 import Modal from 'ant-design-vue/lib/modal'
 import Button from 'ant-design-vue/lib/button'
 import Space from 'ant-design-vue/lib/space'

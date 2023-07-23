@@ -17,7 +17,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { EBuilder } from '@epic-designer/core/packages'
-import { NodeItem } from '@epic-designer/core/packages/types/epic-designer'
+import { NodeItem } from '@epic-designer/core/types/epic-designer'
 
 const kfb = ref<any>(null)
 async function handleGetData () {
