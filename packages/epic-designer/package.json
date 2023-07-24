@@ -1,0 +1,60 @@
+{
+  "name": "epic-designer",
+  "private": false,
+  "version": "1.0.0-alpha.1",
+  "type": "module",
+  "main": "index.ts",
+  "description": "基于vue3的设计器,可视化开发页面表单",
+  "author": "kchengz",
+  "keywords": [
+    "form",
+    "epic-designer",
+    "设计器",
+    "页面设计",
+    "低代码",
+    "可视化",
+    "工作流"
+  ],
+  "bugs": {
+    "url": "https://github.com/Kchengz/epic-designer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kchengz/epic-designer"
+  },
+  "scripts": {
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "lint": "eslint . --fix --ext .js,.jsx,.json,.ts,.tsx,.vue"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.34.1",
+    "vuedraggable": "4.1.0"
+  },
+  "devDependencies": {
+    "@algolia/client-search": "^4.19.1",
+    "@babel/core": "^7.22.9",
+    "@babel/eslint-parser": "^7.22.9",
+    "@babel/plugin-transform-typescript": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-typescript": "^7.22.5",
+    "@types/node": "^18.17.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "@vue/test-utils": "2.0.0-rc.18",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.15.1",
+    "jsdom": "^20.0.3",
+    "unocss": "^0.51.13",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vite-plugin-vue-setup-extend": "^0.4.0",
+    "vitest": "^0.24.5",
+    "vue-eslint-parser": "^9.3.1",
+    "vue-tsc": "^1.8.6"
+  }
+}

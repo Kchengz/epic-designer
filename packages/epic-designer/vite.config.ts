@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import { defineConfig, type PluginOption } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
@@ -14,7 +13,7 @@ export default defineConfig({
     }),
     UnoCSS(),
     dts({
-      entryRoot: 'packages',
+      entryRoot: './',
       outDir: 'dist'
     }) as PluginOption
     // eslintPlugin({
@@ -28,9 +27,6 @@ export default defineConfig({
     // })
   ],
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'examples')
-    },
     dedupe: ['vue']
   },
   // 单元测试配置
@@ -46,7 +42,7 @@ export default defineConfig({
     outDir: 'dist', // 输出文件名称
     lib: {
       entry: {
-        index: path.resolve(__dirname, './packages/index.ts')
+        index: path.resolve(__dirname, './index.ts')
       },
       // 指定组件编译入口文件
       name: 'epic-designer'

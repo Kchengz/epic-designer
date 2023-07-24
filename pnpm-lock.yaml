@@ -173,6 +173,85 @@ importers:
         specifier: ^1.8.6
         version: registry.npmmirror.com/vue-tsc@1.8.6(typescript@5.1.6)
 
+  packages/epic-designer:
+    dependencies:
+      monaco-editor:
+        specifier: ^0.34.1
+        version: registry.npmmirror.com/monaco-editor@0.34.1
+      vuedraggable:
+        specifier: 4.1.0
+        version: registry.npmmirror.com/vuedraggable@4.1.0(vue@3.3.4)
+    devDependencies:
+      '@algolia/client-search':
+        specifier: ^4.19.1
+        version: registry.npmmirror.com/@algolia/client-search@4.19.1
+      '@babel/core':
+        specifier: ^7.22.9
+        version: registry.npmmirror.com/@babel/core@7.22.9
+      '@babel/eslint-parser':
+        specifier: ^7.22.9
+        version: registry.npmmirror.com/@babel/eslint-parser@7.22.9(@babel/core@7.22.9)(eslint@8.45.0)
+      '@babel/plugin-transform-typescript':
+        specifier: ^7.22.9
+        version: registry.npmmirror.com/@babel/plugin-transform-typescript@7.22.9(@babel/core@7.22.9)
+      '@babel/preset-env':
+        specifier: ^7.22.9
+        version: registry.npmmirror.com/@babel/preset-env@7.22.9(@babel/core@7.22.9)
+      '@babel/preset-typescript':
+        specifier: ^7.22.5
+        version: registry.npmmirror.com/@babel/preset-typescript@7.22.5(@babel/core@7.22.9)
+      '@types/node':
+        specifier: ^18.17.0
+        version: registry.npmmirror.com/@types/node@18.17.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^5.62.0
+        version: registry.npmmirror.com/@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.45.0)(typescript@5.1.6)
+      '@typescript-eslint/parser':
+        specifier: ^5.62.0
+        version: registry.npmmirror.com/@typescript-eslint/parser@5.62.0(eslint@8.45.0)(typescript@5.1.6)
+      '@vue/test-utils':
+        specifier: 2.0.0-rc.18
+        version: registry.npmmirror.com/@vue/test-utils@2.0.0-rc.18(vue@3.3.4)
+      eslint-config-standard-with-typescript:
+        specifier: ^34.0.1
+        version: registry.npmmirror.com/eslint-config-standard-with-typescript@34.0.1(@typescript-eslint/eslint-plugin@5.62.0)(eslint-plugin-import@2.27.5)(eslint-plugin-n@15.7.0)(eslint-plugin-promise@6.1.1)(eslint@8.45.0)(typescript@5.1.6)
+      eslint-plugin-import:
+        specifier: ^2.27.5
+        version: registry.npmmirror.com/eslint-plugin-import@2.27.5(@typescript-eslint/parser@5.62.0)(eslint@8.45.0)
+      eslint-plugin-n:
+        specifier: ^15.7.0
+        version: registry.npmmirror.com/eslint-plugin-n@15.7.0(eslint@8.45.0)
+      eslint-plugin-promise:
+        specifier: ^6.1.1
+        version: registry.npmmirror.com/eslint-plugin-promise@6.1.1(eslint@8.45.0)
+      eslint-plugin-vue:
+        specifier: ^9.15.1
+        version: registry.npmmirror.com/eslint-plugin-vue@9.15.1(eslint@8.45.0)
+      jsdom:
+        specifier: ^20.0.3
+        version: registry.npmmirror.com/jsdom@20.0.3
+      unocss:
+        specifier: ^0.51.13
+        version: registry.npmmirror.com/unocss@0.51.13(postcss@8.4.27)(vite@4.4.6)
+      vite-plugin-eslint:
+        specifier: ^1.8.1
+        version: registry.npmmirror.com/vite-plugin-eslint@1.8.1(eslint@8.45.0)(vite@4.4.6)
+      vite-plugin-svg-icons:
+        specifier: ^2.0.1
+        version: registry.npmmirror.com/vite-plugin-svg-icons@2.0.1(vite@4.4.6)
+      vite-plugin-vue-setup-extend:
+        specifier: ^0.4.0
+        version: registry.npmmirror.com/vite-plugin-vue-setup-extend@0.4.0(vite@4.4.6)
+      vitest:
+        specifier: ^0.24.5
+        version: registry.npmmirror.com/vitest@0.24.5(jsdom@20.0.3)(less@4.1.3)
+      vue-eslint-parser:
+        specifier: ^9.3.1
+        version: registry.npmmirror.com/vue-eslint-parser@9.3.1(eslint@8.45.0)
+      vue-tsc:
+        specifier: ^1.8.6
+        version: registry.npmmirror.com/vue-tsc@1.8.6(typescript@5.1.6)
+
   packages/ui:
     devDependencies:
       vite-plugin-dts:
@@ -2780,7 +2859,7 @@ packages:
     version: 7.2.0
     dependencies:
       '@types/minimatch': registry.npmmirror.com/@types/minimatch@5.1.2
-      '@types/node': registry.npmmirror.com/@types/node@20.4.4
+      '@types/node': registry.npmmirror.com/@types/node@18.17.0
     dev: true
 
   registry.npmmirror.com/@types/inquirer@6.5.0:
@@ -2836,12 +2915,6 @@ packages:
     version: 18.17.0
     dev: true
 
-  registry.npmmirror.com/@types/node@20.4.4:
-    resolution: {integrity: sha512-CukZhumInROvLq3+b5gLev+vgpsIqC2D0deQr/yS1WnxvmYLlJXZpaQrQiseMY+6xusl79E04UjWoqyr+t1/Ew==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-20.4.4.tgz}
-    name: '@types/node'
-    version: 20.4.4
-    dev: true
-
   registry.npmmirror.com/@types/semver@7.5.0:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/semver/-/semver-7.5.0.tgz}
     name: '@types/semver'
@@ -2861,7 +2934,7 @@ packages:
     name: '@types/through'
     version: 0.0.30
     dependencies:
-      '@types/node': registry.npmmirror.com/@types/node@20.4.4
+      '@types/node': registry.npmmirror.com/@types/node@18.17.0
     dev: true
 
   registry.npmmirror.com/@types/web-bluetooth@0.0.16:
