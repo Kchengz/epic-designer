@@ -36,6 +36,9 @@ importers:
       element-plus:
         specifier: ^2.3.8
         version: registry.npmmirror.com/element-plus@2.3.8(vue@3.3.4)
+      epic-designer:
+        specifier: workspace:*
+        version: link:packages/epic-designer
       eslint:
         specifier: ^8.45.0
         version: registry.npmmirror.com/eslint@8.45.0

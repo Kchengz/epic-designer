@@ -17,6 +17,7 @@
     "@epic-designer/core": "workspace:*",
     "@epic-designer/ui": "workspace:*",
     "@epic-designer/utils": "workspace:*",
+    "epic-designer": "workspace:*",
     "@turbo/gen": "^1.10.9",
     "@vitejs/plugin-vue": "^4.2.3",
     "ant-design-vue": "^3.2.20",

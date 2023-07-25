@@ -1,1 +1,0 @@
-import{_ as e,o as _,c as a,a as s}from"../app.c181f4ec.js";const t={},c={class:"loading"},n=s("div",{class:"shape shape-1"},null,-1),o=s("div",{class:"shape shape-2"},null,-1),l=s("div",{class:"shape shape-3"},null,-1),d=s("div",{class:"shape shape-4"},null,-1),i=[n,o,l,d];function h(p,r){return _(),a("div",c,i)}const v=e(t,[["render",h]]);export{v as default};

@@ -1,1 +1,0 @@
-import{a0 as s}from"../guide_components_e-designer.md.ee402248.js";import{h as a,$ as f,r as m,o as n,j as p,k as l,m as u,v as d,u as e}from"../app.c181f4ec.js";const h=a({__name:"formItem",setup(c){const r=f(),o=m(null);return(t,i)=>(n(),p(e(s),d({ref_key:"form",ref:o},e(r),{prop:e(r).field}),{default:l(()=>[u(t.$slots,"default")]),_:3},16,["prop"]))}});export{h as default};

@@ -32,7 +32,7 @@
   </div>
 </template>
 <script setup>
-import { EDesigner } from "@epic-designer/core";
+import { EDesigner } from "epic-designer";
 
 /**
  * 点击保存按钮操作
@@ -52,10 +52,9 @@ function handleSubmit(e) {
 ```
 
 <script setup>
-// import "@epic-designer/core/dist/style.css";
-import { pluginManager,EDesigner } from "@epic-designer/core";
+import "epic-designer/dist/style.css";
+import { pluginManager,EDesigner,setupElementPlus } from "epic-designer";
 import 'element-plus/dist/index.css'
-import { setupElementPlus } from "@epic-designer/ui";
 setupElementPlus(pluginManager);
 
 
@@ -91,3 +90,11 @@ border:1px solid #ccc;
 | 事件名称 | 说明               | 参数 | 版本   |
 | -------- | ------------------ | ---- | ------ |
 | save     | 点击保存按钮时回调 | json | 0.0.35 |
+
+## 插槽
+
+| 插槽名称      | 说明                       | 参数 | 版本  |
+| ------------- | -------------------------- | ---- | ----- |
+| header-prefix | 顶部左侧插槽（logo，标题） |      | 0.8.1 |
+| header-title  | 顶部标题                   |      |       |
+| header-suffix | 顶部右侧插槽               |      |       |
