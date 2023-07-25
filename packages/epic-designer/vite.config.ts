@@ -2,7 +2,6 @@ import { defineConfig, type PluginOption } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import dts from 'vite-plugin-dts'
-// import eslintPlugin from 'vite-plugin-eslint'
 import UnoCSS from 'unocss/vite'
 export default defineConfig({
   plugins: [
@@ -13,20 +12,16 @@ export default defineConfig({
     }),
     UnoCSS(),
     dts({
-      entryRoot: './',
+      entryRoot: '../',
       outDir: 'dist'
     }) as PluginOption
-    // eslintPlugin({
-    //   include: [
-    //     'packages/**/*.ts',
-    //     'packages/**/*.vue',
-    //     'packages/*.ts',
-    //     'packages/*.vue'
-    //   ],
-    //   cache: true
-    // })
   ],
   resolve: {
+    alias: {
+      '@epic-designer/core': path.resolve(__dirname, '../core'),
+      '@epic-designer/ui': path.resolve(__dirname, '../ui'),
+      '@epic-designer/utils': path.resolve(__dirname, '../utils'),
+    },
     dedupe: ['vue']
   },
   // 单元测试配置

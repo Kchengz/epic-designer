@@ -3,7 +3,9 @@
   "private": false,
   "version": "1.0.0-alpha.1",
   "type": "module",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/epic-designer/index.d.ts",
   "description": "基于vue3的设计器,可视化开发页面表单",
   "author": "kchengz",
   "keywords": [

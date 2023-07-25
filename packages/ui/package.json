@@ -2,9 +2,7 @@
   "name": "@epic-designer/ui",
   "version": "1.0.0",
   "description": "epic-designer base ui",
-  "main": "dist/index.mjs",
-  "module": "dist/index.mjs",
-  "typings": "dist/ui/index.d.ts",
+  "main": "index.ts",
   "scripts": {
     "build": "vue-tsc --noEmit && vite build"
   },

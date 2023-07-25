@@ -14,6 +14,6 @@
     "strictNullChecks": true,
     "skipLibCheck": true
   },
-  "include": ["./**/*", "*.ts", "*.json", "*.cjs"],
+  "include": ["../**/*", "*.ts", "*.json", "*.cjs"],
   "exclude": ["node_modules", "dist", "vite.config.ts"]
 }

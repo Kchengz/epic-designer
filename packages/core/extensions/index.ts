@@ -3,6 +3,7 @@ import MonacoEditor from './MonacoEditor'
 import Page from './Page'
 
 export function setupComponent (pluginManager: PluginManager): void {
+  console.log('注册2',pluginManager)
   pluginManager.component('ETabPaneEditor', async () => await import('./ETabPaneEditor/index.vue'))
   pluginManager.component('EInputSize', async () => await import('./EInputSize/index.vue'))
   pluginManager.component('EColEditor', async () => await import('./EColEditor/index.vue'))
@@ -10,6 +11,8 @@ export function setupComponent (pluginManager: PluginManager): void {
   pluginManager.component('ERuleEditor', async () => await import('./ERuleEditor/index.vue'))
   pluginManager.component('EOptionsEditor', async () => await import('./EOptionsEditor/index.vue'))
   pluginManager.component('ENode', async () => await import('../components/node/index'))
+  console.log('注册32',pluginManager)
+  debugger
 
   // 左侧菜单初始化
   pluginManager.registerActivitybar({
@@ -67,6 +70,7 @@ export function setupComponent (pluginManager: PluginManager): void {
   })
 
   const componentArray = [MonacoEditor, Page]
+
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item)
   })
