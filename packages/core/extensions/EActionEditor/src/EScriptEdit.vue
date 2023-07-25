@@ -1,15 +1,10 @@
 <template>
   <div class="h-full flex flex-col">
     <div class="pb-2">
-    自定义函数编辑
-  </div>
-      <MonacoEditor
-        ref="monacoEditorRef"
-        v-model="pageSchema.script"
-        class="editor flex"
-        :config="MonacoEditorConfig"
-        language="javascript"
-      />
+      自定义函数编辑
+    </div>
+    <MonacoEditor ref="monacoEditorRef" v-model="pageSchema.script" class="editor flex-1" :config="MonacoEditorConfig"
+      language="javascript" />
   </div>
 </template>
 <script lang="ts" setup>

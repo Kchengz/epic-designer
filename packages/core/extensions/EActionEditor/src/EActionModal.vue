@@ -40,7 +40,7 @@
   </Modal>
 </template>
 <script lang="ts" setup>
-import { pluginManager, PageManager, deepClone } from '@epic-designer/utils'
+import { pluginManager, PageManager, deepClone, findSchemaById } from '@epic-designer/utils'
 import { ref, inject, toRaw, reactive, computed, nextTick } from 'vue'
 import ETree from '../../../components/tree'
 import { NodeItem, PageSchema, FormDataModel } from '../../../types/epic-designer'
@@ -56,7 +56,7 @@ const pageSchema = inject('pageSchema') as PageSchema
 const pageManager = inject('pageManager', {}) as PageManager
 const visible = ref(false)
 const selectedKeys = ref<string[]>([])
-const nodeItem = ref<NodeItem | null>(null)
+const componentSchema = ref<NodeItem | null>(null)
 // const activeTab = ref('动作配置')
 
 const emit = defineEmits(['add', 'edit'])
@@ -65,7 +65,10 @@ const methodOptions = computed(() => {
 
   // 组件动作列表
   if (state.actionItem.type === 'component') {
-    return pluginManager.getComponentConfings()[nodeItem.value!.type].config.action?.map(item => ({ label: item.describe, value: item.type }))
+    if (componentSchema.value) {
+      return pluginManager.getComponentConfings()[componentSchema.value.type].config.action?.map(item => ({ label: item.describe, value: item.type }))
+    }
+    return []
   }
 
   // 自定义函数列表
@@ -105,14 +108,19 @@ function handleOpen() {
 function handleOpenEdit(action: any) {
   visible.value = true
   isAdd.value = false
+  componentSchema.value = null
+
   if (action.componentId) {
+    const { schema } = findSchemaById(pageSchema.schemas, action.componentId)
+    componentSchema.value = schema
     selectedKeys.value = [action.componentId]
   }
+
+
   nextTick(() => {
-    state.actionItem.methodName = action.methodName
     state.actionItem.componentId = action.componentId
+    state.actionItem.methodName = action.methodName
     state.actionItem.type = action.type
-    nodeItem.value = null
   })
 }
 function handleSave() {
@@ -132,7 +140,7 @@ function handleClose() {
 function toggleMethod(type: string) {
   state.actionItem.componentId = null
   state.actionItem.type = type
-  nodeItem.value = null
+  componentSchema.value = null
   state.actionItem.methodName = null
 
   selectedKeys.value = []
@@ -144,7 +152,7 @@ function handleNodeClick(e: any) {
   state.actionItem.componentId = e.id
   state.actionItem.type = 'component'
   state.actionItem.methodName = null
-  nodeItem.value = e.record
+  componentSchema.value = e.record
   if (methodOptions.value?.length) {
     handleCheckedMethod(methodOptions.value[0].value)
   }
