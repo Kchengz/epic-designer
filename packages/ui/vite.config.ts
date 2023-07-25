@@ -5,11 +5,7 @@ import path from "path";
 import dts from "vite-plugin-dts";
 export default defineConfig({
   plugins: [
-    vue({
-      script: {
-        defineModel: true,
-      },
-    }),
+    vue(),
     dts({
       outDir: "dist",
     }) as PluginOption,

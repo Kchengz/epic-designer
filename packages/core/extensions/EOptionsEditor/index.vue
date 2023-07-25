@@ -1,7 +1,7 @@
 <template>
   <div class="">
-    <div class="py-4 my-2 text-center text-gray-400 bg-white" v-show="!modelValue?.length">暂无选项</div>
-    <KOptionsCol v-model="modelValue" />
+    <div class="py-4 my-2 text-center text-gray-400 bg-white" v-show="!modelValueComputed?.length">暂无选项</div>
+    <KOptionsCol v-model="modelValueComputed" />
     <Button @click="handleAdd">添加选项</Button>
   </div>
 </template>
@@ -9,12 +9,22 @@
 <script lang="ts" setup>
 import KOptionsCol from './optionsCol.vue'
 import { pluginManager } from '@epic-designer/utils'
-import { provide } from 'vue';
+import { provide, computed } from 'vue';
 const Button = pluginManager.getComponent('button')
-const modelValue = defineModel<Option[]>('modelValue')
 const props = defineProps<{
-  tree: boolean
+  tree: boolean,
+  modelValue: Option[],
 }>()
+
+const emit = defineEmits(['update:modelValue'])
+const modelValueComputed = computed({
+  get() {
+    return props.modelValue
+  },
+  set(value) {
+    emit('update:modelValue', value)
+  }
+})
 
 interface Option {
   label: string,
@@ -33,7 +43,7 @@ function handleAdd() {
     label: "",
     value: ""
   }
-  modelValue.value?.push(option)
+  modelValueComputed.value?.push(option)
 }
 
 </script>

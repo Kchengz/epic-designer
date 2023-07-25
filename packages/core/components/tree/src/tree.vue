@@ -6,7 +6,7 @@
 <script lang="ts" setup>
 import { NodeItem } from '../../../types/epic-designer'
 import type { PropType } from 'vue'
-import { ref, provide, useSlots } from 'vue'
+import { ref, provide, computed, useSlots } from 'vue'
 import ETreeNode from './treeNode.vue'
 defineOptions({
   name: 'ETree'
@@ -23,19 +23,31 @@ const props = defineProps({
   hoverKey: {
     type: String,
     default: ''
+  },
+  selectedKeys: {
+    type: Array,
+    default: () => []
+  },
+})
+
+const emit = defineEmits(['update:selectedKeys', 'node-click'])
+const selectedKeysComputed = computed({
+  get() {
+    return props.selectedKeys
+  },
+  set(value) {
+    emit('update:selectedKeys', value)
   }
 })
-const selectedKeys = defineModel<string[]>("selectedKeys")
 
-const emit = defineEmits(['node-click'])
 
 function handleSelect(id: string, record: NodeItem) {
-  selectedKeys.value = [id]
+  selectedKeysComputed.value = [id]
   emit('node-click', { id, record })
 }
 
 provide('expandedKeys', expandedKeys)
-provide('selectedKeys', selectedKeys)
+provide('selectedKeys', selectedKeysComputed)
 provide('treeProps', props)
 provide('handleSelect', handleSelect)
 

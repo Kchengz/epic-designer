@@ -18,7 +18,7 @@
         </div>
         <div class="attr-input">
           <ENode
-            v-model="rule[record.model]"
+            v-model="modelRule[record.model]"
             :record="{ ...record, noFormItem: true }"
             @change="handleUpdate"
           />
@@ -38,9 +38,20 @@ import { FormItemRule } from './types'
 import { computed, inject } from 'vue'
 import { PageManager } from '@epic-designer/utils'
 import ENode from '../../components/node/index'
-const emit = defineEmits(['change', 'delete'])
+const emit = defineEmits(['change', 'delete','update:rule'])
+const props = defineProps<{
+  rule: FormItemRule,
+}>()
 
-const rule = defineModel<FormItemRule>('rule', { required: true })
+const modelRule = computed({
+  get() {
+    return props.rule
+  },
+  set(value) {
+    emit('update:rule', value)
+  }
+})
+
 const pageManager = inject('pageManager', {}) as PageManager
 
 const methodOptions = computed(() => {
@@ -85,42 +96,42 @@ const ruleItemSchemas = [
     type: 'select',
     label: '校验函数',
     model: 'validator',
-    show () { return Boolean(rule.value.isValidator) },
+    show () { return Boolean(modelRule.value.isValidator) },
     componentProps: { options: methodOptions.value, placeholder: '校验函数' }
   },
   {
     type: 'select',
     label: '类型',
     model: 'type',
-    show () { return !rule.value.isValidator },
+    show () { return !modelRule.value.isValidator },
     componentProps: { options: typeOptions, placeholder: '类型' }
   },
   {
     type: 'input',
     label: '正则校验',
     model: 'pattern',
-    show () { return !rule.value.isValidator },
+    show () { return !modelRule.value.isValidator },
     componentProps: { placeholder: '正则校验' }
   },
   {
     type: 'number',
     label: '字段长度',
     model: 'len',
-    show () { return lenTypeOptions.includes(rule.value.type ?? '') },
+    show () { return lenTypeOptions.includes(modelRule.value.type ?? '') },
     componentProps: { min: 0, placeholder: '字段长度' }
   },
   {
     type: 'number',
     label: '最小长度',
     model: 'min',
-    show () { return lenTypeOptions.includes(rule.value.type ?? '') },
+    show () { return lenTypeOptions.includes(modelRule.value.type ?? '') },
     componentProps: { min: 0, placeholder: '最小长度' }
   },
   {
     type: 'number',
     label: '最大长度',
     model: 'max',
-    show () { return lenTypeOptions.includes(rule.value.type ?? '') },
+    show () { return lenTypeOptions.includes(modelRule.value.type ?? '') },
     componentProps: { min: 0, placeholder: '最大长度' }
   },
   {
@@ -135,7 +146,7 @@ const ruleItemSchemas = [
  * 更新校验规则
  */
 function handleUpdate () {
-  const v = rule.value
+  const v = modelRule.value
   if (v.isValidator) {
     delete v.type
     delete v.pattern

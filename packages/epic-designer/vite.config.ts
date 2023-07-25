@@ -1,20 +1,16 @@
-import { defineConfig, type PluginOption } from 'vite'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import dts from 'vite-plugin-dts'
 import UnoCSS from 'unocss/vite'
 export default defineConfig({
   plugins: [
-    vue({
-      script: {
-        defineModel: true
-      }
-    }),
+    vue(),
     UnoCSS(),
     dts({
       entryRoot: '../',
       outDir: 'dist'
-    }) as PluginOption
+    })
   ],
   resolve: {
     alias: {

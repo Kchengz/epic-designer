@@ -2,7 +2,7 @@
   <Collapse v-model="activeNames" v-model:activeEey="activeNames" v-model:expanded-names="activeNames">
     <CollapseItem v-for="(item) in filterEventList" :key="item.title" :title="item.title" :header="item.title"
       :name="item.title">
-      <EActionEditorItem v-model="modelValue" :item-events="item.events" :all-events="allEvents" :events="events"
+      <EActionEditorItem v-model="modelValueComputed" :item-events="item.events" :all-events="allEvents" :events="events"
         @add="handleOpen" @edit="handleOpenEdit" />
     </CollapseItem>
   </Collapse>
@@ -22,10 +22,21 @@ const props = defineProps({
   eventList: {
     type: Array as PropType<any>,
     default: () => []
+  },
+  modelValue:{
+    type: Object as PropType<any>
   }
 })
 
-const modelValue = defineModel<any>("modelValue")
+const emit = defineEmits(['update:modelValue'])
+const modelValueComputed = computed({
+  get() {
+    return props.modelValue
+  },
+  set(value) {
+    emit('update:modelValue', value)
+  }
+})
 const activeNames = ref(['组件事件'])
 
 // 过滤无事件
@@ -52,14 +63,14 @@ allEvents.value.forEach((item: any) => {
 
   events.value[item.type] = computed({
     get() {
-      return modelValue.value?.[item.type] ?? []
+      return modelValueComputed.value?.[item.type] ?? []
     },
     set(e) {
       if (e && e.length) {
-        modelValue.value[item.type] = e.map(item => toRaw(item))
+        modelValueComputed.value[item.type] = e.map(item => toRaw(item))
       } else {
         // 事件动作为空时，则清除该事件列表
-        delete modelValue.value[item.type]
+        delete modelValueComputed.value[item.type]
       }
     }
   })
@@ -90,7 +101,7 @@ function handleOpenEdit(index: number, type: string, action) {
 
 function handleEdit(action: any) {
   events.value[currentType][editIndex] = action
-  modelValue.value[currentType] = [...(events.value[currentType] ?? [])]
+  modelValueComputed.value[currentType] = [...(events.value[currentType] ?? [])]
 }
 
 /**
@@ -100,12 +111,13 @@ function handleEdit(action: any) {
 function handleAdd(action: any) {
   // const newEvents = getNewEvents(currentType)
   // newEvents[currentType] = [...(events.value[currentType] ?? []), action]
-  // modelValue.value = newEvents
-  if (!modelValue.value) {
-    modelValue.value = { [currentType]: [...(events.value[currentType] ?? []), action] }
+  // modelValueComputed.value = newEvents
+  
+  if (!modelValueComputed.value) {
+    modelValueComputed.value = { [currentType]: [...(events.value[currentType] ?? []), action] }
     return
   }
-  modelValue.value[currentType] = [...(events.value[currentType] ?? []), action]
+  modelValueComputed.value[currentType] = [...(events.value[currentType] ?? []), action]
 }
 
 </script>

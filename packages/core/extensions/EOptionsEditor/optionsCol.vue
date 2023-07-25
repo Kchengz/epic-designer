@@ -1,5 +1,5 @@
 <template>
-  <draggable v-model="modelValue" item-key="id" :component-data="{
+  <draggable v-model="modelValueComputed" item-key="id" :component-data="{
     type: 'transition-group',
   }" group="option-list" handle=".handle" :animation="200">
     <template #item="{ element: option, index }">
@@ -22,18 +22,32 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { pluginManager } from '@epic-designer/utils'
-import { inject } from 'vue';
-defineOptions({
-  name: 'KOptionsCol'
-})
-const Input = pluginManager.getComponent('input')
-const modelValue = defineModel<Option[]>('modelValue')
-const tree = inject('tree',false)
+import { inject,computed } from 'vue';
 interface Option {
   label: string,
   value: string,
   children?: Option[]
 }
+
+defineOptions({
+  name: 'KOptionsCol'
+})
+
+const props = defineProps<{
+  modelValue: Option[],
+}>()
+const Input = pluginManager.getComponent('input')
+const tree = inject('tree',false)
+const emit = defineEmits(['update:modelValue'])
+const modelValueComputed = computed({
+  get() {
+    return props.modelValue
+  },
+  set(value) {
+    emit('update:modelValue', value)
+  }
+})
+
 
 /**
  *  添加选项子选项
@@ -56,6 +70,6 @@ function handleAddChildren(option: Option) {
  * @param index 
  */
 function handleRemove(index: number) {
-  modelValue.value?.splice(index, 1)
+  modelValueComputed.value?.splice(index, 1)
 }
 </script>

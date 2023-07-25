@@ -44,7 +44,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { PropType, inject } from 'vue'
+import { type PropType, inject } from 'vue'
 import { findSchemaById } from '@epic-designer/utils'
 import { PageSchema } from '../../../types/epic-designer'
 import draggable from 'vuedraggable'
@@ -58,13 +58,16 @@ const props = defineProps({
     type: Array as PropType<any>,
     default: () => []
   },
+  modelValue: {
+    type: Object as PropType<any>,
+    default: () => []
+  },
   events: {
     type: Object as PropType<any>,
     default: () => ({})
   }
 })
-const emit = defineEmits(['add', 'edit'])
-const modelValue = defineModel<any>("modelValue")
+const emit = defineEmits(['add', 'edit', 'update:modelValue'])
 
 const pageSchema = inject('pageSchema') as PageSchema
 
@@ -95,7 +98,7 @@ function handleDelete(index: number, type: string) {
   if (!newEvents[type]?.length) {
     delete newEvents[type]
   }
-  modelValue.value = newEvents
+  emit('update:modelValue', newEvents)
 }
 
 /**

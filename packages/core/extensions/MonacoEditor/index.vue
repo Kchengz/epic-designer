@@ -2,7 +2,7 @@
   <div ref="editContainer" class="code-editor" />
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import * as monaco from 'monaco-editor'
 // import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
 // import 'monaco-editor/esm/vs/language/json/monaco.contribution'
@@ -50,6 +50,10 @@ const props = defineProps({
     type: String,
     default: 'string'
   },
+  modelValue: {
+    type: String,
+    default: ''
+  },
   config: {
     type: Object,
     default: () => ({
@@ -63,7 +67,15 @@ const props = defineProps({
   }
 })
 
-const modelValue = defineModel<string>('modelValue')
+const emit = defineEmits(['update:modelValue'])
+const modelValueComputed = computed({
+  get() {
+    return props.modelValue
+  },
+  set(value) {
+    emit('update:modelValue', value)
+  }
+})
 
 const editContainer = ref<HTMLElement | null>(null)
 
@@ -117,9 +129,9 @@ onMounted(() => {
   function getValue() {
     // valueFormat 为json 格式，需要转换处理
     if (props.valueFormat === 'json') {
-      return JSON.stringify(modelValue.value, null, 2)
+      return JSON.stringify(modelValueComputed.value, null, 2)
     }
-    return modelValue.value
+    return modelValueComputed.value
   }
 
 
@@ -128,10 +140,10 @@ onMounted(() => {
     const currenValue = monacoEditor?.getValue()
     // valueFormat 为json 格式，需要转换处理
     if (props.valueFormat === 'json' && currenValue) {
-      modelValue.value = JSON.parse(currenValue)
+      modelValueComputed.value = JSON.parse(currenValue)
       return
     }
-    modelValue.value = currenValue
+    modelValueComputed.value = currenValue ?? ''
   })
 })
 
