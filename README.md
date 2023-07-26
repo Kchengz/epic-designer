@@ -111,7 +111,8 @@ import { pluginManager, setupNaiveUi } from "epic-designer";
 // 注册Naive Ui
 setupNaiveUi(pluginManager);
 ```
-## 在页面使用 e-designer组件
+
+## EDesigner(设计器) 基础用法
 
 ```vue
 <template>
@@ -127,6 +128,48 @@ import { EDesigner } from "epic-designer";
   height: 100vh;
 }
 </style>
+```
+## EBuilder(生成器) 基础用法
+
+```vue
+<template>
+  <div>
+    <EBuilder :pageSchema="pageSchema" />
+  </div>
+</template>
+<script setup>
+import { EBuilder } from "epic-designer";
+
+const pageSchema = {
+  schemas: [
+    {
+      type: "page",
+      id: "root",
+      children: [
+        {
+          label: "输入框",
+          type: "input",
+          field: "input",
+          icon: "icon-write",
+          input: true,
+          componentProps: {
+            defaultValue: "",
+            placeholder: "请输入",
+            size: "default",
+            type: "text",
+          },
+          id: "gbm1xhrrj5s00",
+        },
+      ],
+      componentProps: {
+        style: {
+          padding: "16px",
+        },
+      },
+    },
+  ],
+};
+</script>
 ```
 
 ## 交流
