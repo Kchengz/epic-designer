@@ -1,4 +1,5 @@
-![](.\docs\public\logo.png)
+![](https://epic.kcz66.com/static/logo.png)
+
 <h3 align="center" style="background-image:-webkit-linear-gradient(left,#44c0fa,#c26cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">EpicDesigner</h3>
 
 
@@ -10,7 +11,11 @@
 
 📦gitee仓库：[https://gitee.com/kcz66/epic-designer](https://gitee.com/kcz66/epic-designer)
 
-💎文档地址：[https://kcz66.gitee.io/epic-designer/](https://kcz66.gitee.io/epic-designer/)
+📖文档地址：[https://kcz66.gitee.io/epic-designer/](https://kcz66.gitee.io/epic-designer/)
+
+💎预览地址：[https://epic.kcz66.com/demo/](https://epic.kcz66.com/demo/)
+
+
 
 ## 简介
 
@@ -177,3 +182,9 @@ const pageSchema = {
 点击链接加入 qq 群聊
 
 - [【epic-designer 交流群：747609683】](https://jq.qq.com/?_wv=1027&k=CtrM9ce2)
+
+# 捐赠
+如果你觉得epic-designer对你有帮助，欢迎给我捐赠
+
+![](https://epic.kcz66.com/static/donation.png)
+
