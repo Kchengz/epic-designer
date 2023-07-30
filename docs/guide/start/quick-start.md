@@ -44,7 +44,6 @@ import "ant-design-vue/dist/antd.css";
 // 引入k-designer样式
 import "epic-designer/dist/style.css";
 import { pluginManager, setupAntd } from "epic-designer";
-import {  } from "epic-designer";
 // 使用Antd UI
 setupAntd(pluginManager);
 ```

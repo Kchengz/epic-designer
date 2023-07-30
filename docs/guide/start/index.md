@@ -1,20 +1,32 @@
 ## 简介
 
 :::tip EpicDesigner 设计器
-`EpicDesigner`是一个功能强大、开箱即用的拖拽式低代码设计器。它基于 Vue3 开发，兼容多套 UI 组件库，除了基础的页面设计功能，EDesigner 还提供了强大的扩展功能，可以让开发者根据自己的需求自由扩展和定制组件。此外，EDesigner 使用 JSON 配置来生成页面，可帮助开发者快速生成页面，提高开发效率。它提供了两个重要组件：`e-designer` 设计器和 `e-builder` 生成器。
+`EpicDesigner`是一个功能强大、开箱即用的拖拽式低代码设计器。它基于 Vue3 开发，兼容多套 UI 组件库，除了基础的页面设计功能，EDesigner 还提供了强大的扩展功能，可以让开发者根据自己的需求自由扩展和定制组件。此外，EDesigner 使用 JSON 配置来生成页面，可帮助开发者快速生成页面，提高开发效率。它提供了两个重要组件：`EDesigner ` 设计器和 `EBuilder ` 生成器。
 :::
 
-#### e-designer 设计器
+#### EDesigner 设计器
 
-`e-designer` 是一个可视化设计器组件，用户可以通过拖拽组件的方式快速生成 JSON 配置。它提供了丰富的组件库和配置项，用户可以根据需要选择合适的组件并配置相应的属性、事件和动作。设计器还提供了实时预览功能，用户可以随时查看所设计页面的效果。最终，用户可以将 JSON 配置导出，用于页面的生成和修改。
+`EDesigner ` 是一个可视化设计器组件，用户可以通过拖拽组件的方式快速生成 JSON 配置。它提供了丰富的组件库和配置项，用户可以根据需要选择合适的组件并配置相应的属性、事件和动作。设计器还提供了实时预览功能，用户可以随时查看所设计页面的效果。最终，用户可以将 JSON 配置导出，用于页面的生成和修改。
 
-#### e-builder 生成器
+#### EBuilder 生成器
 
-`e-builder` 是一个页面构建组件，它可以将设计器生成的 JSON 配置构建成页面，完成组件的渲染、事件绑定和数据回显等操作。
+`EBuilder ` 是一个页面构建组件，它可以将设计器生成的 JSON 配置构建成页面，完成组件的渲染、事件绑定和数据回显等操作。
+
+
 
 ## 最新版本
 
 [![](https://img.shields.io/npm/v/epic-designer.svg?style=flat-square)](https://www.npmjs.com/package/epic-designer)
+
+
+
+📦github仓库：[https://github.com/Kchengz/epic-designer](https://github.com/Kchengz/epic-designer)
+
+📦gitee仓库：[https://gitee.com/kcz66/epic-designer](https://gitee.com/kcz66/epic-designer)
+
+📖文档地址：[https://kcz66.gitee.io/epic-designer/](https://kcz66.gitee.io/epic-designer/)
+
+💎预览地址：[https://epic.kcz66.com/demo/](https://epic.kcz66.com/demo/)
 
 ## 特性
 

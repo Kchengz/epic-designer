@@ -2,5 +2,8 @@
   "name": "@epic-designer/docs",
   "version": "1.0.0",
   "description": "epic-designer docs",
-  "author": "kchengz"
+  "author": "kchengz",
+  "devDependencies": {
+
+  }
 }

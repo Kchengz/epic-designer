@@ -23,7 +23,7 @@ export function setupComponent (pluginManager: PluginManager): void {
   })
 
   pluginManager.registerActivitybar({
-    id: 'sound_code',
+    id: 'sound_code_view',
     title: '源码',
     icon: 'icon-daima1',
     component: async () =>
@@ -33,7 +33,7 @@ export function setupComponent (pluginManager: PluginManager): void {
   })
 
   pluginManager.registerActivitybar({
-    id: 'outline',
+    id: 'outline_view',
     title: '大纲',
     icon: 'icon-juxingkaobei',
     component: async () =>

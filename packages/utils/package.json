@@ -3,8 +3,5 @@
   "version": "1.0.0",
   "description": "epic-designer utils",
   "main": "index.ts",
-  "scripts": {
-    "build": "vue-tsc --noEmit && vite build"
-  },
   "author": "kchengz"
 }
