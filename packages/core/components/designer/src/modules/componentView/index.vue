@@ -25,7 +25,8 @@
           sort: false,
           animation: 180,
           ghostClass: 'moving'
-        }" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2" @end="handleDraggableEnd($event)">
+        }" :clone="handleDeepCopyData" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2"
+        >
           <template #item="{ element }">
             <div class="source-componet-item flex items-center truncate" @click="handleClick(element)">
               <span class="iconfont" :class="element.icon" />
@@ -91,14 +92,15 @@ function handelChecked(item) {
 }
 
 
+
 /**
- * 拖拽结束,深拷贝一次数据,防止重复引用
+ * 深拷贝数据,防止重复引用
  * @param e
  * @param list
  */
-function handleDraggableEnd(e: any) {
-  getSourceSchemaList.value[e.oldIndex] = deepClone({
-    ...toRaw(getSourceSchemaList.value[e.oldIndex]),
+function handleDeepCopyData(schema) {
+  return deepClone({
+    ...toRaw(schema),
     id: getUUID()
   })
 }

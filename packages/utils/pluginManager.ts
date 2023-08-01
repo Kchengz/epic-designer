@@ -224,10 +224,7 @@ export class PluginManager {
             console.warn(`${type} 组件未注册到pluginManager中`)
             return false
           }
-          return {
-            ...schema,
-            id: getUUID()
-          }
+          return schema
         })
         .filter((e) => e) as NodeItem[]
       return {
