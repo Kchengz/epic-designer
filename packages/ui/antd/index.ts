@@ -7,6 +7,7 @@ import InputPassword from './input-password'
 import Radio from './radio'
 import Checkbox from './checkbox'
 import Select from './select'
+import Slider from './slider'
 import TimePicker from './time-picker'
 import DatePicker from './date-picker'
 import Cascader from './cascader'
@@ -51,6 +52,7 @@ export function setupAntd (pluginManager: PluginManager): void {
     Radio,
     Checkbox,
     Select,
+    Slider,
     TimePicker,
     DatePicker,
     Cascader,
@@ -86,6 +88,7 @@ export function setupAntd (pluginManager: PluginManager): void {
         'radio',
         'date',
         'time',
+        "slider",
         'upload-file',
         'upload-image',
         'cascader',

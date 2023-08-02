@@ -1,5 +1,4 @@
 import { type ComponentConfigModel } from '@epic-designer/utils/pluginManager'
-import {nextTick} from 'vue'
 export default {
   component: async () => (await import('naive-ui/lib/slider')).NSlider,
   defaultSchema: {
