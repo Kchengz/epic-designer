@@ -50,19 +50,22 @@ const FormItem = pluginManager.getComponent('form-item')
 const componentInstance = ref<ComponentPublicInstance>()
 const formItemRef = ref<ComponentPublicInstance>()
 
-const props = defineProps({
-  record: {
-    type: Object as PropType<NodeItem>,
-    required: true,
-    default: () => ({})
-  },
-  modelValue: {
-    type: [Object, Array, String, Number, Boolean] as PropType<any>,
-    default: undefined
-  }
-})
+// const props = defineProps({
+//   record: {
+//     type: Object as PropType<NodeItem>,
+//     default: () => ({})
+//   },
+//   modelValue: {
+//     type: [Object, Array, String, Number, Boolean] as PropType<any>,
+//     default: undefined
+//   }
+// })
 
-// const { record } = props
+const props = defineProps<{
+  record: NodeItem,
+  modelValue?: any
+}>()
+
 
 // 定义组件及组件props字段
 const component = shallowRef<any>(null)

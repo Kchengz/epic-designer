@@ -13,13 +13,12 @@
 </template>
 <script lang="ts" setup>
 import { computed } from 'vue'
-const props = defineProps({
-  record: {
-    type: Object as any,
-    require: true,
-    default: () => ({})
-  }
-})
+import { NodeItem } from '../../types/epic-designer'
+
+const props = defineProps<{
+  record:NodeItem
+}>()
+
 
 const children = computed(() => {
   return props.record.children ?? []

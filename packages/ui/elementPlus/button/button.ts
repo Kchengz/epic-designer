@@ -7,7 +7,6 @@ export default defineComponent({
   props: {
     record: {
       type: Object as PropType<NodeItem>,
-      required: true,
       default: () => ({})
     }
   },

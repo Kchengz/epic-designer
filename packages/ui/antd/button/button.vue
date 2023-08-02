@@ -10,7 +10,6 @@ import Button from 'ant-design-vue/lib/button'
 const props = defineProps({
   record: {
     type: Object as PropType<NodeItem>,
-    require: true,
     default: () => ({})
   }
 })

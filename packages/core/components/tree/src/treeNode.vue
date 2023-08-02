@@ -12,12 +12,17 @@
 </template>
 <script lang="ts" setup>
 import { NodeItem } from '../../../types/epic-designer'
-import type { PropType } from 'vue'
 import { inject, computed, Ref, h, defineComponent, Slots } from 'vue'
 import { pluginManager } from '@epic-designer/utils'
 defineOptions({
   name: 'ETreeNode'
 })
+
+const props = defineProps<{
+  record:NodeItem
+}>()
+
+
 const slots = inject('slots', {}) as Slots
 
 const expandedKeys = inject('expandedKeys') as Ref<string[]>
@@ -28,12 +33,6 @@ const handleSelect = inject('handleSelect') as (id: string, record: NodeItem) =>
 
 const expanded = computed(() => {
   return expandedKeys.value.includes(props.record.id ?? '')
-})
-const props = defineProps({
-  record: {
-    type: Object as PropType<NodeItem>,
-    required: true
-  }
 })
 
 
