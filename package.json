@@ -3,6 +3,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "lib": "pnpm run build --filter epic-designer",
     "lint": "turbo run lint",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
