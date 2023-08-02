@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: "日期选择器",
     type: "date",
-    icon: "icon-xiala",
+    icon: "icon-calendar",
     field: "date",
     input: true,
     componentProps: {

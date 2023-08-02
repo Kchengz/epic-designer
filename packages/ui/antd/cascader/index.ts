@@ -5,7 +5,7 @@ export default {
     label: '级联选择器',
     type: 'cascader',
     field: 'cascader',
-    icon: 'icon-write',
+    icon: "icon-guanlian",
     input: true,
     componentProps: {
       options: [

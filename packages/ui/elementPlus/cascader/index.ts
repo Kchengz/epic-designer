@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: "级联选择器",
     type: "cascader",
-    icon: "icon-number",
+    icon: "icon-guanlian",
     field: "cascader",
     input: true,
     componentProps: {

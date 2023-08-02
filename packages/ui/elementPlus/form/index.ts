@@ -5,7 +5,7 @@ export default {
   defaultSchema: {
     label: '表单',
     type: 'form',
-    icon: 'icon-qiapian',
+    icon: 'icon-daibanshixiang',
     name: 'default',
     componentProps: {
       labelWidth: 100,

@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '标签页',
     type: 'tabs',
-    icon: 'icon-xiala',
+    icon: 'icon-tabs',
     field: 'tabs',
     children: [
       {

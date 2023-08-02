@@ -1,10 +1,66 @@
 {
   "id": "3853801",
-  "name": "epic-designer",
+  "name": "k-designer",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
+    {
+      "icon_id": "5961300",
+      "name": "待办事项",
+      "font_class": "daibanshixiang",
+      "unicode": "ec4e",
+      "unicode_decimal": 60494
+    },
+    {
+      "icon_id": "9447888",
+      "name": "密码",
+      "font_class": "mima",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "17606297",
+      "name": "保存",
+      "font_class": "baocun",
+      "unicode": "e6a3",
+      "unicode_decimal": 59043
+    },
+    {
+      "icon_id": "20853322",
+      "name": "保存",
+      "font_class": "baocun1",
+      "unicode": "e6a2",
+      "unicode_decimal": 59042
+    },
+    {
+      "icon_id": "25931979",
+      "name": "保存",
+      "font_class": "baocun2",
+      "unicode": "e79e",
+      "unicode_decimal": 59294
+    },
+    {
+      "icon_id": "5886128",
+      "name": "颜色",
+      "font_class": "yanse",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "35348744",
+      "name": "拖拽",
+      "font_class": "tuozhuai",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "8039243",
+      "name": "查询",
+      "font_class": "chaxun",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    },
     {
       "icon_id": "4942665",
       "name": "添加",

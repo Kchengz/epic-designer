@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '上传文件',
     type: 'upload-file',
-    icon: 'icon-number',
+    icon: 'icon-upload',
     field: 'uploadFile',
     input: true,
     componentProps: {

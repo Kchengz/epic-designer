@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '卡片布局',
     type: 'card',
-    icon: 'icon-xiala',
+    icon: 'icon-qiapian',
     children: [],
     componentProps: {
       shadow: 'hover'

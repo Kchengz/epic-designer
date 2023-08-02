@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '滑块',
     type: 'slider',
-    icon: 'icon-number',
+    icon: "icon-menu",
     field: 'slider',
     input: true,
     componentProps: {

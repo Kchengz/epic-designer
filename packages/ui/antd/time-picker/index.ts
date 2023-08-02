@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '时间选择器',
     type: 'time',
-    icon: 'icon-xiala',
+    icon: 'icon-time',
     field: 'time',
     input: true,
     componentProps: {

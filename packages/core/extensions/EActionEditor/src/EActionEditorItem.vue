@@ -15,7 +15,7 @@
         <template #item="{ element: action, index }">
           <div class="epic-editor-item">
             <div class="w-36px text-lg">
-              <span class="iconfont icon-bianji2 mr-2 text-lg cursor-move handle"></span>
+              <span class="iconfont icon-tuozhuai mr-2 text-lg cursor-move handle"></span>
             </div>
             <div class="flex-1">
               <div v-if="action.type === 'component'">

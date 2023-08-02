@@ -6,7 +6,7 @@ export default {
     label: '按钮',
     type: 'button',
     field: 'input',
-    icon: 'icon-write',
+    icon: 'icon-button-remove',
     input: false
   },
   config: {

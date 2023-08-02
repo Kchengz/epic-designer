@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '开关',
     type: 'switch',
-    icon: 'icon-number',
+    icon: 'icon-kaiguan3',
     field: 'switch',
     input: true,
     componentProps: {

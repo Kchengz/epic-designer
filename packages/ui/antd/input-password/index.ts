@@ -5,7 +5,7 @@ export default {
   defaultSchema: {
     label: '密码输入框',
     type: 'password',
-    icon: 'icon-number',
+    icon: 'icon-mima',
     field: 'password',
     input: true,
     componentProps: {

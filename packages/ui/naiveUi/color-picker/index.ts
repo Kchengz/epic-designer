@@ -5,7 +5,7 @@ export default {
     label: '颜色选择器',
     type: 'color-picker',
     field: 'color-picker',
-    icon: 'icon-write',
+    icon: 'icon-yanse',
     input: true,
     componentProps: {
       type: 'color',

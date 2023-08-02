@@ -77,7 +77,7 @@ export function useElementZoom(draggableElRef: Ref<HTMLDivElement | null>) {
       newScale = canvasScale.value - 0.05;
     }
     // 限制缩放范围
-    if (newScale > 2 || newScale < 0.2) {
+    if (newScale > 150 || newScale < 0.5) {
       return;
     }
 

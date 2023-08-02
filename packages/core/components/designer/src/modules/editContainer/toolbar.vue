@@ -17,7 +17,7 @@
                 size="small"></Select>
         </div>
         <div class="w-90px cursor-pointer">
-            <Slider :min="0.2" :max="2" :step="0.1" :tooltip="false" v-model:value="canvasScale" v-model="canvasScale" />
+            <Slider :min="0.6" :max="1.4" :step="0.01" :tooltip="false" v-model:value="canvasScale" v-model="canvasScale" />
         </div>
         <!-- 缩放操作 end  -->
     </div>
