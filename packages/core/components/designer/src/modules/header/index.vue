@@ -22,7 +22,7 @@
         预览
       </Button>
       <Button size="small" @click="handleSave">
-        <span class="iconfont icon-yulan" style="margin-right:6px" />
+        <span class="iconfont icon-baocun" style="margin-right:6px" />
         保存
       </Button>
       <slot name="suffix"></slot>
