@@ -18,7 +18,7 @@
   </FormItem>
 
   <!-- 无需FormItem start -->
-  <component :is="component" v-else-if="component" v-show="show" ref="componentInstance" v-instance :model="formData"
+  <component :is="component" v-else-if="component" v-show="show" v-instance ref="componentInstance" :model="formData"
     v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }">
     <!-- 嵌套组件递归 start -->
     <!-- 渲染组件 start -->

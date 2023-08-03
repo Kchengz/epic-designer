@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@epic-designer/utils/pluginManager'
 export default {
-  component: async () => (await import('element-plus')).ElColorPicker,
+  component: async () => (await import('./color-picker.vue')),
   defaultSchema: {
     label: '颜色选择器',
     type: 'color-picker',
