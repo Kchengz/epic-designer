@@ -1,7 +1,8 @@
 <template>
-  <FormItem v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component" v-show="show"
+  <FormItem v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show"
     ref="formItemRef" v-bind="getFormItemProps">
-    <component :is="component" ref="componentInstance" v-instance
+    <component :is="component" ref="componentInstance" @vnodeMounted="handleAddComponentInstance"
+      @vnodeUnmounted="handleVnodeUnmounted"
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 嵌套组件递归 start -->
       <!-- 渲染组件 start -->
@@ -16,9 +17,9 @@
       <!-- 渲染子组件列表 end -->
     </component>
   </FormItem>
-
   <!-- 无需FormItem start -->
-  <component :is="component" v-else-if="component" v-show="show" v-instance ref="componentInstance" :model="formData"
+  <component :is="component" v-else-if="component && show" @vnodeMounted="handleAddComponentInstance"
+    @vnodeUnmounted="handleVnodeUnmounted" ref="componentInstance" :model="formData"
     v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }">
     <!-- 嵌套组件递归 start -->
     <!-- 渲染组件 start -->
@@ -114,32 +115,30 @@ if (props.record.field) {
 }
 
 watch(() => componentInstance.value, () => {
-  addComponentInstance()
+  handleAddComponentInstance()
 })
 
-// 保存实例
-const vInstance = {
-  mounted() {
-    addComponentInstance()
-  },
-  unmounted() {
-    if (props.record.id) {
-      // 移除实例 及 formItem实例
-      pageManager.removeComponentInstance(props.record.id)
-      if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true) {
-        pageManager.removeComponentInstance(props.record.id + 'formItem')
-      }
-    }
-  }
-}
 
 // 添加组件实例
-function addComponentInstance() {
+function handleAddComponentInstance() {
   if (props.record.id && componentInstance.value) {
     pageManager.addComponentInstance(props.record.id, componentInstance.value)
     // 添加实例 及 formItem实例
     if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true && formItemRef.value) {
       pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef.value)
+    }
+  }
+}
+
+/**
+ * 移除组件实例
+ */
+function handleVnodeUnmounted() {
+  if (props.record.id) {
+    // 移除实例 及 formItem实例
+    pageManager.removeComponentInstance(props.record.id)
+    if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true) {
+      pageManager.removeComponentInstance(props.record.id + 'formItem')
     }
   }
 }
