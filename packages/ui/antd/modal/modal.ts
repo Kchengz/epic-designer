@@ -1,9 +1,8 @@
 import { defineComponent, h, renderSlot, type PropType } from "vue";
 import { type NodeItem } from "@epic-designer/core/types/epic-designer";
-import Modal from 'ant-design-vue/lib/modal'
-import Button from 'ant-design-vue/lib/button'
-import Space from 'ant-design-vue/lib/space'
- 
+import Modal from "ant-design-vue/lib/modal";
+import Button from "ant-design-vue/lib/button";
+import Space from "ant-design-vue/lib/space";
 
 export default defineComponent({
   props: {
@@ -20,10 +19,10 @@ export default defineComponent({
         ...attrs,
         title: props.record?.label ?? "",
         class: "epic-modal",
-        visible:attrs.modelValue,
+        visible: attrs.modelValue,
         "onUpdate:visible": handleClose,
-        'body-style':{ padding: '12px' },
-        footer:null
+        "body-style": { padding: "12px" },
+        footer: null,
       } as Record<string, any>;
       const children = record.children ?? [];
       delete record.children;
@@ -53,14 +52,28 @@ export default defineComponent({
           h(
             "div",
             { class: "epic-modal-footer" },
-            h(Space, { align: "end" }, [
-              h(Button, { onClick: handleClose }, "关闭"),
-              h(
-                Button,
-                { type: "primary", onClick: handleOk },
-                record.okText ?? "确定"
-              ),
-            ])
+            h(
+              Space,
+              { align: "end" },
+              {
+                default: () => [
+                  h(
+                    Button,
+                    { onClick: handleClose },
+                    {
+                      default: () => "关闭",
+                    }
+                  ),
+                  h(
+                    Button,
+                    { type: "primary", onClick: handleOk },
+                    {
+                      default: () => record.okText ?? "确定",
+                    }
+                  ),
+                ],
+              }
+            )
           ),
         ],
       });

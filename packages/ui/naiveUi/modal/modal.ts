@@ -18,7 +18,7 @@ export default defineComponent({
         title: props.record?.label ?? "",
         class: "epic-modal",
         preset: "card",
-        show:attrs.modelValue,
+        show: attrs.modelValue,
         "onUpdate:show": handleClose,
       } as Record<string, any>;
       const children = record.children ?? [];
@@ -49,14 +49,28 @@ export default defineComponent({
           h(
             "div",
             { class: "epic-modal-footer" },
-            h(NSpace, { justify: "end" }, [
-              h(NButton, { onClick: handleClose }, "关闭"),
-              h(
-                NButton,
-                { type: "primary", onClick: handleOk },
-                record.okText ?? "确定"
-              ),
-            ])
+            h(
+              NSpace,
+              { justify: "end" },
+              {
+                default: () => [
+                  h(
+                    NButton,
+                    { onClick: handleClose },
+                    {
+                      default: () => "关闭",
+                    }
+                  ),
+                  h(
+                    NButton,
+                    { type: "primary", onClick: handleOk },
+                    {
+                      default: () => record.okText ?? "确定",
+                    }
+                  ),
+                ],
+              }
+            )
           ),
         ],
       });

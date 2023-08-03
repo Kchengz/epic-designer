@@ -17,7 +17,7 @@ export default defineComponent({
         ...attrs,
         title: props.record?.label ?? "",
         "modal-class": "epic-modal",
-        'destroy-on-close': true,
+        "destroy-on-close": true,
         "onUpdate:modelValue": handleClose,
       } as Record<string, any>;
       const children = record.children ?? [];
@@ -38,7 +38,7 @@ export default defineComponent({
       }
 
       function handleClose(e) {
-        console.log(e)
+        console.log(e);
         emit("update:modelValue", false);
         emit("close");
       }
@@ -47,11 +47,19 @@ export default defineComponent({
         default: () => [
           renderSlot(slots, "edit-node", {}, vNodeClildren),
           h("div", { class: "epic-modal-footer" }, [
-            h(ElButton, { onClick: handleClose }, "关闭"),
+            h(
+              ElButton,
+              { onClick: handleClose },
+              {
+                default: () => "关闭",
+              }
+            ),
             h(
               ElButton,
               { type: "primary", onClick: handleOk },
-              record.okText ?? "确定"
+              {
+                default: () => record.okText ?? "确定",
+              }
             ),
           ]),
         ],
