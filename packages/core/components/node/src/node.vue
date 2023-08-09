@@ -1,8 +1,8 @@
 <template>
   <FormItem v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show"
     ref="formItemRef" v-bind="getFormItemProps">
-    <component :is="component" ref="componentInstance" @vnodeMounted="handleAddComponentInstance"
-      @vnodeUnmounted="handleVnodeUnmounted"
+    <component :is="component" ref="componentInstance" @vue:mounted="handleAddComponentInstance"
+      @vue:unmounted="handleVnodeUnmounted"
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 嵌套组件递归 start -->
       <!-- 渲染组件 start -->
@@ -18,8 +18,8 @@
     </component>
   </FormItem>
   <!-- 无需FormItem start -->
-  <component :is="component" v-else-if="component && show" @vnodeMounted="handleAddComponentInstance"
-    @vnodeUnmounted="handleVnodeUnmounted" ref="componentInstance" :model="formData"
+  <component :is="component" v-else-if="component && show" @vue:mounted="handleAddComponentInstance"
+    @vue:unmounted="handleVnodeUnmounted" ref="componentInstance" :model="formData"
     v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }">
     <!-- 嵌套组件递归 start -->
     <!-- 渲染组件 start -->
@@ -127,8 +127,9 @@ watch(() => componentInstance.value, () => {
 
 // 添加组件实例
 function handleAddComponentInstance() {
-  if (props.record.id && componentInstance.value) {
 
+  if (props.record.id && componentInstance.value) {
+    console.log(233)
     // 输入组件则添加setValue方法
     if (props.record.input) {
       componentInstance.value.setValue = handleUpdate
@@ -137,7 +138,6 @@ function handleAddComponentInstance() {
       }
 
     }
-
     pageManager.addComponentInstance(props.record.id, componentInstance.value)
     // 添加实例 及 formItem实例
     if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true && formItemRef.value) {
@@ -151,6 +151,7 @@ function handleAddComponentInstance() {
  */
 function handleVnodeUnmounted() {
   if (props.record.id) {
+    console.log(23)
     // 移除实例 及 formItem实例
     pageManager.removeComponentInstance(props.record.id)
     if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true) {
