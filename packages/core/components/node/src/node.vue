@@ -42,6 +42,7 @@ import { FormDataModel, NodeItem } from '../../../types/epic-designer'
 
 export interface ComponentNodeInstance extends ComponentPublicInstance {
   setValue?: (value: any) => void
+  getValue?: () => any
 }
 
 defineOptions({
@@ -129,8 +130,12 @@ function handleAddComponentInstance() {
   if (props.record.id && componentInstance.value) {
 
     // 输入组件则添加setValue方法
-    if(props.record.input){
+    if (props.record.input) {
       componentInstance.value.setValue = handleUpdate
+      componentInstance.value.getValue = () => {
+        return formData[props.record.field!] || props.modelValue
+      }
+
     }
 
     pageManager.addComponentInstance(props.record.id, componentInstance.value)
