@@ -39,6 +39,11 @@
 import { shallowRef, ref, inject, computed, reactive, PropType, Slots, watch, h, ComponentPublicInstance } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager } from '@epic-designer/utils'
 import { FormDataModel, NodeItem } from '../../../types/epic-designer'
+
+export interface ComponentNodeInstance extends ComponentPublicInstance {
+  setValue?: (value: any) => void
+}
+
 defineOptions({
   name: 'ENode'
 })
@@ -48,7 +53,7 @@ const pageManager = inject('pageManager', {}) as PageManager
 
 const emit = defineEmits(['update:modelValue', 'change'])
 const FormItem = pluginManager.getComponent('form-item')
-const componentInstance = ref<ComponentPublicInstance>()
+const componentInstance = ref<ComponentNodeInstance>()
 const formItemRef = ref<ComponentPublicInstance>()
 
 // const props = defineProps({
@@ -122,6 +127,12 @@ watch(() => componentInstance.value, () => {
 // 添加组件实例
 function handleAddComponentInstance() {
   if (props.record.id && componentInstance.value) {
+
+    // 输入组件则添加setValue方法
+    if(props.record.input){
+      componentInstance.value.setValue = handleUpdate
+    }
+
     pageManager.addComponentInstance(props.record.id, componentInstance.value)
     // 添加实例 及 formItem实例
     if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true && formItemRef.value) {
