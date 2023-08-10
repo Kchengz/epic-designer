@@ -13,6 +13,7 @@ export interface NodeItem {
   id?: string
   rules?: FormItemRule[]
   noFormItem?: boolean
+  input?: boolean
   labelCol?: any
   wrapperCol?: any
   children?: NodeItem[]

@@ -1,94 +1,97 @@
-import { type NodeItem, type SchemaGroupItem } from '@epic-designer/core/types/epic-designer.d'
-import { loadAsyncComponent } from './utils'
-import { getUUID } from './index'
-import { ref } from 'vue'
+import {
+  type NodeItem,
+  type SchemaGroupItem,
+} from "@epic-designer/core/types/epic-designer.d";
+import { loadAsyncComponent } from "./utils";
+import { getUUID } from "./index";
+import { ref } from "vue";
 export interface ActivitybarModel {
-  id: string
-  title: string
-  icon: string
-  component: any
+  id: string;
+  title: string;
+  icon: string;
+  component: any;
 }
 
 export interface RightSidebarModel {
-  id: string
-  title: string
-  component: any
+  id: string;
+  title: string;
+  component: any;
 }
 
 export interface ViewsContainersModel {
-  activitybars: ActivitybarModel[]
-  rightSidebars: RightSidebarModel[]
+  activitybars: ActivitybarModel[];
+  rightSidebars: RightSidebarModel[];
 }
 
-export type Components = Record<string, any>
+export type Components = Record<string, any>;
 
 export interface EventModel {
-  type: string
-  describe: string
+  type: string;
+  describe: string;
 }
 
 export interface ComponentConfigModel {
-  component: any
-  defaultSchema: NodeItem
+  component: any;
+  defaultSchema: NodeItem;
   config: {
-    attribute?: NodeItem[]
-    style?: NodeItem[]
-    event?: EventModel[]
-    action?: EventModel[]
-  }
-  bindModel?: string
+    attribute?: NodeItem[];
+    style?: NodeItem[];
+    event?: EventModel[];
+    action?: EventModel[];
+  };
+  bindModel?: string;
 }
 
-export type ComponentConfigModelRecords = Record<string, ComponentConfigModel>
+export type ComponentConfigModelRecords = Record<string, ComponentConfigModel>;
 
 export interface MethodModel {
-  describe: string
-  methodName: string
-  method: (...args) => any
+  describe: string;
+  methodName: string;
+  method: (...args) => any;
 }
 
-export type PublicMethodsModel = Record<string, MethodModel>
+export type PublicMethodsModel = Record<string, MethodModel>;
 
 export interface SchemaGroup {
-  list: NodeItem[]
-  title: string
+  list: NodeItem[];
+  title: string;
 }
 
-export type SchemaGroupList = SchemaGroup[]
+export type SchemaGroupList = SchemaGroup[];
 
 export class PluginManager {
-  components: Components = {}
-  componentConfigs: ComponentConfigModelRecords = {}
-  schemaGroup: SchemaGroupItem[] = []
+  components: Components = {};
+  componentConfigs: ComponentConfigModelRecords = {};
+  schemaGroup: SchemaGroupItem[] = [];
 
-  schemaGroupList = ref<SchemaGroupList>([])
+  schemaGroupList = ref<SchemaGroupList>([]);
 
   viewsContainers: ViewsContainersModel = {
     activitybars: [],
-    rightSidebars: []
-  }
+    rightSidebars: [],
+  };
 
   publicMethods: PublicMethodsModel = {
     test: {
-      describe: '测试函数',
-      methodName: 'test',
+      describe: "测试函数",
+      methodName: "test",
       method: () => {
-        alert('测试函数弹出')
-      }
-    }
-  }
+        alert("测试函数弹出");
+      },
+    },
+  };
 
   /**
    * 添加组件到插件管理器中
    * @param componentName 组件名称
    * @param component 组件
    */
-  component (componentName: string, component: any): void {
-    if (typeof component === 'function') {
-      component = loadAsyncComponent(component)
+  component(componentName: string, component: any): void {
+    if (typeof component === "function") {
+      component = loadAsyncComponent(component);
     }
     // 注册组件
-    this.components[componentName] = component
+    this.components[componentName] = component;
   }
 
   /**
@@ -98,46 +101,63 @@ export class PluginManager {
    * @param attrSchemas 属性结构
    * @param bindModel 双向绑定value
    */
-  registerComponent (componentConfig: ComponentConfigModel): void {
+  registerComponent(componentConfig: ComponentConfigModel): void {
     // 添加组件
     this.component(
       componentConfig.defaultSchema.type,
       componentConfig.component
-    )
+    );
+
+    if (componentConfig.defaultSchema.input) {
+      if (!componentConfig.config.action) {
+        componentConfig.config.action = [];
+      }
+      componentConfig.config.action.push({
+        type: "setValue",
+        describe: "设置值",
+      });
+      componentConfig.config.action.push({
+        type: "getValue",
+        describe: "获取值",
+      });
+    }
+
     // 添加组件配置
-    this.componentConfigs[componentConfig.defaultSchema.type] = componentConfig
+    this.componentConfigs[componentConfig.defaultSchema.type] = componentConfig;
   }
 
   /**
    * 获取所有插件管理中的所有组件
    * @returns components
    */
-  getComponents (): Components {
-    return this.components
+  getComponents(): Components {
+    return this.components;
   }
 
   /**
    * 通过type 查询相应的组件
    * @returns components
    */
-  getComponent (type: string): any {
-    return this.components[type]
+  getComponent(type: string): any {
+    return this.components[type];
   }
 
   /**
    * 注册活动栏
    */
-  registerActivitybar (activitybar: ActivitybarModel): void {
-    if (typeof activitybar.component === 'function') {
-      activitybar.component = loadAsyncComponent(activitybar.component)
+  registerActivitybar(activitybar: ActivitybarModel): void {
+    if (typeof activitybar.component === "function") {
+      activitybar.component = loadAsyncComponent(activitybar.component);
     }
 
-    const index = this.viewsContainers.activitybars.findIndex(item => item.id === activitybar.id)
+    const index = this.viewsContainers.activitybars.findIndex(
+      (item) => item.id === activitybar.id
+    );
 
     if (index !== -1) {
-      this.viewsContainers.activitybars[index] = activitybar
+      this.viewsContainers.activitybars[index] = activitybar;
     } else {
-      this.viewsContainers.activitybars.push(activitybar)
+      this.viewsContainers.activitybars.push(activitybar);
     }
   }
 
@@ -145,24 +165,26 @@ export class PluginManager {
    * 获取所有activitybars
    * @returns activitybars
    */
-  getActivitybars (): ActivitybarModel[] {
-    return this.viewsContainers.activitybars
+  getActivitybars(): ActivitybarModel[] {
+    return this.viewsContainers.activitybars;
   }
 
   /**
    * 注册右侧栏
    */
-  registerRightSidebar (rightSidebar: RightSidebarModel): void {
-    if (typeof rightSidebar.component === 'function') {
-      rightSidebar.component = loadAsyncComponent(rightSidebar.component)
+  registerRightSidebar(rightSidebar: RightSidebarModel): void {
+    if (typeof rightSidebar.component === "function") {
+      rightSidebar.component = loadAsyncComponent(rightSidebar.component);
     }
 
-    const index = this.viewsContainers.rightSidebars.findIndex(sidebar => sidebar.id === rightSidebar.id)
+    const index = this.viewsContainers.rightSidebars.findIndex(
+      (sidebar) => sidebar.id === rightSidebar.id
+    );
 
     if (index !== -1) {
-      this.viewsContainers.rightSidebars[index] = rightSidebar
+      this.viewsContainers.rightSidebars[index] = rightSidebar;
     } else {
-      this.viewsContainers.rightSidebars.push(rightSidebar)
+      this.viewsContainers.rightSidebars.push(rightSidebar);
     }
   }
 
@@ -170,25 +192,25 @@ export class PluginManager {
    * 获取所有rightSidebars
    * @returns rightSidebars
    */
-  getRightSidebars (): RightSidebarModel[] {
-    return this.viewsContainers.rightSidebars
+  getRightSidebars(): RightSidebarModel[] {
+    return this.viewsContainers.rightSidebars;
   }
 
   /**
    * 获取所有插件管理中的所有组件配置
    * @returns componentAttrs
    */
-  getComponentConfings (): ComponentConfigModelRecords {
-    return this.componentConfigs
+  getComponentConfings(): ComponentConfigModelRecords {
+    return this.componentConfigs;
   }
 
   /**
    * 通过type获取ComponentConfing
    * @returns
    */
-  getComponentConfingByType (type: string): ComponentConfigModel {
-    const componentConfig = this.componentConfigs[type]
-    return componentConfig
+  getComponentConfingByType(type: string): ComponentConfigModel {
+    const componentConfig = this.componentConfigs[type];
+    return componentConfig;
   }
 
   /**
@@ -196,9 +218,9 @@ export class PluginManager {
    * @param {*} schemaGroup
    * @returns
    */
-  setSchemaGroup (schemaGroup: SchemaGroupItem[]): void {
-    this.schemaGroup = schemaGroup
-    this.computedSchemaGroupList()
+  setSchemaGroup(schemaGroup: SchemaGroupItem[]): void {
+    this.schemaGroup = schemaGroup;
+    this.computedSchemaGroupList();
   }
 
   /**
@@ -206,50 +228,50 @@ export class PluginManager {
    * @param {*} schemaGroupItem
    * @returns
    */
-  addSchemaGroup (schemaGroupItem: SchemaGroupItem): void {
-    this.schemaGroup.push(schemaGroupItem)
-    this.computedSchemaGroupList()
+  addSchemaGroup(schemaGroupItem: SchemaGroupItem): void {
+    this.schemaGroup.push(schemaGroupItem);
+    this.computedSchemaGroupList();
   }
 
   /**
    * 计算schemaGroupList
    */
-  computedSchemaGroupList () {
+  computedSchemaGroupList() {
     const schemaGroupList = this.schemaGroup.map((item) => {
       // 映射defaultSchema,并过滤未查询到的组件
       const list = item.list
         .map((type) => {
-          const schema = this.componentConfigs[type]?.defaultSchema
+          const schema = this.componentConfigs[type]?.defaultSchema;
           if (schema == null) {
-            console.warn(`${type} 组件未注册到pluginManager中`)
-            return false
+            console.warn(`${type} 组件未注册到pluginManager中`);
+            return false;
           }
-          return schema
+          return schema;
         })
-        .filter((e) => e) as NodeItem[]
+        .filter((e) => e) as NodeItem[];
       return {
         ...item,
-        list
-      }
-    })
-    this.schemaGroupList.value = schemaGroupList
+        list,
+      };
+    });
+    this.schemaGroupList.value = schemaGroupList;
   }
 
   /**
    * 按照分组获取schemaGroupList
    * @returns schemaGroupList
    */
-  getSchemaByGroup () {
-    return this.schemaGroupList
+  getSchemaByGroup() {
+    return this.schemaGroupList;
   }
 
   /**
    * 添加公共方法
    * @param method
    */
-  addPublicMethod (method: MethodModel): void {
-    this.publicMethods[method.methodName] = method
+  addPublicMethod(method: MethodModel): void {
+    this.publicMethods[method.methodName] = method;
   }
 }
 
-export const pluginManager = new PluginManager()
+export const pluginManager = new PluginManager();
