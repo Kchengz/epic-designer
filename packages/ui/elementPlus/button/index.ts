@@ -80,8 +80,12 @@ export default {
     ],
     event: [
       {
-        type: 'click',
-        describe: '点击按钮时'
+        type: "click",
+        describe: "点击按钮时",
+      },
+      {
+        type: "dblclick",
+        describe: "双击按钮时",
       }
     ]
   }

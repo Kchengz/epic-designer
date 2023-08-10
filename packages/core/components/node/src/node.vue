@@ -129,7 +129,6 @@ watch(() => componentInstance.value, () => {
 function handleAddComponentInstance() {
 
   if (props.record.id && componentInstance.value) {
-    console.log(233)
     // 输入组件则添加setValue方法
     if (props.record.input) {
       componentInstance.value.setValue = handleUpdate
@@ -151,7 +150,6 @@ function handleAddComponentInstance() {
  */
 function handleVnodeUnmounted() {
   if (props.record.id) {
-    console.log(23)
     // 移除实例 及 formItem实例
     pageManager.removeComponentInstance(props.record.id)
     if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true) {

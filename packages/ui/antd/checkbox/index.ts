@@ -66,6 +66,12 @@ export default {
         field: "componentProps.options",
         describe: "校验规则需要配合表单使用",
       }
+    ],
+    event: [
+      {
+        type: "change",
+        describe: "值变化时",
+      },
     ]
   },
   bindModel: 'value'

@@ -148,6 +148,16 @@ export default {
         type: 'switch',
         field: 'componentProps.disabled'
       },
+    ],
+    event: [
+      {
+        type: "click",
+        describe: "点击按钮时",
+      },
+      {
+        type: "dblclick",
+        describe: "双击按钮时",
+      }
     ]
   }
 } as ComponentConfigModel

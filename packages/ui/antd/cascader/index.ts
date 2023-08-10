@@ -129,6 +129,12 @@ export default {
           tree: true
         }
       }
+    ],
+    event: [
+      {
+        type: "change",
+        describe: "值变化时",
+      },
     ]
   },
   bindModel: 'value'
