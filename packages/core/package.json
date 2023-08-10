@@ -23,7 +23,6 @@
     "url": "https://github.com/Kchengz/epic-designer"
   },
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest",
     "lint": "eslint . --fix --ext .js,.jsx,.json,.ts,.tsx,.vue"
