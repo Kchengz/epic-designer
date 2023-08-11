@@ -1,90 +1,90 @@
-import { type ComponentConfigModel } from '@epic-designer/utils/pluginManager'
+import { type ComponentConfigModel } from "@epic-designer/utils/pluginManager";
 export default {
-  component: () => import('ant-design-vue/lib/switch'),
+  component: () => import("ant-design-vue/lib/switch"),
   defaultSchema: {
-    label: '开关',
-    type: 'switch',
-    icon: 'icon-kaiguan3',
-    field: 'switch',
+    label: "开关",
+    type: "switch",
+    icon: "icon-kaiguan3",
+    field: "switch",
     input: true,
-    componentProps: {
-      size:'default'
-    }
+    componentProps: {},
   },
   config: {
     attribute: [
       {
-        label: '字段名',
-        type: 'input',
-        field: 'field'
+        label: "字段名",
+        type: "input",
+        field: "field",
       },
       {
-        label: '文字',
-        type: 'input',
-        field: 'label'
+        label: "文字",
+        type: "input",
+        field: "label",
       },
       {
-        label: '默认值',
-        type: 'switch',
-        field: 'componentProps.defaultValue'
+        label: "默认值",
+        type: "switch",
+        field: "componentProps.defaultValue",
       },
       {
-        label: '选中时内容',
-        type: 'input',
-        field: 'componentProps.checkedChildren',
+        label: "选中时内容",
+        type: "input",
+        field: "componentProps.checkedChildren",
         componentProps: {
-          placeholder: '请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
-        label: '非选中时内容',
-        type: 'input',
-        field: 'componentProps.unCheckedChildren',
+        label: "非选中时内容",
+        type: "input",
+        field: "componentProps.unCheckedChildren",
         componentProps: {
-          placeholder: '请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
-        label: '尺寸',
-        type: 'select',
+        label: "尺寸",
+        type: "select",
         componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
           options: [
             {
-              label: 'default',
-              value: 'default'
+              label: "default",
+              value: "default",
             },
             {
-              label: 'small',
-              value: 'small'
-            }
-          ]
+              label: "small",
+              value: "small",
+            },
+          ],
         },
-        field: 'componentProps.size'
+        field: "componentProps.size",
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
       },
       {
-        label: '禁用',
-        type: 'switch',
-        field: 'componentProps.disabled'
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled",
       },
       {
-        label: '表单校验',
-        type: 'ERuleEditor',
-        layout: 'vertical',
-        field: 'rules',
-        describe: '校验规则需要配合表单使用'
-      }
+        label: "表单校验",
+        type: "ERuleEditor",
+        layout: "vertical",
+        field: "rules",
+        describe: "校验规则需要配合表单使用",
+      },
     ],
     event: [
       {
         type: "change",
         describe: "值变化时",
       },
-    ]
+    ],
   },
-  bindModel: 'checked'
-} as ComponentConfigModel
+  bindModel: "checked",
+} as ComponentConfigModel;

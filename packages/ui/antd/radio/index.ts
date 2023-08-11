@@ -18,8 +18,7 @@ export default {
           value: '选项2'
         }
       ],
-      optionType: 'default',
-      size: 'middle'
+      optionType: 'default'
     }
   },
   config: {
@@ -40,26 +39,27 @@ export default {
         field: 'label'
       },
       {
-        label: '尺寸',
-        type: 'select',
-        defaultValue: 'default',
+        label: "尺寸",
+        type: "select",
         componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
           options: [
             {
-              label: 'large',
-              value: 'large'
+              label: "large",
+              value: "large",
             },
             {
-              label: 'middle',
-              value: 'middle'
+              label: "middle",
+              value: "middle",
             },
             {
-              label: 'small',
-              value: 'small'
-            }
-          ]
+              label: "small",
+              value: "small",
+            },
+          ],
         },
-        field: 'componentProps.size'
+        field: "componentProps.size",
       },
       {
         label: 'option类型',

@@ -11,8 +11,7 @@ export default {
       type: 'color',
       style: {
         width: '80px'
-      },
-      size: 'middle'
+      }
     }
   },
   config: {
@@ -33,25 +32,27 @@ export default {
         field: 'componentProps.defaultValue'
       },
       {
-        label: '尺寸',
-        type: 'select',
+        label: "尺寸",
+        type: "select",
         componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
           options: [
             {
-              label: 'large',
-              value: 'large'
+              label: "large",
+              value: "large",
             },
             {
-              label: 'middle',
-              value: 'middle'
+              label: "middle",
+              value: "middle",
             },
             {
-              label: 'small',
-              value: 'small'
-            }
-          ]
+              label: "small",
+              value: "small",
+            },
+          ],
         },
-        field: 'componentProps.size'
+        field: "componentProps.size",
       },
       {
         label: '可清空',

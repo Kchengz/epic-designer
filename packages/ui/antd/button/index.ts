@@ -8,10 +8,6 @@ export default {
     icon: 'icon-button-remove',
     input: false,
     componentProps: {
-      type: 'default',
-      size:'default',
-      shape: 'default',
-      target: '_self'
     }
   },
   config: {
@@ -71,6 +67,8 @@ export default {
         field: 'componentProps.target',
         show: ({values}) => values.componentProps.href,
         componentProps: {
+          placeholder: '请选择',
+          clearable: true,
           options: [
             {
               label: 'blank',
@@ -95,6 +93,8 @@ export default {
         label: '尺寸',
         type: 'select',
         componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
           options: [
             {
               label: 'default',
@@ -116,6 +116,8 @@ export default {
         label: '形状',
         type: 'select',
         componentProps: {
+          placeholder: '请选择',
+          clearable: true,
           options: [
             {
               label: 'default',

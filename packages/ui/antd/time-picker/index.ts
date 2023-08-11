@@ -64,6 +64,29 @@ export default {
         field: 'componentProps.bordered'
       },
       {
+        label: "尺寸",
+        type: "select",
+        componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
+          options: [
+            {
+              label: "large",
+              value: "large",
+            },
+            {
+              label: "middle",
+              value: "middle",
+            },
+            {
+              label: "small",
+              value: "small",
+            },
+          ],
+        },
+        field: "componentProps.size",
+      },
+      {
         label: '小时选项间隔',
         type: 'number',
         field: 'componentProps.hourStep',

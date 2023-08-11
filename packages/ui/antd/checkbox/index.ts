@@ -38,6 +38,29 @@ export default {
         field: 'label'
       },
       {
+        label: "尺寸",
+        type: "select",
+        componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
+          options: [
+            {
+              label: "large",
+              value: "large",
+            },
+            {
+              label: "middle",
+              value: "middle",
+            },
+            {
+              label: "small",
+              value: "small",
+            },
+          ],
+        },
+        field: "componentProps.size",
+      },
+      {
         label: '可清空',
         type: 'switch',
         field: 'componentProps.allowClear'
