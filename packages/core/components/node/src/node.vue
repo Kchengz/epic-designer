@@ -73,7 +73,6 @@ const props = defineProps<{
   modelValue?: any
 }>()
 
-
 // 定义组件及组件props字段
 const component = shallowRef<any>(null)
 const componentProps = shallowRef<any>({})

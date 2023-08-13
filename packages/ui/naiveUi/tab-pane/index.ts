@@ -1,4 +1,5 @@
 import { type ComponentConfigModel } from '@epic-designer/utils/pluginManager'
+import { NTabPane } from 'naive-ui'
 export default {
   component: () => import('./tabPane'),
   defaultSchema: {

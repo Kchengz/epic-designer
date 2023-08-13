@@ -25,7 +25,7 @@ export default {
       },
       {
         label: '默认值',
-        type: 'input',
+        type: 'textarea',
         field: 'componentProps.defaultValue',
         componentProps: {
           placeholder: '请输入'

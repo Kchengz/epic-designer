@@ -28,7 +28,9 @@ import { NodeItem, PageSchema, Designer } from '../../../../../types/epic-design
 import ENodeItem from './nodeItem.vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
-
+defineOptions({
+  name: 'EditNodeItem'
+})
 const props = defineProps<{
   schemas: NodeItem[]
 }>()

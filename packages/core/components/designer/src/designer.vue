@@ -38,6 +38,7 @@ const EEditContainer = loadAsyncComponent(() => import('./modules/editContainer/
 const ERightSidebar = loadAsyncComponent(() => import('./modules/rightSidebar/index.vue'))
 const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
 const pageManager = usePageManager()
+
 const emit = defineEmits(['ready', 'save'])
 
 const state = reactive<DesignerState>({

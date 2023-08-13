@@ -29,6 +29,7 @@
 import ENode from '../../../../node'
 import { NodeItem } from '../../../../../types/epic-designer'
 import KEditNodeItem from './editNodeItem.vue'
+
 defineOptions({
   name: 'ENodeItem'
 })
