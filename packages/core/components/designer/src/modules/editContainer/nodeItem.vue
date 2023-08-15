@@ -35,6 +35,7 @@ defineOptions({
 })
 const props = defineProps<{
   schema: NodeItem
+  name?: string
 }>()
 
 

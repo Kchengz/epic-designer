@@ -70,7 +70,8 @@ const formItemRef = ref<ComponentPublicInstance>()
 
 const props = defineProps<{
   record: NodeItem,
-  modelValue?: any
+  modelValue?: any,
+  name?: string
 }>()
 
 // 定义组件及组件props字段

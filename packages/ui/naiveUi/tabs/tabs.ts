@@ -36,7 +36,6 @@ export default defineComponent({
             const TabPane = slots["node"]?.({
               record: node,
               name: node.label,
-              label: null,
             })[0] as any;
 
             TabPane.type.__TAB_PANE__ = true;
