@@ -101,8 +101,8 @@ export function setupAntd (pluginManager: PluginManager): void {
       title: '布局',
       list: [
         'card',
-        'row'
-        // "tabs"
+        'row',
+        "tabs"
       ]
     }
   ])

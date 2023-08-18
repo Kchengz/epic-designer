@@ -36,7 +36,7 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, ref, inject, computed, reactive, PropType, Slots, watch, h, ComponentPublicInstance } from 'vue'
+import { shallowRef, ref, inject, computed, reactive, useAttrs, provide, Slots, watch, h, ComponentPublicInstance } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager } from '@epic-designer/utils'
 import { FormDataModel, NodeItem } from '../../../types/epic-designer'
 
@@ -73,6 +73,15 @@ const props = defineProps<{
   modelValue?: any,
   name?: string
 }>()
+
+// 传递额外的attrs
+// 传递额外的attrs
+const attrs = useAttrs()
+if (Object.keys(attrs).length) {
+  console.log(23423)
+  provide("nodeAttrs", attrs)
+}
+
 
 // 定义组件及组件props字段
 const component = shallowRef<any>(null)
@@ -216,6 +225,7 @@ async function initComponent() {
 
   // 获取组件props数据
   componentProps.value = {
+    ...props,
     record: props.record,
     // is: component,
     bindModel,
