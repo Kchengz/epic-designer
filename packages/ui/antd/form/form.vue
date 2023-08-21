@@ -1,6 +1,6 @@
 <template>
   <div class="form-main" style="height: 100%;">
-    <Form ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%;" @finish="onFinish">
+    <Form ref="form" :model="formData" v-bind="componentProps" style="height: 100%;" @finish="onFinish">
       <slot name="edit-node">
         <slot v-for="item in children" name="node" :record="item" />
       </slot>
@@ -8,7 +8,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, type Ref, type PropType, reactive, provide, computed, inject, useAttrs, onMounted } from 'vue'
+import { ref, type Ref, type PropType, reactive, provide, computed, inject, onMounted } from 'vue'
 import { Form } from 'ant-design-vue'
 import type { NodeItem, FormDataModel } from '@epic-designer/core/types/epic-designer'
 
@@ -26,7 +26,6 @@ const props = defineProps({
   }
 })
 
-const attrs = useAttrs()
 const form = ref<FormInstance | null>(null)
 const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>
 const formData = reactive<FormDataModel>({})

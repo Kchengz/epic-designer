@@ -1,6 +1,6 @@
 <template>
   <div v-if="visible" class="form-main" style="height: 100%">
-    <NForm ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%">
+    <NForm ref="form" :model="formData" v-bind="componentProps" style="height: 100%">
       <slot name="edit-node">
         <slot v-for="item in children" name="node" :record="item" />
       </slot>
@@ -9,7 +9,7 @@
 </template>
 <script lang="ts" setup>
 import type { Ref, PropType } from 'vue'
-import { ref, computed, inject, reactive, provide, useAttrs, onMounted } from 'vue'
+import { ref, computed, inject, reactive, provide, onMounted } from 'vue'
 import { NForm } from 'naive-ui/lib/form'
 import { NodeItem, FormDataModel } from '@epic-designer/core/types/epic-designer'
 
@@ -25,7 +25,6 @@ const props = defineProps({
     default: () => ({})
   }
 })
-const attrs = useAttrs()
 const form = ref<FormInstance | null>(null)
 const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>
 const visible = ref(true)

@@ -1,29 +1,16 @@
 <template>
-  <div
-    v-if="visible"
-    class="form-main"
-    style="height: 100%;"
-  >
-    <ElForm
-      ref="form"
-      :model="attrs.model"
-      v-bind="componentProps"
-      style="height: 100%;"
-    >
+  <div v-if="visible" class="form-main" style="height: 100%;">
+    <ElForm ref="form" :model="formData" v-bind="componentProps" style="height: 100%;">
       <slot name="edit-node">
-        <slot
-          v-for="item in children"
-          name="node"
-          :record="item"
-        />
+        <slot v-for="item in children" name="node" :record="item" />
       </slot>
     </ElForm>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, Ref,reactive, PropType,provide, computed, inject, useAttrs, onMounted } from 'vue'
+import { ref, Ref, reactive, PropType, provide, computed, inject, onMounted } from 'vue'
 import { ElForm } from 'element-plus'
-import type { NodeItem,FormDataModel } from '@epic-designer/core/types/epic-designer'
+import type { NodeItem, FormDataModel } from '@epic-designer/core/types/epic-designer'
 
 interface FormInstance extends InstanceType<typeof ElForm> {
   getData?: () => FormDataModel
@@ -31,7 +18,6 @@ interface FormInstance extends InstanceType<typeof ElForm> {
 }
 
 
-const attrs = useAttrs()
 const form = ref<FormInstance | null>(null)
 const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>
 const visible = ref(true)
@@ -50,7 +36,7 @@ const props = defineProps({
  * 获取表单数据
  * @param formName 表单name
  */
- function getData (): FormDataModel {
+function getData(): FormDataModel {
   return formData
 }
 
@@ -58,7 +44,7 @@ const props = defineProps({
  * 设置表单数据
  * @param data
  */
- function setData (data: FormDataModel) {
+function setData(data: FormDataModel) {
   Object.assign(formData, data)
 }
 // form组件需要特殊处理
