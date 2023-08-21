@@ -71,6 +71,7 @@ const formItemRef = ref<ComponentPublicInstance>()
 const props = defineProps<{
   record: NodeItem,
   modelValue?: any,
+  ruleField?: string,
   name?: string
 }>()
 
@@ -78,7 +79,6 @@ const props = defineProps<{
 // 传递额外的attrs
 const attrs = useAttrs()
 if (Object.keys(attrs).length) {
-  console.log(23423)
   provide("nodeAttrs", attrs)
 }
 
@@ -110,7 +110,8 @@ const getFormItemProps = computed(() => {
   return {
     ...props.record,
     rules,
-    rule: rules
+    rule: rules,
+    field: props.ruleField ?? props.record.field
   }
 })
 
