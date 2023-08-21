@@ -21,13 +21,22 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, Ref, PropType, computed, inject, useAttrs, onMounted } from 'vue'
+import { ref, Ref,reactive, PropType,provide, computed, inject, useAttrs, onMounted } from 'vue'
 import { ElForm } from 'element-plus'
-import type { NodeItem } from '@epic-designer/core/types/epic-designer'
+import type { NodeItem,FormDataModel } from '@epic-designer/core/types/epic-designer'
+
+interface FormInstance extends InstanceType<typeof ElForm> {
+  getData?: () => FormDataModel
+}
+
+
 const attrs = useAttrs()
-const form = ref<InstanceType<typeof ElForm> | null>(null)
-const forms = inject('forms', {}) as Ref<{ [name: string]: InstanceType<typeof ElForm> }>
+const form = ref<FormInstance | null>(null)
+const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>
 const visible = ref(true)
+const formData = reactive<FormDataModel>({})
+provide('formData', formData)
+
 const props = defineProps({
   record: {
     type: Object as PropType<NodeItem>,
@@ -36,11 +45,20 @@ const props = defineProps({
   }
 })
 
+/**
+ * 获取表单数据
+ * @param formName 表单name
+ */
+ function getData (): FormDataModel {
+  return formData
+}
+
 // form组件需要特殊处理
 onMounted(async () => {
-  if (props.record!.type === 'form' && forms.value) {
-    const name = props.record!.name ?? 'default' as string
-    forms.value[name] = form.value!
+  if (props.record?.type === 'form' && forms.value && form.value) {
+    const name = props.record.name ?? 'default' as string
+    forms.value[name] = form.value
+    form.value.getData = getData
     return false
   }
 })
@@ -66,6 +84,7 @@ const children = computed(() => {
 })
 
 defineExpose({
-  form
+  form,
+  getData
 })
 </script>

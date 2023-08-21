@@ -1,34 +1,22 @@
 <template>
-  <div
-    v-if="visible"
-    class="form-main"
-    style="height: 100%"
-  >
-    <NForm
-      ref="form"
-      :model="attrs.model"
-      v-bind="componentProps"
-      style="height: 100%"
-    >
+  <div v-if="visible" class="form-main" style="height: 100%">
+    <NForm ref="form" :model="attrs.model" v-bind="componentProps" style="height: 100%">
       <slot name="edit-node">
-        <slot
-          v-for="item in children"
-          name="node"
-          :record="item"
-        />
+        <slot v-for="item in children" name="node" :record="item" />
       </slot>
     </NForm>
   </div>
 </template>
 <script lang="ts" setup>
 import type { Ref, PropType } from 'vue'
-import { ref, computed, inject, useAttrs, onMounted } from 'vue'
+import { ref, computed, inject, reactive, provide, useAttrs, onMounted } from 'vue'
 import { NForm } from 'naive-ui/lib/form'
-import { NodeItem } from '@epic-designer/core/types/epic-designer'
-const attrs = useAttrs()
-const form = ref<InstanceType<typeof NForm> | null>(null)
-const forms = inject('forms', {}) as Ref<{ [name: string]: InstanceType<typeof NForm> }>
-const visible = ref(true)
+import { NodeItem, FormDataModel } from '@epic-designer/core/types/epic-designer'
+
+interface FormInstance extends InstanceType<typeof NForm> {
+  getData?: () => FormDataModel
+}
+
 const props = defineProps({
   record: {
     type: Object as PropType<NodeItem>,
@@ -36,12 +24,28 @@ const props = defineProps({
     default: () => ({})
   }
 })
+const attrs = useAttrs()
+const form = ref<FormInstance | null>(null)
+const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>
+const visible = ref(true)
+const formData = reactive<FormDataModel>({})
+provide('formData', formData)
+
+/**
+ * 获取表单数据
+ * @param formName 表单name
+ */
+function getData(): FormDataModel {
+  return formData
+}
+
 
 // form组件需要特殊处理
 onMounted(async (): Promise<void> => {
-  if (props.record!.type === 'form' && forms.value) {
-    const name = props.record!.name ?? ('default' as string)
+  if (props.record?.type === 'form' && forms.value && form.value) {
+    const name = props.record.name ?? ('default' as string)
     forms.value[name] = form.value!
+    form.value.getData = getData
   }
 })
 
@@ -55,6 +59,7 @@ const children = computed(() => {
 })
 
 defineExpose({
-  form
+  form,
+  getData
 })
 </script>

@@ -8,19 +8,15 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, type Ref, type PropType, computed, inject, useAttrs, onMounted } from 'vue'
+import { ref, type Ref, type PropType, reactive, provide, computed, inject, useAttrs, onMounted } from 'vue'
 import { Form } from 'ant-design-vue'
-import type { NodeItem } from '@epic-designer/core/types/epic-designer'
+import type { NodeItem, FormDataModel } from '@epic-designer/core/types/epic-designer'
 
-
-interface KForm extends InstanceType<typeof Form> {
-  [attr: string]: any
+interface FormInstance extends InstanceType<typeof Form> {
+  getData?: () => FormDataModel
+  validateFields: () => {}
+  validate: () => {}
 }
-
-const attrs = useAttrs()
-const form = ref<KForm | null>(null)
-const forms = inject('forms', {}) as Ref<{ [name: string]: KForm }>
-
 const props = defineProps({
   record: {
     type: Object as PropType<NodeItem>,
@@ -29,12 +25,28 @@ const props = defineProps({
   }
 })
 
+const attrs = useAttrs()
+const form = ref<FormInstance | null>(null)
+const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>
+const formData = reactive<FormDataModel>({})
+provide('formData', formData)
+
+
+/**
+ * 获取表单数据
+ * @param formName 表单name
+ */
+function getData(): FormDataModel {
+  return formData
+}
+
 // form组件需要特殊处理
 onMounted(async () => {
-  if (props.record!.type === 'form' && forms.value) {
-    const name = props.record!.name ?? 'default' as string
-    form.value!.validate = form.value!.validateFields
-    forms.value[name] = form.value!
+  if (props.record?.type === 'form' && forms.value && form.value) {
+    const name = props.record.name ?? 'default' as string
+    form.value.validate = form.value.validateFields
+    forms.value[name] = form.value
+    form.value.getData = getData
     return false
   }
 })
@@ -64,6 +76,7 @@ const children = computed(() => {
 })
 
 defineExpose({
-  form
+  form,
+  getData
 })
 </script>

@@ -20,13 +20,12 @@
 <script lang="ts" setup>
 import ENode from '../../node'
 import { reactive, provide, ref, watch, useSlots, nextTick } from 'vue'
-import { PageSchema, FormDataModel } from '../../../types/epic-designer'
+import { PageSchema,FormDataModel  } from '../../../types/epic-designer'
 import { loadAsyncComponent, deepCompareAndModify, usePageManager } from '@epic-designer/utils'
 const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
 
 const pageManager = usePageManager()
 const emit = defineEmits(['ready'])
-const formData = reactive<FormDataModel>({})
 const slots = useSlots()
 const forms = ref<any>({})
 const props = defineProps<{
@@ -52,7 +51,6 @@ watch(() => pageSchemaReactive.script, e => {
   immediate: true
 })
 
-provide('formData', formData)
 provide('slots', slots)
 provide('pageManager', pageManager)
 provide('forms', forms)
@@ -70,7 +68,7 @@ async function getData (formName = 'default'): Promise<FormDataModel | boolean> 
     return false
   }
 
-  return formData
+  return form.getData()
 }
 
 /**
@@ -84,8 +82,8 @@ async function validate (formName = 'default'): Promise<FormDataModel | boolean>
     console.error(`表单 [name=${formName}] 不存在`)
     return false
   }
-  await form?.validate()
-  return formData
+  await form.validate()
+  return form.getData()
 }
 
 /**

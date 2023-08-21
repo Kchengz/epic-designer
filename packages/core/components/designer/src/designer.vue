@@ -52,7 +52,6 @@ const pageSchema = reactive<PageSchema>({
   schemas: [],
   script: ''
 })
-const formData = reactive<FormDataModel>({})
 
 watch(() => pageSchema.script, e => {
   if (e && e !== '') {
@@ -85,7 +84,6 @@ defineExpose({
 pageSchema.script = defaultScript
 
 provide('pageSchema', pageSchema)
-provide('formData', formData)
 provide('pageManager', pageManager)
 
 function init() {
