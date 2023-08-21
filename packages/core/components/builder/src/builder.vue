@@ -90,9 +90,15 @@ async function validate (formName = 'default'): Promise<FormDataModel | boolean>
  * 设置表单数据
  * @param data
  */
-function setData (data: FormDataModel) {
-  // validate
-  Object.assign(formData, data)
+function setData (data: FormDataModel,formName = 'default') {
+  const form = forms.value?.[formName]
+  // 通过表单查询不到表单实例
+  if (!form) {
+    console.error(`表单 [name=${formName}] 不存在`)
+    return false
+  }
+
+  return form.setData(data)
 }
 
 /**

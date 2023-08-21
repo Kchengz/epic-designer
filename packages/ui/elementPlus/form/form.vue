@@ -27,6 +27,7 @@ import type { NodeItem,FormDataModel } from '@epic-designer/core/types/epic-desi
 
 interface FormInstance extends InstanceType<typeof ElForm> {
   getData?: () => FormDataModel
+  setData?: (FormDataModel) => void
 }
 
 
@@ -53,12 +54,20 @@ const props = defineProps({
   return formData
 }
 
+/**
+ * 设置表单数据
+ * @param data
+ */
+ function setData (data: FormDataModel) {
+  Object.assign(formData, data)
+}
 // form组件需要特殊处理
 onMounted(async () => {
   if (props.record?.type === 'form' && forms.value && form.value) {
     const name = props.record.name ?? 'default' as string
     forms.value[name] = form.value
     form.value.getData = getData
+    form.value.setData = setData
     return false
   }
 })
@@ -85,6 +94,7 @@ const children = computed(() => {
 
 defineExpose({
   form,
-  getData
+  getData,
+  setData
 })
 </script>

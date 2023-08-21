@@ -15,6 +15,7 @@ import { NodeItem, FormDataModel } from '@epic-designer/core/types/epic-designer
 
 interface FormInstance extends InstanceType<typeof NForm> {
   getData?: () => FormDataModel
+  setData?: (FormDataModel) => void
 }
 
 const props = defineProps({
@@ -39,6 +40,14 @@ function getData(): FormDataModel {
   return formData
 }
 
+/**
+ * 设置表单数据
+ * @param data
+ */
+ function setData (data: FormDataModel) {
+  Object.assign(formData, data)
+}
+
 
 // form组件需要特殊处理
 onMounted(async (): Promise<void> => {
@@ -46,6 +55,7 @@ onMounted(async (): Promise<void> => {
     const name = props.record.name ?? ('default' as string)
     forms.value[name] = form.value!
     form.value.getData = getData
+    form.value.setData = setData
   }
 })
 
@@ -60,6 +70,7 @@ const children = computed(() => {
 
 defineExpose({
   form,
-  getData
+  getData,
+  setData
 })
 </script>
