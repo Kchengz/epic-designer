@@ -51,7 +51,7 @@ const props = defineProps({
     default: 'string'
   },
   modelValue: {
-    type: String,
+    type: String || Object,
     default: ''
   },
   config: {

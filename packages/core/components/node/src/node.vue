@@ -71,7 +71,7 @@ const formItemRef = ref<ComponentPublicInstance>()
 const props = defineProps<{
   record: NodeItem,
   modelValue?: any,
-  ruleField?: string,
+  ruleField?: string[],
   name?: string
 }>()
 
