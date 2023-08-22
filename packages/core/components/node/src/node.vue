@@ -37,7 +37,7 @@
 </template>
 <script lang="ts" setup>
 import { shallowRef, ref, inject, computed, reactive, useAttrs, provide, Slots, watch, h, ComponentPublicInstance } from 'vue'
-import { pluginManager, capitalizeFirstLetter, PageManager } from '@epic-designer/utils'
+import { pluginManager, capitalizeFirstLetter, PageManager, deepClone } from '@epic-designer/utils'
 import { FormDataModel, NodeItem } from '../../../types/epic-designer'
 
 export interface ComponentNodeInstance extends ComponentPublicInstance {
@@ -48,34 +48,33 @@ export interface ComponentNodeInstance extends ComponentPublicInstance {
 defineOptions({
   name: 'ENode'
 })
-const formData = inject('formData', {}) as FormDataModel
+
+const props = defineProps<{
+  record: NodeItem,
+  modelValue?: any,
+  ruleField?: string[],
+  resetFormData?: Boolean,
+  name?: string
+}>()
+
+
+
+let formData = inject('formData', {}) as FormDataModel
+
+// 重置数据 
+if (props.resetFormData) {
+  formData = {}
+}
+
 const slots = inject('slots', {}) as Slots
 const pageManager = inject('pageManager', {}) as PageManager
+const disabled = inject<Boolean>('disabled', false)
 
 const emit = defineEmits(['update:modelValue', 'change'])
 const FormItem = pluginManager.getComponent('form-item')
 const componentInstance = ref<ComponentNodeInstance>()
 const formItemRef = ref<ComponentPublicInstance>()
 
-// const props = defineProps({
-//   record: {
-//     type: Object as PropType<NodeItem>,
-//     default: () => ({})
-//   },
-//   modelValue: {
-//     type: [Object, Array, String, Number, Boolean] as PropType<any>,
-//     default: undefined
-//   }
-// })
-
-const props = defineProps<{
-  record: NodeItem,
-  modelValue?: any,
-  ruleField?: string[],
-  name?: string
-}>()
-
-// 传递额外的attrs
 // 传递额外的attrs
 const attrs = useAttrs()
 if (Object.keys(attrs).length) {
@@ -124,6 +123,11 @@ const getComponentConfing = computed(() => {
 if (props.record.field) {
   // 存在则更新表单状态
   watch(() => props.modelValue, (e) => {
+    // 值等于null，则清空状态并结束函数
+    if (e === null) {
+      delete formData[props.record.field!]
+      return
+    }
     formData[props.record.field!] = e
   }, {
     immediate: true
@@ -174,7 +178,7 @@ function handleVnodeUnmounted() {
 async function initComponent() {
   // 如果存在默认值，则会在初始化之后赋值
   if (props.record.componentProps?.defaultValue) {
-    handleUpdate(props.record.componentProps?.defaultValue)
+    handleUpdate(deepClone(props.record.componentProps?.defaultValue))
   }
 
   // 组件为slot类型时
@@ -228,6 +232,7 @@ async function initComponent() {
   componentProps.value = {
     ...props,
     record: props.record,
+    disabled: disabled || props.record.disabled,
     // is: component,
     bindModel,
     [`onUpdate:${bindModel}`]: handleUpdate,
