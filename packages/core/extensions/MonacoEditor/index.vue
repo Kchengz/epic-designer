@@ -4,7 +4,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import * as monaco from 'monaco-editor'
-// import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
+import type { editor } from 'monaco-editor'
 // import 'monaco-editor/esm/vs/language/json/monaco.contribution'
 // import 'monaco-editor/esm/vs/language/typescript/monaco.contribution'
 // @ts-ignore
@@ -37,34 +37,24 @@ self.MonacoEnvironment = {
   }
 }
 
-const props = defineProps({
-  language: {
-    type: String,
-    default: 'json'
-  },
-  readOnly: {
-    type: Boolean,
-    default: false
-  },
-  valueFormat: {
-    type: String,
-    default: 'string'
-  },
-  modelValue: {
-    type: String || Object,
-    default: ''
-  },
-  config: {
-    type: Object,
-    default: () => ({
-      theme: 'vs-light',
-      selectOnLineNumbers: true,
-      minimap: {
-        enabled: false
-      },
-      lineNumbers: 'off'
-    })
-  }
+const props = withDefaults(defineProps<{
+  language?: string,
+  readOnly?: boolean,
+  valueFormat?: string,
+  modelValue?: any,
+  config?: editor.IStandaloneEditorConstructionOptions
+}>(), {
+  language: 'json',
+  readOnly: false,
+  valueFormat: 'string',
+  config: () => ({
+    theme: 'vs-light',
+    selectOnLineNumbers: true,
+    minimap: {
+      enabled: false
+    },
+    lineNumbers: 'off'
+  })
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -121,9 +111,11 @@ onMounted(() => {
   function getValue() {
     // valueFormat 为json 格式，需要转换处理
     if (props.valueFormat === 'json') {
-      return JSON.stringify(props.modelValue, null, 2)
+      if (props.modelValue) {
+        return JSON.stringify(props.modelValue, null, 2)
+      }
     }
-    return props.modelValue
+    return props.modelValue ?? ''
   }
 
 
