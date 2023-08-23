@@ -58,17 +58,23 @@ const props = defineProps<{
 }>()
 
 
-
+// 表单formData数据
 let formData = inject('formData', {}) as FormDataModel
 
+const slots = inject('slots', {}) as Slots
+// 接收页面管理对象
+const pageManager = inject('pageManager', {}) as PageManager
+// 上级组件注入的disabled状态
+const disabled = inject<Boolean>('disabled', false)
+// 校验前缀字段
+const ruleFieldPrefix = inject<any[] | null>('ruleFieldPrefix', null)
+// 重置表单数据，不设置到表单formData数据
+const resetFormDataInject = inject<Boolean>('resetFormData', false)
+
 // 重置数据 
-if (props.resetFormData) {
+if (props.resetFormData || resetFormDataInject) {
   formData = {}
 }
-
-const slots = inject('slots', {}) as Slots
-const pageManager = inject('pageManager', {}) as PageManager
-const disabled = inject<Boolean>('disabled', false)
 
 const emit = defineEmits(['update:modelValue', 'change'])
 const FormItem = pluginManager.getComponent('form-item')
@@ -106,12 +112,34 @@ const getFormItemProps = computed(() => {
     ...item,
     validator: item.validator && pageManager.funcs.value[item.validator] // 自定义校验函数
   }))
-  return {
+
+
+  // 获取校验字段
+  let model: string | string[] | undefined = props.record.field
+
+
+  if (props.ruleField) {
+    // 设置为父级传入的校验字段
+    model = props.ruleField
+  }
+  else if (ruleFieldPrefix && props.record.field) {
+    // 添加校验字段前缀
+    model = deepClone(ruleFieldPrefix) as []
+    model.push(props.record.field)
+  }
+
+  const formItemProps = {
     ...props.record,
     rules,
     rule: rules,
-    field: props.ruleField ?? props.record.field
+    field: model
   }
+
+  // 移除元素只读属性 children
+  if(formItemProps['children']){
+    delete formItemProps['children']
+  }
+  return formItemProps
 })
 
 // 获取组件原配置
