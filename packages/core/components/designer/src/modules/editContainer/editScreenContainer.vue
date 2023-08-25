@@ -22,7 +22,7 @@
 <script lang="ts" setup>
 import { watchOnce, useElementSize, useResizeObserver } from '@vueuse/core'
 import type { NodeItem } from '../../../../../types/epic-designer'
-import { useShareKeyPress, useElementDrag, useElementZoom } from '@epic-designer/utils'
+import { useShareStore, useElementDrag, useElementZoom } from '@epic-designer/utils'
 import { ref, nextTick, watch, computed, onMounted } from 'vue'
 import Toolbar from './toolbar.vue'
 const props = defineProps<{
@@ -31,7 +31,7 @@ const props = defineProps<{
 const editScreenContainerRef = ref<HTMLDivElement | null>(null)
 const draggableElRef = ref<HTMLDivElement | null>(null)
 
-const { pressSpace } = useShareKeyPress()
+const { pressSpace } = useShareStore()
 const { handleElementDragStart, handleElementDrag, handleElementDragEnd } = useElementDrag(editScreenContainerRef)
 const { width, height } = useElementSize(editScreenContainerRef)
 const { canvasScale, handleZoom } = useElementZoom(draggableElRef)

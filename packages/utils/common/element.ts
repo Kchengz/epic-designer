@@ -1,10 +1,50 @@
-import { createSharedComposable } from "@vueuse/core";
-import { useKeyPress } from "./keyboard";
+import { onKeyUp, onKeyDown } from "@vueuse/core";
 import { useShareStore } from "../shareStore";
-import { type Ref, watch } from "vue";
+import { type Ref, watch, ref } from "vue";
 
-// 将按键状态hooks共享
-export const useShareKeyPress = createSharedComposable(useKeyPress);
+/**
+ * 是否按住键盘状态
+ * @returns
+ *  pressSpace: Ref<boolean>;
+ *  pressShift: Ref<boolean>;
+ *  pressCtrl: Ref<boolean>;
+ */
+export function useKeyPress() {
+  // 是否按住空格键
+  const pressSpace = ref(false);
+  // 是否按住shift键
+  const pressShift = ref(false);
+  // 是否按住ctrl键
+  const pressCtrl = ref(false);
+  onKeyDown(" ", (e) => {
+    var element = e.target as HTMLElement;
+    if (!["INPUT", "TEXTAREA"].includes(element.tagName)) {
+      e.preventDefault();
+    }
+    pressSpace.value = true;
+  });
+  onKeyUp(" ", () => {
+    pressSpace.value = false;
+  });
+
+  onKeyDown("Shift", (e) => {
+    e.preventDefault();
+    pressShift.value = true;
+  });
+  onKeyUp("Shift", () => {
+    pressShift.value = false;
+  });
+
+  onKeyDown("Control", (e) => {
+    e.preventDefault();
+    pressCtrl.value = true;
+  });
+  onKeyUp("Control", () => {
+    pressCtrl.value = false;
+  });
+
+  return { pressSpace, pressShift, pressCtrl };
+}
 
 /**
  * 拖拽元素
@@ -14,7 +54,7 @@ export const useShareKeyPress = createSharedComposable(useKeyPress);
 export function useElementDrag(
   editScreenContainer: Ref<HTMLDivElement | null>
 ) {
-  const { pressSpace } = useShareKeyPress();
+  const { pressSpace } = useShareStore();
 
   let startX = 0;
   let startY = 0;
@@ -57,8 +97,7 @@ export function useElementDrag(
  * @returns
  */
 export function useElementZoom(draggableElRef: Ref<HTMLDivElement | null>) {
-  const { pressCtrl } = useShareKeyPress();
-  const { canvasScale } = useShareStore();
+  const { pressCtrl, canvasScale } = useShareStore();
   /**
    * 缩放操作
    * @param e
@@ -101,7 +140,7 @@ export function useTimedQuery(handler: () => void, timeout = 16.66) {
   let timer: number;
 
   function startTimedQuery() {
-    stopTimedQuery()
+    stopTimedQuery();
     timer = window.setInterval(handler, timeout);
   }
 
