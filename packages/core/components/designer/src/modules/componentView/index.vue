@@ -25,8 +25,7 @@
           sort: false,
           animation: 180,
           ghostClass: 'moving'
-        }" :clone="handleDeepCopyData" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2"
-        >
+        }" :clone="handleDeepCopyData" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2">
           <template #item="{ element }">
             <div class="source-componet-item flex items-center truncate" @click="handleClick(element)">
               <span class="iconfont" :class="element.icon" />
@@ -98,37 +97,47 @@ function handelChecked(item) {
  * @param e
  * @param list
  */
-function handleDeepCopyData(schema) {
-  return deepClone({
+function handleDeepCopyData(schema: NodeItem) {
+  const newSchema: NodeItem = deepClone({
     ...toRaw(schema),
     id: getUUID()
   })
+  // 存在字段名，则自动补充id
+  if (newSchema.field) {
+    newSchema.field += `_${newSchema.id}`
+  }
+  return newSchema
 }
 
 /**
  * 点击添加节点
  * @param e
  */
-function handleClick(e: NodeItem) {
+function handleClick(schema: NodeItem) {
   const data = findSchemaById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
   if (!data) {
     return false
   }
-  let { list, schema, index } = data
+  let { list, schema: checkedSchema, index } = data
 
   // 如果选中元素存在children字段，则添加到children中
-  if (schema.children && !['row', 'tabs'].includes(schema.type)) {
-    list = schema.children
-    index = schema.children.length - 1
+  if (checkedSchema.children && !['row', 'tabs'].includes(checkedSchema.type)) {
+    list = checkedSchema.children
+    index = checkedSchema.children.length - 1
   }
 
-  const node = deepClone({
-    ...toRaw(e),
+  const newSchema = deepClone({
+    ...toRaw(schema),
     id: getUUID()
   })
 
-  list.splice(index + 1, 0, node)
-  designer.setCheckedNode(node)
+  // 存在字段名，则自动补充id
+  if (newSchema.field) {
+    newSchema.field += `_${newSchema.id}`
+  }
+
+  list.splice(index + 1, 0, newSchema)
+  designer.setCheckedNode(newSchema)
   revoke.push(pageSchema.schemas, '插入组件')
 }
 </script>
