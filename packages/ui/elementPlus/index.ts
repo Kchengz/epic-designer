@@ -1,5 +1,5 @@
 // 注册element-plus ui
-import { type PluginManager } from '../../utils/pluginManager'
+import { type PluginManager } from "@epic-designer/utils"
 import Input from './input'
 import InputNumber from './input-number'
 import Form from './form'

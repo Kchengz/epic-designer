@@ -1,5 +1,5 @@
 // 注册ant-design-vue ui
-import { type PluginManager } from '../../utils/pluginManager'
+import { type PluginManager } from "@epic-designer/utils"
 import Input from './input'
 import Textarea from './textarea'
 import InputNumber from './input-number'
