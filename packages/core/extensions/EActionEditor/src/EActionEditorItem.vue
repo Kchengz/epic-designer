@@ -84,7 +84,7 @@ function handleOpen(type: string) {
  * @param id
  */
 function getLabel(id: string) {
-  const { schema } = findSchemaById(pageSchema.schemas, id)
+  const schema = findSchemaById(pageSchema.schemas, id)
   return schema.label
 }
 

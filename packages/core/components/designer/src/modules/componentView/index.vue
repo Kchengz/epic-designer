@@ -35,7 +35,6 @@
         </draggable>
         <div v-show="!getSourceSchemaList.length" class="text-center pt-42px text-gray-400">没有查询到的组件</div>
       </div>
-
     </div>
 
   </div>
@@ -43,7 +42,7 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { ref, toRaw, computed, inject } from 'vue'
-import { getUUID, deepClone, findSchemaById, pluginManager, revoke } from '@epic-designer/utils'
+import { getUUID, deepClone, findSchemaInfoById, pluginManager, revoke } from '@epic-designer/utils'
 import { NodeItem, PageSchema, Designer } from '../../../../../types/epic-designer'
 const Input = pluginManager.getComponent('input')
 const pageSchema = inject('pageSchema') as PageSchema
@@ -114,7 +113,7 @@ function handleDeepCopyData(schema: NodeItem) {
  * @param e
  */
 function handleClick(schema: NodeItem) {
-  const data = findSchemaById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
+  const data = findSchemaInfoById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
   if (!data) {
     return false
   }

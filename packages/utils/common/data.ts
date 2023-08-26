@@ -121,8 +121,6 @@ export function deepEqual(
   return JSON.stringify(normalize(obj1)) === JSON.stringify(normalize(obj2));
 }
 
-
-
 /**
  * 通过id获取节点路径
  * @param schemas
@@ -221,7 +219,7 @@ export function setAttributeValue(
 export function getFormFields(schemas: NodeItem[], formName = "default") {
   const formSchema = findSchemas(
     schemas,
-    (currentNode: NodeItem) => {
+    (currentNode) => {
       return currentNode.type === "form" && currentNode.name === formName;
     },
     true
@@ -229,7 +227,7 @@ export function getFormFields(schemas: NodeItem[], formName = "default") {
   // console.log(schema);
   const inputSchemaList = findSchemas(
     formSchema?.children ?? [],
-    (currentNode: NodeItem) => {
+    (currentNode) => {
       return Boolean(currentNode.input);
     },
     false,
@@ -237,9 +235,9 @@ export function getFormFields(schemas: NodeItem[], formName = "default") {
       // 过滤子表单子节点
       return currentNode.type !== "subform";
     }
-  );
+  ) as NodeItem[];
 
-  return inputSchemaList?.map((item) => item.field);
+  return inputSchemaList.map((item) => item.field);
 }
 
 /**
@@ -258,7 +256,7 @@ export function findSchemas(
 ) {
   const matchedNodes: NodeItem[] = [];
 
-  const nodesToVisit: NodeItem[] = deepClone(schemas);
+  const nodesToVisit: NodeItem[] = [...schemas];
 
   while (nodesToVisit.length) {
     const currentNode = nodesToVisit.pop() as NodeItem;
@@ -274,6 +272,11 @@ export function findSchemas(
     }
   }
 
+  // 当只查询一条数据时，执行到这里说明没有查询到数据，所以返回false
+  if (once) {
+    return false;
+  }
+
   return matchedNodes;
 }
 
@@ -286,33 +289,73 @@ export function findSchemas(
 export function findSchemaById(
   schemas: NodeItem[],
   id: string
+): NodeItem {
+  let index: number = 0;
+
+  // 查询节点
+  const schema = findSchemas(
+    schemas,
+    (currentNode) => {
+      return currentNode.id === id;
+    },
+    true
+  ) as NodeItem & { children: NodeItem };
+
+  // 判断节点是否存在，不存在则抛出异常
+  if (!schema) {
+    throw new Error(`没有查询到id为${id}的节点`);
+  }
+
+  return schema;
+}
+
+/**
+ * 通过id查询schema及节点children index 信息
+ * @param schemas
+ * @param id
+ * @returns
+ */
+export function findSchemaInfoById(
+  schemas: NodeItem[],
+  id: string
 ): {
   list: NodeItem[];
   schema: NodeItem;
   index: number;
 } {
-  const stack: NodeItem[] = [{ type: "root", children: schemas }];
+  const stack: NodeItem[] = [{ type: "", children: schemas }];
+  let index: number = 0;
 
-  while (stack.length > 0) {
-    const item = stack.pop();
-    const children = item?.children;
-    // 没有子节点,跳过该循环
-    if (children == null) {
-      continue;
-    }
+  // 查询父节点
+  const parentSchema = findSchemas(
+    stack,
+    (currentNode) => {
+      const children = currentNode.children;
 
-    for (let i = 0; i < children.length; i++) {
-      if (children[i].id === id) {
-        return {
-          list: item?.children ?? [],
-          schema: children[i],
-          index: i,
-        };
+      if (!children) {
+        return false;
       }
 
-      stack.push(...children);
-    }
+      for (let i = 0; i < children.length; i++) {
+        if (children[i].id === id) {
+          index = i;
+          return true;
+        }
+      }
+
+      return false;
+    },
+    true
+  ) as NodeItem & { children: NodeItem };
+
+  // 判断节点是否存在，不存在则抛出异常
+  if (!parentSchema) {
+    throw new Error(`没有查询到id为${id}的节点`);
   }
-  
-  throw new Error(`没有查询到id为${id}的节点`);
+
+  return {
+    list: parentSchema.children,
+    schema: parentSchema.children[index],
+    index,
+  };
 }

@@ -111,7 +111,8 @@ function handleOpenEdit(action: any) {
   componentSchema.value = null
 
   if (action.componentId) {
-    const { schema } = findSchemaById(pageSchema.schemas, action.componentId)
+    const schema = findSchemaById(pageSchema.schemas, action.componentId)
+
     componentSchema.value = schema
     selectedKeys.value = [action.componentId]
   }

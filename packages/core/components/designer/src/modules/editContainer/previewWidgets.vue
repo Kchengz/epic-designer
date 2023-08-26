@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { inject, computed, ref, onMounted, watch } from 'vue'
-import { pluginManager, getUUID, deepClone, revoke, findSchemaById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
+import { pluginManager, getUUID, deepClone, revoke, findSchemaInfoById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
 import { useResizeObserver } from '@vueuse/core'
 
 const pageManager = inject('pageManager', {}) as PageManager
@@ -234,7 +234,7 @@ function initObserve(func: () => void) {
  * 复制选中节点元素
  */
 function handleCopy() {
-  const data = findSchemaById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
+  const data = findSchemaInfoById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
   if (!data) {
     return false
   }
@@ -262,7 +262,7 @@ function handleCopy() {
  * 删除元素
  */
 function handleDelete() {
-  const data = findSchemaById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
+  const data = findSchemaInfoById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
   if (!data) {
     return false
   }
