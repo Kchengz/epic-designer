@@ -9,9 +9,8 @@ export default defineComponent({
       default: () => ({}),
     },
   },
-  setup(props, { attrs, slots }) {
+  setup(props, { slots }) {
     const nodeAttrs = inject("nodeAttrs", {});
-    console.log(nodeAttrs, 234234);
 
     return () => {
       const record = {

@@ -10,14 +10,12 @@ export default {
       {
         label: '标签1',
         type: 'tab-pane',
-        children: [],
-        id: '1'
+        children: []
       },
       {
         label: '标签2',
         type: 'tab-pane',
-        children: [],
-        id: '2'
+        children: []
       }
     ],
     componentProps: {

@@ -11,16 +11,14 @@ export default {
         children: [],
         componentProps: {
           span: 12
-        },
-        id: 'g062zikd2jk00'
+        }
       },
       {
         type: 'col',
         children: [],
         componentProps: {
           span: 12
-        },
-        id: 'gy5z9jtfb3s00'
+        }
       }
     ],
   },
