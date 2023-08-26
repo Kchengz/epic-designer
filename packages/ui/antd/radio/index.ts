@@ -1,4 +1,4 @@
-import { type ComponentConfigModel } from '@epic-designer/utils/pluginManager'
+import { type ComponentConfigModel } from '@epic-designer/utils'
 export default {
   component: () => import('ant-design-vue/lib/radio/Group'),
   defaultSchema: {

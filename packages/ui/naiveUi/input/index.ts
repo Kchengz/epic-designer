@@ -1,4 +1,4 @@
-import { type ComponentConfigModel } from '@epic-designer/utils/pluginManager'
+import { type ComponentConfigModel } from '@epic-designer/utils'
 export default {
   component: async () => (await import('naive-ui/lib/input')).NInput,
   defaultSchema: {
