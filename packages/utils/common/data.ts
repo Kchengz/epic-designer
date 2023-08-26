@@ -177,7 +177,13 @@ export function getAttributeValue(
     if (typeof data === "undefined") return;
   }
 
+  // 假如数据是个空数组，则直接返回 undefined
+  // if (Array.isArray(data) && data.length === 0) {
+  //   return;
+  // }
+
   // 返回从obj中检索到的最终字段的值。
+
   return data;
 }
 

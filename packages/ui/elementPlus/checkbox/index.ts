@@ -8,7 +8,6 @@ export default {
     field: 'checkbox',
     input: true,
     componentProps: {
-      defaultValue: [],
       options: [
         {
           label: '选项1',

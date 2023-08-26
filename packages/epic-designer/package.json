@@ -1,7 +1,7 @@
 {
   "name": "epic-designer",
   "private": false,
-  "version": "0.8.5",
+  "version": "0.8.6",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -13,6 +13,8 @@
     "epic-designer",
     "设计器",
     "页面设计",
+    "designer",
+    "设计工具",
     "低代码",
     "可视化",
     "工作流"

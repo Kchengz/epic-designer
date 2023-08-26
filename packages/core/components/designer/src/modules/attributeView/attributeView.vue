@@ -7,7 +7,7 @@
         </div>
         <div class="attr-input">
           <ENode
-            :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), hidden: false }, show: true, noFormItem: true }"
+            :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), input: false, field: undefined, hidden: false }, show: true, noFormItem: true }"
             :model-value="getAttributeValue(item.field!, checkedNode!)"
             @update:model-value="handleSetValue($event, item.field!, item)" />
         </div>
