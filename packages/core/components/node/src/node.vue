@@ -5,16 +5,16 @@
       @vue:unmounted="handleVnodeUnmounted"
       v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
       <!-- 嵌套组件递归 start -->
-      <!-- 渲染组件 start -->
+      <!-- 渲染子组件 start -->
       <template #node="data">
         <ENode v-bind="data" />
       </template>
-      <!-- 渲染组件 end -->
-      <!-- 渲染子组件列表 start -->
+      <!-- 渲染子组件 end -->
+      <!-- 渲染布局设计子组件列表 start -->
       <template #edit-node>
         <slot name="edit-node" />
       </template>
-      <!-- 渲染子组件列表 end -->
+      <!-- 渲染布局设计子组件列表 end -->
     </component>
   </FormItem>
   <!-- 无需FormItem start -->
@@ -22,16 +22,16 @@
     @vue:unmounted="handleVnodeUnmounted" ref="componentInstance" :model="formData"
     v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }">
     <!-- 嵌套组件递归 start -->
-    <!-- 渲染组件 start -->
+    <!-- 渲染子组件 start -->
     <template #node="data">
       <ENode v-bind="data" />
     </template>
-    <!-- 渲染组件 end -->
-    <!-- 渲染子组件列表 start -->
+    <!-- 渲染子组件 end -->
+    <!-- 渲染布局设计子组件列表 start -->
     <template #edit-node>
       <slot name="edit-node" />
     </template>
-    <!-- 渲染子组件列表 end -->
+    <!-- 渲染布局设计子组件列表 end -->
   </component>
   <!-- 无需FormItem end -->
 </template>
@@ -71,7 +71,7 @@ const ruleFieldPrefix = inject<any[] | null>('ruleFieldPrefix', null)
 // 重置表单数据，不设置到表单formData数据
 const resetFormDataInject = inject<Boolean>('resetFormData', false)
 
-// 重置数据 
+// 重置表单数据，移除表单数据引用
 if (props.resetFormData || resetFormDataInject) {
   formData = {}
 }
@@ -122,6 +122,7 @@ const getFormItemProps = computed(() => {
     // 设置为父级传入的校验字段
     model = props.ruleField
   }
+
   else if (ruleFieldPrefix && props.record.field) {
     // 添加校验字段前缀
     model = deepClone(ruleFieldPrefix) as []
@@ -151,6 +152,8 @@ const getComponentConfing = computed(() => {
 if (props.record.field) {
   // 存在则更新表单状态
   watch(() => props.modelValue, (e) => {
+    console.log(e)
+    console.log(props.record.type,'--------')
     // 值等于null，则清空状态并结束函数
     if (e === null) {
       delete formData[props.record.field!]
@@ -205,7 +208,7 @@ function handleVnodeUnmounted() {
  */
 async function initComponent() {
   // 如果存在默认值，则会在初始化之后赋值
-  if (props.record.componentProps?.defaultValue) {
+  if (typeof props.record.componentProps?.defaultValue !== 'undefined') {
     handleUpdate(deepClone(props.record.componentProps?.defaultValue))
   }
 
@@ -213,14 +216,9 @@ async function initComponent() {
   if (props.record.type === 'slot') {
     const slotName = props.record.slotName
     if (!slotName) { return false }
-    // componentProps.value.bindModel = 'modelValue'
     // 需要监听值变化，重新传递参数
     watch(() => formData[props.record.field!], () => {
-      // 获取插槽函数
-      // const slot = slots[slotName]?.({
-      //   record: props.record,
-      //   model: formData
-      // })
+      // 重新渲染插槽组件
       component.value = h('div', null, slots[slotName]?.({
         record: props.record,
         model: formData
