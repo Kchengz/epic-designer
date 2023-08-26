@@ -17,8 +17,6 @@ import UploadFile from './upload-file'
 import Card from './card'
 import Row from './row'
 import Col from './col'
-import Tabs from './tabs'
-import TabPane from './tab-pane'
 import Form from './form'
 import FormItem from './form-item'
 import Button from './button'
@@ -62,8 +60,6 @@ export function setupAntd (pluginManager: PluginManager): void {
     Card,
     Row,
     Col,
-    Tabs,
-    TabPane,
     Button,
     Modal,
     colorPicker
@@ -101,8 +97,7 @@ export function setupAntd (pluginManager: PluginManager): void {
       title: '布局',
       list: [
         'card',
-        'row',
-        "tabs"
+        'row'
       ]
     }
   ])

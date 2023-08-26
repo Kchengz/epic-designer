@@ -174,7 +174,7 @@ export function getAttributeValue(
     // 更新nodeItem为nodeItem中当前字段的值。
     data = data[fieldList[i]];
     // 如果字段的值不存在，则返回空。
-    if (data == null && data !== false && data !== 0) return;
+    if (typeof data === "undefined") return;
   }
 
   // 返回从obj中检索到的最终字段的值。
@@ -292,7 +292,6 @@ export function mapSchemas(
   handler: (item: NodeItem) => NodeItem,
   filter?: (item: NodeItem) => boolean
 ) {
-
   const nodesToVisit: NodeItem[] = [...schemas];
 
   while (nodesToVisit.length) {
@@ -301,10 +300,10 @@ export function mapSchemas(
       nodesToVisit.push(...currentNode.children);
     }
 
-    deepCompareAndModify(currentNode,handler(currentNode))
+    deepCompareAndModify(currentNode, handler(currentNode));
   }
 
-  return schemas
+  return schemas;
 }
 
 /**
@@ -313,10 +312,7 @@ export function mapSchemas(
  * @param id
  * @returns
  */
-export function findSchemaById(
-  schemas: NodeItem[],
-  id: string
-): NodeItem {
+export function findSchemaById(schemas: NodeItem[], id: string): NodeItem {
   let index: number = 0;
 
   // 查询节点

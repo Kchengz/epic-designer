@@ -15,8 +15,6 @@ import Slider from './slider'
 import ColorPicker from './color-picker'
 import Switch from './switch'
 import Cascader from './cascader'
-import Tabs from './tabs'
-import TabPane from './tab-pane'
 import Collapse from './collapse'
 import CollapseItem from './collapse-item'
 import DatePicker from './date-picker'
@@ -57,8 +55,6 @@ export function setupElementPlus (pluginManager: PluginManager): void {
     Card,
     Row,
     Col,
-    Tabs,
-    TabPane,
     Collapse,
     CollapseItem,
     UploadFile,
@@ -77,20 +73,15 @@ export function setupElementPlus (pluginManager: PluginManager): void {
       list: [
         'form',
         'input',
-        // "textarea",
         'number',
-        // "password",
         'select',
         'checkbox',
         'radio',
         'date',
-        // "time",
-        // "rate",
         'slider',
         'upload-file',
         'upload-image',
         'cascader',
-        // "treeSelect",
         'switch',
         'button',
         'color-picker'
@@ -98,7 +89,7 @@ export function setupElementPlus (pluginManager: PluginManager): void {
     },
     {
       title: '布局',
-      list: ['card', 'row', 'tabs']
+      list: ['card', 'row']
     }
   ])
 }
