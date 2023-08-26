@@ -281,6 +281,33 @@ export function findSchemas(
 }
 
 /**
+ * 遍历Schema 返回映射的数据
+ * @param schemas
+ * @param handler 映射处理
+ * @param filter  节点过滤，函数返回 false,则不映射该节点得所有子节点 children
+ * @returns
+ */
+export function mapSchemas(
+  schemas: NodeItem[],
+  handler: (item: NodeItem) => NodeItem,
+  filter?: (item: NodeItem) => boolean
+) {
+
+  const nodesToVisit: NodeItem[] = [...schemas];
+
+  while (nodesToVisit.length) {
+    const currentNode = nodesToVisit.pop() as NodeItem;
+    if (currentNode?.children && (!filter || filter(currentNode))) {
+      nodesToVisit.push(...currentNode.children);
+    }
+
+    deepCompareAndModify(currentNode,handler(currentNode))
+  }
+
+  return schemas
+}
+
+/**
  * 通过id查询schema
  * @param schemas
  * @param id

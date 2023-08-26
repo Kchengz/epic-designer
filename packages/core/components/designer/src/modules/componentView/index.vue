@@ -42,7 +42,7 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { ref, toRaw, computed, inject } from 'vue'
-import { getUUID, deepClone, findSchemaInfoById, pluginManager, revoke } from '@epic-designer/utils'
+import { getUUID, deepClone, findSchemaInfoById, pluginManager, mapSchemas, revoke } from '@epic-designer/utils'
 import { NodeItem, PageSchema, Designer } from '../../../../../types/epic-designer'
 const Input = pluginManager.getComponent('input')
 const pageSchema = inject('pageSchema') as PageSchema
@@ -97,14 +97,20 @@ function handelChecked(item) {
  * @param list
  */
 function handleDeepCopyData(schema: NodeItem) {
-  const newSchema: NodeItem = deepClone({
-    ...toRaw(schema),
-    id: getUUID()
+
+  const [newSchema] = mapSchemas([deepClone(schema)], (item) => {
+    // 补充id字段
+    const newVal = {
+      ...item,
+      id: getUUID()
+    }
+    // 存在字段名，则自动在字段名后补充id
+    if (newVal.field) {
+      newVal.field += `_${newVal.id}`
+    }
+    return newVal
   })
-  // 存在字段名，则自动补充id
-  if (newSchema.field) {
-    newSchema.field += `_${newSchema.id}`
-  }
+
   return newSchema
 }
 
@@ -125,15 +131,8 @@ function handleClick(schema: NodeItem) {
     index = checkedSchema.children.length - 1
   }
 
-  const newSchema = deepClone({
-    ...toRaw(schema),
-    id: getUUID()
-  })
+  const newSchema = handleDeepCopyData(schema)
 
-  // 存在字段名，则自动补充id
-  if (newSchema.field) {
-    newSchema.field += `_${newSchema.id}`
-  }
 
   list.splice(index + 1, 0, newSchema)
   designer.setCheckedNode(newSchema)
