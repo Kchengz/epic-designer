@@ -78,6 +78,9 @@ export default {
             },
           ],
         },
+        onChange({values}){
+          delete values.componentProps.defaultValue
+        }
       },
       {
         label: "开始占位符",

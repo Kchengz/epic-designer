@@ -46,8 +46,8 @@ function isShow(item: NodeItem) {
   return true
 }
 
-const componentAttributes= ref<NodeItem[]>([])
-watch(()=>designer.state.checkedNode?.type,()=>{
+const componentAttributes = ref<NodeItem[]>([])
+watch(() => designer.state.checkedNode?.type, () => {
   const type = designer.state.checkedNode?.type
   if (!type) {
     return []
@@ -64,8 +64,8 @@ watch(()=>designer.state.checkedNode?.type,()=>{
     },
     ...attribute
   ]
-},{
-  immediate:true
+}, {
+  immediate: true
 })
 // const componentAttributes = computed(() => {
 //   const type = designer.state.checkedNode?.type
@@ -91,16 +91,16 @@ watch(()=>designer.state.checkedNode?.type,()=>{
  */
 function handleSetValue(value: any, field: string, item: NodeItem) {
   if (typeof item.onChange === 'function') {
-    item.onChange({ value, values: checkedNode.value!,componentAttributes })
+    item.onChange({ value, values: checkedNode.value!, componentAttributes })
   }
   // 判断是否同步修改属性值
-if(item.changeSync){
-  setAttributeValue(value, field, checkedNode.value!)
-}else {
-  nextTick(() => {
+  if (item.changeSync) {
     setAttributeValue(value, field, checkedNode.value!)
-  })
-}
+  } else {
+    nextTick(() => {
+      setAttributeValue(value, field, checkedNode.value!)
+    })
+  }
   // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(pageSchema.schemas, '编辑组件属性')
 

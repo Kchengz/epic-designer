@@ -3,7 +3,7 @@
     ref="formItemRef" v-bind="getFormItemProps">
     <component :is="component" ref="componentInstance" @vue:mounted="handleAddComponentInstance"
       @vue:unmounted="handleVnodeUnmounted"
-      v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] }">
+      v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] ?? props.modelValue }">
       <!-- 嵌套组件递归 start -->
       <!-- 渲染子组件 start -->
       <template #node="data">
@@ -20,7 +20,7 @@
   <!-- 无需FormItem start -->
   <component :is="component" v-else-if="component && show" @vue:mounted="handleAddComponentInstance"
     @vue:unmounted="handleVnodeUnmounted" ref="componentInstance" :model="formData"
-    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] || modelValue }">
+    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] ?? props.modelValue }">
     <!-- 嵌套组件递归 start -->
     <!-- 渲染子组件 start -->
     <template #node="data">
@@ -137,7 +137,7 @@ const getFormItemProps = computed(() => {
   }
 
   // 移除元素只读属性 children
-  if(formItemProps['children']){
+  if (formItemProps['children']) {
     delete formItemProps['children']
   }
   return formItemProps
@@ -152,8 +152,6 @@ const getComponentConfing = computed(() => {
 if (props.record.field) {
   // 存在则更新表单状态
   watch(() => props.modelValue, (e) => {
-    console.log(e)
-    console.log(props.record.type,'--------')
     // 值等于null，则清空状态并结束函数
     if (e === null) {
       delete formData[props.record.field!]
