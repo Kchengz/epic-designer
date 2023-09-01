@@ -29,8 +29,10 @@
 </template>
 <script lang="ts" setup>
 import { provide, reactive, toRaw, watch, nextTick } from 'vue'
-import { DesignerState, NodeItem, FormDataModel, PageSchema } from '../../../types/epic-designer'
+import { DesignerState, NodeItem, PageSchema } from '../../../types/epic-designer'
 import { getMatchedById, loadAsyncComponent, revoke, usePageManager, deepCompareAndModify, deepClone } from '@epic-designer/utils'
+import { DesignerProps } from './types'
+import { useShareStore } from '@epic-designer/utils'
 
 const EHeader = loadAsyncComponent(() => import('./modules/header/index.vue'))
 const EActionBar = loadAsyncComponent(() => import('./modules/actionBar/index.vue'))
@@ -39,7 +41,13 @@ const ERightSidebar = loadAsyncComponent(() => import('./modules/rightSidebar/in
 const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
 const pageManager = usePageManager()
 
+const props = withDefaults(defineProps<DesignerProps>(), {
+  enabledZoom: false
+})
+
 const emit = defineEmits(['ready', 'save'])
+
+
 
 const state = reactive<DesignerState>({
   checkedNode: null,
@@ -51,6 +59,14 @@ const state = reactive<DesignerState>({
 const pageSchema = reactive<PageSchema>({
   schemas: [],
   script: ''
+})
+
+const { enabledZoom } = useShareStore()
+watch(() => props.enabledZoom, newVal => {
+  enabledZoom.value = newVal
+  console.log(newVal,'---')
+}, {
+  immediate: true
 })
 
 watch(() => pageSchema.script, e => {
@@ -85,6 +101,15 @@ pageSchema.script = defaultScript
 
 provide('pageSchema', pageSchema)
 provide('pageManager', pageManager)
+provide('designerProps', props)
+
+
+provide('designer', {
+  setCheckedNode,
+  setHoverNode,
+  setDisableHover,
+  state
+})
 
 function init() {
   // 初始化默认节点
@@ -95,12 +120,6 @@ function init() {
   revoke.push(pageSchema.schemas, '初始化撤销功能')
 }
 
-provide('designer', {
-  setCheckedNode,
-  setHoverNode,
-  setDisableHover,
-  state
-})
 
 /**
  * 选中节点

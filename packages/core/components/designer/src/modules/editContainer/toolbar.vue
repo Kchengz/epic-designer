@@ -12,12 +12,15 @@
             <span class="icon iconfont">&#xe612;</span>
         </div> -->
         <!-- 缩放操作 start  -->
-        <div class="pr-8px w-82px cursor-pointer">
-            <Select v-model:value="canvasScaleComuted" v-model="canvasScaleComuted" :options="canvasScaleOptions"
-                size="small"></Select>
-        </div>
-        <div class="w-90px cursor-pointer">
-            <Slider :min="0.6" :max="1.4" :step="0.01" :tooltip="false" v-model:value="canvasScale" v-model="canvasScale" />
+        <div v-if="enabledZoom" class="flex items-center">
+            <div class="pr-8px w-82px cursor-pointer">
+                <Select v-model:value="canvasScaleComuted" v-model="canvasScaleComuted" :options="canvasScaleOptions"
+                    size="small"></Select>
+            </div>
+            <div class="w-90px cursor-pointer">
+                <Slider :min="0.6" :max="1.4" :step="0.01" :tooltip="false" v-model:value="canvasScale"
+                    v-model="canvasScale" />
+            </div>
         </div>
         <!-- 缩放操作 end  -->
     </div>
@@ -29,7 +32,7 @@ import type { PageSchema } from '../../../../../types/epic-designer'
 import { computed, inject, ref } from 'vue'
 const Slider = pluginManager.getComponent('slider')
 const Select = pluginManager.getComponent('select')
-const { canvasScale } = useShareStore()
+const { canvasScale, enabledZoom } = useShareStore()
 
 const pageSchema = inject('pageSchema') as PageSchema
 

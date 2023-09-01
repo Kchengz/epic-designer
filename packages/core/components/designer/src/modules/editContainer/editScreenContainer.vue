@@ -4,13 +4,14 @@
     <Toolbar />
     <!-- 工具条 end  -->
 
+
+
     <div ref="editScreenContainerRef" class="flex-1 overflow-auto epic-edit-screen-container"
       :class="{ 'cursor-grab': pressSpace }" :draggable="pressSpace" @wheel="handleZoom"
-      @dragstart="handleElementDragStart" @dragend="handleElementDragEnd"
-      @drag="handleElementDrag">
+      @dragstart="handleElementDragStart" @dragend="handleElementDragEnd" @drag="handleElementDrag">
       <div id="canvasContainer" class="flex items-center justify-center" :style="scrollBoxStyle">
         <div ref="draggableElRef" class="transition-all">
-          <div :class="{ 'pointer-events-none': pressSpace }">
+          <div :class="{ 'pointer-events-none': pressSpace }" :style="scrollBoxStyle">
             <slot />
           </div>
         </div>
@@ -31,7 +32,7 @@ const props = defineProps<{
 const editScreenContainerRef = ref<HTMLDivElement | null>(null)
 const draggableElRef = ref<HTMLDivElement | null>(null)
 
-const { pressSpace } = useShareStore()
+const { pressSpace, enabledZoom } = useShareStore()
 const { handleElementDragStart, handleElementDrag, handleElementDragEnd } = useElementDrag(editScreenContainerRef)
 const { width, height } = useElementSize(editScreenContainerRef)
 const { canvasScale, handleZoom } = useElementZoom(draggableElRef)
@@ -56,6 +57,9 @@ watchOnce(width, () => {
 watch(() => props.rootSchema.componentProps.style.width, updateScrollBoxStyle)
 
 function updateScrollBoxStyle() {
+  if (!enabledZoom.value) {
+    return
+  }
   let canvasWidth = getCanvasAttribute.value.width
   let canvasHeight = getCanvasAttribute.value.height
   if (Number.isNaN(canvasWidth) || canvasWidth < width.value) {
@@ -65,6 +69,7 @@ function updateScrollBoxStyle() {
   if (Number.isNaN(canvasHeight) || canvasWidth < height.value) {
     canvasHeight = height.value
   }
+
 
   scrollBoxStyle.value = { width: width.value + canvasWidth + 'px', height: height.value + canvasHeight + 'px' }
 }
@@ -90,6 +95,10 @@ function setScroll() {
  * editScreenContainerRef 宽度变化，重置缩放
  */
 useResizeObserver(editScreenContainerRef, ([{ contentRect }]) => {
+  if (!enabledZoom.value) {
+    scrollBoxStyle.value = { width: contentRect.width - 20 + 'px', height: contentRect.height - 20 + 'px' }
+    return
+  }
   const scale = (contentRect.width - 20) / getCanvasAttribute.value.width
   // 超过1.2倍不自动缩放
   if (scale < 1.2) {
@@ -104,11 +113,16 @@ onMounted(() => {
    * editScreenContainerRef 宽度变化，重置缩放
    */
   useResizeObserver(editScreenContainerRef, ([{ contentRect }]) => {
+    if (!enabledZoom.value) {
+      scrollBoxStyle.value = { width: contentRect.width - 20 + 'px', height: contentRect.height - 20 + 'px' }
+      return
+    }
+
     const scale = (contentRect.width - 20) / getCanvasAttribute.value.width
     // 超过1.2倍不自动缩放
     if (scale < 1.2) {
       canvasScale.value = scale
-    }else{
+    } else {
       canvasScale.value = 1.2
     }
     updateScrollBoxStyle()

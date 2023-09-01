@@ -22,8 +22,8 @@ const rootSchema = computed(() => {
 
 const getEditRangestyle = computed(() => {
     return {
-        width: rootSchema.value.componentProps.style?.width ?? '1320px',
-        height: rootSchema.value.componentProps.style?.height ?? '800px'
+        width: rootSchema.value.componentProps.style?.width ?? '100%',
+        height: rootSchema.value.componentProps.style?.height ?? '100%'
     }
 })
 </script>

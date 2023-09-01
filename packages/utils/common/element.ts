@@ -97,14 +97,14 @@ export function useElementDrag(
  * @returns
  */
 export function useElementZoom(draggableElRef: Ref<HTMLDivElement | null>) {
-  const { pressCtrl, canvasScale } = useShareStore();
+  const { pressCtrl, canvasScale, enabledZoom } = useShareStore();
   /**
    * 缩放操作
    * @param e
    * @returns
    */
   function handleZoom(event: WheelEvent) {
-    if (!pressCtrl.value) {
+    if (!pressCtrl.value || !enabledZoom.value) {
       return;
     }
     event.preventDefault();
@@ -123,10 +123,11 @@ export function useElementZoom(draggableElRef: Ref<HTMLDivElement | null>) {
     canvasScale.value = newScale;
   }
 
+  // 启用监听缩放
   watch(
     () => canvasScale.value,
     (e) => {
-      if (draggableElRef.value) {
+      if (draggableElRef.value && enabledZoom.value) {
         draggableElRef.value.style.transform = `scale(${e})`;
       }
     }

@@ -8,6 +8,9 @@ import { useKeyPress } from "../common/element";
 export function useStore() {
   // 设计区域画布缩放
   const canvasScale = ref(1);
+  // 画布缩放启用状态
+  const enabledZoom = ref(false);
+
   // 获取键盘状态
   const { pressSpace, pressShift, pressCtrl } = useKeyPress();
   return {
@@ -15,6 +18,7 @@ export function useStore() {
     pressSpace,
     pressShift,
     pressCtrl,
+    enabledZoom,
   };
 }
 

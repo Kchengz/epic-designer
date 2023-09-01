@@ -35,7 +35,7 @@ const showSelector = ref(false)
 const showHover = ref(false)
 const selectorTransition = ref(true)
 
-const { canvasScale } = useShareStore()
+const { canvasScale, enabledZoom } = useShareStore()
 
 let kEditRange: HTMLDivElement | null = null
 
@@ -147,18 +147,18 @@ function setSeletorStyle() {
   const { top: offsetY, left: offsetX } = kEditRange?.getBoundingClientRect() ?? { top: 0, left: 0 }
 
   const { top, left, width, height } = element.getBoundingClientRect()
-
+  const scale = enabledZoom.value ? canvasScale.value : 1
   // 计算选择器部件位置
-  const selectorTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * canvasScale.value
-  const selectorLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0) * canvasScale.value
+  const selectorTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * scale
+  const selectorLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0) * scale
 
-  const selectorRefHeight = height / canvasScale.value
+  const selectorRefHeight = height / scale
 
   if (selectorRef.value) {
-    selectorRef.value.style.width = `${width / canvasScale.value}px`
+    selectorRef.value.style.width = `${width / scale}px`
     selectorRef.value.style.height = `${selectorRefHeight}px`
-    selectorRef.value.style.top = `${selectorTop / canvasScale.value}px`
-    selectorRef.value.style.left = `${selectorLeft / canvasScale.value}px`
+    selectorRef.value.style.top = `${selectorTop / scale}px`
+    selectorRef.value.style.left = `${selectorLeft / scale}px`
   }
 
   // 调整操作调位置 start
@@ -196,16 +196,17 @@ function setHoverStyle() {
   if (!element) return
   const { top: offsetY, left: offsetX } = kEditRange?.getBoundingClientRect() ?? { top: 0, left: 0 }
   const { top, left, width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
+  const scale = enabledZoom.value ? canvasScale.value : 1
 
   // 计算选择器部件位置
-  const hoverTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * canvasScale.value
-  const hoverLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0) * canvasScale.value
+  const hoverTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * scale
+  const hoverLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0) * scale
 
   if (hoverWidgetRef.value) {
-    hoverWidgetRef.value.style.width = `${width / canvasScale.value}px`
-    hoverWidgetRef.value.style.height = `${height / canvasScale.value}px`
-    hoverWidgetRef.value.style.top = `${hoverTop / canvasScale.value}px`
-    hoverWidgetRef.value.style.left = `${hoverLeft / canvasScale.value}px`
+    hoverWidgetRef.value.style.width = `${width / scale}px`
+    hoverWidgetRef.value.style.height = `${height / scale}px`
+    hoverWidgetRef.value.style.top = `${hoverTop / scale}px`
+    hoverWidgetRef.value.style.left = `${hoverLeft / scale}px`
   }
 }
 
