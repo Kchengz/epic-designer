@@ -42,12 +42,10 @@ const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vu
 const pageManager = usePageManager()
 
 const props = withDefaults(defineProps<DesignerProps>(), {
-  enabledZoom: false
+  disabledZoom: false
 })
 
 const emit = defineEmits(['ready', 'save'])
-
-
 
 const state = reactive<DesignerState>({
   checkedNode: null,
@@ -61,13 +59,14 @@ const pageSchema = reactive<PageSchema>({
   script: ''
 })
 
-const { enabledZoom } = useShareStore()
-watch(() => props.enabledZoom, newVal => {
-  enabledZoom.value = newVal
-  console.log(newVal,'---')
+// 记录缩放状态 start
+const { disabledZoom } = useShareStore()
+watch(() => props.disabledZoom, newVal => {
+  disabledZoom.value = newVal
 }, {
   immediate: true
 })
+// 记录缩放状态 end
 
 watch(() => pageSchema.script, e => {
   if (e && e !== '') {

@@ -35,7 +35,7 @@ const showSelector = ref(false)
 const showHover = ref(false)
 const selectorTransition = ref(true)
 
-const { canvasScale, enabledZoom } = useShareStore()
+const { canvasScale, disabledZoom } = useShareStore()
 
 let kEditRange: HTMLDivElement | null = null
 
@@ -147,7 +147,7 @@ function setSeletorStyle() {
   const { top: offsetY, left: offsetX } = kEditRange?.getBoundingClientRect() ?? { top: 0, left: 0 }
 
   const { top, left, width, height } = element.getBoundingClientRect()
-  const scale = enabledZoom.value ? canvasScale.value : 1
+  const scale = !disabledZoom.value ? canvasScale.value : 1
   // 计算选择器部件位置
   const selectorTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * scale
   const selectorLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0) * scale
@@ -196,7 +196,7 @@ function setHoverStyle() {
   if (!element) return
   const { top: offsetY, left: offsetX } = kEditRange?.getBoundingClientRect() ?? { top: 0, left: 0 }
   const { top, left, width, height } = element.getBoundingClientRect?.() ?? element.nextElementSibling?.getBoundingClientRect()
-  const scale = enabledZoom.value ? canvasScale.value : 1
+  const scale = !disabledZoom.value ? canvasScale.value : 1
 
   // 计算选择器部件位置
   const hoverTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * scale
