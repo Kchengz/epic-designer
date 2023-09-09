@@ -4,7 +4,7 @@
     <Toolbar />
     <!-- 工具条 end  -->
 
-    <div ref="editScreenContainerRef" class="flex-1 overflow-auto epic-edit-screen-container"
+    <div ref="editScreenContainerRef" class="flex-1 overflow-auto overflow-y-hidden epic-edit-screen-container"
       :class="{ 'cursor-grab': pressSpace }" :draggable="pressSpace" @wheel="handleZoom"
       @dragstart="handleElementDragStart" @dragend="handleElementDragEnd" @drag="handleElementDrag">
       <div id="canvasContainer" class="flex items-center justify-center" :style="scrollBoxStyle">
@@ -64,7 +64,6 @@ function updateScrollBoxStyle() {
   if (disabledZoom.value) {
     // 禁用画布缩放功能
     canvasBoxStyle.value = { width: contentRectWidth + 'px', height: contentRectHeight + 'px', transform: 'translate(0px, 20px)' }
-
     return
   }
   let canvasWidth = getCanvasAttribute.value.width || contentRectWidth
