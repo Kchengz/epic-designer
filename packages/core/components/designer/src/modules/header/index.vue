@@ -12,17 +12,18 @@
     </div>
     <div class="epic-header-item flex flex items-center">
       <Button size="small" :disabled="!recordList.length" @click="handleUndo">
-        <span class="iconfont icon-chexiao2x" />
+        <EIcon name="icon-chexiao2x" />
+
       </Button>
       <Button size="small" :disabled="!undoList.length" @click="handleRedo">
-        <span class="iconfont icon-fanhui2x" />
+        <EIcon name="icon-fanhui2x" />
       </Button>
       <Button size="small" @click="handlePreview">
-        <span class="iconfont icon-yulan" style="margin-right:6px" />
+        <EIcon name="icon-yulan" style="margin-right:6px" />
         预览
       </Button>
       <Button size="small" @click="handleSave">
-        <span class="iconfont icon-baocun" style="margin-right:6px" />
+        <EIcon name="icon-baocun" style="margin-right:6px" />
         保存
       </Button>
       <slot name="suffix"></slot>
@@ -35,6 +36,7 @@
 import { ref, inject } from 'vue'
 import { pluginManager, revoke, deepCompareAndModify } from '@epic-designer/utils'
 import { PageSchema, Designer } from '../../../../../types/epic-designer'
+import EIcon from '../../../../icon'
 import EPreview from './../preview/index.vue'
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer

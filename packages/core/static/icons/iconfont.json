@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "24072346",
+      "name": "平板（头部）",
+      "font_class": "a-pingbantoubu",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "24072347",
+      "name": "手机（头部）",
+      "font_class": "a-shoujitoubu",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
+      "icon_id": "24072345",
+      "name": "电脑（头部）",
+      "font_class": "a-diannaotoubu",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
       "icon_id": "5961300",
       "name": "待办事项",
       "font_class": "daibanshixiang",

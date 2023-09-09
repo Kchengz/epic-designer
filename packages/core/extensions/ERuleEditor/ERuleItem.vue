@@ -14,7 +14,7 @@
     <div
       class="rule-btn-delete absolute top-0 right-0 transition-all w-6 h-6 cursor-pointer rounded-bl-1 flex-center color-white"
       @click="handleDelete">
-      <span class="iconfont icon-shanchu1" />
+      <EIcon name="icon-shanchu1" />
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@ import { FormItemRule } from './types'
 import { computed, inject } from 'vue'
 import { PageManager } from '@epic-designer/utils'
 import ENode from '../../components/node/index'
+import EIcon from '../../components/icon'
 import { typeOptions, triggerOptions, lenTypeOptions } from './data'
 const emit = defineEmits(['change', 'delete', 'update:rule'])
 const props = defineProps<{

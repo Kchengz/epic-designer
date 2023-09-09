@@ -1,8 +1,10 @@
 <template>
   <li class="epic-tree-node">
     <a>
-      <span v-if="props.record.children?.length" class="icon-expanded" :class="{ expanded }" @click="handleExpanded"><span
-          class="iconfont icon-zhankai" /></span>
+      <span v-if="props.record.children?.length" class="icon-expanded" :class="{ expanded }" @click="handleExpanded">
+        <EIcon name="icon-zhankai" />
+      </span>
+
       <TreeNodeText />
     </a>
     <ul v-if="props.record.children?.length" class="epic-tree-sublist" :class="{ expanded }">
@@ -12,6 +14,7 @@
 </template>
 <script lang="ts" setup>
 import { NodeItem } from '../../../types/epic-designer'
+import EIcon from '../../icon'
 import { inject, computed, Ref, h, defineComponent, Slots } from 'vue'
 import { pluginManager } from '@epic-designer/utils'
 defineOptions({
@@ -19,7 +22,7 @@ defineOptions({
 })
 
 const props = defineProps<{
-  record:NodeItem
+  record: NodeItem
 }>()
 
 

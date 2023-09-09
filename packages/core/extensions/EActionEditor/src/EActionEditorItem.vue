@@ -5,7 +5,7 @@
         {{ item.describe }}
       </div>
       <div class="event-btn">
-        <span class="iconfont icon-tianjia1" @click="handleOpen(item.type)" />
+        <EIcon name="icon-tianjia1" @click="handleOpen(item.type)" />
       </div>
     </div>
     <div class="epic-action-editor-main">
@@ -15,7 +15,7 @@
         <template #item="{ element: action, index }">
           <div class="epic-editor-item">
             <div class="w-36px text-lg">
-              <span class="iconfont icon-tuozhuai mr-2 text-lg cursor-move handle"></span>
+              <EIcon class="mr-2 text-lg cursor-move handle" name="icon-tuozhuai" />
             </div>
             <div class="flex-1">
               <div v-if="action.type === 'component'">
@@ -31,10 +31,10 @@
             </div>
             <div class="opr-box">
               <div class="edit-btn" @click="handleEdit(index, item.type, action)">
-                <span class="iconfont icon-edit" />
+                <EIcon name="icon-edit" />
               </div>
               <div class="del-btn" @click="handleDelete(index, item.type)">
-                <span class="iconfont icon-shanchu" />
+                <EIcon name="icon-shanchu" />
               </div>
             </div>
           </div>
@@ -47,6 +47,7 @@
 import { type PropType, inject } from 'vue'
 import { findSchemaById } from '@epic-designer/utils'
 import { PageSchema } from '../../../types/epic-designer'
+import EIcon from '../../../components/icon'
 import draggable from 'vuedraggable'
 
 const props = defineProps({

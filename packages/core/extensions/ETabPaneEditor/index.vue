@@ -1,26 +1,14 @@
 <template>
   <div>
-    <div
-      v-for="(item, index) in tabList"
-      :key="index"
-      class="EColEditor-item"
-    >
-      <Input
-        v-model:value="item.label"
-        v-model="item.label"
-        style="width:100%"
-      />
-      <div
-        v-if="tabList.length > 1"
-        class="del-btn"
-      >
-        <span @click="handleDelete(index)"> <span class="iconfont icon-shanchu" /></span>
+    <div v-for="(item, index) in tabList" :key="index" class="EColEditor-item">
+      <Input v-model:value="item.label" v-model="item.label" style="width:100%" />
+      <div v-if="tabList.length > 1" class="del-btn">
+        <span @click="handleDelete(index)">
+          <EIcon name="icon-shanchu" />
+        </span>
       </div>
     </div>
-    <div
-      class="add-btn"
-      @click="handleAdd"
-    >
+    <div class="add-btn" @click="handleAdd">
       添加
     </div>
   </div>
@@ -29,6 +17,7 @@
 import { pluginManager, getUUID } from '@epic-designer/utils'
 import { NodeItem } from '../../types/epic-designer'
 import { computed, PropType } from 'vue'
+import EIcon from '../../components/icon'
 
 const Input = pluginManager.getComponent('input')
 const props = defineProps({
@@ -39,10 +28,10 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:modelValue'])
 const tabList = computed({
-  get () {
+  get() {
     return props.modelValue
   },
-  set (e) {
+  set(e) {
     emit('update:modelValue', e)
   }
 })
@@ -50,7 +39,7 @@ const tabList = computed({
 /**
  * 新增栅格Col
  */
-function handleAdd () {
+function handleAdd() {
   const tabItem = {
     label: '标签页',
     type: 'tab-pane',
@@ -64,7 +53,7 @@ function handleAdd () {
  * 删除栅格Col
  * @param index
  */
-function handleDelete (index: number) {
+function handleDelete(index: number) {
   tabList.value = tabList.value.filter((item, i) => index !== i)
 }
 </script>

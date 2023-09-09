@@ -1,28 +1,16 @@
 <template>
   <div>
-    <div
-      v-for="(item, index) in colList"
-      :key="index"
-      class="EColEditor-item"
-    >
-      <Number
-        v-model:value="item.componentProps.span"
-        v-model="item.componentProps.span"
-        style="width:100%"
-        :min="1"
-        :max="24"
-      />
-      <div
-        v-if="colList.length > 1"
-        class="del-btn"
-      >
-        <span @click="handleDelete(index)"> <span class="iconfont icon-shanchu" /></span>
+    <div v-for="(item, index) in colList" :key="index" class="EColEditor-item">
+      <Number v-model:value="item.componentProps.span" v-model="item.componentProps.span" style="width:100%" :min="1"
+        :max="24" />
+      <div v-if="colList.length > 1" class="del-btn">
+        <span @click="handleDelete(index)">
+          <EIcon name="icon-shanchu" />
+        </span>
+
       </div>
     </div>
-    <div
-      class="add-btn"
-      @click="handleAdd"
-    >
+    <div class="add-btn" @click="handleAdd">
       添加
     </div>
   </div>
@@ -31,6 +19,7 @@
 import { pluginManager, getUUID } from '@epic-designer/utils'
 import { NodeItem } from '../../types/epic-designer'
 import { computed, PropType } from 'vue'
+import EIcon from '../../components/icon'
 
 const Number = pluginManager.getComponent('number')
 const props = defineProps({
@@ -42,10 +31,10 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 const colList = computed({
-  get () {
+  get() {
     return props.modelValue
   },
-  set (e) {
+  set(e) {
     emit('update:modelValue', e)
   }
 })
@@ -53,7 +42,7 @@ const colList = computed({
 /**
  * 新增栅格Col
  */
-function handleAdd () {
+function handleAdd() {
   const colItem = {
     type: 'col',
     children: [],
@@ -69,7 +58,7 @@ function handleAdd () {
  * 删除栅格Col
  * @param index
  */
-function handleDelete (index: number) {
+function handleDelete(index: number) {
   colList.value = colList.value.filter((item, i) => index !== i)
 }
 

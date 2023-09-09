@@ -4,7 +4,7 @@
     <div class="search-box px-10px pr-14px py-6px">
       <Input placeholder="请输入组件名称" v-model="keyword" v-model:value="keyword">
       <template #prefix>
-        <span class="iconfont icon-chaxun" />
+        <EIcon name="icon-chaxun" />
       </template>
       </Input>
     </div>
@@ -28,7 +28,8 @@
         }" :clone="handleDeepCopyData" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2">
           <template #item="{ element }">
             <div class="source-componet-item flex items-center truncate" @click="handleClick(element)">
-              <span class="iconfont" :class="element.icon" />
+              <EIcon :name="element.icon" />
+
               <div>{{ element.label }}</div>
             </div>
           </template>
@@ -44,6 +45,7 @@ import draggable from 'vuedraggable'
 import { ref, toRaw, computed, inject } from 'vue'
 import { getUUID, deepClone, findSchemaInfoById, pluginManager, mapSchemas, revoke } from '@epic-designer/utils'
 import { NodeItem, PageSchema, Designer } from '../../../../../types/epic-designer'
+import EIcon from '../../../../icon'
 const Input = pluginManager.getComponent('input')
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
