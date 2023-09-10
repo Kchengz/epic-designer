@@ -24,7 +24,7 @@ import { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { inject, computed, ref, onMounted, watch } from 'vue'
 import { pluginManager, getUUID, deepClone, revoke, findSchemaInfoById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
 import { useResizeObserver } from '@vueuse/core'
-
+import EIcon from '../../../../icon'
 const pageManager = inject('pageManager', {}) as PageManager
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
