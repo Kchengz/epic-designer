@@ -1,7 +1,7 @@
 {
   "name": "epic-designer",
   "private": false,
-  "version": "0.8.6",
+  "version": "0.8.62",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -55,6 +55,7 @@
     "jsdom": "^20.0.3",
     "unocss": "^0.51.13",
     "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-monaco-editor": "^1.1.0",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vitest": "^0.24.5",
