@@ -18,9 +18,9 @@ export default defineConfig({
   themeConfig: {
     logo: 'https://epic.kcz66.com/static/logo.png',
     algolia: {
-      appId:'8W26MXPW5G',
-      apiKey: '6f40928c6d842f705f279afc772f053a',
-      indexName: 'epic-designer'
+      appId:'PUN9QM5E0U',
+      apiKey: '29a246325412eeb2df1f9108a3a11885',
+      indexName: 'kcz66-gitee'
     },
     editLink: {
       text: "为此页提供修改建议",
