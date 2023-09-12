@@ -1,8 +1,7 @@
 <template>
-  <Input class="epic-input-size" v-model="size" v-model:value="size" type="number" min="0" placeholder="请输入"
-    @input="handleUpdate">
+  <Input class="epic-input-size" v-model="size" v-model:value="size" type="number" min="0" placeholder="请输入">
   <template #suffix>
-    <Select v-model:value="unit" v-model="unit" style="width: 68px" :options="unitArray" @change="handleUpdate" />
+    <Select v-model:value="unit" v-model="unit" style="width: 68px" :options="unitArray" />
   </template>
   </Input>
 </template>
@@ -40,6 +39,10 @@ watch(() => props.modelValue, e => {
   unit.value = e.substring(size.value.length)
 }, {
   immediate: true
+})
+
+watch(() => unit.value + size.value, () => {
+  handleUpdate()
 })
 
 function handleUpdate() {
