@@ -1,42 +1,42 @@
 // 注册element-plus ui
-import { type PluginManager } from "@epic-designer/utils"
-import Input from './input'
-import InputNumber from './input-number'
-import Form from './form'
-import FormItem from './formItem'
-import Button from './button'
-import Card from './card'
-import Row from './row'
-import Col from './col'
-import Select from './select'
-import Radio from './radio'
-import Checkbox from './checkbox'
-import Slider from './slider'
-import ColorPicker from './color-picker'
-import Switch from './switch'
-import Cascader from './cascader'
-import Collapse from './collapse'
-import CollapseItem from './collapse-item'
-import DatePicker from './date-picker'
-import UploadFile from './upload-file'
-import UploadImage from './upload-image'
-import Modal from './modal'
+import { type PluginManager } from "@epic-designer/utils";
+import Input from "./input";
+import InputNumber from "./input-number";
+import Form from "./form";
+import FormItem from "./formItem";
+import Button from "./button";
+import Card from "./card";
+import Row from "./row";
+import Col from "./col";
+import Select from "./select";
+import Radio from "./radio";
+import Checkbox from "./checkbox";
+import Slider from "./slider";
+import ColorPicker from "./color-picker";
+import Switch from "./switch";
+import Cascader from "./cascader";
+import Collapse from "./collapse";
+import CollapseItem from "./collapse-item";
+import DatePicker from "./date-picker";
+import UploadFile from "./upload-file";
+import UploadImage from "./upload-image";
+import Modal from "./modal";
 import {
   ElFormItem,
   ElTabs,
   ElTabPane,
   ElCollapse,
-  ElCollapseItem
-} from 'element-plus'
+  ElCollapseItem,
+} from "element-plus";
 
-export function setupElementPlus (pluginManager: PluginManager): void {
+export function setupElementPlus(pluginManager: PluginManager): void {
   // 异步加载组件
 
-  pluginManager.component('FormItem', ElFormItem)
-  pluginManager.component('Tabs', ElTabs)
-  pluginManager.component('TabPane', ElTabPane)
-  pluginManager.component('Collapse', ElCollapse)
-  pluginManager.component('CollapseItem', ElCollapseItem)
+  pluginManager.component("FormItem", ElFormItem);
+  pluginManager.component("Tabs", ElTabs);
+  pluginManager.component("TabPane", ElTabPane);
+  pluginManager.component("Collapse", ElCollapse);
+  pluginManager.component("CollapseItem", ElCollapseItem);
 
   const componentArray = [
     Form,
@@ -59,37 +59,37 @@ export function setupElementPlus (pluginManager: PluginManager): void {
     CollapseItem,
     UploadFile,
     Modal,
-    UploadImage
-  ]
+    UploadImage,
+  ];
 
   componentArray.forEach((item) => {
-    pluginManager.registerComponent(item)
-  })
+    pluginManager.registerComponent(item);
+  });
 
   // 设置分组显示
   pluginManager.setSchemaGroup([
     {
-      title: '输入',
+      title: "表单",
       list: [
-        'form',
-        'input',
-        'number',
-        'select',
-        'checkbox',
-        'radio',
-        'date',
-        'slider',
-        'upload-file',
-        'upload-image',
-        'cascader',
-        'switch',
-        'button',
-        'color-picker'
-      ]
+        "form",
+        "input",
+        "number",
+        "select",
+        "cascader",
+        "checkbox",
+        "radio",
+        "date",
+        "slider",
+        "switch",
+        "color-picker",
+        "upload-file",
+        "upload-image",
+        "button",
+      ],
     },
     {
-      title: '布局',
-      list: ['card', 'row']
-    }
-  ])
+      title: "布局",
+      list: ["card", "row"],
+    },
+  ]);
 }

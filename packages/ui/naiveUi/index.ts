@@ -67,7 +67,7 @@ export function setupNaiveUi(pluginManager: PluginManager): void {
     CollapseItem,
     UploadFile,
     UploadImage,
-    Modal
+    Modal,
   ];
 
   componentArray.forEach((item) => {
@@ -77,30 +77,27 @@ export function setupNaiveUi(pluginManager: PluginManager): void {
   // 设置分组显示
   pluginManager.setSchemaGroup([
     {
-      title: "输入",
+      title: "表单",
       list: [
         "form",
         "input",
         "number",
         "select",
+        "cascader",
         "checkbox",
         "radio",
         "date",
         "slider",
+        "switch",
+        "color-picker",
         "upload-file",
         "upload-image",
-        "cascader",
-        "switch",
         "button",
-        "color-picker",
       ],
     },
     {
       title: "布局",
-      list: [
-        "card",
-        "row"
-      ],
+      list: ["card", "row"],
     },
   ]);
 }

@@ -89,6 +89,12 @@ export default {
         field: 'componentProps.disabled'
       },
       {
+        label: "选项管理",
+        type: "EOptionsEditor",
+        layout: "vertical",
+        field: "componentProps.options"
+      },
+      {
         label: '表单校验',
         type: 'ERuleEditor',
         layout: 'vertical',
