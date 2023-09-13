@@ -13,7 +13,7 @@
  @start="handleSelect($event.oldIndex); designer.setDisableHover(true)" @end="handleEnd()"
     @add="handleSelect($event.newIndex); handleAdd()">
     <template #item="{ element, index }">
-      <div :index="index" @click.stop="designer.setCheckedNode(element)" @mouseover.stop="designer.setHoverNode(element)"
+      <div class="widget-box" :index="index" @click.stop="designer.setCheckedNode(element)" @mouseover.stop="designer.setHoverNode(element)"
         @mouseout.stop="designer.setHoverNode(null)">
         <ENodeItem :schema="element" />
       </div>

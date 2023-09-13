@@ -6,6 +6,22 @@
   background-size: 15px 15px;
   overflow: hidden;
 
+  // &.moveing {
+  //   width: 100%;
+  //   height: 6px;
+  //   border-radius: 6px;
+  //   overflow: hidden;
+  //   &::after {
+  //     content: "";
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     width: 100%;
+  //     height: 100%;
+  //     background-color: red;
+  //   }
+  // }
+
   .epic-edit-range {
     background-color: white;
     overflow-y: auto;
@@ -41,48 +57,33 @@
   }
 
   .checked-widget {
-    border: 1px solid @primary-color;
+    border: 1px @primary-color dashed;
     background: @primary-hover-bg-color;
-    // position: relative;
-    // &::before {
-    //   content: "";
-    //   height: 5px;
-    //   width: 0%;
-    //   background: @primary-color;
-    //   position: absolute;
-    //   top: -5px;
-    //   right: 0;
-    //   transition: all 0.3s;
-    // }
-    // &::before {
-    //   width: 100%;
-    // }
-    // position: relative;
 
-    // &.moveing {
-    //   width: 100%;
-    //   height: 6px;
-    //   border-radius: 6px;
-    //   overflow: hidden;
-    //   &::after {
-    //     content: "";
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     background-color: red;
-    //   }
-    // }
+    &::before {
+      content: "";
+      height: 5px;
+      background: @primary-color;
+      position: absolute;
+      left: 0;
+      width: 100%;
+    }
 
-    // 遮罩层
-    // &::after {
-    //   content: "";
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
+    &.top,
+    &.center {
+      &::before {
+        top: -5px;
+      }
+    }
+
+    &.bottom {
+      &::before {
+        bottom: -5px;
+      }
+    }
+
+    // &::before {
     //   width: 100%;
-    //   height: 100%;
     // }
 
     .action-box {
@@ -117,11 +118,15 @@
       height: 6px;
     }
   }
-}
 
-.edit-toolbar {
-  height: 40px;
-  background: #ffffff;
-  box-sizing: border-box;
-  border-bottom: 1px solid #eaeaea;
+  .edit-toolbar {
+    height: 40px;
+    background: #ffffff;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  .widget-box {
+    cursor: move;
+  }
 }

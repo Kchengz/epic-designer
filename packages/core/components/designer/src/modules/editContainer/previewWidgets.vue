@@ -1,10 +1,12 @@
 <template>
   <div v-show="showSelector && designer.state.checkedNode?.id !== 'root'" ref="selectorRef"
-    class="checked-widget absolute pointer-events-none z-20" :class="{ 'transition-all': selectorTransition }">
+    class="checked-widget absolute pointer-events-none z-20"
+    :class="selectorPosition + ' ' + (selectorTransition ? 'transition-all' : '')">
+
     <div class="action-box" ref="actionBoxRef">
       <div class="action-item whitespace-nowrap">
-        {{ designer.state.checkedNode?.type }}
-        {{ designer.state.checkedNode?.label ?? pluginManager.getComponentConfingByType(designer.state.checkedNode?.type
+        <!-- {{ designer.state.checkedNode?.type }} -->
+        {{ pluginManager.getComponentConfingByType(designer.state.checkedNode?.type
           ?? '')?.defaultSchema.label }}
       </div>
       <div title="复制" class="action-item pointer-events-auto" @click="handleCopy">
@@ -36,6 +38,8 @@ const actionBoxRef = ref<HTMLDivElement | null>(null)
 const showSelector = ref(false)
 const showHover = ref(false)
 const selectorTransition = ref(true)
+
+const selectorPosition = ref<'top' | 'center' | 'bottom'>('top')
 
 const { canvasScale, disabledZoom } = useShareStore()
 
@@ -169,20 +173,24 @@ function setSeletorStyle() {
     return
   }
 
-  // 判断actionBoxRef位置是否置于底部
+  // 判断actionBoxRef位置是否应该置于底部 距离顶部45px 高度100px
   if (selectorTop < 45 && selectorRefHeight < 100) {
     actionBoxRef.value.style.top = ''
     actionBoxRef.value.style.bottom = '-30px'
     actionBoxRef.value.style['border-radius'] = '0px 0px 4px 4px'
+    selectorPosition.value = 'bottom'
 
   } else if (selectorTop < 45) {
     // 判断actionBoxRef位置置于中间
     actionBoxRef.value.style.top = '0px'
     actionBoxRef.value.style['border-radius'] = '0px 0px 4px 0'
+    selectorPosition.value = 'center'
+
   } else {
     // actionBoxRef位置置于顶部
     actionBoxRef.value.style.top = '-30px'
     actionBoxRef.value.style['border-radius'] = '4px 4px 0px 0px'
+    selectorPosition.value = 'top'
   }
   // 调整操作调位置 end
 
