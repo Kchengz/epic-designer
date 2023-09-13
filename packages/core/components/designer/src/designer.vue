@@ -77,6 +77,7 @@ watch(() => pageSchema.script, e => {
 const defaultSchemas = [{
   type: 'page',
   id: 'root',
+  label:'页面',
   children: [],
   componentProps: {
     style: {

@@ -1,7 +1,7 @@
 <template>
   <div class="epic-component-view flex flex-col">
     <!-- 搜素框 start -->
-    <div class="search-box px-10px pr-14px py-6px">
+    <div class="search-box px-10px py-6px">
       <Input placeholder="请输入组件名称" v-model="keyword" v-model:value="keyword">
       <template #prefix>
         <EIcon name="icon-chaxun" />
@@ -42,7 +42,7 @@
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { ref, toRaw, computed, inject } from 'vue'
+import { ref, computed, inject } from 'vue'
 import { getUUID, deepClone, findSchemaInfoById, pluginManager, mapSchemas, revoke } from '@epic-designer/utils'
 import { NodeItem, PageSchema, Designer } from '../../../../../types/epic-designer'
 import EIcon from '../../../../icon'

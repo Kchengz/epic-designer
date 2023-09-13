@@ -1,7 +1,10 @@
-.epic-tree-main {
+.epic-tree {
   // background: white;
-  list-style: none;
-  padding: 0;
+
+  .epic-tree-main {
+    padding-right: 10px;
+  }
+
   ul {
     list-style: none;
     padding: 0;
@@ -32,20 +35,24 @@
     }
   }
 
-  .epic-node-type-text{
+  .epic-node-type-text {
     font-size: 10px;
     color: #0000004f;
     margin-left: 6px;
   }
 
-
   .epic-tree-node {
+    
+    &.level-1 {
+      padding-left: 10px;
+    }
+
     padding-left: 18px;
-    min-height: 24px;
-    line-height: 24px;
+    min-height: 30px;
+    line-height: 30px;
     cursor: pointer;
     .icon-expanded {
-      font-size: 13px;
+      font-size: 14px;
       position: relative;
       left: -2px;
       transition: transform 0.3s;
