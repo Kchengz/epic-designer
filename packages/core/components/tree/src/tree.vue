@@ -13,6 +13,7 @@
       <ul>
         <ETreeNode class="level-1" v-for="(item) in getTreeData" :key="item.id" :record="item" />
       </ul>
+      <div v-show="!getTreeData.length" class="text-center pt-42px text-gray-400">没有查询到的数据</div>
     </div>
   </div>
 </template>
