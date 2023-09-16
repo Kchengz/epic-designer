@@ -1,6 +1,6 @@
 <template>
     <!-- 工具条 start  -->
-    <div class="edit-toolbar flex items-center justify-end text-gray-500 px-4">
+    <div class="edit-toolbar flex items-center justify-end text-gray-500 px-4 mx-1">
         <div title="导出" class="pr-16px cursor-pointer" @click="handleExportData('demo.json')">
             <span class="icon iconfont">&#xe60b;</span>
         </div>

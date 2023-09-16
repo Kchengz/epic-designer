@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div v-show="showHover" ref="hoverWidgetRef" class="hover-widget absolute transition-all pointer-events-none z-998" />
+  <div v-show="showHover && designer.state.checkedNode?.id !== designer.state.hoverNode?.id" ref="hoverWidgetRef" class="hover-widget absolute transition-all pointer-events-none z-998" />
 </template>
 <script lang="ts" setup>
 import { PageSchema, Designer } from '../../../../../types/epic-designer'

@@ -2,7 +2,7 @@
   <div class="epic-component-view flex flex-col">
     <!-- 搜素框 start -->
     <div class="search-box px-10px py-6px">
-      <Input placeholder="请输入组件名称" v-model="keyword" v-model:value="keyword">
+      <Input placeholder="搜索组件" v-model="keyword" v-model:value="keyword">
       <template #prefix>
         <EIcon name="icon-chaxun" />
       </template>

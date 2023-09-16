@@ -1,3 +1,5 @@
+
+
 ## 安装 epic-designer
 
 ```bash
@@ -9,6 +11,7 @@ epic-designer 目标是支持多 UI 兼容,目前支持以下 UI
 - element-plus
 - ant-design-vue
 - naive-ui
+
 
 ## 选择 UI 组件库
 
@@ -118,4 +121,24 @@ const pageSchema = {
   ],
 };
 </script>
+```
+
+## monaco-editor资源加载问题
+
+vite项目安装使用vite-plugin-monaco-editor插件加载monaco-editor依赖资源
+
+```bash
+npm i -D vite-plugin-monaco-editor
+```
+在vite.config.ts中添加
+
+```typescript
+import monacoEditorPlugin from 'vite-plugin-monaco-editor'
+ 
+export default defineConfig({
+plugins: [
+    vue(), 
+    (monacoEditorPlugin as any).default({}) 
+  ]
+});
 ```

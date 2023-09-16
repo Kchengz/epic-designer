@@ -3,10 +3,12 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+// import 'monaco-editor/esm/vs/editor/editor.all.js';
+// import 'monaco-editor/esm/vs/editor/standalone/browser/accessibilityHelp/accessibilityHelp.js';
 // import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-
 import * as monaco from 'monaco-editor'
 import type { editor } from 'monaco-editor'
+
 
 const props = withDefaults(defineProps<{
   language?: string,
