@@ -94,7 +94,7 @@ export function usePageManager(): PageManager {
         const component =
           action.componentId != null &&
           (getComponentInstance(action.componentId) as any);
-        // component[action.methodName](action.args, ...args)
+
         component[action.methodName](...args);
         return;
       }

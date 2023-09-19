@@ -41,10 +41,18 @@ function getData(): FormDataModel {
 }
 
 /**
+ * 校验表单数据
+ * @param data
+ */
+function validate() {
+  return form.value?.validateFields()
+}
+
+/**
  * 设置表单数据
  * @param data
  */
- function setData (data: FormDataModel) {
+function setData(data: FormDataModel) {
   Object.assign(formData, data)
 }
 
@@ -52,7 +60,7 @@ function getData(): FormDataModel {
 onMounted(async () => {
   if (props.record?.type === 'form' && forms.value && form.value) {
     const name = props.record.name ?? 'default' as string
-    form.value.validate = form.value.validateFields
+    form.value.validate = validate
     forms.value[name] = form.value
     form.value.getData = getData
     form.value.setData = setData
@@ -87,6 +95,7 @@ const children = computed(() => {
 defineExpose({
   form,
   getData,
-  setData
+  setData,
+  validate
 })
 </script>

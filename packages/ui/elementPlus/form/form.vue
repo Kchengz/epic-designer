@@ -47,6 +47,15 @@ function getData(): FormDataModel {
 function setData(data: FormDataModel) {
   Object.assign(formData, data)
 }
+
+/**
+ * 校验表单数据
+ * @param data
+ */
+function validate() {
+  return form.value?.validate()
+}
+
 // form组件需要特殊处理
 onMounted(async () => {
   if (props.record?.type === 'form' && forms.value && form.value) {
@@ -81,6 +90,7 @@ const children = computed(() => {
 defineExpose({
   form,
   getData,
-  setData
+  setData,
+  validate
 })
 </script>

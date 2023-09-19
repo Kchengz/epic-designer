@@ -127,6 +127,20 @@ export default {
         type: 'switch',
         field: 'componentProps.disabled'
       }
+    ],
+    action: [
+      {
+        type: 'getData',
+        describe: '获取表单数据'
+      },
+      {
+        type: 'setData',
+        describe: '设置表单数据'
+      },
+      {
+        type: 'validate',
+        describe: '校验表单'
+      }
     ]
   }
 } as ComponentConfigModel
