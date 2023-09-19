@@ -1,14 +1,14 @@
 <template>
-  <li class="epic-tree-node">
+  <li class="epic-tree-node" :class="{ expanded: props.record.children?.length }">
     <a>
-      <span v-if="props.record.children?.length" class="icon-expanded" :class="{ expanded }" @click="handleExpanded">
+      <span v-if="props.record.children?.length && props.record.type !== 'page'" class="icon-expanded"
+        :class="{ expanded }" @click="handleExpanded">
         <EIcon name="icon-zhankai" />
       </span>
-
       <TreeNodeText />
     </a>
     <ul v-if="props.record.children?.length" class="epic-tree-sublist" :class="{ expanded }">
-      <ETreeNode v-for="(item) in props.record.children" :key="item.id" :record="item" />
+      <ETreeNode v-for="( item ) in  props.record.children " :key="item.id" :record="item" />
     </ul>
   </li>
 </template>

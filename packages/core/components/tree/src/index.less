@@ -42,7 +42,6 @@
   }
 
   .epic-tree-node {
-    
     &.level-1 {
       padding-left: 10px;
     }
@@ -51,12 +50,14 @@
     min-height: 30px;
     line-height: 30px;
     cursor: pointer;
+
     .icon-expanded {
       font-size: 14px;
-      position: relative;
-      left: -2px;
+      position: absolute;
+      left: 6px;
       transition: transform 0.3s;
       color: #999;
+
       &.expanded {
         transform: rotate(90deg);
       }
@@ -91,6 +92,10 @@
         height: 1px;
         left: 4px;
         top: 13px;
+      }
+
+      &.expanded::before {
+        display: none;
       }
 
       &:last-child {
