@@ -4,7 +4,8 @@
   animation: 200,
   group: 'tree-draggable',
   ghostClass: 'moveing',
-  draggable: '.draggable-item'
+  draggable: '.draggable-item',
+  disabled: !treeProps.draggable || modelSchemas[0].type === 'page'
 
 }" @start="handleSelect($event.oldIndex)">
     <template #item="{ element, index }">
@@ -53,11 +54,6 @@ function handleSelect(index: number) {
 function isDraggable(schemas: NodeItem) {
   // 判断当前节点类型是否允许拖拽
   if (schemas.type === 'page') {
-    return 'unmover-item'
-  }
-
-  // 判断是否允许拖拽
-  if (!treeProps.draggable) {
     return 'unmover-item'
   }
 
