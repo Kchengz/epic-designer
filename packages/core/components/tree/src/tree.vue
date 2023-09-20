@@ -11,7 +11,7 @@
     <!-- 搜素框 end -->
     <div class="epic-tree-main">
       <ul>
-        <ETreeNode class="level-1" v-for="(item) in getTreeData" :key="item.id" :record="item" />
+        <ETreeNodes v-model:schemas="getTreeData" />
       </ul>
       <div v-show="!getTreeData.length" class="text-center pt-42px text-gray-400">没有查询到的数据</div>
     </div>
@@ -21,7 +21,7 @@
 import { NodeItem } from '../../../types/epic-designer'
 import type { PropType } from 'vue'
 import { ref, provide, computed, useSlots } from 'vue'
-import ETreeNode from './treeNode.vue'
+import ETreeNodes from './treeNodes.vue'
 import EIcon from '../../icon'
 import { pluginManager } from '@epic-designer/utils'
 
@@ -48,6 +48,10 @@ const props = defineProps({
     type: Array,
     default: () => []
   },
+  draggable: {
+    type: Boolean,
+    default: false
+  },
 })
 
 const emit = defineEmits(['update:selectedKeys', 'node-click'])
@@ -61,10 +65,20 @@ const selectedKeysComputed = computed({
 })
 
 
-const getTreeData = computed(() => {
-  return filterTreeByLabel(props.options, keyword.value)
+const getTreeData = computed({
+  get() {
+    return filterTreeByLabel(props.options, keyword.value)
+  },
+  set(e) {
+    console.log(e)
+  }
 })
 
+/**
+ * 通过label 过滤节点
+ * @param tree 节点树
+ * @param labelToFilter 过滤关键字
+ */
 function filterTreeByLabel(tree, labelToFilter) {
   const filteredTree: NodeItem[] = [];
 
@@ -94,6 +108,7 @@ function handleSelect(id: string, record: NodeItem) {
 provide('expandedKeys', expandedKeys)
 provide('selectedKeys', selectedKeysComputed)
 provide('treeProps', props)
+provide('handleSelect', handleSelect)
 provide('handleSelect', handleSelect)
 
 </script>

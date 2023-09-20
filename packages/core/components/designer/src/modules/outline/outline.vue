@@ -1,13 +1,13 @@
 <template>
   <div class="epic-outline">
-    <ETree :options="pageSchema.schemas" :selected-keys="selectedKeys" :hover-key="designer.state.hoverNode?.id"
+    <ETree :options="pageSchema.schemas" draggable :selected-keys="selectedKeys" :hover-key="designer.state.hoverNode?.id"
       @node-click="handleNodeClick">
-      <template #tree-node="{ record }">
-        <div class="text-padding" @mouseenter.stop="designer.setHoverNode(record)"
+      <template #tree-node="{ schema }">
+        <div class="text-padding" @mouseenter.stop="designer.setHoverNode(schema)"
           @mouseleave.stop="designer.setHoverNode(null)">
-          {{ record.label ??
-            pluginManager.getComponentConfingByType(record.type)?.defaultSchema.label }}<span class="epic-node-type-text">
-            {{ record.type }}
+          {{ schema.label ??
+            pluginManager.getComponentConfingByType(schema.type)?.defaultSchema.label }}<span class="epic-node-type-text">
+            {{ schema.type }}
           </span>
         </div>
       </template>

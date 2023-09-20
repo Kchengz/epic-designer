@@ -1,20 +1,16 @@
 <template>
-  <draggable v-model="modelSchemas" item-key="id" 
-  :component-data="{
+  <draggable v-model="modelSchemas" item-key="id" :component-data="{
     name: 'draggable-range',
     type: 'transition-group',
   }"
-  class="draggable-range"
-   v-bind="{
+   class="draggable-range" v-bind="{
   animation: 200,
   group: 'edit-draggable',
   ghostClass: 'moveing'
-}"
- @start="handleSelect($event.oldIndex); designer.setDisableHover(true)" @end="handleEnd()"
-    @add="handleSelect($event.newIndex); handleAdd()">
+}" @start="handleSelect($event.oldIndex)" @end="handleEnd()" @add="handleSelect($event.newIndex); handleAdd()">
     <template #item="{ element, index }">
-      <div class="widget-box" :index="index" @click.stop="designer.setCheckedNode(element)" @mouseover.stop="designer.setHoverNode(element)"
-        @mouseout.stop="designer.setHoverNode(null)">
+      <div class="widget-box" :index="index" @click.stop="designer.setCheckedNode(element)"
+        @mouseover.stop="designer.setHoverNode(element)" @mouseout.stop="designer.setHoverNode(null)">
         <ENodeItem :schema="element" />
       </div>
     </template>
@@ -52,6 +48,7 @@ const modelSchemas = computed({
  */
 function handleSelect(index: number) {
   designer.setCheckedNode(modelSchemas.value![index])
+  designer.setDisableHover(true)
 }
 
 function handleEnd() {

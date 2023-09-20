@@ -1,15 +1,15 @@
 <template>
-  <li class="epic-tree-node" :class="{ expanded: props.record.children?.length }">
+  <li class="epic-tree-node"
+    :class="{ expanded: props.schema.children?.length, 'level-1': props.schema.type === 'page' }">
     <a>
-      <span v-if="props.record.children?.length && props.record.type !== 'page'" class="icon-expanded"
+      <span v-if="props.schema.children?.length && props.schema.type !== 'page'" class="icon-expanded"
         :class="{ expanded }" @click="handleExpanded">
         <EIcon name="icon-zhankai" />
       </span>
       <TreeNodeText />
     </a>
-    <ul v-if="props.record.children?.length" class="epic-tree-sublist" :class="{ expanded }">
-      <ETreeNode v-for="( item ) in  props.record.children " :key="item.id" :record="item" />
-    </ul>
+    <ETreeNodes v-if="props.schema.children?.length" class="epic-tree-sublist" :class="{ expanded }"
+      v-model:schemas="props.schema.children" />
   </li>
 </template>
 <script lang="ts" setup>
@@ -17,12 +17,13 @@ import { NodeItem } from '../../../types/epic-designer'
 import EIcon from '../../icon'
 import { inject, computed, Ref, h, defineComponent, Slots } from 'vue'
 import { pluginManager } from '@epic-designer/utils'
+import ETreeNodes from './treeNodes.vue'
 defineOptions({
-  name: 'ETreeNode'
+  name: 'ETreeNodeItem'
 })
 
 const props = defineProps<{
-  record: NodeItem
+  schema: NodeItem
 }>()
 
 
@@ -35,7 +36,7 @@ const selectedKeys = inject('selectedKeys') as Ref<string[]>
 const handleSelect = inject('handleSelect') as (id: string, record: NodeItem) => {}
 
 const expanded = computed(() => {
-  return expandedKeys.value.includes(props.record.id ?? '')
+  return expandedKeys.value.includes(props.schema.id ?? '')
 })
 
 
@@ -44,17 +45,17 @@ const TreeNodeText = defineComponent({
     return () => h('span', {
       class: {
         text: true,
-        hover: treeProps.hoverKey === props.record.id,
-        checked: selectedKeys.value.includes(props.record.id!)
+        hover: treeProps.hoverKey === props.schema.id,
+        checked: selectedKeys.value.includes(props.schema.id!)
       },
-      onClick: () => handleSelect(props.record.id!, props.record)
+      onClick: () => handleSelect(props.schema.id!, props.schema)
     },
       slots['tree-node']?.(props) ??
       h('span', { class: 'text-padding' },
         {
           default: () => [
-            props.record.label ?? pluginManager.getComponentConfingByType(props.record.type)?.defaultSchema.label,
-            h('span', { class: 'epic-node-type-text' }, props.record.type)
+            props.schema.label ?? pluginManager.getComponentConfingByType(props.schema.type)?.defaultSchema.label,
+            h('span', { class: 'epic-node-type-text' }, props.schema.type)
           ]
         }
       )
@@ -63,7 +64,7 @@ const TreeNodeText = defineComponent({
 })
 
 function handleExpanded() {
-  const id = props.record.id
+  const id = props.schema.id
   if (!id) {
     return false
   }
@@ -76,8 +77,8 @@ function handleExpanded() {
 }
 
 function init() {
-  const id = props.record.id
-  if (!id || !props.record.children?.length) {
+  const id = props.schema.id
+  if (!id || !props.schema.children?.length) {
     return false
   }
   expandedKeys.value.push(id)
