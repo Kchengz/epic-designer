@@ -10,6 +10,16 @@
     <template #edit-node>
       <KEditNodeItem v-if="props.schema.children" v-model:schemas="props.schema.children" />
     </template>
+    <!-- <template #edit-node>
+      <KEditNodeItem v-if="props.schema.children" v-model:schemas="props.schema.children" />
+    </template> -->
+    <!-- <div v-if="props.schema.slots" v-for="(slotNodes, slotName) in (props.schema.slots ?? {})"> -->
+    <!-- {{ slotName }} -->
+    <template v-for="(slotNodes, slotName) in (props.schema.slots ?? {})" #[`edit-${slotName}`]>
+      <KEditNodeItem v-model:schemas="props.schema.slots[slotName]" />
+    </template>
+    <!-- </div> -->
+
   </ENode>
 </template>
 <script lang="ts" setup>

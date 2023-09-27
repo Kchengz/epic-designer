@@ -1,12 +1,12 @@
 <template>
     <NInput>
         <template #prefix>
-            <slot name="edit-node">
+            <slot name="edit-prefix">
                 <slot v-for="item in prefix" name="node" :record="item" />
             </slot>
         </template>
         <template #suffix>
-            <slot name="edit-node">
+            <slot name="edit-suffix">
                 <slot v-for="item in suffix" name="node" :record="item" />
             </slot>
         </template>

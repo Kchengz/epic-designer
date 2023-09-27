@@ -10,6 +10,11 @@
         <ENode v-bind="data" />
       </template>
       <!-- 渲染子组件 end -->
+      <!-- 渲染插槽组件 start -->
+      <template v-for="(slotNodes, slotName) in (props.record.slots ?? {})" #[`edit-${slotName}`]>
+        <slot :name="`edit-${slotName}`" />
+      </template>
+      <!-- 渲染插槽组件 end -->
       <!-- 渲染布局设计子组件列表 start -->
       <template #edit-node>
         <slot name="edit-node" />
