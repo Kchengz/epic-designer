@@ -135,12 +135,24 @@ export function getMatchedById(schemas: NodeItem[], id: string): NodeItem[] {
     if (node.id === id) {
       found = true;
     }
+    // 遍历默认子节点
     if (!found && node.children != null && node.children.length > 0) {
       for (let i = 0; i < node.children.length; i++) {
         getNodePath(node.children[i]);
         if (found) break;
       }
     }
+
+    // 遍历插槽
+    if (!found && node.slots) {
+      for (let key in node.slots) {
+        for (let i = 0; i < node.slots[key].length; i++) {
+          getNodePath(node.slots[key][i]);
+          if (found) break;
+        }
+      }
+    }
+
     if (!found) {
       matched.pop();
     }
@@ -266,8 +278,17 @@ export function findSchemas(
 
   while (nodesToVisit.length) {
     const currentNode = nodesToVisit.pop() as NodeItem;
+
+    // 检查默认子节点
     if (currentNode?.children && (!filter || filter(currentNode))) {
       nodesToVisit.push(...currentNode.children);
+    }
+
+    // 检查插槽
+    if (currentNode?.slots && (!filter || filter(currentNode))) {
+      for (let key in currentNode.slots) {
+        nodesToVisit.push(...currentNode.slots[key]);
+      }
     }
 
     if (handler(currentNode)) {
@@ -302,8 +323,16 @@ export function mapSchemas(
 
   while (nodesToVisit.length) {
     const currentNode = nodesToVisit.pop() as NodeItem;
+
+    // 检查默认子节点
     if (currentNode?.children && (!filter || filter(currentNode))) {
       nodesToVisit.push(...currentNode.children);
+    }
+    // 检查插槽
+    if (currentNode?.slots && (!filter || filter(currentNode))) {
+      for (let key in currentNode.slots) {
+        nodesToVisit.push(...currentNode.slots[key]);
+      }
     }
 
     deepCompareAndModify(currentNode, handler(currentNode));
@@ -354,14 +383,25 @@ export function findSchemaInfoById(
 } {
   const stack: NodeItem[] = [{ type: "", children: schemas }];
   let index: number = 0;
-
+  let children: NodeItem[] | null = null;
   // 查询父节点
   const parentSchema = findSchemas(
     stack,
     (currentNode) => {
-      const children = currentNode.children;
+      children = currentNode.children ?? null;
 
       if (!children) {
+        if (currentNode?.slots) {
+          for (let key in currentNode.slots) {
+            children = currentNode.slots[key];
+            for (let i = 0; i < children.length; i++) {
+              if (children[i].id === id) {
+                index = i;
+                return true;
+              }
+            }
+          }
+        }
         return false;
       }
 
@@ -378,13 +418,13 @@ export function findSchemaInfoById(
   ) as NodeItem & { children: NodeItem };
 
   // 判断节点是否存在，不存在则抛出异常
-  if (!parentSchema) {
+  if (!children) {
     throw new Error(`没有查询到id为${id}的节点`);
   }
 
   return {
-    list: parentSchema.children,
-    schema: parentSchema.children[index],
+    list: children,
+    schema: children[index],
     index,
   };
 }
