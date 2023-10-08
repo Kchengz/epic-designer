@@ -1,1 +1,0 @@
-import{e as o,o as a,c as s,n as t}from"../app.27d58f12.js";const r=o({name:"EIcon",__name:"icon",props:{name:{}},setup(n){const e=n;return(c,m)=>(a(),s("span",{class:t(["iconfont",e.name])},null,2))}});export{r as p};

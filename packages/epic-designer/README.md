@@ -24,7 +24,11 @@
 
 📖文档地址：[https://kcz66.gitee.io/epic-designer/](https://kcz66.gitee.io/epic-designer/)
 
-💎预览地址：[https://epic.kcz66.com/demo/](https://epic.kcz66.com/demo/)
+💎项目预览地址：
+
+- element-plus：[https://epic.kcz66.com/demo/element-plus/](https://epic.kcz66.com/demo/element-plus/)
+- antdv3：[https://epic.kcz66.com/demo/antdv3/](https://epic.kcz66.com/demo/antdv3/)
+- naive-ui：[https://epic.kcz66.com/demo/naive-ui/](https://epic.kcz66.com/demo/naive-ui/)
 
 
 
