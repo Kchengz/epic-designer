@@ -29,14 +29,19 @@
       rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     cursor: pointer;
 
-    [name="draggable-range"] {
+    .draggable-range {
       min-height: 60px;
       height: 100%;
       border: 1px @border-color dashed;
       width: 100%;
     }
 
-    > div > [name="draggable-range"] {
+    .slot-draggable-range {
+      min-height: 20px;
+      min-width: 20px;
+    }
+
+    > div > .draggable-range {
       border: transparent;
 
       // 屏蔽antd element-plus label点击事件
@@ -46,7 +51,7 @@
       }
     }
 
-    .root-node > .form-main > form > [name="draggable-range"] {
+    .root-node > .form-main > form > .draggable-range {
       border: transparent;
     }
   }

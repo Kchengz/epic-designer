@@ -10,15 +10,9 @@
     <template #edit-node>
       <KEditNodeItem v-if="props.schema.children" v-model:schemas="props.schema.children" />
     </template>
-    <!-- <template #edit-node>
-      <KEditNodeItem v-if="props.schema.children" v-model:schemas="props.schema.children" />
-    </template> -->
-    <!-- <div v-if="props.schema.slots" v-for="(slotNodes, slotName) in (props.schema.slots ?? {})"> -->
-    <!-- {{ slotName }} -->
-    <template v-for="(slotNodes, slotName) in (props.schema.slots ?? {})" #[`edit-${slotName}`]>
-      <KEditNodeItem v-model:schemas="props.schema.slots[slotName]" />
+    <template v-for="(slotNodes, slotName) in getSlots()" #[`edit-${slotName}`]>
+      <KEditNodeItem class="slot-draggable-range" v-model:schemas="getSlots()[slotName]" />
     </template>
-    <!-- </div> -->
 
   </ENode>
 </template>
@@ -37,6 +31,11 @@ const props = defineProps<{
   name?: string
 }>()
 
+
+// 获取插槽数据
+function getSlots() {
+  return props.schema.slots ?? {}
+}
 
 
 </script>

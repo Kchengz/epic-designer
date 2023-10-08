@@ -1,6 +1,5 @@
 <template>
   <draggable v-model="modelSchemas" item-key="id" :component-data="{
-    name: 'draggable-range',
     type: 'transition-group',
   }"
    class="draggable-range" v-bind="{

@@ -7,10 +7,6 @@ export default {
     field: "input",
     icon: "icon-write",
     input: true,
-    slots: {
-      prefix: [],
-      suffix: [],
-    },
     componentProps: {
       defaultValue: "",
       placeholder: "请输入",
