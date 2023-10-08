@@ -4,7 +4,7 @@
     <a>
       <span v-if="props.schema.children?.length && props.schema.type !== 'page'" class="icon-expanded"
         :class="{ expanded }" @click="handleExpanded">
-        <EIcon name="icon-zhankai" />
+        <EIcon name="icon-youjiantou" />
       </span>
       <TreeNodeText />
     </a>

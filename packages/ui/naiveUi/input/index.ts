@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: () => import("./input.vue"),
+  component: async () => (await import('naive-ui/lib/input')).NInput,
   defaultSchema: {
     label: "输入框",
     type: "input",
