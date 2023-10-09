@@ -41,7 +41,7 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, ref, inject, computed, reactive, useAttrs, provide, Slots, watch, h, ComponentPublicInstance } from 'vue'
+import { shallowRef, ref, inject, computed, reactive, useAttrs, provide, Slots, renderSlot, defineComponent, watch, h, ComponentPublicInstance } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager, deepClone } from '@epic-designer/utils'
 import { FormDataModel, NodeItem } from '../../../types/epic-designer'
 
@@ -218,20 +218,18 @@ async function initComponent() {
   // 组件为slot类型时
   if (props.record.type === 'slot') {
     const slotName = props.record.slotName
-    if (!slotName) { return false }
-    // 需要监听值变化，重新传递参数
-    watch(() => formData[props.record.field!], () => {
-      // 重新渲染插槽组件
-      component.value = h('div', null, slots[slotName]?.({
-        record: props.record,
-        model: formData
-      }))
-    }, {
-      immediate: true
+    if (!slotName) return
+
+    component.value = defineComponent({
+      setup() {
+        return () => renderSlot(slots, slotName, {
+          record: props.record,
+          model: formData
+        })
+      }
     })
 
-    // 获取组件props数据
-    return false
+    return
   }
 
   // 内置组件
@@ -239,7 +237,7 @@ async function initComponent() {
   // 内部不存在组件
   if (!cmp) {
     console.error(`组件${props.record.type}未注册`)
-    return false
+    return
   }
   const bindModel = getComponentConfing.value?.bindModel ?? 'modelValue'
 
