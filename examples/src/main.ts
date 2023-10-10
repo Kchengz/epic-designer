@@ -8,12 +8,12 @@ import { pluginManager } from '@epic-designer/core'
 // setupElementPlus(pluginManager)
 
 // 使用Antd UI
-// import 'ant-design-vue/dist/antd.css'
-// import { setupAntd } from '@epic-designer/ui/antd'
-// setupAntd(pluginManager)
+import 'ant-design-vue/dist/antd.css'
+import { setupAntd } from '@epic-designer/ui/antd'
+setupAntd(pluginManager)
 
 // 使用NaiveUi UI
-import { setupNaiveUi } from '@epic-designer/ui/naiveUi'
-setupNaiveUi(pluginManager)
+// import { setupNaiveUi } from '@epic-designer/ui/naiveUi'
+// setupNaiveUi(pluginManager)
 
 createApp(App).mount('#app')

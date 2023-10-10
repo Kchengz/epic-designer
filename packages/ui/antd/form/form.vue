@@ -73,8 +73,8 @@ const componentProps = computed(() => {
   let labelCol = recordProps.labelCol
   let wrapperCol = recordProps.wrapperCol
   if (recordProps.labelLayout === 'fixed') {
-    labelCol = { style: `width:${recordProps.labelWidth}px` }
-    wrapperCol = { style: 'width:auto;flex:1' }
+    labelCol = { flex: `${recordProps.labelWidth}px` }
+    wrapperCol = { flex: 1 }
   }
   return {
     ...recordProps,

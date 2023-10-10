@@ -11,7 +11,7 @@ export default {
     componentProps: {
       layout: "horizontal",
       labelWidth: 100,
-      labelLayout: "flex",
+      labelLayout: "fixed",
       labelCol: {
         span: 5,
       },
