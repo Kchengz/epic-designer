@@ -8,9 +8,7 @@
   ghostClass: 'moveing'
 }" @start="handleSelect($event.oldIndex)" @end="handleEnd()" @add="handleSelect($event.newIndex); handleAdd()">
     <template #item="{ element, index }">
-      <div class="widget-box" :class="{ 'draggable-item': !element.immovable }" :index="index"
-        @click.stop="designer.setCheckedNode(element)" @mouseover.stop="designer.setHoverNode(element)"
-        @mouseout.stop="designer.setHoverNode(null)">
+      <div class="widget-box" :class="{ 'draggable-item': !element.immovable }" :key="index">
         <ENodeItem :schema="element" />
       </div>
     </template>

@@ -136,15 +136,26 @@ export function useElementZoom(draggableElRef: Ref<HTMLDivElement | null>) {
   return { handleZoom, canvasScale };
 }
 
-// 定时任务
+/**
+ * 创建定时任务hooks
+ * @param handler 任务函数
+ * @param timeout 任务间隔
+ * @returns 
+ */
 export function useTimedQuery(handler: () => void, timeout = 16.66) {
   let timer: number;
 
+  /**
+   * 开始任务执行
+   */
   function startTimedQuery() {
     stopTimedQuery();
     timer = window.setInterval(handler, timeout);
   }
 
+  /**
+   * 结束任务执行
+   */
   function stopTimedQuery() {
     window.clearInterval(timer);
   }

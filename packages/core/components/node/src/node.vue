@@ -116,7 +116,8 @@ const getFormItemProps = computed(() => {
   const rules = show.value && props.record.rules?.map(item => ({
     ...item,
     validator: item.validator && pageManager.funcs.value[item.validator] // 自定义校验函数
-  }))
+  })
+  )
 
 
   // 获取校验字段
@@ -258,7 +259,6 @@ async function initComponent() {
   // 获取组件props数据
   componentProps.value = {
     ...props,
-    record: props.record,
     disabled: disabled || props.record.disabled,
     // is: component,
     bindModel,
