@@ -4,15 +4,15 @@
   }" class="draggable-range" v-bind="{
   animation: 200,
   group: 'edit-draggable',
-  draggable: '.draggable-item',
+  handle: '.draggable-item',
   ghostClass: 'moveing'
 }" @start="handleSelect($event.oldIndex)" @end="handleEnd()" @add="handleSelect($event.newIndex); handleAdd()">
     <template #item="{ element, index }">
-      <span :class="{ 'draggable-item': !element.immovable }" class="widget-box" :index="index"
+      <div class="widget-box" :class="{ 'draggable-item': !element.immovable }" :index="index"
         @click.stop="designer.setCheckedNode(element)" @mouseover.stop="designer.setHoverNode(element)"
         @mouseout.stop="designer.setHoverNode(null)">
         <ENodeItem :schema="element" />
-      </span>
+      </div>
     </template>
   </draggable>
 </template>
