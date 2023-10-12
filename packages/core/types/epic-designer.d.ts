@@ -15,6 +15,8 @@ export interface NodeItem {
   rules?: FormItemRule[];
   noFormItem?: boolean;
   input?: boolean;
+  immovable?: boolean;
+  childImmovable?: boolean;
   labelCol?: any;
   wrapperCol?: any;
   children?: NodeItem[];

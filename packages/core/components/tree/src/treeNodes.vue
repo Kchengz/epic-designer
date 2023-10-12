@@ -53,7 +53,7 @@ function handleSelect(index: number) {
 
 function isDraggable(schemas: NodeItem) {
   // 判断当前节点类型是否允许拖拽
-  if (schemas.type === 'page') {
+  if (schemas.type === 'page' || schemas.immovable) {
     return 'unmover-item'
   }
 

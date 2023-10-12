@@ -1,15 +1,16 @@
 <template>
   <draggable v-model="modelSchemas" item-key="id" :component-data="{
     type: 'transition-group',
-  }"
-   class="draggable-range" v-bind="{
+  }" class="draggable-range" v-bind="{
   animation: 200,
   group: 'edit-draggable',
+  draggable: '.draggable-item',
   ghostClass: 'moveing'
 }" @start="handleSelect($event.oldIndex)" @end="handleEnd()" @add="handleSelect($event.newIndex); handleAdd()">
     <template #item="{ element, index }">
-      <span class="widget-box" :index="index" @click.stop="designer.setCheckedNode(element)"
-        @mouseover.stop="designer.setHoverNode(element)" @mouseout.stop="designer.setHoverNode(null)">
+      <span :class="{ 'draggable-item': !element.immovable }" class="widget-box" :index="index"
+        @click.stop="designer.setCheckedNode(element)" @mouseover.stop="designer.setHoverNode(element)"
+        @mouseout.stop="designer.setHoverNode(null)">
         <ENodeItem :schema="element" />
       </span>
     </template>

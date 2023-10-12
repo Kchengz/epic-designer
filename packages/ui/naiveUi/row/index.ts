@@ -1,101 +1,102 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: () => import('./row'),
+  component: () => import("./row"),
   defaultSchema: {
-    label: '栅格布局',
-    type: 'row',
-    icon: 'icon-zhage',
+    label: "栅格布局",
+    type: "row",
+    icon: "icon-zhage",
+    childImmovable: true,
     children: [
       {
-        type: 'col',
+        type: "col",
         children: [],
         componentProps: {
-          span: 12
-        }
+          span: 12,
+        },
       },
       {
-        type: 'col',
+        type: "col",
         children: [],
         componentProps: {
-          span: 12
-        }
-      }
-    ]
+          span: 12,
+        },
+      },
+    ],
   },
   config: {
     attribute: [
       {
-        label: '垂直对齐方式',
-        type: 'select',
+        label: "垂直对齐方式",
+        type: "select",
         componentProps: {
-          style: { width: '100%' },
+          style: { width: "100%" },
           options: [
             {
-              label: 'top',
-              value: 'top'
+              label: "top",
+              value: "top",
             },
             {
-              label: 'middle',
-              value: 'middle'
+              label: "middle",
+              value: "middle",
             },
             {
-              label: 'bottom',
-              value: 'bottom'
-            }
+              label: "bottom",
+              value: "bottom",
+            },
           ],
-          placeholder: '请选择'
+          placeholder: "请选择",
         },
-        field: 'componentProps.align'
+        field: "componentProps.align",
       },
       {
-        label: '水平排列方式',
-        type: 'select',
+        label: "水平排列方式",
+        type: "select",
         componentProps: {
-          style: { width: '100%' },
+          style: { width: "100%" },
           options: [
             {
-              label: 'start',
-              value: 'start'
+              label: "start",
+              value: "start",
             },
             {
-              label: 'end',
-              value: 'end'
+              label: "end",
+              value: "end",
             },
             {
-              label: 'center',
-              value: 'center'
+              label: "center",
+              value: "center",
             },
             {
-              label: 'space-around',
-              value: 'space-around'
+              label: "space-around",
+              value: "space-around",
             },
             {
-              label: 'space-around',
-              value: 'space-around'
-            }
+              label: "space-around",
+              value: "space-around",
+            },
           ],
-          placeholder: '请选择'
+          placeholder: "请选择",
         },
-        field: 'componentProps.justify'
+        field: "componentProps.justify",
       },
       {
-        label: '栅格间距',
-        type: 'number',
-        field: 'componentProps.gutter',
+        label: "栅格间距",
+        type: "number",
+        field: "componentProps.gutter",
         componentProps: {
-          placeholder: '请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
-        label: '列编辑',
-        type: 'EColEditor',
-        field: 'children'
+        label: "列编辑",
+        type: "EColEditor",
+        field: "children",
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
-      }
-    ]
-  }
-} as ComponentConfigModel
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
+      },
+    ],
+  },
+} as ComponentConfigModel;
