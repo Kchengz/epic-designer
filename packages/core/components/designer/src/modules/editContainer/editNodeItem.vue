@@ -8,10 +8,10 @@
   ghostClass: 'moveing'
 }" @start="handleSelect($event.oldIndex)" @end="handleEnd()" @add="handleSelect($event.newIndex); handleAdd()">
     <template #item="{ element, index }">
-      <div class="widget-box" :index="index" @click.stop="designer.setCheckedNode(element)"
+      <span class="widget-box" :index="index" @click.stop="designer.setCheckedNode(element)"
         @mouseover.stop="designer.setHoverNode(element)" @mouseout.stop="designer.setHoverNode(null)">
         <ENodeItem :schema="element" />
-      </div>
+      </span>
     </template>
   </draggable>
 </template>
