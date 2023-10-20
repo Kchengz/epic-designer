@@ -213,7 +213,8 @@ function handleVnodeUnmounted() {
 async function initComponent() {
   // 如果存在默认值，则会在初始化之后赋值
   if (typeof props.record.componentProps?.defaultValue !== 'undefined') {
-    handleUpdate(deepClone(props.record.componentProps?.defaultValue))
+    const defaultValue = formData[props.record.field!] ?? props.record.componentProps?.defaultValue
+    handleUpdate(deepClone(defaultValue))
   }
 
   // 组件为slot类型时
