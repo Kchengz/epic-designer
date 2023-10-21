@@ -155,19 +155,19 @@ const getComponentConfing = computed(() => {
 })
 
 // 判断是否存在字段名称
-if (props.record.field) {
-  // 存在则更新表单状态
-  watch(() => props.modelValue, (e) => {
-    // 值等于null，则清空状态并结束函数
-    if (e === null) {
-      delete formData[props.record.field!]
-      return
-    }
-    formData[props.record.field!] = e
-  }, {
-    immediate: true
-  })
-}
+// if (props.record.field) {
+//   // 存在则更新表单状态
+//   watch(() => props.modelValue, (e) => {
+//     // 值等于null，则清空状态并结束函数
+//     if (e === null) {
+//       delete formData[props.record.field!]
+//       return
+//     }
+//     formData[props.record.field!] = e
+//   }, {
+//     immediate: true
+//   })
+// }
 
 watch(() => componentInstance.value, () => {
   handleAddComponentInstance()
