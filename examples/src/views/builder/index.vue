@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref,onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { EBuilder } from '@epic-designer/core'
 
 import { NodeItem } from '@epic-designer/core/types/epic-designer'
@@ -80,15 +80,16 @@ const schemas: NodeItem[] = [{
 }]
 
 // 表单赋值
-onMounted(()=>{
+onMounted(async () => {
   kfb.value?.setData({
-  number
-    :
-    234,
-  slotText
-    :
-    "234234"
-})
+    number: '234',
+    slotText: "234234"
+  })
+
+  const data = await kfb.value?.getData()
+  const data1 = await kfb.value?.validate()
+  console.log(data)
+  console.log(data1,'---')
 })
 
 

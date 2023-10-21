@@ -57,30 +57,63 @@ provide('pageSchema', pageSchemaReactive)
  * 跳过验证直接获取表单数据
  * @param formName 表单name
  */
-async function getData(formName = 'default'): Promise<FormDataModel | boolean> {
-  const form = forms.value?.[formName]
-  // 通过表单查询不到表单实例
-  if (!form) {
-    console.error(`表单 [name=${formName}] 不存在`)
-    return false
-  }
+function getData(formName = 'default'): Promise<FormDataModel | boolean> {
+  return new Promise(async (resolve, reject) => {
 
-  return form.getData()
+    // 判断表单是否已经初始化
+    if (!ready.value) {
+      // 监听表单初始化状态
+      const unwatch = watch(ready, () => {
+        // 注销监听
+        unwatch()
+        resolve(getData(formName))
+      })
+      return
+    }
+
+    const form = forms.value?.[formName]
+    // 通过表单查询不到表单实例
+    if (!form) {
+      // console.error(`表单 [name=${formName}] 不存在`)
+      reject(`表单 [name=${formName}] 不存在`)
+      return false
+    }
+
+    const formData = await form.getData()
+    resolve(formData)
+  })
+
 }
 
 /**
  * 验证并获取数据
  * @param formName 表单name
  */
-async function validate(formName = 'default'): Promise<FormDataModel | boolean> {
-  const form = forms.value?.[formName]
-  // 通过表单查询不到表单实例
-  if (!form) {
-    console.error(`表单 [name=${formName}] 不存在`)
-    return false
-  }
-  await form.validate()
-  return form.getData()
+function validate(formName = 'default'): Promise<FormDataModel | boolean> {
+  return new Promise(async (resolve, reject) => {
+    // 判断表单是否已经初始化
+    if (!ready.value) {
+      // 监听表单初始化状态
+      const unwatch = watch(ready, () => {
+        // 注销监听
+        unwatch()
+        resolve(getData(formName))
+      })
+      return
+    }
+
+    const form = forms.value?.[formName]
+    // 通过表单查询不到表单实例
+    if (!form) {
+      // console.error(`表单 [name=${formName}] 不存在`)
+      reject(`表单 [name=${formName}] 不存在`)
+      return false
+    }
+    await form.validate()
+    const formData = await form.getData()
+    resolve(formData)
+  })
+
 }
 
 /**
@@ -91,11 +124,16 @@ function setData(data: FormDataModel, formName = 'default') {
   // 判断表单是否已经初始化
   if (!ready.value) {
     // 监听表单初始化状态
-    watch(() => ready.value, () => {
+    const unwatch = watch(ready, () => {
+      // 注销监听
+      unwatch()
       setData(data, formName)
+
     })
     return
   }
+
+
   const form = forms.value?.[formName]
   // 通过表单查询不到表单实例
   if (!form) {
