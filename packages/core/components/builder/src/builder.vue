@@ -2,11 +2,7 @@
   <Suspense @resolve="handleReady">
     <template #default>
       <div class="epic-builder-main">
-        <ENode
-          v-for="item, index in pageSchemaReactive.schemas"
-          :key="index"
-          :record="item"
-        />
+        <ENode v-for="item, index in pageSchemaReactive.schemas" :key="index" :record="item" />
       </div>
     </template>
     <template #fallback>
@@ -20,7 +16,7 @@
 <script lang="ts" setup>
 import ENode from '../../node'
 import { reactive, provide, ref, watch, useSlots, nextTick } from 'vue'
-import { PageSchema,FormDataModel  } from '../../../types/epic-designer'
+import { PageSchema, FormDataModel } from '../../../types/epic-designer'
 import { loadAsyncComponent, deepCompareAndModify, usePageManager } from '@epic-designer/utils'
 const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
 
@@ -28,6 +24,7 @@ const pageManager = usePageManager()
 const emit = defineEmits(['ready'])
 const slots = useSlots()
 const forms = ref<any>({})
+const ready = ref<boolean>(false)
 const props = defineProps<{
   pageSchema: PageSchema
 }>()
@@ -60,7 +57,7 @@ provide('pageSchema', pageSchemaReactive)
  * 跳过验证直接获取表单数据
  * @param formName 表单name
  */
-async function getData (formName = 'default'): Promise<FormDataModel | boolean> {
+async function getData(formName = 'default'): Promise<FormDataModel | boolean> {
   const form = forms.value?.[formName]
   // 通过表单查询不到表单实例
   if (!form) {
@@ -75,7 +72,7 @@ async function getData (formName = 'default'): Promise<FormDataModel | boolean> 
  * 验证并获取数据
  * @param formName 表单name
  */
-async function validate (formName = 'default'): Promise<FormDataModel | boolean> {
+async function validate(formName = 'default'): Promise<FormDataModel | boolean> {
   const form = forms.value?.[formName]
   // 通过表单查询不到表单实例
   if (!form) {
@@ -90,7 +87,15 @@ async function validate (formName = 'default'): Promise<FormDataModel | boolean>
  * 设置表单数据
  * @param data
  */
-function setData (data: FormDataModel,formName = 'default') {
+function setData(data: FormDataModel, formName = 'default') {
+  // 判断表单是否已经初始化
+  if (!ready.value) {
+    // 监听表单初始化状态
+    watch(() => ready.value, () => {
+      setData(data, formName)
+    })
+    return
+  }
   const form = forms.value?.[formName]
   // 通过表单查询不到表单实例
   if (!form) {
@@ -98,20 +103,22 @@ function setData (data: FormDataModel,formName = 'default') {
     return false
   }
 
-  return form.setData(data)
+  form.setData(data)
 }
 
 /**
  * 组件（包含异步组件）加载完成后
  */
-function handleReady () {
+function handleReady() {
   // 等待DOM更新循环结束后
   nextTick(() => {
+    ready.value = true
     emit('ready', { pageManager })
   })
 }
 
 defineExpose({
+  ready,
   getData,
   setData,
   validate
