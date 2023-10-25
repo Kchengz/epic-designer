@@ -3,6 +3,21 @@ import { type NodeItem } from "@epic-designer/core/types/epic-designer";
 import Modal from "ant-design-vue/lib/modal";
 import Button from "ant-design-vue/lib/button";
 import Space from "ant-design-vue/lib/space";
+const dialogStyle = {
+  position: "absolute",
+  right: "150px",
+  left: "150px",
+  minWidth: "700px",
+  width: "auto",
+  top: "56px",
+  bottom: "30px",
+  minHeight: "500px",
+};
+
+const bodyStyle = {
+  height: "calc(100vh - 108px)",
+  padding: 0,
+};
 
 export default defineComponent({
   props: {
@@ -12,6 +27,7 @@ export default defineComponent({
     },
   },
   emits: ["ok", "close", "update:modelValue"],
+
   setup(props, { attrs, slots, emit }) {
     return () => {
       const record = {
@@ -21,7 +37,9 @@ export default defineComponent({
         class: "epic-modal",
         visible: attrs.modelValue,
         "onUpdate:visible": handleClose,
-        "body-style": { padding: "12px" },
+        style: "top:20px",
+        bodyStyle,
+        dialogStyle,
         footer: null,
       } as Record<string, any>;
       const children = record.children ?? [];
@@ -48,7 +66,11 @@ export default defineComponent({
 
       return h(Modal, record, {
         default: () => [
-          renderSlot(slots, "edit-node", {}, vNodeClildren),
+          h(
+            "div",
+            { class: "epic-modal-main" },
+            renderSlot(slots, "edit-node", {}, vNodeClildren)
+          ),
           h(
             "div",
             { class: "epic-modal-footer" },
