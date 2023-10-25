@@ -2,8 +2,10 @@
   <header class="epic-header relative">
     <div class="epic-header-item items-center flex text-12px text-#3d3d3d">
       <slot name="prefix">
-        <img src="../../../../../static/logo.png" class="w-17px h-17px" alt="" srcset="">
-        <span class="ml-4"> epic-designer</span>
+        <a class="text-black" href="https://github.com/Kchengz/epic-designer" target="_blank">
+          <img src="../../../../../static/logo.png" class="w-17px h-17px" alt="" srcset="">
+          <span class="ml-4">epic-designer</span>
+        </a>
       </slot>
     </div>
 
@@ -13,7 +15,6 @@
     <div class="epic-header-item flex flex items-center">
       <Button size="small" :disabled="!recordList.length" @click="handleUndo">
         <EIcon name="icon-chexiao2x" />
-
       </Button>
       <Button size="small" :disabled="!undoList.length" @click="handleRedo">
         <EIcon name="icon-fanhui2x" />
