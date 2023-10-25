@@ -16,7 +16,7 @@ export default defineComponent({
         ...props.record,
         ...attrs,
         title: props.record?.label ?? "",
-        class: "epic-modal",
+        class: "epic-modal-n",
         preset: "card",
         show: attrs.modelValue,
         "onUpdate:show": handleClose,
@@ -45,7 +45,11 @@ export default defineComponent({
 
       return h(NModal, record, {
         default: () => [
-          renderSlot(slots, "edit-node", {}, vNodeClildren),
+          h(
+            "div",
+            { class: "epic-modal-main" },
+            renderSlot(slots, "edit-node", {}, vNodeClildren)
+          ),
           h(
             "div",
             { class: "epic-modal-footer" },

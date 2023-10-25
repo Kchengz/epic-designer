@@ -14,12 +14,20 @@
   padding-right: 0;
 }
 
-.epic-modal {
+.epic-modal-n {
+  margin: 0 auto 0 !important;
+  height: calc(100vh - 50px);
   .n-card-header {
     padding: 16px 16px 0;
   }
 
   .n-card__content {
-    padding: 12px;
+    padding: 0;
+    height: calc(100% - 80px);
+    .epic-modal-main {
+      height: calc(100% - 80px);
+      overflow: auto;
+      padding: 12px;
+    }
   }
 }
