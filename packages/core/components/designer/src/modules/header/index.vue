@@ -2,7 +2,7 @@
   <header class="epic-header relative">
     <div class="epic-header-item items-center flex text-12px text-#3d3d3d">
       <slot name="prefix">
-        <a class="text-black" href="https://github.com/Kchengz/epic-designer" target="_blank">
+        <a class="text-black decoration-none items-center flex" href="https://github.com/Kchengz/epic-designer" target="_blank">
           <img src="../../../../../static/logo.png" class="w-17px h-17px" alt="" srcset="">
           <span class="ml-4">epic-designer</span>
         </a>
