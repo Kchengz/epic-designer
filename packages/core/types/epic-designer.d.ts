@@ -1,4 +1,3 @@
-import { Designer } from "./epic-designer.d";
 import { type FormItemRule } from "../utils/component/KComponent/ERuleEditor/types";
 export interface RenderCallbackParams {
   values: Record<string, any>;

@@ -9,9 +9,6 @@
     <template v-else #edit-node>
       <KEditNodeItem v-if="props.schema.children" v-model:schemas="props.schema.children" />
     </template>
-    <template v-for="(slotNodes, slotName) in getSlots()" #[`edit-${slotName}`]>
-      <KEditNodeItem class="slot-draggable-range" v-model:schemas="getSlots()[slotName]" />
-    </template>
   </ENode>
 </template>
 <script lang="ts" setup>
