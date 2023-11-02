@@ -1,6 +1,6 @@
 <template>
-  <aside class="epic-attribute-view">
-    <div v-for="item in componentAttributes" :key="item.field! + checkedNode?.id">
+  <aside class="epic-attribute-view" :key="checkedNode?.id">
+    <div v-for="item in componentAttributes" :key="item.field">
       <div v-show="isShow(item)" class="attr-item" :class="item.layout">
         <div class="attr-label" :title="item.label">
           {{ item.label }}
@@ -17,15 +17,11 @@
 </template>
 <script lang="ts" setup>
 import ENode from '../../../../node/index'
-import { Designer, NodeItem, PageSchema, FormDataModel } from '../../../../../types/epic-designer'
+import { Designer, NodeItem, PageSchema } from '../../../../../types/epic-designer'
 import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '@epic-designer/utils'
 import { inject, computed, ref, watch, reactive, nextTick, provide } from 'vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
-
-const formData = reactive<FormDataModel>({})
-
-provide('formData', formData)
 
 const componentConfings = pluginManager.getComponentConfings()
 const checkedNode = computed(() => {
@@ -67,24 +63,6 @@ watch(() => designer.state.checkedNode?.type, () => {
 }, {
   immediate: true
 })
-// const componentAttributes = computed(() => {
-//   const type = designer.state.checkedNode?.type
-//   if (!type) {
-//     return []
-//   }
-//   const attribute = componentConfings[type]?.config.attribute ?? []
-//   return [
-//     {
-//       label: '组件ID',
-//       type: 'input',
-//       field: 'id',
-//       componentProps: {
-//         disabled: true
-//       }
-//     },
-//     ...attribute
-//   ]
-// })
 
 /**
  * 设置属性值
@@ -103,9 +81,6 @@ function handleSetValue(value: any, field: string, item: NodeItem) {
   }
   // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(pageSchema.schemas, '编辑组件属性')
-
-
-
 }
 
 </script>

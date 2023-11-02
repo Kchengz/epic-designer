@@ -1,16 +1,15 @@
 <template>
-  <aside class="epic-attribute-view">
-    <div v-if="checkedNode">
-      <div v-for="item in componentStyles" :key="item.field! + checkedNode.id">
-        <div v-show="isShow(item)" class="attr-item">
-          <div class="attr-label" :title="item.label">
-            {{ item.label }}
-          </div>
-          <div class="attr-input">
-            <ENode :record="{ ...item, componentProps: { ...item.componentProps }, show: true, noFormItem: true }"
-              :model-value="getAttributeValue(item.field!, checkedNode!)"
-              @update:model-value="handleSetValue($event, item.field!)" />
-          </div>
+  <aside class="epic-attribute-view" :key="checkedNode?.id">
+    <div v-for="item in componentStyles" :key="item.field">
+      <div v-show="isShow(item)" class="attr-item" :class="item.layout">
+        <div class="attr-label" :title="item.label">
+          {{ item.label }}
+        </div>
+        <div class="attr-input">
+          <ENode
+            :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), input: false, field: undefined, hidden: false }, show: true, noFormItem: true }"
+            :model-value="getAttributeValue(item.field!, checkedNode!)"
+            @update:model-value="handleSetValue($event, item.field!, item)" />
         </div>
       </div>
     </div>
@@ -21,7 +20,7 @@ import ENode from '../../../../node/index'
 import { Designer, NodeItem, PageSchema } from '../../../../../types/epic-designer'
 import { revoke, getAttributeValue, setAttributeValue } from '@epic-designer/utils'
 
-import { inject, computed } from 'vue'
+import { inject, computed, nextTick } from 'vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
 
@@ -85,26 +84,23 @@ function isShow(item: NodeItem) {
 /**
  * 设置属性值
  */
-function handleSetValue(value: any, field: string) {
-  setAttributeValue(value, field, checkedNode.value!)
+function handleSetValue(value: any, field: string, item: NodeItem) {
+  if (typeof item.onChange === 'function') {
+    item.onChange({ value, values: checkedNode.value!, componentStyles })
+  }
+  // 判断是否同步修改属性值
+  if (item.changeSync) {
+    setAttributeValue(value, field, checkedNode.value!)
+  } else {
+    nextTick(() => {
+      setAttributeValue(value, field, checkedNode.value!)
+    })
+  }
   // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(pageSchema.schemas, '编辑组件属性')
-}
-// function setAttrValue (value: any, field: string) {
-//   let obj = checkedNode.value ?? {} as { [key: string]: any }
-//   const arr = field.split('.')
-//   arr.forEach((item, index) => {
-//     if (index === (arr.length - 1)) {
-//       obj[item] = value
-//       return false
-//     }
-//     if (!obj[item]) {
-//       obj[item] = {}
-//     }
-//     obj = obj[item]
-//   })
 
-//   revoke.push(pageSchema.schemas, '编辑组件属性')
-// }
+
+
+}
 
 </script>

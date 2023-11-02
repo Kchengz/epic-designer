@@ -3,7 +3,7 @@
     ref="formItemRef" v-bind="getFormItemProps">
     <component :is="component" ref="componentInstance" @vue:mounted="handleAddComponentInstance"
       @vue:unmounted="handleVnodeUnmounted"
-      v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] ?? props.modelValue }">
+      v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: bindValue }">
       <!-- 嵌套组件递归 start -->
       <!-- 渲染子组件 start -->
       <template #node="data">
@@ -20,7 +20,7 @@
   <!-- 无需FormItem start -->
   <component :is="component" v-else-if="component && show" @vue:mounted="handleAddComponentInstance"
     @vue:unmounted="handleVnodeUnmounted" ref="componentInstance" :model="formData"
-    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: formData[props.record.field!] ?? props.modelValue }">
+    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: bindValue }">
     <!-- 嵌套组件递归 start -->
     <!-- 渲染子组件 start -->
     <template #node="data">
@@ -149,20 +149,11 @@ const getComponentConfing = computed(() => {
   return pluginManager.getComponentConfingByType(props.record.type) ?? null
 })
 
-// 判断是否存在字段名称
-// if (props.record.field) {
-//   // 存在则更新表单状态
-//   watch(() => props.modelValue, (e) => {
-//     // 值等于null，则清空状态并结束函数
-//     if (e === null) {
-//       delete formData[props.record.field!]
-//       return
-//     }
-//     formData[props.record.field!] = e
-//   }, {
-//     immediate: true
-//   })
-// }
+// 计算绑定值
+const bindValue = computed(() => {
+  return formData[props.record.field ?? ''] ?? props.modelValue
+})
+
 
 watch(() => componentInstance.value, () => {
   handleAddComponentInstance()
