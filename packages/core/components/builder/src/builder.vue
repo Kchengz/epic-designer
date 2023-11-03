@@ -15,7 +15,7 @@
 
 <script lang="ts" setup>
 import ENode from '../../node'
-import { reactive, provide, ref, watch, useSlots, nextTick } from 'vue'
+import { reactive, provide, ref, watch, useSlots, nextTick, getCurrentInstance, type ComponentInternalInstance } from 'vue'
 import { PageSchema, FormDataModel } from '../../../types/epic-designer'
 import { loadAsyncComponent, deepCompareAndModify, usePageManager } from '@epic-designer/utils'
 const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
@@ -143,7 +143,7 @@ function setData(data: FormDataModel, formName = 'default') {
 
   form.setData(data)
 }
-
+const { proxy } = getCurrentInstance() as ComponentInternalInstance
 /**
  * 组件（包含异步组件）加载完成后
  */
@@ -151,7 +151,11 @@ function handleReady() {
   // 等待DOM更新循环结束后
   nextTick(() => {
     ready.value = true
+
     emit('ready', { pageManager })
+
+    // 注入builder对象
+    pageManager.addComponentInstance('builder', proxy as any)
   })
 }
 

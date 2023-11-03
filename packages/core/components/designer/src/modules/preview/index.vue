@@ -25,6 +25,7 @@ import { PageSchema } from '../../../../../types/epic-designer'
 
 const Modal = pluginManager.getComponent('modal')
 
+
 const visible = ref(false)
 const pageSchema = inject('pageSchema') as PageSchema
 const kb = ref<any>(null)
