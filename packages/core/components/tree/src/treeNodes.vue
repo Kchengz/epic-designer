@@ -1,7 +1,8 @@
 <template>
-  <draggable v-model="modelSchemas" item-key="id" :component-data="{
+  <draggable v-if="!props.parentSchema?.childImmovable" v-model="modelSchemas" item-key="id" :component-data="{
   }" class="draggable-range" v-bind="{
   animation: 200,
+  tag: 'ul',
   group: 'tree-draggable',
   ghostClass: 'moveing',
   draggable: '.draggable-item',
@@ -13,9 +14,9 @@
     </template>
   </draggable>
 
-  <!-- <ul>
-    <ETreeNodeItem v-for="( item ) in  props.schemas" :key="item.id" :record="item" />
-  </ul> -->
+  <ul v-else>
+    <ETreeNodeItem v-for="( element ) in  modelSchemas" :key="element.id" :schema="element" />
+  </ul>
 </template>
 <script lang="ts" setup>
 import { computed, inject } from 'vue'
@@ -54,7 +55,7 @@ function handleSelect(index: number) {
 
 function isDraggable(schemas: NodeItem) {
   // 判断当前节点类型是否允许拖拽
-  if (schemas.type === 'page' || schemas.immovable || props.parentSchema?.childImmovable) {
+  if (schemas.type === 'page' || schemas.immovable) {
     // 禁止拖拽
     return 'unmover-item'
   }
