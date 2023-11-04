@@ -2,7 +2,6 @@
   <FormItem v-if="innerSchema.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show"
     ref="formItemRef" v-bind="getFormItemProps">
     <component :is="component" ref="componentInstance" @vue:mounted="handleAddComponentInstance"
-      @vue:unmounted="handleVnodeUnmounted"
       v-bind="{ ...componentProps, ...innerSchema.componentProps, ...dataSource, [componentProps.bindModel]: getBindValue() }">
       <!-- 嵌套组件递归 start -->
       <!-- 渲染子组件 start -->
@@ -19,7 +18,7 @@
   </FormItem>
   <!-- 无需FormItem start -->
   <component :is="component" v-else-if="component && show" @vue:mounted="handleAddComponentInstance"
-    @vue:unmounted="handleVnodeUnmounted" ref="componentInstance" :model="formData"
+    ref="componentInstance" :model="formData"
     v-bind="{ ...componentProps, ...innerSchema.componentProps, ...dataSource, [componentProps.bindModel]: getBindValue() }">
     <!-- 嵌套组件递归 start -->
     <!-- 渲染子组件 start -->
@@ -36,7 +35,7 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, ref, inject, computed, reactive, useAttrs, toRaw, provide, Slots, renderSlot, defineComponent, watch, h, ComponentPublicInstance } from 'vue'
+import { shallowRef, ref, inject, computed, reactive, useAttrs, onUnmounted, provide, Slots, renderSlot, defineComponent, watch, h, ComponentPublicInstance } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager, deepClone, deepCompareAndModify } from '@epic-designer/utils'
 import { FormDataModel, NodeItem } from '../../../types/epic-designer'
 
@@ -184,9 +183,7 @@ function handleAddComponentInstance() {
 
     // 添加属性设置方法
     componentInstance.value.setAttr = (key: string, value: any) => {
-      const oldVal = innerSchema.componentProps[key] = value
-      innerSchema.componentProps[key] = value
-      return oldVal
+      return innerSchema.componentProps[key] = value
     }
 
     // 添加获取设置方法
@@ -201,6 +198,8 @@ function handleAddComponentInstance() {
     }
   }
 }
+
+
 
 /**
  * 移除组件实例
@@ -301,5 +300,8 @@ watch(() => innerSchema, (newVal) => {
   immediate: true,
   deep: true
 })
+
+// 组件卸载时移除组件实例
+onUnmounted(handleVnodeUnmounted)
 
 </script>
