@@ -9,7 +9,7 @@
       <TreeNodeText />
     </a>
     <ETreeNodes v-if="props.schema.children?.length" class="epic-tree-sublist" :class="{ expanded }"
-      v-model:schemas="props.schema.children" />
+      v-model:schemas="props.schema.children" :parentSchema="props.schema"  />
   </li>
 </template>
 <script lang="ts" setup>

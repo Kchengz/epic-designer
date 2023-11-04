@@ -29,7 +29,8 @@ const designer = inject('designer') as Designer
 const treeProps = inject('treeProps') as any
 
 const props = defineProps<{
-  schemas: NodeItem[]
+  schemas: NodeItem[],
+  parentSchema: NodeItem
 }>()
 const emit = defineEmits(['update:schemas'])
 const modelSchemas = computed({
@@ -53,7 +54,7 @@ function handleSelect(index: number) {
 
 function isDraggable(schemas: NodeItem) {
   // 判断当前节点类型是否允许拖拽
-  if (schemas.type === 'page' || schemas.immovable) {
+  if (schemas.type === 'page' || schemas.immovable || props.parentSchema.childImmovable) {
     return 'unmover-item'
   }
 
