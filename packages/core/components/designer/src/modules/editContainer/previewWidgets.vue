@@ -19,12 +19,13 @@
       </div>
     </div>
   </div>
-  <div v-show="showHover && designer.state.checkedNode?.id !== designer.state.hoverNode?.id" ref="hoverWidgetRef" class="hover-widget absolute transition-all pointer-events-none z-998" />
+  <div v-show="showHover && designer.state.checkedNode?.id !== designer.state.hoverNode?.id" ref="hoverWidgetRef"
+    class="hover-widget absolute transition-all pointer-events-none z-998" />
 </template>
 <script lang="ts" setup>
 import { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { inject, computed, ref, onMounted, watch } from 'vue'
-import { pluginManager, getUUID, deepClone, revoke, findSchemaInfoById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
+import { pluginManager, getUUID, deepClone,generateNewSchema, revoke, findSchemaInfoById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
 import { useResizeObserver } from '@vueuse/core'
 import EIcon from '../../../../icon'
 const pageManager = inject('pageManager', {}) as PageManager
@@ -250,20 +251,8 @@ function handleCopy() {
     return false
   }
   const { list, schema, index } = data
-  const node = deepClone({
-    ...schema,
-    id: getUUID()
-  })
+  const node = generateNewSchema(schema)
   list.splice(index + 1, 0, node)
-  const nodeArray = node.children ? [...node.children] : []
-  // 存在子节点时，需要遍历修改子节点id
-  while (nodeArray.length > 0) {
-    const item = nodeArray.pop()
-    item.id = getUUID()
-    if (item.children?.length > 0) {
-      nodeArray.push(...item.children)
-    }
-  }
   designer.setCheckedNode(node)
 
   revoke.push(pageSchema.schemas, '复制组件')

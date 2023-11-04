@@ -1,4 +1,5 @@
 import { type NodeItem } from "@epic-designer/core/types/epic-designer";
+import { getUUID } from './string'
 
 /**
  * 深拷贝数据
@@ -33,6 +34,31 @@ export function deepClone(
     clonedObj[key] = deepClone(obj[key], cache);
   });
   return clonedObj;
+}
+
+/**
+ * 生成新的schema数据
+ * 深拷贝数据,防止重复引用
+ * 生成uuid
+ * 生成field
+ * @param schema
+ */
+export function generateNewSchema(schema: NodeItem) {
+  
+  const [newSchema] = mapSchemas([deepClone(schema)], (item) => {
+    // 补充id字段
+    const newVal = {
+      ...item,
+      id: `${item.type}_${getUUID(8)}`,
+    };
+    // 存在字段名，则自动在字段名后补充id
+    if (newVal.field || newVal.input) {
+      newVal.field = newVal.id;
+    }
+    return newVal;
+  });
+
+  return newSchema;
 }
 
 /**

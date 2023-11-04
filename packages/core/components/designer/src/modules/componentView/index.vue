@@ -25,7 +25,7 @@
           sort: false,
           animation: 180,
           ghostClass: 'moving'
-        }" :clone="handleDeepCopyData" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2">
+        }" :clone="generateNewSchema" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2">
           <template #item="{ element }">
             <div class="source-componet-item flex items-center truncate" @click="handleClick(element)">
               <EIcon :name="element.icon" />
@@ -43,7 +43,7 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { ref, computed, inject } from 'vue'
-import { getUUID, deepClone, findSchemaInfoById, pluginManager, mapSchemas, revoke } from '@epic-designer/utils'
+import { generateNewSchema, findSchemaInfoById, pluginManager, revoke } from '@epic-designer/utils'
 import { NodeItem, PageSchema, Designer } from '../../../../../types/epic-designer'
 import EIcon from '../../../../icon'
 const Input = pluginManager.getComponent('input')
@@ -94,29 +94,6 @@ function handelChecked(item) {
 
 
 /**
- * 深拷贝数据,防止重复引用
- * @param e
- * @param list
- */
-function handleDeepCopyData(schema: NodeItem) {
-
-  const [newSchema] = mapSchemas([deepClone(schema)], (item) => {
-    // 补充id字段
-    const newVal = {
-      ...item,
-      id: getUUID()
-    }
-    // 存在字段名，则自动在字段名后补充id
-    if (newVal.field) {
-      newVal.field += `_${newVal.id}`
-    }
-    return newVal
-  })
-
-  return newSchema
-}
-
-/**
  * 点击添加节点
  * @param e
  */
@@ -133,8 +110,7 @@ function handleClick(schema: NodeItem) {
     index = checkedSchema.children.length - 1
   }
 
-  const newSchema = handleDeepCopyData(schema)
-
+  const newSchema = generateNewSchema(schema)
 
   list.splice(index + 1, 0, newSchema)
   designer.setCheckedNode(newSchema)
