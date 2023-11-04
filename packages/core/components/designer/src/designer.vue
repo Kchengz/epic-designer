@@ -2,7 +2,7 @@
   <Suspense @resolve="handleReady">
     <template #default>
       <div class="epic-designer-main">
-        <EHeader @save="handleSave">
+        <EHeader @save="handleSave" @reset="reset">
           <template #prefix>
             <slot name="header-prefix"></slot>
           </template>

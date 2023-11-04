@@ -2,7 +2,8 @@
   <header class="epic-header relative">
     <div class="epic-header-item items-center flex text-12px text-#3d3d3d">
       <slot name="prefix">
-        <a class="text-black decoration-none items-center flex" href="https://github.com/Kchengz/epic-designer" target="_blank">
+        <a class="text-black decoration-none items-center flex" href="https://github.com/Kchengz/epic-designer"
+          target="_blank">
           <img src="../../../../../static/logo.png" class="w-17px h-17px" alt="" srcset="">
           <span class="ml-4">epic-designer</span>
         </a>
@@ -19,10 +20,14 @@
       <Button size="small" :disabled="!undoList.length" @click="handleRedo">
         <EIcon name="icon-fanhui2x" />
       </Button>
+      <Button size="small" @click="handleReset">
+        <EIcon name="icon-shanchu1" />
+      </Button>
       <Button size="small" @click="handlePreview">
         <EIcon name="icon-yulan" style="margin-right:6px" />
         预览
       </Button>
+
       <Button size="small" @click="handleSave">
         <EIcon name="icon-baocun" style="margin-right:6px" />
         保存
@@ -41,7 +46,7 @@ import EIcon from '../../../../icon'
 import EPreview from './../preview/index.vue'
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
-const emit = defineEmits(['save'])
+const emits = defineEmits(['save', 'reset'])
 const Button = pluginManager.getComponent('button')
 const preview = ref<InstanceType<typeof EPreview> | null>(null)
 const recordList = revoke.recordList
@@ -75,6 +80,14 @@ function handleRedo() {
  * 触发保存操作
  */
 function handleSave() {
-  emit('save')
+  emits('save')
+}
+
+
+/**
+ * 重置页面数据
+ */
+function handleReset() {
+  emits('reset')
 }
 </script>

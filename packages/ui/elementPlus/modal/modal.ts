@@ -16,7 +16,7 @@ export default defineComponent({
         ...props.record,
         ...attrs,
         title: props.record?.label ?? "",
-        "custom-class": "epic-modal-el",
+        class: "epic-modal-el",
         "destroy-on-close": true,
         "onUpdate:modelValue": handleClose,
       } as Record<string, any>;
