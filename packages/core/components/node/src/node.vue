@@ -36,7 +36,7 @@
 </template>
 <script lang="ts" setup>
 import { shallowRef, ref, inject, computed, reactive, useAttrs, onUnmounted, provide, Slots, renderSlot, defineComponent, watch, h, ComponentPublicInstance } from 'vue'
-import { pluginManager, capitalizeFirstLetter, PageManager, deepClone, deepCompareAndModify } from '@epic-designer/utils'
+import { pluginManager, capitalizeFirstLetter, PageManager, deepClone, deepCompareAndModify, deepEqual } from '@epic-designer/utils'
 import { FormDataModel, NodeItem } from '../../../types/epic-designer'
 
 export interface ComponentNodeInstance extends ComponentPublicInstance {
@@ -59,12 +59,7 @@ const props = defineProps<{
 }>()
 
 // 内部schema数据
-const innerSchema = reactive<NodeItem>(deepClone(props.record))
-
-// 监听props.record 更新innerSchema
-watch(props.record, record => {
-  deepCompareAndModify(innerSchema, record)
-})
+const innerSchema = reactive<NodeItem>(props.record)
 
 // 表单formData数据
 let formData = inject('formData', {}) as FormDataModel

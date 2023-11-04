@@ -113,6 +113,7 @@ export function deepEqual(
   obj2: Record<string, any>,
   visitedObjs = new WeakMap()
 ): boolean {
+
   const normalize = (obj: any): any => {
     // 如果是数组类型，则递归调用 normalize 函数对每个元素进行标准化处理
     if (Array.isArray(obj)) {
