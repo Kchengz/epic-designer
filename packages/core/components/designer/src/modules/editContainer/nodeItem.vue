@@ -34,13 +34,6 @@ const props = defineProps<{
 }>()
 
 
-// 获取插槽数据
-function getSlots() {
-  return props.schema.slots ?? {}
-}
-
-
-
 
 /**
  * 获取当前组件dom元素
@@ -83,6 +76,7 @@ function setCheckedNode(event: Event) {
 }
 
 function setHoverNode(event: Event) {
+  if (props.schema.type === 'page') return
   event.stopPropagation()
   designer.setHoverNode(props.schema)
 }

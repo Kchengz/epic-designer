@@ -25,7 +25,7 @@
 <script lang="ts" setup>
 import { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { inject, computed, ref, onMounted, watch } from 'vue'
-import { pluginManager, getUUID, deepClone,generateNewSchema, revoke, findSchemaInfoById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
+import { pluginManager, generateNewSchema, revoke, findSchemaInfoById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
 import { useResizeObserver } from '@vueuse/core'
 import EIcon from '../../../../icon'
 const pageManager = inject('pageManager', {}) as PageManager
@@ -133,9 +133,12 @@ watch(() => getHoverComponentElement.value, (hoverComponentElement) => {
 // 添加悬停节点监听，当悬停节点消失超过300ms,则隐藏悬停部件
 let hideTimer: NodeJS.Timeout | number = 0
 watch(() => designer.state.hoverNode?.id, e => {
-  showHover.value = true
-  clearTimeout(hideTimer)
-  if (e) return
+  if (e) {
+    showHover.value = true
+    clearTimeout(hideTimer)
+    return
+  }
+
   hideTimer = setTimeout(() => {
     showHover.value = false
   }, 300)
