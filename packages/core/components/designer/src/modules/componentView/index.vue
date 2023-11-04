@@ -105,7 +105,7 @@ function handleClick(schema: NodeItem) {
   let { list, schema: checkedSchema, index } = data
 
   // 如果选中元素存在children字段，则添加到children中
-  if (checkedSchema.children && !['row', 'tabs'].includes(checkedSchema.type)) {
+  if (checkedSchema.children && !checkedSchema.childImmovable) {
     list = checkedSchema.children
     index = checkedSchema.children.length - 1
   }

@@ -19,7 +19,7 @@
 import ENode from '../../../../node/index'
 import { Designer, NodeItem, PageSchema } from '../../../../../types/epic-designer'
 import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '@epic-designer/utils'
-import { inject, computed, ref, watch, reactive, nextTick, provide } from 'vue'
+import { inject, computed, ref, watch, nextTick } from 'vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
 
