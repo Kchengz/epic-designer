@@ -155,7 +155,7 @@ function handleReady() {
     emit('ready', { pageManager })
 
     // 注入builder对象
-    pageManager.addComponentInstance('builder', proxy as any)
+    proxy && pageManager.addComponentInstance('builder', proxy)
   })
 }
 

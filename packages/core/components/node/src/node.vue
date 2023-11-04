@@ -1,9 +1,9 @@
 <template>
-  <FormItem v-if="props.record.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show"
+  <FormItem v-if="innerSchema.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show"
     ref="formItemRef" v-bind="getFormItemProps">
     <component :is="component" ref="componentInstance" @vue:mounted="handleAddComponentInstance"
       @vue:unmounted="handleVnodeUnmounted"
-      v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: bindValue }">
+      v-bind="{ ...componentProps, ...innerSchema.componentProps, ...dataSource, [componentProps.bindModel]: getBindValue() }">
       <!-- 嵌套组件递归 start -->
       <!-- 渲染子组件 start -->
       <template #node="data">
@@ -20,7 +20,7 @@
   <!-- 无需FormItem start -->
   <component :is="component" v-else-if="component && show" @vue:mounted="handleAddComponentInstance"
     @vue:unmounted="handleVnodeUnmounted" ref="componentInstance" :model="formData"
-    v-bind="{ ...componentProps, ...props.record.componentProps, ...dataSource, [componentProps.bindModel]: bindValue }">
+    v-bind="{ ...componentProps, ...innerSchema.componentProps, ...dataSource, [componentProps.bindModel]: getBindValue() }">
     <!-- 嵌套组件递归 start -->
     <!-- 渲染子组件 start -->
     <template #node="data">
@@ -36,13 +36,15 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, ref, inject, computed, reactive, useAttrs, provide, Slots, renderSlot, defineComponent, watch, h, ComponentPublicInstance } from 'vue'
-import { pluginManager, capitalizeFirstLetter, PageManager, deepClone } from '@epic-designer/utils'
+import { shallowRef, ref, inject, computed, reactive, useAttrs, toRaw, provide, Slots, renderSlot, defineComponent, watch, h, ComponentPublicInstance } from 'vue'
+import { pluginManager, capitalizeFirstLetter, PageManager, deepClone, deepCompareAndModify } from '@epic-designer/utils'
 import { FormDataModel, NodeItem } from '../../../types/epic-designer'
 
 export interface ComponentNodeInstance extends ComponentPublicInstance {
-  setValue?: (value: any) => void
-  getValue?: () => any
+  setValue?: (value: any) => void,
+  getValue?: () => any,
+  setAttr?: (key: string, value: any) => any,
+  getAttr?: (key: string) => any
 }
 
 defineOptions({
@@ -57,6 +59,13 @@ const props = defineProps<{
   name?: string
 }>()
 
+// 内部schema数据
+const innerSchema = reactive<NodeItem>(deepClone(props.record))
+
+// 监听props.record 更新innerSchema
+watch(props.record, record => {
+  deepCompareAndModify(innerSchema, record)
+})
 
 // 表单formData数据
 let formData = inject('formData', {}) as FormDataModel
@@ -95,20 +104,21 @@ const dataSource = reactive<any>({})
 
 const show = computed(() => {
   // hidden 属性优先级最高
-  if (props.record.componentProps?.hidden) {
+  if (innerSchema.componentProps?.hidden) {
     return false
   }
 
   // show属性为boolean类型则直接返回
-  if (typeof props.record.show === 'boolean') {
-    return props.record.show
+  if (typeof innerSchema.show === 'boolean') {
+    return innerSchema.show
   }
 
-  return props.record.show?.({ values: formData }) ?? true
+  return innerSchema.show?.({ values: formData }) ?? true
 })
 
+// 获取FormItemProps
 const getFormItemProps = computed(() => {
-  const rules = show.value && props.record.rules?.map(item => ({
+  const rules = show.value && innerSchema.rules?.map(item => ({
     ...item,
     validator: item.validator && pageManager.funcs.value[item.validator] // 自定义校验函数
   })
@@ -116,7 +126,7 @@ const getFormItemProps = computed(() => {
 
 
   // 获取校验字段
-  let model: string | string[] | undefined = props.record.field
+  let model: string | string[] | undefined = innerSchema.field
 
 
   if (props.ruleField) {
@@ -124,14 +134,13 @@ const getFormItemProps = computed(() => {
     model = props.ruleField
   }
 
-  else if (ruleFieldPrefix && props.record.field) {
+  else if (ruleFieldPrefix && innerSchema.field) {
     // 添加校验字段前缀
     model = deepClone(ruleFieldPrefix) as []
-    model.push(props.record.field)
+    model.push(innerSchema.field)
   }
-
   const formItemProps = {
-    ...props.record,
+    ...innerSchema,
     rules,
     rule: rules,
     field: model
@@ -146,15 +155,16 @@ const getFormItemProps = computed(() => {
 
 // 获取组件原配置
 const getComponentConfing = computed(() => {
-  return pluginManager.getComponentConfingByType(props.record.type) ?? null
+  return pluginManager.getComponentConfingByType(innerSchema.type) ?? null
 })
 
 // 计算绑定值
-const bindValue = computed(() => {
-  return formData[props.record.field ?? ''] ?? props.modelValue
-})
+const getBindValue = () => {
+  return formData[innerSchema.field ?? ''] ?? props.modelValue
+}
 
 
+// 监听组件实例是否初始化
 watch(() => componentInstance.value, () => {
   handleAddComponentInstance()
 })
@@ -163,19 +173,31 @@ watch(() => componentInstance.value, () => {
 // 添加组件实例
 function handleAddComponentInstance() {
 
-  if (props.record.id && componentInstance.value) {
+  if (innerSchema.id && componentInstance.value) {
     // 输入组件则添加setValue方法
-    if (props.record.input) {
+    if (innerSchema.input) {
       componentInstance.value.setValue = handleUpdate
       componentInstance.value.getValue = () => {
-        return formData[props.record.field!] || props.modelValue
+        return formData[innerSchema.field!] || props.modelValue
       }
-
     }
-    pageManager.addComponentInstance(props.record.id, componentInstance.value)
+
+    // 添加属性设置方法
+    componentInstance.value.setAttr = (key: string, value: any) => {
+      const oldVal = innerSchema.componentProps[key] = value
+      innerSchema.componentProps[key] = value
+      return oldVal
+    }
+
+    // 添加获取设置方法
+    componentInstance.value.getAttr = (key: string) => {
+      return innerSchema.componentProps[key]
+    }
+
+    pageManager.addComponentInstance(innerSchema.id, componentInstance.value)
     // 添加实例 及 formItem实例
-    if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true && formItemRef.value) {
-      pageManager.addComponentInstance(props.record.id + 'formItem', formItemRef.value)
+    if (getComponentConfing.value?.defaultSchema.input && innerSchema.noFormItem !== true && formItemRef.value) {
+      pageManager.addComponentInstance(innerSchema.id + 'formItem', formItemRef.value)
     }
   }
 }
@@ -184,11 +206,11 @@ function handleAddComponentInstance() {
  * 移除组件实例
  */
 function handleVnodeUnmounted() {
-  if (props.record.id) {
+  if (innerSchema.id) {
     // 移除实例 及 formItem实例
-    pageManager.removeComponentInstance(props.record.id)
-    if (getComponentConfing.value?.defaultSchema.input && props.record.noFormItem !== true) {
-      pageManager.removeComponentInstance(props.record.id + 'formItem')
+    pageManager.removeComponentInstance(innerSchema.id)
+    if (getComponentConfing.value?.defaultSchema.input && innerSchema.noFormItem !== true) {
+      pageManager.removeComponentInstance(innerSchema.id + 'formItem')
     }
   }
 }
@@ -198,20 +220,20 @@ function handleVnodeUnmounted() {
  */
 async function initComponent() {
   // 如果存在默认值，则会在初始化之后赋值
-  if (typeof props.record.componentProps?.defaultValue !== 'undefined') {
-    const defaultValue = formData[props.record.field!] ?? props.record.componentProps?.defaultValue
+  if (typeof innerSchema.componentProps?.defaultValue !== 'undefined') {
+    const defaultValue = formData[innerSchema.field!] ?? innerSchema.componentProps?.defaultValue
     handleUpdate(deepClone(defaultValue))
   }
 
   // 组件为slot类型时
-  if (props.record.type === 'slot') {
-    const slotName = props.record.slotName
+  if (innerSchema.type === 'slot') {
+    const slotName = innerSchema.slotName
     if (!slotName) return
 
     component.value = defineComponent({
       setup() {
         return () => renderSlot(slots, slotName, {
-          record: props.record,
+          record: innerSchema,
           model: formData
         })
       }
@@ -221,10 +243,10 @@ async function initComponent() {
   }
 
   // 内置组件
-  const cmp = pluginManager.getComponent(props.record.type)
+  const cmp = pluginManager.getComponent(innerSchema.type)
   // 内部不存在组件
   if (!cmp) {
-    console.error(`组件${props.record.type}未注册`)
+    console.error(`组件${innerSchema.type}未注册`)
     return
   }
   const bindModel = getComponentConfing.value?.bindModel ?? 'modelValue'
@@ -239,15 +261,14 @@ async function initComponent() {
   }
 
   const onEvent: { [type: string]: Function } = {}
-  props.record.on && Object.keys(props.record.on).forEach((item) => {
-    onEvent[`on${capitalizeFirstLetter(item)}`] = (...args) => pageManager.doActions(props.record.on[item], ...args)
+  innerSchema.on && Object.keys(innerSchema.on).forEach((item) => {
+    onEvent[`on${capitalizeFirstLetter(item)}`] = (...args) => pageManager.doActions(innerSchema.on[item], ...args)
   })
 
   // 获取组件props数据
   componentProps.value = {
     ...props,
-    disabled: disabled || props.record.disabled,
-    // is: component,
+    disabled: disabled || innerSchema.disabled,
     bindModel,
     [`onUpdate:${bindModel}`]: handleUpdate,
     ...onEvent
@@ -261,14 +282,14 @@ async function initComponent() {
 function handleUpdate(v: any) {
   emit('update:modelValue', v)
   emit('change', v)
-  if (props.record.field) {
-    formData[props.record.field!] = v
+  if (innerSchema.field) {
+    formData[innerSchema.field!] = v
   }
 }
 
 let oldData: string | null = null
 // 需要监听值变化，重新渲染组件
-watch(() => props.record, (newVal) => {
+watch(() => innerSchema, (newVal) => {
   // 过滤所有子节点
   const newData = JSON.stringify({ ...newVal, children: undefined })
   if (newData === oldData) {
