@@ -9,19 +9,22 @@
                 <EIcon :name="item.icon"></EIcon>
             </div>
         </div>
-        <div class="flex-1 flex items-center justify-end">
-            <div title="导出" class="pr-16px cursor-pointer" @click="handleExportData('demo.json')">
-                <span class="icon iconfont">&#xe60b;</span>
+        <div class="flex-1 h-full flex items-center justify-end">
+            <div title="导出" class="p-10px h-90% flex items-center cursor-pointer hover:bg-gray-50"
+                @click="handleExportData('demo.json')">
+                <EIcon name="icon-download"></EIcon>
             </div>
-            <div title="导入" class="pr-16px cursor-pointer" @click="handleOpenFileSelector()">
-                <span class="icon iconfont">&#xe60c;</span>
+            <div title="导入" class="p-10px h-90% flex items-center cursor-pointer hover:bg-gray-50"
+                @click="handleOpenFileSelector()">
+                <EIcon name="icon-upload"></EIcon>
+
                 <input type="file" ref="fileRef" v-show="false" @change="handleFileSelected">
             </div>
             <!-- <div title="编辑事件" class="pr-16px cursor-pointer">
             <span class="icon iconfont">&#xe612;</span>
         </div> -->
             <!-- 缩放操作 start  -->
-            <div v-if="!disabledZoom" class="flex items-center">
+            <div v-if="!disabledZoom" class="flex items-center ml-12px">
                 <div class="pr-8px w-82px cursor-pointer">
                     <Select v-model:value="canvasScaleComuted" v-model="canvasScaleComuted" :options="canvasScaleOptions"
                         size="small"></Select>
