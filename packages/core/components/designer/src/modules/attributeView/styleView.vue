@@ -8,8 +8,8 @@
         <div class="attr-input">
           <ENode
             :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), input: false, field: undefined, hidden: false }, show: true, noFormItem: true }"
-            :model-value="getAttributeValue(item.field!, checkedNode!)"
-            @update:model-value="handleSetValue($event, item.field!, item)" />
+            :model-value="getAttributeValue(item.field!, item.editData ?? checkedNode!)"
+            @update:model-value="handleSetValue($event, item.field!, item, item.editData)" />
         </div>
       </div>
     </div>
@@ -81,26 +81,24 @@ function isShow(item: NodeItem) {
   return item.show?.({ values: checkedNode.value! }) ?? true
 }
 
+
 /**
  * 设置属性值
  */
-function handleSetValue(value: any, field: string, item: NodeItem) {
+function handleSetValue(value: any, field: string, item: NodeItem, editData = checkedNode.value) {
   if (typeof item.onChange === 'function') {
-    item.onChange({ value, values: checkedNode.value!, componentStyles })
+    item.onChange({ value, values: editData!, componentStyles })
   }
   // 判断是否同步修改属性值
   if (item.changeSync) {
-    setAttributeValue(value, field, checkedNode.value!)
+    setAttributeValue(value, field, editData!)
   } else {
     nextTick(() => {
-      setAttributeValue(value, field, checkedNode.value!)
+      setAttributeValue(value, field, editData!)
     })
   }
   // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(pageSchema.schemas, '编辑组件属性')
-
-
-
 }
 
 </script>

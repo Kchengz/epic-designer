@@ -21,6 +21,7 @@ export interface NodeItem {
   children?: NodeItem[];
   slots?: { [slotName: string]: NodeItem[] };
   show?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean);
+  editData?: any;
   [propName: string]: any;
 }
 
@@ -58,5 +59,9 @@ export interface DesignerState {
 
 export interface PageSchema {
   schemas: NodeItem[];
+  canvas?: {
+    width?: string;
+    height?: string;
+  };
   script?: string;
 }

@@ -8,8 +8,8 @@
         <div class="attr-input">
           <ENode
             :record="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), input: false, field: undefined, hidden: false }, show: true, noFormItem: true }"
-            :model-value="getAttributeValue(item.field!, checkedNode!)"
-            @update:model-value="handleSetValue($event, item.field!, item)" />
+            :model-value="getAttributeValue(item.field!, item.editData ?? checkedNode!)"
+            @update:model-value="handleSetValue($event, item.field!, item, item.editData)" />
         </div>
       </div>
     </div>
@@ -49,6 +49,7 @@ watch(() => designer.state.checkedNode?.type, () => {
     return []
   }
   const attribute = componentConfings[type]?.config.attribute ?? []
+
   componentAttributes.value = [
     {
       label: '组件ID',
@@ -60,6 +61,15 @@ watch(() => designer.state.checkedNode?.type, () => {
     },
     ...attribute
   ]
+
+  if (type === 'page') {
+    componentAttributes.value.push(...[{
+      label: '画布宽度',
+      type: 'EInputSize',
+      field: 'canvas.width',
+      editData: pageSchema,
+    }])
+  }
 }, {
   immediate: true
 })
@@ -67,16 +77,16 @@ watch(() => designer.state.checkedNode?.type, () => {
 /**
  * 设置属性值
  */
-function handleSetValue(value: any, field: string, item: NodeItem) {
+function handleSetValue(value: any, field: string, item: NodeItem, editData = checkedNode.value) {
   if (typeof item.onChange === 'function') {
-    item.onChange({ value, values: checkedNode.value!, componentAttributes })
+    item.onChange({ value, values: editData!, componentAttributes })
   }
   // 判断是否同步修改属性值
   if (item.changeSync) {
-    setAttributeValue(value, field, checkedNode.value!)
+    setAttributeValue(value, field, editData!)
   } else {
     nextTick(() => {
-      setAttributeValue(value, field, checkedNode.value!)
+      setAttributeValue(value, field, editData!)
     })
   }
   // 将修改过的组件属性推入撤销操作的栈中
