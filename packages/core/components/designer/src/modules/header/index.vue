@@ -1,6 +1,6 @@
 <template>
   <header class="epic-header relative">
-    <div class="epic-header-item items-center flex text-12px text-#3d3d3d">
+    <div class="epic-header-item flex-1 items-center flex text-12px text-#3d3d3d">
       <slot name="prefix">
         <a class="text-black decoration-none items-center flex" href="https://github.com/Kchengz/epic-designer"
           target="_blank">
@@ -10,10 +10,12 @@
       </slot>
     </div>
 
-    <div class="epic-header-item epic-header-title absolute text-12px text-#3d3d3d">
-      <slot name="title">epic-designer默认项目</slot>
+    <div class="epic-header-item flex-1 flex justify-center text-12px text-#3d3d3d">
+      <slot name="title">
+        epic-designer默认项目
+      </slot>
     </div>
-    <div class="epic-header-item flex flex items-center">
+    <div class="epic-header-item flex-1 flex justify-end items-center">
       <Button size="small" :disabled="!recordList.length" @click="handleUndo">
         <EIcon name="icon-chexiao2x" />
       </Button>

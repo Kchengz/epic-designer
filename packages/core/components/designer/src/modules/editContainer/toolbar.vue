@@ -1,28 +1,37 @@
 <template>
     <!-- 工具条 start  -->
-    <div class="edit-toolbar flex items-center justify-end text-gray-500 px-4 mx-1">
-        <div title="导出" class="pr-16px cursor-pointer" @click="handleExportData('demo.json')">
-            <span class="icon iconfont">&#xe60b;</span>
+    <div class="edit-toolbar flex items-center justify-between text-gray-500 px-4 mx-1">
+        <div class="flex-1"></div>
+        <div class="flex-1 h-full flex items-center justify-center">
+            <div :title="item.title" class="h-90% px-10px flex items-center hover:bg-gray-100 cursor-pointer"
+                v-for="item in deviceOptions" :key="item.key" @click="handleSetCanvas(item.key)">
+                <EIcon :name="item.icon"></EIcon>
+            </div>
         </div>
-        <div title="导入" class="pr-16px cursor-pointer" @click="handleOpenFileSelector()">
-            <span class="icon iconfont">&#xe60c;</span>
-            <input type="file" ref="fileRef" v-show="false" @change="handleFileSelected">
-        </div>
-        <!-- <div title="编辑事件" class="pr-16px cursor-pointer">
+        <div class="flex-1 flex items-center justify-end">
+            <div title="导出" class="pr-16px cursor-pointer" @click="handleExportData('demo.json')">
+                <span class="icon iconfont">&#xe60b;</span>
+            </div>
+            <div title="导入" class="pr-16px cursor-pointer" @click="handleOpenFileSelector()">
+                <span class="icon iconfont">&#xe60c;</span>
+                <input type="file" ref="fileRef" v-show="false" @change="handleFileSelected">
+            </div>
+            <!-- <div title="编辑事件" class="pr-16px cursor-pointer">
             <span class="icon iconfont">&#xe612;</span>
         </div> -->
-        <!-- 缩放操作 start  -->
-        <div v-if="!disabledZoom" class="flex items-center">
-            <div class="pr-8px w-82px cursor-pointer">
-                <Select v-model:value="canvasScaleComuted" v-model="canvasScaleComuted" :options="canvasScaleOptions"
-                    size="small"></Select>
+            <!-- 缩放操作 start  -->
+            <div v-if="!disabledZoom" class="flex items-center">
+                <div class="pr-8px w-82px cursor-pointer">
+                    <Select v-model:value="canvasScaleComuted" v-model="canvasScaleComuted" :options="canvasScaleOptions"
+                        size="small"></Select>
+                </div>
+                <div class="w-90px cursor-pointer">
+                    <Slider :min="0.6" :max="1.4" :step="0.01" :tooltip="false" v-model:value="canvasScale"
+                        v-model="canvasScale" />
+                </div>
             </div>
-            <div class="w-90px cursor-pointer">
-                <Slider :min="0.6" :max="1.4" :step="0.01" :tooltip="false" v-model:value="canvasScale"
-                    v-model="canvasScale" />
-            </div>
+            <!-- 缩放操作 end  -->
         </div>
-        <!-- 缩放操作 end  -->
     </div>
     <!-- 工具条 end  -->
 </template>
@@ -30,9 +39,29 @@
 import { useShareStore, pluginManager, deepCompareAndModify } from '@epic-designer/utils'
 import type { PageSchema } from '../../../../../types/epic-designer'
 import { computed, inject, ref } from 'vue'
+import EIcon from '../../../../icon'
+
 const Slider = pluginManager.getComponent('slider')
 const Select = pluginManager.getComponent('select')
 const { canvasScale, disabledZoom } = useShareStore()
+
+const deviceOptions = [
+    {
+        icon: 'icon-a-diannaotoubu',
+        title: 'pc',
+        key: 'pc'
+    },
+    {
+        icon: 'icon-a-pingbantoubu',
+        title: '平板',
+        key: 'pad'
+    },
+    {
+        icon: 'icon-a-shoujitoubu',
+        title: '手机',
+        key: 'mobile'
+    },
+]
 
 const pageSchema = inject('pageSchema') as PageSchema
 
@@ -121,6 +150,25 @@ function handleImporttData(content?: string) {
     }
 }
 
+/**
+ * 设置画布宽高
+ * @param type 
+ */
+function handleSetCanvas(type: string) {
+    const canvasConfigs = {
+        pc: {
+
+        },
+        pad: {
+            width: '800px',
+        },
+        mobile: {
+            width: '450px'
+        },
+    }
+
+    pageSchema.canvas = canvasConfigs[type]
+}
 
 
 
