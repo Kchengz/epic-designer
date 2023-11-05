@@ -63,12 +63,20 @@ watch(() => designer.state.checkedNode?.type, () => {
   ]
 
   if (type === 'page') {
-    componentAttributes.value.push(...[{
-      label: '画布宽度',
-      type: 'EInputSize',
-      field: 'canvas.width',
-      editData: pageSchema,
-    }])
+    componentAttributes.value.push(...[
+      {
+        label: '画布宽度',
+        type: 'EInputSize',
+        field: 'canvas.width',
+        editData: pageSchema,
+      },
+      {
+        label: '画布高度',
+        type: 'EInputSize',
+        field: 'canvas.height',
+        editData: pageSchema,
+      }
+    ])
   }
 }, {
   immediate: true

@@ -20,13 +20,14 @@
 </template>
 <script lang="ts" setup>
 import { watchOnce, useElementSize, useResizeObserver } from '@vueuse/core'
-import type { NodeItem } from '../../../../../types/epic-designer'
+import type { PageSchema } from '../../../../../types/epic-designer'
+
 import { useShareStore, useElementDrag, useElementZoom } from '@epic-designer/utils'
-import { ref, nextTick, watch, computed } from 'vue'
+import { ref, nextTick,inject, watch, computed } from 'vue'
 import Toolbar from './toolbar.vue'
-const props = defineProps<{
-  rootSchema: NodeItem
-}>()
+
+const pageSchema = inject('pageSchema') as PageSchema
+
 const editScreenContainerRef = ref<HTMLDivElement | null>(null)
 const draggableElRef = ref<HTMLDivElement | null>(null)
 
@@ -50,15 +51,16 @@ const canvasBoxStyle = ref<{
 }>({})
 
 const getCanvasAttribute = computed(() => {
-  const width = parseFloat(props.rootSchema.componentProps.style?.width ?? 0)
-  const height = parseFloat(props.rootSchema.componentProps.style?.height ?? 0)
+  
+  const width = parseFloat(pageSchema.canvas?.width ?? '0')
+  const height = parseFloat(pageSchema.canvas?.height ?? '0')
   return { width, height }
 })
 
 // 初始化页面样式
 watchOnce(width, updateScrollBoxStyle)
 // 动态适配设计区域宽度
-watch(() => props.rootSchema.componentProps.style.width, updateScrollBoxStyle)
+watch(() => pageSchema.canvas?.width, updateScrollBoxStyle)
 
 function updateScrollBoxStyle() {
   if (disabledZoom.value) {

@@ -1,6 +1,6 @@
 <template>
     <section class="epic-edit-canvas">
-        <KEditScreenContainer :root-schema="rootSchema">
+        <KEditScreenContainer>
             <div class="epic-edit-range rounded-md overflow-auto relative" :style="getEditRangestyle">
                 <ENodeItem :schema="rootSchema" />
                 <KPreviewWidgets />
@@ -22,8 +22,8 @@ const rootSchema = computed(() => {
 
 const getEditRangestyle = computed(() => {
     return {
-        width: rootSchema.value.componentProps.style?.width ?? '100%',
-        height: rootSchema.value.componentProps.style?.height ?? '100%'
+        width: pageSchema.canvas?.width ?? '100%',
+        height: pageSchema.canvas?.height ?? '100%'
     }
 })
 </script>
