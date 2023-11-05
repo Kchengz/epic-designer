@@ -3,8 +3,9 @@
     <div class="edit-toolbar flex items-center justify-between text-gray-500 px-4 mx-1">
         <div class="flex-1"></div>
         <div class="flex-1 h-full flex items-center justify-center">
-            <div :title="item.title" class="h-90% px-10px flex items-center hover:bg-gray-100 cursor-pointer"
-                v-for="item in deviceOptions" :key="item.key" @click="handleSetCanvas(item.key)">
+            <div :title="item.title" class="device-item h-90% px-10px flex items-center hover:bg-gray-50 cursor-pointer"
+                :class="{ checked: item.key === checkedKey }" v-for="item in deviceOptions" :key="item.key"
+                @click="handleSetCanvas(item.key)">
                 <EIcon :name="item.icon"></EIcon>
             </div>
         </div>
@@ -44,7 +45,7 @@ import EIcon from '../../../../icon'
 const Slider = pluginManager.getComponent('slider')
 const Select = pluginManager.getComponent('select')
 const { canvasScale, disabledZoom } = useShareStore()
-
+const checkedKey = ref('pc')
 const deviceOptions = [
     {
         icon: 'icon-a-diannaotoubu',
@@ -155,6 +156,7 @@ function handleImporttData(content?: string) {
  * @param type 
  */
 function handleSetCanvas(type: string) {
+    checkedKey.value = type
     const canvasConfigs = {
         pc: {
 
