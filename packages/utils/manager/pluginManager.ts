@@ -29,6 +29,11 @@ export interface EventModel {
   describe: string;
 }
 
+export interface ActionModel extends EventModel {
+  argsConfigs?: NodeItem[];
+  args?: any[];
+}
+
 export interface ComponentConfigModel {
   component: any;
   defaultSchema: NodeItem;
@@ -36,7 +41,7 @@ export interface ComponentConfigModel {
     attribute?: NodeItem[];
     style?: NodeItem[];
     event?: EventModel[];
-    action?: EventModel[];
+    action?: ActionModel[];
   };
   bindModel?: string;
 }
@@ -71,13 +76,13 @@ export class PluginManager {
   };
 
   publicMethods: PublicMethodsModel = {
-    test: {
-      describe: "测试函数",
-      methodName: "test",
-      method: () => {
-        alert("测试函数弹出");
-      },
-    },
+    // test: {
+    //   describe: "测试函数",
+    //   methodName: "test",
+    //   method: () => {
+    //     alert("测试函数弹出");
+    //   },
+    // },
   };
 
   /**
@@ -107,6 +112,7 @@ export class PluginManager {
       componentConfig.component
     );
 
+    // 输入组件增加动作配置
     if (componentConfig.defaultSchema.input) {
       if (!componentConfig.config.action) {
         componentConfig.config.action = [];
@@ -114,6 +120,13 @@ export class PluginManager {
       componentConfig.config.action.push({
         type: "setValue",
         describe: "设置值",
+        argsConfigs: [
+          {
+            label: "设置数据",
+            type: componentConfig.defaultSchema.type,
+            field: "0",
+          },
+        ],
       });
       componentConfig.config.action.push({
         type: "getValue",

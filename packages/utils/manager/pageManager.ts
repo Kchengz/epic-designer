@@ -95,7 +95,9 @@ export function usePageManager(): PageManager {
           action.componentId != null &&
           (getComponentInstance(action.componentId) as any);
 
-        component[action.methodName](...args);
+        component[action.methodName](
+          ...(action.args ? JSON.parse(action.args) : args)
+        );
         return;
       }
     });

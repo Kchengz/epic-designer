@@ -4,11 +4,11 @@
       <div class="epic-modal-left-panel h-full flex flex-col">
         <!-- 动作所属对象 start -->
         <div class="flex-1">
-          <div class="fun-btn" :class="{ checked: state.actionItem.type === 'public' }" @click="toggleMethod('public')">
-            公共函数
-          </div>
           <div class="fun-btn" :class="{ checked: state.actionItem.type === 'custom' }" @click="toggleMethod('custom')">
             自定义函数
+          </div>
+          <div class="fun-btn" :class="{ checked: state.actionItem.type === 'public' }" @click="toggleMethod('public')">
+            公共函数
           </div>
           组件
           <div class="h-360px overflow-auto">
@@ -32,7 +32,8 @@
       <!-- 动作配置 start -->
       <div class="epic-modal-right-panel">
         <EScriptEdit v-if="state.actionItem.type === 'custom'" />
-        <div v-else class="text-center pt-42px text-gray-400">暂无配置</div>
+        <div v-else-if="actionArgsConfigs.length === 0" class="text-center pt-42px text-gray-400">暂无配置</div>
+        <EArgsEditor v-else v-model="state.actionItem.args" :actionArgsConfigs="actionArgsConfigs" />
       </div>
       <!-- 动作配置 end -->
 
@@ -46,6 +47,7 @@ import ETree from '../../../components/tree'
 import { NodeItem, PageSchema, FormDataModel } from '../../../types/epic-designer'
 
 import EScriptEdit from './EScriptEdit.vue'
+import EArgsEditor from './EArgsEditor.vue'
 
 const Modal = pluginManager.getComponent('modal')
 // const Select = pluginManager.getComponent('select')
@@ -62,7 +64,6 @@ const componentSchema = ref<NodeItem | null>(null)
 const emit = defineEmits(['add', 'edit'])
 
 const methodOptions = computed(() => {
-
   // 组件动作列表
   if (state.actionItem.type === 'component') {
     if (componentSchema.value) {
@@ -87,9 +88,23 @@ const methodOptions = computed(() => {
   return []
 })
 
+const actionArgsConfigs = computed(() => {
+  if (state.actionItem.type === 'component') {
+    if (componentSchema.value) {
+      console.log()
+      const action = pluginManager.getComponentConfings()[componentSchema.value.type].config.action
+      const actionItem = action?.find(item => item.type === state.actionItem.methodName)
+      return actionItem?.argsConfigs ?? []
+    }
+  }
+  return []
+
+})
+
+
 const state = reactive({
   actionItem: {
-    type: 'public',
+    type: 'custom',
     methodName: 'test',
     componentId: null,
   } as FormDataModel
@@ -98,7 +113,7 @@ const state = reactive({
 function handleOpen() {
   visible.value = true
   isAdd.value = true
-  state.actionItem.type = 'public'
+  state.actionItem.type = 'custom'
   state.actionItem.componentId = null
   if (methodOptions.value?.length) {
     handleCheckedMethod(methodOptions.value[0].value)
@@ -122,6 +137,7 @@ function handleOpenEdit(action: any) {
     state.actionItem.componentId = action.componentId
     state.actionItem.methodName = action.methodName
     state.actionItem.type = action.type
+    state.actionItem.args = action.args ?? '[]'
   })
 }
 function handleSave() {
@@ -154,6 +170,7 @@ function handleNodeClick(e: any) {
   state.actionItem.type = 'component'
   state.actionItem.methodName = null
   componentSchema.value = e.record
+  state.actionItem.args = null
   if (methodOptions.value?.length) {
     handleCheckedMethod(methodOptions.value[0].value)
   }

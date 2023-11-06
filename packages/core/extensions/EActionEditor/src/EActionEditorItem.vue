@@ -21,11 +21,11 @@
               <div v-if="action.type === 'component'">
                 {{ getLabel(action.componentId) }}
               </div>
-              <div v-else-if="action.type === 'public'">
-                公共函数
-              </div>
               <div v-else-if="action.type === 'custom'">
                 自定义函数
+              </div>
+              <div v-else-if="action.type === 'public'">
+                公共函数
               </div>
               {{ action.methodName }}
             </div>
