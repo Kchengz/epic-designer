@@ -8,7 +8,6 @@ export default {
     icon: 'icon-write',
     input: true,
     componentProps: {
-      defaultValue: '',
       placeholder: '请输入',
       size: 'default',
       type: 'text'

@@ -107,7 +107,10 @@ const state = reactive({
     type: 'custom',
     methodName: 'test',
     componentId: null,
-  } as FormDataModel
+  } as FormDataModel,
+  cacheData: {
+
+  }
 })
 
 function handleOpen() {
@@ -137,7 +140,7 @@ function handleOpenEdit(action: any) {
     state.actionItem.componentId = action.componentId
     state.actionItem.methodName = action.methodName
     state.actionItem.type = action.type
-    state.actionItem.args = action.args ?? '[]'
+    state.actionItem.args = action.args
   })
 }
 function handleSave() {
@@ -152,6 +155,8 @@ function handleSave() {
 function handleClose() {
   visible.value = false
   selectedKeys.value = []
+  // 清空缓存数据
+  state.cacheData = {}
 }
 
 function toggleMethod(type: string) {
@@ -166,19 +171,30 @@ function toggleMethod(type: string) {
   }
 }
 function handleNodeClick(e: any) {
+  if (state.actionItem.args) {
+    // 存在参数配置，缓存参数配置数据
+    state.cacheData[state.actionItem.componentId + state.actionItem.methodName] = state.actionItem.args
+  }
+
   state.actionItem.componentId = e.id
   state.actionItem.type = 'component'
   state.actionItem.methodName = null
   componentSchema.value = e.record
-  state.actionItem.args = null
+
+
   if (methodOptions.value?.length) {
     handleCheckedMethod(methodOptions.value[0].value)
   }
 }
 
 function handleCheckedMethod(value: string) {
+
   // activeTab.value = '脚本编辑'
   state.actionItem.methodName = value
+
+  // 获取缓存参数配置
+  state.actionItem.args = state.cacheData[state.actionItem.componentId + state.actionItem.methodName]
+
 }
 
 defineExpose({

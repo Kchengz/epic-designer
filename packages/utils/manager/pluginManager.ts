@@ -117,21 +117,25 @@ export class PluginManager {
       if (!componentConfig.config.action) {
         componentConfig.config.action = [];
       }
-      componentConfig.config.action.push({
-        type: "setValue",
-        describe: "设置值",
-        argsConfigs: [
+      componentConfig.config.action.unshift(
+        ...[
           {
-            label: "设置数据",
-            type: componentConfig.defaultSchema.type,
-            field: "0",
+            type: "setValue",
+            describe: "设置值",
+            argsConfigs: [
+              {
+                ...componentConfig.defaultSchema,
+                label: "设置数据",
+                field: "0",
+              },
+            ],
           },
-        ],
-      });
-      componentConfig.config.action.push({
-        type: "getValue",
-        describe: "获取值",
-      });
+          {
+            type: "getValue",
+            describe: "获取值",
+          },
+        ]
+      );
     }
 
     // 添加组件配置
