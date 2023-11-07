@@ -1,7 +1,15 @@
 <template>
     <!-- 工具条 start  -->
-    <div class="edit-toolbar flex items-center justify-between text-gray-500 px-4 mx-1">
-        <div class="flex-1"></div>
+    <div class="edit-toolbar flex items-center justify-between px-4 mx-1">
+        <div class="flex-1 h-full flex items-center">
+            <div :title="item.title" class="action-item h-90% px-10px flex items-center hover:bg-gray-50 cursor-pointer"
+                v-for="(item, index) in actionOptions" :class="{ disabled: item.disabled }" :key="index" @click="item.on">
+                <EIcon :name="item.icon"></EIcon>
+            </div>
+        </div>
+
+        <input type="file" ref="fileRef" v-show="false" @change="handleFileSelected">
+
         <div class="flex-1 h-full flex items-center justify-center">
             <div :title="item.title" class="device-item h-90% px-10px flex items-center hover:bg-gray-50 cursor-pointer"
                 :class="{ checked: item.key === checkedKey }" v-for="item in deviceOptions" :key="item.key"
@@ -10,19 +18,7 @@
             </div>
         </div>
         <div class="flex-1 h-full flex items-center justify-end">
-            <div title="导出" class="p-10px h-90% flex items-center cursor-pointer hover:bg-gray-50"
-                @click="handleExportData('demo.json')">
-                <EIcon name="icon-download"></EIcon>
-            </div>
-            <div title="导入" class="p-10px h-90% flex items-center cursor-pointer hover:bg-gray-50"
-                @click="handleOpenFileSelector()">
-                <EIcon name="icon-upload"></EIcon>
 
-                <input type="file" ref="fileRef" v-show="false" @change="handleFileSelected">
-            </div>
-            <!-- <div title="编辑事件" class="pr-16px cursor-pointer">
-            <span class="icon iconfont">&#xe612;</span>
-        </div> -->
             <!-- 缩放操作 start  -->
             <div v-if="!disabledZoom" class="flex items-center ml-12px">
                 <div class="pr-8px w-82px cursor-pointer">
@@ -40,15 +36,20 @@
     <!-- 工具条 end  -->
 </template>
 <script lang="ts" setup>
-import { useShareStore, pluginManager, deepCompareAndModify } from '@epic-designer/utils'
-import type { PageSchema } from '../../../../../types/epic-designer'
+import { useShareStore, pluginManager, revoke, deepCompareAndModify } from '@epic-designer/utils'
+import type { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { computed, inject, ref } from 'vue'
 import EIcon from '../../../../icon'
 
 const Slider = pluginManager.getComponent('slider')
 const Select = pluginManager.getComponent('select')
+const Button = pluginManager.getComponent('button')
+
 const { canvasScale, disabledZoom } = useShareStore()
 const checkedKey = ref('pc')
+const pageSchema = inject('pageSchema') as PageSchema
+const designer = inject('designer') as Designer
+
 const deviceOptions = [
     {
         icon: 'icon-a-diannaotoubu',
@@ -67,7 +68,41 @@ const deviceOptions = [
     },
 ]
 
-const pageSchema = inject('pageSchema') as PageSchema
+const recordList = revoke.recordList
+const undoList = revoke.undoList
+
+const actionOptions = computed(() => {
+    return [
+        {
+            icon: 'icon-daima1',
+            title: '查看数据',
+            on: () => handleExportData()
+        },
+        {
+            icon: 'icon-shangchuan1',
+            title: '导入',
+            on: handleOpenFileSelector
+        },
+        {
+            icon: 'icon-shanchu1',
+            title: '清空',
+            on: handleReset
+        },
+        {
+            icon: 'icon-chexiao2x',
+            title: '撤销',
+            on: handleUndo,
+            disabled: !recordList.value.length
+        },
+        {
+            icon: 'icon-fanhui2x',
+            title: '重做',
+            on: handleRedo,
+            disabled: !undoList.value.length
+        },
+
+    ]
+})
 
 const fileRef = ref<HTMLInputElement | null>(null)
 const canvasScaleComuted = computed({
@@ -103,9 +138,37 @@ const canvasScaleOptions = [
 ]
 
 /**
+ * 撤销操作
+ */
+function handleUndo() {
+    const record = revoke.undo()
+    if (!record) return
+    deepCompareAndModify(pageSchema.schemas, record)
+    designer.setCheckedNode(pageSchema.schemas[0])
+}
+
+/**
+ * 重做操作
+ */
+function handleRedo() {
+    const record = revoke.redo()
+    if (!record) return
+    deepCompareAndModify(pageSchema.schemas, record)
+    designer.setCheckedNode(pageSchema.schemas[0])
+}
+
+
+/**
+ * 重置页面数据
+ */
+function handleReset() {
+    designer.reset()
+}
+
+/**
  * 导出数据
  */
-function handleExportData(fileName = `demo.json`) {
+function handleExportData(fileName = `epic-page-data.json`) {
     let content = "data:text/json;charset=utf-8,";
     content += JSON.stringify(pageSchema, null, 2);
     var encodedUri = encodeURI(content);
@@ -168,7 +231,7 @@ function handleSetCanvas(type: string) {
             width: '800px',
         },
         mobile: {
-            width: '450px'
+            width: '420px'
         },
     }
 

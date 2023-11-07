@@ -2,7 +2,7 @@
   <Suspense @resolve="handleReady">
     <template #default>
       <div class="epic-designer-main">
-        <EHeader @save="handleSave" @reset="reset">
+        <EHeader @save="handleSave">
           <template #prefix>
             <slot name="header-prefix"></slot>
           </template>
@@ -108,6 +108,7 @@ provide('designer', {
   setCheckedNode,
   setHoverNode,
   setDisableHover,
+  reset,
   state
 })
 

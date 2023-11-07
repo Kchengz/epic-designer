@@ -46,6 +46,7 @@ export interface Designer {
   setCheckedNode: (schema?: NodeItem) => void;
   setHoverNode: (schema: NodeItem | null) => void;
   setDisableHover: (disableHover = false) => void;
+  reset: () => void;
   state: DesignerState;
   // schemas: NodeItem[];
 }
