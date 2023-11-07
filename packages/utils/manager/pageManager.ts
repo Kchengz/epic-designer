@@ -1,6 +1,6 @@
 import { ref, type Ref, type ComponentPublicInstance } from "vue";
 import { pluginManager } from "./pluginManager";
-export interface ActionModel {
+export interface ActionsModel {
   componentId?: string;
   args: string;
   methodName: string;
@@ -13,7 +13,7 @@ export interface PageManager {
   addComponentInstance: (id: string, instance: ComponentPublicInstance) => void;
   removeComponentInstance: (id: string) => void;
   setMethods: (scriptStr: string) => void;
-  doActions: (actions: ActionModel[], ...args: any) => void;
+  doActions: (actions: ActionsModel[], ...args: any) => void;
 }
 
 export function usePageManager(): PageManager {
@@ -80,7 +80,7 @@ export function usePageManager(): PageManager {
    * 执行一组操作
    * @param actions 操作数组
    */
-  function doActions(actions: ActionModel[], ...args: any): void {
+  function doActions(actions: ActionsModel[], ...args: any): void {
     actions?.forEach((action) => {
       if (action.type === "public") {
         pluginManager.publicMethods[action.methodName]?.method(action.args);
