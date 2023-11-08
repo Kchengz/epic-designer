@@ -43,7 +43,6 @@ import EIcon from '../../../../icon'
 
 const Slider = pluginManager.getComponent('slider')
 const Select = pluginManager.getComponent('select')
-const Button = pluginManager.getComponent('button')
 
 const { canvasScale, disabledZoom } = useShareStore()
 const checkedKey = ref('pc')

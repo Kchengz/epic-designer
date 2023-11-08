@@ -33,7 +33,7 @@
 <script lang="ts" setup>
 import { provide, reactive, toRaw, watch, nextTick } from 'vue'
 import { DesignerState, NodeItem, PageSchema } from '../../../types/epic-designer'
-import { getMatchedById, loadAsyncComponent, revoke, usePageManager, deepCompareAndModify, deepClone } from '@epic-designer/utils'
+import { getMatchedById, loadAsyncComponent, revoke, usePageManager, deepCompareAndModify, deepEqual, deepClone } from '@epic-designer/utils'
 import { DesignerProps } from './types'
 import { useShareStore } from '@epic-designer/utils'
 
@@ -190,8 +190,9 @@ function getData(): PageSchema {
  * 重置页面数据为默认数据。
  */
 function reset() {
+  // 判断数据是否已修改，如果未修改，则取消重置操作
+  if (deepEqual(pageSchema.schemas, defaultSchemas) && pageSchema.script === defaultScript) return
   // 调用 deepCompareAndModify 函数比较 pageSchema.schemas 和 defaultSchemas，进行修改
-
   deepCompareAndModify(pageSchema.schemas, defaultSchemas)
   // 更新 script.value
   pageSchema.script = defaultScript
