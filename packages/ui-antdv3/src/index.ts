@@ -23,7 +23,7 @@ import Button from "./button";
 import Modal from "./modal";
 import colorPicker from "./color-picker";
 
-export function setupAntd(pluginManager: PluginManager): void {
+export function setupAntdV3(pluginManager: PluginManager): void {
   // 异步加载组件
   pluginManager.component(
     "Collapse",

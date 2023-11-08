@@ -37,3 +37,4 @@ yarn-error.log*
 
 dist
 !docs/.vitepress/dist
+!packages/ui-antdv3/dist
