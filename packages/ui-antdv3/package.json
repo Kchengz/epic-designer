@@ -1,0 +1,14 @@
+{
+  "name": "@epic-designer/ui-antdv3",
+  "version": "1.0.0",
+  "description": "epic-designer base antdv3 ui",
+  "main": "index.ts",
+  "scripts": {},
+  "author": "kchengz",
+  "devDependencies": {
+    "vite-plugin-dts": "^3.3.1"
+  },
+  "dependencies": {
+    "ant-design-vue": "3.2.20"
+  }
+}

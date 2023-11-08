@@ -46,7 +46,7 @@ const pageManager = usePageManager()
 
 const props = withDefaults(defineProps<DesignerProps>(), {
   disabledZoom: false,
-  hiddenHeader: true
+  hiddenHeader: false
 })
 
 const emit = defineEmits(['ready', 'save'])

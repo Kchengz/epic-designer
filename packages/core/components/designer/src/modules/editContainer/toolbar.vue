@@ -74,12 +74,12 @@ const actionOptions = computed(() => {
     return [
         {
             icon: 'icon-daima1',
-            title: '查看数据',
+            title: '导出数据',
             on: () => handleExportData()
         },
         {
             icon: 'icon-shangchuan1',
-            title: '导入',
+            title: '导入数据',
             on: handleOpenFileSelector
         },
         {

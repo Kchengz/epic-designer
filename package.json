@@ -21,7 +21,6 @@
     "epic-designer": "workspace:*",
     "@turbo/gen": "^1.10.9",
     "@vitejs/plugin-vue": "^4.2.3",
-    "ant-design-vue": "^3.2.20",
     "element-plus": "^2.3.8",
     "eslint": "^8.45.0",
     "naive-ui": "^2.34.4",
