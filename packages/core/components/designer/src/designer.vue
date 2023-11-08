@@ -2,15 +2,18 @@
   <Suspense @resolve="handleReady">
     <template #default>
       <div class="epic-designer-main">
-        <EHeader @save="handleSave">
+        <EHeader v-if="!props.hiddenHeader" @save="handleSave">
           <template #prefix>
             <slot name="header-prefix"></slot>
           </template>
           <template #title>
             <slot name="header-title"></slot>
           </template>
-          <template #suffix>
-            <slot name="header-suffix"></slot>
+          <template #right-prefix>
+            <slot name="header-right-prefix"></slot>
+          </template>
+          <template #right-suffix>
+            <slot name="header-right-suffix"></slot>
           </template>
         </EHeader>
         <div class="epic-split-view-container">
@@ -42,7 +45,8 @@ const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vu
 const pageManager = usePageManager()
 
 const props = withDefaults(defineProps<DesignerProps>(), {
-  disabledZoom: false
+  disabledZoom: false,
+  hiddenHeader: true
 })
 
 const emit = defineEmits(['ready', 'save'])

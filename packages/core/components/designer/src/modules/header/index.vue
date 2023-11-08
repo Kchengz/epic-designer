@@ -16,6 +16,7 @@
       </slot>
     </div>
     <div class="epic-header-item flex-1 flex justify-end items-center">
+      <slot name="right-prefix"></slot>
       <Button size="small" @click="handlePreview">
         <EIcon name="icon-yulan" style="margin-right:6px" />
         预览
@@ -25,7 +26,7 @@
         <EIcon name="icon-baocun" style="margin-right:6px" />
         保存
       </Button>
-      <slot name="suffix"></slot>
+      <slot name="right-suffix"></slot>
     </div>
     <EPreview ref="preview" />
   </header>
