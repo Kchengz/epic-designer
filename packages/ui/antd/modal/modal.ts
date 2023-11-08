@@ -34,7 +34,7 @@ export default defineComponent({
         ...props.record,
         ...attrs,
         title: props.record?.label ?? "",
-        class: "epic-modal",
+        wrapClassName: "epic-modal-ant",
         visible: attrs.modelValue,
         "onUpdate:visible": handleClose,
         style: "top:20px",
