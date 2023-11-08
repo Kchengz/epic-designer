@@ -6,7 +6,7 @@
   group: 'tree-draggable',
   ghostClass: 'moveing',
   draggable: '.draggable-item',
-  disabled: !treeProps.draggable || modelSchemas[0].type === 'page'
+  disabled: !treeProps.draggable || modelSchemas[0]?.type === 'page'
 
 }" @start="handleSelect($event.oldIndex)">
     <template #item="{ element, index }">

@@ -2,7 +2,7 @@
   <div class="epic-tree">
     <!-- 搜素框 start -->
     <div class="search-box px-10px py-6px">
-      <Input placeholder="搜索节点" v-model="keyword" v-model:value="keyword">
+      <Input placeholder="搜索节点" clearable allowClear v-model="keyword" v-model:value="keyword">
       <template #prefix>
         <EIcon name="icon-chaxun" />
       </template>
