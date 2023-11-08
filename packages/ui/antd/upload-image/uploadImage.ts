@@ -89,6 +89,7 @@ export default defineComponent({
       'list-type': 'picture-card',
       accept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
       'onUpdate:file-list': handleUpdate,
+      'file-list':fileList.value,
       'onBefore-upload': beforeUpload,
       onChange: handleChange,
       onPreview: handlePreview

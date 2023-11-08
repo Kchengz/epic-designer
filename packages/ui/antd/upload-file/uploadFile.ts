@@ -29,9 +29,11 @@ export default defineComponent({
       () => props.modelValue,
       (e) => {
         if ((e != null) && e.length > 0 && (fileList.value != null)) {
+
           // props modelValue 等于 data 不进行处理
           if (fileList.value === e) return
           fileList.value.length = 0
+
           fileList.value.push(...e)
         }
       },
@@ -81,6 +83,7 @@ export default defineComponent({
     const getUploadProps = computed<UploadProps>(() => ({
       ...attrs,
       'onUpdate:file-list': handleUpdate,
+      'file-list':fileList.value,
       'onBefore-upload': beforeUpload,
       onChange: handleChange
     }))

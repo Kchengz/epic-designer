@@ -1,18 +1,18 @@
-import { type PropType, defineComponent, h, nextTick, ref, watch } from 'vue'
-import { NUpload } from 'naive-ui'
-import type { UploadFileInfo } from 'naive-ui'
-import type { OnFinish, OnError } from 'naive-ui/es/upload/src/interface'
+import { type PropType, defineComponent, h, nextTick, ref, watch } from "vue";
+import { NUpload } from "naive-ui";
+import type { UploadFileInfo } from "naive-ui";
+import type { OnFinish, OnError } from "naive-ui/es/upload/src/interface";
 
 export default defineComponent({
   props: {
     modelValue: {
       type: Array as PropType<UploadFileInfo[]>,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
-  emits: ['update:modelValue'],
-  setup (props, { emit, attrs }) {
-    const fileList = ref<UploadFileInfo[]>([])
+  emits: ["update:modelValue"],
+  setup(props, { emit, attrs }) {
+    const fileList = ref<UploadFileInfo[]>([]);
 
     // const imgUrl = ref('')
     // const visible = ref(false)
@@ -21,25 +21,27 @@ export default defineComponent({
     // }
 
     watch(fileList, (e) => {
-      emit('update:modelValue', e)
-    })
+      emit("update:modelValue", e);
+    });
     // 处理传递进来的值
     watch(
       () => props.modelValue,
       (e) => {
         if (e != null && e.length > 0 && fileList.value != null) {
           // props modelValue 等于 data 不进行处理
-          if (fileList.value === e) return
-          fileList.value.length = 0
-          fileList.value.push(...e)
+          if (fileList.value === e) return;
+          fileList.value.length = 0;
+          fileList.value.push(...e);
         }
       },
       { deep: true, immediate: true }
-    )
+    );
 
-    function handleUpdate (e: UploadFileInfo[]): void {
-      console.log('onChange called->', e)
-      nextTick(() => { fileList.value = e })
+    function handleUpdate(e: UploadFileInfo[]): void {
+      console.log("onChange called->", e);
+      nextTick(() => {
+        fileList.value = e;
+      });
     }
 
     // 处理数据结果
@@ -67,14 +69,14 @@ export default defineComponent({
     // }
 
     const handleSuccess: OnFinish = ({ file, event }) => {
-      console.log('OnFinish called->', file, event)
-      const resInfo = event?.target as any
-      const resData = JSON.parse(resInfo.response ?? '{}')
-      file.url = resData.data?.url
-    }
+      console.log("OnFinish called->", file, event);
+      const resInfo = event?.target as any;
+      const resData = JSON.parse(resInfo.response ?? "{}");
+      file.url = resData.data?.url;
+    };
     const handleError: OnError = ({ file, event }) => {
-      console.log('OnError called->', file, event)
-    }
+      console.log("OnError called->", file, event);
+    };
 
     // 上传前处理
     // const beforeUpload = (file: any): void => {
@@ -90,9 +92,9 @@ export default defineComponent({
     // }
 
     /**
-         * 预览功能
-         * @param {*} e
-         */
+     * 预览功能
+     * @param {*} e
+     */
     // const handlePreview: OnPreview = (file) => {
     //   console.log(file)
     //   if (!file.url) return
@@ -103,39 +105,48 @@ export default defineComponent({
     return () => {
       // const type = attrs.type;
       return h(
-        'div',
+        "div",
         {
-          class: 'epic-upload-image'
+          class: "epic-upload-image",
         },
         {
           default: () => [
-            h(NUpload, {
-              ...attrs,
-              'list-type': 'image-card',
-              accept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
-              'onUpdate:file-list': handleUpdate,
-              onFinish: handleSuccess,
-              onError: handleError
-            }, {
-              default: () => [
-                h('div', { style: { 'text-align': 'center' } }, {
-                  default: () => [
-                    h('span', {
-                      class: 'iconfont icon-shangchuan1 text-md',
-                      style: { 'margin-right': '2px' }
-                    }),
-                    h(
-                      'div',
-                      { class: 'ant-upload-text' },
-                      { default: () => '点击上传' }
-                    )
-                  ]
-                })
-              ]
-            })
-          ]
+            h(
+              NUpload,
+              {
+                ...attrs,
+                "list-type": "image-card",
+                accept: "image/gif,image/jpeg,image/jpg,image/png,image/svg",
+                "onUpdate:file-list": handleUpdate,
+                "file-list": fileList.value,
+                onFinish: handleSuccess,
+                onError: handleError,
+              },
+              {
+                default: () => [
+                  h(
+                    "div",
+                    { style: { "text-align": "center" } },
+                    {
+                      default: () => [
+                        h("span", {
+                          class: "iconfont icon-shangchuan1 text-md",
+                          style: { "margin-right": "2px" },
+                        }),
+                        h(
+                          "div",
+                          { class: "ant-upload-text" },
+                          { default: () => "点击上传" }
+                        ),
+                      ],
+                    }
+                  ),
+                ],
+              }
+            ),
+          ],
         }
-      )
-    }
-  }
-})
+      );
+    };
+  },
+});

@@ -50,6 +50,7 @@ export default defineComponent({
           h(NUpload, {
             ...attrs,
             'onUpdate:file-list': handleUpdate,
+            "file-list": fileList.value,
             onError: handleError,
             onFinish: handleSuccess,
             'default-upload': true

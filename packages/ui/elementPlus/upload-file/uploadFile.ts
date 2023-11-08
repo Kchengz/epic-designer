@@ -80,6 +80,7 @@ export default defineComponent({
     // @ts-expect-error
     const getUploadProps = computed<UploadProps>(() => ({
       ...attrs,
+      "file-list": fileList.value,
       onBeforeUpload: beforeUpload,
       onChange: handleChange,
       onSuccess: handleSuccess,

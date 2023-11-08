@@ -49,45 +49,20 @@ const pageSchema = ref<PageSchema>({
           },
           "children": [
             {
-              "label": "输入框",
-              "type": "input",
-              "field": "input_tzpfvoqp",
-              "icon": "icon-write",
+              "label": "上传文件",
+              "type": "upload-file",
+              "icon": "icon-upload",
+              "field": "upload",
               "input": true,
               "componentProps": {
-                "defaultValue": "",
-                "placeholder": "请输入",
-                "size": "default",
-                "type": "text"
+                "action": "http://cdn.kcz66.com/upload-img.txt",
+                "name": "file",
+                "showFileList": true
               },
-              "id": "input_tzpfvoqp"
-            },
-            {
-              "label": "选择框",
-              "type": "select",
-              "icon": "icon-xiala",
-              "field": "select_gbqzlhlu",
-              "input": true,
-              "componentProps": {
-                "options": [
-                  {
-                    "label": "选项1",
-                    "value": "选项1"
-                  },
-                  {
-                    "label": "选项2",
-                    "value": "选项2"
-                  }
-                ],
-                "placeholder": "请选择",
-                "size": "default",
-                "effect": "light",
-                "placement": "bottom-start"
-              },
-              "id": "select_gbqzlhlu"
+              "id": "upload-file_by35flst"
             }
           ],
-          "id": "form_ydqzoj6x"
+          "id": "form_uknia964"
         }
       ],
       "componentProps": {
@@ -104,7 +79,13 @@ const pageSchema = ref<PageSchema>({
 // 表单赋值
 onMounted(async () => {
   kfb.value?.setData({
-    input_tzpfvoqp: '测试数据'
+    'upload': [{
+      name: 'xxx',
+      uid: 'xxx',
+      status:
+        "success",
+      url: 'http://cdn.kcz66.com/%E5%A4%B4%E5%83%8F.jpg'
+    }]
   })
 
   // const data = await kfb.value?.getData()

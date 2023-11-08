@@ -88,6 +88,7 @@ export default defineComponent({
     // @ts-expect-error
     const getUploadProps = computed<UploadProps>(() => ({
       ...attrs,
+      'file-list':fileList.value,
       'list-type': 'picture-card',
       accept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
       onBeforeUpload: beforeUpload,
