@@ -33,7 +33,7 @@ import { pluginManager, setupElementPlus } from "epic-designer";
 setupElementPlus(pluginManager);
 ```
 
-- ### 选择 ant-design-vue
+- ### 选择 ant-design-vue 
 
 ```bash
 npm i ant-design-vue
@@ -42,14 +42,25 @@ npm i ant-design-vue
 main.ts 或者 main.js 引入注册组件
 
 ```javascript
-// 引入antd UI样式
-import "ant-design-vue/dist/antd.css";
 // 引入k-designer样式
 import "epic-designer/dist/style.css";
+// 引入antd UI 重置样式
+import "ant-design-vue/dist/reset.css";
 import { pluginManager, setupAntd } from "epic-designer";
 // 使用Antd UI
 setupAntd(pluginManager);
 ```
+- #### 注：ant-design-vue v3.x版本需要改成下面方式
+```javascript
+// 引入antd UI样式
+import "ant-design-vue/dist/antd.css";
+// 引入k-designer样式
+import "epic-designer/dist/style.css";
+import { pluginManager, setupAntdV3 } from "epic-designer";
+// 使用Antd UI
+setupAntdV3(pluginManager);
+```
+
 - ### 选择 naive-ui
 
 
@@ -138,7 +149,9 @@ import monacoEditorPlugin from 'vite-plugin-monaco-editor'
 export default defineConfig({
 plugins: [
     vue(), 
-    (monacoEditorPlugin as any).default({}) 
+    monacoEditorPlugin({
+      languageWorkers:['editorWorkerService', 'css', 'html', 'json', 'typescript']
+    })
   ]
 });
 ```

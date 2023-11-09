@@ -65,9 +65,12 @@ function handleSubmit (e) {
 
 <style>
 .epic-designer-container{
-width:1100px;
+width:1200px;
 height:800px;
 border:1px solid #ccc;
+position: relative;
+z-index: 20;
+background: white;
 }
 </style>
 
@@ -93,8 +96,9 @@ border:1px solid #ccc;
 
 ## 插槽
 
-| 插槽名称      | 说明                       | 参数 | 版本  |
-| ------------- | -------------------------- | ---- | ----- |
-| header-prefix | 顶部左侧插槽（logo，标题） |      | 0.8.1 |
-| header-title  | 顶部标题                   |      |       |
-| header-suffix | 顶部右侧插槽               |      |       |
+| 插槽名称            | 说明                       | 参数 | 版本   |
+| ------------------- | -------------------------- | ---- | ------ |
+| header-prefix       | 顶部左侧插槽（logo，标题） |      | 0.8.1  |
+| header-title        | 顶部标题                   |      |        |
+| header-right-prefix | 顶部右侧区域前置插槽       |      | 0.8.10 |
+| header-right-suffix | 顶部右侧区域后置插槽       |      | 0.8.10 |

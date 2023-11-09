@@ -4,6 +4,6 @@
   "description": "epic-designer docs",
   "author": "kchengz",
   "devDependencies": {
-
+    "vite-plugin-monaco-editor": "^1.1.0"
   }
 }

@@ -17,7 +17,7 @@
 import ENode from '../../node'
 import { reactive, provide, ref, watch, useSlots, nextTick, getCurrentInstance, type ComponentInternalInstance } from 'vue'
 import { PageSchema, FormDataModel } from '../../../types/epic-designer'
-import { loadAsyncComponent, deepCompareAndModify, usePageManager } from '@epic-designer/utils'
+import { loadAsyncComponent, deepCompareAndModify,deepClone, usePageManager } from '@epic-designer/utils'
 const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
 
 const pageManager = usePageManager()
@@ -79,7 +79,7 @@ function getData(formName = 'default'): Promise<FormDataModel | boolean> {
       return false
     }
 
-    const formData = await form.getData()
+    const formData = deepClone(await form.getData())
     resolve(formData)
   })
 
