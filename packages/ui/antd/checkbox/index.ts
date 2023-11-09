@@ -61,11 +61,6 @@ export default {
         field: "componentProps.size",
       },
       {
-        label: '可清空',
-        type: 'switch',
-        field: 'componentProps.allowClear'
-      },
-      {
         label: '隐藏',
         type: 'switch',
         field: 'componentProps.hidden'
