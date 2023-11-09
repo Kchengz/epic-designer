@@ -10,6 +10,7 @@ export type { NodeItem, PageSchema } from './types/epic-designer.d'
 // 初始化设计器
 setupComponent(pluginManager)
 
+
 // const components = [EBuilder, EDesigner]
 
 // 注册全局组件

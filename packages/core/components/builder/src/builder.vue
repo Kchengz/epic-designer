@@ -21,7 +21,9 @@ import { loadAsyncComponent, deepCompareAndModify,deepClone, usePageManager } fr
 const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
 
 const pageManager = usePageManager()
-const emit = defineEmits(['ready'])
+const emit = defineEmits<{
+  ready: any
+}>()
 const slots = useSlots()
 const forms = ref<any>({})
 const ready = ref<boolean>(false)
@@ -152,7 +154,7 @@ function handleReady() {
   nextTick(() => {
     ready.value = true
 
-    emit('ready', { pageManager })
+    emit('ready', pageManager)
 
     // 注入builder对象
     proxy && pageManager.addComponentInstance('builder', proxy)

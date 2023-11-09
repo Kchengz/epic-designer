@@ -1,9 +1,6 @@
 <template>
   <div>
-    <EBuilder ref="kfb" :pageSchema="pageSchema">
-      <template #sdff="{ model, record }">
-        <input v-model="model[record.field]">
-      </template>
+    <EBuilder ref="kfb" :pageSchema="pageSchema" @ready="handleReady">
     </EBuilder>
     <div @click="handleGetData">
       获取数据
@@ -13,9 +10,8 @@
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import { EBuilder } from '@epic-designer/core'
+import { EBuilder, PageManager, PageSchema } from '@epic-designer/core'
 
-import { PageSchema } from '@epic-designer/core/types/epic-designer'
 
 const kfb = ref<any>(null)
 async function handleGetData() {
@@ -75,7 +71,9 @@ const pageSchema = ref<PageSchema>({
   "script": "const { defineExpose, getComponent } = this;\n\nfunction test (){\n    console.log('test')\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})"
 })
 
-
+function handleReady(pageManager: PageManager) {
+  console.log(pageManager)
+}
 // 表单赋值
 onMounted(async () => {
   kfb.value?.setData({
