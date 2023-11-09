@@ -20,7 +20,7 @@ import { NodeItem } from '../../../types/epic-designer'
 import { computed } from 'vue'
 
 const props = defineProps<{
-  modelValue: string | null,
+  modelValue: string | null | undefined,
   actionArgsConfigs: NodeItem[]
 }>()
 const emits = defineEmits(['update:modelValue'])

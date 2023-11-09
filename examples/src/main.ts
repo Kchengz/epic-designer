@@ -11,9 +11,6 @@ import { pluginManager } from '@epic-designer/core'
 
 
 
-// 使用NaiveUi UI
-// import { setupNaiveUi } from '@epic-designer/ui/naiveUi'
-// setupNaiveUi(pluginManager)
 
 // 使用Antd UI v4版本
 // import './style/reset.css';
@@ -24,6 +21,10 @@ import { pluginManager } from '@epic-designer/core'
 import 'ant-design-vue/dist/antd.css'
 import { setupAntdV3 } from '@epic-designer/ui'
 setupAntdV3(pluginManager)
+
+// 使用NaiveUi UI
+// import { setupNaiveUi } from '@epic-designer/ui/naiveUi'
+// setupNaiveUi(pluginManager)
 
 
 createApp(App).mount('#app')

@@ -31,10 +31,10 @@
             </div>
             <div class="opr-box">
               <div class="edit-btn" @click="handleEdit(index, item.type, action)">
-                <EIcon name="icon-edit" />
+                <EIcon name="icon-tiaozheng" />
               </div>
               <div class="del-btn" @click="handleDelete(index, item.type)">
-                <EIcon name="icon-shanchu" />
+                <EIcon name="icon-shanchu1" />
               </div>
             </div>
           </div>
