@@ -1,3 +1,10 @@
+<template>
+  <div>
+
+  </div>
+</template>
+
+<script lang="ts">
 import { defineComponent, h, renderSlot, type PropType } from "vue";
 import { type NodeItem } from "@epic-designer/core/types/epic-designer";
 import Modal from "ant-design-vue/lib/modal";
@@ -102,3 +109,5 @@ export default defineComponent({
     };
   },
 });
+
+</script>

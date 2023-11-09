@@ -7,10 +7,7 @@ import { pluginManager } from '@epic-designer/core'
 // import { setupElementPlus } from '@epic-designer/ui/elementPlus'
 // setupElementPlus(pluginManager)
 
-// 使用Antd UI
-import 'ant-design-vue/dist/reset.css';
-import { setupAntd } from '@epic-designer/ui/antd'
-setupAntd(pluginManager)
+
 
 
 
@@ -18,10 +15,15 @@ setupAntd(pluginManager)
 // import { setupNaiveUi } from '@epic-designer/ui/naiveUi'
 // setupNaiveUi(pluginManager)
 
+// 使用Antd UI v4版本
+// import './style/reset.css';
+// import { setupAntd } from '@epic-designer/ui/antd'
+// setupAntd(pluginManager)
+
 // 使用Antd UI v3 版本
-// import 'ant-design-vue/dist/antd.css'
-// import { setupAntdV3 } from '@epic-designer/ui'
-// setupAntdV3(pluginManager)
+import 'ant-design-vue/dist/antd.css'
+import { setupAntdV3 } from '@epic-designer/ui'
+setupAntdV3(pluginManager)
 
 
 createApp(App).mount('#app')

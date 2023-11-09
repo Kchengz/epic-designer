@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@epic-designer/utils'
 export default {
-  component:  () => import('./modal'),
+  component:  () => import('./modal.vue'),
   defaultSchema: {
     label: '模态框',
     type: 'modal',
