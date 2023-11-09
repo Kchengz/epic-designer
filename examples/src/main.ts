@@ -13,14 +13,14 @@ import { pluginManager } from '@epic-designer/core'
 
 
 // 使用Antd UI v4版本
-// import './style/reset.css';
-// import { setupAntd } from '@epic-designer/ui/antd'
-// setupAntd(pluginManager)
+import './style/reset.css';
+import { setupAntd } from '@epic-designer/ui/antd'
+setupAntd(pluginManager)
 
 // 使用Antd UI v3 版本
-import 'ant-design-vue/dist/antd.css'
-import { setupAntdV3 } from '@epic-designer/ui'
-setupAntdV3(pluginManager)
+// import 'ant-design-vue/dist/antd.css'
+// import { setupAntdV3 } from '@epic-designer/ui'
+// setupAntdV3(pluginManager)
 
 // 使用NaiveUi UI
 // import { setupNaiveUi } from '@epic-designer/ui/naiveUi'

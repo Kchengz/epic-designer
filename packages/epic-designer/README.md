@@ -34,7 +34,7 @@
 
 ## 简介
 
-可以简称`K设计器`，是一个功能强大、开箱即用的拖拽式低代码设计器。它基于 Vue3 开发，兼容多套 UI 组件库，除了基础的页面设计功能，EpicDesigner 还提供了强大的扩展功能，可以让开发者根据自己的需求自由扩展和定制组件。此外，EpicDesigner使用 JSON 配置来生成页面，可帮助开发者快速生成页面，提高开发效率。它提供了两个重要组件：`e-designer` 设计器和 `e-builder` 生成器。
+可以简称`epic设计器`，是一个功能强大、开箱即用的拖拽式低代码设计器。它基于 Vue3 开发，兼容多套 UI 组件库，除了基础的页面设计功能，EpicDesigner 还提供了强大的扩展功能，可以让开发者根据自己的需求自由扩展和定制组件。此外，EpicDesigner使用 JSON 配置来生成页面，可帮助开发者快速生成页面，提高开发效率。它提供了两个重要组件：`e-designer` 设计器和 `e-builder` 生成器。
 
 > 目前还处于 Alpha 阶段，所有的 API 及 Props 都可能在后续迭代中发生变化
 >
@@ -43,6 +43,8 @@
 ## 最新版本
 
 [![](https://img.shields.io/npm/v/epic-designer.svg?style=flat-square)](https://www.npmjs.com/package/epic-designer)
+
+[查看更新日志](./docs/updateLog.md)
 
 #### 功能
 
@@ -101,7 +103,7 @@ import { pluginManager, setupElementPlus } from "epic-designer";
 setupElementPlus(pluginManager);
 ```
 
-- ### 选择 ant-design-vue
+- ### 选择 ant-design-vue 
 
 ```bash
 npm i ant-design-vue
@@ -110,15 +112,24 @@ npm i ant-design-vue
 main.ts 或者 main.js 引入注册组件
 
 ```javascript
+// 引入k-designer样式
+import "epic-designer/dist/style.css";
+import { pluginManager, setupAntd } from "epic-designer";
+// 使用Antd UI
+setupAntd(pluginManager);
+```
+- #### 注：ant-design-vue v3.x版本需要改成下面方式
+```javascript
 // 引入antd UI样式
 import "ant-design-vue/dist/antd.css";
 // 引入k-designer样式
 import "epic-designer/dist/style.css";
-import { pluginManager, setupAntd } from "epic-designer";
-import {  } from "epic-designer";
+import { pluginManager, setupAntdV3 } from "epic-designer";
 // 使用Antd UI
-setupAntd(pluginManager);
+setupAntdV3(pluginManager);
 ```
+
+
 - ### 选择 naive-ui
 
 
