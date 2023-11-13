@@ -1,5 +1,8 @@
-import { type NodeItem } from "@epic-designer/core/types/epic-designer";
-import { getUUID } from './string'
+import {
+  PageSchema,
+  type NodeItem,
+} from "@epic-designer/core/types/epic-designer";
+import { getUUID } from "./string";
 
 /**
  * 深拷贝数据
@@ -44,7 +47,6 @@ export function deepClone(
  * @param schema
  */
 export function generateNewSchema(schema: NodeItem) {
-  
   const [newSchema] = mapSchemas([deepClone(schema)], (item) => {
     // 补充id字段
     const newVal = {
@@ -113,7 +115,6 @@ export function deepEqual(
   obj2: Record<string, any>,
   visitedObjs = new WeakMap()
 ): boolean {
-
   const normalize = (obj: any): any => {
     // 如果是数组类型，则递归调用 normalize 函数对每个元素进行标准化处理
     if (Array.isArray(obj)) {
@@ -454,4 +455,114 @@ export function findSchemaInfoById(
     schema: children[index],
     index,
   };
+}
+
+/**
+ * 将k-form-design数据转换为epic-designer数据
+ * @param data
+ * @returns
+ */
+
+export function convertKFormData(data) {
+  const convertedData: PageSchema = {
+    schemas: [
+      {
+        type: "page",
+        id: "root",
+        label: "页面",
+        children: [
+          {
+            label: "表单",
+            type: "form",
+            icon: "icon-daibanshixiang",
+            labelWidth: data.config.labelWidth || 100,
+            name: "default",
+            componentProps: {
+              layout: data.config.layout || "horizontal",
+              labelWidth: data.config.labelWidth || 100,
+              labelLayout:
+                data.config.labelLayout === "flex" ? "fixed" : "flex",
+              labelCol: data.config.labelCol || { span: 5 },
+              wrapperCol: data.config.wrapperCol || { span: 19 },
+              hideRequiredMark: data.config.hideRequiredMark || false,
+              colon: data.config.colon || true,
+              labelAlign: data.config.labelAlign || "right",
+              size: data.config.size || "middle",
+            },
+            children: [],
+            id: "form_" + getUUID(),
+          },
+        ],
+        componentProps: {
+          style: {
+            padding: "16px",
+          },
+        },
+      },
+    ],
+    script: data.script || "",
+  };
+
+  data.list.forEach((item) => {
+    let type = item.type;
+    const componentProps = item.options;
+
+    if (type === "uploadImg") {
+      type = "upload-image";
+      componentProps.defaultValue &&
+        (componentProps.defaultValue = JSON.parse(componentProps.defaultValue));
+    }
+    if (type === "uploadFile") {
+      type = "upload-file";
+      componentProps.defaultValue &&
+        (componentProps.defaultValue = JSON.parse(componentProps.defaultValue));
+    }
+
+    if (type === "date") {
+      if (componentProps.range) {
+        componentProps.type = "daterange";
+        delete componentProps.range;
+      }
+
+      componentProps.valueFormat = componentProps.format
+      delete componentProps.format
+    }
+
+    if (type === "textarea") {
+      componentProps.autoSize = {
+        minRows: componentProps.minRows,
+        maxRows: componentProps.maxRows,
+      };
+
+      delete componentProps.minRows;
+      delete componentProps.maxRows;
+    }
+
+    if (type === "number") {
+      if (!componentProps.precision) {
+        delete componentProps.precision;
+      }
+    }
+
+    if (componentProps.width) {
+      componentProps.style = {
+        width: componentProps.width,
+      };
+      delete componentProps.width;
+    }
+
+    let newItem: NodeItem = {
+      label: item.label,
+      type: type,
+      icon: item.icon || "",
+      field: item.model,
+      input: true,
+      componentProps,
+      id: item.key,
+    };
+
+    convertedData.schemas[0]?.children?.[0]?.children?.push(newItem);
+  });
+
+  return convertedData;
 }

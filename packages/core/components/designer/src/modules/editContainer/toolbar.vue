@@ -36,7 +36,7 @@
     <!-- 工具条 end  -->
 </template>
 <script lang="ts" setup>
-import { useShareStore, pluginManager, revoke, deepCompareAndModify } from '@epic-designer/utils'
+import { useShareStore, pluginManager, revoke, deepCompareAndModify, convertKFormData } from '@epic-designer/utils'
 import type { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { computed, inject, ref } from 'vue'
 import EIcon from '../../../../icon'
@@ -167,7 +167,7 @@ function handleReset() {
 /**
  * 导出数据
  */
-function handleExportData(fileName = `epic-page-data.json`) {
+function handleExportData(fileName = `epic-data.json`) {
     let content = "data:text/json;charset=utf-8,";
     content += JSON.stringify(pageSchema, null, 2);
     var encodedUri = encodeURI(content);
@@ -206,7 +206,11 @@ function handleImporttData(content?: string) {
     // 导入JSON
     try {
 
-        const schema = JSON.parse(content ?? '')
+        let schema = JSON.parse(content ?? '')
+        if (!schema.schemas) {
+            schema = convertKFormData(schema)
+        }
+
         // 调用 deepCompareAndModify 函数比较 pageSchema 和传入的 schema，进行修改
         deepCompareAndModify(pageSchema, schema)
 
