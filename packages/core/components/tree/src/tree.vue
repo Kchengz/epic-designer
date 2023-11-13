@@ -1,5 +1,5 @@
 <template>
-  <div class="epic-tree">
+  <div class="epic-tree h-full flex flex-col">
     <!-- 搜素框 start -->
     <div class="search-box px-10px py-6px">
       <Input placeholder="搜索节点" clearable allowClear v-model="keyword" v-model:value="keyword">
@@ -9,7 +9,7 @@
       </Input>
     </div>
     <!-- 搜素框 end -->
-    <div class="epic-tree-main">
+    <div class="epic-tree-main flex-1 overflow-auto h-0">
       <ul>
         <ETreeNodes v-model:schemas="getTreeData" />
       </ul>

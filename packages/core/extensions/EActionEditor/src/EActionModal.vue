@@ -3,7 +3,7 @@
     <div class="rounded bg-white epic-modal-action-main">
       <div class="epic-modal-left-panel h-full flex flex-col">
         <!-- 动作所属对象 start -->
-        <div class="flex-1">
+        <div class="flex flex-1 h-0 flex-col">
           <div class="fun-btn" :class="{ checked: state.actionItem.type === 'custom' }" @click="toggleMethod('custom')">
             自定义函数
           </div>
@@ -11,12 +11,12 @@
             公共函数
           </div>
           组件
-          <div class="h-360px overflow-auto">
+          <div class="flex-1 h-0">
             <ETree v-model:selectedKeys="selectedKeys" :options="pageSchema.schemas" @node-click="handleNodeClick" />
           </div>
         </div>
         <!-- 动作选择 start -->
-        <div class="epic-action-select h-240px flex flex-col">
+        <div class="epic-action-select h-30/100 flex flex-col">
           <div class="mb-2">动作选择</div>
           <div class="flex-1 overflow-auto">
             <div v-for="item in methodOptions" :class="{ checked: item.value === state.actionItem.methodName }"
