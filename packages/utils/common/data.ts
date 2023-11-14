@@ -503,57 +503,76 @@ export function convertKFormData(data) {
     script: data.script || "",
   };
 
-  data.list.forEach((item) => {
-    let type = item.type;
-    const componentProps = item.options;
+  convertedData.schemas[0]!.children![0]!.children = recursionConvertedNode(
+    data.list
+  );
 
-    if (type === "uploadImg") {
-      type = "upload-image";
-      componentProps.defaultValue &&
-        (componentProps.defaultValue = JSON.parse(componentProps.defaultValue));
-    }
-    if (type === "uploadFile") {
-      type = "upload-file";
-      componentProps.defaultValue &&
-        (componentProps.defaultValue = JSON.parse(componentProps.defaultValue));
+  return convertedData;
+}
+
+/**
+ * 递归转换子节点
+ * @param children
+ */
+export function recursionConvertedNode(
+  children: any,
+  parent?: any
+): NodeItem[] {
+  return children.map((item: any) => {
+    let type = item.type ?? "";
+    const componentProps = item.options ?? {};
+
+    const handleUploadComponent = (uploadType: string, replacement: string) => {
+      if (type === uploadType) {
+        type = replacement;
+        if (componentProps.defaultValue) {
+          componentProps.defaultValue = JSON.parse(componentProps.defaultValue);
+        }
+      }
+    };
+
+    handleUploadComponent("uploadImg", "upload-image");
+    handleUploadComponent("uploadFile", "upload-file");
+
+    if (type === "date" && componentProps.range) {
+      componentProps.type = "daterange";
+      delete componentProps.range;
     }
 
     if (type === "date") {
-      if (componentProps.range) {
-        componentProps.type = "daterange";
-        delete componentProps.range;
-      }
-
-      componentProps.valueFormat = componentProps.format
-      delete componentProps.format
+      componentProps.valueFormat = componentProps.format;
+      delete componentProps.format;
     }
 
     if (type === "textarea") {
-      componentProps.autoSize = {
-        minRows: componentProps.minRows,
-        maxRows: componentProps.maxRows,
-      };
-
+      const { minRows, maxRows } = componentProps;
+      componentProps.autoSize = { minRows, maxRows };
       delete componentProps.minRows;
       delete componentProps.maxRows;
     }
 
-    if (type === "number") {
-      if (!componentProps.precision) {
-        delete componentProps.precision;
-      }
+    if (type === "number" && !componentProps.precision) {
+      delete componentProps.precision;
     }
 
     if (componentProps.width) {
-      componentProps.style = {
-        width: componentProps.width,
-      };
+      componentProps.style = { width: componentProps.width };
       delete componentProps.width;
     }
 
-    let newItem: NodeItem = {
+    if (type === "grid") {
+      type = "row";
+    }
+
+    if (parent && parent.type === "grid") {
+      type = "col";
+      componentProps.span = item.span;
+      item.key = getUUID()
+    }
+    
+    const newItem: NodeItem = {
       label: item.label,
-      type: type,
+      type,
       icon: item.icon || "",
       field: item.model,
       input: true,
@@ -561,8 +580,20 @@ export function convertKFormData(data) {
       id: item.key,
     };
 
-    convertedData.schemas[0]?.children?.[0]?.children?.push(newItem);
-  });
+    // 递归子节点转换
+    if (item.list) {
+      newItem.children = recursionConvertedNode(item.list, item);
+    }
+    if (item.columns) {
+      newItem.children = recursionConvertedNode(item.columns, item);
+    }
+    if (item.trs) {
+      newItem.children = recursionConvertedNode(item.trs, item);
+    }
+    if (item.tds) {
+      newItem.children = recursionConvertedNode(item.tds, item);
+    }
 
-  return convertedData;
+    return newItem;
+  });
 }
