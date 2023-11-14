@@ -90,7 +90,7 @@ const defaultSchemas = [{
   }
 }]
 
-const defaultScript = `const { defineExpose, getComponent } = this;
+const defaultScript = `const { defineExpose, find } = epic;
 
 function test (){
     console.log('test')

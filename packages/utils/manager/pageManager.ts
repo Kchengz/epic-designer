@@ -59,10 +59,12 @@ export function usePageManager(): PageManager {
       return acc;
     }, {});
 
-    new Function(`${scriptStr}`).bind({
-      getComponent: getComponentInstance,
-      defineExpose,
+    new Function(`const epic = this;${scriptStr}`).bind({
       ...publicMethods,
+      getComponent: getComponentInstance,
+      find: getComponentInstance,
+      defineExpose,
+      publicMethods: publicMethods,
     })();
   }
 
