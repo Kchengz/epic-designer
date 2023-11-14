@@ -7,7 +7,7 @@
 
 :::
 
-### 通过builder组件 ready事件获取pageManager
+## 通过builder组件 ready事件获取pageManager
 
 ```vue
 <template>
@@ -81,7 +81,7 @@ function handleReady(pageManager: PageManager) {
 </script>
 ```
 
-### Methods
+## Methods
 
 #### getComponentInstance
 

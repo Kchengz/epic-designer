@@ -89,6 +89,15 @@ export default defineConfig({
           ],
         },
         {
+          text: "事件动作",
+          items: [
+            {
+              text: "自定义函数",
+              link: "/guide/action/customFunctions",
+            },
+          ],
+        },
+        {
           text: "扩展",
           items: [
             {

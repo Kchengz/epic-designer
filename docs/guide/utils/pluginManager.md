@@ -5,7 +5,7 @@
 
 :::
 
-### 注册组件
+## 注册组件
 
 ```ts
 import { pluginManager,type ComponentConfigModel } from 'epic-designer'
@@ -50,7 +50,7 @@ pluginManager.addSchemaGroup({
 
 
 
-### 组件库分组管理
+## 组件库分组管理
 
 ```ts
 import { pluginManager } from "epic-designer";
@@ -62,7 +62,7 @@ pluginManager.setSchemaGroup({
 });
 ```
 
-### Methods
+## Methods
 
 #### registerComponent
 
