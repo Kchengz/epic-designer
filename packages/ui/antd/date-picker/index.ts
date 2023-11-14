@@ -105,6 +105,9 @@ export default {
         label: "格式",
         type: "input",
         field: "componentProps.valueFormat",
+        onChange: (e) => {
+          e.values.componentProps.format = e.value;
+        },
       },
       {
         label: "显示类型",
@@ -125,6 +128,7 @@ export default {
               value: "daterange",
             },
           ],
+          placeholder: "请选择",
         },
         onChange: ({ value, values }) => {
           if (value === "daterange") {
@@ -148,6 +152,7 @@ export default {
               value: false,
             },
           ],
+          placeholder: "请选择",
         },
         field: "componentProps.bordered",
       },

@@ -539,9 +539,8 @@ export function recursionConvertedNode(
       delete componentProps.range;
     }
 
-    if (type === "date") {
+    if (type === "date" || type === "time") {
       componentProps.valueFormat = componentProps.format;
-      delete componentProps.format;
     }
 
     if (type === "textarea") {
@@ -562,23 +561,61 @@ export function recursionConvertedNode(
 
     if (type === "grid") {
       type = "row";
+      item.childImmovable = true;
     }
 
     if (parent && parent.type === "grid") {
       type = "col";
       componentProps.span = item.span;
-      item.key = getUUID()
+      item.key = getUUID();
     }
-    
+
+    // 创建新的节点数据
     const newItem: NodeItem = {
       label: item.label,
       type,
       icon: item.icon || "",
       field: item.model,
-      input: true,
       componentProps,
+      childImmovable: item.childImmovable,
       id: item.key,
     };
+
+    // 隐藏label 和 无FormItem 数据
+    if (componentProps.noFormItem || !componentProps.showLabel) {
+      newItem.noFormItem = true;
+      delete componentProps.noFormItem;
+      delete componentProps.showLabel;
+    }
+
+    // 清空属性字段
+    if (componentProps.clearable) {
+      componentProps.allowClear = true;
+      delete componentProps.clearable;
+    }
+
+    // 输入组件
+    const inputTypes = [
+      "input",
+      "textarea",
+      "number",
+      "password",
+      "select",
+      "cascader",
+      "checkbox",
+      "radio",
+      "date",
+      "time",
+      "slider",
+      "switch",
+      "color-picker",
+      "upload-file",
+      "upload-image",
+    ];
+    if (inputTypes.includes(type)) {
+      newItem.input = true;
+      newItem.rules = item.rules;
+    }
 
     // 递归子节点转换
     if (item.list) {

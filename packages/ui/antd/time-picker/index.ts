@@ -37,6 +37,14 @@ export default {
         field: 'componentProps.placeholder'
       },
       {
+        label: "格式",
+        type: "input",
+        field: "componentProps.valueFormat",
+        onChange: (e) => {
+          e.values.componentProps.format = e.value;
+        },
+      },
+      {
         label: '尺寸',
         type: 'select',
         defaultValue: 'default',
