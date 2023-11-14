@@ -614,7 +614,12 @@ export function recursionConvertedNode(
     ];
     if (inputTypes.includes(type)) {
       newItem.input = true;
-      newItem.rules = item.rules;
+      if (item.rules?.[0]?.required === false) {
+        item.rules.shift();
+      }
+      if (item.rules?.length > 0) {
+        newItem.rules = item.rules;
+      }
     }
 
     // 递归子节点转换
