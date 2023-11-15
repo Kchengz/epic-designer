@@ -1,5 +1,5 @@
 <template>
-  <span class="iconfont" :class="props.name" />
+  <span class="iconfont" :class="`epic-${props.name}`" />
 </template>
 <script lang="ts" setup>
 defineOptions({

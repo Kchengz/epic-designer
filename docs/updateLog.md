@@ -1,3 +1,14 @@
+## 0.8.12（2023-11-16）
+
+### ✨ Feat
+
+- [新增find方法用于查找组件示例，替换getComponent](https://github.com/Kchengz/epic-designer/commit/8463a8a4e9fda261a7f42717db0a4b2da993c153)
+- [导入新增简单k-form数据处理，可导入k-form数据](https://github.com/Kchengz/epic-designer/commit/1729ea0188d33cdb38243364b86c0fc533cd2d9d)
+
+### 🐛 Bug Fixes
+
+- [大纲树挤占动作选区](https://github.com/Kchengz/epic-designer/commit/243766ee2abdcc3a8264bc3932901b4c88ad5723)
+
 ## 0.8.10（2023-11-09）
 
 ### ✨ Feat
