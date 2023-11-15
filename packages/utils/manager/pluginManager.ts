@@ -49,7 +49,7 @@ export interface ComponentConfigModel {
 export type ComponentConfigModelRecords = Record<string, ComponentConfigModel>;
 
 export interface MethodModel {
-  describe: string;
+  describe?: string;
   methodName: string;
   method: (...args) => any;
 }

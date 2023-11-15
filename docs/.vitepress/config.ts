@@ -95,6 +95,10 @@ export default defineConfig({
               text: "自定义函数",
               link: "/guide/action/customFunctions",
             },
+            {
+              text: "公共函数",
+              link: "/guide/action/publicMethods",
+            },
           ],
         },
         {
