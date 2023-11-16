@@ -12,11 +12,14 @@
           <template #right-prefix>
             <slot name="header-right-prefix"></slot>
           </template>
+          <template #right-action>
+            <slot name="header-right-action"></slot>
+          </template>
           <template #right-suffix>
             <slot name="header-right-suffix"></slot>
           </template>
         </EHeader>
-        <div class="epic-split-view-container">
+        <div class="epic-split-view-container" :class="{ 'hidden-header': hiddenHeader }">
           <EActionBar />
           <EEditContainer />
           <ERightSidebar />

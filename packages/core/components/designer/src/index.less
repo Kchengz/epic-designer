@@ -50,10 +50,14 @@
   .epic-split-view-container {
     display: flex;
     flex: 1;
-    // height: calc(100% - 32px - 20px);
     height: calc(100% - 42px);
     max-height: calc(100vh - 42px);
     border-bottom: 1px solid #eaeaea;
+
+    &.hidden-header {
+      height: 100%;
+      max-height: 100vh;
+    }
   }
 
   ul {

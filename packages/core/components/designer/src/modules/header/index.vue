@@ -17,15 +17,20 @@
     </div>
     <div class="epic-header-item flex-1 flex justify-end items-center">
       <slot name="right-prefix"></slot>
-      <Button size="small" @click="handlePreview">
-        <EIcon name="icon-yulan" style="margin-right:6px" />
-        预览
-      </Button>
-
-      <Button size="small" @click="handleSave">
-        <EIcon name="icon-baocun" style="margin-right:6px" />
-        保存
-      </Button>
+      <slot name="right-action">
+        <div>
+          <Button size="small" @click="handlePreview">
+            <EIcon name="icon-yulan" style="margin-right:6px" />
+            预览
+          </Button>
+        </div>
+        <div class="ml-2">
+          <Button size="small" @click="handleSave">
+            <EIcon name="icon-baocun" style="margin-right:6px" />
+            保存
+          </Button>
+        </div>
+      </slot>
       <slot name="right-suffix"></slot>
     </div>
     <EPreview ref="preview" />
