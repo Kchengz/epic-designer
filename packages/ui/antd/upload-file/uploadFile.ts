@@ -99,7 +99,7 @@ export default defineComponent({
                 {
                   default: () => [
                     h('span', {
-                      class: 'iconfont icon-shangchuan1',
+                      class: 'iconfont epic-icon-shangchuan1',
                       style: { 'margin-right': '2px' }
                     }),
                     h('span', null, { default: () => '上传文件' })

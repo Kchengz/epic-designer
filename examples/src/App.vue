@@ -10,6 +10,6 @@ import Designer from './views/designer/index.vue'
 </script>
 <style lang="less" scoped>
 .demo-content{
-  height: 100vh;
+  // height: 100vh;
 }
 </style>

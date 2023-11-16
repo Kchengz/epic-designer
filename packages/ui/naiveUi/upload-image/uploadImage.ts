@@ -130,7 +130,7 @@ export default defineComponent({
                     {
                       default: () => [
                         h("span", {
-                          class: "iconfont icon-shangchuan1 text-md",
+                          class: "iconfont epic-icon-shangchuan1 text-md",
                           style: { "margin-right": "2px" },
                         }),
                         h(

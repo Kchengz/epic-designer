@@ -1172,7 +1172,7 @@ const gr = /* @__PURE__ */ Tt(et), hr = /* @__PURE__ */ tr({
               Ce("div", null, {
                 default: () => [
                   Ce("span", {
-                    class: "iconfont icon-shangchuan1",
+                    class: "iconfont epic-icon-shangchuan1",
                     style: { "margin-right": "2px" }
                   }),
                   Ce(

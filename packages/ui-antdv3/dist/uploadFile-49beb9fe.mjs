@@ -85,7 +85,7 @@ const W = h({
               {
                 default: () => [
                   r("span", {
-                    class: "iconfont icon-shangchuan1",
+                    class: "iconfont epic-icon-shangchuan1",
                     style: { "margin-right": "2px" }
                   }),
                   r("span", null, { default: () => "上传文件" })
