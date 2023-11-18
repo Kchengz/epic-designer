@@ -5,7 +5,7 @@ export default {
     label: "按钮",
     type: "button",
     field: "input",
-    icon: "icon-button-remove",
+    icon: "epic-icon-button-remove",
     input: false,
     componentProps: {
       bordered: true,

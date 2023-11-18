@@ -11,7 +11,7 @@ export default defineConfig({
     // 添加图标
     [
       "link",
-      { rel: "icon", type: "image/x-icon", href: "/epic-designer/favicon.ico" },
+      { rel: "epic-icon", type: "image/x-icon", href: "/epic-designer/favicon.ico" },
     ],
   ],
   // 主题配置

@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: "日期选择器",
     type: "date",
-    icon: "icon-calendar",
+    icon: "epic-icon-calendar",
     field: "date",
     input: true,
     componentProps: {

@@ -5,7 +5,7 @@ export default {
   defaultSchema: {
     label: '表单',
     type: 'form',
-    icon: 'icon-daibanshixiang',
+    icon: 'epic-icon-daibanshixiang',
     name: 'default',
     componentProps: {
       labelWidth: 100,

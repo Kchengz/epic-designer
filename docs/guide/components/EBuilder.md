@@ -31,7 +31,7 @@ const pageSchema = {
           label: "输入框",
           type: "input",
           field: "input",
-          icon: "icon-write",
+          icon: "epic-icon-write",
           input: true,
           componentProps: {
             defaultValue: "",
@@ -81,7 +81,7 @@ const pageSchema = {
         {
           label: "表单",
           type: "form",
-          icon: "icon-qiapian",
+          icon: "epic-icon-qiapian",
           name: "default",
           componentProps: {
             labelWidth: 100,
@@ -101,7 +101,7 @@ const pageSchema = {
               label: "输入框",
               type: "input",
               field: "input",
-              icon: "icon-write",
+              icon: "epic-icon-write",
               input: true,
               componentProps: {
                 defaultValue: "",
@@ -114,7 +114,7 @@ const pageSchema = {
             {
               label: "数字输入框",
               type: "number",
-              icon: "icon-number",
+              icon: "epic-icon-number",
               field: "number",
               input: true,
               componentProps: {
@@ -127,7 +127,7 @@ const pageSchema = {
             {
               label: "选择框",
               type: "select",
-              icon: "icon-xiala",
+              icon: "epic-icon-xiala",
               field: "select",
               input: true,
               componentProps: {
@@ -151,7 +151,7 @@ const pageSchema = {
             {
               label: "单选框",
               type: "radio",
-              icon: "icon-danxuan-cuxiantiao",
+              icon: "epic-icon-danxuan-cuxiantiao",
               field: "radio",
               input: true,
               componentProps: {
@@ -206,7 +206,7 @@ const pageSchema = {
           label: "输入框",
           type: "input",
           field: "input",
-          icon: "icon-write",
+          icon: "epic-icon-write",
           input: true,
           componentProps: {
             defaultValue: "",
@@ -235,7 +235,7 @@ const pageSchemaForm = {
         {
           label: "表单",
           type: "form",
-          icon: "icon-qiapian",
+          icon: "epic-icon-qiapian",
           name: "default",
           componentProps: {
             labelWidth: 100,
@@ -255,7 +255,7 @@ const pageSchemaForm = {
               label: "输入框",
               type: "input",
               field: "input",
-              icon: "icon-write",
+              icon: "epic-icon-write",
               input: true,
               componentProps: {
                 defaultValue: "",
@@ -268,7 +268,7 @@ const pageSchemaForm = {
             {
               label: "数字输入框",
               type: "number",
-              icon: "icon-number",
+              icon: "epic-icon-number",
               field: "number",
               input: true,
               componentProps: {
@@ -281,7 +281,7 @@ const pageSchemaForm = {
             {
               label: "选择框",
               type: "select",
-              icon: "icon-xiala",
+              icon: "epic-icon-xiala",
               field: "select",
               input: true,
               componentProps: {
@@ -305,7 +305,7 @@ const pageSchemaForm = {
             {
               label: "单选框",
               type: "radio",
-              icon: "icon-danxuan-cuxiantiao",
+              icon: "epic-icon-danxuan-cuxiantiao",
               field: "radio",
               input: true,
               componentProps: {

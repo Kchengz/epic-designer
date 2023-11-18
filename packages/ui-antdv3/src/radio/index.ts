@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '单选框',
     type: 'radio',
-    icon: 'icon-danxuan-cuxiantiao',
+    icon: 'epic-icon-danxuan-cuxiantiao',
     field: 'radio',
     input: true,
     componentProps: {

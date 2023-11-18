@@ -4,7 +4,7 @@ const o = {
     label: "输入框",
     type: "input",
     field: "input",
-    icon: "icon-write",
+    icon: "epic-icon-write",
     input: !0,
     componentProps: {
       bordered: !0,
@@ -167,7 +167,7 @@ const o = {
     label: "文本域",
     type: "textarea",
     field: "textarea",
-    icon: "icon-edit",
+    icon: "epic-icon-edit",
     input: !0,
     componentProps: {
       placeholder: "请输入"
@@ -321,7 +321,7 @@ const o = {
   defaultSchema: {
     label: "数字输入框",
     type: "number",
-    icon: "icon-number",
+    icon: "epic-icon-number",
     field: "number",
     input: !0,
     componentProps: {
@@ -491,7 +491,7 @@ const o = {
   defaultSchema: {
     label: "密码输入框",
     type: "password",
-    icon: "icon-mima",
+    icon: "epic-icon-mima",
     field: "password",
     input: !0,
     componentProps: {
@@ -623,7 +623,7 @@ const o = {
   defaultSchema: {
     label: "单选框",
     type: "radio",
-    icon: "icon-danxuan-cuxiantiao",
+    icon: "epic-icon-danxuan-cuxiantiao",
     field: "radio",
     input: !0,
     componentProps: {
@@ -734,7 +734,7 @@ const o = {
   defaultSchema: {
     label: "多选框",
     type: "checkbox",
-    icon: "icon-duoxuan1",
+    icon: "epic-icon-duoxuan1",
     field: "checkbox",
     input: !0,
     componentProps: {
@@ -832,7 +832,7 @@ const o = {
   defaultSchema: {
     label: "选择框",
     type: "select",
-    icon: "icon-xiala",
+    icon: "epic-icon-xiala",
     field: "select",
     input: !0,
     componentProps: {
@@ -1040,7 +1040,7 @@ const o = {
   defaultSchema: {
     label: "滑块",
     type: "slider",
-    icon: "icon-menu",
+    icon: "epic-icon-menu",
     field: "slider",
     input: !0
   },
@@ -1171,7 +1171,7 @@ const o = {
   defaultSchema: {
     label: "时间选择器",
     type: "time",
-    icon: "icon-time",
+    icon: "epic-icon-time",
     field: "time",
     input: !0,
     componentProps: {
@@ -1338,7 +1338,7 @@ const o = {
   defaultSchema: {
     label: "日期选择器",
     type: "date",
-    icon: "icon-calendar",
+    icon: "epic-icon-calendar",
     field: "date",
     input: !0,
     componentProps: {
@@ -1522,7 +1522,7 @@ const o = {
     label: "级联选择器",
     type: "cascader",
     field: "cascader",
-    icon: "icon-guanlian",
+    icon: "epic-icon-guanlian",
     input: !0,
     componentProps: {
       options: [
@@ -1682,7 +1682,7 @@ const o = {
   defaultSchema: {
     label: "开关",
     type: "switch",
-    icon: "icon-kaiguan3",
+    icon: "epic-icon-kaiguan3",
     field: "switch",
     input: !0,
     componentProps: {}
@@ -1770,7 +1770,7 @@ const o = {
   defaultSchema: {
     label: "上传图片",
     type: "upload-image",
-    icon: "icon-image",
+    icon: "epic-icon-image",
     field: "uploadImage",
     input: !0,
     componentProps: {
@@ -1833,7 +1833,7 @@ const o = {
   defaultSchema: {
     label: "上传文件",
     type: "upload-file",
-    icon: "icon-upload",
+    icon: "epic-icon-upload",
     field: "uploadFile",
     input: !0,
     componentProps: {
@@ -1896,7 +1896,7 @@ const o = {
   defaultSchema: {
     label: "卡片布局",
     type: "card",
-    icon: "icon-qiapian",
+    icon: "epic-icon-qiapian",
     children: []
   },
   config: {
@@ -1913,7 +1913,7 @@ const o = {
   defaultSchema: {
     label: "栅格布局",
     type: "row",
-    icon: "icon-zhage",
+    icon: "epic-icon-zhage",
     childImmovable: !0,
     children: [
       {
@@ -2008,7 +2008,7 @@ const o = {
   defaultSchema: {
     label: "栅格布局-列",
     type: "col",
-    icon: "icon-xiala",
+    icon: "epic-icon-xiala",
     children: [],
     componentProps: {
       span: 6
@@ -2028,7 +2028,7 @@ const o = {
   defaultSchema: {
     label: "表单",
     type: "form",
-    icon: "icon-daibanshixiang",
+    icon: "epic-icon-daibanshixiang",
     labelWidth: 100,
     name: "default",
     componentProps: {
@@ -2190,7 +2190,7 @@ const o = {
   defaultSchema: {
     label: "表单项",
     type: "form-item",
-    icon: "icon-qiapian"
+    icon: "epic-icon-qiapian"
   },
   config: {}
 }, C = {
@@ -2199,7 +2199,7 @@ const o = {
     label: "按钮",
     type: "button",
     field: "input",
-    icon: "icon-button-remove",
+    icon: "epic-icon-button-remove",
     input: !1,
     componentProps: {}
   },
@@ -2360,7 +2360,7 @@ const o = {
   defaultSchema: {
     label: "模态框",
     type: "modal",
-    icon: "icon-xiala",
+    icon: "epic-icon-xiala",
     children: []
   },
   config: {
@@ -2378,7 +2378,7 @@ const o = {
     label: "颜色选择器",
     type: "color-picker",
     field: "color-picker",
-    icon: "icon-yanse",
+    icon: "epic-icon-yanse",
     input: !0,
     componentProps: {
       type: "color",

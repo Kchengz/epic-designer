@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '折叠面板',
     type: 'collapse',
-    icon: 'icon-xiala',
+    icon: 'epic-icon-xiala',
     children: [
       {
         type: 'collapse-item',

@@ -1940,7 +1940,7 @@ function la() {
       description: "No Data"
     },
     Icon: {
-      icon: "icon"
+      icon: "epic-icon"
     },
     Text: {
       edit: "Edit",

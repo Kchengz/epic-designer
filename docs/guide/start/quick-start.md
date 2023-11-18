@@ -112,7 +112,7 @@ const pageSchema = {
           label: "输入框",
           type: "input",
           field: "input",
-          icon: "icon-write",
+          icon: "epic-icon-write",
           input: true,
           componentProps: {
             defaultValue: "",

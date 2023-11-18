@@ -5,7 +5,7 @@ export default {
     label: '级联选择器',
     type: 'cascader',
     field: 'cascader',
-    icon: "icon-guanlian",
+    icon: "epic-icon-guanlian",
     input: true,
     componentProps: {
       options: [

@@ -387,7 +387,7 @@ var Q = "${label} is not a valid ${type}", Mo = {
     description: "No Data"
   },
   Icon: {
-    icon: "icon"
+    icon: "epic-icon"
   },
   Text: {
     edit: "Edit",

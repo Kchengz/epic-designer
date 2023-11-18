@@ -5,7 +5,7 @@
         :max="24" />
       <div v-if="colList.length > 1" class="del-btn">
         <span @click="handleDelete(index)">
-          <EIcon name="icon-shanchu" />
+          <EIcon name="icon-shanchu1" />
         </span>
 
       </div>

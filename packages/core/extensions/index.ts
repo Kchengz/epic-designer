@@ -15,7 +15,7 @@ export function setupComponent (pluginManager: PluginManager): void {
   pluginManager.registerActivitybar({
     id: 'component_view',
     title: '组件',
-    icon: 'icon-mokuai_1',
+    icon: 'epic-icon-mokuai_1',
     component: async () =>
       await import(
         '../components/designer/src/modules/componentView/index.vue'
@@ -25,7 +25,7 @@ export function setupComponent (pluginManager: PluginManager): void {
   pluginManager.registerActivitybar({
     id: 'sound_code_view',
     title: '源码',
-    icon: 'icon-daima1',
+    icon: 'epic-icon-daima1',
     component: async () =>
       await import(
         '../components/designer/src/modules/soundCode/index.vue'
@@ -35,7 +35,7 @@ export function setupComponent (pluginManager: PluginManager): void {
   pluginManager.registerActivitybar({
     id: 'outline_view',
     title: '大纲',
-    icon: 'icon-juxingkaobei',
+    icon: 'epic-icon-juxingkaobei',
     component: async () =>
       await import('../components/designer/src/modules/outline/outline.vue')
   })

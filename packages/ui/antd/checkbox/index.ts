@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '多选框',
     type: 'checkbox',
-    icon: 'icon-duoxuan1',
+    icon: 'epic-icon-duoxuan1',
     field: 'checkbox',
     input: true,
     componentProps: {

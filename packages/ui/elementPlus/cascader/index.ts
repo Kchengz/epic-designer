@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: "级联选择器",
     type: "cascader",
-    icon: "icon-guanlian",
+    icon: "epic-icon-guanlian",
     field: "cascader",
     input: true,
     componentProps: {

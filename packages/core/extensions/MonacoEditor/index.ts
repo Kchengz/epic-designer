@@ -5,7 +5,7 @@ export default {
     label: '代码编辑器',
     type: 'monacoEditor',
     field: 'monacoEditor',
-    icon: 'icon-write',
+    icon: 'epic-icon-write',
     input: true
   },
   config: {

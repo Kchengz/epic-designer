@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '颜色选择器',
     type: 'color-picker',
-    icon: 'icon-yanse',
+    icon: 'epic-icon-yanse',
     field: 'color-picker',
     input: true,
     componentProps: {

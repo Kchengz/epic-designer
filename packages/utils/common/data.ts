@@ -474,7 +474,7 @@ export function convertKFormData(data) {
           {
             label: "表单",
             type: "form",
-            icon: "icon-daibanshixiang",
+            icon: "epic-icon-daibanshixiang",
             labelWidth: data.config.labelWidth || 100,
             name: "default",
             componentProps: {

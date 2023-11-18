@@ -31,7 +31,7 @@ const pageSchema = ref<PageSchema>({
         {
           "label": "表单",
           "type": "form",
-          "icon": "icon-daibanshixiang",
+          "icon": "epic-icon-daibanshixiang",
           "name": "default",
           "componentProps": {
             "labelWidth": 100,
@@ -50,7 +50,7 @@ const pageSchema = ref<PageSchema>({
             {
               "label": "上传文件",
               "type": "upload-file",
-              "icon": "icon-upload",
+              "icon": "epic-icon-upload",
               "field": "upload",
               "input": true,
               "componentProps": {

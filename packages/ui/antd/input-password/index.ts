@@ -5,7 +5,7 @@ export default {
   defaultSchema: {
     label: "密码输入框",
     type: "password",
-    icon: "icon-mima",
+    icon: "epic-icon-mima",
     field: "password",
     input: true,
     componentProps: {

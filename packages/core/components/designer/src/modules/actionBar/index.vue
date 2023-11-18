@@ -3,7 +3,7 @@
     <ul class="actions-container">
       <li v-for="(item, index) in activitybars" :key="index" class="action-item" :title="item.title"
         :class="{ checked: actionBarCheckedIndex === index }" @click="handleClick(item, index)">
-        <EIcon class="iconfont relative" :name="item.icon" />
+        <EIcon prefix="" class="iconfont relative" :name="item.icon" />
         <div class="text-14px">{{ item.title }}</div>
       </li>
     </ul>

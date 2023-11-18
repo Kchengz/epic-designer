@@ -5,7 +5,7 @@ export default {
     label: '文本域',
     type: 'textarea',
     field: 'textarea',
-    icon: 'icon-edit',
+    icon: 'epic-icon-edit',
     input: true,
     componentProps: {
       placeholder: '请输入'

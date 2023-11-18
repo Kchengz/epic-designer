@@ -42,7 +42,7 @@ epic.json 数据
         {
           "label": "表单",
           "type": "form",
-          "icon": "icon-daibanshixiang",
+          "icon": "epic-icon-daibanshixiang",
           "componentProps": {
             "size": "default",
             "labelWidth": 100,
@@ -62,7 +62,7 @@ epic.json 数据
             {
               "label": "栅格布局",
               "type": "row",
-              "icon": "icon-zhage",
+              "icon": "epic-icon-zhage",
               "childImmovable": true,
               "children": [
                 {
@@ -71,7 +71,7 @@ epic.json 数据
                     {
                       "label": "禁用姓名",
                       "type": "switch",
-                      "icon": "icon-kaiguan3",
+                      "icon": "epic-icon-kaiguan3",
                       "field": "switch_vhzz40mc",
                       "input": true,
                       "componentProps": {
@@ -100,7 +100,7 @@ epic.json 数据
                     {
                       "label": "隐藏姓名",
                       "type": "switch",
-                      "icon": "icon-kaiguan3",
+                      "icon": "epic-icon-kaiguan3",
                       "field": "switch_k561x18z",
                       "input": true,
                       "componentProps": {},
@@ -127,7 +127,7 @@ epic.json 数据
             {
               "label": "姓名",
               "type": "input",
-              "icon": "icon-write",
+              "icon": "epic-icon-write",
               "field": "input_ho0tpt7i7tc00",
               "input": true,
               "componentProps": {
@@ -178,7 +178,7 @@ epic.json 数据
         {
           "label": "表单",
           "type": "form",
-          "icon": "icon-daibanshixiang",
+          "icon": "epic-icon-daibanshixiang",
           "name": "default",
           "componentProps": {
             "labelWidth": 100,
@@ -197,7 +197,7 @@ epic.json 数据
             {
               "label": "数值1",
               "type": "number",
-              "icon": "icon-number",
+              "icon": "epic-icon-number",
               "field": "number_9m5zzib6",
               "input": true,
               "componentProps": {
@@ -220,7 +220,7 @@ epic.json 数据
             {
               "label": "数值2",
               "type": "number",
-              "icon": "icon-number",
+              "icon": "epic-icon-number",
               "field": "number_szitefkr",
               "input": true,
               "componentProps": {
@@ -243,7 +243,7 @@ epic.json 数据
             {
               "label": "总值",
               "type": "number",
-              "icon": "icon-number",
+              "icon": "epic-icon-number",
               "field": "number_bs7n1wpv",
               "input": true,
               "componentProps": {
@@ -287,7 +287,7 @@ const pageSchema = {
         {
           "label": "表单",
           "type": "form",
-          "icon": "icon-daibanshixiang",
+          "icon": "epic-icon-daibanshixiang",
           "componentProps": {
             "size": "default",
             "labelWidth": 100,
@@ -307,7 +307,7 @@ const pageSchema = {
             {
               "label": "栅格布局",
               "type": "row",
-              "icon": "icon-zhage",
+              "icon": "epic-icon-zhage",
               "childImmovable": true,
               "children": [
                 {
@@ -316,7 +316,7 @@ const pageSchema = {
                     {
                       "label": "禁用姓名",
                       "type": "switch",
-                      "icon": "icon-kaiguan3",
+                      "icon": "epic-icon-kaiguan3",
                       "field": "switch_vhzz40mc",
                       "input": true,
                       "componentProps": {
@@ -345,7 +345,7 @@ const pageSchema = {
                     {
                       "label": "隐藏姓名",
                       "type": "switch",
-                      "icon": "icon-kaiguan3",
+                      "icon": "epic-icon-kaiguan3",
                       "field": "switch_k561x18z",
                       "input": true,
                       "componentProps": {},
@@ -372,7 +372,7 @@ const pageSchema = {
             {
               "label": "姓名",
               "type": "input",
-              "icon": "icon-write",
+              "icon": "epic-icon-write",
               "field": "input_ho0tpt7i7tc00",
               "input": true,
               "componentProps": {
@@ -417,7 +417,7 @@ const pageSchema2 = {
         {
           "label": "表单",
           "type": "form",
-          "icon": "icon-daibanshixiang",
+          "icon": "epic-icon-daibanshixiang",
           "name": "default",
           "componentProps": {
             "labelWidth": 100,
@@ -436,7 +436,7 @@ const pageSchema2 = {
             {
               "label": "数值1",
               "type": "number",
-              "icon": "icon-number",
+              "icon": "epic-icon-number",
               "field": "number_9m5zzib6",
               "input": true,
               "componentProps": {
@@ -459,7 +459,7 @@ const pageSchema2 = {
             {
               "label": "数值2",
               "type": "number",
-              "icon": "icon-number",
+              "icon": "epic-icon-number",
               "field": "number_szitefkr",
               "input": true,
               "componentProps": {
@@ -482,7 +482,7 @@ const pageSchema2 = {
             {
               "label": "总值",
               "type": "number",
-              "icon": "icon-number",
+              "icon": "epic-icon-number",
               "field": "number_bs7n1wpv",
               "input": true,
               "componentProps": {

@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '选择框',
     type: 'select',
-    icon: 'icon-xiala',
+    icon: 'epic-icon-xiala',
     field: 'select',
     input: true,
     componentProps: {

@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: "栅格布局",
     type: "row",
-    icon: 'icon-zhage',
+    icon: 'epic-icon-zhage',
     childImmovable: true,
     children: [
       {

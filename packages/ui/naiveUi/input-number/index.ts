@@ -4,7 +4,7 @@ export default {
   defaultSchema: {
     label: '数字输入框',
     type: 'number',
-    icon: 'icon-number',
+    icon: 'epic-icon-number',
     field: 'number',
     input: true,
     componentProps: {

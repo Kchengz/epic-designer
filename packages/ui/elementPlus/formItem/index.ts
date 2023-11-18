@@ -5,7 +5,7 @@ export default {
   defaultSchema: {
     label: '表单项',
     type: 'form-item',
-    icon: 'icon-qiapian'
+    icon: 'epic-icon-qiapian'
   },
   config: {
   }
