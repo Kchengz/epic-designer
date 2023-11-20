@@ -18,7 +18,7 @@
         <!-- 动作选择 start -->
         <div class="epic-action-select h-30/100 flex flex-col">
           <div class="mb-2">动作选择</div>
-          <div class="flex-1 overflow-auto">
+          <div class="flex-1 overflow-auto pr-8px">
             <div v-for="item in methodOptions" :class="{ checked: item.value === state.actionItem.methodName }"
               @click="handleCheckedMethod(item.value)" :key="item.value" class="action-item">
               <span>{{ item.label }}</span>
