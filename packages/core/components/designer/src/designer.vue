@@ -2,23 +2,31 @@
   <Suspense @resolve="handleReady">
     <template #default>
       <div class="epic-designer-main">
-        <EHeader v-if="!props.hiddenHeader" @save="handleSave">
-          <template #prefix>
-            <slot name="header-prefix"></slot>
-          </template>
-          <template #title>
-            <slot name="header-title"></slot>
-          </template>
-          <template #right-prefix>
-            <slot name="header-right-prefix"></slot>
-          </template>
-          <template #right-action>
-            <slot name="header-right-action"></slot>
-          </template>
-          <template #right-suffix>
-            <slot name="header-right-suffix"></slot>
-          </template>
-        </EHeader>
+        <div class="epic-header-container">
+          <slot name="header">
+            <EHeader v-if="!props.hiddenHeader" @save="handleSave">
+              <template #header>
+                <slot name="header-prefix"></slot>
+              </template>
+
+              <template #prefix>
+                <slot name="header-prefix"></slot>
+              </template>
+              <template #title>
+                <slot name="header-title"></slot>
+              </template>
+              <template #right-prefix>
+                <slot name="header-right-prefix"></slot>
+              </template>
+              <template #right-action>
+                <slot name="header-right-action"></slot>
+              </template>
+              <template #right-suffix>
+                <slot name="header-right-suffix"></slot>
+              </template>
+            </EHeader>
+          </slot>
+        </div>
         <div class="epic-split-view-container" :class="{ 'hidden-header': hiddenHeader }">
           <EActionBar />
           <EEditContainer />

@@ -1,9 +1,7 @@
 <template>
   <!-- <button @click="handleReset">重置操作</button> -->
   <EDesigner ref="designerRef" @save="handleSubmit">
-    <!-- <template #header-suffix>
-        <button @click="handleSet">数据回显</button>
-      </template> -->
+   
   </EDesigner>
   
 </template>
