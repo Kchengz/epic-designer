@@ -1774,7 +1774,7 @@ const o = {
     field: "uploadImage",
     input: !0,
     componentProps: {
-      action: "http://cdn.kcz66.com/upload-img.txt"
+      action: "https://mock.presstime.cn/mock/6562298755736ae9dfa4646a/epic/upload"
     }
   },
   config: {
@@ -1837,7 +1837,7 @@ const o = {
     field: "uploadFile",
     input: !0,
     componentProps: {
-      action: "http://cdn.kcz66.com/upload-img.txt"
+      action: "https://mock.presstime.cn/mock/6562298755736ae9dfa4646a/epic/upload"
     }
   },
   config: {
