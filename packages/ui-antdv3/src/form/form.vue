@@ -27,7 +27,7 @@ const props = defineProps({
 })
 
 const form = ref<FormInstance | null>(null)
-const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>
+const forms = inject('forms', {}) as Ref<{ [name: string]: any }>
 const formData = reactive<FormDataModel>({})
 provide('formData', formData)
 

@@ -13,6 +13,11 @@ export default {
         label: '标题',
         type: 'input',
         field: 'label'
+      },
+      {
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
       }
     ]
   }
