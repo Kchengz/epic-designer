@@ -18,11 +18,6 @@ export default {
         field: 'label'
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
-      },
-      {
         label: '阴影时机',
         type: 'select',
         defaultValue: 'always',
@@ -45,6 +40,11 @@ export default {
         },
         field: 'componentProps.shadow'
       },
+      {
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
+      }
     ]
   }
 } as ComponentConfigModel

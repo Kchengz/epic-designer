@@ -1,112 +1,111 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: async () => (await import('element-plus')).ElColorPicker,
+  component: async () => (await import("element-plus")).ElColorPicker,
   defaultSchema: {
-    label: '颜色选择器',
-    type: 'color-picker',
-    icon: 'epic-icon-yanse',
-    field: 'color-picker',
+    label: "颜色选择器",
+    type: "color-picker",
+    icon: "epic-icon-yanse",
+    field: "color-picker",
     input: true,
     componentProps: {
-      style: { width: '100%' },
-      size: 'default',
-      colorFormat: 'hex'
-    }
+      style: { width: "100%" },
+      size: "default",
+      colorFormat: "hex",
+    },
   },
   config: {
     attribute: [
       {
-        label: '字段名',
-        type: 'input',
-        field: 'field'
+        label: "字段名",
+        type: "input",
+        field: "field",
       },
       {
-        label: '文字',
-        type: 'input',
-        field: 'label'
+        label: "文字",
+        type: "input",
+        field: "label",
       },
       {
-        label: '默认值',
-        type: 'color-picker',
-        field: 'componentProps.defaultValue'
+        label: "默认值",
+        type: "color-picker",
+        field: "componentProps.defaultValue",
       },
       {
-        label: '尺寸',
-        type: 'select',
-        defaultValue: 'default',
+        label: "尺寸",
+        type: "select",
+        defaultValue: "default",
         componentProps: {
           options: [
             {
-              label: 'large',
-              value: 'large'
+              label: "large",
+              value: "large",
             },
             {
-              label: 'default',
-              value: 'default'
+              label: "default",
+              value: "default",
             },
             {
-              label: 'small',
-              value: 'small'
-            }
-          ]
+              label: "small",
+              value: "small",
+            },
+          ],
         },
-        field: 'componentProps.size'
+        field: "componentProps.size",
       },
       {
-        label: '透明度选择',
-        type: 'switch',
-        field: 'componentProps.showAlpha'
+        label: "透明度选择",
+        type: "switch",
+        field: "componentProps.showAlpha",
       },
       {
-        label: '格式',
-        type: 'select',
+        label: "格式",
+        type: "select",
         componentProps: {
           options: [
             {
-              label: 'hsl',
-              value: 'hsl'
+              label: "hsl",
+              value: "hsl",
             },
             {
-              label: 'hsv',
-              value: 'hsv'
+              label: "hsv",
+              value: "hsv",
             },
             {
-              label: 'hex',
-              value: 'hex'
+              label: "hex",
+              value: "hex",
             },
             {
-              label: 'rgb',
-              value: 'rgb'
-            }
-          ]
+              label: "rgb",
+              value: "rgb",
+            },
+          ],
         },
-        field: 'componentProps.colorFormat'
+        field: "componentProps.colorFormat",
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled",
       },
       {
-        label: '禁用',
-        type: 'switch',
-        field: 'componentProps.disabled'
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
       },
       {
-        label: '表单校验',
-        type: 'ERuleEditor',
-        layout: 'vertical',
-        field: 'rules',
-        describe: '校验规则需要配合表单使用'
-      }
+        label: "表单校验",
+        type: "ERuleEditor",
+        layout: "vertical",
+        field: "rules",
+        describe: "校验规则需要配合表单使用",
+      },
     ],
     event: [
       {
-        type: 'change',
-        describe: '值变化时'
-      }
+        type: "change",
+        describe: "值变化时",
+      },
     ],
-    action: [
-    ]
-  }
-} as ComponentConfigModel
+    action: [],
+  },
+} as ComponentConfigModel;

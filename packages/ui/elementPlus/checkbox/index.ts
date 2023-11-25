@@ -60,11 +60,7 @@ export default {
         },
         field: 'componentProps.size'
       },
-      {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
-      },
+ 
       {
         label: '最大选中数',
         type: 'number',
@@ -112,17 +108,22 @@ export default {
         field: 'componentProps.disabled'
       },
       {
-        label: '表单校验',
-        type: 'ERuleEditor',
-        layout: 'vertical',
-        field: 'rules',
-        describe: '校验规则需要配合表单使用'
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
       },
       {
         label: '选项管理',
         type: 'EOptionsEditor',
         layout: 'vertical',
         field: 'componentProps.options',
+        describe: '校验规则需要配合表单使用'
+      },
+      {
+        label: '表单校验',
+        type: 'ERuleEditor',
+        layout: 'vertical',
+        field: 'rules',
         describe: '校验规则需要配合表单使用'
       }
     ],

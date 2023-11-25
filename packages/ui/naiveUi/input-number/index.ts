@@ -110,11 +110,6 @@ export default {
         }
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
-      },
-      {
         label: '可清空',
         type: 'switch',
         field: 'componentProps.clearable'
@@ -123,6 +118,11 @@ export default {
         label: '禁用',
         type: 'switch',
         field: 'componentProps.disabled'
+      },
+      {
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
       },
       {
         label: '表单校验',

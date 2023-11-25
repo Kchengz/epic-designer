@@ -167,21 +167,14 @@ export default {
         field: 'componentProps.clearable'
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
-      },
-      {
         label: '禁用',
         type: 'switch',
         field: 'componentProps.disabled'
       },
       {
-        label: '表单校验',
-        type: 'ERuleEditor',
-        layout: 'vertical',
-        field: 'rules',
-        describe: '校验规则需要配合表单使用'
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
       },
       {
         label: "选项管理",
@@ -192,6 +185,13 @@ export default {
           tree: true,
         },
         describe: "配置选项",
+      },
+      {
+        label: '表单校验',
+        type: 'ERuleEditor',
+        layout: 'vertical',
+        field: 'rules',
+        describe: '校验规则需要配合表单使用'
       },
     ],
     event: [

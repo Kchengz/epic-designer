@@ -122,14 +122,14 @@ export default {
         field: 'componentProps.inline'
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
-      },
-      {
         label: '禁用',
         type: 'switch',
         field: 'componentProps.disabled'
+      },
+      {
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
       }
     ],
     action: [
