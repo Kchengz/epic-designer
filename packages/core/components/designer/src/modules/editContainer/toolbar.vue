@@ -8,7 +8,7 @@
             </div>
         </div>
 
-        <input type="file" ref="fileRef" v-show="false" @change="handleFileSelected">
+        <input type="file" ref="fileRef" accept=".json,.txt" v-show="false" @change="handleFileSelected">
 
         <div class="flex-1 h-full flex items-center justify-center">
             <div :title="item.title" class="device-item h-90% px-10px flex items-center hover:bg-gray-50 cursor-pointer"
