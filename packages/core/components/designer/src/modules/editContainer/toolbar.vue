@@ -33,6 +33,7 @@
             <!-- 缩放操作 end  -->
         </div>
     </div>
+    <EPreviewJson ref="previewJson" />
     <!-- 工具条 end  -->
 </template>
 <script lang="ts" setup>
@@ -40,6 +41,7 @@ import { useShareStore, pluginManager, revoke, deepCompareAndModify, convertKFor
 import type { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { computed, inject, ref } from 'vue'
 import EIcon from '../../../../icon'
+import EPreviewJson from './previewJson.vue'
 
 const Slider = pluginManager.getComponent('slider')
 const Select = pluginManager.getComponent('select')
@@ -48,6 +50,7 @@ const { canvasScale, disabledZoom } = useShareStore()
 const checkedKey = ref('pc')
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
+const previewJson = ref<InstanceType<typeof EPreviewJson> | null>(null)
 
 const deviceOptions = [
     {
@@ -70,12 +73,14 @@ const deviceOptions = [
 const recordList = revoke.recordList
 const undoList = revoke.undoList
 
+
+
 const actionOptions = computed(() => {
     return [
         {
             icon: 'icon-daima1',
-            title: '导出数据',
-            on: () => handleExportData()
+            title: '查看数据',
+            on: () => handlePreview()
         },
         {
             icon: 'icon-shangchuan1',
@@ -164,18 +169,11 @@ function handleReset() {
     designer.reset()
 }
 
-/**
- * 导出数据
- */
-function handleExportData(fileName = `epic-data.json`) {
-    let content = "data:text/json;charset=utf-8,";
-    content += JSON.stringify(pageSchema, null, 2);
-    var encodedUri = encodeURI(content);
-    var actions = document.createElement("a");
-    actions.setAttribute("href", encodedUri);
-    actions.setAttribute("download", fileName);
-    actions.click();
+// 预览数据
+function handlePreview() {
+    previewJson.value!.handleOpen()
 }
+
 
 /**
  * 打开文件选择器

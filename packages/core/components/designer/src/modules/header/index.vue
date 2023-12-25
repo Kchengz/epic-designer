@@ -45,6 +45,9 @@ const emits = defineEmits(['save', 'reset'])
 const Button = pluginManager.getComponent('button')
 const preview = ref<InstanceType<typeof EPreview> | null>(null)
 
+/**
+ * 预览
+ */
 function handlePreview() {
   preview.value!.handleOpen()
 }
