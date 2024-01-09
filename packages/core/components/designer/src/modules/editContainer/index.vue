@@ -22,8 +22,8 @@ const rootSchema = computed(() => {
 
 const getEditRangestyle = computed(() => {
     return {
-        width: pageSchema.canvas?.width ?? '100%',
-        height: pageSchema.canvas?.height ?? '100%'
+        width: '100%',
+        height: '100%'
     }
 })
 </script>
