@@ -111,9 +111,13 @@ function validate(formName = 'default'): Promise<FormDataModel | boolean> {
       reject(`表单 [name=${formName}] 不存在`)
       return false
     }
-    await form.validate()
-    const formData = await form.getData()
-    resolve(formData)
+    try {
+      await form.validate()
+      const formData = await form.getData()
+      resolve(formData)
+    } catch (error) {
+      reject(error)
+    }
   })
 
 }
