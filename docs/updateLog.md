@@ -1,3 +1,28 @@
+## 0.8.15（2024-01-11）
+
+### ✨ Feat
+
+- [[新增数据查看面板](https://github.com/Kchengz/epic-designer/commit/18c0199ceaf4016b2dc70580ed28f84c03bef5ff)](https://github.com/Kchengz/epic-designer/commit/de558e9b0693508cec3d9bb9634a176053b12708)
+
+### 🐛 Bug Fixes
+
+- [修复画布宽高设置为px以外的单位不会生效的问题](https://github.com/Kchengz/epic-designer/commit/79d502c37b83247713bb203dc7f7706e12adb1f0)
+- [修复校验不通过是外部的Promise保持pedding的bug](https://github.com/Kchengz/epic-designer/commit/00160a3d7ea00f7b9415c3cdff789fdced06b443)
+- [修复编译后types类型文件不存在问题](https://github.com/Kchengz/epic-designer/commit/4a996ae396a39761fda6970e79cdd7fb4d6487c6)
+
+## 0.8.13（2023-11-21）
+
+### ✨ Feat
+
+- [新增隐藏头部属性](https://github.com/Kchengz/epic-designer/commit/de558e9b0693508cec3d9bb9634a176053b12708)
+- [新增header插槽](https://github.com/Kchengz/epic-designer/commit/8c9295ec5aa6f73b13898b9b7e005deac6ef8953)
+
+### 🐛 Bug Fixes
+
+- [修复上传图片图标不显示问题](https://github.com/Kchengz/epic-designer/commit/08f16cfff58adc4a09aa8489d1a48e91af0138b9)
+- [修复用户扩展icon无法正常显示问题](https://github.com/Kchengz/epic-designer/commit/f3288745b694318cd0d6cfb0dbabbb1aa00e41ca)
+- [修复组件ts类型缺失问题](https://github.com/Kchengz/epic-designer/commit/b91bd0e13c5e5ba3fa3c11ff7992a85ac0ca7727)
+
 ## 0.8.12（2023-11-16）
 
 ### ✨ Feat
