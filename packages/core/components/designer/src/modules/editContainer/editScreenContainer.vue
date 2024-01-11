@@ -16,6 +16,7 @@
       </div>
     </div>
 
+    <div ref="sizeBoxRef" class="absolute op-0 pointer-events-none" :style="sizeBoxStyle" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -23,13 +24,14 @@ import { watchOnce, useElementSize, useResizeObserver } from '@vueuse/core'
 import type { PageSchema } from '../../../../../types/epic-designer'
 
 import { useShareStore, useElementDrag, useElementZoom } from '@epic-designer/utils'
-import { ref, nextTick,inject, watch, computed } from 'vue'
+import { ref, nextTick, inject, watch, shallowRef, unref, onMounted, UnwrapRef } from 'vue'
 import Toolbar from './toolbar.vue'
 
 const pageSchema = inject('pageSchema') as PageSchema
 
 const editScreenContainerRef = ref<HTMLDivElement | null>(null)
 const draggableElRef = ref<HTMLDivElement | null>(null)
+const sizeBoxRef = ref<HTMLDivElement | null>(null)
 
 const { pressSpace, disabledZoom } = useShareStore()
 const { handleElementDragStart, handleElementDrag, handleElementDragEnd } = useElementDrag(editScreenContainerRef)
@@ -49,18 +51,41 @@ const canvasBoxStyle = ref<{
   height?: string,
   transform?: string
 }>({})
+const sizeBoxStyle = ref<{
+  width?: string,
+  height?: string,
+}>({})
 
-const getCanvasAttribute = computed(() => {
-  
-  const width = parseFloat(pageSchema.canvas?.width ?? '0')
-  const height = parseFloat(pageSchema.canvas?.height ?? '0')
-  return { width, height }
+const getCanvasAttribute = shallowRef<{
+  width: number,
+  height: number,
+}>({ width: 0, height: 0 })
+watch(() => ({ width: pageSchema.canvas?.width, height: pageSchema.canvas?.height }), updateSizeBoxStyle)
+watch(sizeBoxStyle, () => {
+  nextTick(updateCanvasAttribute)
 })
+onMounted(() => {
+  updateSizeBoxStyle({ width: pageSchema.canvas?.width, height: pageSchema.canvas?.height })
+})
+function updateCanvasAttribute() {
+  const sizeBox = unref(sizeBoxRef)
+  if (!sizeBox) return
+  getCanvasAttribute.value = {
+    width: sizeBox.clientWidth,
+    height: sizeBox.clientHeight
+  }
+}
+function updateSizeBoxStyle({ width, height }: UnwrapRef<typeof sizeBoxStyle>) {
+  sizeBoxStyle.value = {
+    width: width ?? '0',
+    height: height ?? '0'
+  }
+}
 
 // 初始化页面样式
 watchOnce(width, updateScrollBoxStyle)
 // 动态适配设计区域宽度
-watch(() => pageSchema.canvas?.width, updateScrollBoxStyle)
+watch(getCanvasAttribute, updateScrollBoxStyle)
 
 function updateScrollBoxStyle() {
   if (disabledZoom.value) {
