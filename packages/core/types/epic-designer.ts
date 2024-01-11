@@ -1,4 +1,4 @@
-import { type FormItemRule } from "../utils/component/KComponent/ERuleEditor/types";
+import { type FormItemRule } from "../extensions/ERuleEditor/types";
 export interface RenderCallbackParams {
   values: Record<string, any>;
 }

@@ -1,7 +1,7 @@
 import {
   type NodeItem,
   type SchemaGroupItem,
-} from "@epic-designer/core/types/epic-designer.d";
+} from "@epic-designer/core/types/epic-designer";
 import { loadAsyncComponent } from "../common";
 import { ref } from "vue";
 export interface ActivitybarModel {
