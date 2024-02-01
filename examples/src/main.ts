@@ -4,12 +4,12 @@ import App from './App.vue'
 import { pluginManager } from '@epic-designer/core'
 //  使用Elemnt UI
 // import 'element-plus/dist/index.css'
-// import { setupElementPlus } from '@epic-designer/ui/elementPlus'
+// import { setupElementPlus } from '@epic-designer/ui'
 // setupElementPlus(pluginManager)
 
 // 使用Antd UI v4版本
 import './style/reset.css';
-import { setupAntd } from '@epic-designer/ui/antd'
+import { setupAntd } from '@epic-designer/ui'
 setupAntd(pluginManager)
 
 // 使用Antd UI v3 版本
@@ -18,7 +18,7 @@ setupAntd(pluginManager)
 // setupAntdV3(pluginManager)
 
 // 使用NaiveUi UI
-// import { setupNaiveUi } from '@epic-designer/ui/naiveUi'
+// import { setupNaiveUi } from '@epic-designer/ui'
 // setupNaiveUi(pluginManager)
 
 

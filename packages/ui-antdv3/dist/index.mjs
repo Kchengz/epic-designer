@@ -1,5 +1,5 @@
-const o = {
-  component: () => import("./index-ae74ea3c.mjs").then((e) => e.i),
+const t = {
+  component: () => import("./index-eba8405e.mjs").then((e) => e.i),
   defaultSchema: {
     label: "输入框",
     type: "input",
@@ -106,14 +106,14 @@ const o = {
         field: "componentProps.showCount"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "表单校验",
@@ -162,7 +162,7 @@ const o = {
   },
   bindModel: "value"
 }, p = {
-  component: async () => (await import("./index-ae74ea3c.mjs").then((e) => e.i)).Textarea,
+  component: async () => (await import("./index-eba8405e.mjs").then((e) => e.i)).Textarea,
   defaultSchema: {
     label: "文本域",
     type: "textarea",
@@ -261,14 +261,14 @@ const o = {
         field: "componentProps.allowClear"
       },
       {
-        label: "显示",
-        type: "switch",
-        field: "show"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "表单校验",
@@ -317,7 +317,7 @@ const o = {
   },
   bindModel: "value"
 }, a = {
-  component: () => import("./index-8e7a2817.mjs").then((e) => e.i),
+  component: () => import("./index-0924bbe9.mjs").then((e) => e.i),
   defaultSchema: {
     label: "数字输入框",
     type: "number",
@@ -431,14 +431,14 @@ const o = {
         field: "componentProps.allowClear"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "表单校验",
@@ -487,7 +487,7 @@ const o = {
   },
   bindModel: "value"
 }, n = {
-  component: async () => (await import("./index-ae74ea3c.mjs").then((e) => e.i)).InputPassword,
+  component: async () => (await import("./index-eba8405e.mjs").then((e) => e.i)).InputPassword,
   defaultSchema: {
     label: "密码输入框",
     type: "password",
@@ -563,14 +563,14 @@ const o = {
         field: "componentProps.allowClear"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "表单校验",
@@ -619,7 +619,7 @@ const o = {
   },
   bindModel: "value"
 }, i = {
-  component: () => import("./Group-b9408b57.mjs").then((e) => e.G),
+  component: () => import("./Group-be1781e1.mjs").then((e) => e.G),
   defaultSchema: {
     label: "单选框",
     type: "radio",
@@ -698,14 +698,14 @@ const o = {
         field: "componentProps.optionType"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "选项管理",
@@ -730,7 +730,7 @@ const o = {
   },
   bindModel: "value"
 }, c = {
-  component: () => import("./Group-ff69b2c5.mjs").then((e) => e.G),
+  component: () => import("./Group-bd36e0ca.mjs").then((e) => e.G),
   defaultSchema: {
     label: "多选框",
     type: "checkbox",
@@ -791,19 +791,14 @@ const o = {
         field: "componentProps.size"
       },
       {
-        label: "可清空",
+        label: "禁用",
         type: "switch",
-        field: "componentProps.allowClear"
+        field: "componentProps.disabled"
       },
       {
         label: "隐藏",
         type: "switch",
         field: "componentProps.hidden"
-      },
-      {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled"
       },
       {
         label: "选项管理",
@@ -828,7 +823,7 @@ const o = {
   },
   bindModel: "value"
 }, r = {
-  component: () => import("./index-235a63a1.mjs").then((e) => e.i),
+  component: () => import("./index-31ed19d0.mjs").then((e) => e.i),
   defaultSchema: {
     label: "选择框",
     type: "select",
@@ -982,14 +977,14 @@ const o = {
         field: "componentProps.allowClear"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "选项管理",
@@ -1036,7 +1031,7 @@ const o = {
   },
   bindModel: "value"
 }, d = {
-  component: () => import("./index-9062a605.mjs").then((e) => e.i),
+  component: () => import("./index-00b2587b.mjs").then((e) => e.i),
   defaultSchema: {
     label: "滑块",
     type: "slider",
@@ -1137,14 +1132,14 @@ const o = {
         field: "componentProps.vertical"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "表单校验",
@@ -1167,7 +1162,7 @@ const o = {
   },
   bindModel: "value"
 }, s = {
-  component: () => import("./index-1260b772.mjs").then((e) => e.i),
+  component: () => import("./index-afefcf4b.mjs").then((e) => e.i),
   defaultSchema: {
     label: "时间选择器",
     type: "time",
@@ -1202,6 +1197,14 @@ const o = {
         label: "占位内容",
         type: "input",
         field: "componentProps.placeholder"
+      },
+      {
+        label: "格式",
+        type: "input",
+        field: "componentProps.valueFormat",
+        onChange: (e) => {
+          e.values.componentProps.format = e.value;
+        }
       },
       {
         label: "尺寸",
@@ -1308,14 +1311,14 @@ const o = {
         field: "componentProps.allowClear"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "表单校验",
@@ -1334,7 +1337,7 @@ const o = {
   },
   bindModel: "value"
 }, b = {
-  component: () => import("./datePicker-c40d4294.mjs"),
+  component: () => import("./datePicker-aa3ecd21.mjs"),
   defaultSchema: {
     label: "日期选择器",
     type: "date",
@@ -1437,7 +1440,10 @@ const o = {
       {
         label: "格式",
         type: "input",
-        field: "componentProps.valueFormat"
+        field: "componentProps.valueFormat",
+        onChange: (e) => {
+          e.values.componentProps.format = e.value;
+        }
       },
       {
         label: "显示类型",
@@ -1457,7 +1463,8 @@ const o = {
               label: "日期范围",
               value: "daterange"
             }
-          ]
+          ],
+          placeholder: "请选择"
         },
         onChange: ({ value: e, values: l }) => {
           e === "daterange" ? l.componentProps.placeholder = ["开始日期", "结束日期"] : l.componentProps.placeholder = "请输入";
@@ -1476,7 +1483,8 @@ const o = {
               label: "无",
               value: !1
             }
-          ]
+          ],
+          placeholder: "请选择"
         },
         field: "componentProps.bordered"
       },
@@ -1491,14 +1499,14 @@ const o = {
         field: "componentProps.allowClear"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "表单校验",
@@ -1517,7 +1525,7 @@ const o = {
   },
   bindModel: "value"
 }, m = {
-  component: () => import("./index-0f893c8c.mjs").then((e) => e.i),
+  component: () => import("./index-89122dbc.mjs").then((e) => e.i),
   defaultSchema: {
     label: "级联选择器",
     type: "cascader",
@@ -1643,14 +1651,14 @@ const o = {
         field: "componentProps.allowClear"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "选项管理",
@@ -1678,7 +1686,7 @@ const o = {
   },
   bindModel: "value"
 }, u = {
-  component: () => import("./index-ec83e8b6.mjs").then((e) => e.i),
+  component: () => import("./index-58590ed5.mjs").then((e) => e.i),
   defaultSchema: {
     label: "开关",
     type: "switch",
@@ -1740,14 +1748,14 @@ const o = {
         field: "componentProps.size"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "表单校验",
@@ -1766,7 +1774,7 @@ const o = {
   },
   bindModel: "checked"
 }, f = {
-  component: () => import("./uploadImage-d73ba801.mjs"),
+  component: () => import("./uploadImage-013816b6.mjs"),
   defaultSchema: {
     label: "上传图片",
     type: "upload-image",
@@ -1809,14 +1817,14 @@ const o = {
         }
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "表单校验",
@@ -1829,7 +1837,7 @@ const o = {
   },
   bindModel: "modelValue"
 }, y = {
-  component: () => import("./uploadFile-49beb9fe.mjs"),
+  component: () => import("./uploadFile-2852f123.mjs"),
   defaultSchema: {
     label: "上传文件",
     type: "upload-file",
@@ -1872,14 +1880,14 @@ const o = {
         }
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "表单校验",
@@ -1892,7 +1900,7 @@ const o = {
   },
   bindModel: "modelValue"
 }, h = {
-  component: () => import("./card-451331f6.mjs"),
+  component: () => import("./card-4918b90f.mjs"),
   defaultSchema: {
     label: "卡片布局",
     type: "card",
@@ -1905,11 +1913,16 @@ const o = {
         label: "标题",
         type: "input",
         field: "label"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       }
     ]
   }
 }, P = {
-  component: () => import("./row-879706a5.mjs"),
+  component: () => import("./row-039da91d.mjs"),
   defaultSchema: {
     label: "栅格布局",
     type: "row",
@@ -2000,11 +2013,16 @@ const o = {
         label: "列编辑",
         type: "EColEditor",
         field: "children"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       }
     ]
   }
 }, v = {
-  component: () => import("./col-a1a100e3.mjs"),
+  component: () => import("./col-86ba50be.mjs"),
   defaultSchema: {
     label: "栅格布局-列",
     type: "col",
@@ -2024,7 +2042,7 @@ const o = {
     ]
   }
 }, w = {
-  component: () => import("./form-4517c87b.mjs"),
+  component: () => import("./form-5ffa1c7e.mjs"),
   defaultSchema: {
     label: "表单",
     type: "form",
@@ -2168,6 +2186,16 @@ const o = {
           ]
         },
         field: "componentProps.size"
+      },
+      // {
+      //   label: "禁用",
+      //   type: "switch",
+      //   field: "componentProps.disabled",
+      // },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       }
     ],
     action: [
@@ -2186,7 +2214,7 @@ const o = {
     ]
   }
 }, g = {
-  component: () => import("./formItem-5f340d96.mjs"),
+  component: () => import("./formItem-36e845df.mjs"),
   defaultSchema: {
     label: "表单项",
     type: "form-item",
@@ -2194,7 +2222,7 @@ const o = {
   },
   config: {}
 }, C = {
-  component: () => import("./button-ad4246cb.mjs"),
+  component: () => import("./button-94332131.mjs"),
   defaultSchema: {
     label: "按钮",
     type: "button",
@@ -2334,14 +2362,14 @@ const o = {
         field: "componentProps.danger"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       }
     ],
     event: [
@@ -2355,8 +2383,8 @@ const o = {
       }
     ]
   }
-}, x = {
-  component: () => import("./modal-28121bd3.mjs"),
+}, E = {
+  component: () => import("./modal-ec0566fe.mjs"),
   defaultSchema: {
     label: "模态框",
     type: "modal",
@@ -2372,8 +2400,8 @@ const o = {
       }
     ]
   }
-}, E = {
-  component: () => import("./index-ae74ea3c.mjs").then((e) => e.i),
+}, x = {
+  component: () => import("./index-eba8405e.mjs").then((e) => e.i),
   defaultSchema: {
     label: "颜色选择器",
     type: "color-picker",
@@ -2433,14 +2461,14 @@ const o = {
         field: "componentProps.allowClear"
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden"
-      },
-      {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
       },
       {
         label: "表单校验",
@@ -2463,20 +2491,20 @@ const o = {
 function R(e) {
   e.component(
     "Collapse",
-    async () => await import("./index-9d66b9ae.mjs").then((t) => t.i)
+    async () => await import("./index-c836206b.mjs").then((o) => o.i)
   ), e.component(
     "CollapseItem",
-    async () => await import("./CollapsePanel-d4f1f854.mjs").then((t) => t.C)
+    async () => await import("./CollapsePanel-c6fe6e2b.mjs").then((o) => o.C)
   ), e.component(
     "Tabs",
-    async () => await import("./index-0611b8fe.mjs").then((t) => t.i)
+    async () => await import("./index-e18cb4bd.mjs").then((o) => o.i)
   ), e.component(
     "TabPane",
-    async () => (await import("./index-0611b8fe.mjs").then((t) => t.i)).TabPane
+    async () => (await import("./index-e18cb4bd.mjs").then((o) => o.i)).TabPane
   ), [
     w,
     g,
-    o,
+    t,
     p,
     a,
     n,
@@ -2494,10 +2522,10 @@ function R(e) {
     P,
     v,
     C,
-    x,
-    E
-  ].forEach((t) => {
-    e.registerComponent(t);
+    E,
+    x
+  ].forEach((o) => {
+    e.registerComponent(o);
   }), e.setSchemaGroup([
     {
       title: "表单",

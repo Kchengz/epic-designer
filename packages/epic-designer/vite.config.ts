@@ -4,6 +4,7 @@ import path from "path";
 import dts from "vite-plugin-dts";
 import UnoCSS from "unocss/vite";
 import monacoEditorPlugin from "vite-plugin-monaco-editor";
+import externalGlobals from "rollup-plugin-external-globals";
 export default defineConfig({
   plugins: [
     vue(),
@@ -12,7 +13,7 @@ export default defineConfig({
       entryRoot: "../",
       outDir: "dist",
     }),
-    (monacoEditorPlugin as any).default({})
+    (monacoEditorPlugin as any).default({}),
   ],
   resolve: {
     alias: {
@@ -50,7 +51,22 @@ export default defineConfig({
     // 库编译模式配置
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
-      external: ["vue", "monaco-editor"],
+      external: [
+        "vue",
+        "monaco-editor",
+        "element-plus",
+        "ant-design-vue",
+        "naive-ui",
+      ],
+      plugins: [
+        // 不打包依赖映射的对象
+        externalGlobals({
+          "monaco-editor": "monacoEditor",
+          "element-plus": "elementPlus",
+          "ant-design-vue": "antDesignVue",
+          "naive-ui": "naiveUi",
+        }) as any,
+      ],
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {

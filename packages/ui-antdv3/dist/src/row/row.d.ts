@@ -1,5 +1,5 @@
-import { type PropType } from 'vue';
-import { type NodeItem } from '@epic-designer/core/types/epic-designer';
+import { type PropType } from "vue";
+import { type NodeItem } from "@epic-designer/core/types/epic-designer";
 declare const _default: import("vue").DefineComponent<{
     record: {
         type: PropType<NodeItem>;
