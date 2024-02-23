@@ -62,7 +62,6 @@ export default defineConfig({
         // 不打包依赖映射的对象
         externalGlobals({
           "monaco-editor": "monacoEditor",
-          "element-plus": "elementPlus",
           "ant-design-vue": "antDesignVue",
           "naive-ui": "naiveUi",
         }) as any,

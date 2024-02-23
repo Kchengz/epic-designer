@@ -1,7 +1,7 @@
 {
   "name": "epic-designer",
   "private": false,
-  "version": "0.8.16-beta.1a9",
+  "version": "0.8.16-beta.1a10",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -36,6 +36,10 @@
     "monaco-editor": "^0.34.1",
     "vuedraggable": "4.1.0"
   },
+  "peerDependencies": {
+    "ant-design-vue": "4.1.1",
+    "element-plus": "^2.5.6"
+  },
   "devDependencies": {
     "@algolia/client-search": "^4.19.1",
     "@babel/core": "^7.22.9",
@@ -47,7 +51,6 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vue/test-utils": "2.0.0-rc.18",
-    "ant-design-vue": "^4.0.6",
     "eslint-config-standard-with-typescript": "^34.0.1",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",
