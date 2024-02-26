@@ -10,7 +10,7 @@
   "devDependencies": {
     "vite-plugin-dts": "^3.3.1"
   },
-  "dependencies": {
+  "peerDependencies": {
     "ant-design-vue": "^4.0.6"
   }
 }

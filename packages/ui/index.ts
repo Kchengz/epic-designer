@@ -2,18 +2,18 @@
 // export * from "./elementPlus";
 // export * from "./naiveUi";
 
-import { type PluginManager } from "@epic-designer/utils";
-export async function setupAntd(pluginManager: PluginManager) {
+import { pluginManager } from "@epic-designer/utils";
+export async function setupAntd() {
   const { setupAntd } = await import("./antd");
-  setupAntd(pluginManager);
+  setupAntd.bind(null, pluginManager)();
 }
 
-export async function setupElementPlus(pluginManager: PluginManager) {
+export async function setupElementPlus() {
   const { setupElementPlus } = await import("./elementPlus");
-  setupElementPlus(pluginManager);
+  setupElementPlus.bind(null, pluginManager)();
 }
 
-export async function setupNaiveUi(pluginManager: PluginManager) {
+export async function setupNaiveUi() {
   const { setupNaiveUi } = await import("./naiveUi");
-  setupNaiveUi(pluginManager);
+  setupNaiveUi.bind(null, pluginManager)();
 }
