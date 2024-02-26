@@ -8,6 +8,8 @@ export async function setupAntd() {
   setupAntd.bind(null, pluginManager)();
 }
 
+
+
 export async function setupElementPlus() {
   const { setupElementPlus } = await import("./elementPlus");
   setupElementPlus.bind(null, pluginManager)();
@@ -17,3 +19,5 @@ export async function setupNaiveUi() {
   const { setupNaiveUi } = await import("./naiveUi");
   setupNaiveUi.bind(null, pluginManager)();
 }
+
+

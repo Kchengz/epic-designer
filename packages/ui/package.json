@@ -11,6 +11,9 @@
     "vite-plugin-dts": "^3.3.1"
   },
   "peerDependencies": {
-    "ant-design-vue": "^4.0.6"
+    "ant-design-vue": "^4.0.6",
+    "naive-ui": "^2.34.4",
+    "element-plus": "^2.5.6"
+
   }
 }

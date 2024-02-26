@@ -4,7 +4,7 @@ import path from "path";
 import dts from "vite-plugin-dts";
 import UnoCSS from "unocss/vite";
 import monacoEditorPlugin from "vite-plugin-monaco-editor";
-import externalGlobals from "rollup-plugin-external-globals";
+// import externalGlobals from "rollup-plugin-external-globals";
 export default defineConfig({
   plugins: [
     vue(),
@@ -60,11 +60,9 @@ export default defineConfig({
       ],
       plugins: [
         // 不打包依赖映射的对象
-        externalGlobals({
-          "monaco-editor": "monacoEditor",
-          "ant-design-vue": "antDesignVue",
-          "naive-ui": "naiveUi",
-        }) as any,
+        // externalGlobals({
+
+        // }) as any,
       ],
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
