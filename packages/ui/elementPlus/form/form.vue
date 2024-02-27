@@ -60,7 +60,8 @@ function validate() {
 onMounted(async () => {
   if (props.record?.type === 'form' && forms.value && form.value) {
     const name = props.record.name ?? 'default' as string
-    forms.value[name] = form.value
+    
+    forms.value[name] = form.value as any
     form.value.getData = getData
     form.value.setData = setData
     return false
