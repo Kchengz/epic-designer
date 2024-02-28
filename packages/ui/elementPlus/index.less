@@ -46,15 +46,24 @@
   > .el-input__wrapper {
     padding-right: 1px;
   }
-  .el-input__suffix div {
-    border-radius: 0;
-    border: 0;
-    border-left: 1;
-    position: relative;
-  }
-  .el-input__suffix .el-input__wrapper {
-    background-color: #f5f7fa;
-    border: 0;
+  .el-input__suffix {
+    div {
+      border-radius: 0;
+      border: 0;
+      border-left: 1;
+      position: relative;
+      line-height: auto;
+    }
+
+    .el-input__wrapper {
+      background-color: #f5f7fa;
+      border: 0;
+    }
+
+    .el-select__wrapper {
+      height: 32px;
+      line-height: 30px;
+    }
   }
 }
 
