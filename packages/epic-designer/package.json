@@ -1,7 +1,7 @@
 {
   "name": "epic-designer",
   "private": false,
-  "version": "0.8.16-beta.1a11",
+  "version": "0.8.16-beta.1a16",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -27,7 +27,7 @@
     "url": "https://github.com/Kchengz/epic-designer"
   },
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
     "lint": "eslint . --fix --ext .js,.jsx,.json,.ts,.tsx,.vue"

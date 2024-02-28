@@ -7,9 +7,16 @@
 <script lang="ts" setup>
 import Designer from './views/designer/index.vue'
 // import Builder from './views/builder/index.vue'
+
+import 'element-plus/dist/index.css'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import { setupElementPlus, provideGlobalConfig } from '@epic-designer/ui'
+setupElementPlus(zhCn)
+provideGlobalConfig({ locale: zhCn });
+
 </script>
 <style lang="less" scoped>
-.demo-content{
+.demo-content {
   height: 100vh;
 }
 </style>

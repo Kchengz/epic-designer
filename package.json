@@ -7,6 +7,7 @@
     "lint": "turbo run lint",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
+    "examples:build": "pnpm run build --filter @epic-designer/examples",
     "docs:serve": "vitepress serve docs",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
