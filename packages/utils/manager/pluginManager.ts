@@ -69,6 +69,7 @@ export class PluginManager {
   schemaGroup: SchemaGroupItem[] = [];
 
   schemaGroupList = ref<SchemaGroupList>([]);
+  hideComponentList: string[] = ['input'];
 
   viewsContainers: ViewsContainersModel = {
     activitybars: [],
@@ -279,6 +280,35 @@ export class PluginManager {
    */
   getSchemaByGroup() {
     return this.schemaGroupList;
+  }
+
+  /**
+   * 添加需要隐藏的组件类型
+   * @param {*} type
+   * @returns
+   */
+  addHideComponent(type: string) {
+    this.hideComponentList.push(type);
+  }
+
+  /**
+   * 移除需要隐藏的组件类型
+   * @param {*} type
+   * @returns
+   */
+  clearHideComponent(type: string) {
+    this.hideComponentList = this.hideComponentList.filter(
+      (item) => item !== type
+    );
+  }
+
+  /**
+   * 设置需要隐藏的组件类型数组
+   * @param {*} type[]
+   * @returns
+   */
+  setHideComponents(types: string[]) {
+    this.hideComponentList = types;
   }
 
   /**
