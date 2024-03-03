@@ -6,10 +6,9 @@ export default {
     label: "表单",
     type: "form",
     icon: "epic-icon-daibanshixiang",
-    labelWidth: 100,
-    name: "default",
     componentProps: {
       layout: "horizontal",
+      name: "default",
       labelWidth: 100,
       labelLayout: "fixed",
       labelCol: {
@@ -30,7 +29,7 @@ export default {
       {
         label: "name",
         type: "input",
-        field: "name",
+        field: "componentProps.name",
       },
       {
         label: "标签布局",

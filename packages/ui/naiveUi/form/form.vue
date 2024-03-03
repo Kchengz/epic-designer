@@ -58,7 +58,9 @@ function getData(): FormDataModel {
 // form组件需要特殊处理
 onMounted(async (): Promise<void> => {
   if (props.record?.type === 'form' && forms.value && form.value) {
-    const name = props.record.name ?? ('default' as string)
+    const name = props.record?.componentProps?.name ??
+    props.record?.name ?? 'default' as string
+
     forms.value[name] = form.value as any
     form.value.getData = getData
     form.value.setData = setData

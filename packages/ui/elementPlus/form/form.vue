@@ -7,6 +7,7 @@
     </ElForm>
   </div>
 </template>
+
 <script lang="ts" setup>
 import { ref, Ref, reactive, PropType, provide, computed, inject, onMounted } from 'vue'
 import { ElForm } from 'element-plus'
@@ -59,8 +60,9 @@ function validate() {
 // form组件需要特殊处理
 onMounted(async () => {
   if (props.record?.type === 'form' && forms.value && form.value) {
-    const name = props.record.name ?? 'default' as string
-    
+    const name = props.record?.componentProps?.name ??
+    props.record?.name ?? 'default' as string
+
     forms.value[name] = form.value as any
     form.value.getData = getData
     form.value.setData = setData
