@@ -3,7 +3,7 @@ import Row from "ant-design-vue/lib/row";
 import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 export default defineComponent({
   props: {
-    record: {
+    componentSchema: {
       type: Object as PropType<ComponentSchema>,
       require: true,
       default: () => ({}),
@@ -11,17 +11,19 @@ export default defineComponent({
   },
   setup(props, { attrs, slots }) {
     return () => {
-      const record = {
-        ...props.record,
-        title: props.record?.label ?? "",
+      const componentSchema = {
+        ...props.componentSchema,
+        title: props.componentSchema?.label ?? "",
       } as any;
-      const children = record.children;
-      delete record.children;
+      const children = componentSchema.children;
+      delete componentSchema.children;
 
-      return h(Row, record, {
+      return h(Row, componentSchema, {
         default: () =>
           renderSlot(slots, "edit-node", {}, () =>
-            children.map((record: any) => renderSlot(slots, "node", { record }))
+            children.map((subcomponentSchema: ComponentSchema) =>
+              renderSlot(slots, "node", { componentSchema: subcomponentSchema })
+            )
           ),
       });
     };

@@ -2,7 +2,7 @@
   <div v-if="visible" class="form-main" style="height: 100%">
     <NForm ref="form" :model="formData" v-bind="componentProps" style="height: 100%">
       <slot name="edit-node">
-        <slot v-for="item in children" name="node" :record="item" />
+        <slot v-for="item in children" name="node" :componentSchema="item" />
       </slot>
     </NForm>
   </div>
@@ -19,7 +19,7 @@ interface FormInstance extends InstanceType<typeof NForm> {
 }
 
 const props = defineProps({
-  record: {
+  componentSchema: {
     type: Object as PropType<ComponentSchema>,
     require: true,
     default: () => ({})
@@ -57,9 +57,9 @@ function getData(): FormDataModel {
 
 // form组件需要特殊处理
 onMounted(async (): Promise<void> => {
-  if (props.record?.type === 'form' && forms.value && form.value) {
-    const name = props.record?.componentProps?.name ??
-    props.record?.name ?? 'default' as string
+  if (props.componentSchema?.type === 'form' && forms.value && form.value) {
+    const name = props.componentSchema?.componentProps?.name ??
+    props.componentSchema?.name ?? 'default' as string
 
     forms.value[name] = form.value as any
     form.value.getData = getData
@@ -68,12 +68,12 @@ onMounted(async (): Promise<void> => {
 })
 
 const componentProps = computed(() => {
-  const recordProps = props.record!.componentProps
+  const recordProps = props.componentSchema!.componentProps
   return recordProps
 })
 
 const children = computed(() => {
-  return props.record!.children ?? []
+  return props.componentSchema!.children ?? []
 })
 
 defineExpose({

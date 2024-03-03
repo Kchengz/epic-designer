@@ -100,9 +100,9 @@ function filterTreeByLabel(tree, labelToFilter) {
 }
 
 
-function handleSelect(id: string, record: ComponentSchema) {
+function handleSelect(id: string, componentSchema: ComponentSchema) {
   selectedKeysComputed.value = [id]
-  emit('node-click', { id, record })
+  emit('node-click', { id, componentSchema })
 }
 
 provide('expandedKeys', expandedKeys)

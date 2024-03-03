@@ -1,6 +1,6 @@
 import { defineComponent as ft, h as j, renderSlot as ne } from "vue";
-import { _ as Se } from "./index-4ddd22ca.mjs";
-import { a as ue, o as dt, r as te, n as ce, e as fe, j as $e, w as st, y as Fe, v as vt, f as De, k as Ie, i as K, g as G, u as pt, N as mt, V as Ct, W as yt, X as gt, Y as _t, c as xt, h as ht } from "./useConfigInject-f4796704.mjs";
+import { _ as Be } from "./index-4ddd22ca.mjs";
+import { a as ue, o as st, r as te, n as ce, e as fe, j as $e, w as dt, y as Fe, v as vt, f as De, k as Ie, i as K, g as G, u as pt, N as mt, V as Ct, W as yt, X as gt, Y as _t, c as ht, h as xt } from "./useConfigInject-f4796704.mjs";
 import { a as kt } from "./index-78d56708.mjs";
 import { a as bt } from "./Portal-6677def3.mjs";
 import { r as Re, a as Ve } from "./index-d455f4a3.mjs";
@@ -12,12 +12,12 @@ import "./pickAttrs-0f2b7511.mjs";
 import "./classCallCheck-781f96f0.mjs";
 import "./raf-09a8b76f.mjs";
 import "./wave-320c2dad.mjs";
-var de = {}, S = {}, q = K;
-Object.defineProperty(S, "__esModule", {
+var se = {}, B = {}, S = K;
+Object.defineProperty(B, "__esModule", {
   value: !0
 });
-S.modalProps = S.destroyFns = S.default = void 0;
-var R = G, be = q(ue()), Ot = q(dt()), V = q(te()), wt = q(ce()), qt = q(fe()), Bt = q(kt()), U = q($e()), St = q(bt()), $t = q(st()), Pe = q(Re()), Ft = Ve(), Dt = Fe(), It = q(vt()), Rt = Pt(), Vt = q(De()), Ne = Ie(), At = ["prefixCls", "visible", "wrapClassName", "centered", "getContainer", "closeIcon", "focusTriggerAfterClose"], le = null, Mt = function(e) {
+B.modalProps = B.destroyFns = B.default = void 0;
+var R = G, be = S(ue()), Ot = S(st()), V = S(te()), wt = S(ce()), St = S(fe()), qt = S(kt()), U = S($e()), Bt = S(bt()), $t = S(dt()), Pe = S(Re()), Ft = Ve(), Dt = Fe(), It = S(vt()), Rt = Pt(), Vt = S(De()), Ne = Ie(), At = ["prefixCls", "visible", "wrapClassName", "centered", "getContainer", "closeIcon", "focusTriggerAfterClose"], le = null, Mt = function(e) {
   le = {
     x: e.pageX,
     y: e.pageY
@@ -25,7 +25,7 @@ var R = G, be = q(ue()), Ot = q(dt()), V = q(te()), wt = q(ce()), qt = q(fe()), 
     return le = null;
   }, 100);
 };
-(0, Rt.canUseDocElement)() && (0, St.default)(document.documentElement, "click", Mt, !0);
+(0, Rt.canUseDocElement)() && (0, Bt.default)(document.documentElement, "click", Mt, !0);
 var Ae = function() {
   return {
     prefixCls: String,
@@ -104,9 +104,9 @@ var Ae = function() {
     modalRender: Function
   };
 };
-S.modalProps = Ae;
+B.modalProps = Ae;
 var Wt = [];
-S.destroyFns = Wt;
+B.destroyFns = Wt;
 var zt = (0, R.defineComponent)({
   compatConfig: {
     MODE: 3
@@ -122,32 +122,32 @@ var zt = (0, R.defineComponent)({
     okType: "primary"
   }),
   setup: function(e, o) {
-    var r = o.emit, n = o.slots, i = o.attrs, f = (0, Dt.useLocaleReceiver)("Modal"), P = (0, wt.default)(f, 1), h = P[0], d = (0, Vt.default)("modal", e), l = d.prefixCls, u = d.rootPrefixCls, a = d.direction, p = d.getPopupContainer, y = function(v) {
+    var r = o.emit, n = o.slots, i = o.attrs, f = (0, Dt.useLocaleReceiver)("Modal"), P = (0, wt.default)(f, 1), x = P[0], s = (0, Vt.default)("modal", e), l = s.prefixCls, u = s.rootPrefixCls, a = s.direction, p = s.getPopupContainer, y = function(v) {
       r("update:visible", !1), r("cancel", v), r("change", !1);
     }, T = function(v) {
       r("ok", v);
     }, c = function() {
-      var v, w, _ = e.okText, g = _ === void 0 ? (v = n.okText) === null || v === void 0 ? void 0 : v.call(n) : _, C = e.okType, k = e.cancelText, b = k === void 0 ? (w = n.cancelText) === null || w === void 0 ? void 0 : w.call(n) : k, x = e.confirmLoading;
+      var v, w, _ = e.okText, g = _ === void 0 ? (v = n.okText) === null || v === void 0 ? void 0 : v.call(n) : _, C = e.okType, k = e.cancelText, b = k === void 0 ? (w = n.cancelText) === null || w === void 0 ? void 0 : w.call(n) : k, h = e.confirmLoading;
       return (0, R.createVNode)(R.Fragment, null, [(0, R.createVNode)(Pe.default, (0, V.default)({
         onClick: y
       }, e.cancelButtonProps), {
         default: function() {
-          return [b || h.value.cancelText];
+          return [b || x.value.cancelText];
         }
       }), (0, R.createVNode)(Pe.default, (0, V.default)((0, V.default)({}, (0, Ft.convertLegacyProps)(C)), {}, {
-        loading: x,
+        loading: h,
         onClick: T
       }, e.okButtonProps), {
         default: function() {
-          return [g || h.value.okText];
+          return [g || x.value.okText];
         }
       })]);
     };
     return function() {
-      var s, v;
+      var d, v;
       e.prefixCls;
-      var w = e.visible, _ = e.wrapClassName, g = e.centered, C = e.getContainer, k = e.closeIcon, b = k === void 0 ? (s = n.closeIcon) === null || s === void 0 ? void 0 : s.call(n) : k, x = e.focusTriggerAfterClose, I = x === void 0 ? !0 : x, M = (0, Ot.default)(e, At), W = (0, qt.default)(_, (v = {}, (0, be.default)(v, "".concat(l.value, "-centered"), !!g), (0, be.default)(v, "".concat(l.value, "-wrap-rtl"), a.value === "rtl"), v));
-      return (0, R.createVNode)(Bt.default, (0, V.default)((0, V.default)((0, V.default)({}, M), i), {}, {
+      var w = e.visible, _ = e.wrapClassName, g = e.centered, C = e.getContainer, k = e.closeIcon, b = k === void 0 ? (d = n.closeIcon) === null || d === void 0 ? void 0 : d.call(n) : k, h = e.focusTriggerAfterClose, I = h === void 0 ? !0 : h, M = (0, Ot.default)(e, At), W = (0, St.default)(_, (v = {}, (0, be.default)(v, "".concat(l.value, "-centered"), !!g), (0, be.default)(v, "".concat(l.value, "-wrap-rtl"), a.value === "rtl"), v));
+      return (0, R.createVNode)(qt.default, (0, V.default)((0, V.default)((0, V.default)({}, M), i), {}, {
         getContainer: C || p.value,
         prefixCls: l.value,
         wrapClassName: W,
@@ -170,7 +170,7 @@ var zt = (0, R.defineComponent)({
     };
   }
 });
-S.default = zt;
+B.default = zt;
 var D = {}, X = {}, Y = {}, H = {}, Te;
 function Et() {
   if (Te)
@@ -207,17 +207,17 @@ function Lt() {
     emitEvent: Boolean,
     quitOnNullishReturnValue: Boolean
   };
-  function P(d) {
-    return !!(d && d.then);
+  function P(s) {
+    return !!(s && s.then);
   }
-  var h = (0, e.defineComponent)({
+  var x = (0, e.defineComponent)({
     compatConfig: {
       MODE: 3
     },
     name: "ActionButton",
     props: f,
     setup: function(l, u) {
-      var a = u.slots, p = (0, e.ref)(!1), y = (0, e.ref)(), T = (0, e.ref)(!1), c, s = (0, i.default)();
+      var a = u.slots, p = (0, e.ref)(!1), y = (0, e.ref)(), T = (0, e.ref)(!1), c, d = (0, i.default)();
       (0, e.onMounted)(function() {
         l.autofocus && (c = setTimeout(function() {
           var _;
@@ -229,9 +229,9 @@ function Lt() {
       var v = function(g) {
         var C = l.close;
         P(g) && (T.value = !0, g.then(function() {
-          s.value || (T.value = !1), C.apply(void 0, arguments), p.value = !1;
+          d.value || (T.value = !1), C.apply(void 0, arguments), p.value = !1;
         }, function(k) {
-          console.error(k), s.value || (T.value = !1), p.value = !1;
+          console.error(k), d.value || (T.value = !1), p.value = !1;
         }));
       }, w = function(g) {
         var C = l.actionFn, k = l.close, b = k === void 0 ? function() {
@@ -241,19 +241,19 @@ function Lt() {
             b();
             return;
           }
-          var x;
+          var h;
           if (l.emitEvent) {
-            if (x = C(g), l.quitOnNullishReturnValue && !P(x)) {
+            if (h = C(g), l.quitOnNullishReturnValue && !P(h)) {
               p.value = !1, b(g);
               return;
             }
           } else if (C.length)
-            x = C(b), p.value = !1;
-          else if (x = C(), !x) {
+            h = C(b), p.value = !1;
+          else if (h = C(), !h) {
             b();
             return;
           }
-          v(x);
+          v(h);
         }
       };
       return function() {
@@ -268,7 +268,7 @@ function Lt() {
       };
     }
   });
-  return Y.default = h, Y;
+  return Y.default = x, Y;
 }
 var we;
 function jt() {
@@ -279,8 +279,8 @@ function jt() {
   Object.defineProperty(X, "__esModule", {
     value: !0
   }), X.default = void 0;
-  var e = G, o = t(ue()), r = t(ce()), n = t(fe()), i = t(S), f = t(Lt()), P = Fe(), h = Ie();
-  function d(u) {
+  var e = G, o = t(ue()), r = t(ce()), n = t(fe()), i = t(B), f = t(Lt()), P = Fe(), x = Ie();
+  function s(u) {
     return typeof u == "function" ? u() : u;
   }
   var l = (0, e.defineComponent)({
@@ -288,9 +288,9 @@ function jt() {
     inheritAttrs: !1,
     props: ["icon", "onCancel", "onOk", "close", "closable", "zIndex", "afterClose", "visible", "keyboard", "centered", "getContainer", "maskStyle", "okButtonProps", "cancelButtonProps", "okType", "prefixCls", "okCancel", "width", "mask", "maskClosable", "okText", "cancelText", "autoFocusButton", "transitionName", "maskTransitionName", "type", "title", "content", "direction", "rootPrefixCls", "bodyStyle", "closeIcon", "modalRender", "focusTriggerAfterClose", "wrapClassName"],
     setup: function(a, p) {
-      var y = p.attrs, T = (0, P.useLocaleReceiver)("Modal"), c = (0, r.default)(T, 1), s = c[0];
+      var y = p.attrs, T = (0, P.useLocaleReceiver)("Modal"), c = (0, r.default)(T, 1), d = c[0];
       return function() {
-        var v = a.icon, w = a.onCancel, _ = a.onOk, g = a.close, C = a.closable, k = C === void 0 ? !1 : C, b = a.zIndex, x = a.afterClose, I = a.visible, M = a.keyboard, W = a.centered, E = a.getContainer, ae = a.maskStyle, L = a.okButtonProps, Xe = a.cancelButtonProps, se = a.okCancel, ve = se === void 0 ? !0 : se, pe = a.width, Ye = pe === void 0 ? 416 : pe, me = a.mask, He = me === void 0 ? !0 : me, Ce = a.maskClosable, Je = Ce === void 0 ? !1 : Ce, ye = a.type, ge = a.title, Ke = a.content, Qe = a.direction, Ze = a.closeIcon, et = a.modalRender, tt = a.focusTriggerAfterClose, Q = a.rootPrefixCls, at = a.bodyStyle, rt = a.wrapClassName, nt = a.okType || "primary", re = a.prefixCls || "ant-modal", F = "".concat(re, "-confirm"), ot = y.style || {}, lt = d(a.okText) || (ve ? s.value.okText : s.value.justOkText), it = d(a.cancelText) || s.value.cancelText, _e = a.autoFocusButton === null ? !1 : a.autoFocusButton || "ok", ut = (0, n.default)(F, "".concat(F, "-").concat(ye), "".concat(re, "-").concat(ye), (0, o.default)({}, "".concat(F, "-rtl"), Qe === "rtl"), y.class), ct = ve && (0, e.createVNode)(f.default, {
+        var v = a.icon, w = a.onCancel, _ = a.onOk, g = a.close, C = a.closable, k = C === void 0 ? !1 : C, b = a.zIndex, h = a.afterClose, I = a.visible, M = a.keyboard, W = a.centered, E = a.getContainer, ae = a.maskStyle, L = a.okButtonProps, Xe = a.cancelButtonProps, de = a.okCancel, ve = de === void 0 ? !0 : de, pe = a.width, Ye = pe === void 0 ? 416 : pe, me = a.mask, He = me === void 0 ? !0 : me, Ce = a.maskClosable, Je = Ce === void 0 ? !1 : Ce, ye = a.type, ge = a.title, Ke = a.content, Qe = a.direction, Ze = a.closeIcon, et = a.modalRender, tt = a.focusTriggerAfterClose, Q = a.rootPrefixCls, at = a.bodyStyle, rt = a.wrapClassName, nt = a.okType || "primary", re = a.prefixCls || "ant-modal", F = "".concat(re, "-confirm"), ot = y.style || {}, lt = s(a.okText) || (ve ? d.value.okText : d.value.justOkText), it = s(a.cancelText) || d.value.cancelText, _e = a.autoFocusButton === null ? !1 : a.autoFocusButton || "ok", ut = (0, n.default)(F, "".concat(F, "-").concat(ye), "".concat(re, "-").concat(ye), (0, o.default)({}, "".concat(F, "-rtl"), Qe === "rtl"), y.class), ct = ve && (0, e.createVNode)(f.default, {
           actionFn: w,
           close: g,
           autofocus: _e === "cancel",
@@ -305,16 +305,16 @@ function jt() {
           prefixCls: re,
           class: ut,
           wrapClassName: (0, n.default)((0, o.default)({}, "".concat(F, "-centered"), !!W), rt),
-          onCancel: function(he) {
+          onCancel: function(xe) {
             return g({
               triggerCancel: !0
-            }, he);
+            }, xe);
           },
           visible: I,
           title: "",
           footer: "",
-          transitionName: (0, h.getTransitionName)(Q, "zoom", a.transitionName),
-          maskTransitionName: (0, h.getTransitionName)(Q, "fade", a.maskTransitionName),
+          transitionName: (0, x.getTransitionName)(Q, "zoom", a.transitionName),
+          maskTransitionName: (0, x.getTransitionName)(Q, "fade", a.maskTransitionName),
           mask: He,
           maskClosable: Je,
           maskStyle: ae,
@@ -322,7 +322,7 @@ function jt() {
           bodyStyle: at,
           width: Ye,
           zIndex: b,
-          afterClose: x,
+          afterClose: h,
           keyboard: M,
           centered: W,
           getContainer: E,
@@ -336,11 +336,11 @@ function jt() {
               class: "".concat(F, "-body-wrapper")
             }, [(0, e.createVNode)("div", {
               class: "".concat(F, "-body")
-            }, [d(v), ge === void 0 ? null : (0, e.createVNode)("span", {
+            }, [s(v), ge === void 0 ? null : (0, e.createVNode)("span", {
               class: "".concat(F, "-title")
-            }, [d(ge)]), (0, e.createVNode)("div", {
+            }, [s(ge)]), (0, e.createVNode)("div", {
               class: "".concat(F, "-content")
-            }, [d(Ke)])]), (0, e.createVNode)("div", {
+            }, [s(Ke)])]), (0, e.createVNode)("div", {
               class: "".concat(F, "-btns")
             }, [ct, (0, e.createVNode)(f.default, {
               type: nt,
@@ -361,7 +361,7 @@ function jt() {
   });
   return X.default = l, X;
 }
-var A = K, Ut = Se;
+var A = K, Ut = Be;
 Object.defineProperty(D, "__esModule", {
   value: !0
 });
@@ -371,7 +371,7 @@ D.withError = na;
 D.withInfo = aa;
 D.withSuccess = ra;
 D.withWarn = ta;
-var B = G, Gt = A(pt()), m = A(te()), Xt = A(jt()), Z = S, qe = Qt(mt()), Yt = A(Tt()), Ht = A(Ct()), Jt = A(yt()), Kt = A(gt()), Me = A(_t());
+var q = G, Gt = A(pt()), m = A(te()), Xt = A(jt()), Z = B, Se = Qt(mt()), Yt = A(Tt()), Ht = A(Ct()), Jt = A(yt()), Kt = A(gt()), Me = A(_t());
 function We(t) {
   if (typeof WeakMap != "function")
     return null;
@@ -402,7 +402,7 @@ var Zt = function(e) {
     visible: !0
   }), n = null;
   function i() {
-    n && ((0, B.render)(null, o), n.component.update(), n = null);
+    n && ((0, q.render)(null, o), n.component.update(), n = null);
     for (var l = arguments.length, u = new Array(l), a = 0; a < l; a++)
       u[a] = arguments[a];
     var p = u.some(function(c) {
@@ -430,25 +430,25 @@ var Zt = function(e) {
   function P(l) {
     typeof l == "function" ? r = l(r) : r = (0, m.default)((0, m.default)({}, r), l), n && ((0, Gt.default)(n.component.props, r), n.component.update());
   }
-  var h = function(u) {
-    var a = qe.globalConfigForApi, p = a.prefixCls, y = u.prefixCls || "".concat(p, "-modal");
-    return (0, B.createVNode)(qe.default, (0, m.default)((0, m.default)({}, a), {}, {
+  var x = function(u) {
+    var a = Se.globalConfigForApi, p = a.prefixCls, y = u.prefixCls || "".concat(p, "-modal");
+    return (0, q.createVNode)(Se.default, (0, m.default)((0, m.default)({}, a), {}, {
       notUpdateGlobalConfig: !0,
       prefixCls: p
     }), {
       default: function() {
-        return [(0, B.createVNode)(Xt.default, (0, m.default)((0, m.default)({}, u), {}, {
+        return [(0, q.createVNode)(Xt.default, (0, m.default)((0, m.default)({}, u), {}, {
           rootPrefixCls: p,
           prefixCls: y
         }), null)];
       }
     });
   };
-  function d(l) {
-    var u = (0, B.createVNode)(h, (0, m.default)({}, l));
-    return u.appContext = e.parentContext || e.appContext || u.appContext, (0, B.render)(u, o), u;
+  function s(l) {
+    var u = (0, q.createVNode)(x, (0, m.default)({}, l));
+    return u.appContext = e.parentContext || e.appContext || u.appContext, (0, q.render)(u, o), u;
   }
-  return n = d(r), Z.destroyFns.push(f), {
+  return n = s(r), Z.destroyFns.push(f), {
     destroy: f,
     update: P
   };
@@ -457,7 +457,7 @@ D.default = ea;
 function ta(t) {
   return (0, m.default)((0, m.default)({
     icon: function() {
-      return (0, B.createVNode)(Me.default, null, null);
+      return (0, q.createVNode)(Me.default, null, null);
     },
     okCancel: !1
   }, t), {}, {
@@ -467,7 +467,7 @@ function ta(t) {
 function aa(t) {
   return (0, m.default)((0, m.default)({
     icon: function() {
-      return (0, B.createVNode)(Ht.default, null, null);
+      return (0, q.createVNode)(Ht.default, null, null);
     },
     okCancel: !1
   }, t), {}, {
@@ -477,7 +477,7 @@ function aa(t) {
 function ra(t) {
   return (0, m.default)((0, m.default)({
     icon: function() {
-      return (0, B.createVNode)(Jt.default, null, null);
+      return (0, q.createVNode)(Jt.default, null, null);
     },
     okCancel: !1
   }, t), {}, {
@@ -487,7 +487,7 @@ function ra(t) {
 function na(t) {
   return (0, m.default)((0, m.default)({
     icon: function() {
-      return (0, B.createVNode)(Kt.default, null, null);
+      return (0, q.createVNode)(Kt.default, null, null);
     },
     okCancel: !1
   }, t), {}, {
@@ -497,18 +497,18 @@ function na(t) {
 function oa(t) {
   return (0, m.default)((0, m.default)({
     icon: function() {
-      return (0, B.createVNode)(Me.default, null, null);
+      return (0, q.createVNode)(Me.default, null, null);
     },
     okCancel: !0
   }, t), {}, {
     type: "confirm"
   });
 }
-var la = Se;
-Object.defineProperty(de, "__esModule", {
+var la = Be;
+Object.defineProperty(se, "__esModule", {
   value: !0
 });
-var ze = de.default = void 0, O = Le(S), $ = Le(D);
+var ze = se.default = void 0, O = Le(B), $ = Le(D);
 function Ee(t) {
   if (typeof WeakMap != "function")
     return null;
@@ -560,13 +560,13 @@ O.default.install = function(t) {
   return t.component(O.default.name, O.default), t;
 };
 var ia = O.default;
-ze = de.default = ia;
+ze = se.default = ia;
 var J = {}, z = K;
 Object.defineProperty(J, "__esModule", {
   value: !0
 });
 J.spaceProps = Ge = J.default = void 0;
-var N = G, ee = z(te()), oe = z(ue()), ua = z(ce()), Be = z($e()), ca = xt(), ie = ht(), fa = z(De()), da = z(Nt()), sa = z(fe()), va = {
+var N = G, ee = z(te()), oe = z(ue()), ua = z(ce()), qe = z($e()), ca = ht(), ie = xt(), fa = z(De()), sa = z(Nt()), da = z(fe()), va = {
   small: 8,
   middle: 16,
   large: 24
@@ -576,8 +576,8 @@ var N = G, ee = z(te()), oe = z(ue()), ua = z(ce()), Be = z($e()), ca = xt(), ie
     size: {
       type: [String, Number, Array]
     },
-    direction: Be.default.oneOf((0, ie.tuple)("horizontal", "vertical")).def("horizontal"),
-    align: Be.default.oneOf((0, ie.tuple)("start", "end", "center", "baseline")),
+    direction: qe.default.oneOf((0, ie.tuple)("horizontal", "vertical")).def("horizontal"),
+    align: qe.default.oneOf((0, ie.tuple)("start", "end", "center", "baseline")),
     wrap: {
       type: Boolean,
       default: void 0
@@ -596,15 +596,15 @@ var ma = (0, N.defineComponent)({
   props: Ue(),
   slots: ["split"],
   setup: function(e, o) {
-    var r = o.slots, n = (0, fa.default)("space", e), i = n.prefixCls, f = n.space, P = n.direction, h = (0, da.default)(), d = (0, N.computed)(function() {
-      var c, s, v;
-      return (c = (s = e.size) !== null && s !== void 0 ? s : (v = f.value) === null || v === void 0 ? void 0 : v.size) !== null && c !== void 0 ? c : "small";
+    var r = o.slots, n = (0, fa.default)("space", e), i = n.prefixCls, f = n.space, P = n.direction, x = (0, sa.default)(), s = (0, N.computed)(function() {
+      var c, d, v;
+      return (c = (d = e.size) !== null && d !== void 0 ? d : (v = f.value) === null || v === void 0 ? void 0 : v.size) !== null && c !== void 0 ? c : "small";
     }), l = (0, N.ref)(), u = (0, N.ref)();
-    (0, N.watch)(d, function() {
-      var c = (Array.isArray(d.value) ? d.value : [d.value, d.value]).map(function(v) {
+    (0, N.watch)(s, function() {
+      var c = (Array.isArray(s.value) ? s.value : [s.value, s.value]).map(function(v) {
         return pa(v);
-      }), s = (0, ua.default)(c, 2);
-      l.value = s[0], u.value = s[1];
+      }), d = (0, ua.default)(c, 2);
+      l.value = d[0], u.value = d[1];
     }, {
       immediate: !0
     });
@@ -612,37 +612,37 @@ var ma = (0, N.defineComponent)({
       return e.align === void 0 && e.direction === "horizontal" ? "center" : e.align;
     }), p = (0, N.computed)(function() {
       var c;
-      return (0, sa.default)(i.value, "".concat(i.value, "-").concat(e.direction), (c = {}, (0, oe.default)(c, "".concat(i.value, "-rtl"), P.value === "rtl"), (0, oe.default)(c, "".concat(i.value, "-align-").concat(a.value), a.value), c));
+      return (0, da.default)(i.value, "".concat(i.value, "-").concat(e.direction), (c = {}, (0, oe.default)(c, "".concat(i.value, "-rtl"), P.value === "rtl"), (0, oe.default)(c, "".concat(i.value, "-align-").concat(a.value), a.value), c));
     }), y = (0, N.computed)(function() {
       return P.value === "rtl" ? "marginLeft" : "marginRight";
     }), T = (0, N.computed)(function() {
       var c = {};
-      return h.value && (c.columnGap = "".concat(l.value, "px"), c.rowGap = "".concat(u.value, "px")), (0, ee.default)((0, ee.default)({}, c), e.wrap && {
+      return x.value && (c.columnGap = "".concat(l.value, "px"), c.rowGap = "".concat(u.value, "px")), (0, ee.default)((0, ee.default)({}, c), e.wrap && {
         flexWrap: "wrap",
         marginBottom: "".concat(-u.value, "px")
       });
     });
     return function() {
-      var c, s, v = e.wrap, w = e.direction, _ = w === void 0 ? "horizontal" : w, g = (c = r.default) === null || c === void 0 ? void 0 : c.call(r), C = (0, ca.filterEmpty)(g), k = C.length;
+      var c, d, v = e.wrap, w = e.direction, _ = w === void 0 ? "horizontal" : w, g = (c = r.default) === null || c === void 0 ? void 0 : c.call(r), C = (0, ca.filterEmpty)(g), k = C.length;
       if (k === 0)
         return null;
-      var b = (s = r.split) === null || s === void 0 ? void 0 : s.call(r), x = "".concat(i.value, "-item"), I = l.value, M = k - 1;
+      var b = (d = r.split) === null || d === void 0 ? void 0 : d.call(r), h = "".concat(i.value, "-item"), I = l.value, M = k - 1;
       return (0, N.createVNode)("div", {
         class: p.value,
         style: T.value
       }, [C.map(function(W, E) {
         var ae = g.indexOf(W), L = {};
-        return h.value || (_ === "vertical" ? E < M && (L = {
+        return x.value || (_ === "vertical" ? E < M && (L = {
           marginBottom: "".concat(I / (b ? 2 : 1), "px")
         }) : L = (0, ee.default)((0, ee.default)({}, E < M && (0, oe.default)({}, y.value, "".concat(I / (b ? 2 : 1), "px"))), v && {
           paddingBottom: "".concat(u.value, "px")
         })), (0, N.createVNode)(N.Fragment, {
           key: ae
         }, [(0, N.createVNode)("div", {
-          class: x,
+          class: h,
           style: L
         }, [W]), E < M && b && (0, N.createVNode)("span", {
-          class: "".concat(x, "-split"),
+          class: "".concat(h, "-split"),
           style: L
         }, [b])]);
       })]);
@@ -663,7 +663,7 @@ const ya = {
   padding: 0
 }, Fa = ft({
   props: {
-    record: {
+    componentSchema: {
       type: Object,
       default: () => ({})
     }
@@ -671,14 +671,14 @@ const ya = {
   emits: ["ok", "close", "update:modelValue"],
   setup(t, { attrs: e, slots: o, emit: r }) {
     return () => {
-      var d;
+      var s;
       const n = {
-        ...t.record,
+        ...t.componentSchema,
         ...e,
-        title: ((d = t.record) == null ? void 0 : d.label) ?? "",
+        title: ((s = t.componentSchema) == null ? void 0 : s.label) ?? "",
         wrapClassName: "epic-modal-ant",
         visible: e.modelValue,
-        "onUpdate:visible": h,
+        "onUpdate:visible": x,
         style: "top:20px",
         bodyStyle: ga,
         dialogStyle: ya,
@@ -687,12 +687,12 @@ const ya = {
       delete n.children;
       let f = null;
       i.length ? f = () => i.map(
-        (l) => ne(o, "node", { record: l })
+        (l) => ne(o, "node", { componentSchema: l })
       ) : f = () => [ne(o, "default")];
       function P() {
         r("ok");
       }
-      function h() {
+      function x() {
         r("update:modelValue", !1), r("close");
       }
       return j(ze, n, {
@@ -712,7 +712,7 @@ const ya = {
                 default: () => [
                   j(
                     ke,
-                    { onClick: h },
+                    { onClick: x },
                     {
                       default: () => "关闭"
                     }

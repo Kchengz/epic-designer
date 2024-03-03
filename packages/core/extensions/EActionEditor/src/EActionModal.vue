@@ -179,7 +179,7 @@ function handleNodeClick(e: any) {
   state.actionItem.componentId = e.id
   state.actionItem.type = 'component'
   state.actionItem.methodName = null
-  componentSchema.value = e.record
+  componentSchema.value = e.componentSchema
 
 
   if (methodOptions.value?.length) {

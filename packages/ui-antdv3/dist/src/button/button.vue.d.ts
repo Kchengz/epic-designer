@@ -1,17 +1,17 @@
 import { PropType } from 'vue';
 import type { ComponentSchema } from '@epic-designer/core/types/epic-designer';
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
-    record: {
+    componentSchema: {
         type: PropType<ComponentSchema>;
         default: () => {};
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    record: {
+    componentSchema: {
         type: PropType<ComponentSchema>;
         default: () => {};
     };
 }>>, {
-    record: ComponentSchema;
+    componentSchema: ComponentSchema;
 }, {}>, {
     default?(_: {}): any;
 }>;

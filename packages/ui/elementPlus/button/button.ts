@@ -5,7 +5,7 @@ import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
 // 二次封装组件
 export default defineComponent({
   props: {
-    record: {
+    componentSchema: {
       type: Object as PropType<ComponentSchema>,
       default: () => ({})
     }
@@ -13,12 +13,12 @@ export default defineComponent({
   setup (props, { emit, slots }) {
     return () => {
       const componentProps: Record<string, any> = {
-        ...props.record?.componentProps
+        ...props.componentSchema?.componentProps
       }
 
       return h(ElButton, componentProps, {
         default: () =>
-          renderSlot(slots, 'default', {}, () => [props.record?.label])
+          renderSlot(slots, 'default', {}, () => [props.componentSchema?.label])
       })
     }
   }

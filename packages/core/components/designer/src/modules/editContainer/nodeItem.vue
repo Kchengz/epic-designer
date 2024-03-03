@@ -1,5 +1,5 @@
 <template>
-  <ENode ref="nodeRef" :record="props.schema">
+  <ENode ref="nodeRef" :componentSchema="props.schema">
     <!-- 栅格布局、标签布局暂时不可拖拽设计 start -->
     <template v-if="props.schema?.childImmovable" #edit-node>
       <ENodeItem v-for="schema in props.schema.children" :key="schema.id" :schema="schema" />

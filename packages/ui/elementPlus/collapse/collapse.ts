@@ -1,32 +1,32 @@
-import { defineComponent, h, renderSlot, type PropType } from 'vue'
-import { ElCollapse } from 'element-plus'
-import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
+import { defineComponent, h, renderSlot, type PropType } from "vue";
+import { ElCollapse } from "element-plus";
+import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 export default defineComponent({
   props: {
-    record: {
+    componentSchema: {
       type: Object as PropType<ComponentSchema>,
       required: true,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
-  setup (props, { attrs, slots }) {
+  setup(props, { attrs, slots }) {
     return () => {
-      const record = {
-        ...props.record,
-        title: props.record?.label ?? ''
-      } as any
-      const children = record.children
-      delete record.children
+      const componentSchema = {
+        ...props.componentSchema,
+        title: props.componentSchema?.label ?? "",
+      } as any;
+      const children = componentSchema.children;
+      delete componentSchema.children;
 
-      return h(ElCollapse, record, {
+      return h(ElCollapse, componentSchema, {
         default: () => [
-          renderSlot(slots, 'edit-node', {}, () =>
-            children.map((record: any) =>
-              renderSlot(slots, 'node', { record })
+          renderSlot(slots, "edit-node", {}, () =>
+            children.map((subcomponentSchema: ComponentSchema) =>
+              renderSlot(slots, "node", { componentSchema: subcomponentSchema })
             )
-          )
-        ]
-      })
-    }
-  }
-})
+          ),
+        ],
+      });
+    };
+  },
+});

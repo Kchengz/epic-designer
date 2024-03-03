@@ -6,7 +6,7 @@
       <slot
         v-for="item in children"
         name="node"
-        :record="item"
+        :componentSchema="item"
       />
     </slot>
   </div>
@@ -16,12 +16,12 @@ import { computed } from 'vue'
 import { ComponentSchema } from '../../types/epic-designer'
 
 const props = defineProps<{
-  record:ComponentSchema
+  componentSchema:ComponentSchema
 }>()
 
 
 const children = computed(() => {
-  return props.record.children ?? []
+  return props.componentSchema.children ?? []
 })
 
 </script>

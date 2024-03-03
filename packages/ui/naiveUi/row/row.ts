@@ -4,7 +4,7 @@ import { NRow } from 'naive-ui'
 import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
 export default defineComponent({
   props: {
-    record: {
+    componentSchema: {
       type: Object as PropType<ComponentSchema>,
       require: true,
       default: () => ({})
@@ -12,17 +12,17 @@ export default defineComponent({
   },
   setup (props, { slots }) {
     return () => {
-      const record = {
-        ...props.record,
-        title: props.record.label
+      const componentSchema = {
+        ...props.componentSchema,
+        title: props.componentSchema.label
       } as any
-      const children = record.children
-      delete record.children
+      const children = componentSchema.children
+      delete componentSchema.children
 
-      return h(NRow, record, {
+      return h(NRow, componentSchema, {
         default: () => [
           renderSlot(slots, 'edit-node', {}, () =>
-            children.map((node: ComponentSchema) => renderSlot(slots, 'node', { record: node }))
+            children.map((node: ComponentSchema) => renderSlot(slots, 'node', { componentSchema: node }))
           )
         ]
       })

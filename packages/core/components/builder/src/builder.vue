@@ -2,7 +2,7 @@
   <Suspense @resolve="handleReady">
     <template #default>
       <div class="epic-builder-main">
-        <ENode v-for="item, index in pageSchemaReactive.schemas" :key="index" :record="item" />
+        <ENode v-for="item, index in pageSchemaReactive.schemas" :key="index" :componentSchema="item" />
       </div>
     </template>
     <template #fallback>

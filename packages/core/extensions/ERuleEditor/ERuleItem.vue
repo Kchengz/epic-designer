@@ -1,13 +1,13 @@
 <template>
   <div
     class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative">
-    <template v-for="(record, index) in ruleItemSchemas" :key="index">
-      <div v-if="record.show ? record.show() : true" class="flex m-t-2 first:m-0">
+    <template v-for="(componentSchema, index) in ruleItemSchemas" :key="index">
+      <div v-if="componentSchema.show ? componentSchema.show() : true" class="flex m-t-2 first:m-0">
         <div class="attr-label" title="校验时机">
-          {{ record.label }}
+          {{ componentSchema.label }}
         </div>
         <div class="attr-input">
-          <ENode v-model="modelRule[record.model]" :record="{ ...record, noFormItem: true }" @change="handleUpdate" />
+          <ENode v-model="modelRule[componentSchema.model]" :componentSchema="{ ...componentSchema, noFormItem: true }" @change="handleUpdate" />
         </div>
       </div>
     </template>

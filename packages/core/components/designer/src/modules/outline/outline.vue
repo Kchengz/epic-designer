@@ -32,7 +32,7 @@ const selectedKeys = computed(() => {
 
 // 设置选中节点
 function handleNodeClick(e: any) {
-  designer.setCheckedNode(e.record)
+  designer.setCheckedNode(e.componentSchema)
 }
 
 </script>

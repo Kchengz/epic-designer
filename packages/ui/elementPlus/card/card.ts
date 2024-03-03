@@ -3,7 +3,7 @@ import { ElCard } from "element-plus";
 import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 export default defineComponent({
   props: {
-    record: {
+    componentSchema: {
       type: Object as PropType<ComponentSchema>,
       required: true,
       default: () => ({}),
@@ -11,23 +11,23 @@ export default defineComponent({
   },
   setup(props, { attrs, slots }) {
     return () => {
-      const record = {
-        ...props.record,
-        header: props.record?.label ?? "",
+      const componentSchema = {
+        ...props.componentSchema,
+        header: props.componentSchema?.label ?? "",
       } as ComponentSchema;
-      const children = record.children ?? [];
-      delete record.children;
+      const children = componentSchema.children ?? [];
+      delete componentSchema.children;
 
       let vNodeClildren: any = null;
       if (children.length) {
         vNodeClildren = () =>
           children.map((node: ComponentSchema) =>
-            renderSlot(slots, "node", { record: node })
+            renderSlot(slots, "node", { componentSchema: node })
           );
       } else {
         vNodeClildren = () => [renderSlot(slots, "default")];
       }
-      return h(ElCard, record, {
+      return h(ElCard, componentSchema, {
         default: () => renderSlot(slots, "edit-node", {}, vNodeClildren),
         header: () => renderSlot(slots, "header"),
       });

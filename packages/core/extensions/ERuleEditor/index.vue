@@ -2,13 +2,13 @@
   <div>
     <div
       class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative">
-      <template v-for="(record, index) in requiredRuleSchemas" :key="index">
-        <div v-if="record.show ? record.show() : true" class="flex m-t-2 first:m-0">
+      <template v-for="(componentSchema, index) in requiredRuleSchemas" :key="index">
+        <div v-if="componentSchema.show ? componentSchema.show() : true" class="flex m-t-2 first:m-0">
           <div class="attr-label">
-            {{ record.label }}
+            {{ componentSchema.label }}
           </div>
           <div class="flex-1">
-            <ENode v-model="requiredRule[record.model]" :record="{ ...record, noFormItem: true }"
+            <ENode v-model="requiredRule[componentSchema.model]" :componentSchema="{ ...componentSchema, noFormItem: true }"
               @change="handleUpdate" />
           </div>
         </div>

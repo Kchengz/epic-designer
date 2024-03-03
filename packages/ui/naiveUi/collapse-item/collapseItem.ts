@@ -4,7 +4,7 @@ import { NCollapseItem } from 'naive-ui'
 import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
 export default defineComponent({
   props: {
-    record: {
+    componentSchema: {
       type: Object as PropType<ComponentSchema>,
       require: true,
       default: () => ({})
@@ -12,18 +12,18 @@ export default defineComponent({
   },
   setup (props, { slots }) {
     return () => {
-      const record: ComponentSchema = {
-        ...props.record,
-        title: props.record.label ?? ''
+      const componentSchema: ComponentSchema = {
+        ...props.componentSchema,
+        title: props.componentSchema.label ?? ''
       }
 
-      const children = record.children ?? []
-      delete record.children
+      const children = componentSchema.children ?? []
+      delete componentSchema.children
 
-      return h(NCollapseItem, record, {
+      return h(NCollapseItem, componentSchema, {
         default: () =>
           renderSlot(slots, 'edit-node', {}, () =>
-            children.map((node: ComponentSchema) => renderSlot(slots, 'node', { record: node }))
+            children.map((node: ComponentSchema) => renderSlot(slots, 'node', { componentSchema: node }))
           )
       })
     }

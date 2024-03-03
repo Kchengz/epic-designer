@@ -51,7 +51,7 @@ defineOptions({
 })
 
 const props = defineProps<{
-  record: ComponentSchema,
+  componentSchema: ComponentSchema,
   modelValue?: any,
   ruleField?: string[],
   resetFormData?: Boolean,
@@ -59,7 +59,7 @@ const props = defineProps<{
 }>()
 
 // 内部schema数据
-const innerSchema = reactive<ComponentSchema>(props.record)
+const innerSchema = reactive<ComponentSchema>(props.componentSchema)
 
 // 表单formData数据
 let formData = inject('formData', {}) as FormDataModel
@@ -227,7 +227,7 @@ async function initComponent() {
     component.value = defineComponent({
       setup() {
         return () => renderSlot(slots, slotName, {
-          record: innerSchema,
+          componentSchema: innerSchema,
           model: formData
         })
       }

@@ -26,20 +26,20 @@ import "./omit-567cf556.mjs";
 import "./index-27942d25.mjs";
 import "./Col-790da5bd.mjs";
 import "./useFlexGapSupport-4e554c93.mjs";
-var Ce = {}, C = {}, _e;
+var Ce = {}, C = {}, me;
 function We() {
-  if (_e)
+  if (me)
     return C;
-  _e = 1;
+  me = 1;
   var a = B;
   Object.defineProperty(C, "__esModule", {
     value: !0
   }), C.default = C.cardProps = void 0;
-  var e = H, t = a(z()), u = a(Ke), n = a(Ue), d = a(ke), o = a(ye()), s = ge(), S = a(Re()), y = a(F()), T = a(Ie()), g = u.default.TabPane, V = function() {
+  var e = H, t = a(z()), u = a(Ke), n = a(Ue), o = a(ke), d = a(ye()), s = ge(), x = a(Re()), y = a(F()), T = a(Ie()), g = u.default.TabPane, V = function() {
     return {
       prefixCls: String,
-      title: o.default.any,
-      extra: o.default.any,
+      title: d.default.any,
+      extra: d.default.any,
       bordered: {
         type: Boolean,
         default: !0
@@ -66,14 +66,14 @@ function We() {
       size: {
         type: String
       },
-      actions: o.default.any,
+      actions: d.default.any,
       tabList: {
         type: Array
       },
-      tabBarExtraContent: o.default.any,
+      tabBarExtraContent: d.default.any,
       activeTabKey: String,
       defaultActiveTabKey: String,
-      cover: o.default.any,
+      cover: d.default.any,
       onTabChange: {
         type: Function
       }
@@ -88,27 +88,27 @@ function We() {
     props: V(),
     slots: ["title", "extra", "tabBarExtraContent", "actions", "cover", "customTab"],
     setup: function(r, M) {
-      var i = M.slots, P = (0, y.default)("card", r), G = P.prefixCls, I = P.direction, J = P.size, he = function(m) {
-        var v = m.map(function(p, j) {
+      var i = M.slots, P = (0, y.default)("card", r), G = P.prefixCls, I = P.direction, J = P.size, he = function(_) {
+        var v = _.map(function(p, j) {
           return (0, e.isVNode)(p) && !(0, s.isEmptyElement)(p) || !(0, e.isVNode)(p) ? (0, e.createVNode)("li", {
             style: {
-              width: "".concat(100 / m.length, "%")
+              width: "".concat(100 / _.length, "%")
             },
             key: "action-".concat(j)
           }, [(0, e.createVNode)("span", null, [p])]) : null;
         });
         return v;
-      }, Ne = function(m) {
+      }, Ne = function(_) {
         var v;
-        (v = r.onTabChange) === null || v === void 0 || v.call(r, m);
+        (v = r.onTabChange) === null || v === void 0 || v.call(r, _);
       }, Ve = function() {
-        var m = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : [], v;
-        return m.forEach(function(p) {
-          p && (0, S.default)(p.type) && p.type.__ANT_CARD_GRID && (v = !0);
+        var _ = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : [], v;
+        return _.forEach(function(p) {
+          p && (0, x.default)(p.type) && p.type.__ANT_CARD_GRID && (v = !0);
         }), v;
       };
       return function() {
-        var x, m, v, p, j, K, _, D, Q = r.headStyle, Pe = Q === void 0 ? {} : Q, X = r.bodyStyle, U = X === void 0 ? {} : X, Y = r.loading, Z = r.bordered, xe = Z === void 0 ? !0 : Z, ee = r.type, E = r.tabList, Se = r.hoverable, te = r.activeTabKey, Te = r.defaultActiveTabKey, ae = r.tabBarExtraContent, re = ae === void 0 ? (0, s.filterEmptyWithUndefined)((x = i.tabBarExtraContent) === null || x === void 0 ? void 0 : x.call(i)) : ae, ne = r.title, k = ne === void 0 ? (0, s.filterEmptyWithUndefined)((m = i.title) === null || m === void 0 ? void 0 : m.call(i)) : ne, de = r.extra, W = de === void 0 ? (0, s.filterEmptyWithUndefined)((v = i.extra) === null || v === void 0 ? void 0 : v.call(i)) : de, oe = r.actions, L = oe === void 0 ? (0, s.filterEmptyWithUndefined)((p = i.actions) === null || p === void 0 ? void 0 : p.call(i)) : oe, le = r.cover, ue = le === void 0 ? (0, s.filterEmptyWithUndefined)((j = i.cover) === null || j === void 0 ? void 0 : j.call(i)) : le, A = (0, s.flattenChildren)((K = i.default) === null || K === void 0 ? void 0 : K.call(i)), l = G.value, je = (_ = {}, (0, t.default)(_, "".concat(l), !0), (0, t.default)(_, "".concat(l, "-loading"), Y), (0, t.default)(_, "".concat(l, "-bordered"), xe), (0, t.default)(_, "".concat(l, "-hoverable"), !!Se), (0, t.default)(_, "".concat(l, "-contain-grid"), Ve(A)), (0, t.default)(_, "".concat(l, "-contain-tabs"), E && E.length), (0, t.default)(_, "".concat(l, "-").concat(J.value), J.value), (0, t.default)(_, "".concat(l, "-type-").concat(ee), !!ee), (0, t.default)(_, "".concat(l, "-rtl"), I.value === "rtl"), _), De = U.padding === 0 || U.padding === "0px" ? {
+        var S, _, v, p, j, K, m, D, Q = r.headStyle, Pe = Q === void 0 ? {} : Q, X = r.bodyStyle, U = X === void 0 ? {} : X, Y = r.loading, Z = r.bordered, Se = Z === void 0 ? !0 : Z, ee = r.type, E = r.tabList, xe = r.hoverable, te = r.activeTabKey, Te = r.defaultActiveTabKey, ae = r.tabBarExtraContent, re = ae === void 0 ? (0, s.filterEmptyWithUndefined)((S = i.tabBarExtraContent) === null || S === void 0 ? void 0 : S.call(i)) : ae, ne = r.title, k = ne === void 0 ? (0, s.filterEmptyWithUndefined)((_ = i.title) === null || _ === void 0 ? void 0 : _.call(i)) : ne, oe = r.extra, W = oe === void 0 ? (0, s.filterEmptyWithUndefined)((v = i.extra) === null || v === void 0 ? void 0 : v.call(i)) : oe, de = r.actions, L = de === void 0 ? (0, s.filterEmptyWithUndefined)((p = i.actions) === null || p === void 0 ? void 0 : p.call(i)) : de, le = r.cover, ue = le === void 0 ? (0, s.filterEmptyWithUndefined)((j = i.cover) === null || j === void 0 ? void 0 : j.call(i)) : le, A = (0, s.flattenChildren)((K = i.default) === null || K === void 0 ? void 0 : K.call(i)), l = G.value, je = (m = {}, (0, t.default)(m, "".concat(l), !0), (0, t.default)(m, "".concat(l, "-loading"), Y), (0, t.default)(m, "".concat(l, "-bordered"), Se), (0, t.default)(m, "".concat(l, "-hoverable"), !!xe), (0, t.default)(m, "".concat(l, "-contain-grid"), Ve(A)), (0, t.default)(m, "".concat(l, "-contain-tabs"), E && E.length), (0, t.default)(m, "".concat(l, "-").concat(J.value), J.value), (0, t.default)(m, "".concat(l, "-type-").concat(ee), !!ee), (0, t.default)(m, "".concat(l, "-rtl"), I.value === "rtl"), m), De = U.padding === 0 || U.padding === "0px" ? {
           padding: "24px"
         } : void 0, b = (0, e.createVNode)("div", {
           class: "".concat(l, "-loading-block")
@@ -119,7 +119,7 @@ function We() {
           gutter: 8
         }, {
           default: function() {
-            return [(0, e.createVNode)(d.default, {
+            return [(0, e.createVNode)(o.default, {
               span: 22
             }, {
               default: function() {
@@ -131,13 +131,13 @@ function We() {
           gutter: 8
         }, {
           default: function() {
-            return [(0, e.createVNode)(d.default, {
+            return [(0, e.createVNode)(o.default, {
               span: 8
             }, {
               default: function() {
                 return [b];
               }
-            }), (0, e.createVNode)(d.default, {
+            }), (0, e.createVNode)(o.default, {
               span: 15
             }, {
               default: function() {
@@ -149,13 +149,13 @@ function We() {
           gutter: 8
         }, {
           default: function() {
-            return [(0, e.createVNode)(d.default, {
+            return [(0, e.createVNode)(o.default, {
               span: 6
             }, {
               default: function() {
                 return [b];
               }
-            }), (0, e.createVNode)(d.default, {
+            }), (0, e.createVNode)(o.default, {
               span: 18
             }, {
               default: function() {
@@ -167,13 +167,13 @@ function We() {
           gutter: 8
         }, {
           default: function() {
-            return [(0, e.createVNode)(d.default, {
+            return [(0, e.createVNode)(o.default, {
               span: 13
             }, {
               default: function() {
                 return [b];
               }
-            }), (0, e.createVNode)(d.default, {
+            }), (0, e.createVNode)(o.default, {
               span: 9
             }, {
               default: function() {
@@ -185,19 +185,19 @@ function We() {
           gutter: 8
         }, {
           default: function() {
-            return [(0, e.createVNode)(d.default, {
+            return [(0, e.createVNode)(o.default, {
               span: 4
             }, {
               default: function() {
                 return [b];
               }
-            }), (0, e.createVNode)(d.default, {
+            }), (0, e.createVNode)(o.default, {
               span: 3
             }, {
               default: function() {
                 return [b];
               }
-            }), (0, e.createVNode)(d.default, {
+            }), (0, e.createVNode)(o.default, {
               span: 16
             }, {
               default: function() {
@@ -253,16 +253,16 @@ function We() {
   }), R = c;
   return C.default = R, C;
 }
-var h = {}, me;
+var h = {}, _e;
 function Le() {
-  if (me)
+  if (_e)
     return h;
-  me = 1;
+  _e = 1;
   var a = B;
   Object.defineProperty(h, "__esModule", {
     value: !0
   }), h.default = h.cardMetaProps = void 0;
-  var e = H, t = a(z()), u = a(ye()), n = ge(), d = a(F()), o = function() {
+  var e = H, t = a(z()), u = a(ye()), n = ge(), o = a(F()), d = function() {
     return {
       prefixCls: String,
       title: u.default.any,
@@ -270,16 +270,16 @@ function Le() {
       avatar: u.default.any
     };
   };
-  h.cardMetaProps = o;
+  h.cardMetaProps = d;
   var s = (0, e.defineComponent)({
     compatConfig: {
       MODE: 3
     },
     name: "ACardMeta",
-    props: o(),
+    props: d(),
     slots: ["title", "description", "avatar"],
     setup: function(y, T) {
-      var g = T.slots, V = (0, d.default)("card", y), c = V.prefixCls;
+      var g = T.slots, V = (0, o.default)("card", y), c = V.prefixCls;
       return function() {
         var R = (0, t.default)({}, "".concat(c.value, "-meta"), !0), q = (0, n.getPropsSlot)(g, y, "avatar"), r = (0, n.getPropsSlot)(g, y, "title"), M = (0, n.getPropsSlot)(g, y, "description"), i = q ? (0, e.createVNode)("div", {
           class: "".concat(c.value, "-meta-avatar")
@@ -317,15 +317,15 @@ function we() {
     };
   };
   N.cardGridProps = n;
-  var d = (0, e.defineComponent)({
+  var o = (0, e.defineComponent)({
     compatConfig: {
       MODE: 3
     },
     name: "ACardGrid",
     __ANT_CARD_GRID: !0,
     props: n(),
-    setup: function(s, S) {
-      var y = S.slots, T = (0, u.default)("card", s), g = T.prefixCls, V = (0, e.computed)(function() {
+    setup: function(s, x) {
+      var y = x.slots, T = (0, u.default)("card", s), g = T.prefixCls, V = (0, e.computed)(function() {
         var c;
         return c = {}, (0, t.default)(c, "".concat(g.value, "-grid"), !0), (0, t.default)(c, "".concat(g.value, "-grid-hoverable"), s.hoverable), c;
       });
@@ -337,7 +337,7 @@ function we() {
       };
     }
   });
-  return N.default = d, N;
+  return N.default = o, N;
 }
 (function(a) {
   var e = B;
@@ -355,15 +355,15 @@ function we() {
     }
   }), a.default = void 0;
   var t = e(We()), u = e(Le()), n = e(we());
-  t.default.Meta = u.default, t.default.Grid = n.default, t.default.install = function(o) {
-    return o.component(t.default.name, t.default), o.component(u.default.name, u.default), o.component(n.default.name, n.default), o;
+  t.default.Meta = u.default, t.default.Grid = n.default, t.default.install = function(d) {
+    return d.component(t.default.name, t.default), d.component(u.default.name, u.default), d.component(n.default.name, n.default), d;
   };
-  var d = t.default;
-  a.default = d;
+  var o = t.default;
+  a.default = o;
 })(Ce);
 const ze = /* @__PURE__ */ Be(Ce), ht = Ae({
   props: {
-    record: {
+    componentSchema: {
       type: Object,
       require: !0,
       default: () => ({})
@@ -371,10 +371,10 @@ const ze = /* @__PURE__ */ Be(Ce), ht = Ae({
   },
   setup(a, { attrs: e, slots: t }) {
     return () => {
-      var d;
+      var o;
       const u = {
-        ...a.record,
-        title: ((d = a.record) == null ? void 0 : d.label) ?? ""
+        ...a.componentSchema,
+        title: ((o = a.componentSchema) == null ? void 0 : o.label) ?? ""
       }, n = u.children ?? [];
       return delete u.children, Oe(ze, u, {
         default: () => pe(
@@ -382,7 +382,7 @@ const ze = /* @__PURE__ */ Be(Ce), ht = Ae({
           "edit-node",
           {},
           () => n.map(
-            (o) => pe(t, "node", { record: o })
+            (d) => pe(t, "node", { componentSchema: d })
           )
         )
       });

@@ -33,7 +33,7 @@ const expandedKeys = inject('expandedKeys') as Ref<string[]>
 const treeProps = inject('treeProps') as any
 const selectedKeys = inject('selectedKeys') as Ref<string[]>
 
-const handleSelect = inject('handleSelect') as (id: string, record: ComponentSchema) => {}
+const handleSelect = inject('handleSelect') as (id: string, componentSchema: ComponentSchema) => {}
 
 const expanded = computed(() => {
   return expandedKeys.value.includes(props.schema.id ?? '')

@@ -6,7 +6,7 @@ import { ref, type Ref } from 'vue'
 */
 export interface RecordModel {
   type: string
-  record: string
+  componentSchema: string
 }
 
 /**
@@ -15,17 +15,17 @@ export interface RecordModel {
 export function useRevoke (): {
   recordList: Ref<Array<{
     type: string
-    record: string
+    componentSchema: string
   }>>
   undoList: Ref<Array<{
     type: string
-    record: string
+    componentSchema: string
   }>>
   currentRecord: Ref<{
     type: string
-    record: string
+    componentSchema: string
   } | null>
-  push: (record: ComponentSchema[], type?: string) => void
+  push: (componentSchema: ComponentSchema[], type?: string) => void
   undo: () => RecordModel | false
   redo: () => RecordModel | false
 } {
@@ -42,10 +42,10 @@ export function useRevoke (): {
   let lastPushTime = 0
   /**
    * @description: 插入历史记录
-   * @param {object}record
+   * @param {object}componentSchema
    * @return {boolean}
    */
-  function push (record: ComponentSchema[], type = '插入组件'): void {
+  function push (componentSchema: ComponentSchema[], type = '插入组件'): void {
     // 忽略低于150ms时间差的记录
     const nowTime = Date.now()
     if (lastPushTime + 150 > nowTime) {
@@ -63,7 +63,7 @@ export function useRevoke (): {
     // 将json转成字符串存储
     currentRecord.value = {
       type,
-      record: JSON.stringify(record)
+      componentSchema: JSON.stringify(componentSchema)
     }
 
     // 最多存储20条记录，超过20条记录则删除之前的记录
@@ -91,7 +91,7 @@ export function useRevoke (): {
     // 丢弃当前记录，防止重复添加
     currentRecord.value = recordObj
 
-    return JSON.parse(recordObj.record)
+    return JSON.parse(recordObj.componentSchema)
   }
 
   /**
@@ -112,7 +112,7 @@ export function useRevoke (): {
     }
     // 丢弃当前记录，防止重复添加
     currentRecord.value = recordObj
-    return JSON.parse(recordObj.record)
+    return JSON.parse(recordObj.componentSchema)
   }
 
   return {

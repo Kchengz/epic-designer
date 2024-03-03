@@ -1,32 +1,32 @@
-import { defineComponent, h, renderSlot, type PropType } from 'vue'
-import { ElRow } from 'element-plus'
-import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
+import { defineComponent, h, renderSlot, type PropType } from "vue";
+import { ElRow } from "element-plus";
+import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 export default defineComponent({
   props: {
-    record: {
+    componentSchema: {
       type: Object as PropType<ComponentSchema>,
       require: true,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
-  setup (props, { slots }) {
+  setup(props, { slots }) {
     return () => {
-      const record = {
-        ...props.record,
-        title: props.record?.label ?? ''
-      } as any
-      const children = record.children
-      delete record.children
+      const componentSchema = {
+        ...props.componentSchema,
+        title: props.componentSchema?.label ?? "",
+      } as any;
+      const children = componentSchema.children;
+      delete componentSchema.children;
 
-      return h(ElRow, record, {
+      return h(ElRow, componentSchema, {
         default: () => [
-          renderSlot(slots, 'edit-node', {}, () =>
-            children.map((record: ComponentSchema) =>
-              renderSlot(slots, 'node', { record })
+          renderSlot(slots, "edit-node", {}, () =>
+            children.map((subcomponentSchema: ComponentSchema) =>
+              renderSlot(slots, "node", { componentSchema: subcomponentSchema })
             )
-          )
-        ]
-      })
-    }
-  }
-})
+          ),
+        ],
+      });
+    };
+  },
+});

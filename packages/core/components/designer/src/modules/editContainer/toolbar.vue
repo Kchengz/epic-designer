@@ -145,9 +145,9 @@ const canvasScaleOptions = [
  * 撤销操作
  */
 function handleUndo() {
-    const record = revoke.undo()
-    if (!record) return
-    deepCompareAndModify(pageSchema.schemas, record)
+    const componentSchema = revoke.undo()
+    if (!componentSchema) return
+    deepCompareAndModify(pageSchema.schemas, componentSchema)
     designer.setCheckedNode(pageSchema.schemas[0])
 }
 
@@ -155,9 +155,9 @@ function handleUndo() {
  * 重做操作
  */
 function handleRedo() {
-    const record = revoke.redo()
-    if (!record) return
-    deepCompareAndModify(pageSchema.schemas, record)
+    const componentSchema = revoke.redo()
+    if (!componentSchema) return
+    deepCompareAndModify(pageSchema.schemas, componentSchema)
     designer.setCheckedNode(pageSchema.schemas[0])
 }
 

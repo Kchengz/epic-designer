@@ -4,7 +4,7 @@ import { ElDialog, ElButton } from "element-plus";
 
 export default defineComponent({
   props: {
-    record: {
+    componentSchema: {
       type: Object as PropType<ComponentSchema>,
       default: () => ({}),
     },
@@ -12,22 +12,22 @@ export default defineComponent({
   emits: ["ok", "close", "update:modelValue"],
   setup(props, { attrs, slots, emit }) {
     return () => {
-      const record = {
-        ...props.record,
+      const componentSchema = {
+        ...props.componentSchema,
         ...attrs,
-        title: props.record?.label ?? "",
+        title: props.componentSchema?.label ?? "",
         class: "epic-modal-el",
         "destroy-on-close": true,
         "onUpdate:modelValue": handleClose,
       } as Record<string, any>;
-      const children = record.children ?? [];
-      delete record.children;
+      const children = componentSchema.children ?? [];
+      delete componentSchema.children;
 
       let vNodeClildren: any = null;
       if (children.length) {
         vNodeClildren = () =>
           children.map((node: ComponentSchema) =>
-            renderSlot(slots, "node", { record: node })
+            renderSlot(slots, "node", { componentSchema: node })
           );
       } else {
         vNodeClildren = () => [renderSlot(slots, "default")];
@@ -43,7 +43,7 @@ export default defineComponent({
         emit("close");
       }
 
-      return h(ElDialog, record, {
+      return h(ElDialog, componentSchema, {
         default: () => [
           renderSlot(slots, "edit-node", {}, vNodeClildren),
           h("div", { class: "epic-modal-footer" }, [
@@ -58,7 +58,7 @@ export default defineComponent({
               ElButton,
               { type: "primary", onClick: handleOk },
               {
-                default: () => record.okText ?? "确定",
+                default: () => componentSchema.okText ?? "确定",
               }
             ),
           ]),

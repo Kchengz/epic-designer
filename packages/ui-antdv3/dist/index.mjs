@@ -1900,7 +1900,7 @@ const t = {
   },
   bindModel: "modelValue"
 }, h = {
-  component: () => import("./card-4918b90f.mjs"),
+  component: () => import("./card-1a63128d.mjs"),
   defaultSchema: {
     label: "卡片布局",
     type: "card",
@@ -1922,7 +1922,7 @@ const t = {
     ]
   }
 }, P = {
-  component: () => import("./row-039da91d.mjs"),
+  component: () => import("./row-5b51da99.mjs"),
   defaultSchema: {
     label: "栅格布局",
     type: "row",
@@ -2022,7 +2022,7 @@ const t = {
     ]
   }
 }, v = {
-  component: () => import("./col-86ba50be.mjs"),
+  component: () => import("./col-6daae41d.mjs"),
   defaultSchema: {
     label: "栅格布局-列",
     type: "col",
@@ -2042,15 +2042,14 @@ const t = {
     ]
   }
 }, w = {
-  component: () => import("./form-5ffa1c7e.mjs"),
+  component: () => import("./form-0ddb68c3.mjs"),
   defaultSchema: {
     label: "表单",
     type: "form",
     icon: "epic-icon-daibanshixiang",
-    labelWidth: 100,
-    name: "default",
     componentProps: {
       layout: "horizontal",
+      name: "default",
       labelWidth: 100,
       labelLayout: "fixed",
       labelCol: {
@@ -2071,7 +2070,7 @@ const t = {
       {
         label: "name",
         type: "input",
-        field: "name"
+        field: "componentProps.name"
       },
       {
         label: "标签布局",
@@ -2222,7 +2221,7 @@ const t = {
   },
   config: {}
 }, C = {
-  component: () => import("./button-94332131.mjs"),
+  component: () => import("./button-2bd09193.mjs"),
   defaultSchema: {
     label: "按钮",
     type: "button",
@@ -2384,7 +2383,7 @@ const t = {
     ]
   }
 }, E = {
-  component: () => import("./modal-ec0566fe.mjs"),
+  component: () => import("./modal-9f03209f.mjs"),
   defaultSchema: {
     label: "模态框",
     type: "modal",
