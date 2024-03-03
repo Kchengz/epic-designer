@@ -1,8 +1,8 @@
 import { type PropType } from "vue";
-import { type NodeItem } from "@epic-designer/core/types/epic-designer";
+import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 declare const _default: import("vue").DefineComponent<{
     record: {
-        type: PropType<NodeItem>;
+        type: PropType<ComponentSchema>;
         require: boolean;
         default: () => {};
     };
@@ -10,11 +10,11 @@ declare const _default: import("vue").DefineComponent<{
     [key: string]: any;
 }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     record: {
-        type: PropType<NodeItem>;
+        type: PropType<ComponentSchema>;
         require: boolean;
         default: () => {};
     };
 }>>, {
-    record: NodeItem;
+    record: ComponentSchema;
 }, {}>;
 export default _default;

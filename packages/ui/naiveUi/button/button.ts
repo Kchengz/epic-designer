@@ -1,13 +1,13 @@
 import type { PropType } from 'vue'
 import { defineComponent, h, renderSlot } from 'vue'
 import { NButton } from 'naive-ui'
-import { type NodeItem } from '@epic-designer/core/types/epic-designer'
+import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
 
 // 二次封装组件
 export default defineComponent({
   props: {
     record: {
-      type: Object as PropType<NodeItem>,
+      type: Object as PropType<ComponentSchema>,
       default: () => ({})
     }
   },

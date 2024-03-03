@@ -44,7 +44,7 @@
 import { pluginManager, PageManager, deepClone, findSchemaById } from '@epic-designer/utils'
 import { ref, inject, toRaw, reactive, computed, nextTick } from 'vue'
 import ETree from '../../../components/tree'
-import { NodeItem, PageSchema, FormDataModel } from '../../../types/epic-designer'
+import { ComponentSchema, PageSchema, FormDataModel } from '../../../types/epic-designer'
 
 import EScriptEdit from './EScriptEdit.vue'
 import EArgsEditor from './EArgsEditor.vue'
@@ -58,7 +58,7 @@ const pageSchema = inject('pageSchema') as PageSchema
 const pageManager = inject('pageManager', {}) as PageManager
 const visible = ref(false)
 const selectedKeys = ref<string[]>([])
-const componentSchema = ref<NodeItem | null>(null)
+const componentSchema = ref<ComponentSchema | null>(null)
 // const activeTab = ref('动作配置')
 
 const emit = defineEmits(['add', 'edit'])

@@ -17,7 +17,7 @@
 </template>
 <script lang="ts" setup>
 import ENode from '../../../../node/index'
-import { Designer, NodeItem, PageSchema } from '../../../../../types/epic-designer'
+import { Designer, ComponentSchema, PageSchema } from '../../../../../types/epic-designer'
 import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '@epic-designer/utils'
 import { inject, computed, ref, watch, nextTick } from 'vue'
 const designer = inject('designer') as Designer
@@ -28,7 +28,7 @@ const checkedNode = computed(() => {
   return designer.state.checkedNode
 })
 
-function isShow(item: NodeItem) {
+function isShow(item: ComponentSchema) {
   // show属性为boolean类型则直接返回
   if (typeof item.show === 'boolean') {
     return item.show
@@ -42,7 +42,7 @@ function isShow(item: NodeItem) {
   return true
 }
 
-const componentAttributes = ref<NodeItem[]>([])
+const componentAttributes = ref<ComponentSchema[]>([])
 watch(() => designer.state.checkedNode?.type, () => {
   const type = designer.state.checkedNode?.type
   if (!type) {
@@ -85,7 +85,7 @@ watch(() => designer.state.checkedNode?.type, () => {
 /**
  * 设置属性值
  */
-function handleSetValue(value: any, field: string, item: NodeItem, editData = checkedNode.value) {
+function handleSetValue(value: any, field: string, item: ComponentSchema, editData = checkedNode.value) {
   if (typeof item.onChange === 'function') {
     item.onChange({ value, values: editData!, componentAttributes })
   }

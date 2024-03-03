@@ -18,7 +18,7 @@
 import draggable from 'vuedraggable'
 import { computed, inject } from 'vue'
 import { revoke } from '@epic-designer/utils'
-import { NodeItem, PageSchema, Designer } from '../../../../../types/epic-designer'
+import { ComponentSchema, PageSchema, Designer } from '../../../../../types/epic-designer'
 import ENodeItem from './nodeItem.vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
@@ -26,7 +26,7 @@ defineOptions({
   name: 'EditNodeItem'
 })
 const props = defineProps<{
-  schemas: NodeItem[]
+  schemas: ComponentSchema[]
 }>()
 
 const emit = defineEmits(['update:schemas'])

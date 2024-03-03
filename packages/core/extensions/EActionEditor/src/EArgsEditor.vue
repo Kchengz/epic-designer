@@ -16,12 +16,12 @@
 </template>
 <script lang="ts" setup>
 import ENode from '../../../components/node'
-import { NodeItem } from '../../../types/epic-designer'
+import { ComponentSchema } from '../../../types/epic-designer'
 import { computed } from 'vue'
 
 const props = defineProps<{
   modelValue: string | null | undefined,
-  actionArgsConfigs: NodeItem[]
+  actionArgsConfigs: ComponentSchema[]
 }>()
 const emits = defineEmits(['update:modelValue'])
 
@@ -33,7 +33,7 @@ const valueRef = computed<any>(() => {
 })
 
 
-function isShow(item: NodeItem) {
+function isShow(item: ComponentSchema) {
   // show属性为boolean类型则直接返回
   if (typeof item.show === 'boolean') {
     return item.show

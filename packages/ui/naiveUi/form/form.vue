@@ -11,7 +11,7 @@
 import type { Ref, PropType } from 'vue'
 import { ref, computed, inject, reactive, provide, onMounted } from 'vue'
 import { NForm } from 'naive-ui/lib/form'
-import type { NodeItem, FormDataModel } from '@epic-designer/core/types/epic-designer'
+import type { ComponentSchema, FormDataModel } from '@epic-designer/core/types/epic-designer'
 
 interface FormInstance extends InstanceType<typeof NForm> {
   getData?: () => FormDataModel
@@ -20,7 +20,7 @@ interface FormInstance extends InstanceType<typeof NForm> {
 
 const props = defineProps({
   record: {
-    type: Object as PropType<NodeItem>,
+    type: Object as PropType<ComponentSchema>,
     require: true,
     default: () => ({})
   }

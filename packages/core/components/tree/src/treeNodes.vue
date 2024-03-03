@@ -20,7 +20,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, inject } from 'vue'
-import { NodeItem, Designer } from '../../../types/epic-designer'
+import { ComponentSchema, Designer } from '../../../types/epic-designer'
 import ETreeNodeItem from './treeNodeItem.vue'
 import draggable from 'vuedraggable'
 defineOptions({
@@ -30,8 +30,8 @@ const designer = inject('designer') as Designer
 const treeProps = inject('treeProps') as any
 
 const props = defineProps<{
-  schemas: NodeItem[],
-  parentSchema?: NodeItem
+  schemas: ComponentSchema[],
+  parentSchema?: ComponentSchema
 }>()
 const emit = defineEmits(['update:schemas'])
 const modelSchemas = computed({
@@ -53,7 +53,7 @@ function handleSelect(index: number) {
   designer.setCheckedNode(modelSchemas.value![index])
 }
 
-function isDraggable(schemas: NodeItem) {
+function isDraggable(schemas: ComponentSchema) {
   // 判断当前节点类型是否允许拖拽
   if (schemas.type === 'page' || schemas.immovable) {
     // 禁止拖拽

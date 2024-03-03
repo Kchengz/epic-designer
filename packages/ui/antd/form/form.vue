@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import { ref, type Ref, type PropType, reactive, provide, computed, inject, onMounted } from 'vue'
 import { Form } from 'ant-design-vue'
-import type { NodeItem, FormDataModel } from '@epic-designer/core/types/epic-designer'
+import type { ComponentSchema, FormDataModel } from '@epic-designer/core/types/epic-designer'
 
 interface FormInstance extends InstanceType<typeof Form> {
   getData?: () => FormDataModel
@@ -20,7 +20,7 @@ interface FormInstance extends InstanceType<typeof Form> {
 }
 const props = defineProps({
   record: {
-    type: Object as PropType<NodeItem>,
+    type: Object as PropType<ComponentSchema>,
     require: true,
     default: () => ({})
   }

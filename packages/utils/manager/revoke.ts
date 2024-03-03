@@ -1,4 +1,4 @@
-import { type NodeItem } from '@epic-designer/core/types/epic-designer'
+import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
 import { ref, type Ref } from 'vue'
 
 /**
@@ -25,7 +25,7 @@ export function useRevoke (): {
     type: string
     record: string
   } | null>
-  push: (record: NodeItem[], type?: string) => void
+  push: (record: ComponentSchema[], type?: string) => void
   undo: () => RecordModel | false
   redo: () => RecordModel | false
 } {
@@ -45,7 +45,7 @@ export function useRevoke (): {
    * @param {object}record
    * @return {boolean}
    */
-  function push (record: NodeItem[], type = '插入组件'): void {
+  function push (record: ComponentSchema[], type = '插入组件'): void {
     // 忽略低于150ms时间差的记录
     const nowTime = Date.now()
     if (lastPushTime + 150 > nowTime) {

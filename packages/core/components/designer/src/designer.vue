@@ -43,7 +43,7 @@
 </template>
 <script lang="ts" setup>
 import { provide, reactive, toRaw, watch, nextTick } from 'vue'
-import { DesignerState, NodeItem, PageSchema } from '../../../types/epic-designer'
+import { DesignerState, ComponentSchema, PageSchema } from '../../../types/epic-designer'
 import { getMatchedById, loadAsyncComponent, revoke, usePageManager, deepCompareAndModify, deepEqual, deepClone } from '@epic-designer/utils'
 import { DesignerProps } from './types'
 import { useShareStore } from '@epic-designer/utils'
@@ -141,7 +141,7 @@ function init() {
  * 选中节点
  * @param schema
  */
-async function setCheckedNode(schema: NodeItem = pageSchema.schemas[0]) {
+async function setCheckedNode(schema: ComponentSchema = pageSchema.schemas[0]) {
   state.checkedNode = schema
   state.matched = getMatchedById(pageSchema.schemas, schema.id!)
 }
@@ -150,7 +150,7 @@ async function setCheckedNode(schema: NodeItem = pageSchema.schemas[0]) {
  * 设置悬停节点
  * @param schema
  */
-async function setHoverNode(schema: NodeItem | null = null) {
+async function setHoverNode(schema: ComponentSchema | null = null) {
   if (!schema || state.disableHover) {
     state.hoverNode = null
     return false

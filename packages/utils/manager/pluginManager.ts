@@ -1,5 +1,5 @@
 import {
-  type NodeItem,
+  type ComponentSchema,
   type SchemaGroupItem,
 } from "@epic-designer/core/types/epic-designer";
 import { loadAsyncComponent } from "../common";
@@ -30,16 +30,16 @@ export interface EventModel {
 }
 
 export interface ActionModel extends EventModel {
-  argsConfigs?: NodeItem[];
+  argsConfigs?: ComponentSchema[];
   args?: any[];
 }
 
 export interface ComponentConfigModel {
   component: any;
-  defaultSchema: NodeItem;
+  defaultSchema: ComponentSchema;
   config: {
-    attribute?: NodeItem[];
-    style?: NodeItem[];
+    attribute?: ComponentSchema[];
+    style?: ComponentSchema[];
     event?: EventModel[];
     action?: ActionModel[];
   };
@@ -57,7 +57,7 @@ export interface MethodModel {
 export type PublicMethodsModel = Record<string, MethodModel>;
 
 export interface SchemaGroup {
-  list: NodeItem[];
+  list: ComponentSchema[];
   title: string;
 }
 
@@ -69,7 +69,7 @@ export class PluginManager {
   schemaGroup: SchemaGroupItem[] = [];
 
   schemaGroupList = ref<SchemaGroupList>([]);
-  hideComponentList: string[] = ['input'];
+  hideComponentList: string[] = [];
 
   viewsContainers: ViewsContainersModel = {
     activitybars: [],
@@ -254,6 +254,7 @@ export class PluginManager {
    * 计算schemaGroupList
    */
   computedSchemaGroupList() {
+
     const schemaGroupList = this.schemaGroup.map((item) => {
       // 映射defaultSchema,并过滤未查询到的组件
       const list = item.list
@@ -265,12 +266,14 @@ export class PluginManager {
           }
           return schema;
         })
-        .filter((e) => e) as NodeItem[];
+        .filter((e) => e && !this.hideComponentList.includes(e.type)) as ComponentSchema[];
+
       return {
         ...item,
         list,
       };
     });
+
     this.schemaGroupList.value = schemaGroupList;
   }
 

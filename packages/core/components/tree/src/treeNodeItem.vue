@@ -13,7 +13,7 @@
   </li>
 </template>
 <script lang="ts" setup>
-import { NodeItem } from '../../../types/epic-designer'
+import { ComponentSchema } from '../../../types/epic-designer'
 import EIcon from '../../icon'
 import { inject, computed, Ref, h, defineComponent, Slots } from 'vue'
 import { pluginManager } from '@epic-designer/utils'
@@ -23,7 +23,7 @@ defineOptions({
 })
 
 const props = defineProps<{
-  schema: NodeItem
+  schema: ComponentSchema
 }>()
 
 
@@ -33,7 +33,7 @@ const expandedKeys = inject('expandedKeys') as Ref<string[]>
 const treeProps = inject('treeProps') as any
 const selectedKeys = inject('selectedKeys') as Ref<string[]>
 
-const handleSelect = inject('handleSelect') as (id: string, record: NodeItem) => {}
+const handleSelect = inject('handleSelect') as (id: string, record: ComponentSchema) => {}
 
 const expanded = computed(() => {
   return expandedKeys.value.includes(props.schema.id ?? '')

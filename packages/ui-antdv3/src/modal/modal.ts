@@ -1,5 +1,5 @@
 import { defineComponent, h, renderSlot, type PropType } from "vue";
-import { type NodeItem } from "@epic-designer/core/types/epic-designer";
+import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 import Modal from "ant-design-vue/lib/modal";
 import Button from "ant-design-vue/lib/button";
 import Space from "ant-design-vue/lib/space";
@@ -22,7 +22,7 @@ const bodyStyle = {
 export default defineComponent({
   props: {
     record: {
-      type: Object as PropType<NodeItem>,
+      type: Object as PropType<ComponentSchema>,
       default: () => ({}),
     },
   },
@@ -48,7 +48,7 @@ export default defineComponent({
       let vNodeClildren: any = null;
       if (children.length) {
         vNodeClildren = () =>
-          children.map((node: NodeItem) =>
+          children.map((node: ComponentSchema) =>
             renderSlot(slots, "node", { record: node })
           );
       } else {

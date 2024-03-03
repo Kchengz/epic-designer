@@ -15,7 +15,7 @@
 </template>
 <script lang="ts" setup>
 import { inject } from 'vue'
-import { Designer, NodeItem } from '../../../../../types/epic-designer'
+import { Designer, ComponentSchema } from '../../../../../types/epic-designer'
 import EIcon from '../../../../icon'
 import { pluginManager } from '@epic-designer/utils'
 const designer = inject('designer') as Designer
@@ -23,7 +23,7 @@ const designer = inject('designer') as Designer
  * 选中点击节点元素
  * @param schema
  */
-function handleSelect(schema: NodeItem) {
+function handleSelect(schema: ComponentSchema) {
   designer.setCheckedNode(schema)
 }
 

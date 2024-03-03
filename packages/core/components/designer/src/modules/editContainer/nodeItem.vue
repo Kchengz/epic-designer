@@ -13,7 +13,7 @@
 </template>
 <script lang="ts" setup>
 import ENode from '../../../../node'
-import { NodeItem, Designer } from '../../../../../types/epic-designer'
+import { ComponentSchema, Designer } from '../../../../../types/epic-designer'
 import KEditNodeItem from './editNodeItem.vue'
 import { useAttrs, provide, watch, ref, onUnmounted, computed, inject } from 'vue';
 import { pluginManager, type PageManager } from '@epic-designer/utils'
@@ -29,7 +29,7 @@ defineOptions({
   name: 'ENodeItem'
 })
 const props = defineProps<{
-  schema: NodeItem
+  schema: ComponentSchema
   name?: string
 }>()
 

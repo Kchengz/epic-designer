@@ -1,10 +1,10 @@
 import { defineComponent, h, renderSlot, type PropType } from 'vue'
 import { ElRow } from 'element-plus'
-import { type NodeItem } from '@epic-designer/core/types/epic-designer'
+import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
 export default defineComponent({
   props: {
     record: {
-      type: Object as PropType<NodeItem>,
+      type: Object as PropType<ComponentSchema>,
       require: true,
       default: () => ({})
     }
@@ -21,7 +21,7 @@ export default defineComponent({
       return h(ElRow, record, {
         default: () => [
           renderSlot(slots, 'edit-node', {}, () =>
-            children.map((record: NodeItem) =>
+            children.map((record: ComponentSchema) =>
               renderSlot(slots, 'node', { record })
             )
           )

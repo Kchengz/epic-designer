@@ -1,18 +1,18 @@
 import type { PropType } from 'vue'
 import { defineComponent, h, renderSlot } from 'vue'
 import { NCollapseItem } from 'naive-ui'
-import { type NodeItem } from '@epic-designer/core/types/epic-designer'
+import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
 export default defineComponent({
   props: {
     record: {
-      type: Object as PropType<NodeItem>,
+      type: Object as PropType<ComponentSchema>,
       require: true,
       default: () => ({})
     }
   },
   setup (props, { slots }) {
     return () => {
-      const record: NodeItem = {
+      const record: ComponentSchema = {
         ...props.record,
         title: props.record.label ?? ''
       }
@@ -23,7 +23,7 @@ export default defineComponent({
       return h(NCollapseItem, record, {
         default: () =>
           renderSlot(slots, 'edit-node', {}, () =>
-            children.map((node: NodeItem) => renderSlot(slots, 'node', { record: node }))
+            children.map((node: ComponentSchema) => renderSlot(slots, 'node', { record: node }))
           )
       })
     }

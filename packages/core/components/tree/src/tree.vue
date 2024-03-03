@@ -18,7 +18,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { NodeItem } from '../../../types/epic-designer'
+import { ComponentSchema } from '../../../types/epic-designer'
 import type { PropType } from 'vue'
 import { ref, provide, computed, useSlots } from 'vue'
 import ETreeNodes from './treeNodes.vue'
@@ -37,7 +37,7 @@ const keyword = ref("")
 const expandedKeys = ref([])
 const props = defineProps({
   options: {
-    type: Array as PropType<NodeItem[]>,
+    type: Array as PropType<ComponentSchema[]>,
     default: () => []
   },
   hoverKey: {
@@ -80,9 +80,9 @@ const getTreeData = computed({
  * @param labelToFilter 过滤关键字
  */
 function filterTreeByLabel(tree, labelToFilter) {
-  const filteredTree: NodeItem[] = [];
+  const filteredTree: ComponentSchema[] = [];
 
-  tree.forEach((item: NodeItem) => {
+  tree.forEach((item: ComponentSchema) => {
     if (item.label?.includes(labelToFilter)) {
       filteredTree.push(item);
     } else if (item.children) {
@@ -100,7 +100,7 @@ function filterTreeByLabel(tree, labelToFilter) {
 }
 
 
-function handleSelect(id: string, record: NodeItem) {
+function handleSelect(id: string, record: ComponentSchema) {
   selectedKeysComputed.value = [id]
   emit('node-click', { id, record })
 }

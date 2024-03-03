@@ -13,10 +13,10 @@
 </template>
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { NodeItem } from '../../types/epic-designer'
+import { ComponentSchema } from '../../types/epic-designer'
 
 const props = defineProps<{
-  record:NodeItem
+  record:ComponentSchema
 }>()
 
 

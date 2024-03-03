@@ -1,10 +1,10 @@
 import { defineComponent, h, renderSlot, type PropType } from "vue";
 import { ElCard } from "element-plus";
-import { type NodeItem } from "@epic-designer/core/types/epic-designer";
+import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 export default defineComponent({
   props: {
     record: {
-      type: Object as PropType<NodeItem>,
+      type: Object as PropType<ComponentSchema>,
       required: true,
       default: () => ({}),
     },
@@ -14,14 +14,14 @@ export default defineComponent({
       const record = {
         ...props.record,
         header: props.record?.label ?? "",
-      } as NodeItem;
+      } as ComponentSchema;
       const children = record.children ?? [];
       delete record.children;
 
       let vNodeClildren: any = null;
       if (children.length) {
         vNodeClildren = () =>
-          children.map((node: NodeItem) =>
+          children.map((node: ComponentSchema) =>
             renderSlot(slots, "node", { record: node })
           );
       } else {

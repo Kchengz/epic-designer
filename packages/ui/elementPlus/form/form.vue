@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { ref, Ref, reactive, PropType, provide, computed, inject, onMounted } from 'vue'
 import { ElForm } from 'element-plus'
-import type { NodeItem, FormDataModel } from '@epic-designer/core/types/epic-designer'
+import type { ComponentSchema, FormDataModel } from '@epic-designer/core/types/epic-designer'
 
 interface FormInstance extends InstanceType<typeof ElForm> {
   getData?: () => FormDataModel
@@ -27,7 +27,7 @@ provide('formData', formData)
 
 const props = defineProps({
   record: {
-    type: Object as PropType<NodeItem>,
+    type: Object as PropType<ComponentSchema>,
     require: true,
     default: () => ({})
   }

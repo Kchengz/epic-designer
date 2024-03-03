@@ -1,6 +1,6 @@
 import {
   PageSchema,
-  type NodeItem,
+  type ComponentSchema,
 } from "@epic-designer/core/types/epic-designer";
 import { getUUID } from "./string";
 
@@ -46,7 +46,7 @@ export function deepClone(
  * 生成field
  * @param schema
  */
-export function generateNewSchema(schema: NodeItem) {
+export function generateNewSchema(schema: ComponentSchema) {
   const [newSchema] = mapSchemas([deepClone(schema)], (item) => {
     // 补充id字段
     const newVal = {
@@ -154,11 +154,11 @@ export function deepEqual(
  * @param schemas
  * @param id
  */
-export function getMatchedById(schemas: NodeItem[], id: string): NodeItem[] {
-  const matched: NodeItem[] = [];
+export function getMatchedById(schemas: ComponentSchema[], id: string): ComponentSchema[] {
+  const matched: ComponentSchema[] = [];
   let found = false;
 
-  function getNodePath(node: NodeItem): void {
+  function getNodePath(node: ComponentSchema): void {
     matched.push(node);
     if (node.id === id) {
       found = true;
@@ -204,11 +204,11 @@ export function getMatchedById(schemas: NodeItem[], id: string): NodeItem[] {
  */
 export function getAttributeValue(
   field: string,
-  obj: NodeItem
-): NodeItem | undefined {
+  obj: ComponentSchema
+): ComponentSchema | undefined {
   // 使用“.”作为分隔符拆分field字符串，以创建字段数组。
   const fieldList = field.split(".");
-  let data: NodeItem | undefined = obj;
+  let data: ComponentSchema | undefined = obj;
   // 遍历fieldList中每个字段，以从obj中检索字段的值
   for (let i = 0; i < fieldList.length; i++) {
     // 更新nodeItem为nodeItem中当前字段的值。
@@ -238,11 +238,11 @@ export function getAttributeValue(
 export function setAttributeValue(
   value: any,
   field: string,
-  obj: NodeItem
+  obj: ComponentSchema
 ): void {
   // 使用“.”作为分隔符拆分field字符串，以创建字段数组。
   const fieldList = field.split(".");
-  let data: NodeItem = obj;
+  let data: ComponentSchema = obj;
 
   // 遍历属性路径数组
   fieldList.forEach((item, index) => {
@@ -262,14 +262,14 @@ export function setAttributeValue(
  * @param schemas 页面结构数据
  * @param formName 表单name
  */
-export function getFormFields(schemas: NodeItem[], formName = "default") {
+export function getFormFields(schemas: ComponentSchema[], formName = "default") {
   const formSchema = findSchemas(
     schemas,
     (currentNode) => {
       return currentNode.type === "form" && currentNode.name === formName;
     },
     true
-  ) as NodeItem;
+  ) as ComponentSchema;
   // console.log(schema);
   const inputSchemaList = findSchemas(
     formSchema?.children ?? [],
@@ -277,11 +277,11 @@ export function getFormFields(schemas: NodeItem[], formName = "default") {
       return Boolean(currentNode.input);
     },
     false,
-    (currentNode: NodeItem) => {
+    (currentNode: ComponentSchema) => {
       // 过滤子表单子节点
       return currentNode.type !== "subform";
     }
-  ) as NodeItem[];
+  ) as ComponentSchema[];
 
   return inputSchemaList.map((item) => item.field);
 }
@@ -295,17 +295,17 @@ export function getFormFields(schemas: NodeItem[], formName = "default") {
  * @returns
  */
 export function findSchemas(
-  schemas: NodeItem[],
-  handler: (item: NodeItem) => boolean,
+  schemas: ComponentSchema[],
+  handler: (item: ComponentSchema) => boolean,
   once = false,
-  filter?: (item: NodeItem) => boolean
+  filter?: (item: ComponentSchema) => boolean
 ) {
-  const matchedNodes: NodeItem[] = [];
+  const matchedNodes: ComponentSchema[] = [];
 
-  const nodesToVisit: NodeItem[] = [...schemas];
+  const nodesToVisit: ComponentSchema[] = [...schemas];
 
   while (nodesToVisit.length) {
-    const currentNode = nodesToVisit.pop() as NodeItem;
+    const currentNode = nodesToVisit.pop() as ComponentSchema;
 
     // 检查默认子节点
     if (currentNode?.children && (!filter || filter(currentNode))) {
@@ -343,14 +343,14 @@ export function findSchemas(
  * @returns
  */
 export function mapSchemas(
-  schemas: NodeItem[],
-  handler: (item: NodeItem) => NodeItem,
-  filter?: (item: NodeItem) => boolean
+  schemas: ComponentSchema[],
+  handler: (item: ComponentSchema) => ComponentSchema,
+  filter?: (item: ComponentSchema) => boolean
 ) {
-  const nodesToVisit: NodeItem[] = [...schemas];
+  const nodesToVisit: ComponentSchema[] = [...schemas];
 
   while (nodesToVisit.length) {
-    const currentNode = nodesToVisit.pop() as NodeItem;
+    const currentNode = nodesToVisit.pop() as ComponentSchema;
 
     // 检查默认子节点
     if (currentNode?.children && (!filter || filter(currentNode))) {
@@ -375,7 +375,7 @@ export function mapSchemas(
  * @param id
  * @returns
  */
-export function findSchemaById(schemas: NodeItem[], id: string): NodeItem {
+export function findSchemaById(schemas: ComponentSchema[], id: string): ComponentSchema {
   let index: number = 0;
 
   // 查询节点
@@ -385,7 +385,7 @@ export function findSchemaById(schemas: NodeItem[], id: string): NodeItem {
       return currentNode.id === id;
     },
     true
-  ) as NodeItem & { children: NodeItem };
+  ) as ComponentSchema & { children: ComponentSchema };
 
   // 判断节点是否存在，不存在则抛出异常
   if (!schema) {
@@ -402,16 +402,16 @@ export function findSchemaById(schemas: NodeItem[], id: string): NodeItem {
  * @returns
  */
 export function findSchemaInfoById(
-  schemas: NodeItem[],
+  schemas: ComponentSchema[],
   id: string
 ): {
-  list: NodeItem[];
-  schema: NodeItem;
+  list: ComponentSchema[];
+  schema: ComponentSchema;
   index: number;
 } {
-  const stack: NodeItem[] = [{ type: "", children: schemas }];
+  const stack: ComponentSchema[] = [{ type: "", children: schemas }];
   let index: number = 0;
-  let children: NodeItem[] | null = null;
+  let children: ComponentSchema[] | null = null;
   // 查询父节点
   const parentSchema = findSchemas(
     stack,
@@ -443,7 +443,7 @@ export function findSchemaInfoById(
       return false;
     },
     true
-  ) as NodeItem & { children: NodeItem };
+  ) as ComponentSchema & { children: ComponentSchema };
 
   // 判断节点是否存在，不存在则抛出异常
   if (!children) {
@@ -517,7 +517,7 @@ export function convertKFormData(data) {
 export function recursionConvertedNode(
   children: any,
   parent?: any
-): NodeItem[] {
+): ComponentSchema[] {
   return children.map((item: any) => {
     let type = item.type ?? "";
     const componentProps = item.options ?? {};
@@ -571,7 +571,7 @@ export function recursionConvertedNode(
     }
 
     // 创建新的节点数据
-    const newItem: NodeItem = {
+    const newItem: ComponentSchema = {
       label: item.label,
       type,
       icon: item.icon || "",

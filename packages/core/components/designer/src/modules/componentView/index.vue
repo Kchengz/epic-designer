@@ -43,7 +43,7 @@
 import draggable from 'vuedraggable'
 import { ref, computed, inject } from 'vue'
 import { generateNewSchema, findSchemaInfoById, pluginManager, revoke } from '@epic-designer/utils'
-import { NodeItem, PageSchema, Designer } from '../../../../../types/epic-designer'
+import { ComponentSchema, PageSchema, Designer } from '../../../../../types/epic-designer'
 import EIcon from '../../../../icon'
 const Input = pluginManager.getComponent('input')
 const pageSchema = inject('pageSchema') as PageSchema
@@ -70,12 +70,12 @@ const getSchemaTypeList = computed(() => {
  * 计算当前需要展示的组件列表
  */
 const getSourceSchemaList = computed(() => {
-  let sourceSchemaList: NodeItem[] = activeItem.value.list
+  let sourceSchemaList: ComponentSchema[] = activeItem.value.list
   if (activeItem.value.title === '全部') {
     const sourceSchemaAllList = sourceSchema.value.map(item => {
       return item.list
     })
-    sourceSchemaList = ([] as NodeItem[]).concat(...sourceSchemaAllList)
+    sourceSchemaList = ([] as ComponentSchema[]).concat(...sourceSchemaAllList)
   }
 
   if (keyword.value) {
@@ -96,7 +96,7 @@ function handelChecked(item) {
  * 点击添加节点
  * @param e
  */
-function handleClick(schema: NodeItem) {
+function handleClick(schema: ComponentSchema) {
   const data = findSchemaInfoById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
   if (!data) {
     return false

@@ -1,10 +1,10 @@
 import { defineComponent, h, renderSlot, type PropType } from 'vue'
 import Col from 'ant-design-vue/lib/col'
-import { type NodeItem } from '@epic-designer/core/types/epic-designer'
+import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
 export default defineComponent({
   props: {
     record: {
-      type: Object as PropType<NodeItem>,
+      type: Object as PropType<ComponentSchema>,
       require: true,
       default: () => ({})
     }

@@ -15,14 +15,14 @@
 </template>
 <script lang="ts" setup>
 import { pluginManager, getUUID } from '@epic-designer/utils'
-import { NodeItem } from '../../types/epic-designer'
+import { ComponentSchema } from '../../types/epic-designer'
 import { computed, PropType } from 'vue'
 import EIcon from '../../components/icon'
 
 const Input = pluginManager.getComponent('input')
 const props = defineProps({
   modelValue: {
-    type: Array as PropType<NodeItem[]>,
+    type: Array as PropType<ComponentSchema[]>,
     default: () => []
   }
 })
