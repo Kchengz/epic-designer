@@ -57,7 +57,7 @@ export function setupDesignerExtensions(pluginManager: PluginManager): void {
      pluginManager.registerComponent(Test);
 
      // 添加到页面左侧组件区域
-     pluginManager.addSchemaGroup({
+     pluginManager.addComponentGroup({
           title: "自定义",
           list: ["test"],
      });

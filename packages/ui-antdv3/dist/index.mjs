@@ -2525,7 +2525,7 @@ function R(e) {
     x
   ].forEach((o) => {
     e.registerComponent(o);
-  }), e.setSchemaGroup([
+  }), e.setComponentGroup([
     {
       title: "表单",
       list: [

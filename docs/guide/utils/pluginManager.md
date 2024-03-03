@@ -32,7 +32,7 @@ const Test = {
 // 注册组件
 pluginManager.registerComponent(Test);
 // 添加到组件库分组 左侧不会有新增的组件可选
-pluginManager.addSchemaGroup({
+pluginManager.addComponentGroup({
   title: "自定义",
   list: ["test"],
 });
@@ -56,7 +56,7 @@ pluginManager.addSchemaGroup({
 import { pluginManager } from "epic-designer";
 
 // 设置页面左侧组件分组内容 - 用于过滤不需要组件，只设置需要展示组件即可
-pluginManager.setSchemaGroup({
+pluginManager.setComponentGroup({
   title: "自定义",
   list: ["input"],
 });
@@ -136,17 +136,17 @@ pluginManager.setSchemaGroup({
 
 
 
-#### setSchemaGroup
+#### setComponentGroup
 
-类型：`(schemaGroup: SchemaGroupItem[]) => void
+类型：`(componentGroup: ComponentGroupItem[]) => void
 
 说明：设置分组,这个操作将会覆盖原来的数据
 
 
 
-#### addSchemaGroup
+#### addComponentGroup
 
-类型：`(schemaGroupItem: SchemaGroupItem) => void
+类型：`(componentGroupItem: ComponentGroupItem) => void
 
 说明：添加分组
 

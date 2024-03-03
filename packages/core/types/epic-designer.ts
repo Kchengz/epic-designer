@@ -16,8 +16,6 @@ export interface  ComponentSchema {
   componentProps?: any;
   // 插槽名称（组件为插槽类型时，需要设置插槽name），可选
   slotName?: string;
-  // 分组名称（组件分组），可选
-  groupName?: string;
   // 表单验证规则，可选
   rules?: FormItemRule[];
   // 是否无需表单项，可选
@@ -56,10 +54,6 @@ export interface FormConfig {
 
 export type FormDataModel = Record<string, any>;
 
-export interface SchemaGroupItem {
-  title: string;
-  list: string[];
-}
 
 export interface Designer {
   setCheckedNode: (schema?: ComponentSchema) => void;

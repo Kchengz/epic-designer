@@ -72,29 +72,29 @@ export function setupElementPlus(
   });
 
   // 设置分组显示
-  pluginManager.setSchemaGroup([
-    {
-      title: "表单",
-      list: [
-        "form",
-        "input",
-        "number",
-        "select",
-        "cascader",
-        "checkbox",
-        "radio",
-        "date",
-        "slider",
-        "switch",
-        "color-picker",
-        "upload-file",
-        "upload-image",
-        "button",
-      ],
-    },
-    {
-      title: "布局",
-      list: ["card", "row"],
-    },
-  ]);
+  // pluginManager.setComponentGroup([
+  //   {
+  //     title: "表单",
+  //     list: [
+  //       "form",
+  //       "input",
+  //       "number",
+  //       "select",
+  //       "cascader",
+  //       "checkbox",
+  //       "radio",
+  //       "date",
+  //       "slider",
+  //       "switch",
+  //       "color-picker",
+  //       "upload-file",
+  //       "upload-image",
+  //       "button",
+  //     ],
+  //   },
+  //   {
+  //     title: "布局",
+  //     list: ["card", "row"],
+  //   },
+  // ]);
 }

@@ -1,7 +1,4 @@
-import {
-  type ComponentSchema,
-  type SchemaGroupItem,
-} from "@epic-designer/core/types/epic-designer";
+import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 import { loadAsyncComponent } from "../common";
 import { ref } from "vue";
 export interface ActivitybarModel {
@@ -35,14 +32,24 @@ export interface ActionModel extends EventModel {
 }
 
 export interface ComponentConfigModel {
+  // 组件
   component: any;
+  // 分组名称（组件分组），不设置分组时仅注册，但不会显示在组件列表中，可选
+  groupName?: string;
+  // 默认组件结构数据
   defaultSchema: ComponentSchema;
+  // 配置
   config: {
+    // 属性编辑列表
     attribute?: ComponentSchema[];
+    // 样式编辑组件列表
     style?: ComponentSchema[];
+    // 可触发事件
     event?: EventModel[];
+    // 可执行函数
     action?: ActionModel[];
   };
+  // 输入表单组件v-model绑定变量名称 默认 modelValue
   bindModel?: string;
 }
 
@@ -56,27 +63,39 @@ export interface MethodModel {
 
 export type PublicMethodsModel = Record<string, MethodModel>;
 
-export interface SchemaGroup {
+export interface ComponentGroup {
   list: ComponentSchema[];
   title: string;
 }
 
-export type SchemaGroupList = SchemaGroup[];
+export type ComponentSchemaGroups = ComponentGroup[];
 
+// 插件管理器类
 export class PluginManager {
+  // 组件对象字典，key 为组件type，value 为组件
   components: Components = {};
+
+  // 组件配置记录字典，key 为组件type，value 为组件配置
   componentConfigs: ComponentConfigModelRecords = {};
-  schemaGroup: SchemaGroupItem[] = [];
 
-  schemaGroupList = ref<SchemaGroupList>([]);
-  hideComponentList: string[] = [];
+  // 组件分组名称列表
+  componentGroupNames: string[] = [];
 
+  // 隐藏的组件列表，存储需要隐藏的组件名称
+  hiddenComponents: string[] = [];
+
+  // 组件模式分组，使用 Vue Composition API 的 ref 进行响应式处理
+  componentSchemaGroups = ref<ComponentSchemaGroups>([]);
+
+  // 视图容器模型，包含活动栏和右侧边栏的配置
   viewsContainers: ViewsContainersModel = {
-    activitybars: [],
-    rightSidebars: [],
+    activitybars: [], // 活动栏配置列表
+    rightSidebars: [], // 右侧边栏配置列表
   };
 
+  // 公共方法模型，存储插件的公共方法
   publicMethods: PublicMethodsModel = {
+    // 示例方法
     // test: {
     //   describe: "测试函数",
     //   methodName: "test",
@@ -101,10 +120,7 @@ export class PluginManager {
 
   /**
    * 注册组件到插件管理器中
-   * @param component 组件
-   * @param schema 组件结构
-   * @param attrSchemas 属性结构
-   * @param bindModel 双向绑定value
+   * @param componentConfig 组件配置
    */
   registerComponent(componentConfig: ComponentConfigModel): void {
     // 添加组件
@@ -118,6 +134,8 @@ export class PluginManager {
       if (!componentConfig.config.action) {
         componentConfig.config.action = [];
       }
+
+      // 补充组件可用方法
       componentConfig.config.action.unshift(
         ...[
           {
@@ -141,6 +159,8 @@ export class PluginManager {
 
     // 添加组件配置
     this.componentConfigs[componentConfig.defaultSchema.type] = componentConfig;
+
+    this.computedComponentSchemaGroups();
   }
 
   /**
@@ -160,20 +180,26 @@ export class PluginManager {
   }
 
   /**
-   * 注册活动栏
+   * 注册或更新活动栏（Activitybar）模型。
+   * 如果模型中的组件是一个函数，则异步加载该组件。
+   * @param activitybar 要注册或更新的活动栏模型
    */
   registerActivitybar(activitybar: ActivitybarModel): void {
+    // 如果组件是一个函数，则异步加载该组件
     if (typeof activitybar.component === "function") {
       activitybar.component = loadAsyncComponent(activitybar.component);
     }
 
+    // 查找活动栏在列表中的索引
     const index = this.viewsContainers.activitybars.findIndex(
       (item) => item.id === activitybar.id
     );
 
+    // 如果找到相同 id 的活动栏，则更新该活动栏模型
     if (index !== -1) {
       this.viewsContainers.activitybars[index] = activitybar;
     } else {
+      // 否则将新的活动栏模型添加到活动栏列表中
       this.viewsContainers.activitybars.push(activitybar);
     }
   }
@@ -231,58 +257,65 @@ export class PluginManager {
   }
 
   /**
-   * 设置分组,这个操作将会覆盖原来的数据
-   * @param {*} schemaGroup
-   * @returns
+   * 计算componentSchemaGroups
    */
-  setSchemaGroup(schemaGroup: SchemaGroupItem[]): void {
-    this.schemaGroup = schemaGroup;
-    this.computedSchemaGroupList();
-  }
+  computedComponentSchemaGroups() {
+    const componentSchemaGroups: ComponentSchemaGroups = [];
 
-  /**
-   * 添加分组
-   * @param {*} schemaGroupItem
-   * @returns
-   */
-  addSchemaGroup(schemaGroupItem: SchemaGroupItem): void {
-    this.schemaGroup.push(schemaGroupItem);
-    this.computedSchemaGroupList();
-  }
+    // 遍历组件配置字典的值
+    Object.values(this.componentConfigs).forEach((componentConfig) => {
+      // 如果组件的默认模式的类型在隐藏组件列表中，则跳过
+      if (this.hiddenComponents.includes(componentConfig.defaultSchema.type)) {
+        // 跳过当前循环，继续下一个组件
+        return;
+      }
 
-  /**
-   * 计算schemaGroupList
-   */
-  computedSchemaGroupList() {
+      // 如果组件配置中有分组名
+      if (componentConfig.groupName) {
+        // 查找当前分组在列表中的索引
 
-    const schemaGroupList = this.schemaGroup.map((item) => {
-      // 映射defaultSchema,并过滤未查询到的组件
-      const list = item.list
-        .map((type) => {
-          const schema = this.componentConfigs[type]?.defaultSchema;
-          if (schema == null) {
-            console.warn(`${type} 组件未注册到pluginManager中`);
-            return false;
-          }
-          return schema;
-        })
-        .filter((e) => e && !this.hideComponentList.includes(e.type)) as ComponentSchema[];
+        let groupIndex = componentSchemaGroups.findIndex(
+          (item) => item.title === componentConfig.groupName
+        );
 
-      return {
-        ...item,
-        list,
-      };
+        // 如果找不到分组，表示该分组还未添加过，需要新建一个分组
+        if (groupIndex === -1) {
+          // 创建新的分组，并将其添加到分组列表中
+          componentSchemaGroups.push({
+            title: componentConfig.groupName,
+            list: [],
+          });
+          // 获取新添加的分组的索引
+          groupIndex = componentSchemaGroups.length - 1;
+        }
+
+        // 查找当前组件在分组的列表中的索引
+        let componentIndex = componentSchemaGroups[groupIndex].list.findIndex(
+          (item) => item.type === componentConfig.defaultSchema.type
+        );
+
+        // 如果找到相同类型的组件，则更新该组件结构数据
+        if (componentIndex !== -1) {
+          componentSchemaGroups[groupIndex].list[componentIndex] =
+            componentConfig.defaultSchema;
+        } else {
+          // 否则将新的组件结构数据添加到相应的分组中
+          componentSchemaGroups[groupIndex].list.push(
+            componentConfig.defaultSchema
+          );
+        }
+      }
     });
 
-    this.schemaGroupList.value = schemaGroupList;
+    this.componentSchemaGroups.value = componentSchemaGroups;
   }
 
   /**
-   * 按照分组获取schemaGroupList
-   * @returns schemaGroupList
+   * 按照分组获取componentSchemaGroups
+   * @returns componentSchemaGroups
    */
   getSchemaByGroup() {
-    return this.schemaGroupList;
+    return this.componentSchemaGroups;
   }
 
   /**
@@ -291,7 +324,8 @@ export class PluginManager {
    * @returns
    */
   addHideComponent(type: string) {
-    this.hideComponentList.push(type);
+    this.hiddenComponents.push(type);
+    this.computedComponentSchemaGroups();
   }
 
   /**
@@ -300,9 +334,10 @@ export class PluginManager {
    * @returns
    */
   clearHideComponent(type: string) {
-    this.hideComponentList = this.hideComponentList.filter(
+    this.hiddenComponents = this.hiddenComponents.filter(
       (item) => item !== type
     );
+    this.computedComponentSchemaGroups();
   }
 
   /**
@@ -311,7 +346,8 @@ export class PluginManager {
    * @returns
    */
   setHideComponents(types: string[]) {
-    this.hideComponentList = types;
+    this.hiddenComponents = types;
+    this.computedComponentSchemaGroups();
   }
 
   /**
