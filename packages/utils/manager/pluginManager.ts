@@ -78,14 +78,17 @@ export class PluginManager {
   // 组件配置记录字典，key 为组件type，value 为组件配置
   componentConfigs: ComponentConfigModelRecords = {};
 
-  // 组件分组名称列表
-  componentGroupNames: string[] = [];
+  // 组件模式分组，使用 Vue Composition API 的 ref 进行响应式处理
+  componentSchemaGroups = ref<ComponentSchemaGroups>([]);
 
   // 隐藏的组件列表，存储需要隐藏的组件名称
   hiddenComponents: string[] = [];
 
-  // 组件模式分组，使用 Vue Composition API 的 ref 进行响应式处理
-  componentSchemaGroups = ref<ComponentSchemaGroups>([]);
+  // 组件分组名称映射，key 为组件原名称，value 为组件分组映射名称
+  componentGroupNameMap: Record<string, string> = {};
+
+  // 组件分组排序列表(设置之后，按该数组下标排序)
+  sortedGroups: string[] = [];
 
   // 视图容器模型，包含活动栏和右侧边栏的配置
   viewsContainers: ViewsContainersModel = {
@@ -274,15 +277,19 @@ export class PluginManager {
       if (componentConfig.groupName) {
         // 查找当前分组在列表中的索引
 
+        const groupName =
+          this.componentGroupNameMap[componentConfig.groupName] ??
+          componentConfig.groupName;
+
         let groupIndex = componentSchemaGroups.findIndex(
-          (item) => item.title === componentConfig.groupName
+          (item) => item.title === groupName
         );
 
         // 如果找不到分组，表示该分组还未添加过，需要新建一个分组
         if (groupIndex === -1) {
           // 创建新的分组，并将其添加到分组列表中
           componentSchemaGroups.push({
-            title: componentConfig.groupName,
+            title: groupName,
             list: [],
           });
           // 获取新添加的分组的索引
@@ -307,15 +314,59 @@ export class PluginManager {
       }
     });
 
+    // 调整分组排序
+    componentSchemaGroups.sort((a: ComponentGroup, b: ComponentGroup) => {
+      const indexA = this.sortedGroups.indexOf(a.title);
+      const indexB = this.sortedGroups.indexOf(b.title);
+      if (indexA === -1) {
+        return 1; // a.title 不在 orderArray 中，排在后面
+      }
+      if (indexB === -1) {
+        return -1; // b.title 不在 orderArray 中，排在前面
+      }
+      return indexA - indexB; // 按照 orderArray 中的顺序排序
+    });
+
     this.componentSchemaGroups.value = componentSchemaGroups;
   }
 
   /**
-   * 按照分组获取componentSchemaGroups
+   * 按照分组获取componentSchemaGroups 暂时没啥用
    * @returns componentSchemaGroups
    */
-  getSchemaByGroup() {
+  getComponentSchemaGroups() {
     return this.componentSchemaGroups;
+  }
+
+  /**
+   * 设置组件分组名称到映射名称的关系
+   * @param groupName 组件分组名称
+   * @param mapName 映射的名称
+   */
+  setComponentGroupNameMap(groupName: string, mapName: string) {
+    this.componentGroupNameMap[groupName] = mapName;
+  }
+
+  /**
+   * 清空组件分组名称到映射名称的关系
+   */
+  clearComponentGroupNameMap() {
+    this.componentGroupNameMap = {};
+  }
+
+  /**
+   * 设置组件分组的排序
+   * @param sortedGroups 包含组名和排序字段的对象数组
+   */
+  setSortedGroups(sortedGroups: string[]) {
+    this.sortedGroups = sortedGroups;
+  }
+
+  /**
+   * 清空组件分组的排序
+   */
+  clearSortedGroups() {
+    this.sortedGroups = [];
   }
 
   /**
@@ -323,7 +374,7 @@ export class PluginManager {
    * @param {*} type
    * @returns
    */
-  addHideComponent(type: string) {
+  hideComponent(type: string) {
     this.hiddenComponents.push(type);
     this.computedComponentSchemaGroups();
   }
@@ -333,7 +384,7 @@ export class PluginManager {
    * @param {*} type
    * @returns
    */
-  clearHideComponent(type: string) {
+  showComponent(type: string) {
     this.hiddenComponents = this.hiddenComponents.filter(
       (item) => item !== type
     );
@@ -356,6 +407,14 @@ export class PluginManager {
    */
   addPublicMethod(method: MethodModel): void {
     this.publicMethods[method.methodName] = method;
+  }
+
+  /**
+   * 移除公共方法
+   * @param methodName
+   */
+  removePublicMethod(methodName: string): void {
+    delete this.publicMethods[methodName];
   }
 }
 

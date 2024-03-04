@@ -48,7 +48,7 @@ import EIcon from '../../../../icon'
 const Input = pluginManager.getComponent('input')
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
-const sourceSchema = pluginManager.getSchemaByGroup()
+const sourceSchema = pluginManager.getComponentSchemaGroups()
 const keyword = ref("")
 const allSchema = {
   title: '全部',
