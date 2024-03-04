@@ -10,6 +10,7 @@ export default {
       shadow: 'hover'
     }
   },
+  groupName: "布局",
   config: {
     attribute: [
       {

@@ -23,6 +23,7 @@ export default {
       },
     ],
   },
+  groupName: "布局",
   config: {
     attribute: [
       {

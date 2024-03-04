@@ -13,6 +13,7 @@ export default {
       colorFormat: "hex",
     },
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

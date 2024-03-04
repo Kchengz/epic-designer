@@ -12,6 +12,7 @@ export default {
       showTooltip: true
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

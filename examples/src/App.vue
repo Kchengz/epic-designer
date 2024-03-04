@@ -10,8 +10,7 @@ import Designer from './views/designer/index.vue'
 
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-import { setupElementPlus, provideGlobalConfig } from '@epic-designer/ui'
-setupElementPlus(zhCn)
+import { provideGlobalConfig } from '@epic-designer/ui'
 provideGlobalConfig({ locale: zhCn });
 
 </script>

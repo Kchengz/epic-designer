@@ -11,6 +11,7 @@ export default {
       action: 'https://mock.presstime.cn/mock/6562298755736ae9dfa4646a/epic/upload'
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

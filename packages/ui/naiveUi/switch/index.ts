@@ -12,6 +12,7 @@ export default {
       size: 'medium'
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

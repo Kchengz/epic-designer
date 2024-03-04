@@ -8,6 +8,7 @@ export default {
     field: "slider",
     input: true,
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

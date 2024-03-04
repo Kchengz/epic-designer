@@ -13,6 +13,7 @@ export default {
       showFileList: true
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

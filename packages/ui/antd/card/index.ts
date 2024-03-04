@@ -7,6 +7,7 @@ export default {
     icon: 'epic-icon-qiapian',
     children: []
   },
+  groupName: "布局",
   config: {
     attribute: [
       {

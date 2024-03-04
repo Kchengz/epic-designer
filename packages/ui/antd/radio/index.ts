@@ -21,6 +21,7 @@ export default {
       optionType: 'default'
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

@@ -11,6 +11,7 @@ export default {
       placement: 'top-start'
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

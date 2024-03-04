@@ -24,6 +24,7 @@ export default {
     },
     children: [],
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

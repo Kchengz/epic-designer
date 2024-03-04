@@ -14,6 +14,7 @@ export default {
       placeholder: '请输入'
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

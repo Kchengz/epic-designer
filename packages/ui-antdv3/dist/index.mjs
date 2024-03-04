@@ -11,6 +11,7 @@ const t = {
       placeholder: "请输入"
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -173,6 +174,7 @@ const t = {
       placeholder: "请输入"
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -329,6 +331,7 @@ const t = {
       placeholder: "请输入"
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -499,6 +502,7 @@ const t = {
       bordered: !0
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -640,6 +644,7 @@ const t = {
       optionType: "default"
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -750,6 +755,7 @@ const t = {
       ]
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -846,6 +852,7 @@ const t = {
       placement: "bottomLeft"
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -1039,6 +1046,7 @@ const t = {
     field: "slider",
     input: !0
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -1176,6 +1184,7 @@ const t = {
       placeholder: "请输入"
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -1350,6 +1359,7 @@ const t = {
       placeholder: "请选择"
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -1547,6 +1557,7 @@ const t = {
       placement: "bottomLeft"
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -1695,6 +1706,7 @@ const t = {
     input: !0,
     componentProps: {}
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -1785,6 +1797,7 @@ const t = {
       action: "https://mock.presstime.cn/mock/6562298755736ae9dfa4646a/epic/upload"
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -1848,6 +1861,7 @@ const t = {
       action: "https://mock.presstime.cn/mock/6562298755736ae9dfa4646a/epic/upload"
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -1907,6 +1921,7 @@ const t = {
     icon: "epic-icon-qiapian",
     children: []
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -1945,6 +1960,7 @@ const t = {
       }
     ]
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -2032,6 +2048,7 @@ const t = {
       span: 6
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -2065,6 +2082,7 @@ const t = {
     },
     children: []
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -2219,6 +2237,7 @@ const t = {
     type: "form-item",
     icon: "epic-icon-qiapian"
   },
+  groupName: "表单",
   config: {}
 }, C = {
   component: () => import("./button-2bd09193.mjs"),
@@ -2230,6 +2249,7 @@ const t = {
     input: !1,
     componentProps: {}
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -2390,6 +2410,7 @@ const t = {
     icon: "epic-icon-xiala",
     children: []
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
@@ -2414,6 +2435,7 @@ const t = {
       }
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

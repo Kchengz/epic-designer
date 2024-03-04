@@ -10,6 +10,7 @@ export default {
     componentProps: {
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

@@ -23,6 +23,7 @@ export default {
       placement: 'bottom-start'
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

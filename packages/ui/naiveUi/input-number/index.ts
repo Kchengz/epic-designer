@@ -13,6 +13,7 @@ export default {
       buttonPlacement: 'right'
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

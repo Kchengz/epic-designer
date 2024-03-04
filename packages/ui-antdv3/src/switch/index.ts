@@ -9,6 +9,7 @@ export default {
     input: true,
     componentProps: {},
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

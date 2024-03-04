@@ -13,6 +13,7 @@ export default {
       type: 'text'
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

@@ -22,6 +22,7 @@ export default {
       placement: 'bottomLeft'
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

@@ -13,6 +13,7 @@ export default {
       placeholder: "请选择",
     },
   },
+  groupName: "表单",
   config: {
     attribute: [
       {

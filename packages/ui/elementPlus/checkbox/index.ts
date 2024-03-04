@@ -21,6 +21,7 @@ export default {
       size: 'default'
     }
   },
+  groupName: "表单",
   config: {
     attribute: [
       {
