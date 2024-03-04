@@ -59,14 +59,14 @@ export function setupNaiveUi(pluginManager: PluginManager): void {
     ColorPicker,
     Cascader,
     Slider,
+    UploadFile,
+    UploadImage,
     Button,
     Card,
     Row,
     Col,
     Collapse,
     CollapseItem,
-    UploadFile,
-    UploadImage,
     Modal,
   ];
 

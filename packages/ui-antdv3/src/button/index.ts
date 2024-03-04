@@ -10,7 +10,7 @@ export default {
     componentProps: {
     }
   },
-  groupName: "布局",
+  groupName: "表单",
   config: {
     attribute: [
       {

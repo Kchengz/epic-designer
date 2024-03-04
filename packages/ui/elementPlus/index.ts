@@ -56,15 +56,16 @@ export function setupElementPlus(
     ColorPicker,
     Cascader,
     Slider,
+    UploadFile,
+    UploadImage,
     Button,
     Card,
     Row,
     Col,
     Collapse,
     CollapseItem,
-    UploadFile,
     Modal,
-    UploadImage,
+
   ];
 
   componentArray.forEach((item) => {

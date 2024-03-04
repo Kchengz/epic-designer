@@ -1921,7 +1921,7 @@ const t = {
     icon: "epic-icon-qiapian",
     children: []
   },
-  groupName: "表单",
+  groupName: "布局",
   config: {
     attribute: [
       {
@@ -1960,7 +1960,7 @@ const t = {
       }
     ]
   },
-  groupName: "表单",
+  groupName: "布局",
   config: {
     attribute: [
       {
@@ -2048,7 +2048,6 @@ const t = {
       span: 6
     }
   },
-  groupName: "表单",
   config: {
     attribute: [
       {
@@ -2058,7 +2057,7 @@ const t = {
       }
     ]
   }
-}, w = {
+}, g = {
   component: () => import("./form-0ddb68c3.mjs"),
   defaultSchema: {
     label: "表单",
@@ -2230,14 +2229,13 @@ const t = {
       }
     ]
   }
-}, g = {
+}, w = {
   component: () => import("./formItem-36e845df.mjs"),
   defaultSchema: {
     label: "表单项",
     type: "form-item",
     icon: "epic-icon-qiapian"
   },
-  groupName: "表单",
   config: {}
 }, C = {
   component: () => import("./button-2bd09193.mjs"),
@@ -2410,7 +2408,6 @@ const t = {
     icon: "epic-icon-xiala",
     children: []
   },
-  groupName: "表单",
   config: {
     attribute: [
       {
@@ -2523,8 +2520,8 @@ function R(e) {
     "TabPane",
     async () => (await import("./index-e18cb4bd.mjs").then((o) => o.i)).TabPane
   ), [
-    w,
     g,
+    w,
     t,
     p,
     a,
@@ -2539,42 +2536,15 @@ function R(e) {
     u,
     f,
     y,
+    x,
+    C,
     h,
     P,
     v,
-    C,
-    E,
-    x
+    E
   ].forEach((o) => {
     e.registerComponent(o);
-  }), e.setComponentGroup([
-    {
-      title: "表单",
-      list: [
-        "form",
-        "input",
-        "textarea",
-        "number",
-        "password",
-        "select",
-        "cascader",
-        "checkbox",
-        "radio",
-        "date",
-        "time",
-        "slider",
-        "switch",
-        "color-picker",
-        "upload-file",
-        "upload-image",
-        "button"
-      ]
-    },
-    {
-      title: "布局",
-      list: ["card", "row"]
-    }
-  ]);
+  });
 }
 export {
   R as setupAntdV3

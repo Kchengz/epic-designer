@@ -59,12 +59,13 @@ export function setupAntd(pluginManager: PluginManager): void {
     Switch,
     UploadImage,
     UploadFile,
+    colorPicker,
+    Button,
+
     Card,
     Row,
     Col,
-    Button,
     Modal,
-    colorPicker,
   ];
 
   componentArray.forEach((item) => {
