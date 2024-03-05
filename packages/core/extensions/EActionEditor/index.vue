@@ -1,13 +1,14 @@
 <template>
-  <Collapse v-model="activeNames" v-model:activeEey="activeNames" v-model:expanded-names="activeNames">
+  <Collapse v-model="activeNames" v-model:activeKey="activeNames" v-model:expanded-names="activeNames">
     <CollapseItem v-for="(item) in filterEventList" :key="item.title" :title="item.title" :header="item.title"
       :name="item.title">
-      <EActionEditorItem v-model="modelValueComputed" :item-events="item.events" :all-events="allEvents" :events="events"
-        @add="handleOpen" @edit="handleOpenEdit" />
+      <EActionEditorItem v-model="modelValueComputed" :item-events="item.events" :all-events="allEvents"
+        :events="events" @add="handleOpen" @edit="handleOpenEdit" />
     </CollapseItem>
   </Collapse>
   <EActionModal ref="EActionModalRef" @add="handleAdd" @edit="handleEdit" />
 </template>
+
 <script lang="ts" setup>
 import { PropType, computed, ref, nextTick, toRaw, watch } from 'vue'
 import EActionEditorItem from './src/EActionEditorItem.vue'
@@ -23,7 +24,7 @@ const props = defineProps({
     type: Array as PropType<any>,
     default: () => []
   },
-  modelValue:{
+  modelValue: {
     type: Object as PropType<any>
   }
 })
@@ -37,18 +38,11 @@ const modelValueComputed = computed({
     emit('update:modelValue', value)
   }
 })
-const activeNames = ref(['组件事件'])
+const activeNames = ref<string[]>([])
 
 // 过滤无事件
 const filterEventList = computed(() => {
   return props.eventList.filter((item: { events: string | any[]; }) => item.events.length)
-})
-watch(() => filterEventList.value, (e) => {
-  if (e.length) {
-    activeNames.value = e[0].title
-  }
-}, {
-  immediate: true
 })
 
 const allEvents = computed(() => {
@@ -57,7 +51,11 @@ const allEvents = computed(() => {
 
 
 
+
 const events = ref<any>({})
+
+
+
 
 allEvents.value.forEach((item: any) => {
 
@@ -77,6 +75,30 @@ allEvents.value.forEach((item: any) => {
 
 })
 
+// 监视 filterEventList.value 的变化
+watch(() => filterEventList.value, (e) => {
+  // 当 filterEventList.value 变化时执行回调函数
+  if (e.length) {
+    // 如果 filterEventList.value 不为空数组
+    // 过滤出满足条件的事件，并将它们的标题存储在 activeNames.value 中
+    activeNames.value = e.filter(item => {
+      // 对于每个事件项，检查其包含的事件类型
+      for (let i = 0; i < item.events.length; i++) {
+        const type = item.events[i].type
+        // 如果 events.value[type] 不为空数组，则返回 true
+        if (events.value[type].length) {
+          return true
+        }
+      }
+      // 如果事件项中没有任何一个事件类型满足条件，则返回 false
+      return false
+    }).map(item => item.title) // 将满足条件的事件项的标题映射成一个新的数组
+  }
+}, {
+  // 配置选项
+  immediate: true // 立即执行一次回调函数
+})
+
 
 
 let currentType: string = ''
@@ -89,34 +111,49 @@ function handleOpen(type: string) {
   currentType = type
 }
 
+
 /**
  * 打开动作配置窗口-编辑
- * @param type
+ * @param {number} index - 要编辑事件的索引
+ * @param {string} type - 事件类型
+ * @param {any} action - 要执行的动作
  */
 function handleOpenEdit(index: number, type: string, action) {
+  // 如果 EActionModalRef.value 不为 null 或 undefined，则调用其 handleOpenEdit 方法
   EActionModalRef.value?.handleOpenEdit(action)
+
+  // 将要编辑的事件的索引赋值给 editIndex
   editIndex = index
+
+  // 将事件的类型赋值给 currentType
   currentType = type
 }
 
+/**
+ * 编辑事件的函数
+ * @param {any} action - 动作数据
+ */
 function handleEdit(action: any) {
+  // 将编辑后的动作替换掉 events.value[currentType][editIndex]
   events.value[currentType][editIndex] = action
+
+  // 更新 modelValueComputed.value[currentType]，使用新的数组代替原始数组
   modelValueComputed.value[currentType] = [...(events.value[currentType] ?? [])]
 }
 
+
 /**
  * 添加组件事件
- * @param action
+ * @param {any} action - 要执行的动作
  */
 function handleAdd(action: any) {
-  // const newEvents = getNewEvents(currentType)
-  // newEvents[currentType] = [...(events.value[currentType] ?? []), action]
-  // modelValueComputed.value = newEvents
-  
+  // 如果 modelValueComputed.value 为 null 或 undefined，则创建一个新的对象
   if (!modelValueComputed.value) {
     modelValueComputed.value = { [currentType]: [...(events.value[currentType] ?? []), action] }
     return
   }
+
+  // 否则，直接在 modelValueComputed.value[currentType] 中添加新的动作
   modelValueComputed.value[currentType] = [...(events.value[currentType] ?? []), action]
 }
 
