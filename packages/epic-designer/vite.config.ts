@@ -4,7 +4,6 @@ import path from "path";
 import dts from "vite-plugin-dts";
 import UnoCSS from "unocss/vite";
 import monacoEditorPlugin from "vite-plugin-monaco-editor";
-// import externalGlobals from "rollup-plugin-external-globals";
 export default defineConfig({
   plugins: [
     vue(),
@@ -23,14 +22,6 @@ export default defineConfig({
     },
     dedupe: ["vue"],
   },
-  // 单元测试配置
-  // test: {
-  //   globals: true,
-  //   environment: 'jsdom',
-  //   transformMode: {
-  //     web: [/.[tj]sx$/]
-  //   }
-  // },
   // rollup打包配置
   build: {
     outDir: "dist", // 输出文件名称
@@ -48,6 +39,7 @@ export default defineConfig({
       //   return path
       // }
     },
+
     // 库编译模式配置
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
@@ -57,12 +49,6 @@ export default defineConfig({
         "element-plus",
         "ant-design-vue",
         "naive-ui",
-      ],
-      plugins: [
-        // 不打包依赖映射的对象
-        // externalGlobals({
-
-        // }) as any,
       ],
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量

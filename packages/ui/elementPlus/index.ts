@@ -27,15 +27,13 @@ import {
   ElTabPane,
   ElCollapse,
   ElCollapseItem,
-  provideGlobalConfig,
 } from "element-plus";
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+
+
 
 export function setupElementPlus(
   pluginManager: PluginManager,
 ): void {
-
-  
 
   pluginManager.component("FormItem", ElFormItem);
   pluginManager.component("Tabs", ElTabs);

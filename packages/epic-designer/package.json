@@ -1,7 +1,7 @@
 {
   "name": "epic-designer",
   "private": false,
-  "version": "0.8.16-beta.1a16",
+  "version": "0.8.16-beta.1",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",

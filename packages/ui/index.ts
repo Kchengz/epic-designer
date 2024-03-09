@@ -1,12 +1,12 @@
 // export * from './antd'
 // export * from "./elementPlus";
 // export * from "./naiveUi";
-
-import { pluginManager } from "@epic-designer/utils";
-import type { Language } from "element-plus/es/locale";
 export {
   provideGlobalConfig,
 } from "element-plus";
+
+import { pluginManager } from "@epic-designer/utils";
+
 
 export async function setupAntd() {
   const { setupAntd } = await import("./antd");
@@ -14,10 +14,9 @@ export async function setupAntd() {
 }
 
 
-
-export async function setupElementPlus( locale?: Language) {
+export async function setupElementPlus( ) {
   const { setupElementPlus } = await import("./elementPlus");
-  setupElementPlus.bind(null, pluginManager)(locale);
+  setupElementPlus.bind(null, pluginManager)();
 }
 
 export async function setupNaiveUi() {
