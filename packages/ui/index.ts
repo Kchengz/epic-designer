@@ -13,9 +13,9 @@ export function setDateLocale(locale = "zh-cn") {
 
   // 根据不同的 locale 参数导入对应的 Day.js 语言环境
   switch (locale.toLowerCase()) {
-    case "ar_eg":
-      import(`dayjs/locale/ar-eg`);
-      break;
+    // case "ar_eg":
+    //   import(`dayjs/locale/ar-eg`);
+    //   break;
     case "az_az":
       import(`dayjs/locale/az`);
       break;
@@ -61,8 +61,8 @@ export function setDateLocale(locale = "zh-cn") {
     case "fi_fi":
       import(`dayjs/locale/fi`);
       break;
-    case "fr_be":
-      import(`dayjs/locale/fr-be`);
+    // case "fr_be":
+    //   import(`dayjs/locale/fr-be`);
       break;
     case "fr_ca":
       import(`dayjs/locale/fr-ca`);
