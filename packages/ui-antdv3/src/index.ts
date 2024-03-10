@@ -70,6 +70,4 @@ export function setupAntdV3(pluginManager: PluginManager): void {
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item);
   });
-
-
 }

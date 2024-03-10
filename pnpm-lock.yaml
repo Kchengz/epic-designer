@@ -295,6 +295,9 @@ importers:
       ant-design-vue:
         specifier: ^4.0.6
         version: registry.npmmirror.com/ant-design-vue@4.0.6(vue@3.3.8)
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
       element-plus:
         specifier: ^2.5.6
         version: registry.npmmirror.com/element-plus@2.5.6(vue@3.3.8)
@@ -2426,7 +2429,6 @@ packages:
       '@vue/server-renderer': 3.3.8(vue@3.3.8)
       '@vue/shared': 3.3.8
       typescript: registry.npmmirror.com/typescript@5.1.6
-    dev: true
 
   /vue@3.3.8(typescript@5.2.2):
     resolution: {integrity: sha512-5VSX/3DabBikOXMsxzlW8JyfeLKlG9mzqnWgLQLty88vdZL7ZJgrdgBOmrArwxiLtmS+lNNpPcBYqrhE6TQW5w==}
@@ -5636,9 +5638,9 @@ packages:
     dependencies:
       '@volar/language-core': registry.npmmirror.com/@volar/language-core@1.9.1
       '@volar/source-map': registry.npmmirror.com/@volar/source-map@1.9.1
-      '@vue/compiler-dom': registry.npmmirror.com/@vue/compiler-dom@3.3.4
-      '@vue/reactivity': registry.npmmirror.com/@vue/reactivity@3.3.4
-      '@vue/shared': registry.npmmirror.com/@vue/shared@3.3.4
+      '@vue/compiler-dom': registry.npmmirror.com/@vue/compiler-dom@3.3.8
+      '@vue/reactivity': registry.npmmirror.com/@vue/reactivity@3.3.8
+      '@vue/shared': registry.npmmirror.com/@vue/shared@3.3.8
       minimatch: registry.npmmirror.com/minimatch@9.0.3
       muggle-string: registry.npmmirror.com/muggle-string@0.3.1
       typescript: registry.npmmirror.com/typescript@5.1.6
@@ -11809,7 +11811,6 @@ packages:
     version: 5.1.6
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
 
   registry.npmmirror.com/ufo@1.1.2:
     resolution: {integrity: sha512-TrY6DsjTQQgyS3E3dBaOXf0TpPD8u9FVrVYmKVegJuFw51n/YB9XPt+U6ydzFG5ZIN7+DIjPbNmXoBj9esYhgQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ufo/-/ufo-1.1.2.tgz}
@@ -12619,7 +12620,7 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      vue: 3.3.8(typescript@5.2.2)
+      vue: 3.3.8(typescript@5.1.6)
 
   registry.npmmirror.com/vue-eslint-parser@9.3.1(eslint@8.53.0):
     resolution: {integrity: sha512-Clr85iD2XFZ3lJ52/ppmUDG/spxQu6+MAeHXjjyI4I1NUYZ9xmenQp4N0oaHJhrA8OOxltCVxMRfANGa70vU0g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-eslint-parser/-/vue-eslint-parser-9.3.1.tgz}
