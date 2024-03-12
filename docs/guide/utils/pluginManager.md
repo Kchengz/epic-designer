@@ -136,27 +136,73 @@ pluginManager.setComponentGroup({
 
 
 
-#### setComponentGroup
+#### ~~setComponentGroup~~(v0.9.1已删除)
 
-类型：`(componentGroup: ComponentGroupItem[]) => void
+类型：`(componentGroup: ComponentGroupItem[]) => void`
 
 说明：设置分组,这个操作将会覆盖原来的数据
 
 
 
-#### addComponentGroup
+#### ~~addComponentGroup~~(v0.9.1已删除)
 
-类型：`(componentGroupItem: ComponentGroupItem) => void
+类型：`(componentGroupItem: ComponentGroupItem) => void`
 
 说明：添加分组
 
+#### setComponentGroupNameMap
 
+类型：`(groupName: string, mapName: string) => void`
+
+说明：设置组件分组名称到映射名称的关系
+
+#### clearComponentGroupNameMap
+
+类型：`() => void`
+
+说明：清空组件分组名称到映射名称的关系
+
+#### setSortedGroups
+
+类型：`(sortedGroups: string[]) => void`
+
+说明：设置组件分组的排序
+
+#### clearSortedGroups
+
+类型：`() => void`
+
+说明：清空组件分组的排序
+
+#### hideComponent
+
+类型：`(type: string) => void`
+
+说明：添加需要隐藏的组件类型
+
+#### showComponent
+
+类型：`(type: string) => void`
+
+说明：移除需要隐藏的组件类型
+
+#### setHideComponents
+
+类型：`(types: string[]) => void`
+
+说明：设置需要隐藏的组件类型数组
 
 #### addPublicMethod
 
-类型：`(method: MethodModel) => void
+类型：`(method: MethodModel) => void`
 
 说明：添加公共方法
+
+#### removePublicMethod
+
+类型：`(methodName: string) => void`
+
+说明：移除公共方法
 
 
 

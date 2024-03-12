@@ -28,12 +28,12 @@ main.ts 或者 main.js 引入注册组件
 import "element-plus/dist/index.css";
 // 引入k-designer样式
 import "epic-designer/dist/style.css";
-import { pluginManager, setupElementPlus } from "epic-designer";
+import { setupElementPlus } from "epic-designer";
 // 注册Element UI
-setupElementPlus(pluginManager);
+setupElementPlus();
 ```
 
-- ### 选择 ant-design-vue 
+- ### 选择 ant-design-vue v4.x版本（antd推荐使用v4.x版本）
 
 ```bash
 npm i ant-design-vue
@@ -46,19 +46,19 @@ main.ts 或者 main.js 引入注册组件
 import "epic-designer/dist/style.css";
 // 引入antd UI 重置样式
 import "ant-design-vue/dist/reset.css";
-import { pluginManager, setupAntd } from "epic-designer";
+import { setupAntd } from "epic-designer";
 // 使用Antd UI
-setupAntd(pluginManager);
+setupAntd();
 ```
-- #### 注：ant-design-vue v3.x版本需要改成下面方式
+- ### 注：ant-design-vue v3.x版本需要改成下面方式
 ```javascript
 // 引入antd UI样式
 import "ant-design-vue/dist/antd.css";
 // 引入k-designer样式
 import "epic-designer/dist/style.css";
-import { pluginManager, setupAntdV3 } from "epic-designer";
+import { setupAntdV3 } from "epic-designer";
 // 使用Antd UI
-setupAntdV3(pluginManager);
+setupAntdV3();
 ```
 
 - ### 选择 naive-ui
@@ -69,9 +69,9 @@ main.ts 或者 main.js 引入注册组件
 ```javascript
 // 引入k-designer样式
 import "epic-designer/dist/style.css";
-import { pluginManager, setupNaiveUi } from "epic-designer";
+import { setupNaiveUi } from "epic-designer";
 // 注册Naive Ui
-setupNaiveUi(pluginManager);
+setupNaiveUi();
 ```
 
 ## EDesigner(设计器) 基础用法

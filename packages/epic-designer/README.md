@@ -18,6 +18,7 @@
 </p>
 
 
+
 📦github仓库：[https://github.com/Kchengz/epic-designer](https://github.com/Kchengz/epic-designer)
 
 📦gitee仓库：[https://gitee.com/kcz66/epic-designer](https://gitee.com/kcz66/epic-designer)
@@ -95,12 +96,12 @@ main.ts 或者 main.js 引入注册组件
 import "element-plus/dist/index.css";
 // 引入k-designer样式
 import "epic-designer/dist/style.css";
-import { pluginManager, setupElementPlus } from "epic-designer";
+import { setupElementPlus } from "epic-designer";
 // 注册Element UI
-setupElementPlus(pluginManager);
+setupElementPlus();
 ```
 
-- ### 选择 ant-design-vue 
+- ### 选择 ant-design-vue v4.x版本（antd推荐使用v4.x版本）
 
 ```bash
 npm i ant-design-vue
@@ -113,21 +114,22 @@ main.ts 或者 main.js 引入注册组件
 import "epic-designer/dist/style.css";
 // 引入antd UI 重置样式
 import "ant-design-vue/dist/reset.css";
-import { pluginManager, setupAntd } from "epic-designer";
+import { setupAntd } from "epic-designer";
 // 使用Antd UI
-setupAntd(pluginManager);
+setupAntd();
 ```
-- #### 注：ant-design-vue v3.x版本需要改成下面方式
+
+- ### 注：ant-design-vue v3.x版本需要改成下面方式
+
 ```javascript
 // 引入antd UI样式
 import "ant-design-vue/dist/antd.css";
 // 引入k-designer样式
 import "epic-designer/dist/style.css";
-import { pluginManager, setupAntdV3 } from "epic-designer";
+import { setupAntdV3 } from "epic-designer";
 // 使用Antd UI
-setupAntdV3(pluginManager);
+setupAntdV3();
 ```
-
 
 - ### 选择 naive-ui
 
@@ -137,9 +139,9 @@ main.ts 或者 main.js 引入注册组件
 ```javascript
 // 引入k-designer样式
 import "epic-designer/dist/style.css";
-import { pluginManager, setupNaiveUi } from "epic-designer";
+import { setupNaiveUi } from "epic-designer";
 // 注册Naive Ui
-setupNaiveUi(pluginManager);
+setupNaiveUi();
 ```
 
 ## EDesigner(设计器) 基础用法
@@ -159,6 +161,7 @@ import { EDesigner } from "epic-designer";
 }
 </style>
 ```
+
 ## EBuilder(生成器) 基础用法
 
 ```vue
@@ -209,6 +212,7 @@ const pageSchema = {
 - [【epic-designer 交流群：747609683】](https://jq.qq.com/?_wv=1027&k=CtrM9ce2)
 
 ## 捐赠
+
 如果你觉得epic-designer对你有帮助，欢迎给我捐赠
 
 ![](https://epic.kcz66.com/static/donation.png)

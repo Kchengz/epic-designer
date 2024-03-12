@@ -65,9 +65,13 @@ const pageSchema = {
 
 ```vue
 <template>
-  <div>
-    <EBuilder :pageSchema="pageSchema" />
+	<div>
+		<EBuilder ref="ebForm" :pageSchema="pageSchemaForm" />
+  		<button @click="handleValidate">获取数据</button>
+  	<div>
+  {{formData}}
   </div>
+</div>
 </template>
 <script setup>
 import { EBuilder } from "epic-designer";
@@ -181,6 +185,13 @@ const pageSchema = {
     },
   ],
 };
+    
+const ebForm = ref(null)
+const formData = ref(null)
+
+async function handleValidate(){
+  formData.value = {...(await ebForm.value.validate())}
+}
 </script>
 ```
 
@@ -188,13 +199,11 @@ const pageSchema = {
 import { EBuilder } from "epic-designer";
 import { ref } from 'vue'
 import "epic-designer/dist/style.css";
-import { pluginManager,EDesigner,setupElementPlus } from "epic-designer";
+import { EDesigner,setupElementPlus } from "epic-designer";
 import 'element-plus/dist/index.css'
-setupElementPlus(pluginManager);
-
+setupElementPlus();
 const ebForm = ref(null)
 const formData = ref(null)
-
 
 const pageSchema = {
   schemas: [
