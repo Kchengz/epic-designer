@@ -20,7 +20,7 @@ export default defineConfig({
       "@epic-designer/ui": path.resolve(__dirname, "../ui"),
       "@epic-designer/utils": path.resolve(__dirname, "../utils"),
     },
-    dedupe: ["vue"],
+    // dedupe: ["vue"],
   },
   // rollup打包配置
   build: {

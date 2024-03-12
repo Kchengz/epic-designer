@@ -2,8 +2,8 @@
   "name": "@epic-designer/ui-antdv3",
   "version": "1.0.0",
   "description": "epic-designer base antdv3 ui",
-  "main": "dist/index.mjs",
-  "typings":"dist/src/index.d.ts",
+  "main": "src/index.ts",
+  "typings": "src/index.ts",
   "scripts": {
     "build": "vue-tsc --noEmit && vite build"
   },
@@ -13,5 +13,8 @@
   },
   "peerDependencies": {
     "ant-design-vue": "3.2.20"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10"
   }
 }

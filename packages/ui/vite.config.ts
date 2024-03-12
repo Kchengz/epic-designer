@@ -10,9 +10,6 @@ export default defineConfig({
       outDir: "dist",
     }) as PluginOption,
   ],
-  resolve: {
-    dedupe: ["vue"],
-  },
   // rollup打包配置
   build: {
     outDir: "dist", // 输出文件名称

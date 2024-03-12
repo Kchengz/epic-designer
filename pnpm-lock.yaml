@@ -201,6 +201,9 @@ importers:
       ant-design-vue:
         specifier: 4.1.1
         version: registry.npmmirror.com/ant-design-vue@4.1.1(vue@3.3.8)
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
       element-plus:
         specifier: ^2.5.6
         version: registry.npmmirror.com/element-plus@2.5.6(vue@3.3.8)
@@ -314,6 +317,9 @@ importers:
       ant-design-vue:
         specifier: 3.2.20
         version: registry.npmmirror.com/ant-design-vue@3.2.20(vue@3.3.8)
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
     devDependencies:
       vite-plugin-dts:
         specifier: ^3.3.1
