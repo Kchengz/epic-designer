@@ -29,12 +29,7 @@ import {
   ElCollapseItem,
 } from "element-plus";
 
-
-
-export function setupElementPlus(
-  pluginManager: PluginManager,
-): void {
-
+export function setupElementPlus(pluginManager: PluginManager): void {
   pluginManager.component("FormItem", ElFormItem);
   pluginManager.component("Tabs", ElTabs);
   pluginManager.component("TabPane", ElTabPane);
@@ -63,7 +58,6 @@ export function setupElementPlus(
     Collapse,
     CollapseItem,
     Modal,
-
   ];
 
   componentArray.forEach((item) => {
@@ -96,4 +90,7 @@ export function setupElementPlus(
   //     list: ["card", "row"],
   //   },
   // ]);
+
+  // ui初始化完成。
+  pluginManager.setInitialized(true);
 }

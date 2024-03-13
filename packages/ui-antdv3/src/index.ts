@@ -71,6 +71,9 @@ export function setupAntdV3(pluginManager: PluginManager): void {
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item);
   });
+
+  // ui初始化完成。
+  pluginManager.setInitialized(true);
 }
 
 /**

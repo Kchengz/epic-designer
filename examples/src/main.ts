@@ -8,9 +8,9 @@ import App from "./App.vue";
 // setupElementPlus()
 
 // 使用Antd UI v4版本
-import './style/reset.css';
-import { setupAntd } from '@epic-designer/ui'
-setupAntd()
+// import './style/reset.css';
+// import { setupAntd } from '@epic-designer/ui'
+// setupAntd()
 
 // 使用Antd UI v3 版本
 // import "ant-design-vue/dist/antd.css";
@@ -18,7 +18,7 @@ setupAntd()
 // setupAntdV3(pluginManager);
 
 // 使用NaiveUi UI
-// import { setupNaiveUi } from '@epic-designer/ui'
-// setupNaiveUi()
+import { setupNaiveUi } from '@epic-designer/ui'
+setupNaiveUi()
 
 createApp(App).mount("#app");

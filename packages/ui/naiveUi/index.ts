@@ -74,5 +74,6 @@ export function setupNaiveUi(pluginManager: PluginManager): void {
     pluginManager.registerComponent(item);
   });
 
-
+  // ui初始化完成。
+  pluginManager.setInitialized(true);
 }

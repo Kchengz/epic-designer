@@ -72,6 +72,9 @@ export type ComponentSchemaGroups = ComponentGroup[];
 
 // 插件管理器类
 export class PluginManager {
+  // 已初始化基础UI
+  initialized = ref(false);
+
   // 组件对象字典，key 为组件type，value 为组件
   components: Components = {};
 
@@ -399,6 +402,15 @@ export class PluginManager {
   setHideComponents(types: string[]) {
     this.hiddenComponents = types;
     this.computedComponentSchemaGroups();
+  }
+
+  /**
+   * 设置initialized的状态。
+   *
+   * @param value 要设置的布尔值。
+   */
+  setInitialized(value: boolean): void {
+    this.initialized.value = value;
   }
 
   /**

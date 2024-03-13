@@ -1,5 +1,8 @@
 <template>
-  <Suspense @resolve="handleReady">
+  <div class="loading-box" v-if="!pluginManager.initialized.value">
+    <!-- <EAsyncLoader /> -->
+  </div>
+  <Suspense v-else @resolve="handleReady">
     <template #default>
       <div class="epic-builder-main">
         <ENode v-for="item, index in pageSchemaReactive.schemas" :key="index" :componentSchema="item" />
@@ -17,7 +20,7 @@
 import ENode from '../../node'
 import { reactive, provide, ref, watch, useSlots, nextTick, getCurrentInstance, type ComponentInternalInstance } from 'vue'
 import { PageSchema, FormDataModel } from '../../../types/epic-designer'
-import { loadAsyncComponent, deepCompareAndModify,deepClone, usePageManager } from '@epic-designer/utils'
+import { loadAsyncComponent, pluginManager, deepCompareAndModify, deepClone, usePageManager } from '@epic-designer/utils'
 const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
 
 const pageManager = usePageManager()

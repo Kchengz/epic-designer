@@ -1,5 +1,8 @@
 <template>
-  <Suspense @resolve="handleReady">
+  <div class="loading-box" v-if="!pluginManager.initialized.value">
+    <!-- <EAsyncLoader /> -->
+  </div>
+  <Suspense v-else @resolve="handleReady">
     <template #default>
       <div class="epic-designer-main">
         <div class="epic-header-container">
@@ -38,15 +41,17 @@
       <div class="loading-box">
         <EAsyncLoader />
       </div>
+
     </template>
   </Suspense>
 </template>
 <script lang="ts" setup>
 import { provide, reactive, toRaw, watch, nextTick } from 'vue'
 import { DesignerState, ComponentSchema, PageSchema } from '../../../types/epic-designer'
-import { getMatchedById, loadAsyncComponent, revoke, usePageManager, deepCompareAndModify, deepEqual, deepClone } from '@epic-designer/utils'
+import { getMatchedById, loadAsyncComponent, revoke, usePageManager, pluginManager, deepCompareAndModify, deepEqual, deepClone } from '@epic-designer/utils'
 import { DesignerProps } from './types'
 import { useShareStore } from '@epic-designer/utils'
+
 
 const EHeader = loadAsyncComponent(() => import('./modules/header/index.vue'))
 const EActionBar = loadAsyncComponent(() => import('./modules/actionBar/index.vue'))
