@@ -1,4 +1,4 @@
-## 组件扩展
+# 组件扩展
 
 :::tip 组件扩展
 `pluginManager` 提供了registerComponent方法添加组件
