@@ -1,3 +1,10 @@
+## 0.9.3（2024-03-14）
+
+### 🐛 Bug Fixes
+
+- [修复使用EpicDesigner时，提示缺少不必要的依赖问题](https://github.com/Kchengz/epic-designer/commit/c17c5c58bdb3e61d2a0a7b8d021b27a1399dd956)
+- [修复ui组件初始化未完成就渲染页面的异常问题](https://github.com/Kchengz/epic-designer/commit/f4e711ef82809ab60fc6e1a7dc6f31f976dbcb52)
+
 ## 0.9.1（2024-03-13）
 
 本次更新重做了组件分组、ui设置及内部变量名称修改
