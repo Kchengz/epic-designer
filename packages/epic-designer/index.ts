@@ -6,7 +6,8 @@ export * from '../utils'
 
 export * from '../ui'
 
-export async function setupAntdV3 () {
-  const { setupAntdV3 } = await import('../ui-antdv3/src')
-  setupAntdV3.bind(null, pluginManager)()
+export function setupAntdV3 () {
+  import('../ui-antdv3/src').then(({ setupAntdV3 }) => {
+    setupAntdV3.bind(null, pluginManager)()
+  })
 }
