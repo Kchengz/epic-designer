@@ -1,8 +1,35 @@
+## 0.9.1（2024-03-13）
+
+本次更新重做了组件分组、ui设置及内部变量名称修改
+
+pluginManager管理器移除~~setComponentGroup~~、~~addComponentGroup~~方法，
+新增`setComponentGroupNameMap`、`clearComponentGroupNameMap`、`setSortedGroups`、`clearSortedGroups`、`hideComponent`、`showComponent`等方法
+
+### ✨ Feat
+
+- [新增element plus组件国际化支持](https://github.com/Kchengz/epic-designer/commit/b34a4ba6697e796f7dcd74b414d029eb406a2da5)
+- [新增antdv国际化方案](https://github.com/Kchengz/epic-designer/commit/e6350ed0531cad040cb885fe10628515653c7325)
+- [事件编辑折叠面板自动展开已配置动作的面板](https://github.com/Kchengz/epic-designer/commit/17fe46a4cbf14a8bc06e2eebcb19b18ec0334481) [#7](https://github.com/Kchengz/epic-designer/issues/7)
+- [新增分组排序设置函数setSortedGroups](https://github.com/Kchengz/epic-designer/commit/25d67af7c3f4d8631bf50093bf037216dc0ac495)
+
+### ✨ refactor
+
+- [组件配置添加groupName 属性](https://github.com/Kchengz/epic-designer/commit/0e2abe80e22903d69e5268e41e1eab24129269e1)
+- [重构组件分组管理，组件注册配置可设置分组](https://github.com/Kchengz/epic-designer/commit/2e6a5e4f2496edc9f45d1d4b2a43a94e700abe85)
+- [将record字段重命名为componentSchema](https://github.com/Kchengz/epic-designer/commit/b9def1bee0374f1a56cc360d4697633c5feac8fb)
+- [将NodeItem类型重命名为ComponentSchema并添加类型注释](https://github.com/Kchengz/epic-designer/commit/af1f5bbcfb783f75d0beb9d5a1ed4e7701fc2c63)
+- [调整表单组件name至componentProps属性内](https://github.com/Kchengz/epic-designer/commit/6b18519df7832a7a7798e5e9dacefff13fb80e27)
+
+### 🐛 Bug Fixes
+
+- [修复AntdV3安装无效问题](https://github.com/Kchengz/epic-designer/commit/0af6a102cb3413a32e65a729a4bcf22124d9b42f)
+- [修复element-plus组件无法正常渲染问题](https://github.com/Kchengz/epic-designer/commit/4b3238b140dbc67c162a85e9996839d3921315c2)
+
 ## 0.8.15（2024-01-11）
 
 ### ✨ Feat
 
-- [[新增数据查看面板](https://github.com/Kchengz/epic-designer/commit/18c0199ceaf4016b2dc70580ed28f84c03bef5ff)](https://github.com/Kchengz/epic-designer/commit/de558e9b0693508cec3d9bb9634a176053b12708)
+- [新增数据查看面板](https://github.com/Kchengz/epic-designer/commit/18c0199ceaf4016b2dc70580ed28f84c03bef5ff)
 
 ### 🐛 Bug Fixes
 

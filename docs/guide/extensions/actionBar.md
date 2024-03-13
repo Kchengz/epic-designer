@@ -1,4 +1,4 @@
-## 活动栏扩展
+# 活动栏扩展
 
 :::tip 活动栏扩展
 `pluginManager` 提供了registerRightSidebar方法扩展活动栏功能模块

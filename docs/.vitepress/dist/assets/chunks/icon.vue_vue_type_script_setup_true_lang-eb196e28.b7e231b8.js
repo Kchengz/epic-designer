@@ -1,1 +1,0 @@
-import{g as o,o as a,c as s,n as c}from"../app.db33cb3d.js";const l=o({name:"EIcon",__name:"icon",props:{name:{}},setup(n){const e=n;return(t,m)=>(a(),s("span",{class:c(["iconfont",`epic-${e.name}`])},null,2))}});export{l as m};

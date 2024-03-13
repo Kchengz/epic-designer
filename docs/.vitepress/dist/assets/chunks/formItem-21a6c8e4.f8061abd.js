@@ -1,1 +1,0 @@
-import{an as t}from"./index.4abc0d1b.js";import{g as a,U as f,r as n,o as m,x as p,s as l,i as u,m as d,u as e}from"../app.db33cb3d.js";const k=a({__name:"formItem",setup(i){const r=f(),o=n(null);return(s,c)=>(m(),p(e(t),d({ref_key:"form",ref:o},e(r),{prop:e(r).field}),{default:l(()=>[u(s.$slots,"default")]),_:3},16,["prop"]))}});export{k as default};

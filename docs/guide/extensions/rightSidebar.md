@@ -1,4 +1,4 @@
-## 右侧边栏扩展
+# 右侧边栏扩展
 
 :::tip 右侧边栏扩展
 `pluginManager` 提供了registerRightSidebar方法扩展右侧边栏功能模块

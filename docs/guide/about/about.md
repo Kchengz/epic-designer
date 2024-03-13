@@ -1,6 +1,6 @@
 ## 作者信息
 
-橙子/男/1996
+橙子/男
 
 对于编程和开发世界的热爱驱使着我不断探索，希望用有趣的代码创造出有趣的事物。
 
@@ -20,6 +20,6 @@ Gitee主页：[https://gitee.com/kcz66](https://gitee.com/kcz66)
 
 
 ## 赞助
-如果你觉得epic-designer对你有帮助，欢迎给我捐赠
+如果你觉得EpicDesigner对你有帮助，欢迎给我捐赠
 
 ![](https://epic.kcz66.com/static/donation.png)

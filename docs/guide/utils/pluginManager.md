@@ -1,4 +1,4 @@
-## pluginManager 插件管理器
+# pluginManager 插件管理器
 
 :::tip 插件管理器
 `pluginManager` 是用于管理扩展组件，模块功能的管理器对象

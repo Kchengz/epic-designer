@@ -73,6 +73,10 @@ export default defineConfig({
               text: "快速上手",
               link: "/guide/start/quick-start",
             },
+            {
+              text: "国际化",
+              link: "/guide/start/i18n-cn",
+            },
           ],
         },
         {
