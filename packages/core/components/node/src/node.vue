@@ -59,7 +59,12 @@ const props = defineProps<{
 }>()
 
 // 内部schema数据
-const innerSchema = reactive<ComponentSchema>(props.componentSchema)
+const innerSchema = reactive<ComponentSchema>(deepClone(props.componentSchema))
+
+// 监听 props.componentSchema 的变化，并在变化时调用 deepCompareAndModify 方法更新内部schema数据
+watch(()=>props.componentSchema, (componentSchema) => {
+  deepCompareAndModify(innerSchema, componentSchema)
+})
 
 // 表单formData数据
 let formData = inject('formData', {}) as FormDataModel
@@ -79,9 +84,13 @@ if (props.resetFormData || resetFormDataInject) {
   formData = {}
 }
 
+// 定义组件的事件
 const emit = defineEmits(['update:modelValue', 'change'])
+// 获取插件管理器中的表单项组件
 const FormItem = pluginManager.getComponent('form-item')
+// 组件实例的引用
 const componentInstance = ref<ComponentNodeInstance>()
+// 表单项的引用
 const formItemRef = ref<ComponentPublicInstance>()
 
 // 传递额外的attrs
@@ -89,7 +98,6 @@ const attrs = useAttrs()
 if (Object.keys(attrs).length) {
   provide("nodeAttrs", attrs)
 }
-
 
 // 定义组件及组件props字段
 const component = shallowRef<any>(null)

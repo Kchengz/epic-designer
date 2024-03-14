@@ -29,8 +29,8 @@ const pageSchema = ref<PageSchema>({
           "label": "表单",
           "type": "form",
           "icon": "epic-icon-daibanshixiang",
-          "name": "default",
           "componentProps": {
+            "name": "default",
             "labelWidth": 100,
             "labelCol": {
               "span": 5
@@ -39,26 +39,51 @@ const pageSchema = ref<PageSchema>({
               "span": 19
             },
             "hideRequiredMark": false,
-            "labelPosition": "right",
-            "size": "default",
-            "requireAsteriskPosition": "left"
+            "labelPlacement": "left",
+            "labelAlign": "right",
+            "requireMarkPlacement": "right",
+            "size": "medium"
           },
           "children": [
             {
-              "label": "上传文件",
-              "type": "upload-file",
-              "icon": "epic-icon-upload",
-              "field": "upload",
+              "label": "输入框22",
+              "type": "input",
+              "field": "input_sb6jhfb8",
+              "icon": "epic-icon-write",
               "input": true,
               "componentProps": {
-                "action": "https://mock.presstime.cn/mock/6562298755736ae9dfa4646a/epic/upload",
-                "name": "file",
-                "showFileList": true
+                "defaultValue": "",
+                "placeholder": "请输入",
+                "type": "text",
+                "size": "medium",
+                "disabled": false
               },
-              "id": "upload-file_by35flst"
+              "id": "input_sb6jhfb8"
+            },
+            {
+              "label": "按钮",
+              "type": "button",
+              "field": "button_ks9jbmym",
+              "icon": "epic-icon-button-remove",
+              "input": false,
+              "componentProps": {
+                "bordered": true,
+                "type": "default",
+                "size": "medium"
+              },
+              "id": "button_ks9jbmym",
+              "on": {
+                "click": [
+                  {
+                    "type": "custom",
+                    "methodName": "test",
+                    "componentId": null
+                  }
+                ]
+              }
             }
           ],
-          "id": "form_uknia964"
+          "id": "form_18vemlk8"
         }
       ],
       "componentProps": {
@@ -68,8 +93,9 @@ const pageSchema = ref<PageSchema>({
       }
     }
   ],
-  "script": "const { defineExpose, getComponent } = this;\n\nfunction test (){\n    console.log('test')\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})"
+  "script": "const { defineExpose, find } = epic;\n\nfunction test (){\n    console.log('test')\n    find('input_sb6jhfb8').setAttr('disabled',!find('input_sb6jhfb8').getAttr('disabled'))\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})"
 })
+
 
 function handleReady(pageManager: PageManager) {
   console.log(pageManager)
