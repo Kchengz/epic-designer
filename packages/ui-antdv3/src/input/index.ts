@@ -97,7 +97,7 @@ export default {
       {
         label: "最大输入长度",
         type: "number",
-        field: "componentProps.maxLength",
+        field: "componentProps.maxlength",
         componentProps: {
           placeholder: "请输入",
         },
