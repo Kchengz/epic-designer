@@ -10,6 +10,7 @@ export interface PageManager {
   componentInstances: Ref<Record<string, ComponentPublicInstance>>;
   funcs: Ref<Record<string, any>>;
   getComponentInstance: (id: string) => ComponentPublicInstance;
+  find: (id: string) => ComponentPublicInstance;
   addComponentInstance: (id: string, instance: ComponentPublicInstance) => void;
   removeComponentInstance: (id: string) => void;
   setMethods: (scriptStr: string) => void;
@@ -109,6 +110,8 @@ export function usePageManager(): PageManager {
     componentInstances,
     funcs,
     getComponentInstance,
+    // 简化查询函数, 推荐使用
+    find: getComponentInstance,
     addComponentInstance,
     removeComponentInstance,
     setMethods,
