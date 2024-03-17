@@ -71,10 +71,6 @@ export default {
               label: "space-around",
               value: "space-around",
             },
-            {
-              label: "space-around",
-              value: "space-around",
-            },
           ],
           placeholder: '请选择'
         },
