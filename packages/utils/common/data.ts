@@ -110,9 +110,17 @@ export function deepCompareAndModify(
  * @param obj2
  * @returns
  */
+/**
+ * 深度比较两个对象是否相等
+ * @param obj1
+ * @param obj2
+ * @param ignoreKeys 可选参数，指定要忽略比较的属性名数组
+ * @returns
+ */
 export function deepEqual(
   obj1: Record<string, any>,
   obj2: Record<string, any>,
+  ignoreKeys: string[] = [],
   visitedObjs = new WeakMap()
 ): boolean {
   const normalize = (obj: any): any => {
@@ -132,7 +140,9 @@ export function deepEqual(
       const keys = Object.keys(obj).sort();
       const normalizedObj: Record<string, any> = {};
       keys.forEach((key) => {
-        normalizedObj[key] = normalize(obj[key]);
+        if (!ignoreKeys.includes(key)) { // 如果该属性不在忽略列表中
+          normalizedObj[key] = normalize(obj[key]);
+        }
       });
 
       // 递归调用 normalize 函数时，需要将 visitedObjs 参数传递下去

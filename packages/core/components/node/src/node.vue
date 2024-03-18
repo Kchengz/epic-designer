@@ -59,11 +59,17 @@ const props = defineProps<{
 }>()
 
 // 内部schema数据
-const innerSchema = reactive<ComponentSchema>(deepClone(props.componentSchema))
+let innerSchema = reactive<ComponentSchema>(deepClone(props.componentSchema))
 
 // 监听 props.componentSchema 的变化，并在变化时调用 deepCompareAndModify 方法更新内部schema数据
-watch(()=>props.componentSchema, (componentSchema) => {
-  deepCompareAndModify(innerSchema, componentSchema)
+watch(() => props.componentSchema, (componentSchema) => {
+  // 深度比较对象属性值是否变更, 忽略 children 节点
+  if (deepEqual(innerSchema, componentSchema, ['children'])) {
+    return
+  }
+  deepCompareAndModify(innerSchema, deepClone(componentSchema))
+}, {
+  deep: true
 })
 
 // 表单formData数据

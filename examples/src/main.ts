@@ -13,12 +13,12 @@ import App from "./App.vue";
 // setupAntd()
 
 // 使用Antd UI v3 版本
-// import "ant-design-vue/dist/antd.css";
-// import { setupAntdV3 } from "@epic-designer/ui-antdv3";
-// setupAntdV3(pluginManager);
+import "ant-design-vue/dist/antd.css";
+import { setupAntdV3 } from "@epic-designer/ui-antdv3";
+setupAntdV3(pluginManager);
 
 // 使用NaiveUi UI
-import { setupNaiveUi } from '@epic-designer/ui'
-setupNaiveUi()
+// import { setupNaiveUi } from '@epic-designer/ui'
+// setupNaiveUi()
 
 createApp(App).mount("#app");
