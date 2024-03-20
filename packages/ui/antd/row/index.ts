@@ -71,6 +71,10 @@ export default {
               label: "space-around",
               value: "space-around",
             },
+            {
+              label: "space-between",
+              value: "space-between",
+            },
           ],
           placeholder: "请选择",
         },
