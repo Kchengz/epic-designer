@@ -24,6 +24,7 @@ import FormItem from "./form-item";
 import Button from "./button";
 import Modal from "./modal";
 import colorPicker from "./color-picker";
+import { version } from "ant-design-vue";
 
 export function setupAntd(pluginManager: PluginManager = pManager): void {
   // 加载组件
@@ -76,8 +77,34 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
 
   // ui初始化完成。
   pluginManager.setInitialized(true);
-}
 
+  // 版本兼容处理
+  // 将版本号拆分成数组
+  const versionArray = version.split(".");
+  // 取第一个数字
+  const firstNumber = parseInt(versionArray[0]);
+  // 大于v3版本
+  if (firstNumber > 3) {
+    console.log("第一个数字等于3");
+    // 创建一个 style 标签
+    const style = document.createElement("style");
+    // 定义 CSS 样式
+    const css = `
+.epic-modal-ant .epic-modal-main {
+  padding: 4px 12px 12px;
+}
+.epic-modal-ant .ant-modal-title {
+  padding: 16px 16px 0px;
+}
+.epic-modal-ant .ant-modal-content {
+  padding: 0px;
+}`;
+    style.appendChild(document.createTextNode(css));
+
+    // 将 style 标签插入到页面的 head 中
+    document.head.appendChild(style);
+  }
+}
 
 /**
  * 设置 Day.js 的日期语言环境
