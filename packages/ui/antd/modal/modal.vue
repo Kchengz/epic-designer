@@ -1,15 +1,37 @@
 <template>
-  <div>
+  <Modal v-bind="componentSchema">
+    <div class="epic-modal-main">
+      <slot name="edit-node">
+        <template v-if="children.length">
+          <slot v-for="item in children" name="node" :componentSchema="item" />
+        </template>
+        <slot v-else></slot>
+      </slot>
 
-  </div>
+    </div>
+    <div class="epic-modal-footer">
+      <Space align="end">
+        <Button @click="handleClose">关闭</Button>
+        <Button type="primary" @click="handleOk">{{ componentSchema.okText ?? "确定" }}</Button>
+      </Space>
+    </div>
+
+  </Modal>
 </template>
 
-<script lang="ts">
-import { defineComponent, h, renderSlot, type PropType } from "vue";
+<script lang="ts" setup>
+import { computed, h, type PropType, useAttrs } from "vue";
 import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
-import Modal from "ant-design-vue/lib/modal";
-import Button from "ant-design-vue/lib/button";
-import Space from "ant-design-vue/lib/space";
+import { Modal, Button, Space } from "ant-design-vue";
+const attrs = useAttrs()
+const props = defineProps({
+  componentSchema: {
+    type: Object as PropType<ComponentSchema>,
+    default: () => ({}),
+  },
+})
+
+const emits = defineEmits(["ok", "close", "update:modelValue"])
 const dialogStyle = {
   position: "absolute",
   right: "150px",
@@ -26,88 +48,30 @@ const bodyStyle = {
   padding: 0,
 };
 
-export default defineComponent({
-  props: {
-    componentSchema: {
-      type: Object as PropType<ComponentSchema>,
-      default: () => ({}),
-    },
-  },
-  emits: ["ok", "close", "update:modelValue"],
+const componentSchema = computed<Record<string, any>>(() => ({
+  ...props.componentSchema,
+  ...attrs,
+  title: props.componentSchema?.label ?? "",
+  wrapClassName: "epic-modal-ant",
+  open: attrs.modelValue,
+  visible: attrs.modelValue,
+  "onUpdate:open": handleClose,
+  "onUpdate:visible": handleClose,
+  style: "top:20px",
+  bodyStyle,
+  dialogStyle,
+  footer: null,
+  children: null
+}))
 
-  setup(props, { attrs, slots, emit }) {
-    return () => {
-      const componentSchema = {
-        ...props.componentSchema,
-        ...attrs,
-        title: props.componentSchema?.label ?? "",
-        wrapClassName: "epic-modal-ant",
-        open: attrs.modelValue,
-        "onUpdate:open": handleClose,
-        style: "top:20px",
-        bodyStyle,
-        dialogStyle,
-        footer: null,
-      } as Record<string, any>;
-      const children = componentSchema.children ?? [];
-      delete componentSchema.children;
+const children = props.componentSchema.children ?? [];
 
-      let vNodeClildren: any = null;
-      if (children.length) {
-        vNodeClildren = () =>
-          children.map((node: ComponentSchema) =>
-            renderSlot(slots, "node", { componentSchema: node })
-          );
-      } else {
-        vNodeClildren = () => [renderSlot(slots, "default")];
-      }
+function handleOk() {
+  emits("ok");
+}
 
-      function handleOk() {
-        emit("ok");
-      }
-
-      function handleClose() {
-        emit("update:modelValue", false);
-        emit("close");
-      }
-
-      return h(Modal, componentSchema, {
-        default: () => [
-          h(
-            "div",
-            { class: "epic-modal-main" },
-            renderSlot(slots, "edit-node", {}, vNodeClildren)
-          ),
-          h(
-            "div",
-            { class: "epic-modal-footer" },
-            h(
-              Space,
-              { align: "end" },
-              {
-                default: () => [
-                  h(
-                    Button,
-                    { onClick: handleClose },
-                    {
-                      default: () => "关闭",
-                    }
-                  ),
-                  h(
-                    Button,
-                    { type: "primary", onClick: handleOk },
-                    {
-                      default: () => componentSchema.okText ?? "确定",
-                    }
-                  ),
-                ],
-              }
-            )
-          ),
-        ],
-      });
-    };
-  },
-});
-
+function handleClose() {
+  emits("update:modelValue", false);
+  emits("close");
+}
 </script>
