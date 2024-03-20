@@ -1,5 +1,5 @@
 // 注册ant-design-vue ui
-import { type PluginManager } from "@epic-designer/utils";
+import { pluginManager } from "epic-designer";
 import Input from "./input";
 import Textarea from "./textarea";
 import InputNumber from "./input-number";
@@ -23,7 +23,7 @@ import Button from "./button";
 import Modal from "./modal";
 import colorPicker from "./color-picker";
 
-export function setupAntd(pluginManager: PluginManager): void {
+export function setupAntd(): void {
   // 异步加载组件
   pluginManager.component(
     "Collapse",
@@ -72,8 +72,6 @@ export function setupAntd(pluginManager: PluginManager): void {
     pluginManager.registerComponent(item);
   });
 
-
- // ui初始化完成。
-pluginManager.setInitialized(true);
-
+  // ui初始化完成。
+  pluginManager.setInitialized(true);
 }

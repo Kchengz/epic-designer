@@ -28,16 +28,24 @@ export default defineConfig({
     lib: {
       entry: {
         index: path.resolve(__dirname, "./index.ts"),
+        antd: path.resolve(__dirname, "../ui/antd/index.ts"),
+        elementPlus: path.resolve(__dirname, "../ui/elementPlus/index.ts"),
+        naiveUi: path.resolve(__dirname, "../ui/naiveUi/index.ts"),
+        // antdV3: path.resolve(__dirname, "../ui/ui-antdv3/src/index.ts"),
       },
       // 指定组件编译入口文件
       name: "epic-designer",
       // formats: ["es"],
-      // fileName: (ModuleFormat) => {
-      //   const extension = ModuleFormat === 'es' ? 'js' : ModuleFormat
-      //   // 区分默认入口文件和UI注册文件
-      //   const path = `epic-designer.${extension}`
-      //   return path
-      // }
+      fileName: (ModuleFormat,entryName) => {
+        console.log(ModuleFormat,entryName)
+        const extension = ModuleFormat === 'es' ? 'js' : ModuleFormat
+        // 区分默认入口文件和UI注册文件
+        const isIndexEntry = entryName === 'index'
+        const path = isIndexEntry
+          ? `index.${extension}`
+          : `ui/${entryName}/index.${extension}`
+        return path
+      }
     },
 
     // 库编译模式配置

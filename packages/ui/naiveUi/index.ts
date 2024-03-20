@@ -1,5 +1,5 @@
 // 注册naive-ui
-import { type PluginManager } from "@epic-designer/utils";
+import { pluginManager } from "epic-designer";
 import Input from "./input";
 import InputNumber from "./input-number";
 import Form from "./form";
@@ -23,7 +23,7 @@ import UploadFile from "./upload-file";
 import UploadImage from "./upload-image";
 import Modal from "./modal";
 
-export function setupNaiveUi(pluginManager: PluginManager): void {
+export function setupNaiveUi(): void {
   // 异步加载组件
   pluginManager.component(
     "FormItem",
