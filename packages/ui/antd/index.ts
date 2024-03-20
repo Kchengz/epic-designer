@@ -1,5 +1,6 @@
 // 注册ant-design-vue ui
 import { pluginManager as pManager, type PluginManager } from "epic-designer";
+import dayjs from "dayjs";
 
 import Input from "./input";
 import Textarea from "./textarea";
@@ -75,4 +76,213 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
 
   // ui初始化完成。
   pluginManager.setInitialized(true);
+}
+
+
+/**
+ * 设置 Day.js 的日期语言环境
+ * @param {string} locale - 日期语言环境，例如 'zh-cn', 'en', 'fr-fr' 等
+ */
+export function setDateLocale(locale = "zh-cn") {
+  // 设置 Day.js 的日期语言环境
+  dayjs.locale(locale);
+
+  // 根据不同的 locale 参数导入对应的 Day.js 语言环境
+  switch (locale.toLowerCase()) {
+    case "az-az":
+      import("dayjs/locale/az");
+      break;
+    case "bg-bg":
+      import("dayjs/locale/bg");
+      break;
+    case "bn-bd":
+      import("dayjs/locale/bn-bd");
+      break;
+    case "by-by":
+      import("dayjs/locale/be");
+      break;
+    case "ca-es":
+      import("dayjs/locale/ca");
+      break;
+    case "cs-cz":
+      import("dayjs/locale/cs");
+      break;
+    case "da-dk":
+      import("dayjs/locale/da");
+      break;
+    case "de-de":
+      import("dayjs/locale/de");
+      break;
+    case "el-gr":
+      import("dayjs/locale/el");
+      break;
+    case "en-gb":
+      import("dayjs/locale/en-gb");
+      break;
+    case "en-us":
+      import("dayjs/locale/en");
+      break;
+    case "es-es":
+      import("dayjs/locale/es");
+      break;
+    case "et-ee":
+      import("dayjs/locale/et");
+      break;
+    case "fa-ir":
+      import("dayjs/locale/fa");
+      break;
+    case "fi-fi":
+      import("dayjs/locale/fi");
+      break;
+      // case "fr-be":
+      //   import(`dayjs/locale/fr-be`);
+      break;
+    case "fr-ca":
+      import("dayjs/locale/fr-ca");
+      break;
+    case "fr-fr":
+      import("dayjs/locale/fr");
+      break;
+    case "ga-ie":
+      import("dayjs/locale/ga");
+      break;
+    case "gl-es":
+      import("dayjs/locale/gl");
+      break;
+    case "he-il":
+      import("dayjs/locale/he");
+      break;
+    case "hi-in":
+      import("dayjs/locale/hi");
+      break;
+    case "hr-hr":
+      import("dayjs/locale/hr");
+      break;
+    case "hu-hu":
+      import("dayjs/locale/hu");
+      break;
+    case "hy-am":
+      import("dayjs/locale/hy-am");
+      break;
+    case "id-id":
+      import("dayjs/locale/id");
+      break;
+    case "is-is":
+      import("dayjs/locale/is");
+      break;
+    case "it-it":
+      import("dayjs/locale/it");
+      break;
+    case "ja-jp":
+      import("dayjs/locale/ja");
+      break;
+    case "ka-ge":
+      import("dayjs/locale/ka");
+      break;
+    case "kk-kz":
+      import("dayjs/locale/kk");
+      break;
+    case "km-kh":
+      import("dayjs/locale/km");
+      break;
+    case "kmr-iq":
+      import("dayjs/locale/ku");
+      break;
+    case "kn-in":
+      import("dayjs/locale/kn");
+      break;
+    case "ko-kr":
+      import("dayjs/locale/ko");
+      break;
+    case "ku-iq":
+      import("dayjs/locale/ku");
+      break;
+    case "lt-lt":
+      import("dayjs/locale/lt");
+      break;
+    case "lv-lv":
+      import("dayjs/locale/lv");
+      break;
+    case "mk-mk":
+      import("dayjs/locale/mk");
+      break;
+    case "ml-in":
+      import("dayjs/locale/ml");
+      break;
+    case "mn-mn":
+      import("dayjs/locale/mn");
+      break;
+    case "ms-my":
+      import("dayjs/locale/ms-my");
+      break;
+    case "nb-no":
+      import("dayjs/locale/nb");
+      break;
+    case "ne-np":
+      import("dayjs/locale/ne");
+      break;
+    case "nl-be":
+      import("dayjs/locale/nl-be");
+      break;
+    case "nl-nl":
+      import("dayjs/locale/nl");
+      break;
+    case "pl-pl":
+      import("dayjs/locale/pl");
+      break;
+    case "pt-br":
+      import("dayjs/locale/pt-br");
+      break;
+    case "pt-pt":
+      import("dayjs/locale/pt");
+      break;
+    case "ro-ro":
+      import("dayjs/locale/ro");
+      break;
+    case "ru-ru":
+      import("dayjs/locale/ru");
+      break;
+    case "sk-sk":
+      import("dayjs/locale/sk");
+      break;
+    case "sl-si":
+      import("dayjs/locale/sl");
+      break;
+    case "sr-rs":
+      import("dayjs/locale/sr");
+      break;
+    case "sv-se":
+      import("dayjs/locale/sv");
+      break;
+    case "ta-in":
+      import("dayjs/locale/ta");
+      break;
+    case "th-th":
+      import("dayjs/locale/th");
+      break;
+    case "tr-tr":
+      import("dayjs/locale/tr");
+      break;
+    case "uk-ua":
+      import("dayjs/locale/uk");
+      break;
+    case "ur-pk":
+      import("dayjs/locale/ur");
+      break;
+    case "vi-vn":
+      import("dayjs/locale/vi");
+      break;
+    case "zh-cn":
+      import("dayjs/locale/zh-cn");
+      break;
+    case "zh-hk":
+      import("dayjs/locale/zh-hk");
+      break;
+    case "zh-tw":
+      import("dayjs/locale/zh-tw");
+      break;
+    default:
+      // Default action if locale is not found
+      break;
+  }
 }

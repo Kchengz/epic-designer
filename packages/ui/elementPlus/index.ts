@@ -97,3 +97,12 @@ export function setupElementPlus(
   // ui初始化完成。
   pluginManager.setInitialized(true);
 }
+
+/**
+ * 设置element GlobalConfig
+ */
+export function provideGlobalConfig(args: any) {
+  import("element-plus").then(({ provideGlobalConfig }) => {
+    provideGlobalConfig(args);
+  });
+}

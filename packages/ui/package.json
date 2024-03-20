@@ -8,9 +8,7 @@
   },
   "author": "kchengz",
   "devDependencies": {
-    "vite-plugin-dts": "^3.3.1"
-  },
-  "peerDependencies": {
+    "vite-plugin-dts": "^3.3.1",
     "ant-design-vue": "^4.0.6",
     "element-plus": "^2.5.6",
     "naive-ui": "^2.34.4"
