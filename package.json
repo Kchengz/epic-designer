@@ -18,7 +18,6 @@
   "devDependencies": {
     "@epic-designer/core": "workspace:*",
     "@epic-designer/ui": "workspace:*",
-    "@epic-designer/ui-antdv3": "workspace:*",
     "@epic-designer/utils": "workspace:*",
     "epic-designer": "workspace:*",
     "@turbo/gen": "^1.10.9",
