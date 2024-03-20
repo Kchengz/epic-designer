@@ -207,6 +207,9 @@ importers:
       element-plus:
         specifier: '>=2.1.4'
         version: 2.5.6(vue@3.3.8)
+      epic-designer:
+        specifier: '>=0.9.3'
+        version: 0.9.3(ant-design-vue@4.1.1)(element-plus@2.5.6)(naive-ui@2.34.4)(vue@3.3.8)
       monaco-editor:
         specifier: ^0.34.1
         version: registry.npmmirror.com/monaco-editor@0.34.1
@@ -1598,6 +1601,23 @@ packages:
       - '@vue/composition-api'
     dev: false
 
+  /epic-designer@0.9.3(ant-design-vue@4.1.1)(element-plus@2.5.6)(naive-ui@2.34.4)(vue@3.3.8):
+    resolution: {integrity: sha512-Hw+0c6BN/YAcH2SoD81OLXTYRYtUMSgXjkljd7ybkljzGDWRh7Whk0gJOo3GlVFqajtCMQDMBCJC1Xbycwu3RA==}
+    peerDependencies:
+      ant-design-vue: 4.1.1
+      element-plus: ^2.5.6
+      naive-ui: ^2.34.4
+      vue: ^3.3.4
+    dependencies:
+      ant-design-vue: 4.1.1(vue@3.3.8)
+      dayjs: 1.11.10
+      element-plus: 2.5.6(vue@3.3.8)
+      monaco-editor: 0.34.1
+      naive-ui: 2.34.4(vue@3.3.8)
+      vue: 3.3.8(typescript@5.2.2)
+      vuedraggable: 4.1.0(vue@3.3.8)
+    dev: false
+
   /errno@0.1.8:
     resolution: {integrity: sha512-dJ6oBr5SQ1VSd9qkk7ByRgb/1SH4JZjCHSW/mr63/QcXO9zLVxvJ6Oy13nio03rxpSnVDDjFor75SjVeZWPW/A==}
     hasBin: true
@@ -2264,6 +2284,10 @@ packages:
       brace-expansion: 1.1.11
     dev: true
 
+  /monaco-editor@0.34.1:
+    resolution: {integrity: sha512-FKc80TyiMaruhJKKPz5SpJPIjL+dflGvz4CpuThaPMc94AyN7SeC9HQ8hrvaxX7EyHdJcUY5i4D0gNyJj1vSZQ==}
+    dev: false
+
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
@@ -2587,6 +2611,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /sortablejs@1.14.0:
+    resolution: {integrity: sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==}
+    dev: false
+
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
@@ -2855,6 +2883,15 @@ packages:
       '@vue/server-renderer': 3.3.8(vue@3.3.8)
       '@vue/shared': 3.3.8
       typescript: 5.2.2
+
+  /vuedraggable@4.1.0(vue@3.3.8):
+    resolution: {integrity: sha512-FU5HCWBmsf20GpP3eudURW3WdWTKIbEIQxh9/8GE806hydR9qZqRRxRE3RjqX7PkuLuMQG/A7n3cfj9rCEchww==}
+    peerDependencies:
+      vue: ^3.0.1
+    dependencies:
+      sortablejs: 1.14.0
+      vue: 3.3.8(typescript@5.2.2)
+    dev: false
 
   /vueuc@0.4.51(vue@3.3.8):
     resolution: {integrity: sha512-pLiMChM4f+W8czlIClGvGBYo656lc2Y0/mXFSCydcSmnCR1izlKPGMgiYBGjbY9FDkFG8a2HEVz7t0DNzBWbDw==}

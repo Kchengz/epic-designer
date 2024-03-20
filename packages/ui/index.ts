@@ -1,5 +1,4 @@
 import { pluginManager } from "@epic-designer/utils";
-// export { provideGlobalConfig } from "element-plus";
 
 import dayjs from "dayjs";
 

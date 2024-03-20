@@ -1,5 +1,6 @@
 // 注册ant-design-vue ui
-import { pluginManager } from "epic-designer";
+import { pluginManager as pManager, type PluginManager } from "epic-designer";
+
 import Input from "./input";
 import Textarea from "./textarea";
 import InputNumber from "./input-number";
@@ -23,8 +24,8 @@ import Button from "./button";
 import Modal from "./modal";
 import colorPicker from "./color-picker";
 
-export function setupAntd(): void {
-  // 异步加载组件
+export function setupAntd(pluginManager: PluginManager = pManager): void {
+  // 加载组件
   pluginManager.component(
     "Collapse",
     async () => await import("ant-design-vue/lib/collapse")

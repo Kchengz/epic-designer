@@ -1,4 +1,3 @@
-import { pluginManager } from "./../../packages/utils/manager/pluginManager";
 import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
@@ -13,8 +12,7 @@ import { setupAntd } from '@epic-designer/ui'
 setupAntd()
 
 // 使用Antd UI v3 版本
-// import "ant-design-vue/dist/antd.css";
-
+import "ant-design-vue/dist/antd.css";
 
 // 使用NaiveUi UI
 // import { setupNaiveUi } from '@epic-designer/ui'

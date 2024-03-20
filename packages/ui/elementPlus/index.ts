@@ -1,5 +1,5 @@
 // 注册element-plus ui
-import { pluginManager } from "epic-designer";
+import { pluginManager as pManager, type PluginManager } from "epic-designer";
 
 import Input from "./input";
 import InputNumber from "./input-number";
@@ -30,7 +30,9 @@ import {
   ElCollapseItem,
 } from "element-plus";
 
-export function setupElementPlus(): void {
+export function setupElementPlus(
+  pluginManager: PluginManager = pManager
+): void {
   pluginManager.component("FormItem", ElFormItem);
   pluginManager.component("Tabs", ElTabs);
   pluginManager.component("TabPane", ElTabPane);
