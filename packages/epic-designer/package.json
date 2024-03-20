@@ -1,7 +1,7 @@
 {
   "name": "epic-designer",
   "private": false,
-  "version": "0.9.3",
+  "version": "0.9.4-beta.2",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -38,10 +38,10 @@
     "vuedraggable": "4.1.0"
   },
   "peerDependencies": {
-    "ant-design-vue": "4.1.1",
-    "element-plus": "^2.5.6",
-    "naive-ui": "^2.34.4",
-    "vue": "^3.3.4"
+    "ant-design-vue":">=3.2.20",
+    "element-plus": ">=2.1.4",
+    "naive-ui": ">=2.30.0",
+    "vue": ">=3.1.0"
   },
   "devDependencies": {
     "@algolia/client-search": "^4.19.1",
