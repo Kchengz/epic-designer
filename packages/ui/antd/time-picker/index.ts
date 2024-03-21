@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@epic-designer/utils'
 export default {
-  component: () => import('ant-design-vue/lib/time-picker'),
+  component: async () => (await import("ant-design-vue")).TimePicker,
   defaultSchema: {
     label: '时间选择器',
     type: 'time',

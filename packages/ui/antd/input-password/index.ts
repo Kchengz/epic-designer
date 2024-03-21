@@ -1,7 +1,6 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: async () =>
-    (await import("ant-design-vue/lib/input")).InputPassword,
+  component: async () => (await import("ant-design-vue")).InputPassword,
   defaultSchema: {
     label: "密码输入框",
     type: "password",

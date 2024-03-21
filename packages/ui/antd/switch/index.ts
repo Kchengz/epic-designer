@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: () => import("ant-design-vue/lib/switch"),
+  component: async () => (await import("ant-design-vue")).Switch,
   defaultSchema: {
     label: "开关",
     type: "switch",

@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: () => import("ant-design-vue/lib/input"),
+  component: async () => (await import("ant-design-vue")).Input,
   defaultSchema: {
     label: "输入框",
     type: "input",

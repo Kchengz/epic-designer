@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@epic-designer/utils'
 export default {
-  component:  () => import('ant-design-vue/lib/checkbox/Group'),
+  component: async () => (await import("ant-design-vue")).CheckboxGroup,
   defaultSchema: {
     label: '多选框',
     type: 'checkbox',

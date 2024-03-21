@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from '@epic-designer/utils'
 export default {
-  component: () => import('ant-design-vue/lib/select'),
+  component: async () => (await import("ant-design-vue")).Select,
   defaultSchema: {
     label: '选择框',
     type: 'select',

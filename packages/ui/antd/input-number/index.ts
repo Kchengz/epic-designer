@@ -1,6 +1,7 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
+
 export default {
-  component: () => import("ant-design-vue/lib/input-number"),
+  component: async () => (await import("ant-design-vue")).InputNumber,
   defaultSchema: {
     label: "数字输入框",
     type: "number",

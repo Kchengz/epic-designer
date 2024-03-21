@@ -192,5 +192,5 @@ export default {
       },
     ],
   },
-  bindModel: "value",
+  bindModel: "modelValue",
 } as ComponentConfigModel;

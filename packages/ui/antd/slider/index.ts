@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: () => import("ant-design-vue/lib/slider"),
+  component: async () => (await import("ant-design-vue")).Slider,
   defaultSchema: {
     label: "滑块",
     type: "slider",

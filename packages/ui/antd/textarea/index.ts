@@ -1,6 +1,6 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: async () => (await import("ant-design-vue/lib/input")).Textarea,
+  component: async () => (await import("ant-design-vue")).Textarea,
   defaultSchema: {
     label: "文本域",
     type: "textarea",
