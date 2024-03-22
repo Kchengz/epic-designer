@@ -79,11 +79,11 @@ const slots = inject('slots', {}) as Slots
 // 接收页面管理对象
 const pageManager = inject('pageManager', {}) as PageManager
 // 上级组件注入的disabled状态
-const disabled = inject<Ref<Boolean>>('disabled')
+const disabled = inject<Ref<boolean> | { value: false; }>('disabled', { value: false })
 // 校验前缀字段
 const ruleFieldPrefix = inject<any[] | null>('ruleFieldPrefix', null)
 // 重置表单数据，不设置到表单formData数据
-const resetFormDataInject = inject<Boolean>('resetFormData', false)
+const resetFormDataInject = inject<boolean>('resetFormData', false)
 
 // 重置表单数据，移除表单数据引用
 if (props.resetFormData || resetFormDataInject) {
@@ -173,7 +173,7 @@ const getComponentProps = computed(() => {
   return {
     ...props,
     ...innerSchema.componentProps,
-    disabled: disabled?.value || innerSchema.componentProps.disabled,
+    disabled: disabled?.value || innerSchema.componentProps?.disabled,
     bindModel,
     [`onUpdate:${bindModel}`]: handleUpdate,
     ...onEvent
