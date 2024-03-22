@@ -12,7 +12,7 @@
       </div>
     </template>
     <div
-      class="rule-btn-delete absolute top-0 right-0 transition-all w-6 h-6 cursor-pointer rounded-bl-1 flex-center color-white"
+      class="rule-btn-delete absolute top-0 right-0 transition-all w-24px h-24px cursor-pointer rounded-bl-2 flex justify-center items-center color-white"
       @click="handleDelete">
       <EIcon name="icon-shanchu1" />
     </div>
