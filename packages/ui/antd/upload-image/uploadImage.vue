@@ -1,7 +1,7 @@
 <template>
   <div class="epic-upload-image">
     <Upload v-bind="getUploadProps">
-      <div>
+      <div v-if="(fileList?.length ?? 0) < (props.maxCount ?? 999)">
         <span class="iconfont epic-icon-shangchuan1 mr-2px"></span>
         <div class="ant-upload-text">点击上传</div>
       </div>
@@ -41,6 +41,9 @@ const props = defineProps({
       type: Array as PropType<UploadProps["fileList"]>,
       default: () => [],
     },
+    maxCount:{
+      type: Number,
+    }
 })
 
 const emits = defineEmits(["update:modelValue", "change"])

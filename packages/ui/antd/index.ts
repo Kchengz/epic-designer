@@ -49,24 +49,15 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
   padding: 0px;
 }`;
     style.appendChild(document.createTextNode(css));
+    // 将 style 标签插入到页面的 head 中
+    document.head.appendChild(style);
+    // 版本兼容处理 end
   } else {
     // v3版本
     Form.config.attribute = Form.config.attribute?.filter(
       (item) => item.label !== "禁用"
     );
-
-    // 定义 CSS 样式
-    const css = `
-    .epic-designer-main .ant-slider-handle,
-    .epic-builder-main .ant-slider-handle {
-    transform: translate(-50%, 2px) !important;
-    }
-    `;
-    style.appendChild(document.createTextNode(css));
   }
-  // 将 style 标签插入到页面的 head 中
-  document.head.appendChild(style);
-  // 版本兼容处理 end
 
   // 加载组件
   pluginManager.component(
