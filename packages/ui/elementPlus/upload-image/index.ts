@@ -8,7 +8,7 @@ export default {
     field: 'uploadImage',
     input: true,
     componentProps: {
-      action: 'https://mock.presstime.cn/mock/6562298755736ae9dfa4646a/epic/upload',
+      action: 'https://epic.kcz66.com/static/upload-img.json',
       name: 'file',
       showFileList: true
     }

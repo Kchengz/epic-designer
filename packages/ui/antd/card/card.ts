@@ -1,5 +1,5 @@
 import { defineComponent, h, renderSlot, type PropType } from "vue";
-import Card from "ant-design-vue/lib/card";
+import { Card } from "ant-design-vue";
 import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 export default defineComponent({
   props: {

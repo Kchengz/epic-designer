@@ -6,7 +6,7 @@
 <script lang="ts" setup>
 import { PropType } from 'vue'
 import type { ComponentSchema } from '@epic-designer/core/types/epic-designer'
-import Button from 'ant-design-vue/lib/button'
+import { Button } from 'ant-design-vue'
 const props = defineProps({
   componentSchema: {
     type: Object as PropType<ComponentSchema>,

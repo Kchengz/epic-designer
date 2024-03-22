@@ -1,3 +1,24 @@
+<template>
+  <div class="epic-upload-image">
+    <Upload v-bind="getUploadProps">
+      <div>
+        <span class="iconfont epic-icon-shangchuan1 mr-2px"></span>
+        <div class="ant-upload-text">点击上传</div>
+      </div>
+    </Upload>
+    <Image
+      style="display: none"
+      :src="imgUrl"
+      :preview="{
+        visible,
+        onVisibleChange: setVisible,
+      }"
+      @error="previewError"
+    />
+  </div>
+</template>
+
+<script lang="ts" setup>
 import {
   type PropType,
   defineComponent,
@@ -6,26 +27,24 @@ import {
   computed,
   ref,
   watch,
+  useAttrs
 } from "vue";
-import Upload from "ant-design-vue/lib/upload";
-import message from "ant-design-vue/lib/message";
-import * as AImage from "ant-design-vue/lib/image";
+import { Upload, message, Image } from "ant-design-vue";
 import type {
   UploadChangeParam,
   UploadProps,
   UploadFile,
 } from "ant-design-vue";
-
-// 封装上传文件组件
-export default defineComponent({
-  props: {
-    modelValue: {
+const attrs = useAttrs()
+const props = defineProps({
+  modelValue: {
       type: Array as PropType<UploadProps["fileList"]>,
       default: () => [],
     },
-  },
-  emits: ["update:modelValue", "change"],
-  setup(props, { emit, attrs }) {
+})
+
+const emits = defineEmits(["update:modelValue", "change"])
+
     const fileList = ref<UploadProps["fileList"]>([]);
 
     const imgUrl = ref("");
@@ -35,8 +54,8 @@ export default defineComponent({
     };
 
     watch(fileList, (e) => {
-      emit("update:modelValue", e);
-      emit("change", e);
+      emits("update:modelValue", e);
+      emits("change", e);
     });
     // 处理传递进来的值
     watch(
@@ -123,45 +142,4 @@ export default defineComponent({
       if (!imgUrl.value) return;
       message.error("图片地址无法访问!");
     }
-
-    return () => {
-      // const type = attrs.type;
-      return h(
-        "div",
-        {
-          class: "epic-upload-image",
-        },
-        {
-          default: () => [
-            h(Upload, getUploadProps.value, {
-              default: () => [
-                h("div", null, {
-                  default: () => [
-                    h("span", {
-                      class: "iconfont epic-icon-shangchuan1",
-                      style: { "margin-right": "2px" },
-                    }),
-                    h(
-                      "div",
-                      { class: "ant-upload-text" },
-                      { default: () => "点击上传" }
-                    ),
-                  ],
-                }),
-              ],
-            }),
-            h(AImage, {
-              style: { display: "none" },
-              src: imgUrl.value,
-              preview: {
-                visible,
-                onVisibleChange: setVisible,
-              },
-              onError: previewError,
-            }),
-          ],
-        }
-      );
-    };
-  },
-});
+</script>

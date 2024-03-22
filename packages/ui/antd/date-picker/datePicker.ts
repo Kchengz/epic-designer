@@ -1,8 +1,8 @@
 import { defineComponent, h, watch } from "vue";
-import datePicker from "ant-design-vue/lib/date-picker";
+import { DatePicker } from "ant-design-vue";
 // 二次封装组件
 export default defineComponent({
-  name: "DatePicker",
+  name: "EDatePicker",
   emits: ["update:modelValue", "change", "blur"],
   setup(_, { emit, attrs }) {
     watch(
@@ -18,7 +18,7 @@ export default defineComponent({
       emit("blur", e);
     }
     return () => {
-      let cmp: any = datePicker;
+      let cmp: any = DatePicker;
       const type = attrs.type;
 
       const props: Record<string, any> = {
@@ -32,11 +32,11 @@ export default defineComponent({
         if (typeof props.value !== "object" && props.value !== null) {
           props.value = null;
         }
-        cmp = datePicker.RangePicker;
+        cmp = DatePicker.RangePicker;
       } else if (type === "month") {
         // 默认值与组件类型不匹配时需清空默认值
         if (typeof props.value === "object") props.value = null;
-        cmp = datePicker.MonthPicker;
+        cmp = DatePicker.MonthPicker;
       } else {
         // 默认值与组件类型不匹配时需清空默认值
         if (typeof props.value === "object") props.value = null;
