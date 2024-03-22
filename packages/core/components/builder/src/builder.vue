@@ -70,10 +70,10 @@ function getData(formName = 'default'): Promise<FormDataModel | boolean> {
     // 判断表单是否已经初始化
     if (!ready.value) {
       // 监听表单初始化状态
-      const unwatch = watch(ready, () => {
+      const unwatch = watch(ready, async () => {
         // 注销监听
         unwatch()
-        resolve(getData(formName))
+        resolve(await getData(formName))
       })
       return
     }
@@ -101,10 +101,10 @@ function validate(formName = 'default'): Promise<FormDataModel | boolean> {
     // 判断表单是否已经初始化
     if (!ready.value) {
       // 监听表单初始化状态
-      const unwatch = watch(ready, () => {
+      const unwatch = watch(ready, async () => {
         // 注销监听
         unwatch()
-        resolve(getData(formName))
+        resolve(await validate(formName))
       })
       return
     }
@@ -154,6 +154,43 @@ function setData(data: FormDataModel, formName = 'default') {
 
   form.setData(data)
 }
+
+/**
+ * 获取表单实例的异步函数
+ * @param {string} formName - 表单名称，默认为 'default'
+ * @returns {Promise<any | boolean>} - 返回一个 Promise 对象，可能是表单实例或布尔值
+ */
+function getFormInstance(formName = 'default'): Promise<any | boolean> {
+  return new Promise(async (resolve, reject) => {
+    // 判断表单是否已经初始化
+    if (!ready.value) {
+      // 监听表单初始化状态
+      const unwatch = watch(ready, async () => {
+        // 注销监听
+        unwatch();
+        // 重新调用 getFormInstance，直到表单初始化完成
+        resolve(await getFormInstance(formName));
+      });
+      return;
+    }
+
+    // 获取指定名称的表单实例
+    const form = forms.value?.[formName];
+    // 通过表单查询不到表单实例
+    if (!form) {
+      // 输出错误信息并拒绝 Promise
+      // console.error(`表单 [name=${formName}] 不存在`);
+      reject(`表单 [name=${formName}] 不存在`);
+      return false;
+    }
+
+    // 成功获取表单实例，解析 Promise
+    resolve(form);
+
+  })
+}
+
+
 const { proxy } = getCurrentInstance() as ComponentInternalInstance
 /**
  * 组件（包含异步组件）加载完成后
@@ -174,6 +211,7 @@ defineExpose({
   ready,
   getData,
   setData,
-  validate
+  validate,
+  getFormInstance
 })
 </script>
