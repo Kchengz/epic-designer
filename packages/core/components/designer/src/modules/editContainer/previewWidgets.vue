@@ -7,7 +7,7 @@
       <div class="action-item whitespace-nowrap">
         <!-- {{ designer.state.checkedNode?.type }} -->
         {{ pluginManager.getComponentConfingByType(designer.state.checkedNode?.type
-          ?? '')?.defaultSchema.label }}
+      ?? '')?.defaultSchema.label }}
       </div>
       <div title="复制" class="action-item pointer-events-auto" @click="handleCopy">
         <EIcon name="icon-fuzhi3" />
@@ -24,7 +24,7 @@
 </template>
 <script lang="ts" setup>
 import { PageSchema, Designer } from '../../../../../types/epic-designer'
-import { inject, computed, ref, onMounted, watch } from 'vue'
+import { inject, computed, ref, watch } from 'vue'
 import { pluginManager, generateNewSchema, revoke, findSchemaInfoById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
 import { useResizeObserver } from '@vueuse/core'
 import EIcon from '../../../../icon'
@@ -39,6 +39,7 @@ const actionBoxRef = ref<HTMLDivElement | null>(null)
 const showSelector = ref(false)
 const showHover = ref(false)
 const selectorTransition = ref(true)
+
 
 const selectorPosition = ref<'top' | 'center' | 'bottom'>('top')
 
@@ -278,9 +279,9 @@ function handleDelete() {
   revoke.push(pageSchema.schemas, '删除组件')
 }
 
-onMounted(() => {
-  kEditRange = document.querySelector('.epic-edit-range')
-
+// 初始化函数，传入一个指向 Epic 编辑范围的引用
+function handleInit(epicEditRangeRef) {
+  kEditRange = epicEditRangeRef
   kEditRange?.addEventListener('scroll', () => {
     setSeletorStyle()
   })
@@ -289,6 +290,10 @@ onMounted(() => {
   useResizeObserver(getSelectComponentElement, setSeletorStyle)
   // 监听悬停元素视窗变化
   useResizeObserver(getHoverComponentElement, setSeletorStyle)
+}
+
+defineExpose({
+  handleInit
 })
 
 </script>

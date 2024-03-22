@@ -1,8 +1,7 @@
 <template>
-  <div class="demo-content">
-  <ConfigProvider :locale="zhCN">
+  <div class="demo-content flex">
     <Designer />
-  </ConfigProvider>
+    <Designer />
     <!-- <Builder /> -->
   </div>
 </template>
@@ -10,8 +9,6 @@
 import Designer from './views/designer/index.vue'
 // import Builder from './views/builder/index.vue'
 
-import { ConfigProvider } from 'ant-design-vue'
-import zhCN from 'ant-design-vue/es/locale/zh_CN';
 
 
 </script>
