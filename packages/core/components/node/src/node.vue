@@ -2,7 +2,7 @@
   <FormItem v-if="innerSchema.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show"
     ref="formItemRef" v-bind="getFormItemProps">
     <component :is="component" ref="componentInstance" @vue:mounted="handleAddComponentInstance"
-      v-bind="{ ...componentProps, ...innerSchema.componentProps, ...dataSource, [componentProps.bindModel]: getBindValue() }">
+      v-bind="{ ...getComponentProps, ...dataSource, [getComponentProps.bindModel]: getBindValue() }">
       <!-- 嵌套组件递归 start -->
       <!-- 渲染子组件 start -->
       <template #node="data">
@@ -19,7 +19,7 @@
   <!-- 无需FormItem start -->
   <component :is="component" v-else-if="component && show" @vue:mounted="handleAddComponentInstance"
     ref="componentInstance" :model="formData"
-    v-bind="{ ...componentProps, ...innerSchema.componentProps, ...dataSource, [componentProps.bindModel]: getBindValue() }">
+    v-bind="{ ...getComponentProps, ...dataSource, [getComponentProps.bindModel]: getBindValue() }">
     <!-- 嵌套组件递归 start -->
     <!-- 渲染子组件 start -->
     <template #node="data">
@@ -35,7 +35,7 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, ref, inject, computed, reactive, useAttrs, onUnmounted, provide, Slots, renderSlot, defineComponent, watch, h, ComponentPublicInstance } from 'vue'
+import { shallowRef, ref, Ref, inject, computed, reactive, useAttrs, onUnmounted, provide, Slots, renderSlot, defineComponent, watch, h, ComponentPublicInstance } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager, deepClone, deepCompareAndModify, deepEqual } from '@epic-designer/utils'
 import { FormDataModel, ComponentSchema } from '../../../types/epic-designer'
 
@@ -79,7 +79,7 @@ const slots = inject('slots', {}) as Slots
 // 接收页面管理对象
 const pageManager = inject('pageManager', {}) as PageManager
 // 上级组件注入的disabled状态
-const disabled = inject<Boolean>('disabled', false)
+const disabled = inject<Ref<Boolean>>('disabled')
 // 校验前缀字段
 const ruleFieldPrefix = inject<any[] | null>('ruleFieldPrefix', null)
 // 重置表单数据，不设置到表单formData数据
@@ -107,7 +107,7 @@ if (Object.keys(attrs).length) {
 
 // 定义组件及组件props字段
 const component = shallowRef<any>(null)
-const componentProps = shallowRef<any>({})
+// const componentProps = shallowRef<any>({})
 const dataSource = reactive<any>({})
 
 const show = computed(() => {
@@ -159,6 +159,25 @@ const getFormItemProps = computed(() => {
     delete formItemProps['children']
   }
   return formItemProps
+})
+
+// 获取组件props数据
+const getComponentProps = computed(() => {
+  const bindModel = getComponentConfing.value?.bindModel ?? 'modelValue'
+
+  const onEvent: { [type: string]: Function } = {}
+  innerSchema.on && Object.keys(innerSchema.on).forEach((item) => {
+    onEvent[`on${capitalizeFirstLetter(item)}`] = (...args) => pageManager.doActions(innerSchema.on[item], ...args)
+  })
+
+  return {
+    ...props,
+    ...innerSchema.componentProps,
+    disabled: disabled?.value || innerSchema.componentProps.disabled,
+    bindModel,
+    [`onUpdate:${bindModel}`]: handleUpdate,
+    ...onEvent
+  }
 })
 
 // 获取组件原配置
@@ -257,7 +276,6 @@ async function initComponent() {
     console.error(`组件${innerSchema.type}未注册`)
     return
   }
-  const bindModel = getComponentConfing.value?.bindModel ?? 'modelValue'
 
   // 如果数据项为函数，则判定为懒加载组件
   if (typeof cmp === 'function') {
@@ -268,19 +286,6 @@ async function initComponent() {
     component.value = cmp
   }
 
-  const onEvent: { [type: string]: Function } = {}
-  innerSchema.on && Object.keys(innerSchema.on).forEach((item) => {
-    onEvent[`on${capitalizeFirstLetter(item)}`] = (...args) => pageManager.doActions(innerSchema.on[item], ...args)
-  })
-
-  // 获取组件props数据
-  componentProps.value = {
-    ...props,
-    disabled: disabled || innerSchema.disabled,
-    bindModel,
-    [`onUpdate:${bindModel}`]: handleUpdate,
-    ...onEvent
-  }
 }
 
 /**

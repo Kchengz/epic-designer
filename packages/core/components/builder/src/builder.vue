@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 import ENode from '../../node'
-import { reactive, provide, ref, watch, useSlots, nextTick, getCurrentInstance, type ComponentInternalInstance } from 'vue'
+import { reactive, provide, computed, ref, watch, useSlots, nextTick, getCurrentInstance, type ComponentInternalInstance } from 'vue'
 import { PageSchema, FormDataModel } from '../../../types/epic-designer'
 import { loadAsyncComponent, pluginManager, deepCompareAndModify, deepClone, usePageManager } from '@epic-designer/utils'
 const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
@@ -31,7 +31,8 @@ const slots = useSlots()
 const forms = ref<any>({})
 const ready = ref<boolean>(false)
 const props = defineProps<{
-  pageSchema: PageSchema
+  pageSchema: PageSchema;
+  disabled?: boolean
 }>()
 
 const pageSchemaReactive = reactive<PageSchema>({
@@ -57,6 +58,7 @@ provide('slots', slots)
 provide('pageManager', pageManager)
 provide('forms', forms)
 provide('pageSchema', pageSchemaReactive)
+provide('disabled', computed(() => props.disabled))
 
 /**
  * 跳过验证直接获取表单数据
