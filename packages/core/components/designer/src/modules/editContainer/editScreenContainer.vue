@@ -113,24 +113,30 @@ function setScroll() {
   })
 }
 
-/**
- * editScreenContainerRef 宽度变化，重置缩放
- */
-useResizeObserver(editScreenContainerRef, ([{ contentRect }]) => {
-  contentRectWidth = contentRect.width - 60
-  contentRectHeight = contentRect.height - 80
 
+// 使用 ResizeObserver 监听editScreenContainerRef编辑屏幕容器尺寸变化
+useResizeObserver(editScreenContainerRef, ([{ contentRect }]) => {
+  // 计算编辑屏幕容器的宽度和高度，减去固定的边距值
+  contentRectWidth = contentRect.width - 60;
+  contentRectHeight = contentRect.height - 80;
+
+  // 如果画布缩放未被禁用
   if (!disabledZoom.value) {
-    // 启动画布缩放计算
-    const scale = (contentRect.width - 20) / getCanvasAttribute.value.width
-    // 超过1.2倍不自动缩放
-    if (scale < 1.2) {
-      canvasScale.value = scale
+    // 如果画布的宽度为0，即没有内容
+    if (getCanvasAttribute.value.width === 0) {
+      // 设置画布缩放为默认值1
+      canvasScale.value = 1;
+    } else {
+      // 计算画布应该缩放的比例，使其适应容器的宽度
+      const scale = (contentRectWidth - 20) / getCanvasAttribute.value.width;
+
+      // 如果计算的缩放比例小于1.2，则更新画布缩放
+      canvasScale.value = scale < 1.2 ? scale : canvasScale.value;
     }
   }
 
-  updateScrollBoxStyle()
-})
-
+  // 更新滚动区域的样式，根据新的容器尺寸和画布缩放
+  updateScrollBoxStyle();
+});
 
 </script>

@@ -3,7 +3,8 @@
     <div class="edit-toolbar flex items-center justify-between px-4 mx-1">
         <div class="flex-1 h-full flex items-center">
             <div :title="item.title" class="action-item h-90% px-10px flex items-center hover:bg-gray-50 cursor-pointer"
-                v-for="(item, index) in actionOptions" :class="{ disabled: item.disabled }" :key="index" @click="item.on">
+                v-for="(item, index) in actionOptions" :class="{ disabled: item.disabled }" :key="index"
+                @click="item.on">
                 <EIcon :name="item.icon"></EIcon>
             </div>
         </div>
@@ -22,8 +23,8 @@
             <!-- 缩放操作 start  -->
             <div v-if="!disabledZoom" class="flex items-center ml-12px">
                 <div class="pr-8px w-82px cursor-pointer">
-                    <Select v-model:value="canvasScaleComuted" v-model="canvasScaleComuted" :options="canvasScaleOptions"
-                        size="small"></Select>
+                    <Select v-model:value="canvasScaleComuted" v-model="canvasScaleComuted"
+                        :options="canvasScaleOptions" size="small"></Select>
                 </div>
                 <div class="w-90px cursor-pointer">
                     <Slider :min="0.6" :max="1.4" :step="0.01" :tooltip="false" v-model:value="canvasScale"
