@@ -18,7 +18,6 @@
 </p>
 
 
-
 📦github仓库：[https://github.com/Kchengz/epic-designer](https://github.com/Kchengz/epic-designer)
 
 📦gitee仓库：[https://gitee.com/kcz66/epic-designer](https://gitee.com/kcz66/epic-designer)
@@ -61,13 +60,13 @@
 
 ## 核心组件介绍
 
-#### e-designer 设计器
+#### EDesigner 设计器
 
-`e-designer` 是一个可视化设计器组件，用户可以通过拖拽组件的方式快速生成 JSON 配置。它提供了丰富的组件库和配置项，用户可以根据需要选择合适的组件并配置相应的属性、事件和动作。设计器还提供了实时预览功能，用户可以随时查看所设计页面的效果。最终，用户可以将 JSON 配置导出，用于页面的生成和修改。
+`EDesigner ` 是一个可视化设计器组件，用户可以通过拖拽组件的方式快速生成 JSON 配置。它提供了丰富的组件库和配置项，用户可以根据需要选择合适的组件并配置相应的属性、事件和动作。设计器还提供了实时预览功能，用户可以随时查看所设计页面的效果。最终，用户可以将 JSON 配置导出，用于页面的生成和修改。
 
-#### e-builder 生成器
+#### EBuilder 生成器
 
-`e-builder` 是一个页面构建组件，它可以将设计器生成的 JSON 配置构建成页面，完成组件的渲染、事件绑定和数据回显等操作。
+`EBuilder` 是一个页面构建组件，它可以将设计器生成的 JSON 配置构建成页面，完成组件的渲染、事件绑定和数据回显等操作。
 
 ## 安装 epic-designer
 
@@ -83,7 +82,9 @@ epic-designer 目标是支持多 UI 兼容,目前支持以下 UI
 
 ## 选择 UI 组件库
 
-- ### 选择 element-plus
+### 选择 element-plus
+
+安装ui框架依赖
 
 ```bash
 npm i element-plus
@@ -92,16 +93,20 @@ npm i element-plus
 main.ts 或者 main.js 引入注册组件
 
 ```javascript
+// 引入epic-designer样式
+import "epic-designer/dist/style.css";
+
 // 引入Element plus样式
 import "element-plus/dist/index.css";
-// 引入k-designer样式
-import "epic-designer/dist/style.css";
-import { setupElementPlus } from "epic-designer";
+
+import { setupElementPlus } from "epic-designer/dist/ui/elementPlus";
 // 注册Element UI
 setupElementPlus();
 ```
 
-- ### 选择 ant-design-vue v4.x版本（antd推荐使用v4.x版本）
+### 选择 ant-design-vue v4.x版本（antd推荐使用v4.x版本）
+
+安装ui框架依赖
 
 ```bash
 npm i ant-design-vue
@@ -110,36 +115,48 @@ npm i ant-design-vue
 main.ts 或者 main.js 引入注册组件
 
 ```javascript
-// 引入k-designer样式
+// 引入epic-designer样式
 import "epic-designer/dist/style.css";
+
 // 引入antd UI 重置样式
 import "ant-design-vue/dist/reset.css";
-import { setupAntd } from "epic-designer";
+
+import { setupAntd } from "epic-designer/dist/ui/antd";
 // 使用Antd UI
 setupAntd();
 ```
 
-- ### 注：ant-design-vue v3.x版本需要改成下面方式
+### ant-design-vue v3.x版本需要改成下面方式
+
+  为了减少维护精力，后续开发测试主要以 v4.x版本，不再对v3.x版本进行测试，建议升级ant-design-vue到v4.x最新版本
 
 ```javascript
+// 引入epic-designer样式
+import "epic-designer/dist/style.css";
+
 // 引入antd UI样式
 import "ant-design-vue/dist/antd.css";
-// 引入k-designer样式
-import "epic-designer/dist/style.css";
-import { setupAntdV3 } from "epic-designer";
+
+import { setupAntd } from "epic-designer/dist/ui/antd";
 // 使用Antd UI
-setupAntdV3();
+setupAntd();
 ```
 
-- ### 选择 naive-ui
+### 选择 naive-ui
 
+安装ui框架依赖
+
+```bash
+npm i -D naive-ui
+```
 
 main.ts 或者 main.js 引入注册组件
 
 ```javascript
-// 引入k-designer样式
+// 引入epic-designer样式
 import "epic-designer/dist/style.css";
-import { setupNaiveUi } from "epic-designer";
+
+import { setupNaiveUi } from "epic-designer/dist/ui/naiveUi";
 // 注册Naive Ui
 setupNaiveUi();
 ```
@@ -161,7 +178,6 @@ import { EDesigner } from "epic-designer";
 }
 </style>
 ```
-
 ## EBuilder(生成器) 基础用法
 
 ```vue
@@ -212,7 +228,6 @@ const pageSchema = {
 - [【epic-designer 交流群：747609683】](https://jq.qq.com/?_wv=1027&k=CtrM9ce2)
 
 ## 捐赠
-
 如果你觉得epic-designer对你有帮助，欢迎给我捐赠
 
 ![](https://epic.kcz66.com/static/donation.png)

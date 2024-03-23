@@ -22,10 +22,10 @@
 
 ### 新建designer-extensions/index.ts(扩展函数)
 ```ts
-import { type PluginManager } from "epic-designer";
+import { pluginManager } from "epic-designer";
 
 // 安装扩展
-export function setupDesignerExtensions(pluginManager: PluginManager): void {
+export function setupDesignerExtensions(): void {
   // 添加右侧模块
   pluginManager.registerRightSidebar({
     id: "test_view",
@@ -38,9 +38,9 @@ export function setupDesignerExtensions(pluginManager: PluginManager): void {
 
 ```ts
 import { setupDesignerExtensions } from "./designer-extensions";
-import { pluginManager } from "epic-designer";
+
 // 执行扩展函数
-setupDesignerExtensions(pluginManager);
+setupDesignerExtensions();
 ```
 
 

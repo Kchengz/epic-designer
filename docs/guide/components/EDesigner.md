@@ -53,7 +53,8 @@ function handleSubmit(e) {
 
 <script setup>
 import "epic-designer/dist/style.css";
-import { EDesigner,setupElementPlus } from "epic-designer";
+import { EDesigner } from "epic-designer";
+import { setupElementPlus } from "epic-designer/dist/ui/elementPlus";
 import 'element-plus/dist/index.css'
 setupElementPlus();
 

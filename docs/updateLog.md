@@ -1,3 +1,22 @@
+## 0.9.4（2024-03-23）
+
+### ✨ Feat
+
+- [pageManager对象添加find方法](https://github.com/Kchengz/epic-designer/commit/c7355ad981c644e8fa51e628ceec35fcb3065be5)
+- [EBuilder新增disabled属性，禁用所有输入项](https://github.com/Kchengz/epic-designer/commit/f57204f66243d0bfa80f84002570df9e7cf9c8a8)
+- [builder组件新增getFormInstance方法函数](https://github.com/Kchengz/epic-designer/commit/b54e679d7311d335169f60fa93a6d7a375124616)
+
+### ✨ refactor
+
+- antd v3 v4版本兼容合并
+
+### 🐛 Bug Fixes
+
+- [修复setAttr方法设置组件属性时会直接修改componentSchema问题](https://github.com/Kchengz/epic-designer/commit/b94a30e802e8730a6dc238cad0a52e0e0c3bb0eb)
+- [修复同时两个designer时，第二个设计器选择异常问题](https://github.com/Kchengz/epic-designer/commit/127e107beebaaa8c65fe44d5cf95e192700bce9b)
+- [修复缩放计算出现Infinity问题](https://github.com/Kchengz/epic-designer/commit/f3d2954a9e1e669b35d44cfb692e1f7ac8e00181)
+- [Antd(input)没有显示最大字符数](https://github.com/Kchengz/epic-designer/commit/88d63bbaecd371ab67884c64f7b6f6eaf30e3039)
+
 ## 0.9.3（2024-03-14）
 
 ### 🐛 Bug Fixes

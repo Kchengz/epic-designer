@@ -14,7 +14,7 @@
 
 ```tsx
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-import { provideGlobalConfig } from 'epic-designer'
+import { provideGlobalConfig } from "epic-designer/dist/ui/elementPlus";
 provideGlobalConfig({ locale: zhCn });
 ```
 
@@ -27,7 +27,7 @@ provideGlobalConfig({ locale: zhCn });
 完成UI文档国际化基础上，添加`setDateLocale`函数，完成EpicDesigner内部国际化
 
 ```tsx
-import { setDateLocale } from 'epic-designer'
+import { setDateLocale } from "epic-designer/dist/ui/antd";
 setDateLocale('zh-cn')
 ```
 
