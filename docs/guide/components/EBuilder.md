@@ -218,7 +218,7 @@ async function handleValidate(){
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import { EBuilder, PageSchema } from '@epic-designer/core'
+import { EBuilder, PageSchema } from 'epic-designer'
 
 const ebRef = ref<any>(null)
 
@@ -290,16 +290,17 @@ onMounted(async () => {
   })
 })
 </script>
+
 ```
 
 <script setup>
 import { EBuilder } from "epic-designer";
 import { ref,onMounted } from 'vue'
 import "epic-designer/dist/style.css";
-import { EDesigner } from "epic-designer";
+import { EDesigner, pluginManager } from "epic-designer";
 import { setupElementPlus } from "epic-designer/dist/ui/elementPlus";
 import 'element-plus/dist/index.css'
-setupElementPlus();
+setupElementPlus(pluginManager);
 const ebForm = ref(null)
 const formData = ref(null)
 const ebRef2 = ref(null)
