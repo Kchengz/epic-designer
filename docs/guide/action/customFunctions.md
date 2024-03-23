@@ -272,10 +272,11 @@ epic.json 数据
 
 <script setup>
 import "epic-designer/dist/style.css";
-import { pluginManager,EDesigner,EBuilder,setupElementPlus } from "epic-designer";
+import { setupElementPlus } from "epic-designer/dist/ui/elementPlus";
+import { EDesigner,EBuilder } from "epic-designer";
 import 'element-plus/dist/index.css';
 import { ref, onMounted } from 'vue';
-setupElementPlus(pluginManager);
+setupElementPlus();
 const edRef = ref(null)
 const pageSchema = {
   "schemas": [

@@ -1,0 +1,1 @@
+import{i as o,o as a,c as s,V as t}from"../app.40ba1749.js";const m=o({name:"EIcon",__name:"icon",props:{name:{},prefix:{default:"epic-"}},setup(n){const e=n;return(c,p)=>(a(),s("span",{class:t(["iconfont",e.prefix+e.name])},null,2))}});export{m};
