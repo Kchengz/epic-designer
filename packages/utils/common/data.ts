@@ -214,11 +214,11 @@ export function getMatchedById(schemas: ComponentSchema[], id: string): Componen
  */
 export function getAttributeValue(
   field: string,
-  obj: ComponentSchema
-): ComponentSchema | undefined {
+  obj: Record<string,any>
+): Record<string,any> | undefined {
   // 使用“.”作为分隔符拆分field字符串，以创建字段数组。
   const fieldList = field.split(".");
-  let data: ComponentSchema | undefined = obj;
+  let data: Record<string,any> | undefined = obj;
   // 遍历fieldList中每个字段，以从obj中检索字段的值
   for (let i = 0; i < fieldList.length; i++) {
     // 更新nodeItem为nodeItem中当前字段的值。
@@ -248,11 +248,11 @@ export function getAttributeValue(
 export function setAttributeValue(
   value: any,
   field: string,
-  obj: ComponentSchema
+  obj: Record<string,any>
 ): void {
   // 使用“.”作为分隔符拆分field字符串，以创建字段数组。
   const fieldList = field.split(".");
-  let data: ComponentSchema = obj;
+  let data: Record<string,any> = obj;
 
   // 遍历属性路径数组
   fieldList.forEach((item, index) => {
