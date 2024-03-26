@@ -91,7 +91,7 @@ export class PluginManager {
   componentGroupNameMap: Record<string, string> = {};
 
   // 组件分组排序列表(设置之后，按该数组下标排序)
-  sortedGroups: string[] = [];
+  sortedGroups: string[] = ["表单", "布局"];
 
   // 视图容器模型，包含活动栏和右侧边栏的配置
   viewsContainers: ViewsContainersModel = {
