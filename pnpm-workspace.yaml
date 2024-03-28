@@ -2,4 +2,5 @@ packages:
   - "packages/*"
   - "docs"
   - "examples"
+  - "!packages/epic-designer"
 
