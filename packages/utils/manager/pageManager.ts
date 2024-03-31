@@ -90,7 +90,7 @@ export function usePageManager(): PageManager {
   function doActions(actions: ActionsModel[], ...args: any): void {
     actions?.forEach((action) => {
       if (action.type === "public") {
-        pluginManager.publicMethods[action.methodName]?.method(action.args);
+        pluginManager.publicMethods[action.methodName]?.method(...args);
       }
 
       if (action.type === "custom") {
