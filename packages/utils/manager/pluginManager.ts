@@ -363,6 +363,7 @@ export class PluginManager {
    */
   setSortedGroups(sortedGroups: string[]) {
     this.sortedGroups = sortedGroups;
+    this.computedComponentSchemaGroups();
   }
 
   /**
@@ -370,6 +371,7 @@ export class PluginManager {
    */
   clearSortedGroups() {
     this.sortedGroups = [];
+    this.computedComponentSchemaGroups();
   }
 
   /**
