@@ -276,7 +276,7 @@ export function getFormFields(schemas: ComponentSchema[], formName = "default") 
   const formSchema = findSchemas(
     schemas,
     (currentNode) => {
-      return currentNode.type === "form" && currentNode.name === formName;
+      return currentNode.type === "form" && (currentNode.componentProps?.name ?? currentNode.name === formName);
     },
     true
   ) as ComponentSchema;
