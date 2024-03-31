@@ -59,6 +59,8 @@ const EEditContainer = loadAsyncComponent(() => import('./modules/editContainer/
 const ERightSidebar = loadAsyncComponent(() => import('./modules/rightSidebar/index.vue'))
 const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
 const pageManager = usePageManager()
+// 设置为设计模式
+pageManager.setDesignMode()
 
 const props = withDefaults(defineProps<DesignerProps>(), {
   disabledZoom: false,

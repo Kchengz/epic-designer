@@ -9,17 +9,21 @@ export interface ActionsModel {
 export interface PageManager {
   componentInstances: Ref<Record<string, ComponentPublicInstance>>;
   funcs: Ref<Record<string, any>>;
+  isDesignMode: Ref<boolean>;
   getComponentInstance: (id: string) => ComponentPublicInstance;
   find: (id: string) => ComponentPublicInstance;
   addComponentInstance: (id: string, instance: ComponentPublicInstance) => void;
   removeComponentInstance: (id: string) => void;
   setMethods: (scriptStr: string) => void;
   doActions: (actions: ActionsModel[], ...args: any) => void;
+  setDesignMode: (isDesign?: boolean) => void;
 }
 
 export function usePageManager(): PageManager {
   const componentInstances = ref<Record<string, ComponentPublicInstance>>({});
   const funcs = ref<Record<string, any>>({});
+  // 当前模式 true 设计模式, false 渲染模式
+  const isDesignMode = ref(false);
   /**
    * 获取组件实例
    * @param id
@@ -106,9 +110,18 @@ export function usePageManager(): PageManager {
     });
   }
 
+  /**
+   * 设置设计模式的状态
+   * @param isDesignMode 是否处于设计模式
+   */
+  function setDesignMode(isDesign: boolean = true): void {
+    isDesignMode.value = isDesign;
+  }
+
   return {
     componentInstances,
     funcs,
+    isDesignMode,
     getComponentInstance,
     // 简化查询函数, 推荐使用
     find: getComponentInstance,
@@ -116,5 +129,6 @@ export function usePageManager(): PageManager {
     removeComponentInstance,
     setMethods,
     doActions,
+    setDesignMode,
   };
 }

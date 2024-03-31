@@ -248,7 +248,11 @@ function handleVnodeUnmounted() {
 async function initComponent() {
   // 如果存在默认值，则会在初始化之后赋值
   if (typeof innerSchema.componentProps?.defaultValue !== 'undefined') {
-    const defaultValue = formData[innerSchema.field!] ?? innerSchema.componentProps?.defaultValue
+
+    const defaultValue = pageManager.isDesignMode.value ?
+      innerSchema.componentProps?.defaultValue :
+      formData[innerSchema.field!] ?? innerSchema.componentProps?.defaultValue
+
     handleUpdate(deepClone(defaultValue))
   }
 
