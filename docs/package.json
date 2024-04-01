@@ -4,7 +4,6 @@
   "description": "epic-designer docs",
   "author": "kchengz",
   "dependencies": {
-    "epic-designer": "0.9.4",
     "monaco-editor": "^0.34.1"
   },
   "devDependencies": {
