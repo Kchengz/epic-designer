@@ -31,12 +31,14 @@ const unitArray = [
 watch(() => props.modelValue, e => {
   const num = parseFloat(e)
   // 传入值为空或不正常时
-  if (!num) {
+  if (isNaN(num)) {
     size.value = null
     return false
   }
-  size.value = String(num)
-  unit.value = e.substring(size.value.length)
+  const regex = /^(\d+(\.\d+)?)(px|%|vw|vh|rem|em|pt){1}$/
+  const match = e.trim().match(regex)
+  size.value = match?.[1] ?? null
+  unit.value = match?.[3] ?? ''
 }, {
   immediate: true
 })
