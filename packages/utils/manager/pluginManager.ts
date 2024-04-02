@@ -107,7 +107,7 @@ export class PluginManager {
     //   methodName: "test",
     //   method: (e) => {
     //     console.log(e)
-    //     alert("测试函数弹出");
+    //     // alert("测试函数弹出");
     //   },
     // },
   };

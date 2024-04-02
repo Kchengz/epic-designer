@@ -23,6 +23,7 @@ export default defineComponent({
 
       const props: Record<string, any> = {
         ...attrs,
+        value: attrs.modelValue,
         "onUpdate:value": handleUpdate,
       };
 
