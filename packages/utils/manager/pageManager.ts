@@ -70,6 +70,7 @@ export function usePageManager(): PageManager {
       find: getComponentInstance,
       defineExpose,
       publicMethods: publicMethods,
+      pluginManager
     })();
   }
 
