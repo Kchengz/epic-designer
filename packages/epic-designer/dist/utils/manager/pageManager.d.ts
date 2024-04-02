@@ -13,7 +13,7 @@ export interface PageManager {
     find: (id: string) => ComponentPublicInstance;
     addComponentInstance: (id: string, instance: ComponentPublicInstance) => void;
     removeComponentInstance: (id: string) => void;
-    setMethods: (scriptStr: string) => void;
+    setMethods: (scriptStr: string, outputError?: boolean) => void;
     doActions: (actions: ActionsModel[], ...args: any) => void;
     setDesignMode: (isDesign?: boolean) => void;
 }

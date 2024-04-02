@@ -1,4 +1,4 @@
-import { ComponentPublicInstance } from 'vue';
+import { type ComponentPublicInstance } from 'vue';
 import { ComponentSchema } from '../../../types/epic-designer';
 export interface ComponentNodeInstance extends ComponentPublicInstance {
     setValue?: (value: any) => void;
