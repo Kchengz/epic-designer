@@ -1,11 +1,6 @@
 <template>
   <div class="epic-sound-code">
-    <MonacoEditor
-      ref="monacoEditorRef"
-      class="editor"
-      :model-value="initModelValue"
-      @update:model-value="setSchemas"
-    />
+    <MonacoEditor ref="monacoEditorRef" class="editor" :model-value="initModelValue" @update:model-value="setSchemas" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -28,10 +23,14 @@ watch(() => designer.state.checkedNode, (newVal: any) => {
 
 const initModelValue = JSON.stringify(designer.state.checkedNode, null, 2)
 
-function setSchemas (e: string) {
-  if (!designer.state.checkedNode) { return false }
-  oldVal = JSON.parse(e)
-  deepCompareAndModify(designer.state.checkedNode, oldVal)
+function setSchemas(e: string) {
+  try {
+    if (!designer.state.checkedNode) { return false }
+    oldVal = JSON.parse(e)
+    deepCompareAndModify(designer.state.checkedNode, oldVal)
+  } catch (error) {
+    console.warn("[epic-desinger：源码]异常：", error);
+  }
 }
 
 </script>
