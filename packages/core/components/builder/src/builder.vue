@@ -48,7 +48,7 @@ watch(() => props.pageSchema, e => {
 
 watch(() => pageSchemaReactive.script, e => {
   if (e && e !== '') {
-    pageManager.setMethods(e)
+    pageManager.setMethods(e, true)
   }
 }, {
   immediate: true

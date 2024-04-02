@@ -14,7 +14,7 @@ export interface PageManager {
   find: (id: string) => ComponentPublicInstance;
   addComponentInstance: (id: string, instance: ComponentPublicInstance) => void;
   removeComponentInstance: (id: string) => void;
-  setMethods: (scriptStr: string) => void;
+  setMethods: (scriptStr: string, outputError?: boolean) => void;
   doActions: (actions: ActionsModel[], ...args: any) => void;
   setDesignMode: (isDesign?: boolean) => void;
 }
@@ -55,7 +55,7 @@ export function usePageManager(): PageManager {
    * 动态创建函数
    * @param scriptStr
    */
-  function setMethods(scriptStr: string): void {
+  function setMethods(scriptStr: string, outputError: boolean = false): void {
     // 将PublicMethodsModel 映射为 Record<string, () => any>
     const publicMethods: Record<string, () => any> = Object.entries(
       pluginManager.publicMethods
@@ -64,14 +64,20 @@ export function usePageManager(): PageManager {
       return acc;
     }, {});
 
-    new Function(`const epic = this;${scriptStr}`).bind({
-      ...publicMethods,
-      getComponent: getComponentInstance,
-      find: getComponentInstance,
-      defineExpose,
-      publicMethods: publicMethods,
-      pluginManager
-    })();
+    try {
+      new Function(`const epic = this;${scriptStr}`).bind({
+        ...publicMethods,
+        getComponent: getComponentInstance,
+        find: getComponentInstance,
+        defineExpose,
+        publicMethods: publicMethods,
+        pluginManager,
+      })();
+    } catch (error) {
+      if (outputError) {
+        console.error("[epic-desinger：自定义函数]异常：", error);
+      }
+    }
   }
 
   /**
