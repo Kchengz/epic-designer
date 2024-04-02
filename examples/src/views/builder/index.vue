@@ -100,17 +100,12 @@ const pageSchema = ref<PageSchema>({
 function handleReady(pageManager: PageManager) {
   console.log(pageManager)
 }
+
 // 表单赋值
 onMounted(async () => {
-  // ebRef.value?.setData({
-  //   'upload': [{
-  //     name: 'xxx',
-  //     uid: 'xxx',
-  //     status:
-  //       "success",
-  //     url: 'http://cdn.kcz66.com/%E5%A4%B4%E5%83%8F.jpg'
-  //   }]
-  // })
+  ebRef.value?.setData({
+    'input_sb6jhfb8': '234'
+  })
 
   // const data = await ebRef.value?.getData()
   const data = await ebRef.value?.validate()

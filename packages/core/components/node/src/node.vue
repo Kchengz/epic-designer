@@ -35,7 +35,7 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, ref, Ref, inject, computed, reactive, useAttrs, onUnmounted, provide, Slots, renderSlot, defineComponent, watch, h, ComponentPublicInstance } from 'vue'
+import { shallowRef, ref, Ref, inject, computed, reactive, useAttrs, onUnmounted, provide, Slots, renderSlot, defineComponent, watch, h, type ComponentPublicInstance, type ComponentInternalInstance, getCurrentInstance } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager, deepClone, deepCompareAndModify, deepEqual } from '@epic-designer/utils'
 import { FormDataModel, ComponentSchema } from '../../../types/epic-designer'
 
@@ -45,6 +45,9 @@ export interface ComponentNodeInstance extends ComponentPublicInstance {
   setAttr?: (key: string, value: any) => any,
   getAttr?: (key: string) => any
 }
+
+const { proxy } = getCurrentInstance() as ComponentInternalInstance
+
 
 defineOptions({
   name: 'ENode'
@@ -194,32 +197,32 @@ const getBindValue = () => {
 // 监听组件实例是否初始化
 watch(() => componentInstance.value, () => {
   handleAddComponentInstance()
-})
+}, { immediate: true })
 
 
 // 添加组件实例
 function handleAddComponentInstance() {
-
-  if (innerSchema.id && componentInstance.value) {
+  const instance = (componentInstance.value || proxy) as ComponentNodeInstance
+  if (innerSchema.id && instance) {
     // 输入组件则添加setValue方法
     if (innerSchema.input) {
-      componentInstance.value.setValue = handleUpdate
-      componentInstance.value.getValue = () => {
+      instance.setValue = handleUpdate
+      instance.getValue = () => {
         return formData[innerSchema.field!] || props.modelValue
       }
     }
 
     // 添加属性设置方法
-    componentInstance.value.setAttr = (key: string, value: any) => {
+    instance.setAttr = (key: string, value: any) => {
       return innerSchema.componentProps[key] = value
     }
 
     // 添加获取设置方法
-    componentInstance.value.getAttr = (key: string) => {
+    instance.getAttr = (key: string) => {
       return innerSchema.componentProps[key]
     }
 
-    pageManager.addComponentInstance(innerSchema.id, componentInstance.value)
+    pageManager.addComponentInstance(innerSchema.id, instance)
     // 添加实例 及 formItem实例
     if (getComponentConfing.value?.defaultSchema.input && innerSchema.noFormItem !== true && formItemRef.value) {
       pageManager.addComponentInstance(innerSchema.id + 'formItem', formItemRef.value)
