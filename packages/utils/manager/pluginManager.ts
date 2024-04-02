@@ -148,6 +148,7 @@ export class PluginManager {
           {
             type: "setValue",
             describe: "设置值",
+            // 参数配置
             argsConfigs: [
               {
                 ...componentConfig.defaultSchema,

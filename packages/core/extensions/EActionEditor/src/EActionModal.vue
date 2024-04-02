@@ -44,7 +44,7 @@
 import { pluginManager, PageManager, deepClone, findSchemaById } from '@epic-designer/utils'
 import { ref, inject, toRaw, reactive, computed, nextTick } from 'vue'
 import ETree from '../../../components/tree'
-import { ComponentSchema, PageSchema, FormDataModel } from '../../../types/epic-designer'
+import { ComponentSchema, PageSchema, FormDataModel, Designer } from '../../../types/epic-designer'
 
 import EScriptEdit from './EScriptEdit.vue'
 import EArgsEditor from './EArgsEditor.vue'
@@ -56,10 +56,11 @@ const isAdd = ref(true)
 
 const pageSchema = inject('pageSchema') as PageSchema
 const pageManager = inject('pageManager', {}) as PageManager
+const designer = inject('designer') as Designer
+
 const visible = ref(false)
 const selectedKeys = ref<string[]>([])
 const componentSchema = ref<ComponentSchema | null>(null)
-// const activeTab = ref('动作配置')
 
 const emit = defineEmits(['add', 'edit'])
 
@@ -91,9 +92,19 @@ const methodOptions = computed(() => {
 const actionArgsConfigs = computed(() => {
   if (state.actionItem.type === 'component') {
     if (componentSchema.value) {
-      console.log()
       const action = pluginManager.getComponentConfings()[componentSchema.value.type].config.action
       const actionItem = action?.find(item => item.type === state.actionItem.methodName)
+
+      if (actionItem?.argsConfigs) {
+        const index = actionItem.argsConfigs.findIndex(item => item.label
+          === '设置数据')
+        index !== -1 && (actionItem.argsConfigs[index] = {
+          ...designer.state.checkedNode,
+          label: "设置数据",
+          field: "0",
+        } as ComponentSchema)
+      }
+
       return actionItem?.argsConfigs ?? []
     }
   }
