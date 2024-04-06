@@ -37,4 +37,4 @@ yarn-error.log*
 
 dist
 !docs/.vitepress/dist
-!packages/epic-designer/dist
+# !packages/epic-designer/dist

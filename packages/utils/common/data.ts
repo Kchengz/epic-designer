@@ -140,7 +140,8 @@ export function deepEqual(
       const keys = Object.keys(obj).sort();
       const normalizedObj: Record<string, any> = {};
       keys.forEach((key) => {
-        if (!ignoreKeys.includes(key)) { // 如果该属性不在忽略列表中
+        if (!ignoreKeys.includes(key)) {
+          // 如果该属性不在忽略列表中
           normalizedObj[key] = normalize(obj[key]);
         }
       });
@@ -164,7 +165,10 @@ export function deepEqual(
  * @param schemas
  * @param id
  */
-export function getMatchedById(schemas: ComponentSchema[], id: string): ComponentSchema[] {
+export function getMatchedById(
+  schemas: ComponentSchema[],
+  id: string
+): ComponentSchema[] {
   const matched: ComponentSchema[] = [];
   let found = false;
 
@@ -214,11 +218,11 @@ export function getMatchedById(schemas: ComponentSchema[], id: string): Componen
  */
 export function getAttributeValue(
   field: string,
-  obj: Record<string,any>
-): Record<string,any> | undefined {
+  obj: Record<string, any>
+): Record<string, any> | undefined {
   // 使用“.”作为分隔符拆分field字符串，以创建字段数组。
   const fieldList = field.split(".");
-  let data: Record<string,any> | undefined = obj;
+  let data: Record<string, any> | undefined = obj;
   // 遍历fieldList中每个字段，以从obj中检索字段的值
   for (let i = 0; i < fieldList.length; i++) {
     // 更新nodeItem为nodeItem中当前字段的值。
@@ -248,11 +252,11 @@ export function getAttributeValue(
 export function setAttributeValue(
   value: any,
   field: string,
-  obj: Record<string,any>
+  obj: Record<string, any>
 ): void {
   // 使用“.”作为分隔符拆分field字符串，以创建字段数组。
   const fieldList = field.split(".");
-  let data: Record<string,any> = obj;
+  let data: Record<string, any> = obj;
 
   // 遍历属性路径数组
   fieldList.forEach((item, index) => {
@@ -272,11 +276,31 @@ export function setAttributeValue(
  * @param schemas 页面结构数据
  * @param formName 表单name
  */
-export function getFormFields(schemas: ComponentSchema[], formName = "default") {
+export function getFormFields(
+  schemas: ComponentSchema[],
+  formName = "default"
+) {
+  const inputSchemaList = getFormSchemas(schemas, formName);
+  return inputSchemaList.map((item) => item.field);
+}
+
+/**
+ * 从给定的组件schema数组中获取特定表单的输入字段schema数组。
+ * @param {ComponentSchema[]} schemas - 包含整个表单结构信息的组件schema数组。
+ * @param {string} formName - 要获取输入字段schema的表单名称，默认为 "default"。
+ * @returns {ComponentSchema[]} 包含表单输入字段schema的数组。
+ */
+export function getFormSchemas(
+  schemas: ComponentSchema[],
+  formName = "default"
+) {
   const formSchema = findSchemas(
     schemas,
     (currentNode) => {
-      return currentNode.type === "form" && (currentNode.componentProps?.name ?? currentNode.name === formName);
+      return (
+        currentNode.type === "form" &&
+        (currentNode.componentProps?.name ?? currentNode.name === formName)
+      );
     },
     true
   ) as ComponentSchema;
@@ -293,7 +317,7 @@ export function getFormFields(schemas: ComponentSchema[], formName = "default") 
     }
   ) as ComponentSchema[];
 
-  return inputSchemaList.map((item) => item.field);
+  return inputSchemaList;
 }
 
 /**
@@ -385,7 +409,10 @@ export function mapSchemas(
  * @param id
  * @returns
  */
-export function findSchemaById(schemas: ComponentSchema[], id: string): ComponentSchema {
+export function findSchemaById(
+  schemas: ComponentSchema[],
+  id: string
+): ComponentSchema {
   let index: number = 0;
 
   // 查询节点
@@ -431,7 +458,7 @@ export function findSchemaInfoById(
       if (!children) {
         if (currentNode?.slots) {
           for (let key in currentNode.slots) {
-            children = currentNode.slots[key];
+            children = currentNode.slots[key] as ComponentSchema[];
             for (let i = 0; i < children.length; i++) {
               if (children[i].id === id) {
                 index = i;
