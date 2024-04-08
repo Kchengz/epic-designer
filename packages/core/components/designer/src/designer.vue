@@ -64,10 +64,33 @@ pageManager.setDesignMode()
 
 const props = withDefaults(defineProps<DesignerProps>(), {
   disabledZoom: false,
-  hiddenHeader: false
+  hiddenHeader: false,
+  defaultSchema: () => ({
+    schemas: [{
+      type: 'page',
+      id: 'root',
+      label: '页面',
+      children: [],
+      componentProps: {
+        style: {
+          padding: '16px'
+        }
+      }
+    }],
+    script: `const { defineExpose, find } = epic;
+
+function test (){
+    console.log('test')
+}
+
+// 通过defineExpose暴露的函数或者属性
+defineExpose({
+ test 
+})`
+  })
 })
 
-const emit = defineEmits(['ready', 'save'])
+const emits = defineEmits(['ready', 'save', 'reset'])
 
 const state = reactive<DesignerState>({
   checkedNode: null,
@@ -78,7 +101,7 @@ const state = reactive<DesignerState>({
 
 const pageSchema = reactive<PageSchema>({
   schemas: [],
-  script: ''
+  script: props.defaultSchema.script
 })
 
 // 记录缩放状态 start
@@ -96,31 +119,6 @@ watch(() => pageSchema.script, e => {
   }
 })
 
-const defaultSchemas = [{
-  type: 'page',
-  id: 'root',
-  label: '页面',
-  children: [],
-  componentProps: {
-    style: {
-      padding: '16px'
-    }
-  }
-}]
-
-const defaultScript = `const { defineExpose, find } = epic;
-
-function test (){
-    console.log('test')
-}
-
-// 通过defineExpose暴露的函数或者属性
-defineExpose({
- test 
-})`
-
-pageSchema.script = defaultScript
-
 provide('pageSchema', pageSchema)
 provide('pageManager', pageManager)
 provide('designerProps', props)
@@ -136,7 +134,7 @@ provide('designer', {
 
 function init() {
   // 初始化默认节点
-  pageSchema.schemas = deepClone(defaultSchemas)
+  pageSchema.schemas = deepClone(props.defaultSchema.schemas)
 
   // 选中根节点
   setCheckedNode(pageSchema.schemas[0])
@@ -175,7 +173,7 @@ async function setHoverNode(schema: ComponentSchema | null = null) {
 function handleReady() {
   // 等待DOM更新循环结束后
   nextTick(() => {
-    emit('ready', { pageManager })
+    emits('ready', { pageManager })
   })
 }
 
@@ -209,21 +207,24 @@ function getData(): PageSchema {
  */
 function reset() {
   // 判断数据是否已修改，如果未修改，则取消重置操作
-  if (deepEqual(pageSchema.schemas, defaultSchemas) && pageSchema.script === defaultScript) return
-  // 调用 deepCompareAndModify 函数比较 pageSchema.schemas 和 defaultSchemas，进行修改
-  deepCompareAndModify(pageSchema.schemas, defaultSchemas)
+  if (deepEqual(pageSchema.schemas, props.defaultSchema.schemas) && pageSchema.script === props.defaultSchema.script) return
+  
+  // 调用 deepCompareAndModify 函数比较 pageSchema.schemas 和 props.defaultSchema.schemas，进行修改
+  deepCompareAndModify(pageSchema.schemas, props.defaultSchema.schemas)
   // 更新 script.value
-  pageSchema.script = defaultScript
+  pageSchema.script = props.defaultSchema.script
   // 选中根节点
   setCheckedNode(pageSchema.schemas[0])
   revoke.push(pageSchema.schemas, '重置操作')
+  
+  emits('reset', pageSchema)
 }
 
 /**
  * 保存数据
  */
 function handleSave() {
-  emit('save', toRaw(pageSchema))
+  emits('save', toRaw(pageSchema))
 }
 
 init()
