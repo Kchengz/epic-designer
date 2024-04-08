@@ -1,3 +1,10 @@
+## 0.9.6（2024-04-08）
+
+### ✨ Feat
+
+- EDesigner新增defaultSchema属性
+- 新增getFormSchemas函数
+
 ## 0.9.5（2024-04-02）
 
 ### ✨ Feat
