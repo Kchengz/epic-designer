@@ -8,7 +8,6 @@
 import Designer from './views/designer/index.vue'
 // import Builder from './views/builder/index.vue'
 
-
 </script>
 <style lang="less" scoped>
 .demo-content {
