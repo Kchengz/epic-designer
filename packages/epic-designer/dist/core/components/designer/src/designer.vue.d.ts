@@ -21,11 +21,28 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: import("vue").PropType<boolean>;
         default: boolean;
     };
+    defaultSchema: {
+        type: import("vue").PropType<PageSchema>;
+        default: () => {
+            schemas: {
+                type: string;
+                id: string;
+                label: string;
+                children: never[];
+                componentProps: {
+                    style: {
+                        padding: string;
+                    };
+                };
+            }[];
+            script: string;
+        };
+    };
 }, {
     setData: typeof setData;
     getData: typeof getData;
     reset: typeof reset;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("ready" | "save")[], "ready" | "save", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("reset" | "ready" | "save")[], "reset" | "ready" | "save", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     disabledZoom: {
         type: import("vue").PropType<boolean>;
         default: boolean;
@@ -34,12 +51,31 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: import("vue").PropType<boolean>;
         default: boolean;
     };
+    defaultSchema: {
+        type: import("vue").PropType<PageSchema>;
+        default: () => {
+            schemas: {
+                type: string;
+                id: string;
+                label: string;
+                children: never[];
+                componentProps: {
+                    style: {
+                        padding: string;
+                    };
+                };
+            }[];
+            script: string;
+        };
+    };
 }>> & {
+    onReset?: ((...args: any[]) => any) | undefined;
     onReady?: ((...args: any[]) => any) | undefined;
     onSave?: ((...args: any[]) => any) | undefined;
 }, {
     disabledZoom: boolean;
     hiddenHeader: boolean;
+    defaultSchema: PageSchema;
 }, {}>, {
     header?(_: {}): any;
     "header-prefix"?(_: {}): any;

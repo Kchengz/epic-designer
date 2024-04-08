@@ -65,6 +65,13 @@ export declare function setAttributeValue(value: any, field: string, obj: Record
  */
 export declare function getFormFields(schemas: ComponentSchema[], formName?: string): (string | undefined)[];
 /**
+ * 从给定的组件schema数组中获取特定表单的输入字段schema数组。
+ * @param {ComponentSchema[]} schemas - 包含整个表单结构信息的组件schema数组。
+ * @param {string} formName - 要获取输入字段schema的表单名称，默认为 "default"。
+ * @returns {ComponentSchema[]} 包含表单输入字段schema的数组。
+ */
+export declare function getFormSchemas(schemas: ComponentSchema[], formName?: string): ComponentSchema[];
+/**
  * 查询Schema 返回所有符合添加的数据
  * @param schemas
  * @param handler
