@@ -224,6 +224,7 @@ function handleImporttData(content?: string) {
  * @param type 
  */
 function handleSetCanvas(type: string) {
+    designer.handleToggleDeviceMode(type)
     checkedKey.value = type
     const canvasConfigs = {
         pc: {

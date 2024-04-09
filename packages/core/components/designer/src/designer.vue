@@ -90,7 +90,7 @@ defineExpose({
   })
 })
 
-const emits = defineEmits(['ready', 'save', 'reset'])
+const emits = defineEmits(['ready', 'save', 'reset', 'toggleDeviceMode'])
 
 const state = reactive<DesignerState>({
   checkedNode: null,
@@ -128,6 +128,7 @@ provide('designer', {
   setCheckedNode,
   setHoverNode,
   setDisableHover,
+  handleToggleDeviceMode,
   reset,
   state
 })
@@ -208,7 +209,7 @@ function getData(): PageSchema {
 function reset() {
   // 判断数据是否已修改，如果未修改，则取消重置操作
   if (deepEqual(pageSchema.schemas, props.defaultSchema.schemas) && pageSchema.script === props.defaultSchema.script) return
-  
+
   // 调用 deepCompareAndModify 函数比较 pageSchema.schemas 和 props.defaultSchema.schemas，进行修改
   deepCompareAndModify(pageSchema.schemas, props.defaultSchema.schemas)
   // 更新 script.value
@@ -216,7 +217,7 @@ function reset() {
   // 选中根节点
   setCheckedNode(pageSchema.schemas[0])
   revoke.push(pageSchema.schemas, '重置操作')
-  
+
   emits('reset', pageSchema)
 }
 
@@ -225,6 +226,10 @@ function reset() {
  */
 function handleSave() {
   emits('save', toRaw(pageSchema))
+}
+
+function handleToggleDeviceMode(mode: string) {
+  emits('toggleDeviceMode', mode)
 }
 
 init()

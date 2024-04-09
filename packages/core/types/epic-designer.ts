@@ -3,7 +3,7 @@ export interface RenderCallbackParams {
   values: Record<string, any>;
 }
 
-export interface  ComponentSchema {
+export interface ComponentSchema {
   // 节点ID，可选
   id?: string;
   // 节点类型，必选
@@ -54,11 +54,11 @@ export interface FormConfig {
 
 export type FormDataModel = Record<string, any>;
 
-
 export interface Designer {
   setCheckedNode: (schema?: ComponentSchema) => void;
   setHoverNode: (schema: ComponentSchema | null) => void;
   setDisableHover: (disableHover?: boolean) => void;
+  handleToggleDeviceMode: (mode: string) => void;
   reset: () => void;
   state: DesignerState;
   // schemas: ComponentSchema[];
