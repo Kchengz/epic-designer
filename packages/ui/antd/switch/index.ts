@@ -7,7 +7,9 @@ export default {
     icon: "epic-icon-kaiguan3",
     field: "switch",
     input: true,
-    componentProps: {},
+    componentProps: {
+      defaultValue: false,
+    },
   },
   groupName: "表单",
   config: {
@@ -28,7 +30,29 @@ export default {
         field: "componentProps.defaultValue",
       },
       {
-        label: "选中时内容",
+        label: "ON状态值",
+        type: "input",
+        field: "componentProps.checkedValue",
+        componentProps: {
+          placeholder: "请输入",
+        },
+        onChange(e) {
+          setTimeout(() => setDefaultValue(e));
+        },
+      },
+      {
+        label: "OFF状态值",
+        type: "input",
+        field: "componentProps.unCheckedValue",
+        componentProps: {
+          placeholder: "请输入",
+        },
+        onChange(e) {
+          setTimeout(() => setDefaultValue(e));
+        },
+      },
+      {
+        label: "ON状态描述",
         type: "input",
         field: "componentProps.checkedChildren",
         componentProps: {
@@ -36,7 +60,7 @@ export default {
         },
       },
       {
-        label: "非选中时内容",
+        label: "OFF状态描述",
         type: "input",
         field: "componentProps.unCheckedChildren",
         componentProps: {
@@ -89,3 +113,27 @@ export default {
   },
   bindModel: "checked",
 } as ComponentConfigModel;
+
+
+function setDefaultValue(e) {
+  let defaultValue = e.values.componentProps?.unCheckedValue || false;
+  // 如果unCheckedValue === ''，则在下一个事件循环中删除 unCheckedValue 属性
+  if (e.values.componentProps.unCheckedValue === "") {
+    delete e.values.componentProps.unCheckedValue;
+  }
+
+  // 如果checkedValue === ''，则在下一个事件循环中删除 checkedValue 属性
+  if (e.values.componentProps.checkedValue === "") {
+    delete e.values.componentProps.checkedValue;
+  }
+
+  // 检查是否已经有了 componentProps 对象，如果有，将默认值赋给 defaultValue 属性
+  if (e.values.componentProps) {
+    e.values.componentProps.defaultValue = defaultValue;
+  } else {
+    // 如果没有 componentProps 对象，则创建一个新对象并添加 defaultValue 属性
+    e.values.componentProps = {
+      defaultValue,
+    };
+  }
+}

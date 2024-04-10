@@ -1,109 +1,156 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: async () => (await import('element-plus')).ElSwitch,
+  component: async () => (await import("element-plus")).ElSwitch,
   defaultSchema: {
-    label: '开关',
-    type: 'switch',
-    icon: 'epic-icon-kaiguan3',
-    field: 'switch',
+    label: "开关",
+    type: "switch",
+    icon: "epic-icon-kaiguan3",
+    field: "switch",
     input: true,
     componentProps: {
-      size: 'default'
-    }
+      defaultValue: false,
+      size: "default",
+    },
   },
   groupName: "表单",
   config: {
     attribute: [
       {
-        label: '字段名',
-        type: 'input',
-        field: 'field'
+        label: "字段名",
+        type: "input",
+        field: "field",
       },
       {
-        label: '文字',
-        type: 'input',
-        field: 'label'
+        label: "文字",
+        type: "input",
+        field: "label",
       },
       {
-        label: '默认值',
-        type: 'switch',
-        field: 'componentProps.defaultValue'
+        label: "默认值",
+        type: "switch",
+        field: "componentProps.defaultValue",
       },
       {
-        label: '尺寸',
-        type: 'select',
-        defaultValue: 'default',
+        label: "ON状态值",
+        type: "input",
+        field: "componentProps.activeValue",
+        componentProps: {
+          placeholder: "请输入",
+        },
+        onChange(e) {
+          setTimeout(() => setDefaultValue(e));
+        },
+      },
+      {
+        label: "OFF状态值",
+        type: "input",
+        field: "componentProps.inactiveValue",
+        componentProps: {
+          placeholder: "请输入",
+        },
+        onChange(e) {
+          setTimeout(() => setDefaultValue(e));
+        },
+      },
+      {
+        label: "ON状态描述",
+        type: "input",
+        field: "componentProps.activeText",
+        componentProps: {
+          placeholder: "请输入",
+        },
+      },
+      {
+        label: "OFF状态描述",
+        type: "input",
+        field: "componentProps.inactiveText",
+        componentProps: {
+          placeholder: "请输入",
+        },
+      },
+      {
+        label: "尺寸",
+        type: "select",
+        defaultValue: "default",
         componentProps: {
           options: [
             {
-              label: 'large',
-              value: 'large'
+              label: "large",
+              value: "large",
             },
             {
-              label: 'default',
-              value: 'default'
+              label: "default",
+              value: "default",
             },
             {
-              label: 'small',
-              value: 'small'
-            }
-          ]
+              label: "small",
+              value: "small",
+            },
+          ],
         },
-        field: 'componentProps.size'
+        field: "componentProps.size",
       },
       {
-        label: '宽度',
-        type: 'number',
-        field: 'componentProps.width',
+        label: "宽度",
+        type: "number",
+        field: "componentProps.width",
         componentProps: {
           min: 50,
-          placeholder: '请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
-        label: '激活时文本',
-        type: 'input',
-        field: 'componentProps.activeText',
-        componentProps: {
-          placeholder: '请输入'
-        }
+        label: "文本点内显示",
+        type: "switch",
+        field: "componentProps.inlinePrompt",
       },
       {
-        label: '未激活时文本',
-        type: 'input',
-        field: 'componentProps.inactiveText',
-        componentProps: {
-          placeholder: '请输入'
-        }
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled",
       },
       {
-        label: '文本点内显示',
-        type: 'switch',
-        field: 'componentProps.inlinePrompt'
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
       },
       {
-        label: '禁用',
-        type: 'switch',
-        field: 'componentProps.disabled'
+        label: "表单校验",
+        type: "ERuleEditor",
+        layout: "vertical",
+        field: "rules",
+        describe: "校验规则需要配合表单使用",
       },
-      {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
-      },
-      {
-        label: '表单校验',
-        type: 'ERuleEditor',
-        layout: 'vertical',
-        field: 'rules',
-        describe: '校验规则需要配合表单使用'
-      }
     ],
     event: [
       {
-        type: 'change',
-        describe: '状态发生变化时'
-      }
-    ]
+        type: "change",
+        describe: "状态发生变化时",
+      },
+    ],
+  },
+} as ComponentConfigModel;
+
+// 设置默认值
+function setDefaultValue(e) {
+  let defaultValue = e.values.componentProps?.inactiveValue || false;
+  // 如果inactiveValue === ''，则在下一个事件循环中删除 inactiveValue 属性
+  if (e.values.componentProps.unCheckedValue === "") {
+    delete e.values.componentProps.unCheckedValue;
   }
-} as ComponentConfigModel
+
+  // 如果activeValue === ''，则在下一个事件循环中删除 activeValue 属性
+  if (e.values.componentProps.activeValue === "") {
+    delete e.values.componentProps.activeValue;
+  }
+
+  // 检查是否已经有了 componentProps 对象，如果有，将默认值赋给 defaultValue 属性
+  if (e.values.componentProps) {
+    e.values.componentProps.defaultValue = defaultValue;
+  } else {
+    // 如果没有 componentProps 对象，则创建一个新对象并添加 defaultValue 属性
+    e.values.componentProps = {
+      defaultValue,
+    };
+  }
+}

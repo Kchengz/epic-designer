@@ -38,7 +38,6 @@ export default defineComponent({
       }
 
       function handleClose(e) {
-        console.log(e);
         emit("update:modelValue", false);
         emit("close");
       }
