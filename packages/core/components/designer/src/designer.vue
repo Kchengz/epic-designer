@@ -117,6 +117,8 @@ watch(() => pageSchema.script, e => {
   if (e && e !== '') {
     pageManager.setMethods(e)
   }
+}, {
+  immediate: true
 })
 
 provide('pageSchema', pageSchema)
