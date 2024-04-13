@@ -1,6 +1,6 @@
 <template>
   <div class="epic-action-bar">
-    <ul class="actions-container">
+    <ul class="epic-actions-container">
       <li v-for="(item, index) in activitybars" :key="index" class="action-item" :title="item.title"
         :class="{ checked: actionBarCheckedIndex === index }" @click="handleClick(item, index)">
         <EIcon prefix="" class="iconfont relative" :name="item.icon" />
@@ -9,7 +9,7 @@
     </ul>
   </div>
   <aside class="epic-left-sidebar" :class="{ hide: actionBarCheckedIndex === null }">
-    <div class="sidebar-container">
+    <div class="epic-sidebar-container">
       <component :is="sidebarComponent" />
     </div>
   </aside>

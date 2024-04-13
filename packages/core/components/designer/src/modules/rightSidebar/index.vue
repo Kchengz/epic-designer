@@ -4,7 +4,7 @@
     class="epic-right-sidebar"
   >
   <EBreadcrumb />
-    <ul class="actions-container">
+    <ul class="epic-actions-container">
       <li
         v-for="(item, index) in rightSidebars"
         :key="index"
@@ -16,7 +16,7 @@
         {{ item.title }}
       </li>
     </ul>
-    <div class="sidebar-content">
+    <div class="epic-sidebar-content">
       <aside :class="{ hide: actionBarCheckedIndex === null }">
         <component :is="sidebarComponent" />
       </aside>
