@@ -46,7 +46,7 @@
   </Suspense>
 </template>
 <script lang="ts" setup>
-import { provide, reactive, toRaw, watch, nextTick } from 'vue'
+import { provide, reactive, toRaw, watch, nextTick, computed } from 'vue'
 import { DesignerState, ComponentSchema, PageSchema } from '../../../types/epic-designer'
 import { getMatchedById, loadAsyncComponent, revoke, usePageManager, pluginManager, deepCompareAndModify, deepEqual, deepClone } from '@epic-designer/utils'
 import { DesignerProps } from './types'
@@ -59,12 +59,12 @@ const EEditContainer = loadAsyncComponent(() => import('./modules/editContainer/
 const ERightSidebar = loadAsyncComponent(() => import('./modules/rightSidebar/index.vue'))
 const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
 const pageManager = usePageManager()
-// 设置为设计模式
-pageManager.setDesignMode()
+
 
 const props = withDefaults(defineProps<DesignerProps>(), {
   disabledZoom: false,
   hiddenHeader: false,
+  lockDefaultSchemaEdit: false,
   defaultSchema: () => ({
     schemas: [{
       type: 'page',
@@ -89,6 +89,10 @@ defineExpose({
 })`
   })
 })
+
+// 设置为设计模式
+pageManager.setDesignMode()
+pageManager.setDefaultComponentIds(props.defaultSchema.schemas)
 
 const emits = defineEmits(['ready', 'save', 'reset', 'toggleDeviceMode'])
 
@@ -123,8 +127,7 @@ watch(() => pageSchema.script, e => {
 
 provide('pageSchema', pageSchema)
 provide('pageManager', pageManager)
-provide('designerProps', props)
-
+provide('designerProps', computed(() => props))
 
 provide('designer', {
   setCheckedNode,

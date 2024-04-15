@@ -1,5 +1,8 @@
+import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 import { ref, type Ref, type ComponentPublicInstance } from "vue";
 import { pluginManager } from "./pluginManager";
+import { findSchemas } from "../index";
+
 export interface ActionsModel {
   componentId?: string;
   args: string;
@@ -10,6 +13,7 @@ export interface PageManager {
   componentInstances: Ref<Record<string, ComponentPublicInstance>>;
   funcs: Ref<Record<string, any>>;
   isDesignMode: Ref<boolean>;
+  defaultComponentIds: Ref<string[]>;
   getComponentInstance: (id: string) => ComponentPublicInstance;
   find: (id: string) => ComponentPublicInstance;
   addComponentInstance: (id: string, instance: ComponentPublicInstance) => void;
@@ -17,6 +21,7 @@ export interface PageManager {
   setMethods: (scriptStr: string, outputError?: boolean) => void;
   doActions: (actions: ActionsModel[], ...args: any) => void;
   setDesignMode: (isDesign?: boolean) => void;
+  setDefaultComponentIds: (schemas:ComponentSchema[]) => void;
 }
 
 export function usePageManager(): PageManager {
@@ -24,6 +29,8 @@ export function usePageManager(): PageManager {
   const funcs = ref<Record<string, any>>({});
   // 当前模式 true 设计模式, false 渲染模式
   const isDesignMode = ref(false);
+  const defaultComponentIds = ref<string[]>([]);
+
   /**
    * 获取组件实例
    * @param id
@@ -125,10 +132,17 @@ export function usePageManager(): PageManager {
     isDesignMode.value = isDesign;
   }
 
+  
+  function setDefaultComponentIds(schemas:ComponentSchema[]){
+    const componentSchemas = findSchemas(schemas,()=>true) as ComponentSchema[]
+    defaultComponentIds.value = componentSchemas.map(item=>item.id as string)
+  }
+
   return {
     componentInstances,
     funcs,
     isDesignMode,
+    defaultComponentIds,
     getComponentInstance,
     // 简化查询函数, 推荐使用
     find: getComponentInstance,
@@ -137,5 +151,6 @@ export function usePageManager(): PageManager {
     setMethods,
     doActions,
     setDesignMode,
+    setDefaultComponentIds
   };
 }

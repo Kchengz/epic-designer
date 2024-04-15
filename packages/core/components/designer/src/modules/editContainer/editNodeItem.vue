@@ -8,7 +8,7 @@
   ghostClass: 'moveing'
 }" @start="handleSelect($event.oldIndex)" @end="handleEnd()" @add="handleSelect($event.newIndex); handleAdd()">
     <template #item="{ element, index }">
-      <div class="widget-box" :class="{ 'draggable-item': !element.immovable }" :key="index">
+      <div class="widget-box" :class="isDraggable(element)" :key="index">
         <ENodeItem :schema="element" />
       </div>
     </template>
@@ -57,4 +57,16 @@ function handleEnd() {
 function handleAdd() {
   revoke.push(pageSchema.schemas, '插入组件')
 }
+
+
+function isDraggable(schemas: ComponentSchema) {
+  // 判断当前节点类型是否允许拖拽
+  if (schemas.type === 'page' || schemas.immovable) {
+    // 禁止拖拽
+    return 'unmover-item'
+  }
+
+  return 'draggable-item'
+}
+
 </script>

@@ -1,36 +1,43 @@
 <template>
+  <!-- 选中高亮 start  -->
   <div v-show="showSelector && designer.state.checkedNode?.id !== 'root'" ref="selectorRef"
     class="checked-widget absolute pointer-events-none z-20"
     :class="selectorPosition + ' ' + (selectorTransition ? 'transition-all' : '')">
-
     <div class="action-box" ref="actionBoxRef">
       <div class="action-item whitespace-nowrap">
         <!-- {{ designer.state.checkedNode?.type }} -->
         {{ pluginManager.getComponentConfingByType(designer.state.checkedNode?.type
-      ?? '')?.defaultSchema.label }}
+          ?? '')?.defaultSchema.label }}
       </div>
-      <div title="复制" class="action-item pointer-events-auto" @click="handleCopy">
-        <EIcon name="icon-fuzhi3" />
-
+      <!-- 操作按钮 start  -->
+      <div class="flex" v-if="isRemovableAndDraggable">
+        <div title="复制" class="action-item pointer-events-auto" @click="handleCopy">
+          <EIcon name="icon-fuzhi3" />
+        </div>
+        <div title="删除" class="action-item pointer-events-auto" @click="handleDelete">
+          <EIcon name="icon-shanchu1" />
+        </div>
       </div>
-      <div title="删除" class="action-item pointer-events-auto" @click="handleDelete">
-        <EIcon name="icon-shanchu1" />
-
-      </div>
+      <!-- 操作按钮 end  -->
     </div>
   </div>
+  <!-- 选中高亮 end  -->
+  <!-- 悬停效果 start  -->
   <div v-show="showHover && designer.state.checkedNode?.id !== designer.state.hoverNode?.id" ref="hoverWidgetRef"
     class="hover-widget absolute transition-all pointer-events-none z-998" />
+  <!-- 悬停效果 end  -->
 </template>
 <script lang="ts" setup>
+import { DesignerProps } from '../../types'
 import { PageSchema, Designer } from '../../../../../types/epic-designer'
-import { inject, computed, ref, watch } from 'vue'
+import { inject, computed, ref, watch, type Ref } from 'vue'
 import { pluginManager, generateNewSchema, revoke, findSchemaInfoById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
 import { useResizeObserver } from '@vueuse/core'
 import EIcon from '../../../../icon'
 const pageManager = inject('pageManager', {}) as PageManager
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
+const designerProps = inject('designerProps') as Ref<DesignerProps>
 
 const selectorRef = ref<HTMLDivElement | null>(null)
 const hoverWidgetRef = ref<HTMLDivElement | null>(null)
@@ -46,6 +53,22 @@ const selectorPosition = ref<'top' | 'center' | 'bottom'>('top')
 const { canvasScale, disabledZoom } = useShareStore()
 
 let kEditRange: HTMLDivElement | null = null
+
+/**
+ * 判断组件是否可移动和可拖拽删除
+ */
+const isRemovableAndDraggable = computed(() => {
+  const schemas = designer.state.checkedNode
+  // 没有id不可编辑
+  if (!schemas?.id) return false
+  // 判断当前节点类型是否允许拖拽删除
+  if (designerProps.value.lockDefaultSchemaEdit && pageManager.defaultComponentIds.value.includes(schemas?.id)) {
+    // 禁止拖拽删除
+    return false
+  }
+  return true
+})
+
 
 /**
  * 获取选中组件dom元素
@@ -291,6 +314,7 @@ function handleInit(epicEditRangeRef) {
   // 监听悬停元素视窗变化
   useResizeObserver(getHoverComponentElement, setSeletorStyle)
 }
+
 
 defineExpose({
   handleInit
