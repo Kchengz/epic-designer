@@ -1,26 +1,32 @@
 <template>
-  <div
-    v-if="sidebarComponent"
-    class="epic-right-sidebar"
-  >
-  <EBreadcrumb />
-    <ul class="epic-actions-container">
-      <li
-        v-for="(item, index) in rightSidebars"
-        :key="index"
-        class="action-item"
-        :title="item.title"
-        :class="{ checked: actionBarCheckedIndex === index }"
-        @click="handleClick(item, index)"
-      >
-        {{ item.title }}
-      </li>
-    </ul>
-    <div class="epic-sidebar-content">
-      <aside :class="{ hide: actionBarCheckedIndex === null }">
-        <component :is="sidebarComponent" />
-      </aside>
+  <div v-if="sidebarComponent" class="relative">
+    <!-- 折叠按钮 start -->
+    <div
+      class="absolute left--18px top-80px shadow-lg shadow-gray-400 text-#999 cursor-pointer bg-white rounded-full flex justify-center items-center w-28px h-28px z-9"
+      @click="handleHideRight">
+      <EIcon prefix="" class="iconfont transition-all" :class="{ 'rotate-180': hideRightMain }"
+        name="epic-icon-zhankai" />
     </div>
+    <div class="w-10px"></div>
+    <!-- 折叠按钮 end -->
+
+    <div class="epic-right-sidebar w-280px" :class="{ hide: hideRightMain }">
+      <div class="w-280px">
+        <EBreadcrumb />
+        <ul class="epic-actions-container">
+          <li v-for="(item, index) in rightSidebars" :key="index" class="action-item" :title="item.title"
+            :class="{ checked: actionBarCheckedIndex === index }" @click="handleClick(item, index)">
+            {{ item.title }}
+          </li>
+        </ul>
+        <div class="epic-sidebar-content">
+          <aside :class="{ hide: actionBarCheckedIndex === null }">
+            <component :is="sidebarComponent" />
+          </aside>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 <script lang="ts" setup>
@@ -28,6 +34,9 @@ import { ref, shallowRef } from 'vue'
 import { pluginManager } from '@epic-designer/utils'
 import { RightSidebarModel } from '@epic-designer/utils'
 import EBreadcrumb from './breadcrumb.vue'
+import EIcon from "../../../../icon";
+
+const hideRightMain = ref(false)
 
 const rightSidebars = pluginManager.getRightSidebars()
 const actionBarCheckedIndex = ref<number | null>(0)
@@ -35,7 +44,11 @@ const actionBarCheckedIndex = ref<number | null>(0)
 const sidebarComponent = shallowRef<any>(null)
 sidebarComponent.value = rightSidebars[0]?.component
 
-function handleClick (item: RightSidebarModel, index: number) {
+function handleHideRight() {
+  hideRightMain.value = !hideRightMain.value
+}
+
+function handleClick(item: RightSidebarModel, index: number) {
   if (actionBarCheckedIndex.value === index) {
     return false
   }

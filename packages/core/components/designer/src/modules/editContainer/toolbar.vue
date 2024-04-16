@@ -1,6 +1,6 @@
 <template>
     <!-- 工具条 start  -->
-    <div class="edit-toolbar flex items-center justify-between px-4 mx-1">
+    <div class="edit-toolbar flex items-center justify-between px-4">
         <div class="flex-1 h-full flex items-center">
             <div :title="item.title" class="action-item h-90% px-10px flex items-center hover:bg-gray-50 cursor-pointer"
                 v-for="(item, index) in actionOptions" :class="{ disabled: item.disabled }" :key="index"

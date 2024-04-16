@@ -5,7 +5,7 @@
         <a class="text-black decoration-none items-center flex" href="https://github.com/Kchengz/epic-designer"
           target="_blank">
           <img src="../../../../../static/logo.png" class="w-17px h-17px" alt="" srcset="">
-          <span class="ml-4">epic-designer</span>
+          <span class="ml-4">EpicDesigner</span>
         </a>
       </slot>
     </div>
