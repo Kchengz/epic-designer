@@ -65,6 +65,7 @@ const props = withDefaults(defineProps<DesignerProps>(), {
   disabledZoom: false,
   hiddenHeader: false,
   lockDefaultSchemaEdit: false,
+  title: "epic-designer默认项目",
   defaultSchema: () => ({
     schemas: [{
       type: 'page',

@@ -12,7 +12,7 @@
 
     <div class="epic-header-item flex-1 flex justify-center text-12px text-#3d3d3d">
       <slot name="title">
-        epic-designer默认项目
+        {{ designerProps.title }}
       </slot>
     </div>
     <div class="epic-header-item flex-1 flex justify-end items-center">
@@ -37,13 +37,15 @@
   </header>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, inject, type Ref } from 'vue'
 import { pluginManager } from '@epic-designer/utils'
 import EIcon from '../../../../icon'
 import EPreview from './../preview/index.vue'
+import { DesignerProps } from '../../types'
 const emits = defineEmits(['save', 'reset'])
 const Button = pluginManager.getComponent('button')
 const preview = ref<InstanceType<typeof EPreview> | null>(null)
+const designerProps = inject('designerProps') as Ref<DesignerProps>
 
 /**
  * 预览
