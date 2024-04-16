@@ -232,12 +232,14 @@ function handleSetCanvas(type: string) {
         },
         pad: {
             width: '800px',
+            mode:type
         },
         mobile: {
-            width: '420px'
+            width: '420px',
+            mode:type
         },
     }
-
+    
     pageSchema.canvas = canvasConfigs[type]
 }
 

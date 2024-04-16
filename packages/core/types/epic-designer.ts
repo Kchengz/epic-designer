@@ -76,6 +76,8 @@ export interface PageSchema {
   canvas?: {
     width?: string;
     height?: string;
+    mode?: string;
+    
   };
   script?: string;
 }
