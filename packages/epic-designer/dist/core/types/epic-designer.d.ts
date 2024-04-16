@@ -38,6 +38,7 @@ export interface Designer {
     setCheckedNode: (schema?: ComponentSchema) => void;
     setHoverNode: (schema: ComponentSchema | null) => void;
     setDisableHover: (disableHover?: boolean) => void;
+    handleToggleDeviceMode: (mode: string) => void;
     reset: () => void;
     state: DesignerState;
 }
@@ -52,6 +53,7 @@ export interface PageSchema {
     canvas?: {
         width?: string;
         height?: string;
+        mode?: string;
     };
     script?: string;
 }

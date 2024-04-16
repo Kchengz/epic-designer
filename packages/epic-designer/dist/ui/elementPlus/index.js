@@ -1,6 +1,6 @@
-import { pluginManager as n } from "epic-designer";
-import { ElFormItem as i, ElTabs as c, ElTabPane as r, ElCollapse as s, ElCollapseItem as d } from "element-plus";
-const u = {
+import { pluginManager as i } from "epic-designer";
+import { ElFormItem as c, ElTabs as r, ElTabPane as s, ElCollapse as d, ElCollapseItem as u } from "element-plus";
+const m = {
   component: async () => (await import("element-plus")).ElInput,
   defaultSchema: {
     label: "输入框",
@@ -160,7 +160,7 @@ const u = {
       }
     ]
   }
-}, m = {
+}, b = {
   component: async () => (await import("element-plus")).ElInputNumber,
   defaultSchema: {
     label: "数字输入框",
@@ -301,7 +301,7 @@ const u = {
       }
     ]
   }
-}, b = {
+}, f = {
   component: () => import("../../form-136c8a8c.js"),
   defaultSchema: {
     label: "表单",
@@ -449,7 +449,7 @@ const u = {
       }
     ]
   }
-}, f = {
+}, y = {
   component: () => import("../../formItem-04b1c0e5.js"),
   defaultSchema: {
     label: "表单项",
@@ -457,7 +457,7 @@ const u = {
     icon: "epic-icon-qiapian"
   },
   config: {}
-}, y = {
+}, h = {
   component: () => import("../../button-d27c0658.js"),
   // component: ElButton,
   defaultSchema: {
@@ -548,7 +548,7 @@ const u = {
       }
     ]
   }
-}, h = {
+}, P = {
   component: () => import("../../card-8f18b3a6.js"),
   defaultSchema: {
     label: "卡片布局",
@@ -597,7 +597,7 @@ const u = {
       }
     ]
   }
-}, P = {
+}, v = {
   component: () => import("../../row-8d9b75ef.js"),
   defaultSchema: {
     label: "栅格布局",
@@ -698,7 +698,7 @@ const u = {
       }
     ]
   }
-}, v = {
+}, g = {
   component: () => import("../../col-7f4d45ff.js"),
   defaultSchema: {
     label: "栅格布局-列",
@@ -718,7 +718,7 @@ const u = {
       }
     ]
   }
-}, g = {
+}, w = {
   component: () => import("../../select-68b9d6c0.js"),
   defaultSchema: {
     label: "选择框",
@@ -982,7 +982,7 @@ const u = {
       }
     ]
   }
-}, w = {
+}, E = {
   component: () => import("../../radio-5fe14d85.js"),
   defaultSchema: {
     label: "单选框",
@@ -1096,7 +1096,7 @@ const u = {
       }
     ]
   }
-}, E = {
+}, V = {
   component: () => import("../../checkbox-8f64b14a.js"),
   defaultSchema: {
     label: "复选框",
@@ -1563,6 +1563,7 @@ const u = {
     field: "switch",
     input: !0,
     componentProps: {
+      defaultValue: !1,
       size: "default"
     }
   },
@@ -1583,6 +1584,44 @@ const u = {
         label: "默认值",
         type: "switch",
         field: "componentProps.defaultValue"
+      },
+      {
+        label: "ON状态值",
+        type: "input",
+        field: "componentProps.activeValue",
+        componentProps: {
+          placeholder: "请输入"
+        },
+        onChange(e) {
+          setTimeout(() => n(e));
+        }
+      },
+      {
+        label: "OFF状态值",
+        type: "input",
+        field: "componentProps.inactiveValue",
+        componentProps: {
+          placeholder: "请输入"
+        },
+        onChange(e) {
+          setTimeout(() => n(e));
+        }
+      },
+      {
+        label: "ON状态描述",
+        type: "input",
+        field: "componentProps.activeText",
+        componentProps: {
+          placeholder: "请输入"
+        }
+      },
+      {
+        label: "OFF状态描述",
+        type: "input",
+        field: "componentProps.inactiveText",
+        componentProps: {
+          placeholder: "请输入"
+        }
       },
       {
         label: "尺寸",
@@ -1616,22 +1655,6 @@ const u = {
         }
       },
       {
-        label: "激活时文本",
-        type: "input",
-        field: "componentProps.activeText",
-        componentProps: {
-          placeholder: "请输入"
-        }
-      },
-      {
-        label: "未激活时文本",
-        type: "input",
-        field: "componentProps.inactiveText",
-        componentProps: {
-          placeholder: "请输入"
-        }
-      },
-      {
         label: "文本点内显示",
         type: "switch",
         field: "componentProps.inlinePrompt"
@@ -1661,7 +1684,15 @@ const u = {
       }
     ]
   }
-}, V = {
+};
+function n(e) {
+  var t;
+  let l = ((t = e.values.componentProps) == null ? void 0 : t.inactiveValue) || !1;
+  e.values.componentProps.unCheckedValue === "" && delete e.values.componentProps.unCheckedValue, e.values.componentProps.activeValue === "" && delete e.values.componentProps.activeValue, e.values.componentProps ? e.values.componentProps.defaultValue = l : e.values.componentProps = {
+    defaultValue: l
+  };
+}
+const z = {
   component: async () => (await import("element-plus")).ElCascader,
   defaultSchema: {
     label: "级联选择器",
@@ -1836,7 +1867,7 @@ const u = {
       }
     ]
   }
-}, z = {
+}, S = {
   component: () => import("../../collapse-5dc12a78.js"),
   defaultSchema: {
     label: "折叠面板",
@@ -1875,7 +1906,7 @@ const u = {
       }
     ]
   }
-}, S = {
+}, I = {
   component: () => import("../../collapseItem-01150d83.js"),
   defaultSchema: {
     label: "折叠项",
@@ -1886,7 +1917,7 @@ const u = {
   config: {
     attribute: []
   }
-}, I = {
+}, T = {
   component: async () => (await import("element-plus")).ElDatePicker,
   defaultSchema: {
     label: "日期选择器",
@@ -2077,7 +2108,7 @@ const u = {
       }
     ]
   }
-}, T = {
+}, N = {
   component: () => import("../../uploadFile-da7b23c1.js"),
   defaultSchema: {
     label: "上传文件",
@@ -2158,7 +2189,7 @@ const u = {
     ]
   },
   bindModel: "modelValue"
-}, N = {
+}, F = {
   component: () => import("../../uploadImage-27f64264.js"),
   defaultSchema: {
     label: "上传图片",
@@ -2240,7 +2271,7 @@ const u = {
   },
   bindModel: "modelValue"
 }, R = {
-  component: () => import("../../modal-ae330b47.js"),
+  component: () => import("../../modal-1edf75a9.js"),
   defaultSchema: {
     label: "模态框",
     type: "modal",
@@ -2257,28 +2288,28 @@ const u = {
     ]
   }
 };
-function L(e = n) {
-  e.component("FormItem", i), e.component("Tabs", c), e.component("TabPane", r), e.component("Collapse", s), e.component("CollapseItem", d), [
-    b,
+function O(e = i) {
+  e.component("FormItem", c), e.component("Tabs", r), e.component("TabPane", s), e.component("Collapse", d), e.component("CollapseItem", u), [
     f,
-    u,
+    y,
     m,
-    w,
+    b,
     E,
-    I,
-    g,
+    V,
+    T,
+    w,
     k,
     C,
-    V,
+    z,
     x,
-    T,
     N,
-    y,
+    F,
     h,
     P,
     v,
-    z,
+    g,
     S,
+    I,
     R
   ].forEach((t) => {
     e.registerComponent(t);
@@ -2291,5 +2322,5 @@ function Y(e) {
 }
 export {
   Y as provideGlobalConfig,
-  L as setupElementPlus
+  O as setupElementPlus
 };

@@ -1,6 +1,6 @@
-import { pluginManager as o } from "epic-designer";
-import { NTabPane as a } from "naive-ui";
-const p = {
+import { pluginManager as a } from "epic-designer";
+import { NTabPane as p } from "naive-ui";
+const n = {
   component: async () => (await import("../../index-de83403a.js").then((e) => e.i)).NInput,
   defaultSchema: {
     label: "输入框",
@@ -213,7 +213,7 @@ const p = {
     ]
   },
   bindModel: "value"
-}, n = {
+}, i = {
   component: async () => (await import("../../index-90e5cc4b.js").then((e) => e.i)).NInputNumber,
   defaultSchema: {
     label: "数字输入框",
@@ -349,7 +349,7 @@ const p = {
     ]
   },
   bindModel: "value"
-}, i = {
+}, c = {
   component: () => import("../../form-fef26142.js"),
   defaultSchema: {
     label: "表单",
@@ -493,7 +493,7 @@ const p = {
       }
     ]
   }
-}, c = {
+}, r = {
   component: () => import("../../formItem-01c503d2.js"),
   defaultSchema: {
     label: "表单项",
@@ -501,7 +501,7 @@ const p = {
     icon: "epic-icon-qiapian"
   },
   config: {}
-}, r = {
+}, s = {
   component: () => import("../../button-0e43d004.js"),
   defaultSchema: {
     label: "按钮",
@@ -645,7 +645,7 @@ const p = {
       }
     ]
   }
-}, s = {
+}, d = {
   component: () => import("../../card-e513ab3f.js"),
   defaultSchema: {
     label: "卡片布局",
@@ -668,7 +668,7 @@ const p = {
       }
     ]
   }
-}, d = {
+}, m = {
   component: () => import("../../row-0dad9b63.js"),
   defaultSchema: {
     label: "栅格布局",
@@ -769,7 +769,7 @@ const p = {
       }
     ]
   }
-}, m = {
+}, b = {
   component: () => import("../../col-9d5dec01.js"),
   defaultSchema: {
     label: "栅格布局-列",
@@ -789,7 +789,7 @@ const p = {
       }
     ]
   }
-}, b = {
+}, u = {
   component: async () => (await import("../../index-a6551f41.js").then((e) => e.i)).NSelect,
   defaultSchema: {
     label: "选择框",
@@ -981,7 +981,7 @@ const p = {
     ]
   },
   bindModel: "value"
-}, u = {
+}, f = {
   component: () => import("../../radio-fbd641f0.js"),
   defaultSchema: {
     label: "单选框",
@@ -1074,7 +1074,7 @@ const p = {
       }
     ]
   }
-}, f = {
+}, y = {
   component: () => import("../../checkbox-0945f6f5.js"),
   defaultSchema: {
     label: "复选框",
@@ -1184,7 +1184,7 @@ const p = {
       }
     ]
   }
-}, y = {
+}, h = {
   component: async () => (await import("../../index-29a3e102.js").then((e) => e.i)).NSlider,
   defaultSchema: {
     label: "滑块",
@@ -1356,7 +1356,7 @@ const p = {
     ]
   },
   bindModel: "value"
-}, h = {
+}, P = {
   component: async () => (await import("../../index-84d53943.js").then((e) => e.i)).NColorPicker,
   defaultSchema: {
     label: "颜色选择器",
@@ -1533,7 +1533,7 @@ const p = {
     action: []
   },
   bindModel: "value"
-}, P = {
+}, v = {
   component: async () => (await import("../../index-6e98f21e.js").then((e) => e.i)).NSwitch,
   defaultSchema: {
     label: "开关",
@@ -1542,6 +1542,7 @@ const p = {
     field: "switch",
     input: !0,
     componentProps: {
+      defaultValue: !1,
       round: !0,
       size: "medium"
     }
@@ -1565,6 +1566,28 @@ const p = {
         field: "componentProps.defaultValue"
       },
       {
+        label: "ON状态值",
+        type: "input",
+        field: "componentProps.checkedValue",
+        componentProps: {
+          placeholder: "请输入"
+        },
+        onChange(e) {
+          setTimeout(() => o(e));
+        }
+      },
+      {
+        label: "OFF状态值",
+        type: "input",
+        field: "componentProps.uncheckedValue",
+        componentProps: {
+          placeholder: "请输入"
+        },
+        onChange(e) {
+          setTimeout(() => o(e));
+        }
+      },
+      {
         label: "尺寸",
         type: "select",
         field: "componentProps.size",
@@ -1586,25 +1609,9 @@ const p = {
         }
       },
       {
-        label: "原型按钮",
+        label: "圆型按钮",
         type: "switch",
         field: "componentProps.round"
-      },
-      {
-        label: "选中时对应值",
-        type: "input",
-        field: "componentProps.checkedValue",
-        componentProps: {
-          placeholder: "请输入"
-        }
-      },
-      {
-        label: "非选中时对应值",
-        type: "input",
-        field: "componentProps.uncheckedValue",
-        componentProps: {
-          placeholder: "请输入"
-        }
       },
       {
         label: "禁用",
@@ -1632,7 +1639,15 @@ const p = {
     ]
   },
   bindModel: "value"
-}, v = {
+};
+function o(e) {
+  var l;
+  let t = ((l = e.values.componentProps) == null ? void 0 : l.uncheckedValue) || !1;
+  e.values.componentProps.uncheckedValue === "" && delete e.values.componentProps.uncheckedValue, e.values.componentProps.checkedValue === "" && delete e.values.componentProps.checkedValue, e.values.componentProps ? e.values.componentProps.defaultValue = t : e.values.componentProps = {
+    defaultValue: t
+  };
+}
+const g = {
   component: async () => (await import("../../index-be15541b.js").then((e) => e.i)).NCascader,
   defaultSchema: {
     label: "级联选择器",
@@ -1846,7 +1861,7 @@ const p = {
     ]
   },
   bindModel: "value"
-}, g = {
+}, w = {
   component: () => import("../../collapse-4d0283b7.js"),
   defaultSchema: {
     label: "折叠面板",
@@ -1885,7 +1900,7 @@ const p = {
       }
     ]
   }
-}, w = {
+}, E = {
   component: () => import("../../collapseItem-b8c21816.js"),
   defaultSchema: {
     label: "折叠项",
@@ -1896,7 +1911,7 @@ const p = {
   config: {
     attribute: []
   }
-}, E = {
+}, x = {
   component: async () => (await import("../../index-cdd027b6.js").then((e) => e.i)).NDatePicker,
   defaultSchema: {
     label: "日期选择器",
@@ -2064,7 +2079,7 @@ const p = {
     ]
   },
   bindModel: "formatted-value"
-}, x = {
+}, k = {
   component: () => import("../../uploadFile-68c81aca.js"),
   defaultSchema: {
     label: "上传文件",
@@ -2218,7 +2233,7 @@ const p = {
     ]
   },
   bindModel: "modelValue"
-}, k = {
+}, z = {
   component: () => import("../../modal-b41ffb30.js"),
   defaultSchema: {
     label: "模态框",
@@ -2236,41 +2251,41 @@ const p = {
     ]
   }
 };
-function C(e = o) {
+function C(e = a) {
   e.component(
     "FormItem",
     async () => (await import("../../index-1645fb1f.js").then((l) => l.i)).NFormItem
   ), e.component(
     "Tabs",
     async () => (await import("../../index-dfd5768f.js").then((l) => l.i)).NTabs
-  ), e.component("TabPane", a), e.component(
+  ), e.component("TabPane", p), e.component(
     "Collapse",
     async () => (await import("../../index-dcd9860f.js").then((l) => l.i)).NCollapse
   ), e.component(
     "CollapseItem",
     async () => (await import("../../index-dcd9860f.js").then((l) => l.i)).NCollapseItem
   ), [
-    i,
     c,
-    p,
+    r,
     n,
-    u,
+    i,
     f,
-    E,
-    b,
-    P,
-    h,
-    v,
     y,
     x,
+    u,
+    v,
+    P,
+    g,
+    h,
+    k,
     N,
-    r,
     s,
     d,
     m,
-    g,
+    b,
     w,
-    k
+    E,
+    z
   ].forEach((l) => {
     e.registerComponent(l);
   }), e.setInitialized(!0);

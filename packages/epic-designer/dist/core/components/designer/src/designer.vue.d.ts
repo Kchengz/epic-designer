@@ -21,6 +21,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: import("vue").PropType<boolean>;
         default: boolean;
     };
+    lockDefaultSchemaEdit: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
     defaultSchema: {
         type: import("vue").PropType<PageSchema>;
         default: () => {
@@ -42,12 +46,16 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     setData: typeof setData;
     getData: typeof getData;
     reset: typeof reset;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("reset" | "ready" | "save")[], "reset" | "ready" | "save", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("reset" | "ready" | "save" | "toggleDeviceMode")[], "reset" | "ready" | "save" | "toggleDeviceMode", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     disabledZoom: {
         type: import("vue").PropType<boolean>;
         default: boolean;
     };
     hiddenHeader: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    lockDefaultSchemaEdit: {
         type: import("vue").PropType<boolean>;
         default: boolean;
     };
@@ -72,9 +80,11 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     onReset?: ((...args: any[]) => any) | undefined;
     onReady?: ((...args: any[]) => any) | undefined;
     onSave?: ((...args: any[]) => any) | undefined;
+    onToggleDeviceMode?: ((...args: any[]) => any) | undefined;
 }, {
     disabledZoom: boolean;
     hiddenHeader: boolean;
+    lockDefaultSchemaEdit: boolean;
     defaultSchema: PageSchema;
 }, {}>, {
     header?(_: {}): any;
