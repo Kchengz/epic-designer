@@ -67,7 +67,8 @@ export function usePageManager(): PageManager {
     const publicMethods: Record<string, () => any> = Object.entries(
       pluginManager.publicMethods
     ).reduce((acc: any, [key, value]) => {
-      acc[key] = value.method;
+
+      acc[key] = value.handler;
       return acc;
     }, {});
 
@@ -104,7 +105,7 @@ export function usePageManager(): PageManager {
   function doActions(actions: ActionsModel[], ...args: any): void {
     actions?.forEach((action) => {
       if (action.type === "public") {
-        pluginManager.publicMethods[action.methodName]?.method(...args);
+        pluginManager.publicMethods[action.methodName]?.handler(...args);
       }
 
       if (action.type === "custom") {

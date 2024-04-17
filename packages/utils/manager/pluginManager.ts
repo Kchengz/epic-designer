@@ -55,13 +55,15 @@ export interface ComponentConfigModel {
 
 export type ComponentConfigModelRecords = Record<string, ComponentConfigModel>;
 
-export interface MethodModel {
+export interface PublicMethodModel {
   describe?: string;
-  methodName: string;
-  method: (...args) => any;
+  methodName?: string;
+  name: string;
+  method?: (...args) => any;
+  handler: (...args) => any;
 }
 
-export type PublicMethodsModel = Record<string, MethodModel>;
+export type PublicMethodsModel = Record<string, PublicMethodModel>;
 
 export interface ComponentGroup {
   list: ComponentSchema[];
@@ -101,11 +103,11 @@ export class PluginManager {
 
   // 公共方法模型，存储插件的公共方法
   publicMethods: PublicMethodsModel = {
-    // 示例方法
-    // test: {
+    // 示例数据
+    // publicTest: {
     //   describe: "测试函数",
-    //   methodName: "test",
-    //   method: (e) => {
+    //   name: "test",
+    //   handler: (e) => {
     //     console.log(e)
     //     // alert("测试函数弹出");
     //   },
@@ -419,10 +421,20 @@ export class PluginManager {
 
   /**
    * 添加公共方法
-   * @param method
+   * @param publicMethod
    */
-  addPublicMethod(method: MethodModel): void {
-    this.publicMethods[method.methodName] = method;
+  addPublicMethod(publicMethod: PublicMethodModel): void {
+    // 兼容旧公共函数注册，后期可能移除该判断
+    // methodName 变量改成 name
+    // method 变量改成 handler
+    const name = publicMethod.methodName ?? publicMethod.name
+    const handler = publicMethod.method ?? publicMethod.handler
+
+    this.publicMethods[name] = {
+      ...publicMethod,
+      name,
+      handler
+    };
   }
 
   /**
