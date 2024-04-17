@@ -1,91 +1,91 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: () => import('./checkbox'),
+  component: () => import("./checkbox"),
   defaultSchema: {
-    label: '复选框',
-    type: 'checkbox',
-    icon: 'epic-icon-duoxuan1',
-    field: 'checkbox',
+    label: "复选框",
+    type: "checkbox",
+    icon: "epic-icon-duoxuan1",
+    field: "checkbox",
     input: true,
     componentProps: {
       // defaultValue: [],
       options: [
         {
-          label: '选项1',
-          value: '选项1'
+          label: "选项1",
+          value: "选项1",
         },
         {
-          label: '选项2',
-          value: '选项2'
-        }
+          label: "选项2",
+          value: "选项2",
+        },
       ],
-      size: 'medium'
-    }
+      size: "medium",
+    },
   },
   groupName: "表单",
   config: {
     attribute: [
       {
-        label: '字段名',
-        type: 'input',
-        field: 'field'
+        label: "字段名",
+        type: "input",
+        field: "field",
       },
       {
-        label: '默认值',
-        type: 'checkbox',
-        field: 'componentProps.defaultValue'
+        label: "默认值",
+        type: "checkbox",
+        field: "componentProps.defaultValue",
       },
       {
-        label: '文字',
-        type: 'input',
-        field: 'label'
+        label: "文字",
+        type: "input",
+        field: "label",
       },
       {
-        label: '最大勾选数',
-        type: 'number',
-        field: 'componentProps.max',
+        label: "最大勾选数",
+        type: "number",
+        field: "componentProps.max",
         componentProps: {
-          placeholder: '请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
-        label: '最小勾选数',
-        type: 'number',
-        field: 'componentProps.min',
+        label: "最小勾选数",
+        type: "number",
+        field: "componentProps.min",
         componentProps: {
-          placeholder: '请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
-        label: '尺寸',
-        type: 'select',
-        field: 'componentProps.size',
+        label: "尺寸",
+        type: "select",
+        field: "componentProps.size",
         componentProps: {
-          options:[
+          options: [
             {
-              label: 'small',
-              value: 'small'
+              label: "small",
+              value: "small",
             },
             {
-              label: 'medium',
-              value: 'medium'
+              label: "medium",
+              value: "medium",
             },
             {
-              label: 'large',
-              value: 'large'
-            }
-          ]
-        }
+              label: "large",
+              value: "large",
+            },
+          ],
+        },
       },
       {
-        label: '禁用',
-        type: 'switch',
-        field: 'componentProps.disabled'
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled",
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
       },
       {
         label: "选项管理",
@@ -95,18 +95,21 @@ export default {
         describe: "配置选项",
       },
       {
-        label: '表单校验',
-        type: 'ERuleEditor',
-        layout: 'vertical',
-        field: 'rules',
-        describe: '校验规则需要配合表单使用'
-      }
+        label: "表单校验",
+        type: "ERuleEditor",
+        layout: "vertical",
+        field: "rules",
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "array",
+        },
+      },
     ],
     event: [
       {
-        type: 'change',
-        describe: '值变化时'
-      }
-    ]
-  }
-} as ComponentConfigModel
+        type: "change",
+        describe: "值变化时",
+      },
+    ],
+  },
+} as ComponentConfigModel;

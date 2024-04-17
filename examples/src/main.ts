@@ -7,15 +7,9 @@ import App from "./App.vue";
 // setupElementPlus()
 
 // 使用Antd UI v4版本
-// import './style/reset.css';
 import 'ant-design-vue/dist/reset.css';
 import { setupAntd } from '@epic-designer/ui'
 setupAntd()
-
-// 使用Antd UI v3 版本
-// import "ant-design-vue/dist/antd.css";
-// import { setupAntd } from '@epic-designer/ui'
-// setupAntd()
 
 
 // 使用NaiveUi UI

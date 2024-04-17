@@ -117,15 +117,17 @@ export default {
         label: '选项管理',
         type: 'EOptionsEditor',
         layout: 'vertical',
-        field: 'componentProps.options',
-        describe: '校验规则需要配合表单使用'
+        field: 'componentProps.options'
       },
       {
         label: '表单校验',
         type: 'ERuleEditor',
         layout: 'vertical',
         field: 'rules',
-        describe: '校验规则需要配合表单使用'
+        describe: '校验规则需要配合表单使用',
+        componentProps: {
+          ruleType: "array",
+        }
       }
     ],
     event: [

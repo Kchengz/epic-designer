@@ -82,7 +82,10 @@ export default {
         type: 'ERuleEditor',
         layout: 'vertical',
         field: 'rules',
-        describe: '校验规则需要配合表单使用'
+        describe: '校验规则需要配合表单使用',
+        componentProps: {
+          ruleType: "array",
+        }
       }
     ],
     event: [

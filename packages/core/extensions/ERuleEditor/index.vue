@@ -8,8 +8,8 @@
             {{ componentSchema.label }}
           </div>
           <div class="flex-1">
-            <ENode v-model="requiredRule[componentSchema.model]" :componentSchema="{ ...componentSchema, noFormItem: true }"
-              @change="handleUpdate" />
+            <ENode v-model="requiredRule[componentSchema.model]"
+              :componentSchema="{ ...componentSchema, noFormItem: true }" @change="handleUpdate" />
           </div>
         </div>
       </template>
@@ -30,6 +30,10 @@ import ENode from '../../components/node/index'
 import { triggerOptions, typeOptions } from './data'
 const Button = pluginManager.getComponent('button')
 const props = defineProps({
+  ruleType: {
+    type: String,
+    default: 'string'
+  },
   modelValue: {
     type: Array as PropType<FormItemRule[] | undefined>,
     default: undefined
@@ -40,7 +44,7 @@ const props = defineProps({
 const requiredRule = ref<FormItemRule>({
   required: false,
   message: "必填项",
-  type: "string",
+  type: props.ruleType,
   trigger: ["change"],
 });
 
@@ -113,6 +117,7 @@ watch(() => props.modelValue, (e) => {
 function handleAdd() {
   rules.value.push({
     message: '',
+    type: props.ruleType,
     trigger: ['change']
   })
   handleUpdate()
