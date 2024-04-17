@@ -1,3 +1,20 @@
+## 0.9.7（2024-04-18）
+
+### ✨ Feat
+
+- EDesigner新增toggleDeviceMode事件
+- switch组件自动添加默认值
+- 新增lockDefaultSchemaEdit属性，锁定默认组件是否可复制删除
+- 新增title属性
+- 右侧面板新增折叠按钮
+- 输出结果新增弹出框展示
+- 校验组件添加ruleType属性，设置默认校验规则类型
+
+### 🐛 Bug Fixes
+
+- 修复初始化时未构建自定义函数问题
+- 
+
 ## 0.9.6（2024-04-08）
 
 ### ✨ Feat

@@ -18,6 +18,7 @@ const Test = {
     componentProps: {
     }
   },
+  groupName:"自定义组件",
   config: {
     attribute: [
       {
@@ -31,11 +32,6 @@ const Test = {
 
 // 注册组件
 pluginManager.registerComponent(Test);
-// 添加到组件库分组 左侧不会有新增的组件可选
-pluginManager.addComponentGroup({
-  title: "自定义",
-  list: ["test"],
-});
 ```
 
 在同级目录下创建cmp.vue 
@@ -49,18 +45,6 @@ pluginManager.addComponentGroup({
 ```
 
 
-
-## 组件库分组管理
-
-```ts
-import { pluginManager } from "epic-designer";
-
-// 设置页面左侧组件分组内容 - 用于过滤不需要组件，只设置需要展示组件即可
-pluginManager.setComponentGroup({
-  title: "自定义",
-  list: ["input"],
-});
-```
 
 ## Methods
 

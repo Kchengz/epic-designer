@@ -11,14 +11,15 @@
 > 通过pluginManager对象的addPublicMetho方法添加公共函数
 
 ```ts
-import { pluginManager, type MethodModel } from 'epic-designer'
+import { pluginManager, type PublicMethodModel } from 'epic-designer'
 
-const methodItem:MethodModel = {
-    methodName: "myFun",
-    method: ()=>{
+const methodItem: PublicMethodModel = {
+    name: "myFun",
+    handler: ()=>{
         alert('myFun 被调用了')
     },
     describe: "这是一个测试函数描述"
 }
 pluginManager.addPublicMethod(methodItem)
 ```
+

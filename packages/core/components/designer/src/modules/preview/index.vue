@@ -4,7 +4,7 @@
       <EBuilder :key="EBuilderKey" ref="kb" :page-schema="pageSchema" />
 
       <!-- 输出结果 start -->
-      <Modal v-model="dataVisible" title="表单数据" class="w-860px" width="860px" @close="handleCloseData">
+      <Modal v-model="dataVisible" title="表单数据" class="w-860px" width="860px" @close="handleCloseData" @ok="handleCloseData">
         <div class="h-full rounded bg-white">
           <MonacoEditor ref="monacoEditorRef" class="h-full editor" :model-value="formValues" />
         </div>
@@ -57,7 +57,10 @@ async function handleOk() {
     })
     dataVisible.value = true
   } catch (err) {
-    alert(err)
+    if (typeof err === 'string') {
+      alert(err + '\r\n请添加表单组件后再尝试！')
+    }
+    console.error(err)
   }
 
 }

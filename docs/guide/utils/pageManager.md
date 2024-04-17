@@ -83,9 +83,15 @@ function handleReady(pageManager: PageManager) {
 
 ## Methods
 
-#### getComponentInstance
+#### find
 
 类型：`(id: string) => ComponentPublicInstance `
 
 说明：用于获取组件实例
+
+#### getComponentInstance
+
+类型：`(id: string) => ComponentPublicInstance `
+
+说明：通过id获取组件实例，跟find函数效果一致，find函数名称更简短
 
