@@ -13,6 +13,10 @@ declare function getData(): PageSchema;
  */
 declare function reset(): void;
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
+    title: {
+        type: import("vue").PropType<string>;
+        default: string;
+    };
     disabledZoom: {
         type: import("vue").PropType<boolean>;
         default: boolean;
@@ -47,6 +51,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     getData: typeof getData;
     reset: typeof reset;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("reset" | "ready" | "save" | "toggleDeviceMode")[], "reset" | "ready" | "save" | "toggleDeviceMode", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    title: {
+        type: import("vue").PropType<string>;
+        default: string;
+    };
     disabledZoom: {
         type: import("vue").PropType<boolean>;
         default: boolean;
@@ -82,6 +90,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     onSave?: ((...args: any[]) => any) | undefined;
     onToggleDeviceMode?: ((...args: any[]) => any) | undefined;
 }, {
+    title: string;
     disabledZoom: boolean;
     hiddenHeader: boolean;
     lockDefaultSchemaEdit: boolean;

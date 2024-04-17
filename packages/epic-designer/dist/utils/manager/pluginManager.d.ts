@@ -36,12 +36,14 @@ export interface ComponentConfigModel {
     bindModel?: string;
 }
 export type ComponentConfigModelRecords = Record<string, ComponentConfigModel>;
-export interface MethodModel {
+export interface PublicMethodModel {
     describe?: string;
-    methodName: string;
-    method: (...args: any[]) => any;
+    methodName?: string;
+    name: string;
+    method?: (...args: any[]) => any;
+    handler: (...args: any[]) => any;
 }
-export type PublicMethodsModel = Record<string, MethodModel>;
+export type PublicMethodsModel = Record<string, PublicMethodModel>;
 export interface ComponentGroup {
     list: ComponentSchema[];
     title: string;
@@ -282,9 +284,9 @@ export declare class PluginManager {
     setInitialized(value: boolean): void;
     /**
      * 添加公共方法
-     * @param method
+     * @param publicMethod
      */
-    addPublicMethod(method: MethodModel): void;
+    addPublicMethod(publicMethod: PublicMethodModel): void;
     /**
      * 移除公共方法
      * @param methodName

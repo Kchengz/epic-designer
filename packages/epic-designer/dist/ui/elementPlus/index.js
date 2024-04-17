@@ -1,5 +1,5 @@
 import { pluginManager as i } from "epic-designer";
-import { ElFormItem as c, ElTabs as r, ElTabPane as s, ElCollapse as d, ElCollapseItem as u } from "element-plus";
+import { ElFormItem as r, ElTabs as c, ElTabPane as s, ElCollapse as d, ElCollapseItem as u } from "element-plus";
 const m = {
   component: async () => (await import("element-plus")).ElInput,
   defaultSchema: {
@@ -291,7 +291,10 @@ const m = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "number"
+        }
       }
     ],
     event: [
@@ -1075,17 +1078,16 @@ const m = {
         field: "componentProps.hidden"
       },
       {
+        label: "选项管理",
+        type: "EOptionsEditor",
+        layout: "vertical",
+        field: "componentProps.options"
+      },
+      {
         label: "表单校验",
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
-      },
-      {
-        label: "选项管理",
-        type: "EOptionsEditor",
-        layout: "vertical",
-        field: "componentProps.options",
         describe: "校验规则需要配合表单使用"
       }
     ],
@@ -1209,15 +1211,17 @@ const m = {
         label: "选项管理",
         type: "EOptionsEditor",
         layout: "vertical",
-        field: "componentProps.options",
-        describe: "校验规则需要配合表单使用"
+        field: "componentProps.options"
       },
       {
         label: "表单校验",
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "array"
+        }
       }
     ],
     event: [
@@ -1288,8 +1292,8 @@ const m = {
         componentProps: {
           placeholder: "请输入"
         },
-        onChange: ({ value: e, values: l, componentAttributes: t }) => {
-          const o = t.value.findIndex((a) => a.field === "componentProps.max"), p = t.value[o];
+        onChange: ({ value: e, values: l, componentAttributes: o }) => {
+          const t = o.value.findIndex((a) => a.field === "componentProps.max"), p = o.value[t];
           p.componentProps = {
             min: e
           }, (l.componentProps.max ?? 0) < e && (l.componentProps.max = e);
@@ -1302,8 +1306,8 @@ const m = {
         componentProps: {
           placeholder: "请输入"
         },
-        onChange: ({ value: e, values: l, componentAttributes: t }) => {
-          const o = t.value.findIndex((a) => a.field === "componentProps.min"), p = t.value[o];
+        onChange: ({ value: e, values: l, componentAttributes: o }) => {
+          const t = o.value.findIndex((a) => a.field === "componentProps.min"), p = o.value[t];
           p.componentProps = {
             max: e
           }, (l.componentProps.min ?? 0) > e && (l.componentProps.min = e);
@@ -1430,7 +1434,10 @@ const m = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "number"
+        }
       }
     ],
     event: [
@@ -1674,7 +1681,10 @@ const m = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "boolean"
+        }
       }
     ],
     event: [
@@ -1686,13 +1696,13 @@ const m = {
   }
 };
 function n(e) {
-  var t;
-  let l = ((t = e.values.componentProps) == null ? void 0 : t.inactiveValue) || !1;
+  var o;
+  let l = ((o = e.values.componentProps) == null ? void 0 : o.inactiveValue) || !1;
   e.values.componentProps.unCheckedValue === "" && delete e.values.componentProps.unCheckedValue, e.values.componentProps.activeValue === "" && delete e.values.componentProps.activeValue, e.values.componentProps ? e.values.componentProps.defaultValue = l : e.values.componentProps = {
     defaultValue: l
   };
 }
-const z = {
+const T = {
   component: async () => (await import("element-plus")).ElCascader,
   defaultSchema: {
     label: "级联选择器",
@@ -1847,7 +1857,10 @@ const z = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "array"
+        }
       }
     ],
     event: [
@@ -1867,7 +1880,7 @@ const z = {
       }
     ]
   }
-}, S = {
+}, z = {
   component: () => import("../../collapse-5dc12a78.js"),
   defaultSchema: {
     label: "折叠面板",
@@ -1906,7 +1919,7 @@ const z = {
       }
     ]
   }
-}, I = {
+}, S = {
   component: () => import("../../collapseItem-01150d83.js"),
   defaultSchema: {
     label: "折叠项",
@@ -1917,7 +1930,7 @@ const z = {
   config: {
     attribute: []
   }
-}, T = {
+}, I = {
   component: async () => (await import("element-plus")).ElDatePicker,
   defaultSchema: {
     label: "日期选择器",
@@ -2184,7 +2197,10 @@ const z = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "array"
+        }
       }
     ]
   },
@@ -2265,7 +2281,10 @@ const z = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "array"
+        }
       }
     ]
   },
@@ -2289,18 +2308,18 @@ const z = {
   }
 };
 function O(e = i) {
-  e.component("FormItem", c), e.component("Tabs", r), e.component("TabPane", s), e.component("Collapse", d), e.component("CollapseItem", u), [
+  e.component("FormItem", r), e.component("Tabs", c), e.component("TabPane", s), e.component("Collapse", d), e.component("CollapseItem", u), [
     f,
     y,
     m,
     b,
     E,
     V,
-    T,
+    I,
     w,
     k,
     C,
-    z,
+    T,
     x,
     N,
     F,
@@ -2308,11 +2327,11 @@ function O(e = i) {
     P,
     v,
     g,
+    z,
     S,
-    I,
     R
-  ].forEach((t) => {
-    e.registerComponent(t);
+  ].forEach((o) => {
+    e.registerComponent(o);
   }), e.setInitialized(!0);
 }
 function Y(e) {

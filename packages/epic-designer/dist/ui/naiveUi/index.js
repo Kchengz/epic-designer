@@ -344,7 +344,10 @@ const n = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "number"
+        }
       }
     ]
   },
@@ -1053,18 +1056,18 @@ const n = {
         field: "componentProps.hidden"
       },
       {
-        label: "表单校验",
-        type: "ERuleEditor",
-        layout: "vertical",
-        field: "rules",
-        describe: "校验规则需要配合表单使用"
-      },
-      {
         label: "选项管理",
         type: "EOptionsEditor",
         layout: "vertical",
         field: "componentProps.options",
         describe: "配置选项"
+      },
+      {
+        label: "表单校验",
+        type: "ERuleEditor",
+        layout: "vertical",
+        field: "rules",
+        describe: "校验规则需要配合表单使用"
       }
     ],
     event: [
@@ -1174,7 +1177,10 @@ const n = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "array"
+        }
       }
     ],
     event: [
@@ -1341,7 +1347,10 @@ const n = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "number"
+        }
       }
     ],
     event: [
@@ -1628,7 +1637,10 @@ const n = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "boolean"
+        }
       }
     ],
     event: [
@@ -1840,7 +1852,10 @@ const g = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "array"
+        }
       }
     ],
     event: [
@@ -2151,7 +2166,10 @@ const g = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "array"
+        }
       }
     ]
   },
@@ -2228,7 +2246,10 @@ const g = {
         type: "ERuleEditor",
         layout: "vertical",
         field: "rules",
-        describe: "校验规则需要配合表单使用"
+        describe: "校验规则需要配合表单使用",
+        componentProps: {
+          ruleType: "array"
+        }
       }
     ]
   },
