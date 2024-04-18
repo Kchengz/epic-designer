@@ -1,7 +1,7 @@
 <template>
   <div class="epic-outline">
     <ETree :options="pageSchema.schemas" draggable :selected-keys="selectedKeys" :hover-key="designer.state.hoverNode?.id"
-      @node-click="handleNodeClick">
+      @nodeClick="handleNodeClick">
       <template #tree-node="{ schema }">
         <div class="text-padding" @mouseenter.stop="designer.setHoverNode(schema)"
           @mouseleave.stop="designer.setHoverNode(null)">
