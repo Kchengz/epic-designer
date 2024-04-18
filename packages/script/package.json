@@ -1,0 +1,16 @@
+{
+  "name": "@epic-designer/script",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "checkCompiled": "ts-node ./check-compiled"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.1.6"
+  }
+}
