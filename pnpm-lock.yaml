@@ -18,6 +18,9 @@ importers:
       '@epic-designer/core':
         specifier: workspace:*
         version: link:packages/core
+      '@epic-designer/script':
+        specifier: workspace:*
+        version: link:packages/script
       '@epic-designer/ui':
         specifier: workspace:*
         version: link:packages/ui
@@ -17691,7 +17694,7 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      vue: 3.4.21(typescript@5.1.6)
+      vue: 3.4.21(typescript@5.4.3)
     dev: true
 
   registry.npmmirror.com/vue-eslint-parser@9.3.1(eslint@8.57.0):
