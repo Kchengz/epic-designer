@@ -36,6 +36,10 @@ export interface ComponentConfigModel {
   component: any;
   // 分组名称（组件分组），不设置分组时仅注册，但不会显示在组件列表中，可选
   groupName?: string;
+  // 是否固定不可拖动，可选
+  immovable?: boolean;
+  // 子节点是否固定不不可拖动，可选
+  childImmovable?: boolean;
   // 默认组件结构数据
   defaultSchema: ComponentSchema;
   // 配置
@@ -427,13 +431,13 @@ export class PluginManager {
     // 兼容旧公共函数注册，后期可能移除该判断
     // methodName 变量改成 name
     // method 变量改成 handler
-    const name = publicMethod.methodName ?? publicMethod.name
-    const handler = publicMethod.method ?? publicMethod.handler
+    const name = publicMethod.methodName ?? publicMethod.name;
+    const handler = publicMethod.method ?? publicMethod.handler;
 
     this.publicMethods[name] = {
       ...publicMethod,
       name,
-      handler
+      handler,
     };
   }
 

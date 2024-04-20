@@ -1,11 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./row"),
-  defaultSchema: {
+    childImmovable: true,
+    defaultSchema: {
     label: "栅格布局",
     type: "row",
     icon: "epic-icon-zhage",
-    childImmovable: true,
     children: [
       {
         type: "col",

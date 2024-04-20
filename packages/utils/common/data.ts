@@ -598,6 +598,7 @@ export function recursionConvertedNode(
 
     if (type === "grid") {
       type = "row";
+      // 待修改
       item.childImmovable = true;
     }
 
@@ -614,6 +615,7 @@ export function recursionConvertedNode(
       icon: item.icon || "",
       field: item.model,
       componentProps,
+      // 待修改
       childImmovable: item.childImmovable,
       id: item.key,
     };

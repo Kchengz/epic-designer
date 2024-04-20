@@ -1,10 +1,10 @@
 <template>
   <ENode ref="nodeRef" :componentSchema="props.schema">
-    <!-- 栅格布局、标签布局暂时不可拖拽设计 start -->
-    <template v-if="props.schema?.childImmovable" #edit-node>
+    <!-- childImmovable不可拖拽设计 start -->
+    <template v-if="pluginManager.getComponentConfingByType(props.schema.type)?.childImmovable" #edit-node>
       <ENodeItem v-for="schema in props.schema.children" :key="schema.id" :schema="schema" />
     </template>
-    <!-- 栅格布局、标签布局暂时不可拖拽设计 end -->
+    <!-- childImmovable不可拖拽设计 end -->
 
     <template v-else #edit-node>
       <KEditNodeItem v-if="props.schema.children" v-model:schemas="props.schema.children" />
