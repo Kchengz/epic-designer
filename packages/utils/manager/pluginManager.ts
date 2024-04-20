@@ -40,6 +40,9 @@ export interface ComponentConfigModel {
   immovable?: boolean;
   // 子节点是否固定不不可拖动，可选
   childImmovable?: boolean;
+  // 表单字段是否固定 不添加随机UUID
+  fixedField?: boolean;
+
   // 默认组件结构数据
   defaultSchema: ComponentSchema;
   // 配置
