@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import monacoEditorPlugin from 'vite-plugin-monaco-editor'
+import { resolve } from "path";
 export default defineConfig({
   plugins: [
     VueDevTools(),
@@ -12,4 +13,9 @@ export default defineConfig({
       languageWorkers:['editorWorkerService', 'css', 'html', 'json', 'typescript']
     })
   ],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "src"),
+    },
+  },
 })

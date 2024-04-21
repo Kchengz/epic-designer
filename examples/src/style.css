@@ -1,4 +1,10 @@
-body{
-    padding: 0;
-    margin: 0;
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.epic-page-main {
+  height: calc(100vh - 64px);
+  padding: 8px;
+  /* background-color: white; */
 }
