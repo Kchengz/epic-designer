@@ -96,7 +96,6 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
     UploadFile,
     colorPicker,
     Button,
-
     Card,
     Row,
     Col,
@@ -105,6 +104,7 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
 
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item);
+    pluginManager.addBaseComponentTypes(item.defaultSchema.type);
   });
 
   // ui初始化完成。

@@ -65,34 +65,8 @@ export function setupElementPlus(
 
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item);
+    pluginManager.addBaseComponentTypes(item.defaultSchema.type);
   });
-
-  // 设置分组显示
-  // pluginManager.setComponentGroup([
-  //   {
-  //     title: "表单",
-  //     list: [
-  //       "form",
-  //       "input",
-  //       "number",
-  //       "select",
-  //       "cascader",
-  //       "checkbox",
-  //       "radio",
-  //       "date",
-  //       "slider",
-  //       "switch",
-  //       "color-picker",
-  //       "upload-file",
-  //       "upload-image",
-  //       "button",
-  //     ],
-  //   },
-  //   {
-  //     title: "布局",
-  //     list: ["card", "row"],
-  //   },
-  // ]);
 
   // ui初始化完成。
   pluginManager.setInitialized(true);

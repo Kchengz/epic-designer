@@ -90,6 +90,9 @@ export class PluginManager {
   // 组件配置记录字典，key 为组件type，value 为组件配置
   componentConfigs: ComponentConfigModelRecords = {};
 
+  // 基础组件type，切换ui时，可先移除该数组记录的type
+  baseComponentTypes: string[] = [];
+
   // 组件模式分组，使用 Vue Composition API 的 ref 进行响应式处理
   componentSchemaGroups = ref<ComponentSchemaGroups>([]);
 
@@ -123,15 +126,15 @@ export class PluginManager {
 
   /**
    * 添加组件到插件管理器中
-   * @param componentName 组件名称
+   * @param componentType 组件类型
    * @param component 组件
    */
-  component(componentName: string, component: any): void {
+  component(componentType: string, component: any): void {
     if (typeof component === "function") {
       component = loadAsyncComponent(component);
     }
     // 注册组件
-    this.components[componentName] = component;
+    this.components[componentType] = component;
   }
 
   /**
@@ -176,6 +179,44 @@ export class PluginManager {
 
     // 添加组件配置
     this.componentConfigs[componentConfig.defaultSchema.type] = componentConfig;
+
+    this.computedComponentSchemaGroups();
+  }
+
+  /**
+   * 从已记录的基础组件类型中移除特定类型的组件
+   * @param componentType 要移除的组件类型
+   */
+  removeComponent(componentType: string) {
+    // 在数组中查找要移除的组件类型的索引
+    delete this.componentConfigs[componentType];
+    delete this.components[componentType];
+  }
+
+  /**
+   * 记录基础组件类型
+   * @returns baseComponentTypes string[]
+   */
+  setBaseComponentTypes(baseComponentTypes: string[]) {
+    this.baseComponentTypes = baseComponentTypes;
+  }
+
+  /**
+   * 添加基础组件类型
+   * @returns baseComponentType string
+   */
+  addBaseComponentTypes(baseComponentType: string) {
+    this.baseComponentTypes.push(baseComponentType);
+  }
+
+  /**
+   * 移除已记录的基础组件类型
+   */
+  removeBaseComponents() {
+    this.baseComponentTypes.forEach((componentType) => {
+      this.removeComponent(componentType);
+    });
+    this.setBaseComponentTypes([]);
 
     this.computedComponentSchemaGroups();
   }
