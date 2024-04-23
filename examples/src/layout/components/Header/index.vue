@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router'
 import { Select } from 'ant-design-vue'
-import { computed, nextTick } from 'vue'
+import { computed } from 'vue'
 import { pluginManager } from '@epic-designer/utils'
 import { setupAntd, setupElementPlus, setupNaiveUi } from "@epic-designer/ui";
 import 'element-plus/dist/index.css'

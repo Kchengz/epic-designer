@@ -1,17 +1,24 @@
 <template>
-    <Menu class="h-full" id="dddddd" mode="inline" @click="handleClick" :items="items"></Menu>
+    <Menu class="h-full" :selectedKeys="[routeName]" id="dddddd" mode="inline" @click="handleClick" :items="items"></Menu>
 </template>
 <script lang="ts" setup>
 
 import { Menu, type MenuProps } from 'ant-design-vue'
 
-import { type RouteRecordRaw, useRouter } from 'vue-router'
+import { type RouteRecordRaw, useRouter,useRoute } from 'vue-router'
 import { frameworkRoutes } from '@/router'
+import { computed } from 'vue'
 
 
 const router = useRouter()
+const route = useRoute()
 
 const items = traverseRoutes(frameworkRoutes)
+
+const routeName = computed(() => {
+    return route.name as string
+})
+
 
 
 // 修改后的递归函数用于遍历树形结构并修改数据
@@ -34,8 +41,6 @@ function traverseRoutes(routes: RouteRecordRaw[]) {
 }
 
 const handleClick: MenuProps['onClick'] = e => {
-    console.log('click', e);
-
     router.push({ path: '/ant-designe-vue/'+e.key })
 };
 </script>
