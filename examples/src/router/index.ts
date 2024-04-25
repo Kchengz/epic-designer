@@ -1,85 +1,67 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Layout from "@/layout/index.vue";
+import BaseLayout from "@/layout/baseLayout.vue";
 
 // 定义每个 UI 框架的子路由信息
 export const frameworkRoutes = [
   {
     path: "/:ui/designer",
     name: "designer",
-    component: () => import("@/views/designer/index.vue"),
+    component: BaseLayout,
     meta: {
       title: "设计器",
     },
+    children: [
+      {
+        path: "/:ui/basic",
+        name: "basic",
+        component: () => import("@/views/designer/basic/index.vue"),
+        meta: {
+          title: "基础用法",
+        },
+      },
+      {
+        path: "/:ui/loadData",
+        name: "loadData",
+        component: () => import("@/views/designer/loadData/index.vue"),
+        meta: {
+          title: "加载数据",
+        },
+      },
+    ],
   },
   {
     path: "/:ui/builder",
     name: "builder",
-    component: () => import("@/views/builder/index.vue"),
+    component: BaseLayout,
     meta: {
       title: "生成器",
     },
+    children: [
+      {
+        path: "/:ui/builder",
+        name: "builder",
+        component: () => import("@/views/builder/basic/index.vue"),
+        meta: {
+          title: "基础用法",
+        },
+      },
+    ],
   },
 ];
-
-// 所有可用的 UI 框架列表
-// const frameworks = [
-//   {
-//     path: "/ant-designe-vue",
-//     name: "antDesigneVue",
-//   },
-//   {
-//     path: "/element-plus",
-//     name: "elementPlus",
-//   },
-//   {
-//     path: "/naive-ui",
-//     name: "naiveUi",
-//     meta: {
-//       title: "设计器",
-//     },
-//   },
-// ];
-
-// 生成 UI 框架的路由信息
-// export const uiRoutes = frameworks.map((item) => {
-//   return {
-//     path: item.path,
-//     component: Layout,
-//     name: item.name,
-//     meta: {
-//       title: item.name,
-//     },
-//     redirect: `/${item.path}/designer`,
-//     children: frameworkRoutes.map((route) => {
-//       return {
-//         ...route,
-//         name: item.name + route.name,
-//       };
-//     }),
-//   };
-// });
 
 const routes = [
   {
     path: "/",
-    redirect: "/ant-designe-vue/designer",
-  },
-  {
-    path: "/:ui",
     component: Layout,
     name: "uiFrameworks",
-    redirect: `/:ui/designer`,
-    children: frameworkRoutes.map((route) => {
-      return {
-        ...route,
-        name: route.name,
-      };
-    }),
+    redirect: "/ant-designe-vue/basic",
+    children: frameworkRoutes,
   },
   // Resolve refresh page, route warnings
   {
     path: "/:pathMatch(.*)*",
-    redirect: "/ant-designe-vue",
+    redirect: "/",
   },
 ];
 

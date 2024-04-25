@@ -3,7 +3,9 @@
         <EHeader />
         <Layout>
             <LayoutSider>
-                <EMenu />
+                <div class="py-2 h-full bg-white">
+                    <EMenu />
+                </div>
             </LayoutSider>
             <LayoutContent>
                 <div :key="uiKey" class="epic-page-main">

@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="bg-white p-2">
     <EBuilder ref="ebRef" :pageSchema="pageSchema" @ready="handleReady">
     </EBuilder>
     <div @click="handleGetData">
       获取数据
     </div>
+    {{ data }}
   </div>
 </template>
 
@@ -13,10 +14,10 @@ import { ref, onMounted } from 'vue'
 import { EBuilder, PageManager, PageSchema } from '@epic-designer/core'
 
 const ebRef = ref<any>(null)
-
+const data = ref({})
 async function handleGetData() {
   const values = await ebRef.value?.getData()
-  console.log(values)
+  data.value = values
 }
 const pageSchema = ref<PageSchema>({
   "schemas": [
@@ -102,17 +103,6 @@ function handleReady(pageManager: PageManager) {
 }
 // 表单赋值
 onMounted(async () => {
-  // ebRef.value?.setData({
-  //   'upload': [{
-  //     name: 'xxx',
-  //     uid: 'xxx',
-  //     status:
-  //       "success",
-  //     url: 'http://cdn.kcz66.com/%E5%A4%B4%E5%83%8F.jpg'
-  //   }]
-  // })
-
-  // const data = await ebRef.value?.getData()
   const data = await ebRef.value?.validate()
   console.log(data)
 })

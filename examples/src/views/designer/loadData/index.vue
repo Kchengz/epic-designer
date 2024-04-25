@@ -1,16 +1,16 @@
-
 <template>
   <!-- <button @click="handleReset">重置操作</button> -->
   <EDesigner ref="designerRef" @save="handleSubmit">
   </EDesigner>
-  
+
 </template>
 <script lang="ts" setup>
 import { EDesigner, type PageSchema } from '@epic-designer/core'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 const designerRef = ref<typeof EDesigner>()
-  import { getFormFields } from '@epic-designer/utils'
-const data = {
+
+
+const pageSchema = {
   "schemas": [
     {
       "type": "page",
@@ -146,17 +146,10 @@ const data = {
   ],
   "script": "const { defineExpose, find } = epic;\n\nfunction test (){\n    console.log('test')\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})"
 }
-  console.log(getFormFields(data.schemas),'--')
-// function handleReset () {
-//   designerRef.value!.reset()
-// }
 
-// function handleSet() {
-//   console.log(JSON.stringify(designerRef.value!.getData()))
-//   const page = { schemas: [{ type: 'page', id: 'root', name: "测试页面", children: [{ label: '文本框222', type: 'input', field: 'input', icon: 'epic-icon-write', isInput: true, componentProps: { defaultValue: '', placeholder: '请输入' }, id: '9wr7dfv9kjc00' }, { label: '选择框', type: 'select', icon: 'epic-icon-xiala', field: 'select', isInput: true, componentProps: { options: [{ label: '选项1', value: '选项1' }, { label: '选项2', value: '选项2' }], placeholder: '请选择' }, id: '4efvesnkhdo00' }, { label: '复选框', type: 'checkbox', icon: 'epic-icon-duoxuan1', field: 'checkbox', isInput: true, componentProps: { defaultValue: [], options: [{ label: '选项1', value: '选项1' }, { label: '选项2', value: '选项2' }], hidden: false, disabled: true }, id: 'ayk2q9c948s00' }], componentProps: { style: { padding: '16px' } } }], script: "const { defineExpose, getComponent } = this;\n\nfunction test (){\n    console.log('test')\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})" }
-//   designerRef.value!.setData(page)
-// }
-
+onMounted(() => {
+  designerRef.value?.setData(pageSchema)
+})
 
 /**
  * 点击保存按钮操作
