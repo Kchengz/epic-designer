@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 import { DesignerProps } from '../../types'
 import { PageSchema, Designer } from '../../../../../types/epic-designer'
-import { inject, computed, ref, watch, type Ref } from 'vue'
+import { inject, computed, ref, watch, nextTick, type Ref } from 'vue'
 import { pluginManager, generateNewSchema, revoke, findSchemaInfoById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
 import { useResizeObserver } from '@vueuse/core'
 import EIcon from '../../../../icon'
@@ -38,6 +38,7 @@ const pageManager = inject('pageManager', {}) as PageManager
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
 const designerProps = inject('designerProps') as Ref<DesignerProps>
+
 
 const selectorRef = ref<HTMLDivElement | null>(null)
 const hoverWidgetRef = ref<HTMLDivElement | null>(null)
@@ -123,7 +124,6 @@ watch(() => getSelectComponentElement.value, (selectComponentElement) => {
 
 
     const parentNode = selectComponentElement.parentNode as HTMLBaseElement
-
     if (parentNode) {
       parentNode.ondragstart = () => {
         selectorTransition.value = false
@@ -133,9 +133,15 @@ watch(() => getSelectComponentElement.value, (selectComponentElement) => {
         selectorTransition.value = true
         stopTimedQuery()
       }
-
     }
     setSeletorStyle()
+
+
+
+
+
+
+
   } else {
     showSelector.value = false
   }
@@ -170,17 +176,20 @@ watch(() => designer.state.hoverNode?.id, e => {
 
 
 
-
+let oldScrollTop = 0
+let oldScrollLeft = 0
 /**
  * 设置选择部件 样式 定位 宽高
  */
 function setSeletorStyle() {
   const element = getSelectComponentElement.value
-  if (!element) return
+  if (!element || !kEditRange) return
 
-  const { top: offsetY, left: offsetX } = kEditRange?.getBoundingClientRect() ?? { top: 0, left: 0 }
+  const { top: offsetY, left: offsetX, height: rangeHeight } = kEditRange?.getBoundingClientRect()
 
   const { top, left, width, height } = element.getBoundingClientRect()
+
+
   const scale = !disabledZoom.value ? canvasScale.value : 1
   // 计算选择器部件位置
   const selectorTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * scale
@@ -193,6 +202,8 @@ function setSeletorStyle() {
     selectorRef.value.style.height = `${selectorRefHeight}px`
     selectorRef.value.style.top = `${selectorTop / scale}px`
     selectorRef.value.style.left = `${selectorLeft / scale}px`
+    scrollIntoView(selectorTop, selectorLeft)
+
   }
 
   // 调整操作调位置 start
@@ -223,6 +234,40 @@ function setSeletorStyle() {
   // 调整操作调位置 end
 
 
+
+}
+
+/**
+ * 滚动进入可视区
+ */
+function scrollIntoView(selectorTop: number, selectorLeft: number) {
+  // 自动滚动到元素可视区域 start
+  const element = getSelectComponentElement.value
+  if (!kEditRange || !element) return
+  // 获取两个元素的边界框信息
+  const rect2 = kEditRange.getBoundingClientRect();
+  const { width } = element.getBoundingClientRect()
+
+  const scale = !disabledZoom.value ? canvasScale.value : 1
+
+  // 使selectComponentElement位于可见区域内
+  const newScrollTop = selectorTop / scale - rect2.top
+  let newScrollLeft = selectorLeft / scale - rect2.left + width / scale
+  newScrollLeft < rect2.width && (newScrollLeft = 0)
+  const yMin = kEditRange.scrollTop - rect2.height / 3 + 60
+  const yMax = kEditRange.scrollTop + rect2.height / 3 * 2
+  const xMin = kEditRange.scrollLeft - rect2.width + 200
+  const xMax = kEditRange.scrollLeft + rect2.width - 200
+
+  // 判断定位误差是否小于10px，小于则不处理
+  if (Math.abs(newScrollTop - oldScrollTop) < 10 && Math.abs(newScrollLeft - oldScrollLeft) < 10) return
+  oldScrollTop = newScrollTop
+  oldScrollLeft = newScrollLeft
+  if (newScrollTop > yMin && newScrollTop < yMax && newScrollLeft > xMin && newScrollLeft < xMax) return
+
+  kEditRange.scrollTop = newScrollTop;
+  kEditRange.scrollLeft = newScrollLeft;
+  // 自动滚动到元素可视区域 end
 }
 
 /**
@@ -312,7 +357,7 @@ function handleInit(epicEditRangeRef) {
   // 监听选中元素视窗变化
   useResizeObserver(getSelectComponentElement, setSeletorStyle)
   // 监听悬停元素视窗变化
-  useResizeObserver(getHoverComponentElement, setSeletorStyle)
+  useResizeObserver(getHoverComponentElement, setHoverStyle)
 }
 
 
