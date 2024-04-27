@@ -1,6 +1,7 @@
 <template>
   <div class="epic-sound-code">
-    <MonacoEditor ref="monacoEditorRef" class="editor" :model-value="initModelValue" @update:model-value="setSchemas" />
+    <MonacoEditor ref="monacoEditorRef" class="editor" :model-value="initModelValue" lineNumbers="off"
+      @update:model-value="setSchemas" />
   </div>
 </template>
 <script lang="ts" setup>

@@ -1,24 +1,22 @@
 <template>
-  <div class="bg-white p-2">
-    <EBuilder ref="ebRef" :pageSchema="pageSchema" @ready="handleReady">
+  <div class="bg-white p-2 h-full flex flex-col">
+    <h2 class="pt-4 pl-8 text-24px block">基础用法</h2>
+    <EBuilder ref="ebRef" :pageSchema="pageSchema">
     </EBuilder>
-    <div @click="handleGetData">
-      获取数据
-    </div>
-    {{ data }}
+    <Divider orientation="left">页面结构数据</Divider>
+    <MonacoEditor class="flex-1" :modelValue="pageSchema" readOnly valueFormat="json" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import { EBuilder, PageManager, PageSchema } from '@epic-designer/core'
+import { EBuilder, PageSchema } from '@epic-designer/core'
+import { pluginManager } from '@epic-designer/utils'
+import { Divider } from 'ant-design-vue'
 
+const MonacoEditor = pluginManager.getComponent('monacoEditor')
 const ebRef = ref<any>(null)
-const data = ref({})
-async function handleGetData() {
-  const values = await ebRef.value?.getData()
-  data.value = values
-}
+
 const pageSchema = ref<PageSchema>({
   "schemas": [
     {
@@ -31,8 +29,10 @@ const pageSchema = ref<PageSchema>({
           "type": "form",
           "icon": "epic-icon-daibanshixiang",
           "componentProps": {
+            "layout": "horizontal",
             "name": "default",
             "labelWidth": 100,
+            "labelLayout": "fixed",
             "labelCol": {
               "span": 5
             },
@@ -40,51 +40,132 @@ const pageSchema = ref<PageSchema>({
               "span": 19
             },
             "hideRequiredMark": false,
-            "labelPlacement": "left",
+            "colon": true,
             "labelAlign": "right",
-            "requireMarkPlacement": "right",
-            "size": "medium"
+            "size": "middle",
+            "style": {
+              "width": "600px"
+            }
           },
           "children": [
             {
-              "label": "输入框22",
-              "type": "input",
-              "field": "input_sb6jhfb8",
-              "icon": "epic-icon-write",
-              "input": true,
-              "componentProps": {
-                "defaultValue": "",
-                "placeholder": "请输入",
-                "type": "text",
-                "size": "medium",
-                "disabled": false
-              },
-              "id": "input_sb6jhfb8"
+              "label": "栅格布局",
+              "type": "row",
+              "icon": "epic-icon-zhage",
+              "children": [
+                {
+                  "type": "col",
+                  "children": [
+                    {
+                      "label": "姓名",
+                      "type": "input",
+                      "field": "input_2drzm924",
+                      "icon": "epic-icon-write",
+                      "input": true,
+                      "componentProps": {
+                        "bordered": true,
+                        "placeholder": "请输入"
+                      },
+                      "id": "input_2drzm924"
+                    }
+                  ],
+                  "componentProps": {
+                    "span": 12
+                  },
+                  "id": "col_m17ttkgz"
+                },
+                {
+                  "type": "col",
+                  "children": [
+                    {
+                      "label": "年龄",
+                      "type": "number",
+                      "icon": "epic-icon-number",
+                      "field": "number_x4t431jb",
+                      "input": true,
+                      "componentProps": {
+                        "style": {
+                          "width": "100%"
+                        },
+                        "placeholder": "请输入"
+                      },
+                      "id": "number_x4t431jb"
+                    }
+                  ],
+                  "componentProps": {
+                    "span": 12
+                  },
+                  "id": "col_6uvxdrme"
+                }
+              ],
+              "id": "row_fpuoo21a"
             },
             {
-              "label": "按钮",
-              "type": "button",
-              "field": "button_ks9jbmym",
-              "icon": "epic-icon-button-remove",
-              "input": false,
+              "label": "性别",
+              "type": "radio",
+              "icon": "epic-icon-danxuan-cuxiantiao",
+              "field": "radio_shndnr9b",
+              "input": true,
               "componentProps": {
-                "bordered": true,
-                "type": "default",
-                "size": "medium"
-              },
-              "id": "button_ks9jbmym",
-              "on": {
-                "click": [
+                "options": [
                   {
-                    "type": "custom",
-                    "methodName": "test",
-                    "componentId": null
+                    "label": "男",
+                    "value": "男"
+                  },
+                  {
+                    "label": "女",
+                    "value": "女"
+                  }
+                ],
+                "optionType": "default",
+                "defaultValue": "男"
+              },
+              "id": "radio_shndnr9b"
+            },
+            {
+              "label": "兴趣",
+              "type": "checkbox",
+              "icon": "epic-icon-duoxuan1",
+              "field": "checkbox_1l91io8k",
+              "input": true,
+              "componentProps": {
+                "options": [
+                  {
+                    "label": "唱",
+                    "value": "唱"
+                  },
+                  {
+                    "label": "跳",
+                    "value": "跳"
+                  },
+                  {
+                    "label": "rap",
+                    "value": "rap"
+                  },
+                  {
+                    "label": "篮球",
+                    "value": "篮球"
                   }
                 ]
-              }
+              },
+              "id": "checkbox_1l91io8k"
+            },
+            {
+              "label": "个人简介",
+              "type": "textarea",
+              "field": "textarea_1ihmowjl",
+              "icon": "epic-icon-edit",
+              "input": true,
+              "componentProps": {
+                "placeholder": "请输入",
+                "autoSize": {
+                  "minRows": 4
+                }
+              },
+              "id": "textarea_1ihmowjl"
             }
           ],
-          "id": "form_18vemlk8"
+          "id": "form_eifo73no"
         }
       ],
       "componentProps": {
@@ -94,17 +175,12 @@ const pageSchema = ref<PageSchema>({
       }
     }
   ],
-  "script": "const { defineExpose, find } = epic;\n\nfunction test (){\n    console.log('test')\n    find('input_sb6jhfb8').setAttr('disabled',!find('input_sb6jhfb8').getAttr('disabled'))\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})"
+  "script": "const { defineExpose, find } = epic;\n\nfunction test (){\n    console.log('test')\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})"
 })
 
 
-function handleReady(pageManager: PageManager) {
-  console.log(pageManager)
-}
 // 表单赋值
 onMounted(async () => {
-  const data = await ebRef.value?.validate()
-  console.log(data)
 })
 
 

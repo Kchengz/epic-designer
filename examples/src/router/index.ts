@@ -25,7 +25,7 @@ export const frameworkRoutes = [
         name: "loadData",
         component: () => import("@/views/designer/loadData/index.vue"),
         meta: {
-          title: "加载数据",
+          title: "数据回显",
         },
       },
     ],
@@ -39,11 +39,27 @@ export const frameworkRoutes = [
     },
     children: [
       {
-        path: "/:ui/builder",
-        name: "builder",
+        path: "/:ui/builderBasic",
+        name: "builderBasic",
         component: () => import("@/views/builder/basic/index.vue"),
         meta: {
           title: "基础用法",
+        },
+      },
+      {
+        path: "/:ui/disableDisplay",
+        name: "disableDisplay",
+        component: () => import("@/views/builder/disableDisplay/index.vue"),
+        meta: {
+          title: "禁用隐藏",
+        },
+      },
+      {
+        path: "/:ui/sum",
+        name: "sum",
+        component: () => import("@/views/builder/sum/index.vue"),
+        meta: {
+          title: "计算求和",
         },
       },
     ],
