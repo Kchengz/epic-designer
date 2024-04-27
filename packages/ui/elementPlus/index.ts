@@ -2,6 +2,7 @@
 import { pluginManager as pManager, type PluginManager } from "epic-designer";
 
 import Input from "./input";
+import Textarea from "./textarea";
 import InputNumber from "./input-number";
 import Form from "./form";
 import FormItem from "./formItem";
@@ -43,6 +44,7 @@ export function setupElementPlus(
     Form,
     FormItem,
     Input,
+    Textarea,
     InputNumber,
     Radio,
     Checkbox,
