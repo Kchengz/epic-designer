@@ -37,7 +37,7 @@ export default {
       },
       {
         label: "默认值",
-        type: "input",
+        type: "cascader",
         field: "componentProps.defaultValue",
       },
       {
@@ -94,6 +94,26 @@ export default {
         componentProps: {
           placeholder: "请输入",
         },
+        show: ({ values }) => values.componentProps.multiple,
+      },
+
+      {
+        label: "回填方式",
+        type: "select",
+        componentProps: {
+          options: [
+            {
+              label: "SHOW_PARENT",
+              value: "SHOW_PARENT",
+            },
+            {
+              label: "SHOW_CHILD",
+              value: "SHOW_CHILD",
+            },
+          ],
+          placeholder: "请选择",
+        },
+        field: "componentProps.showCheckedStrategy",
         show: ({ values }) => values.componentProps.multiple,
       },
       {
