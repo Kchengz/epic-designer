@@ -6,6 +6,7 @@ body {
 .epic-page-main {
   height: calc(100vh - 64px);
   padding: 8px;
+  position: relative;
   /* background-color: white; */
 }
 
@@ -13,4 +14,14 @@ body {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03),
     0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
   z-index: 6;
+}
+
+/* 当前页面最大化 css */
+.main-maximize .epic-demo-header,
+.main-maximize .ant-layout-sider {
+  display: none !important;
+}
+
+.main-maximize .epic-page-main {
+  height: 100vh;
 }

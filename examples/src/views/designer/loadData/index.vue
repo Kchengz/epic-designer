@@ -1,6 +1,11 @@
 <template>
   <!-- <button @click="handleReset">重置操作</button> -->
-  <EDesigner ref="designerRef" @save="handleSubmit">
+  <EDesigner ref="designerRef" @save="handleSubmit" title="EpicDesigner数据回显示例">
+    <template #header-prefix>
+      <div>
+        欢迎使用EpicDesigner设计器
+      </div>
+    </template>
   </EDesigner>
 
 </template>
@@ -39,102 +44,123 @@ const pageSchema = {
           },
           "children": [
             {
-              "label": "输入框",
-              "type": "input",
-              "field": "input_z28lqm8h",
-              "icon": "epic-icon-write",
-              "input": true,
-              "componentProps": {
-                "bordered": true,
-                "placeholder": "请输入"
-              },
-              "id": "input_z28lqm8h"
-            },
-            {
-              "label": "数字输入框",
-              "type": "number",
-              "icon": "epic-icon-number",
-              "field": "number_8svvq0cr",
-              "input": true,
-              "componentProps": {
-                "style": {
-                  "width": "100%"
+              "label": "栅格布局",
+              "type": "row",
+              "icon": "epic-icon-zhage",
+              "children": [
+                {
+                  "type": "col",
+                  "children": [
+                    {
+                      "label": "姓名",
+                      "type": "input",
+                      "field": "input_2drzm924",
+                      "icon": "epic-icon-write",
+                      "input": true,
+                      "componentProps": {
+                        "bordered": true,
+                        "placeholder": "请输入"
+                      },
+                      "id": "input_2drzm924"
+                    }
+                  ],
+                  "componentProps": {
+                    "span": 12
+                  },
+                  "id": "col_m17ttkgz"
                 },
-                "placeholder": "请输入"
-              },
-              "id": "number_8svvq0cr"
+                {
+                  "type": "col",
+                  "children": [
+                    {
+                      "label": "年龄",
+                      "type": "number",
+                      "icon": "epic-icon-number",
+                      "field": "number_x4t431jb",
+                      "input": true,
+                      "componentProps": {
+                        "style": {
+                          "width": "100%"
+                        },
+                        "placeholder": "请输入"
+                      },
+                      "id": "number_x4t431jb"
+                    }
+                  ],
+                  "componentProps": {
+                    "span": 12
+                  },
+                  "id": "col_6uvxdrme"
+                }
+              ],
+              "id": "row_fpuoo21a"
             },
             {
-              "label": "选择框",
-              "type": "select",
-              "icon": "epic-icon-xiala",
-              "field": "select_57wyuxbk",
+              "label": "性别",
+              "type": "radio",
+              "icon": "epic-icon-danxuan-cuxiantiao",
+              "field": "radio_shndnr9b",
               "input": true,
               "componentProps": {
                 "options": [
                   {
-                    "label": "选项1",
-                    "value": "选项1"
+                    "label": "男",
+                    "value": "男"
                   },
                   {
-                    "label": "选项2",
-                    "value": "选项2"
+                    "label": "女",
+                    "value": "女"
                   }
                 ],
-                "listHeight": 256,
-                "placeholder": "请选择",
-                "placement": "bottomLeft"
+                "optionType": "default",
+                "defaultValue": "男"
               },
-              "id": "select_57wyuxbk"
+              "id": "radio_shndnr9b"
             },
             {
-              "label": "选择框",
-              "type": "select",
-              "icon": "epic-icon-xiala",
-              "field": "select_f3l6gstx",
+              "label": "兴趣",
+              "type": "checkbox",
+              "icon": "epic-icon-duoxuan1",
+              "field": "checkbox_1l91io8k",
               "input": true,
               "componentProps": {
                 "options": [
                   {
-                    "label": "选项1",
-                    "value": "选项1"
+                    "label": "唱",
+                    "value": "唱"
                   },
                   {
-                    "label": "选项2",
-                    "value": "选项2"
+                    "label": "跳",
+                    "value": "跳"
+                  },
+                  {
+                    "label": "rap",
+                    "value": "rap"
+                  },
+                  {
+                    "label": "篮球",
+                    "value": "篮球"
                   }
-                ],
-                "listHeight": 256,
-                "placeholder": "请选择",
-                "placement": "bottomLeft"
+                ]
               },
-              "id": "select_f3l6gstx"
+              "id": "checkbox_1l91io8k"
             },
             {
-              "label": "选择框",
-              "type": "select",
-              "icon": "epic-icon-xiala",
-              "field": "select_jwlufr5s",
+              "label": "个人简介",
+              "type": "textarea",
+              "field": "textarea_1ihmowjl",
+              "icon": "epic-icon-edit",
               "input": true,
               "componentProps": {
-                "options": [
-                  {
-                    "label": "选项1",
-                    "value": "选项1"
-                  },
-                  {
-                    "label": "选项2",
-                    "value": "选项2"
-                  }
-                ],
-                "listHeight": 256,
-                "placeholder": "请选择",
-                "placement": "bottomLeft"
+                "placeholder": "请输入",
+                "autoSize": {
+                  "minRows": 4
+                }
               },
-              "id": "select_jwlufr5s"
+              "id": "textarea_1ihmowjl"
             }
           ],
-          "id": "form_cyzocgex"
+          "id": "form_eifo73no"
         }
       ],
       "componentProps": {

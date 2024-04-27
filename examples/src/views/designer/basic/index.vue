@@ -1,5 +1,10 @@
 <template>
-  <EDesigner ref="designerRef" @save="handleSubmit">
+  <EDesigner ref="designerRef" @save="handleSubmit" title="EpicDesigner基础用法示例">
+    <template #header-prefix>
+      <div>
+        欢迎使用EpicDesigner设计器
+      </div>
+    </template>
   </EDesigner>
 
 </template>

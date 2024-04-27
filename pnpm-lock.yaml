@@ -85,6 +85,9 @@ importers:
 
   examples:
     dependencies:
+      '@ant-design/icons-vue':
+        specifier: ^7.0.1
+        version: 7.0.1(vue@3.3.4)
       ant-design-vue:
         specifier: ^4.1.2
         version: 4.1.2(vue@3.3.4)
@@ -17710,7 +17713,7 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      vue: 3.4.21(typescript@5.4.3)
+      vue: 3.4.21(typescript@5.1.6)
     dev: true
 
   registry.npmmirror.com/vue-eslint-parser@9.3.1(eslint@8.57.0):

@@ -45,8 +45,7 @@ function traverseRoutes(routes: RouteRecordRaw[]) {
         return modifiedRoute;
     });
 }
-
 const handleClick: MenuProps['onClick'] = e => {
-    router.push({ path: '/ant-designe-vue/' + e.key })
+    router.push({ path: '/' + route.path.split('/')[1] + '/' + e.key })
 };
 </script>
