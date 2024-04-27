@@ -4,17 +4,17 @@
     class="checked-widget absolute pointer-events-none z-20"
     :class="selectorPosition + ' ' + (selectorTransition ? 'transition-all' : '')">
     <div class="action-box" ref="actionBoxRef">
-      <div class="action-item whitespace-nowrap">
+      <div class="epic-action-item whitespace-nowrap">
         <!-- {{ designer.state.checkedNode?.type }} -->
         {{ pluginManager.getComponentConfingByType(designer.state.checkedNode?.type
           ?? '')?.defaultSchema.label }}
       </div>
       <!-- 操作按钮 start  -->
       <div class="flex" v-if="isRemovableAndDraggable">
-        <div title="复制" class="action-item pointer-events-auto" @click="handleCopy">
+        <div title="复制" class="epic-action-item pointer-events-auto" @click="handleCopy">
           <EIcon name="icon-fuzhi3" />
         </div>
-        <div title="删除" class="action-item pointer-events-auto" @click="handleDelete">
+        <div title="删除" class="epic-action-item pointer-events-auto" @click="handleDelete">
           <EIcon name="icon-shanchu1" />
         </div>
       </div>

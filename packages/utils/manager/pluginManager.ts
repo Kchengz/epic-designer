@@ -1,22 +1,24 @@
 import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 import { loadAsyncComponent } from "../common";
-import { ref } from "vue";
+import { ref, shallowRef, type ShallowRef } from "vue";
 export interface ActivitybarModel {
   id: string;
   title: string;
   icon: string;
   component: any;
+  visible?: boolean;
 }
 
 export interface RightSidebarModel {
   id: string;
   title: string;
   component: any;
+  visible?: boolean;
 }
 
 export interface ViewsContainersModel {
-  activitybars: ActivitybarModel[];
-  rightSidebars: RightSidebarModel[];
+  activitybars: ShallowRef<ActivitybarModel[]>;
+  rightSidebars: ShallowRef<RightSidebarModel[]>;
 }
 
 export type Components = Record<string, any>;
@@ -107,8 +109,8 @@ export class PluginManager {
 
   // 视图容器模型，包含活动栏和右侧边栏的配置
   viewsContainers: ViewsContainersModel = {
-    activitybars: [], // 活动栏配置列表
-    rightSidebars: [], // 右侧边栏配置列表
+    activitybars: shallowRef([]), // 活动栏配置列表
+    rightSidebars: shallowRef([]), // 右侧边栏配置列表
   };
 
   // 公共方法模型，存储插件的公共方法
@@ -248,17 +250,22 @@ export class PluginManager {
       activitybar.component = loadAsyncComponent(activitybar.component);
     }
 
+    // 默认visible为true
+    if (typeof activitybar.visible === "undefined") {
+      activitybar.visible = true;
+    }
+
     // 查找活动栏在列表中的索引
-    const index = this.viewsContainers.activitybars.findIndex(
+    const index = this.viewsContainers.activitybars.value.findIndex(
       (item) => item.id === activitybar.id
     );
 
     // 如果找到相同 id 的活动栏，则更新该活动栏模型
     if (index !== -1) {
-      this.viewsContainers.activitybars[index] = activitybar;
+      this.viewsContainers.activitybars.value[index] = activitybar;
     } else {
       // 否则将新的活动栏模型添加到活动栏列表中
-      this.viewsContainers.activitybars.push(activitybar);
+      this.viewsContainers.activitybars.value.push(activitybar);
     }
   }
 
@@ -267,7 +274,42 @@ export class PluginManager {
    * @returns activitybars
    */
   getActivitybars(): ActivitybarModel[] {
-    return this.viewsContainers.activitybars;
+    return this.viewsContainers.activitybars.value;
+  }
+
+  /**
+   * 隐藏活动栏
+   * @param value 属性
+   * @param attr 查询字段 默认值 title
+   */
+  hideActivitybar(value: string, attr = "title") {
+    // 查找具有指定属性和值的活动栏的索引
+    const index = this.viewsContainers.activitybars.value.findIndex(
+      (rightSidebar) => rightSidebar[attr] === value
+    );
+
+    // 如果找到匹配的活动栏
+    if (index !== -1) {
+      // 将匹配的活动栏的 'visible' 属性设置为 false
+      this.viewsContainers.activitybars.value[index].visible = false;
+    }
+  }
+  /**
+   * 显示活动栏
+   * @param value 属性
+   * @param attr 查询字段 默认值 title
+   */
+  showActivitybar(value: string, attr = "title") {
+    // 查找具有指定属性和值的活动栏的索引
+    const index = this.viewsContainers.activitybars.value.findIndex(
+      (rightSidebar) => rightSidebar[attr] === value
+    );
+
+    // 如果找到匹配的活动栏
+    if (index !== -1) {
+      // 将匹配的活动栏的 'visible' 属性设置为 true
+      this.viewsContainers.activitybars.value[index].visible = true;
+    }
   }
 
   /**
@@ -278,14 +320,19 @@ export class PluginManager {
       rightSidebar.component = loadAsyncComponent(rightSidebar.component);
     }
 
-    const index = this.viewsContainers.rightSidebars.findIndex(
+    // 默认visible为true
+    if (typeof rightSidebar.visible === "undefined") {
+      rightSidebar.visible = true;
+    }
+
+    const index = this.viewsContainers.rightSidebars.value.findIndex(
       (sidebar) => sidebar.id === rightSidebar.id
     );
 
     if (index !== -1) {
-      this.viewsContainers.rightSidebars[index] = rightSidebar;
+      this.viewsContainers.rightSidebars.value[index] = rightSidebar;
     } else {
-      this.viewsContainers.rightSidebars.push(rightSidebar);
+      this.viewsContainers.rightSidebars.value.push(rightSidebar);
     }
   }
 
@@ -294,7 +341,43 @@ export class PluginManager {
    * @returns rightSidebars
    */
   getRightSidebars(): RightSidebarModel[] {
-    return this.viewsContainers.rightSidebars;
+    return this.viewsContainers.rightSidebars.value;
+  }
+
+  /**
+   * 隐藏右侧边栏
+   * @param value 属性
+   * @param attr 查询字段 默认值 title
+   */
+  hideRightSidebar(value: string, attr = "title") {
+    // 查找具有指定属性和值的右侧边栏的索引
+    const index = this.viewsContainers.rightSidebars.value.findIndex(
+      (rightSidebar) => rightSidebar[attr] === value
+    );
+
+    // 如果找到匹配的右侧边栏
+    if (index !== -1) {
+      // 将匹配的右侧边栏的 'visible' 属性设置为 false
+      this.viewsContainers.rightSidebars.value[index].visible = false;
+    }
+  }
+
+  /**
+   * 显示右侧边栏
+   * @param value 属性
+   * @param attr 查询字段 默认值 title
+   */
+  showRightSidebar(value: string, attr = "title") {
+    // 查找具有指定属性和值的右侧边栏的索引
+    const index = this.viewsContainers.rightSidebars.value.findIndex(
+      (rightSidebar) => rightSidebar[attr] === value
+    );
+
+    // 如果找到匹配的右侧边栏
+    if (index !== -1) {
+      // 将匹配的右侧边栏的 'visible' 属性设置为 true
+      this.viewsContainers.rightSidebars.value[index].visible = true;
+    }
   }
 
   /**

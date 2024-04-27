@@ -1,8 +1,8 @@
 <template>
     <!-- 工具条 start  -->
-    <div class="edit-toolbar flex items-center justify-between px-4">
+    <div class="epic-edit-toolbar flex items-center justify-between px-4">
         <div class="flex-1 h-full flex items-center">
-            <div :title="item.title" class="action-item h-90% px-10px flex items-center hover:bg-gray-50 cursor-pointer"
+            <div :title="item.title" class="epic-action-item h-90% px-10px flex items-center hover:bg-gray-50 cursor-pointer"
                 v-for="(item, index) in actionOptions" :class="{ disabled: item.disabled }" :key="index"
                 @click="item.on">
                 <EIcon :name="item.icon"></EIcon>
@@ -12,7 +12,7 @@
         <input type="file" ref="fileRef" accept=".json,.txt" v-show="false" @change="handleFileSelected">
 
         <div class="flex-1 h-full flex items-center justify-center">
-            <div :title="item.title" class="device-item h-90% px-10px flex items-center hover:bg-gray-50 cursor-pointer"
+            <div :title="item.title" class="epic-device-item h-90% px-10px flex items-center hover:bg-gray-50 cursor-pointer"
                 :class="{ checked: item.key === checkedKey }" v-for="item in deviceOptions" :key="item.key"
                 @click="handleSetCanvas(item.key)">
                 <EIcon :name="item.icon"></EIcon>

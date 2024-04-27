@@ -43,7 +43,7 @@
               :class="{ checked: item.value === state.actionItem.methodName }"
               @click="handleCheckedMethod(item.value)"
               :key="item.value"
-              class="action-item"
+              class="epic-action-item"
             >
               <span>{{ item.label }}</span>
             </div>
