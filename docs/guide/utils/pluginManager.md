@@ -104,7 +104,23 @@ pluginManager.registerComponent(Test);
 
 
 
-#### registerActivitybar
+#### hideActivitybar
+
+类型：`(value: string, attr?: string)=> void`
+
+说明：隐藏活动栏
+
+
+
+#### showActivitybar
+
+类型：`(value: string, attr?: string)=> void`
+
+说明：显示活动栏
+
+
+
+#### registerRightSidebar
 
 类型：`(rightSidebar: RightSidebarModel) => void`
 
@@ -117,6 +133,22 @@ pluginManager.registerComponent(Test);
 类型：`() => RightSidebarModel[]`
 
 说明：获取所有已注册右侧栏配置
+
+
+
+#### hideRightSidebar
+
+类型：`(value: string, attr?: string)=> void`
+
+说明：隐藏右侧栏
+
+
+
+#### showRightSidebar
+
+类型：`(value: string, attr?: string)=> void`
+
+说明：显示右侧栏
 
 
 
