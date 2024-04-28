@@ -30,7 +30,7 @@
 - AntDesignVue：[https://epic.kcz66.com/ant-designe-vue/basic](https://epic.kcz66.com/ant-designe-vue/basic?maximize=1)
 - NaiveUi：[https://epic.kcz66.com/naive-ui/basic](https://epic.kcz66.com/naive-ui/basic?maximize=1)
 
-
+> 使用必须遵守国家法律法规，⛔不允许非法项目使用，后果自负❗
 
 ## 简介
 

@@ -38,5 +38,5 @@
     "vue-tsc": "^1.8.6"
   },
   "packageManager": "pnpm@7.15.0",
-  "name": "new-turbo"
+  "name": "epic-designer-project"
 }

@@ -3,7 +3,6 @@ import MonacoEditor from './MonacoEditor'
 import Page from './Page'
 
 export function setupComponent (pluginManager: PluginManager): void {
-  pluginManager.component('ETabPaneEditor', async () => await import('./ETabPaneEditor/index.vue'))
   pluginManager.component('EInputSize', async () => await import('./EInputSize/index.vue'))
   pluginManager.component('EColEditor', async () => await import('./EColEditor/index.vue'))
   pluginManager.component('EActionEditor', async () => await import('./EActionEditor/index.vue'))
