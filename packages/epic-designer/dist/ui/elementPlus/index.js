@@ -161,6 +161,153 @@ const m = {
     ]
   }
 }, b = {
+  component: async () => (await import("element-plus")).ElInput,
+  defaultSchema: {
+    label: "文本域",
+    type: "textarea",
+    field: "textarea",
+    icon: "epic-icon-edit",
+    input: !0,
+    componentProps: {
+      placeholder: "请输入",
+      type: "textarea"
+    }
+  },
+  groupName: "表单",
+  config: {
+    attribute: [
+      {
+        label: "字段名",
+        type: "input",
+        field: "field"
+      },
+      {
+        label: "标题",
+        type: "input",
+        field: "label"
+      },
+      {
+        label: "默认值",
+        type: "textarea",
+        field: "componentProps.defaultValue"
+      },
+      {
+        label: "尺寸",
+        type: "select",
+        defaultValue: "default",
+        componentProps: {
+          options: [
+            {
+              label: "large",
+              value: "large"
+            },
+            {
+              label: "default",
+              value: "default"
+            },
+            {
+              label: "small",
+              value: "small"
+            }
+          ]
+        },
+        field: "componentProps.size"
+      },
+      {
+        label: "最大输入长度",
+        type: "number",
+        field: "componentProps.maxlength",
+        componentProps: {
+          placeholder: "请输入"
+        }
+      },
+      {
+        label: "统计字数",
+        type: "switch",
+        field: "componentProps.showWordLimit"
+      },
+      {
+        label: "占位内容",
+        type: "input",
+        field: "componentProps.placeholder"
+      },
+      {
+        label: "最小行数",
+        type: "number",
+        field: "componentProps.autosize.minRows",
+        componentProps: {
+          placeholder: "请输入"
+        }
+      },
+      {
+        label: "最大行数",
+        type: "number",
+        field: "componentProps.autosize.maxRows",
+        componentProps: {
+          placeholder: "请输入"
+        }
+      },
+      {
+        label: "可清空",
+        type: "switch",
+        field: "componentProps.clearable"
+      },
+      {
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled"
+      },
+      {
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden"
+      },
+      {
+        label: "表单校验",
+        type: "ERuleEditor",
+        layout: "vertical",
+        field: "rules",
+        describe: "校验规则需要配合表单使用"
+      }
+    ],
+    event: [
+      {
+        type: "input",
+        describe: "输入值"
+      },
+      {
+        type: "change",
+        describe: "值修改"
+      },
+      {
+        type: "focus",
+        describe: "获取焦点"
+      },
+      {
+        type: "blur",
+        describe: "失去焦点"
+      }
+    ],
+    action: [
+      {
+        type: "focus",
+        describe: "使 input 获取焦点"
+      },
+      {
+        type: "blur",
+        describe: "使 input 失去焦点"
+      },
+      {
+        type: "clear",
+        describe: "清除 input 值"
+      },
+      {
+        type: "select",
+        describe: "选中 input 中的文字"
+      }
+    ]
+  }
+}, f = {
   component: async () => (await import("element-plus")).ElInputNumber,
   defaultSchema: {
     label: "数字输入框",
@@ -304,7 +451,7 @@ const m = {
       }
     ]
   }
-}, f = {
+}, y = {
   component: () => import("../../form-136c8a8c.js"),
   defaultSchema: {
     label: "表单",
@@ -452,7 +599,7 @@ const m = {
       }
     ]
   }
-}, y = {
+}, h = {
   component: () => import("../../formItem-04b1c0e5.js"),
   defaultSchema: {
     label: "表单项",
@@ -460,7 +607,7 @@ const m = {
     icon: "epic-icon-qiapian"
   },
   config: {}
-}, h = {
+}, P = {
   component: () => import("../../button-d27c0658.js"),
   // component: ElButton,
   defaultSchema: {
@@ -551,7 +698,7 @@ const m = {
       }
     ]
   }
-}, P = {
+}, v = {
   component: () => import("../../card-8f18b3a6.js"),
   defaultSchema: {
     label: "卡片布局",
@@ -600,13 +747,13 @@ const m = {
       }
     ]
   }
-}, v = {
+}, g = {
   component: () => import("../../row-8d9b75ef.js"),
+  childImmovable: !0,
   defaultSchema: {
     label: "栅格布局",
     type: "row",
     icon: "epic-icon-zhage",
-    childImmovable: !0,
     children: [
       {
         type: "col",
@@ -701,7 +848,7 @@ const m = {
       }
     ]
   }
-}, g = {
+}, w = {
   component: () => import("../../col-7f4d45ff.js"),
   defaultSchema: {
     label: "栅格布局-列",
@@ -721,7 +868,7 @@ const m = {
       }
     ]
   }
-}, w = {
+}, E = {
   component: () => import("../../select-68b9d6c0.js"),
   defaultSchema: {
     label: "选择框",
@@ -985,7 +1132,7 @@ const m = {
       }
     ]
   }
-}, E = {
+}, x = {
   component: () => import("../../radio-5fe14d85.js"),
   defaultSchema: {
     label: "单选框",
@@ -1231,7 +1378,7 @@ const m = {
       }
     ]
   }
-}, x = {
+}, C = {
   component: async () => (await import("element-plus")).ElSlider,
   defaultSchema: {
     label: "滑块",
@@ -1292,8 +1439,8 @@ const m = {
         componentProps: {
           placeholder: "请输入"
         },
-        onChange: ({ value: e, values: l, componentAttributes: o }) => {
-          const t = o.value.findIndex((a) => a.field === "componentProps.max"), p = o.value[t];
+        onChange: ({ value: e, values: l, componentAttributes: t }) => {
+          const o = t.value.findIndex((a) => a.field === "componentProps.max"), p = t.value[o];
           p.componentProps = {
             min: e
           }, (l.componentProps.max ?? 0) < e && (l.componentProps.max = e);
@@ -1306,8 +1453,8 @@ const m = {
         componentProps: {
           placeholder: "请输入"
         },
-        onChange: ({ value: e, values: l, componentAttributes: o }) => {
-          const t = o.value.findIndex((a) => a.field === "componentProps.min"), p = o.value[t];
+        onChange: ({ value: e, values: l, componentAttributes: t }) => {
+          const o = t.value.findIndex((a) => a.field === "componentProps.min"), p = t.value[o];
           p.componentProps = {
             max: e
           }, (l.componentProps.min ?? 0) > e && (l.componentProps.min = e);
@@ -1451,7 +1598,7 @@ const m = {
       }
     ]
   }
-}, C = {
+}, k = {
   component: async () => (await import("element-plus")).ElColorPicker,
   defaultSchema: {
     label: "颜色选择器",
@@ -1561,7 +1708,7 @@ const m = {
     ],
     action: []
   }
-}, k = {
+}, z = {
   component: async () => (await import("element-plus")).ElSwitch,
   defaultSchema: {
     label: "开关",
@@ -1696,8 +1843,8 @@ const m = {
   }
 };
 function n(e) {
-  var o;
-  let l = ((o = e.values.componentProps) == null ? void 0 : o.inactiveValue) || !1;
+  var t;
+  let l = ((t = e.values.componentProps) == null ? void 0 : t.inactiveValue) || !1;
   e.values.componentProps.unCheckedValue === "" && delete e.values.componentProps.unCheckedValue, e.values.componentProps.activeValue === "" && delete e.values.componentProps.activeValue, e.values.componentProps ? e.values.componentProps.defaultValue = l : e.values.componentProps = {
     defaultValue: l
   };
@@ -1880,7 +2027,7 @@ const T = {
       }
     ]
   }
-}, z = {
+}, S = {
   component: () => import("../../collapse-5dc12a78.js"),
   defaultSchema: {
     label: "折叠面板",
@@ -1919,7 +2066,7 @@ const T = {
       }
     ]
   }
-}, S = {
+}, I = {
   component: () => import("../../collapseItem-01150d83.js"),
   defaultSchema: {
     label: "折叠项",
@@ -1930,7 +2077,7 @@ const T = {
   config: {
     attribute: []
   }
-}, I = {
+}, N = {
   component: async () => (await import("element-plus")).ElDatePicker,
   defaultSchema: {
     label: "日期选择器",
@@ -2121,7 +2268,7 @@ const T = {
       }
     ]
   }
-}, N = {
+}, F = {
   component: () => import("../../uploadFile-da7b23c1.js"),
   defaultSchema: {
     label: "上传文件",
@@ -2205,7 +2352,7 @@ const T = {
     ]
   },
   bindModel: "modelValue"
-}, F = {
+}, R = {
   component: () => import("../../uploadImage-27f64264.js"),
   defaultSchema: {
     label: "上传图片",
@@ -2289,7 +2436,7 @@ const T = {
     ]
   },
   bindModel: "modelValue"
-}, R = {
+}, D = {
   component: () => import("../../modal-1edf75a9.js"),
   defaultSchema: {
     label: "模态框",
@@ -2309,29 +2456,30 @@ const T = {
 };
 function O(e = i) {
   e.component("FormItem", r), e.component("Tabs", c), e.component("TabPane", s), e.component("Collapse", d), e.component("CollapseItem", u), [
-    f,
     y,
+    h,
     m,
     b,
-    E,
-    V,
-    I,
-    w,
-    k,
-    C,
-    T,
+    f,
     x,
+    V,
     N,
+    E,
+    z,
+    k,
+    T,
+    C,
     F,
-    h,
+    R,
     P,
     v,
     g,
-    z,
+    w,
     S,
-    R
-  ].forEach((o) => {
-    e.registerComponent(o);
+    I,
+    D
+  ].forEach((t) => {
+    e.registerComponent(t), e.addBaseComponentTypes(t.defaultSchema.type);
   }), e.setInitialized(!0);
 }
 function Y(e) {

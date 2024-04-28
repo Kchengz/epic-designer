@@ -1,18 +1,21 @@
 import { type ComponentSchema } from '../../core/types/epic-designer';
+import { type ShallowRef } from "vue";
 export interface ActivitybarModel {
     id: string;
     title: string;
     icon: string;
     component: any;
+    visible?: boolean;
 }
 export interface RightSidebarModel {
     id: string;
     title: string;
     component: any;
+    visible?: boolean;
 }
 export interface ViewsContainersModel {
-    activitybars: ActivitybarModel[];
-    rightSidebars: RightSidebarModel[];
+    activitybars: ShallowRef<ActivitybarModel[]>;
+    rightSidebars: ShallowRef<RightSidebarModel[]>;
 }
 export type Components = Record<string, any>;
 export interface EventModel {
@@ -26,6 +29,9 @@ export interface ActionModel extends EventModel {
 export interface ComponentConfigModel {
     component: any;
     groupName?: string;
+    immovable?: boolean;
+    childImmovable?: boolean;
+    fixedField?: boolean;
     defaultSchema: ComponentSchema;
     config: {
         attribute?: ComponentSchema[];
@@ -53,6 +59,7 @@ export declare class PluginManager {
     initialized: import("vue").Ref<boolean>;
     components: Components;
     componentConfigs: ComponentConfigModelRecords;
+    baseComponentTypes: string[];
     componentSchemaGroups: import("vue").Ref<{
         list: {
             [x: string]: any;
@@ -101,10 +108,6 @@ export declare class PluginManager {
             }[] | undefined;
             noFormItem?: boolean | undefined;
             input?: boolean | undefined;
-            immovable?: boolean | undefined;
-            childImmovable?: boolean | undefined;
-            labelCol?: any;
-            wrapperCol?: any;
             children?: any[] | undefined;
             slots?: {
                 [slotName: string]: ComponentSchema[];
@@ -121,15 +124,34 @@ export declare class PluginManager {
     publicMethods: PublicMethodsModel;
     /**
      * 添加组件到插件管理器中
-     * @param componentName 组件名称
+     * @param componentType 组件类型
      * @param component 组件
      */
-    component(componentName: string, component: any): void;
+    component(componentType: string, component: any): void;
     /**
      * 注册组件到插件管理器中
      * @param componentConfig 组件配置
      */
     registerComponent(componentConfig: ComponentConfigModel): void;
+    /**
+     * 从已记录的基础组件类型中移除特定类型的组件
+     * @param componentType 要移除的组件类型
+     */
+    removeComponent(componentType: string): void;
+    /**
+     * 记录基础组件类型
+     * @returns baseComponentTypes string[]
+     */
+    setBaseComponentTypes(baseComponentTypes: string[]): void;
+    /**
+     * 添加基础组件类型
+     * @returns baseComponentType string
+     */
+    addBaseComponentTypes(baseComponentType: string): void;
+    /**
+     * 移除已记录的基础组件类型
+     */
+    removeBaseComponents(): void;
     /**
      * 获取所有插件管理中的所有组件
      * @returns components
@@ -152,6 +174,18 @@ export declare class PluginManager {
      */
     getActivitybars(): ActivitybarModel[];
     /**
+     * 隐藏活动栏
+     * @param value 属性
+     * @param attr 查询字段 默认值 title
+     */
+    hideActivitybar(value: string, attr?: string): void;
+    /**
+     * 显示活动栏
+     * @param value 属性
+     * @param attr 查询字段 默认值 title
+     */
+    showActivitybar(value: string, attr?: string): void;
+    /**
      * 注册右侧栏
      */
     registerRightSidebar(rightSidebar: RightSidebarModel): void;
@@ -160,6 +194,18 @@ export declare class PluginManager {
      * @returns rightSidebars
      */
     getRightSidebars(): RightSidebarModel[];
+    /**
+     * 隐藏右侧边栏
+     * @param value 属性
+     * @param attr 查询字段 默认值 title
+     */
+    hideRightSidebar(value: string, attr?: string): void;
+    /**
+     * 显示右侧边栏
+     * @param value 属性
+     * @param attr 查询字段 默认值 title
+     */
+    showRightSidebar(value: string, attr?: string): void;
     /**
      * 获取所有插件管理中的所有组件配置
      * @returns componentAttrs
@@ -226,10 +272,6 @@ export declare class PluginManager {
             }[] | undefined;
             noFormItem?: boolean | undefined;
             input?: boolean | undefined;
-            immovable?: boolean | undefined;
-            childImmovable?: boolean | undefined;
-            labelCol?: any;
-            wrapperCol?: any;
             children?: any[] | undefined;
             slots?: {
                 [slotName: string]: ComponentSchema[];

@@ -2308,7 +2308,7 @@ function C(e = a) {
     E,
     z
   ].forEach((l) => {
-    e.registerComponent(l);
+    e.registerComponent(l), e.addBaseComponentTypes(l.defaultSchema.type);
   }), e.setInitialized(!0);
 }
 export {
