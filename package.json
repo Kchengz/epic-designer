@@ -2,14 +2,15 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "pnpm run checkCompiled && turbo run dev",
     "lib": "pnpm run build --filter epic-designer",
     "lint": "turbo run lint",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "examples:build": "pnpm run build --filter @epic-designer/examples",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "checkCompiled": "turbo run checkCompiled --filter @epic-designer/script"
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",
@@ -19,6 +20,7 @@
     "@epic-designer/core": "workspace:*",
     "@epic-designer/ui": "workspace:*",
     "@epic-designer/utils": "workspace:*",
+    "@epic-designer/script": "workspace:*",
     "epic-designer": "workspace:*",
     "@turbo/gen": "^1.10.9",
     "@vitejs/plugin-vue": "^4.2.3",

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="sidebarComponent" class="relative">
+  <div v-if="sidebarComponent" class="relative bg-white">
     <!-- 折叠按钮 start -->
     <div
       class="absolute left--18px top-80px shadow-lg shadow-gray-400 text-#999 cursor-pointer bg-white rounded-full flex justify-center items-center w-28px h-28px z-9"
@@ -14,7 +14,7 @@
       <div class="w-280px">
         <EBreadcrumb />
         <ul class="epic-actions-container">
-          <li v-for="(item, index) in rightSidebars" :key="index" class="action-item" :title="item.title"
+          <li v-for="(item, index) in rightSidebars" :key="index" class="epic-action-item" :title="item.title"
             :class="{ checked: actionBarCheckedIndex === index }" @click="handleClick(item, index)">
             {{ item.title }}
           </li>
@@ -30,7 +30,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, shallowRef } from 'vue'
+import { ref, computed, shallowRef } from 'vue'
 import { pluginManager } from '@epic-designer/utils'
 import { RightSidebarModel } from '@epic-designer/utils'
 import EBreadcrumb from './breadcrumb.vue'
@@ -38,11 +38,13 @@ import EIcon from "../../../../icon";
 
 const hideRightMain = ref(false)
 
-const rightSidebars = pluginManager.getRightSidebars()
-const actionBarCheckedIndex = ref<number | null>(0)
+const rightSidebars = computed(() => {
+  return pluginManager.viewsContainers.rightSidebars.value.filter(item => item.visible)
+})
 
+const actionBarCheckedIndex = ref<number | null>(0)
 const sidebarComponent = shallowRef<any>(null)
-sidebarComponent.value = rightSidebars[0]?.component
+sidebarComponent.value = rightSidebars.value[0]?.component
 
 function handleHideRight() {
   hideRightMain.value = !hideRightMain.value

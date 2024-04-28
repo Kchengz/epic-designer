@@ -17,9 +17,11 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { computed, inject } from 'vue'
-import { revoke } from '@epic-designer/utils'
+import { revoke, pluginManager } from '@epic-designer/utils'
 import { ComponentSchema, PageSchema, Designer } from '../../../../../types/epic-designer'
 import ENodeItem from './nodeItem.vue'
+
+
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
 defineOptions({
@@ -61,7 +63,7 @@ function handleAdd() {
 
 function isDraggable(schemas: ComponentSchema) {
   // 判断当前节点类型是否允许拖拽
-  if (schemas.type === 'page' || schemas.immovable) {
+  if (schemas.type === 'page' || pluginManager.getComponentConfingByType(schemas.type).immovable) {
     // 禁止拖拽
     return 'unmover-item'
   }

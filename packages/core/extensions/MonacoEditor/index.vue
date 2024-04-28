@@ -15,18 +15,23 @@ const props = withDefaults(defineProps<{
   readOnly?: boolean,
   valueFormat?: string,
   modelValue?: any,
-  config?: editor.IStandaloneEditorConstructionOptions
+  config?: editor.IStandaloneEditorConstructionOptions,
+  lineNumbers?: 'on' | 'off',
+  theme?: 'vs-light' | 'vs-drak'
+
 }>(), {
   language: 'json',
   readOnly: false,
   valueFormat: 'string',
+  lineNumbers: 'on',
+  theme: 'vs-light',
   config: () => ({
-    theme: 'vs-light',
+    // theme: 'vs-light',
     selectOnLineNumbers: true,
     minimap: {
       enabled: false
     },
-    lineNumbers: 'off'
+    // lineNumbers: 'on'
   })
 })
 
@@ -76,6 +81,8 @@ onMounted(() => {
     value: getValue(),
     language: props.language,
     readOnly: props.readOnly,
+    lineNumbers: props.lineNumbers,
+    theme: props.theme,
     ...props.config,
     automaticLayout: true
   })

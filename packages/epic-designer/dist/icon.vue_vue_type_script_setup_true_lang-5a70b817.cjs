@@ -1,1 +1,0 @@
-"use strict";const e=require("vue"),o=e.defineComponent({name:"EIcon",__name:"icon",props:{name:{},prefix:{default:"epic-"}},setup(c){const n=c;return(s,t)=>(e.openBlock(),e.createElementBlock("span",{class:e.normalizeClass(["iconfont",n.prefix+n.name])},null,2))}});exports._sfc_main=o;

@@ -3,6 +3,7 @@ import {
   type ComponentSchema,
 } from "@epic-designer/core/types/epic-designer";
 import { getUUID } from "./string";
+import { pluginManager } from "../index";
 
 /**
  * 深拷贝数据
@@ -53,8 +54,12 @@ export function generateNewSchema(schema: ComponentSchema) {
       ...item,
       id: `${item.type}_${getUUID(8)}`,
     };
+
     // 存在字段名，则自动在字段名后补充id
-    if (newVal.field || newVal.input) {
+    if (
+      (newVal.field || newVal.input) &&
+      !pluginManager.getComponentConfingByType(newVal.type).fixedField
+    ) {
       newVal.field = newVal.id;
     }
     return newVal;
@@ -598,6 +603,7 @@ export function recursionConvertedNode(
 
     if (type === "grid") {
       type = "row";
+      // 待修改
       item.childImmovable = true;
     }
 
@@ -614,6 +620,7 @@ export function recursionConvertedNode(
       icon: item.icon || "",
       field: item.model,
       componentProps,
+      // 待修改
       childImmovable: item.childImmovable,
       id: item.key,
     };

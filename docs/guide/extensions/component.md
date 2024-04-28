@@ -79,6 +79,12 @@ export interface ComponentConfigModel {
   component: any;
   // 分组名称（组件分组），不设置分组时仅注册，但不会显示在组件列表中，可选
   groupName?: string;
+  // 当前组件是否固定不可拖动，可选
+  immovable?: boolean;
+  // 子节点是否固定不可拖动,只控制下一级，可选
+  childImmovable?: boolean;
+  // 表单字段是否固定 不添加随机UUID
+  fixedField?: boolean;
   // 默认组件结构数据
   defaultSchema: ComponentSchema;
   // 配置

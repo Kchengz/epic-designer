@@ -22,14 +22,6 @@ export interface ComponentSchema {
   noFormItem?: boolean;
   // 是否为表单输入组件，可选
   input?: boolean;
-  // 是否固定不可拖动，可选
-  immovable?: boolean;
-  // 子节点是否固定不不可拖动，可选
-  childImmovable?: boolean;
-  // 标签布局宽度占比，可选
-  labelCol?: any;
-  // 包裹布局宽度占比，可选
-  wrapperCol?: any;
   // 子节点列表，可选
   children?: ComponentSchema[];
   // 插槽列表，可选

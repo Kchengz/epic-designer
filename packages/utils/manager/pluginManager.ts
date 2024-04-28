@@ -1,22 +1,24 @@
 import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 import { loadAsyncComponent } from "../common";
-import { ref } from "vue";
+import { ref, shallowRef, type ShallowRef } from "vue";
 export interface ActivitybarModel {
   id: string;
   title: string;
   icon: string;
   component: any;
+  visible?: boolean;
 }
 
 export interface RightSidebarModel {
   id: string;
   title: string;
   component: any;
+  visible?: boolean;
 }
 
 export interface ViewsContainersModel {
-  activitybars: ActivitybarModel[];
-  rightSidebars: RightSidebarModel[];
+  activitybars: ShallowRef<ActivitybarModel[]>;
+  rightSidebars: ShallowRef<RightSidebarModel[]>;
 }
 
 export type Components = Record<string, any>;
@@ -36,6 +38,12 @@ export interface ComponentConfigModel {
   component: any;
   // 分组名称（组件分组），不设置分组时仅注册，但不会显示在组件列表中，可选
   groupName?: string;
+  // 当前组件是否固定不可拖动，可选
+  immovable?: boolean;
+  // 子节点是否固定不可拖动,只控制下一级，可选
+  childImmovable?: boolean;
+  // 表单字段是否固定 不添加随机UUID
+  fixedField?: boolean;
   // 默认组件结构数据
   defaultSchema: ComponentSchema;
   // 配置
@@ -83,6 +91,9 @@ export class PluginManager {
   // 组件配置记录字典，key 为组件type，value 为组件配置
   componentConfigs: ComponentConfigModelRecords = {};
 
+  // 基础组件type，切换ui时，可先移除该数组记录的type
+  baseComponentTypes: string[] = [];
+
   // 组件模式分组，使用 Vue Composition API 的 ref 进行响应式处理
   componentSchemaGroups = ref<ComponentSchemaGroups>([]);
 
@@ -97,8 +108,8 @@ export class PluginManager {
 
   // 视图容器模型，包含活动栏和右侧边栏的配置
   viewsContainers: ViewsContainersModel = {
-    activitybars: [], // 活动栏配置列表
-    rightSidebars: [], // 右侧边栏配置列表
+    activitybars: shallowRef([]), // 活动栏配置列表
+    rightSidebars: shallowRef([]), // 右侧边栏配置列表
   };
 
   // 公共方法模型，存储插件的公共方法
@@ -116,15 +127,15 @@ export class PluginManager {
 
   /**
    * 添加组件到插件管理器中
-   * @param componentName 组件名称
+   * @param componentType 组件类型
    * @param component 组件
    */
-  component(componentName: string, component: any): void {
+  component(componentType: string, component: any): void {
     if (typeof component === "function") {
       component = loadAsyncComponent(component);
     }
     // 注册组件
-    this.components[componentName] = component;
+    this.components[componentType] = component;
   }
 
   /**
@@ -174,6 +185,44 @@ export class PluginManager {
   }
 
   /**
+   * 从已记录的基础组件类型中移除特定类型的组件
+   * @param componentType 要移除的组件类型
+   */
+  removeComponent(componentType: string) {
+    // 在数组中查找要移除的组件类型的索引
+    delete this.componentConfigs[componentType];
+    delete this.components[componentType];
+  }
+
+  /**
+   * 记录基础组件类型
+   * @returns baseComponentTypes string[]
+   */
+  setBaseComponentTypes(baseComponentTypes: string[]) {
+    this.baseComponentTypes = baseComponentTypes;
+  }
+
+  /**
+   * 添加基础组件类型
+   * @returns baseComponentType string
+   */
+  addBaseComponentTypes(baseComponentType: string) {
+    this.baseComponentTypes.push(baseComponentType);
+  }
+
+  /**
+   * 移除已记录的基础组件类型
+   */
+  removeBaseComponents() {
+    this.baseComponentTypes.forEach((componentType) => {
+      this.removeComponent(componentType);
+    });
+    this.setBaseComponentTypes([]);
+
+    this.computedComponentSchemaGroups();
+  }
+
+  /**
    * 获取所有插件管理中的所有组件
    * @returns components
    */
@@ -200,17 +249,22 @@ export class PluginManager {
       activitybar.component = loadAsyncComponent(activitybar.component);
     }
 
+    // 默认visible为true
+    if (typeof activitybar.visible === "undefined") {
+      activitybar.visible = true;
+    }
+
     // 查找活动栏在列表中的索引
-    const index = this.viewsContainers.activitybars.findIndex(
+    const index = this.viewsContainers.activitybars.value.findIndex(
       (item) => item.id === activitybar.id
     );
 
     // 如果找到相同 id 的活动栏，则更新该活动栏模型
     if (index !== -1) {
-      this.viewsContainers.activitybars[index] = activitybar;
+      this.viewsContainers.activitybars.value[index] = activitybar;
     } else {
       // 否则将新的活动栏模型添加到活动栏列表中
-      this.viewsContainers.activitybars.push(activitybar);
+      this.viewsContainers.activitybars.value.push(activitybar);
     }
   }
 
@@ -219,7 +273,42 @@ export class PluginManager {
    * @returns activitybars
    */
   getActivitybars(): ActivitybarModel[] {
-    return this.viewsContainers.activitybars;
+    return this.viewsContainers.activitybars.value;
+  }
+
+  /**
+   * 隐藏活动栏
+   * @param value 属性
+   * @param attr 查询字段 默认值 title
+   */
+  hideActivitybar(value: string, attr = "title") {
+    // 查找具有指定属性和值的活动栏的索引
+    const index = this.viewsContainers.activitybars.value.findIndex(
+      (rightSidebar) => rightSidebar[attr] === value
+    );
+
+    // 如果找到匹配的活动栏
+    if (index !== -1) {
+      // 将匹配的活动栏的 'visible' 属性设置为 false
+      this.viewsContainers.activitybars.value[index].visible = false;
+    }
+  }
+  /**
+   * 显示活动栏
+   * @param value 属性
+   * @param attr 查询字段 默认值 title
+   */
+  showActivitybar(value: string, attr = "title") {
+    // 查找具有指定属性和值的活动栏的索引
+    const index = this.viewsContainers.activitybars.value.findIndex(
+      (rightSidebar) => rightSidebar[attr] === value
+    );
+
+    // 如果找到匹配的活动栏
+    if (index !== -1) {
+      // 将匹配的活动栏的 'visible' 属性设置为 true
+      this.viewsContainers.activitybars.value[index].visible = true;
+    }
   }
 
   /**
@@ -230,14 +319,19 @@ export class PluginManager {
       rightSidebar.component = loadAsyncComponent(rightSidebar.component);
     }
 
-    const index = this.viewsContainers.rightSidebars.findIndex(
+    // 默认visible为true
+    if (typeof rightSidebar.visible === "undefined") {
+      rightSidebar.visible = true;
+    }
+
+    const index = this.viewsContainers.rightSidebars.value.findIndex(
       (sidebar) => sidebar.id === rightSidebar.id
     );
 
     if (index !== -1) {
-      this.viewsContainers.rightSidebars[index] = rightSidebar;
+      this.viewsContainers.rightSidebars.value[index] = rightSidebar;
     } else {
-      this.viewsContainers.rightSidebars.push(rightSidebar);
+      this.viewsContainers.rightSidebars.value.push(rightSidebar);
     }
   }
 
@@ -246,7 +340,43 @@ export class PluginManager {
    * @returns rightSidebars
    */
   getRightSidebars(): RightSidebarModel[] {
-    return this.viewsContainers.rightSidebars;
+    return this.viewsContainers.rightSidebars.value;
+  }
+
+  /**
+   * 隐藏右侧边栏
+   * @param value 属性
+   * @param attr 查询字段 默认值 title
+   */
+  hideRightSidebar(value: string, attr = "title") {
+    // 查找具有指定属性和值的右侧边栏的索引
+    const index = this.viewsContainers.rightSidebars.value.findIndex(
+      (rightSidebar) => rightSidebar[attr] === value
+    );
+
+    // 如果找到匹配的右侧边栏
+    if (index !== -1) {
+      // 将匹配的右侧边栏的 'visible' 属性设置为 false
+      this.viewsContainers.rightSidebars.value[index].visible = false;
+    }
+  }
+
+  /**
+   * 显示右侧边栏
+   * @param value 属性
+   * @param attr 查询字段 默认值 title
+   */
+  showRightSidebar(value: string, attr = "title") {
+    // 查找具有指定属性和值的右侧边栏的索引
+    const index = this.viewsContainers.rightSidebars.value.findIndex(
+      (rightSidebar) => rightSidebar[attr] === value
+    );
+
+    // 如果找到匹配的右侧边栏
+    if (index !== -1) {
+      // 将匹配的右侧边栏的 'visible' 属性设置为 true
+      this.viewsContainers.rightSidebars.value[index].visible = true;
+    }
   }
 
   /**
@@ -427,13 +557,13 @@ export class PluginManager {
     // 兼容旧公共函数注册，后期可能移除该判断
     // methodName 变量改成 name
     // method 变量改成 handler
-    const name = publicMethod.methodName ?? publicMethod.name
-    const handler = publicMethod.method ?? publicMethod.handler
+    const name = publicMethod.methodName ?? publicMethod.name;
+    const handler = publicMethod.method ?? publicMethod.handler;
 
     this.publicMethods[name] = {
       ...publicMethod,
       name,
-      handler
+      handler,
     };
   }
 

@@ -104,7 +104,7 @@ function handleClick(schema: ComponentSchema) {
   let { list, schema: checkedSchema, index } = data
 
   // 如果选中元素存在children字段，则添加到children中
-  if (checkedSchema.children && !checkedSchema.childImmovable) {
+  if (checkedSchema.children && !pluginManager.getComponentConfingByType(checkedSchema.type).childImmovable) {
     list = checkedSchema.children
     index = checkedSchema.children.length - 1
   }

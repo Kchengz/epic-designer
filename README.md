@@ -26,9 +26,9 @@
 
 💎项目预览地址：
 
-- element-plus：[https://epic.kcz66.com/demo/element-plus/](https://epic.kcz66.com/demo/element-plus/)
-- antdv3：[https://epic.kcz66.com/demo/antdv3/](https://epic.kcz66.com/demo/antdv3/)
-- naive-ui：[https://epic.kcz66.com/demo/naive-ui/](https://epic.kcz66.com/demo/naive-ui/)
+- ElementPlus：[https://epic.kcz66.com/element-plus/basic](https://epic.kcz66.com/element-plus/basic?maximize=1)
+- AntDesignVue：[https://epic.kcz66.com/ant-designe-vue/basic](https://epic.kcz66.com/ant-designe-vue/basic?maximize=1)
+- NaiveUi：[https://epic.kcz66.com/naive-ui/basic](https://epic.kcz66.com/naive-ui/basic?maximize=1)
 
 
 

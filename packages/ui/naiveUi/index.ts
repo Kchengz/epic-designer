@@ -72,6 +72,7 @@ export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
 
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item);
+    pluginManager.addBaseComponentTypes(item.defaultSchema.type);
   });
 
   // ui初始化完成。

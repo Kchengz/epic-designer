@@ -54,13 +54,13 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update:selectedKeys', 'node-click'])
+const emits = defineEmits(['update:selectedKeys', 'nodeClick'])
 const selectedKeysComputed = computed({
   get() {
     return props.selectedKeys
   },
   set(value) {
-    emit('update:selectedKeys', value)
+    emits('update:selectedKeys', value)
   }
 })
 
@@ -102,13 +102,12 @@ function filterTreeByLabel(tree, labelToFilter) {
 
 function handleSelect(id: string, componentSchema: ComponentSchema) {
   selectedKeysComputed.value = [id]
-  emit('node-click', { id, componentSchema })
+  emits('nodeClick', { id, componentSchema })
 }
 
 provide('expandedKeys', expandedKeys)
 provide('selectedKeys', selectedKeysComputed)
 provide('treeProps', props)
-provide('handleSelect', handleSelect)
 provide('handleSelect', handleSelect)
 
 </script>

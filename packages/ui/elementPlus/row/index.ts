@@ -1,25 +1,25 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./row"),
+  childImmovable: true,
   defaultSchema: {
     label: "栅格布局",
     type: "row",
-    icon: 'epic-icon-zhage',
-    childImmovable: true,
+    icon: "epic-icon-zhage",
     children: [
       {
         type: "col",
         children: [],
         componentProps: {
           span: 12,
-        }
+        },
       },
       {
         type: "col",
         children: [],
         componentProps: {
           span: 12,
-        }
+        },
       },
     ],
   },
@@ -45,7 +45,7 @@ export default {
               value: "bottom",
             },
           ],
-          placeholder: '请选择'
+          placeholder: "请选择",
         },
         field: "componentProps.align",
       },
@@ -76,7 +76,7 @@ export default {
               value: "space-between",
             },
           ],
-          placeholder: '请选择'
+          placeholder: "请选择",
         },
         field: "componentProps.justify",
       },
@@ -85,8 +85,8 @@ export default {
         type: "number",
         field: "componentProps.gutter",
         componentProps: {
-          placeholder: '请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
         label: "列编辑",
