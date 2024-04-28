@@ -1,3 +1,12 @@
+## 0.9.9（2024-04-27）
+
+### ✨ Feat
+- 注册配置新增fixedField字段锁定表单项field不添加UUID
+- 选中元素不在可视区时自动滚动到相应位置
+- 新增hideActivitybar、hideRightSidebar方法
+- antd级联组件新增回填方式属性
+- element新增文本域组件
+
 ## 0.9.8（2024-04-18）
 
 ### 🐛 Bug Fixes
