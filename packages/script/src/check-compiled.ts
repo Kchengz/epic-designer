@@ -9,7 +9,7 @@ if (fs.existsSync(filePath)) {
 } else {
   console.log("引用文件未编译，正在编译请稍等...");
   exec(
-    "cd ../../../ && npm run lib",
+    "cd ../../ && npm run lib",
     { maxBuffer: 50 * 1024 * 1024 },
     (error: ExecException | null) => {
       if (error) {
