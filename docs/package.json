@@ -1,6 +1,7 @@
 {
   "name": "@epic-designer/docs",
   "version": "1.0.0",
+  "type": "module",
   "description": "epic-designer docs",
   "author": "kchengz",
   "dependencies": {

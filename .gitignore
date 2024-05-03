@@ -35,4 +35,5 @@ yarn-error.log*
 # vercel
 .vercel
 
+/docs/.vitepress/cache
 dist
