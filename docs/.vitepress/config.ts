@@ -5,13 +5,13 @@ export default defineConfig({
   // 网站描述
   description: "低代码可视化设计器及生成器",
   lang: "zh-CN",
-  base: "/epic-designer",
+  base: "/",
   // 打包目录
   head: [
     // 添加图标
     [
       "link",
-      { rel: "epic-icon", type: "image/x-icon", href: "/epic-designer/favicon.ico" },
+      { rel: "epic-icon", type: "image/x-icon", href: "/favicon.ico" },
     ],
   ],
   // 主题配置
