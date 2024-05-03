@@ -9,11 +9,11 @@
         </li>
       </ul>
     </div>
-    <aside class="epic-left-sidebar" :class="{ hide: actionBarCheckedIndex === null }">
+    <div class="epic-left-sidebar" :class="{ hide: actionBarCheckedIndex === null }">
       <div class="epic-sidebar-container">
         <component :is="sidebarComponent" />
       </div>
-    </aside>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>

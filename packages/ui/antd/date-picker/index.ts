@@ -103,12 +103,17 @@ export default {
         show: ({ values }) => values.componentProps.type === "daterange",
       },
       {
-        label: "格式",
+        label: "日期格式",
+        type: "input",
+        field: "componentProps.format",
+      },
+      {
+        label: "数据格式",
         type: "input",
         field: "componentProps.valueFormat",
-        onChange: (e) => {
-          e.values.componentProps.format = e.value;
-        },
+        // onChange: (e) => {
+        //   e.values.componentProps.format = e.value;
+        // },
       },
       {
         label: "显示类型",
@@ -137,6 +142,33 @@ export default {
           } else {
             values.componentProps.placeholder = "请输入";
           }
+
+          if (value === "month") {
+            values.componentProps.valueFormat = "YYYY-MM";
+            values.componentProps.format = "YYYY-MM";
+
+            values.componentProps.showTime = false;
+          } else {
+            values.componentProps.valueFormat = "YYYY-MM-DD";
+            values.componentProps.format = "YYYY-MM-DD";
+          }
+        },
+      },
+      {
+        label: "增加时间选择",
+        type: "switch",
+        field: "componentProps.showTime",
+        onChange: ({ value, values }) => {
+          if (value) {
+            values.componentProps.valueFormat = "YYYY-MM-DD HH:mm:ss";
+            values.componentProps.format = "YYYY-MM-DD HH:mm:ss";
+          } else {
+            values.componentProps.valueFormat = "YYYY-MM-DD";
+            values.componentProps.format = "YYYY-MM-DD";
+          }
+        },
+        show({ values }) {
+          return ["date", "daterange"].includes(values.componentProps.type);
         },
       },
       {
@@ -157,11 +189,7 @@ export default {
         },
         field: "componentProps.bordered",
       },
-      {
-        label: "增加时间选择",
-        type: "switch",
-        field: "componentProps.showTime",
-      },
+
       {
         label: "可清空",
         type: "switch",

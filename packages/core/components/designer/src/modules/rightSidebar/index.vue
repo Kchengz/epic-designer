@@ -20,9 +20,7 @@
           </li>
         </ul>
         <div class="epic-sidebar-content">
-          <aside :class="{ hide: actionBarCheckedIndex === null }">
-            <component :is="sidebarComponent" />
-          </aside>
+          <component :is="sidebarComponent" />
         </div>
       </div>
     </div>
