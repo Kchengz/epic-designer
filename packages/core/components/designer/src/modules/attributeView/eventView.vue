@@ -1,5 +1,5 @@
 <template>
-  <aside class="epic-event-view">
+  <div class="epic-event-view">
     <div v-if="checkedNode">
       <EActionEditor
         :key="checkedNode.id"
@@ -8,7 +8,7 @@
         @update:model-value="handleSetValue($event, `on`)"
       />
     </div>
-  </aside>
+  </div>
 </template>
 <script lang="ts" setup>
 import { Designer, PageSchema } from '../../../../../types/epic-designer'

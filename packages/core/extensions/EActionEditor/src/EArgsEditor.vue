@@ -1,5 +1,5 @@
 <template>
-  <aside class="epic-attribute-view">
+  <div class="epic-attribute-view">
     <div v-for="item in props.actionArgsConfigs" :key="item.field + item.type">
       <div v-show="isShow(item)" class="attr-item" :class="item.layout">
         <div class="attr-label" :title="item.label">
@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-  </aside>
+  </div>
 </template>
 <script lang="ts" setup>
 import ENode from '../../../components/node'
