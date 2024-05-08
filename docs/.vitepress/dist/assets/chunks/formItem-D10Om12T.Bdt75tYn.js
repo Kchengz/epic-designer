@@ -1,0 +1,1 @@
+import{a as s}from"./index-NP0d70UY.CIJ65HY9.js";import{d as a,aj as f,j as m,o as l,b as n,w as p,r as d,M as u,m as e}from"./framework.Bp6pYewT.js";const h=a({__name:"formItem",setup(c){const r=f(),o=m(null);return(t,i)=>(l(),n(e(s),u({ref_key:"form",ref:o},e(r),{prop:e(r).field}),{default:p(()=>[d(t.$slots,"default")]),_:3},16,["prop"]))}});export{h as default};
