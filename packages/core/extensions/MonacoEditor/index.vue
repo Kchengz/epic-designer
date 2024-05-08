@@ -1,5 +1,5 @@
 <template>
-  <div ref="editContainer" class="code-editor" />
+  <div ref="editContainer" class="epic-code-editor" />
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
@@ -120,7 +120,7 @@ defineExpose({
 })
 </script>
 <style lang="less" scoped>
-.code-editor {
+.epic-code-editor {
   width: 100%;
   min-height: 150px;
 

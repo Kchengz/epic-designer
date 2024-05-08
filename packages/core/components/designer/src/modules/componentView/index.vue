@@ -1,7 +1,7 @@
 <template>
   <div class="epic-component-view flex flex-col">
     <!-- 搜素框 start -->
-    <div class="search-box px-10px py-6px">
+    <div class="epic-search-box px-10px py-6px">
       <Input placeholder="搜索组件"  v-model="keyword" clearable allowClear v-model:value="keyword">
       <template #prefix>
         <EIcon name="icon-chaxun" />

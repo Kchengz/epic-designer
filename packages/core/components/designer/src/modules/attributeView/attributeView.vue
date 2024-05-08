@@ -1,11 +1,11 @@
 <template>
   <div class="epic-attribute-view" :key="checkedNode?.id">
     <div v-for="item in componentAttributes" :key="item.field">
-      <div v-if="isShow(item)" class="attr-item" :class="item.layout">
-        <div class="attr-label" :title="item.label">
+      <div v-if="isShow(item)" class="epic-attr-item" :class="item.layout">
+        <div class="epic-attr-label" :title="item.label">
           {{ item.label }}
         </div>
-        <div class="attr-input">
+        <div class="epic-attr-input">
           <ENode
             :componentSchema="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), input: false, field: undefined, hidden: false }, show: true, noFormItem: true }"
             :model-value="getAttributeValue(item.field!, item.editData ?? checkedNode!)"
