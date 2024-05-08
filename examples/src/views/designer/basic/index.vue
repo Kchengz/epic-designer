@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { EDesigner, type PageSchema } from '@epic-designer/core'
 import { ref } from 'vue'
-const designerRef = ref<typeof EDesigner>()
+const designerRef = ref<InstanceType<typeof EDesigner>>()
 /**
  * 点击保存按钮操作
  * @param e

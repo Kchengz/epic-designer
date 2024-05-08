@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white p-2 h-full flex flex-col">
-    <h2 class="pt-4 pl-8 text-24px block">禁用隐藏交互</h2>
+    <h2 class="pt-4 pl-8 text-24px block">禁用隐藏</h2>
     <EBuilder ref="ebRef" :pageSchema="pageSchema">
     </EBuilder>
     <Divider orientation="left">页面结构数据</Divider>
@@ -9,13 +9,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { EBuilder, PageSchema } from '@epic-designer/core'
 import { pluginManager } from '@epic-designer/utils'
 import { Divider } from 'ant-design-vue'
 
 const MonacoEditor = pluginManager.getComponent('monacoEditor')
-const ebRef = ref<any>(null)
+const ebRef = ref<InstanceType<typeof EBuilder>>()
 
 const pageSchema = ref<PageSchema>({
   "schemas": [
@@ -150,11 +150,5 @@ const pageSchema = ref<PageSchema>({
   ],
   "script": "const { defineExpose, getComponent } = this;\n\nfunction test (e){\n    getComponent('ho0tpt7i7tc00').setAttr('hidden',e)\n}\n\nfunction setDisabled (e){\n    getComponent('ho0tpt7i7tc00').setAttr('disabled',e)\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test,\n setDisabled\n})"
 })
-
-
-// 表单赋值
-onMounted(async () => {
-})
-
 
 </script>

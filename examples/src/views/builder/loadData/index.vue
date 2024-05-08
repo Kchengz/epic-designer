@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white p-2 h-full flex flex-col">
-    <h2 class="pt-4 pl-8 text-24px block">基础用法</h2>
+    <h2 class="pt-4 pl-8 text-24px block">数据回显</h2>
     <EBuilder ref="ebRef" :pageSchema="pageSchema">
     </EBuilder>
     <Divider orientation="left">页面结构数据</Divider>
@@ -9,13 +9,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { EBuilder, PageSchema } from '@epic-designer/core'
 import { pluginManager } from '@epic-designer/utils'
 import { Divider } from 'ant-design-vue'
 
 const MonacoEditor = pluginManager.getComponent('monacoEditor')
-const ebRef =  ref<InstanceType<typeof EBuilder>>()
+const ebRef = ref<InstanceType<typeof EBuilder>>()
 
 const pageSchema = ref<PageSchema>({
   "schemas": [
@@ -178,5 +178,18 @@ const pageSchema = ref<PageSchema>({
   "script": "const { defineExpose, find } = epic;\n\nfunction test (){\n    console.log('test')\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})"
 })
 
-
+onMounted(() => {
+  ebRef.value?.setData({
+    "radio_shndnr9b": "女",
+    "input_2drzm924": "芷音",
+    "number_x4t431jb": 18,
+    "checkbox_1l91io8k": [
+      "唱",
+      "跳",
+      "rap",
+      "篮球"
+    ],
+    "textarea_1ihmowjl": "Two and a half years of practice as a programmer"
+  })
+})
 </script>

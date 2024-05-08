@@ -1,5 +1,4 @@
 <template>
-  <!-- <button @click="handleReset">重置操作</button> -->
   <EDesigner ref="designerRef" @save="handleSubmit" title="EpicDesigner数据回显示例">
     <template #header-prefix>
       <div>
@@ -12,7 +11,7 @@
 <script lang="ts" setup>
 import { EDesigner, type PageSchema } from '@epic-designer/core'
 import { ref, onMounted } from 'vue'
-const designerRef = ref<typeof EDesigner>()
+const designerRef = ref<InstanceType<typeof EDesigner>>()
 
 
 const pageSchema = {
