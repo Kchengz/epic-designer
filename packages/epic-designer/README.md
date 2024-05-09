@@ -18,11 +18,14 @@
 </p>
 
 
+
 📦github仓库：[https://github.com/Kchengz/epic-designer](https://github.com/Kchengz/epic-designer)
 
 📦gitee仓库：[https://gitee.com/kcz66/epic-designer](https://gitee.com/kcz66/epic-designer)
 
 📖文档地址：[https://docs.epicjs.cn:1443/](https://docs.epicjs.cn:1443/)
+
+📖文档备用地址：[https://www.kcz66.com/epic-designer/](https://www.kcz66.com/epic-designer/)
 
 💎项目预览地址：
 
@@ -178,6 +181,7 @@ import { EDesigner } from "epic-designer";
 }
 </style>
 ```
+
 ## EBuilder(生成器) 基础用法
 
 ```vue
@@ -228,6 +232,7 @@ const pageSchema = {
 - [【epic-designer 交流群：747609683】](https://jq.qq.com/?_wv=1027&k=CtrM9ce2)
 
 ## 捐赠
+
 如果你觉得epic-designer对你有帮助，欢迎给我捐赠
 
 ![](https://epic.kcz66.com/static/donation.png)

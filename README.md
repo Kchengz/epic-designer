@@ -24,6 +24,8 @@
 
 📖文档地址：[https://docs.epicjs.cn:1443/](https://docs.epicjs.cn:1443/)
 
+📖文档备用地址：[https://www.kcz66.com/epic-designer/](https://www.kcz66.com/epic-designer/)
+
 💎项目预览地址：
 
 - ElementPlus：[https://epic.kcz66.com/element-plus/basic](https://epic.kcz66.com/element-plus/basic?maximize=1)
