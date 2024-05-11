@@ -61,6 +61,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.25.0",
     "jsdom": "^24.0.0",
+    "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-external-globals": "^0.10.0",
     "unocss": "^0.59.4",
     "vite-plugin-eslint": "^1.8.1",

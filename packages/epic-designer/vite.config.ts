@@ -4,6 +4,7 @@ import path from "path";
 import dts from "vite-plugin-dts";
 import UnoCSS from "unocss/vite";
 import monacoEditorPlugin from "vite-plugin-monaco-editor";
+import rollupCopy from 'rollup-plugin-copy'
 export default defineConfig({
   plugins: [
     vue(),
@@ -65,6 +66,13 @@ export default defineConfig({
           vue: "Vue",
         },
       },
+      plugins: [
+        rollupCopy({
+            targets: [{src: '../core/theme', dest: './dist/'}], // 路径
+            hook: 'writeBundle', // 钩子，插件运行在rollup完成打包并将文件写入磁盘之前
+            verbose: true // 在终端进行console.log
+        })
+    ]
     },
     commonjsOptions: {
       esmExternals: true,
