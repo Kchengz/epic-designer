@@ -3,7 +3,7 @@
   height: 100%;
   .source-componet-item {
     cursor: pointer;
-    border: 1px solid @border-color;
+    border: 1px solid var(--epic-border-color);
     padding: 8px 10px;
     // height: 32px;
     border-radius: 4px;
@@ -12,38 +12,38 @@
     }
 
     &:hover {
-      border-color: @primary-color;
-      color: @primary-color;
-      background-color: @primary-hover-bg-color;
+      border-color: var(--epic-primary-color);
+      color: var(--epic-primary-color);
+      background-color: var(--epic-primary-hover-bg-color);
     }
   }
 
-  .tabs-box {
+  .epic-tabs-box {
     width: 62px;
     height: 100%;
-    background: #f8f8f8;
+    background: var(--epic-compoent-tabs-bg);
     padding: 12px 6px;
     box-sizing: border-box;
-    .tab {
+    .epic-tab {
       height: 28px;
       line-height: 28px;
       border-radius: 6px;
       font-size: 12px;
       font-weight: 500;
       letter-spacing: 0em;
-      color: #3d3d3d;
+      color: var(--epic-text-main);
       margin-bottom: 10px;
       text-align: center;
 
       &.checked {
-        color: #3e8bf2;
-        background-color: @primary-hover-bg-color;
+        color: var(--epic-primary-color);
+        background-color: var(--epic-primary-hover-bg-color);
       }
     }
   }
 
   .epic-search-box {
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--epic-border-color);
 
     // element 搜素框样式
     // .el-input__wrapper {

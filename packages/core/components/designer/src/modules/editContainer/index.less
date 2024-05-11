@@ -1,23 +1,22 @@
 // 编辑画布
 .epic-edit-canvas {
   flex: 1;
-  background-image: linear-gradient(#f8f8f8 14px, transparent 0),
-    linear-gradient(90deg, transparent 14px, #373739 0);
+
   background-size: 15px 15px;
   overflow: hidden;
 
-
   .epic-edit-range {
-    background-color: white;
     overflow-y: auto;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    box-shadow:
+      rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
       rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     cursor: pointer;
+    background-color: var(--epic-edit-range-bg);
 
     .epic-draggable-range {
       min-height: 60px;
       height: 100%;
-      border: 1px @border-color dashed;
+      border: 1px var(--epic-border-color) dashed;
       width: 100%;
     }
 
@@ -37,18 +36,18 @@
   }
 
   .epic-hover-widget {
-    border: 1px @primary-color dashed;
+    border: 1px var(--epic-primary-color) dashed;
     box-sizing: border-box;
   }
 
   .epic-checked-widget {
-    border: 1px @primary-color dashed;
-    background: @primary-hover-bg-color;
+    border: 1px var(--epic-primary-color) dashed;
+    background: var(--epic-primary-hover-bg-color);
 
     &::before {
       content: "";
       height: 5px;
-      background: @primary-color;
+      background: var(--epic-primary-color);
       position: absolute;
       left: 0;
       width: 100%;
@@ -71,17 +70,17 @@
       position: absolute;
       z-index: 999;
       height: 30px;
-      background: @primary-color;
+      background: var(--epic-primary-color);
       border-radius: 4px 4px 0px 0px;
-      color: white;
       display: flex;
       padding: 0 4px;
 
-      .epic-action-item {
+      .epic-widget-action-item {
         height: 30px;
         line-height: 25px;
         padding: 0 4px;
         cursor: pointer;
+        color: white;
       }
     }
 
@@ -102,21 +101,29 @@
 
   .epic-edit-toolbar {
     height: 40px;
-    background: #ffffff;
+    background: var(--epic-view-bg);
     box-sizing: border-box;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--epic-border-color);
 
     .epic-action-item.disabled {
-      color: #aaa;
+      color: var(--epic-text-disabled);
       cursor: no-drop;
     }
 
     .epic-device-item.checked {
-      color: @primary-color;
+      color: var(--epic-primary-color);
+    }
+
+    .epic-device-item:hover,
+    .epic-action-item:hover {
+      background: var(--epic-action-hover-bg);
     }
   }
 
   .widget-box {
     cursor: move;
   }
+
+  background-image: linear-gradient(var(--epic-designer-bg) 14px, transparent 0),
+    linear-gradient(90deg, transparent 14px, var(--epic-designer-dot-color) 0);
 }

@@ -1,18 +1,16 @@
 <template>
   <div class="epic-sound-code">
-    <MonacoEditor ref="monacoEditorRef" class="editor" :model-value="initModelValue" lineNumbers="off"
-      @update:model-value="setSchemas" />
+    <MonacoEditor ref="monacoEditorRef" autoToggleTheme class="epic-editor" :model-value="initModelValue"
+      lineNumbers="off" @update:model-value="setSchemas" />
   </div>
 </template>
 <script lang="ts" setup>
 import { inject, ref, toRaw, watch } from 'vue'
 import { pluginManager, deepEqual, deepCompareAndModify } from '@epic-designer/utils'
 import { Designer } from '../../../../../types/epic-designer'
-
 const MonacoEditor = pluginManager.getComponent('monacoEditor')
 const monacoEditorRef = ref<any>(null)
 const designer = inject('designer') as Designer
-
 let oldVal: any = {}
 watch(() => designer.state.checkedNode, (newVal: any) => {
   if (!deepEqual(oldVal, toRaw(newVal))) {
@@ -33,15 +31,4 @@ function setSchemas(e: string) {
     console.warn("[epic-desinger：源码]异常：", error);
   }
 }
-
 </script>
-
-<style scoped>
-.epic-sound-code {
-  height: 100%;
-}
-
-.editor {
-  height: 100%;
-}
-</style>

@@ -51,7 +51,7 @@ const TreeNodeText = defineComponent({
       onClick: () => handleSelect(props.schema.id!, props.schema)
     },
       slots['tree-node']?.(props) ??
-      h('span', { class: 'text-padding' },
+      h('span', { class: 'epic-text-padding' },
         {
           default: () => [
             props.schema.label ?? pluginManager.getComponentConfingByType(props.schema.type)?.defaultSchema.label,

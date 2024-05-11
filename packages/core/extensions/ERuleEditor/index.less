@@ -1,4 +1,9 @@
 .rule-item-main {
+  background-color: var(--epic-view-bg);
+  border-color: var(--epic-border-color);
+  &:hover{
+  border-color: var(--epic-primary-color);
+  }
   .rule-btn-delete {
     opacity: 0;
     pointer-events: none;
@@ -7,6 +12,6 @@
   &:hover > .rule-btn-delete {
     opacity: 1;
     pointer-events: all;
-    background-color: @primary-color;
+    background-color: var(--epic-primary-color);
   }
 }

@@ -6,6 +6,7 @@
 @import "./modules/editContainer/index.less";
 @import "./modules/attributeView/index.less";
 @import "./modules/preview/index.less";
+@import "./modules/soundCode/index.less";
 
 .epic-loading-box {
   height: 100%;
@@ -24,7 +25,8 @@
   user-select: none;
   display: flex;
   flex-direction: column;
-  color: @text-main;
+  color: var(--epic-text-main);
+  background: var(--epic-designer-bg);
   min-width: 500px;
   height: 100%;
   max-height: 100vh;
@@ -52,8 +54,8 @@
     display: flex;
     flex: 1;
     height: 0;
-    border-top: 1px solid #eaeaea;
-    border-bottom: 1px solid #eaeaea;
+    border-top: 1px solid var(--epic-border-color);
+    border-bottom: 1px solid var(--epic-border-color);
   }
 
   ul {
@@ -67,7 +69,7 @@
   height: calc(100% - 56px);
   overflow: auto;
   padding: 12px;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--epic-border-color);
 }
 
 .epic-modal-footer {

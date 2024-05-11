@@ -1,23 +1,34 @@
+.epic-right-sidebar-container {
+  background-color: var(--epic-view-bg);
+}
+
+.epic-right-sidebar-hide-btn {
+  background-color: var(--epic-view-bg);
+  color: var(--epic-text-helper);
+  // box-shadow: 2px 5px 6px 3px #ffffff36;
+  box-shadow: var(--epic-shadow-color) 0px 1px 4px;
+}
+
 .epic-right-sidebar {
-  background-color: @view-bg;
+  background-color: var(--epic-view-bg);
   overflow-x: hidden;
   overflow-y: auto;
   transition: width 0.3s;
   height: 100%;
   display: flex;
   flex-direction: column;
-  border-left: 1px solid #eaeaea;
-  border-right: 1px solid #eaeaea;
+  border-left: 1px solid var(--epic-border-color);
+  border-right: 1px solid var(--epic-border-color);
   &.hide {
     width: 0;
     border: 0;
   }
 
   .epic-breadcrumb {
-    border-bottom: 1px solid #eaeaea;
-    color: #00000099;
+    border-bottom: 1px solid var(--epic-border-color);
+    color: var(--epic-text-main);
     .iconfont {
-      color: #aaa;
+      color: var(--epic-text-secondary);
       font-size: 10px;
     }
   }
@@ -30,7 +41,7 @@
       padding: 8px 8px;
       flex: 1;
       text-align: center;
-      border-bottom: 1px solid @border-color;
+      border-bottom: 1px solid var(--epic-border-color);
       cursor: pointer;
       &::after {
         content: "";
@@ -39,7 +50,7 @@
       }
 
       &.checked {
-        color: @primary-color;
+        color: var(--epic-primary-color);
         position: relative;
         transition: 0.3s all;
 
@@ -50,7 +61,7 @@
           left: 0;
           width: 100%;
           height: 2px;
-          background-color: @primary-color;
+          background-color: var(--epic-primary-color);
           transition: 0.3s all;
         }
       }

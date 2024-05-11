@@ -1,12 +1,12 @@
 <template>
   <Modal v-model="visible" title="预览" class="w-900px" width="900px" @close="handleClose" @ok="handleOk" okText="输出结果">
-    <div class="min-w-750px rounded bg-white">
+    <div class="min-w-750px rounded">
       <EBuilder :key="EBuilderKey" ref="kb" :page-schema="pageSchema" />
 
       <!-- 输出结果 start -->
       <Modal v-model="dataVisible" title="表单数据" class="w-860px" width="860px" @close="handleCloseData" @ok="handleCloseData">
-        <div class="h-full rounded bg-white">
-          <MonacoEditor ref="monacoEditorRef" class="h-full editor" :model-value="formValues" />
+        <div class="h-full rounded">
+          <MonacoEditor ref="monacoEditorRef" autoToggleTheme class="h-full editor" :model-value="formValues" />
         </div>
       </Modal>
       <!-- 输出结果 end -->

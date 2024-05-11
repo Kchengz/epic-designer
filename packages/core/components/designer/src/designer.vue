@@ -52,7 +52,6 @@ import { getMatchedById, loadAsyncComponent, revoke, usePageManager, pluginManag
 import { DesignerProps } from './types'
 import { useShareStore } from '@epic-designer/utils'
 
-
 const EHeader = loadAsyncComponent(() => import('./modules/header/index.vue'))
 const EActionBar = loadAsyncComponent(() => import('./modules/actionBar/index.vue'))
 const EEditContainer = loadAsyncComponent(() => import('./modules/editContainer/index.vue'))

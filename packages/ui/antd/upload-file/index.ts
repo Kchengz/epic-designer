@@ -30,6 +30,25 @@ export default {
         field: 'componentProps.action'
       },
       {
+        label: "列表样式",
+        type: "select",
+        field: "componentProps.listType",
+        componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
+          options: [
+            {
+              label: "text",
+              value: "text",
+            },
+            {
+              label: "picture",
+              value: "picture",
+            },
+          ],
+        },
+      },
+      {
         label: '多选',
         type: 'switch',
         field: 'componentProps.multiple'

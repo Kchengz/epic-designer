@@ -1,14 +1,16 @@
 // 头部
 .epic-header-container {
-  border: 1px solid #eaeaea;
+  border: 1px solid var(--epic-border-color);
   border-bottom: 0;
 }
 
-.epic-header {
+.epic-header,
+.epic-header a {
   height: 42px;
-  background-color: @header-bg;
+  background-color: var(--epic-header-bg);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 12px;
+  color: var(--epic-text-main);
 }

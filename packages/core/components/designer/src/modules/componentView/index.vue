@@ -11,8 +11,8 @@
     <!-- 搜素框 end -->
     <div class="flex flex-1 overflow-auto">
       <!-- 分类选项 start  -->
-      <div class="tabs-box">
-        <div class="tab cursor-pointer truncate" :class="{ checked: activeItem.title === item.title }"
+      <div class="epic-tabs-box">
+        <div class="epic-tab cursor-pointer truncate" :class="{ checked: activeItem.title === item.title }"
           v-for="(item, index) in getSchemaTypeList" :key="index" :title="item.title" @click="handelChecked(item)">
           {{ item.title }}
         </div>
