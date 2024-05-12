@@ -1,0 +1,44 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.epic-page-container {
+  height: calc(100vh - 64px);
+  padding: 8px;
+  position: relative;
+}
+
+.epic-page-main {
+  background-color: var(--epic-view-bg);
+}
+
+.epic-demo-header {
+  --epic-demo-header-bg: #fff;
+  --epic-demo-header-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03),
+    0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  background: var(--epic-demo-header-bg);
+  box-shadow: var(--epic-demo-header-shadow);
+  z-index: 6;
+
+  > a,
+  .epic-demo-header-right > a {
+    color: var(--epic-text-main);
+  }
+}
+
+.dark .epic-demo-header {
+  --epic-demo-header-bg: #141414;
+  --epic-demo-header-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.8),
+    0 1px 6px -1px rgba(0, 0, 0, 0.7), 0 2px 4px 0 rgba(0, 0, 0, 0.7);
+}
+
+/* 当前页面最大化 css */
+.main-maximize .epic-demo-header,
+.main-maximize .ant-layout-sider {
+  display: none !important;
+}
+
+.main-maximize .epic-page-container {
+  height: 100vh;
+}

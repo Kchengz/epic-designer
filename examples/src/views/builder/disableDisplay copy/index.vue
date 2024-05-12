@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-2">
+  <div class="epic-page-main p-2">
     <EBuilder ref="ebRef" :pageSchema="pageSchema" @ready="handleReady">
     </EBuilder>
     <div @click="handleGetData">

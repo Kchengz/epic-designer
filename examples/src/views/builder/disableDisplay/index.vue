@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-white p-2 h-full flex flex-col">
+  <div class="epic-page-main p-2 h-full flex flex-col">
     <h2 class="pt-4 pl-8 text-24px block">禁用隐藏</h2>
     <EBuilder ref="ebRef" :pageSchema="pageSchema">
     </EBuilder>
     <Divider orientation="left">页面结构数据</Divider>
-    <MonacoEditor class="flex-1" :modelValue="pageSchema" readOnly valueFormat="json" />
+    <MonacoEditor class="flex-1" :modelValue="pageSchema" autoToggleTheme readOnly valueFormat="json" />
   </div>
 </template>
 
