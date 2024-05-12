@@ -28,10 +28,10 @@
 .image-container > .image-bg {
 }
 
-.has-sidebar .content {
+/* .has-sidebar .content {
   position: relative;
-  z-index: 99;
-}
+  z-index: 88;
+} */
 
 .epic-designer-main a {
   text-decoration: none;

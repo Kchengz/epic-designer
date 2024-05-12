@@ -1,11 +1,10 @@
 // 组件选择面板
 .epic-component-view {
   height: 100%;
-  .source-componet-item {
+  .epic-componet-item {
     cursor: pointer;
     border: 1px solid var(--epic-border-color);
     padding: 8px 10px;
-    // height: 32px;
     border-radius: 4px;
     .iconfont {
       margin-right: 5px;
@@ -14,14 +13,14 @@
     &:hover {
       border-color: var(--epic-primary-color);
       color: var(--epic-primary-color);
-      background-color: var(--epic-primary-hover-bg-color);
+      background-color: var(--epic-compoent-hover-color);
     }
   }
 
   .epic-tabs-box {
     width: 62px;
     height: 100%;
-    background: var(--epic-compoent-tabs-bg);
+    background: var(--epic-compoent-tabs-color);
     padding: 12px 6px;
     box-sizing: border-box;
     .epic-tab {
@@ -37,7 +36,7 @@
 
       &.checked {
         color: var(--epic-primary-color);
-        background-color: var(--epic-primary-hover-bg-color);
+        background-color: var(--epic-primary-hover-color);
       }
     }
   }

@@ -12,8 +12,10 @@ export function useStore() {
   const disabledZoom = ref(false);
 
   const isDark = useDark();
-  isDark.value = false;
-  onMounted(() => monitorHtml(isDark));
+  onMounted(() => {
+    getDarkState(isDark);
+    monitorHtml(isDark);
+  });
 
   // 获取键盘状态
   const { pressSpace, pressShift, pressCtrl } = useKeyPress();
@@ -27,6 +29,23 @@ export function useStore() {
   };
 }
 
+/**
+ * 获取dark初始化状态
+ * @param isDark
+ */
+export function getDarkState(isDark) {
+  var targetNode = document.querySelector("html") as any;
+  if (new Array(...targetNode.classList).includes("dark")) {
+    isDark.value = true;
+  } else {
+    isDark.value = false;
+  }
+}
+
+/**
+ * 监听html元素
+ * @param isDark
+ */
 function monitorHtml(isDark) {
   // 选择需要监听的元素
   var targetNode = document.querySelector("html");

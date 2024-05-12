@@ -11,7 +11,7 @@
       rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
       rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     cursor: pointer;
-    background-color: var(--epic-edit-range-bg);
+    background-color: var(--epic-edit-range-color);
 
     .epic-draggable-range {
       min-height: 60px;
@@ -42,7 +42,7 @@
 
   .epic-checked-widget {
     border: 1px var(--epic-primary-color) dashed;
-    background: var(--epic-primary-hover-bg-color);
+    background: var(--epic-widget-shade-color);
 
     &::before {
       content: "";
@@ -101,7 +101,7 @@
 
   .epic-edit-toolbar {
     height: 40px;
-    background: var(--epic-view-bg);
+    background: var(--epic-view-color);
     box-sizing: border-box;
     border-bottom: 1px solid var(--epic-border-color);
 
@@ -116,7 +116,7 @@
 
     .epic-device-item:hover,
     .epic-action-item:hover {
-      background: var(--epic-action-hover-bg);
+      background: var(--epic-action-hover-color);
     }
   }
 
@@ -124,6 +124,6 @@
     cursor: move;
   }
 
-  background-image: linear-gradient(var(--epic-designer-bg) 14px, transparent 0),
+  background-image: linear-gradient(var(--epic-designer-color) 14px, transparent 0),
     linear-gradient(90deg, transparent 14px, var(--epic-designer-dot-color) 0);
 }

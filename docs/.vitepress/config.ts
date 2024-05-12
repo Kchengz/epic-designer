@@ -82,6 +82,14 @@ export default defineConfig({
               text: "国际化",
               link: "/guide/start/i18n-cn",
             },
+            {
+              text: "定制主题",
+              link: "/guide/start/theme",
+            },
+            {
+              text: "暗黑模式",
+              link: "/guide/start/dark-mode",
+            },
           ],
         },
         {

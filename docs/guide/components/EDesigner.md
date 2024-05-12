@@ -21,9 +21,11 @@
 
 ## 基础用法
 
-<div class="epic-designer-container">
-	<EDesigner  @save="handleSubmit"  />
-</div>
+<ConfigProvider :theme="{ algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm }">
+  <div class="epic-designer-container">
+    <EDesigner  @save="handleSubmit"  />
+  </div>
+</ConfigProvider>
 
 ```vue
 <template>
@@ -46,7 +48,7 @@ function handleSubmit(e) {
 .epic-designer-container {
   width: 1100px;
   height: 800px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--epic-border-color);
 }
 </style>
 ```
@@ -54,9 +56,13 @@ function handleSubmit(e) {
 <script setup>
 import "epic-designer/dist/style.css";
 import { EDesigner, pluginManager } from "epic-designer";
-import { setupElementPlus } from "epic-designer/dist/ui/elementPlus";
-import 'element-plus/dist/index.css'
-setupElementPlus(pluginManager);
+import { setupAntd } from "epic-designer/dist/ui/antd";
+import { ConfigProvider, theme } from 'ant-design-vue'
+import { useTheme } from '@epic-designer/utils'
+const { isDark } = useTheme()
+
+setupAntd(pluginManager);
+
 
 
 function handleSubmit (e) {
@@ -68,7 +74,7 @@ function handleSubmit (e) {
 .epic-designer-container{
 width:1200px;
 height:800px;
-border:1px solid #ccc;
+border: 1px solid var(--epic-border-color);
 position: relative;
 z-index: 20;
 background: white;

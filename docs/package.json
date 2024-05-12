@@ -5,6 +5,7 @@
   "description": "epic-designer docs",
   "author": "kchengz",
   "dependencies": {
+    "ant-design-vue": "^4.2.1",
     "monaco-editor": "^0.48.0"
   },
   "devDependencies": {
