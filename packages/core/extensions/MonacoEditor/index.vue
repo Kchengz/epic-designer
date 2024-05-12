@@ -38,7 +38,7 @@ const { isDark } = useTheme()
 
 
 
-function autoToggleTheme() {
+function handleToggleTheme() {
   if (isDark.value) {
     monaco.editor.setTheme('vs-dark')
   } else {
@@ -97,7 +97,7 @@ onMounted(() => {
   // 自动切换主题
   if (props.autoToggleTheme) {
     watch(() => isDark.value, () => {
-      nextTick(() => autoToggleTheme())
+      nextTick(() => handleToggleTheme())
     }, {
       immediate: true
     })

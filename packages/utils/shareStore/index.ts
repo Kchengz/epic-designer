@@ -1,5 +1,5 @@
 import { createSharedComposable, useDark } from "@vueuse/core";
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { useKeyPress } from "../common/element";
 
 /**
@@ -12,7 +12,8 @@ export function useStore() {
   const disabledZoom = ref(false);
 
   const isDark = useDark();
-  isDark.value = false
+  isDark.value = false;
+  onMounted(() => monitorHtml(isDark));
 
   // 获取键盘状态
   const { pressSpace, pressShift, pressCtrl } = useKeyPress();
@@ -24,6 +25,39 @@ export function useStore() {
     disabledZoom,
     isDark,
   };
+}
+
+function monitorHtml(isDark) {
+  // 选择需要监听的元素
+  var targetNode = document.querySelector("html");
+
+  // 创建MutationObserver对象
+  var observer = new MutationObserver(function (mutationsList) {
+    for (var mutation of mutationsList) {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "class"
+      ) {
+        const target = mutation.target as any;
+        if (new Array(...target.classList).includes("dark")) {
+          isDark.value = true;
+        } else {
+          isDark.value = false;
+        }
+      }
+    }
+  });
+
+  // 开始监听
+  observer.observe(targetNode!, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+
+  // 销毁监听
+  onUnmounted(() => {
+    observer.disconnect();
+  });
 }
 
 // 创建共享状态
