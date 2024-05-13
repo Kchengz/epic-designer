@@ -115,6 +115,8 @@ import './styles/common-vars.css'
 --epic-compoent-hover-color: rgba(62, 139, 242, 0.06);
 
 // 字体大小
---epic-font-size: 14px;
+--epic-text-sm: 12px;
+--epic-text-md: 14px;
+--epic-text-lg: 16px;
 ```
 

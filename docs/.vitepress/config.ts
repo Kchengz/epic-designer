@@ -122,6 +122,10 @@ export default defineConfig({
           text: "扩展",
           items: [
             {
+              text: "Icon 图标",
+              link: "/guide/extensions/icon",
+            },
+            {
               text: "组件扩展",
               link: "/guide/extensions/component",
             },

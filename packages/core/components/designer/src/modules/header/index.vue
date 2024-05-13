@@ -5,7 +5,7 @@
         <a class="decoration-none items-center flex" href="https://kcz66.gitee.io/epic-designer"
           target="_blank">
           <img src="../../../../../static/logo.png" class="w-18px h-18px" alt="" srcset="">
-          <span class="ml-4">EpicDesigner</span>
+          <span class="ml-3">EpicDesigner</span>
         </a>
       </slot>
     </div>
