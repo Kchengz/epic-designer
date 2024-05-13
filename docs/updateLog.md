@@ -1,3 +1,17 @@
+## 0.9.11（2024-05-13）
+
+调整注册配置，将’icon‘属性移至 ComponentConfigModel 接口的‘defaultSchema’对象之外
+影响：自定义组件，请自行调整注册配置中icon位置
+
+### ✨ Feat
+- 新增暗黑主题,添加css变量
+
+### 🐛 Bug Fixes
+
+- 修复根容器的隐藏按钮点击报错
+- 修复elementPlus Radio组件警告问题
+- 修复EDesigner组件初始化报错null问题
+
 ## 0.9.10（2024-05-03）
 
 ### ✨ Feat
