@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("naive-ui/lib/date-picker")).NDatePicker,
+  groupName: "表单",
+  icon: "epic-icon-calendar",
   defaultSchema: {
     label: "日期选择器",
     type: "date",
-    icon: "epic-icon-calendar",
     field: "date",
     input: true,
     componentProps: {
@@ -15,7 +16,6 @@ export default {
       valueFormat: "yyyy-MM-dd",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

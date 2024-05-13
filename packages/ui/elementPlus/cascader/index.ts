@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("element-plus")).ElCascader,
+  groupName: "表单",
+  icon: "epic-icon-guanlian",
   defaultSchema: {
     label: "级联选择器",
     type: "cascader",
-    icon: "epic-icon-guanlian",
     field: "cascader",
     input: true,
     componentProps: {
@@ -20,14 +21,13 @@ export default {
       ],
       placeholder: "请选择",
       showAllLevels: true,
-      separator: '/',
-      size: 'default',
+      separator: "/",
+      size: "default",
       props: {
-        expandTrigger: 'click'
-      }
+        expandTrigger: "click",
+      },
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {
@@ -88,13 +88,15 @@ export default {
         label: "折叠Tag",
         type: "switch",
         field: "componentProps.collapseTags",
-        show: ({values})=>values.componentProps.props.multiple
+        show: ({ values }) => values.componentProps.props.multiple,
       },
       {
         label: "显示被折叠标签",
         type: "switch",
         field: "componentProps.collapseTagsTooltip",
-        show: ({values})=>values.componentProps.props.multiple&&values.componentProps.collapseTags
+        show: ({ values }) =>
+          values.componentProps.props.multiple &&
+          values.componentProps.collapseTags,
       },
       {
         label: "展示完整路径",
@@ -106,17 +108,17 @@ export default {
         type: "select",
         field: "componentProps.props.expandTrigger",
         componentProps: {
-          options:  [
+          options: [
             {
-              label: 'click',
-              value: 'click'
+              label: "click",
+              value: "click",
             },
             {
-              label: 'hover',
-              value: 'hover'
-            }
-          ]
-        }
+              label: "hover",
+              value: "hover",
+            },
+          ],
+        },
       },
       {
         label: "可搜索",

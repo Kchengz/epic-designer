@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./select"),
+  groupName: "表单",
+  icon: "epic-icon-xiala",
   defaultSchema: {
     label: "选择框",
     type: "select",
-    icon: "epic-icon-xiala",
     field: "select",
     input: true,
     componentProps: {
@@ -19,12 +20,11 @@ export default {
         },
       ],
       placeholder: "请选择",
-      size: 'default',
-      effect: 'light',
-      placement: 'bottom-start'
+      size: "default",
+      effect: "light",
+      placement: "bottom-start",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {
@@ -94,7 +94,9 @@ export default {
         type: "switch",
         field: "componentProps.collapseTagsTooltip",
         show: ({ values }) => {
-          return values.componentProps.multiple && values.componentProps.collapseTags;
+          return (
+            values.componentProps.multiple && values.componentProps.collapseTags
+          );
         },
       },
       {
@@ -237,8 +239,8 @@ export default {
         type: "input",
         field: "componentProps.noDataText",
         componentProps: {
-          placeholder: '请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
         label: "可清空",

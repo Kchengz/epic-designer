@@ -1,11 +1,12 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("ant-design-vue")).Input,
+  groupName: "表单",
+  icon: "epic-icon-yanse",
   defaultSchema: {
     label: "颜色选择器",
     type: "color-picker",
     field: "color-picker",
-    icon: "epic-icon-yanse",
     input: true,
     componentProps: {
       type: "color",
@@ -14,7 +15,6 @@ export default {
       },
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

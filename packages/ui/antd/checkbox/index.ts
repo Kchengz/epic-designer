@@ -1,42 +1,42 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("ant-design-vue")).CheckboxGroup,
+  groupName: "表单",
+  icon: "epic-icon-duoxuan1",
   defaultSchema: {
-    label: '多选框',
-    type: 'checkbox',
-    icon: 'epic-icon-duoxuan1',
-    field: 'checkbox',
+    label: "多选框",
+    type: "checkbox",
+    field: "checkbox",
     input: true,
     componentProps: {
       options: [
         {
-          label: '选项1',
-          value: '选项1'
+          label: "选项1",
+          value: "选项1",
         },
         {
-          label: '选项2',
-          value: '选项2'
-        }
-      ]
-    }
+          label: "选项2",
+          value: "选项2",
+        },
+      ],
+    },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {
-        label: '字段名',
-        type: 'input',
-        field: 'field'
+        label: "字段名",
+        type: "input",
+        field: "field",
       },
       {
-        label: '默认值',
-        type: 'checkbox',
-        field: 'componentProps.defaultValue'
+        label: "默认值",
+        type: "checkbox",
+        field: "componentProps.defaultValue",
       },
       {
-        label: '文字',
-        type: 'input',
-        field: 'label'
+        label: "文字",
+        type: "input",
+        field: "label",
       },
       {
         label: "尺寸",
@@ -62,38 +62,38 @@ export default {
         field: "componentProps.size",
       },
       {
-        label: '禁用',
-        type: 'switch',
-        field: 'componentProps.disabled'
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled",
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
       },
       {
         label: "选项管理",
         type: "EOptionsEditor",
         layout: "vertical",
-        field: "componentProps.options"
+        field: "componentProps.options",
       },
       {
-        label: '表单校验',
-        type: 'ERuleEditor',
-        layout: 'vertical',
-        field: 'rules',
-        describe: '校验规则需要配合表单使用',
+        label: "表单校验",
+        type: "ERuleEditor",
+        layout: "vertical",
+        field: "rules",
+        describe: "校验规则需要配合表单使用",
         componentProps: {
           ruleType: "array",
-        }
-      }
+        },
+      },
     ],
     event: [
       {
         type: "change",
         describe: "值变化时",
       },
-    ]
+    ],
   },
-  bindModel: 'value'
-} as ComponentConfigModel
+  bindModel: "value",
+} as ComponentConfigModel;

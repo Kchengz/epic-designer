@@ -1,11 +1,12 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: async () => (await import('naive-ui/lib/input')).NInput,
+  component: async () => (await import("naive-ui/lib/input")).NInput,
+  groupName: "表单",
+  icon: "epic-icon-write",
   defaultSchema: {
     label: "输入框",
     type: "input",
     field: "input",
-    icon: "epic-icon-write",
     input: true,
     componentProps: {
       defaultValue: "",
@@ -14,7 +15,6 @@ export default {
       size: "medium",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("element-plus")).ElSwitch,
+  groupName: "表单",
+  icon: "epic-icon-kaiguan3",
   defaultSchema: {
     label: "开关",
     type: "switch",
-    icon: "epic-icon-kaiguan3",
     field: "switch",
     input: true,
     componentProps: {
@@ -12,7 +13,6 @@ export default {
       size: "default",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

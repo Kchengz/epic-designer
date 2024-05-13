@@ -1,17 +1,17 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("ant-design-vue")).Switch,
+  groupName: "表单",
+  icon: "epic-icon-kaiguan3",
   defaultSchema: {
     label: "开关",
     type: "switch",
-    icon: "epic-icon-kaiguan3",
     field: "switch",
     input: true,
     componentProps: {
       defaultValue: false,
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {
@@ -104,7 +104,7 @@ export default {
         describe: "校验规则需要配合表单使用",
         componentProps: {
           ruleType: "boolean",
-        }
+        },
       },
     ],
     event: [
@@ -116,7 +116,6 @@ export default {
   },
   bindModel: "checked",
 } as ComponentConfigModel;
-
 
 function setDefaultValue(e) {
   let defaultValue = e.values.componentProps?.unCheckedValue || false;

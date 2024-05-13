@@ -2,10 +2,11 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 
 export default {
   component: async () => (await import("ant-design-vue")).InputNumber,
+  groupName: "表单",
+  icon: "epic-icon-number",
   defaultSchema: {
     label: "数字输入框",
     type: "number",
-    icon: "epic-icon-number",
     field: "number",
     input: true,
     componentProps: {
@@ -13,7 +14,6 @@ export default {
       placeholder: "请输入",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

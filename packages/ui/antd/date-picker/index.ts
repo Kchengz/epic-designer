@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./datePicker"),
+  groupName: "表单",
+  icon: "epic-icon-calendar",
   defaultSchema: {
     label: "日期选择器",
     type: "date",
-    icon: "epic-icon-calendar",
     field: "date",
     input: true,
     componentProps: {
@@ -13,7 +14,6 @@ export default {
       placeholder: "请选择",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

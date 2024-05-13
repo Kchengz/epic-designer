@@ -1,17 +1,17 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./uploadImage.vue"),
+  groupName: "表单",
+  icon: "epic-icon-image",
   defaultSchema: {
     label: "上传图片",
     type: "upload-image",
-    icon: "epic-icon-image",
     field: "uploadImage",
     input: true,
     componentProps: {
       action: "https://epic.kcz66.com/static/upload-img.json",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

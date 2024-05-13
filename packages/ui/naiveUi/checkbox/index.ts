@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./checkbox"),
+  groupName: "表单",
+  icon: "epic-icon-duoxuan1",
   defaultSchema: {
     label: "复选框",
     type: "checkbox",
-    icon: "epic-icon-duoxuan1",
     field: "checkbox",
     input: true,
     componentProps: {
@@ -22,7 +23,6 @@ export default {
       size: "medium",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

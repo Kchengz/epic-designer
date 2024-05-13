@@ -4,7 +4,6 @@ export default {
   defaultSchema: {
     label: '栅格布局-列',
     type: 'col',
-    icon: 'epic-icon-xiala',
     children: [],
     componentProps: {
       span: 6

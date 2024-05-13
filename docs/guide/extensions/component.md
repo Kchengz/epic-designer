@@ -29,13 +29,14 @@ import { type ComponentConfigModel } from 'epic-designer'
 
 export default {
   component: async () => await import('./cmp.vue'),
+  groupName:"自定义组件",
+  icon: "epic-icon-write",
   defaultSchema: {
     label: '测试扩展组件',
     type: 'test',
     componentProps: {
     }
   },
-  groupName:"自定义组件",
   config: {
     attribute: [
       {
@@ -79,6 +80,8 @@ export interface ComponentConfigModel {
   component: any;
   // 分组名称（组件分组），不设置分组时仅注册，但不会显示在组件列表中，可选
   groupName?: string;
+  // 组件图标
+  icon?: string;
   // 当前组件是否固定不可拖动，可选
   immovable?: boolean;
   // 子节点是否固定不可拖动,只控制下一级，可选

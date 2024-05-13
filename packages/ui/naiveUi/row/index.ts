@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./row"),
+  groupName: "布局",
+  icon: "epic-icon-zhage",
   defaultSchema: {
     label: "栅格布局",
     type: "row",
-    icon: "epic-icon-zhage",
     childImmovable: true,
     children: [
       {
@@ -23,7 +24,6 @@ export default {
       },
     ],
   },
-  groupName: "布局",
   config: {
     attribute: [
       // {

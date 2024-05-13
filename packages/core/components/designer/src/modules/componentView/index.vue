@@ -28,7 +28,7 @@
         }" :clone="generateNewSchema" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2">
           <template #item="{ element }">
             <div class="epic-componet-item flex items-center truncate" @click="handleClick(element)">
-              <EIcon prefix="" :name="element.icon" />
+              <EIcon prefix="" :name="pluginManager.getComponentConfingByType(element.type).icon ?? ''" />
               <div>{{ element.label }}</div>
             </div>
           </template>

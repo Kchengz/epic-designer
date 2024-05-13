@@ -1,18 +1,18 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("element-plus")).ElInput,
+  icon: "epic-icon-edit",
+  groupName: "表单",
   defaultSchema: {
     label: "文本域",
     type: "textarea",
     field: "textarea",
-    icon: "epic-icon-edit",
     input: true,
     componentProps: {
       placeholder: "请输入",
       type: "textarea",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

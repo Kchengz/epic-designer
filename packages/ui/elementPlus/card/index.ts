@@ -1,51 +1,51 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component: () => import('./card'),
+  component: () => import("./card"),
+  groupName: "布局",
+  icon: "epic-icon-qiapian",
   defaultSchema: {
-    label: '卡片布局',
-    type: 'card',
-    icon: 'epic-icon-qiapian',
+    label: "卡片布局",
+    type: "card",
     children: [],
     componentProps: {
-      shadow: 'hover'
-    }
+      shadow: "hover",
+    },
   },
-  groupName: "布局",
   config: {
     attribute: [
       {
-        label: '标题',
-        type: 'input',
-        field: 'label'
+        label: "标题",
+        type: "input",
+        field: "label",
       },
       {
-        label: '阴影时机',
-        type: 'select',
-        defaultValue: 'always',
+        label: "阴影时机",
+        type: "select",
+        defaultValue: "always",
         componentProps: {
           options: [
             {
-              label: 'always',
-              value: 'always'
+              label: "always",
+              value: "always",
             },
             {
-              label: 'hover',
-              value: 'hover'
+              label: "hover",
+              value: "hover",
             },
             {
-              label: 'never',
-              value: 'never'
-            }
+              label: "never",
+              value: "never",
+            },
           ],
-          placeholder: '请选择'
+          placeholder: "请选择",
         },
-        field: 'componentProps.shadow'
+        field: "componentProps.shadow",
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
-      }
-    ]
-  }
-} as ComponentConfigModel
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
+      },
+    ],
+  },
+} as ComponentConfigModel;
