@@ -1,0 +1,1 @@
+import{_ as s}from"./useConfigInject.BvmlE8fS.js";import{an as c,Z as a,y as i,N as u}from"./framework.Bj7ZzXMq.js";function x(o){const t=Symbol("contextKey");return{useProvide:(r,n)=>{const e=c({});return a(t,e),i(()=>{s(e,r,n||{})}),e},useInject:()=>u(t,o)||{}}}export{x as c};

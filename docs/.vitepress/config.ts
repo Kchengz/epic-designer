@@ -5,7 +5,7 @@ export default defineConfig({
   // 网站描述
   description: "低代码可视化设计器及生成器",
   lang: "zh-CN",
-  base: "/",
+  base: "/epic-designer/",
   sitemap: {
     hostname: "https://docs.epicjs.cn",
   },
