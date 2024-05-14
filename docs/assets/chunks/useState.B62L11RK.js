@@ -1,0 +1,1 @@
+import{e as t}from"./useConfigInject.wP4KD9rp.js";import{j as s}from"./framework.Bkcw4pAp.js";const g=(n,i,r)=>{t(n,`[ant-design-vue: ${i}] ${r}`)};function u(n){const i=typeof n=="function"?n():n,r=s(i);function o(e){r.value=e}return[r,o]}export{g as d,u};

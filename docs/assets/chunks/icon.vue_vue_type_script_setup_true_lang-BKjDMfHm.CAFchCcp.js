@@ -1,0 +1,1 @@
+import{d as o,o as a,c as s,n as t}from"./framework.Bkcw4pAp.js";const m=o({name:"EIcon",__name:"icon",props:{name:{},prefix:{default:"epic-"}},setup(n){const e=n;return(c,p)=>(a(),s("span",{class:t(["iconfont",e.prefix+e.name])},null,2))}});export{m};
