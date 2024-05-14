@@ -1,10 +1,10 @@
 <template>
-  <div v-for="item in itemEvents" :key="item.type" class="event-item">
-    <div class="event-info">
-      <div class="event-label" :title="item.describe">
+  <div v-for="item in itemEvents" :key="item.type" class="epic-event-item">
+    <div class="epic-event-info">
+      <div class="epic-event-label" :title="item.describe">
         {{ item.describe }}
       </div>
-      <div class="event-btn">
+      <div class="epic-event-btn">
         <EIcon name="icon-tianjia1" @click="handleOpen(item.type)" />
       </div>
     </div>
@@ -29,11 +29,11 @@
               </div>
               {{ action.methodName }}
             </div>
-            <div class="opr-box">
-              <div class="edit-btn" @click="handleEdit(index, item.type, action)">
+            <div class="epic-action-box">
+              <div class="epic-edit-btn" @click="handleEdit(index, item.type, action)">
                 <EIcon name="icon-tiaozheng" />
               </div>
-              <div class="del-btn" @click="handleDelete(index, item.type)">
+              <div class="epic-del-btn" @click="handleDelete(index, item.type)">
                 <EIcon name="icon-shanchu1" />
               </div>
             </div>

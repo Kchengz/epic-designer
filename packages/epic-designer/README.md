@@ -23,7 +23,9 @@
 
 📦gitee仓库：[https://gitee.com/kcz66/epic-designer](https://gitee.com/kcz66/epic-designer)
 
-📖文档地址：[https://kcz66.gitee.io/epic-designer/](https://kcz66.gitee.io/epic-designer/)
+📖文档地址：[https://docs.epicjs.cn:1443/](https://docs.epicjs.cn:1443/)
+
+📖文档备用地址：[https://www.kcz66.com/epic-designer/](https://www.kcz66.com/epic-designer/)
 
 💎项目预览地址：
 
@@ -31,7 +33,7 @@
 - AntDesignVue：[https://epic.kcz66.com/ant-designe-vue/basic](https://epic.kcz66.com/ant-designe-vue/basic?maximize=1)
 - NaiveUi：[https://epic.kcz66.com/naive-ui/basic](https://epic.kcz66.com/naive-ui/basic?maximize=1)
 
-
+> 使用必须遵守国家法律法规，⛔不允许非法项目使用，后果自负❗
 
 ## 简介
 

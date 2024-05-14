@@ -16,8 +16,6 @@ const route = useRoute()
 
 const items = traverseRoutes(frameworkRoutes)
 
-console.log(items)
-
 const routeName = computed(() => {
     return route.name as string
 })

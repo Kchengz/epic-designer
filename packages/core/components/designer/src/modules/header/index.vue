@@ -1,16 +1,16 @@
 <template>
   <header class="epic-header relative">
-    <div class="epic-header-item flex-1 items-center flex text-12px text-#3d3d3d">
+    <div class="epic-header-item flex-1 items-center flex">
       <slot name="prefix">
-        <a class="text-black decoration-none items-center flex" href="https://kcz66.gitee.io/epic-designer"
+        <a class="decoration-none items-center flex" href="https://kcz66.gitee.io/epic-designer"
           target="_blank">
-          <img src="../../../../../static/logo.png" class="w-17px h-17px" alt="" srcset="">
-          <span class="ml-4">EpicDesigner</span>
+          <img src="../../../../../static/logo.png" class="w-18px h-18px" alt="" srcset="">
+          <span class="ml-3">EpicDesigner</span>
         </a>
       </slot>
     </div>
 
-    <div class="epic-header-item flex-1 flex justify-center text-12px text-#3d3d3d">
+    <div class="epic-header-item flex-1 flex justify-center text-12px">
       <slot name="title">
         {{ designerProps.title }}
       </slot>

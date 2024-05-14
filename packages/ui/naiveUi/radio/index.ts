@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./radio"),
+  groupName: "表单",
+  icon: "epic-icon-danxuan-cuxiantiao",
   defaultSchema: {
     label: "单选框",
     type: "radio",
-    icon: "epic-icon-danxuan-cuxiantiao",
     field: "radio",
     input: true,
     componentProps: {
@@ -21,7 +22,6 @@ export default {
       size: "medium",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

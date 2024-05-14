@@ -23,7 +23,7 @@
 import { watchOnce, useElementSize, useResizeObserver } from '@vueuse/core'
 import type { PageSchema } from '../../../../../types/epic-designer'
 
-import { useShareStore, useElementDrag, useElementZoom } from '@epic-designer/utils'
+import { useShareStore, useElementDrag, useElementZoom, debounce } from '@epic-designer/utils'
 import { ref, nextTick, inject, watch, shallowRef, unref, onMounted, UnwrapRef } from 'vue'
 import Toolbar from './toolbar.vue'
 
@@ -43,8 +43,7 @@ let contentRectHeight = 0
 
 const scrollBoxStyle = ref<{
   width?: string,
-  height?: string,
-  transform?: string
+  height?: string
 }>({})
 const canvasBoxStyle = ref<{
   width?: string,
@@ -136,7 +135,8 @@ useResizeObserver(editScreenContainerRef, ([{ contentRect }]) => {
   }
 
   // 更新滚动区域的样式，根据新的容器尺寸和画布缩放
-  updateScrollBoxStyle();
+
+  debounce(updateScrollBoxStyle,50)()
 });
 
 </script>

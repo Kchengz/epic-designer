@@ -1,10 +1,10 @@
 <template>
   <div>
     <div
-      class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative">
+      class="rule-item-main m-t-2 p-2 rounded  border border-solid transition-all relative">
       <template v-for="(componentSchema, index) in requiredRuleSchemas" :key="index">
         <div v-if="componentSchema.show ? componentSchema.show() : true" class="flex m-t-2 first:m-0">
-          <div class="attr-label">
+          <div class="epic-attr-label">
             {{ componentSchema.label }}
           </div>
           <div class="flex-1">

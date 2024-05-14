@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("element-plus")).ElColorPicker,
+  groupName: "表单",
+  icon: "epic-icon-yanse",
   defaultSchema: {
     label: "颜色选择器",
     type: "color-picker",
-    icon: "epic-icon-yanse",
     field: "color-picker",
     input: true,
     componentProps: {
@@ -13,7 +14,6 @@ export default {
       colorFormat: "hex",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("element-plus")).ElDatePicker,
+  groupName: "表单",
+  icon: "epic-icon-calendar",
   defaultSchema: {
     label: "日期选择器",
     type: "date",
-    icon: "epic-icon-calendar",
     field: "date",
     input: true,
     componentProps: {
@@ -17,7 +18,6 @@ export default {
       size: "default",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {
@@ -82,7 +82,7 @@ export default {
         onChange({ values, value }) {
           values.componentProps.defaultValue = null;
           console.log(value);
-          if (["date", "daterange","dates"].includes(value)) {
+          if (["date", "daterange", "dates"].includes(value)) {
             values.componentProps.format = "YYYY-MM-DD";
             values.componentProps.valueFormat = "YYYY-MM-DD";
           } else if (["week"].includes(value)) {

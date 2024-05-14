@@ -1,20 +1,20 @@
 <template>
   <!-- 选中高亮 start  -->
   <div v-show="showSelector && designer.state.checkedNode?.id !== 'root'" ref="selectorRef"
-    class="checked-widget absolute pointer-events-none z-20"
+    class="epic-checked-widget absolute pointer-events-none z-20"
     :class="selectorPosition + ' ' + (selectorTransition ? 'transition-all' : '')">
-    <div class="action-box" ref="actionBoxRef">
-      <div class="epic-action-item whitespace-nowrap">
+    <div class="epic-widget-action-box" ref="actionBoxRef">
+      <div class="epic-widget-action-item whitespace-nowrap">
         <!-- {{ designer.state.checkedNode?.type }} -->
         {{ pluginManager.getComponentConfingByType(designer.state.checkedNode?.type
           ?? '')?.defaultSchema.label }}
       </div>
       <!-- 操作按钮 start  -->
       <div class="flex" v-if="isRemovableAndDraggable">
-        <div title="复制" class="epic-action-item pointer-events-auto" @click="handleCopy">
+        <div title="复制" class="epic-widget-action-item pointer-events-auto" @click="handleCopy">
           <EIcon name="icon-fuzhi3" />
         </div>
-        <div title="删除" class="epic-action-item pointer-events-auto" @click="handleDelete">
+        <div title="删除" class="epic-widget-action-item pointer-events-auto" @click="handleDelete">
           <EIcon name="icon-shanchu1" />
         </div>
       </div>
@@ -24,13 +24,13 @@
   <!-- 选中高亮 end  -->
   <!-- 悬停效果 start  -->
   <div v-show="showHover && designer.state.checkedNode?.id !== designer.state.hoverNode?.id" ref="hoverWidgetRef"
-    class="hover-widget absolute transition-all pointer-events-none z-998" />
+    class="epic-hover-widget absolute transition-all pointer-events-none z-998" />
   <!-- 悬停效果 end  -->
 </template>
 <script lang="ts" setup>
 import { DesignerProps } from '../../types'
 import { PageSchema, Designer } from '../../../../../types/epic-designer'
-import { inject, computed, ref, watch, nextTick, type Ref } from 'vue'
+import { inject, computed, ref, watch, type Ref } from 'vue'
 import { pluginManager, generateNewSchema, revoke, findSchemaInfoById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
 import { useResizeObserver } from '@vueuse/core'
 import EIcon from '../../../../icon'
@@ -77,6 +77,11 @@ const isRemovableAndDraggable = computed(() => {
 const getSelectComponentElement = computed<HTMLBaseElement | null>(() => {
   const componentInstances = pageManager.componentInstances.value
   const id = designer.state.checkedNode?.id
+
+  // 组件隐藏状态
+  if (designer.state.checkedNode?.componentProps?.hidden) {
+    return null
+  }
   const componentConfing = pluginManager.getComponentConfingByType(designer.state.checkedNode?.type!) ?? null
   if (!id || !componentInstances?.[id]) {
     return null
@@ -85,9 +90,10 @@ const getSelectComponentElement = computed<HTMLBaseElement | null>(() => {
     return componentInstances[id + 'formItem']?.$el
   }
   const componentInstance = componentInstances[id]
-  if (componentInstance?.$el?.nodeName === '#text') {
+  if (!componentInstance?.$el || componentInstance?.$el.nodeName === '#text' || !componentInstance?.$el.getBoundingClientRect) {
     return null
   }
+
   return componentInstance?.$el
 })
 
@@ -121,7 +127,6 @@ watch(() => getSelectComponentElement.value, (selectComponentElement) => {
     showSelector.value = true
     // 监听dom元素及子元素的变化
     mutationObserver.observe(selectComponentElement, DocumentObserverConfig)
-
 
     const parentNode = selectComponentElement.parentNode as HTMLBaseElement
     if (parentNode) {
@@ -185,7 +190,7 @@ function setSeletorStyle() {
   const element = getSelectComponentElement.value
   if (!element || !kEditRange) return
 
-  const { top: offsetY, left: offsetX, height: rangeHeight } = kEditRange?.getBoundingClientRect()
+  const { top: offsetY, left: offsetX } = kEditRange?.getBoundingClientRect()
 
   const { top, left, width, height } = element.getBoundingClientRect()
 

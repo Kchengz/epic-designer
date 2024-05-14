@@ -10,27 +10,29 @@
 
   --vp-c-brand-dark: var(--vp-button-brand-bg);
 
-  
-
   --vp-home-hero-image-background-image: #007cf5;
   --vp-home-hero-image-filter: #00bffd;
   --vp-c-brand: #3e8bf2;
 
-
   --vp-custom-block-tip-border: #3e8bf280;
-  --vp-custom-block-tip-text:#15335f;
+  --vp-custom-block-tip-text: #15335f;
   --vp-custom-block-tip-bg: #3e8bf20d;
-
-
 }
 
 /* 首页样式 start */
 .VPHome .clip {
   background-image: -webkit-linear-gradient(left, #007cf5, #00bffd);
   -webkit-text-fill-color: transparent;
-
 }
 
 .image-container > .image-bg {
+}
 
+/* .has-sidebar .content {
+  position: relative;
+  z-index: 88;
+} */
+
+.epic-designer-main a {
+  text-decoration: none;
 }

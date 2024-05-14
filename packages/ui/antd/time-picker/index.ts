@@ -1,41 +1,41 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("ant-design-vue")).TimePicker,
+  groupName: "表单",
+  icon: "epic-icon-time",
   defaultSchema: {
-    label: '时间选择器',
-    type: 'time',
-    icon: 'epic-icon-time',
-    field: 'time',
+    label: "时间选择器",
+    type: "time",
+    field: "time",
     input: true,
     componentProps: {
-      valueFormat: 'HH:mm:ss',
-      size: 'middle',
-      placement: 'bottomLeft',
-      placeholder: '请输入'
-    }
+      valueFormat: "HH:mm:ss",
+      size: "middle",
+      placement: "bottomLeft",
+      placeholder: "请输入",
+    },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {
-        label: '字段名',
-        type: 'input',
-        field: 'field'
+        label: "字段名",
+        type: "input",
+        field: "field",
       },
       {
-        label: '文字',
-        type: 'input',
-        field: 'label'
+        label: "文字",
+        type: "input",
+        field: "label",
       },
       {
-        label: '默认值',
-        type: 'time',
-        field: 'componentProps.defaultValue'
+        label: "默认值",
+        type: "time",
+        field: "componentProps.defaultValue",
       },
       {
-        label: '占位内容',
-        type: 'input',
-        field: 'componentProps.placeholder'
+        label: "占位内容",
+        type: "input",
+        field: "componentProps.placeholder",
       },
       {
         label: "格式",
@@ -46,31 +46,31 @@ export default {
         },
       },
       {
-        label: '尺寸',
-        type: 'select',
-        defaultValue: 'default',
+        label: "尺寸",
+        type: "select",
+        defaultValue: "default",
         componentProps: {
           options: [
             {
-              label: 'large',
-              value: 'large'
+              label: "large",
+              value: "large",
             },
             {
-              label: 'middle',
-              value: 'middle'
+              label: "middle",
+              value: "middle",
             },
             {
-              label: 'small',
-              value: 'small'
-            }
-          ]
+              label: "small",
+              value: "small",
+            },
+          ],
         },
-        field: 'componentProps.size'
+        field: "componentProps.size",
       },
       {
-        label: '有边框',
-        type: 'switch',
-        field: 'componentProps.bordered'
+        label: "有边框",
+        type: "switch",
+        field: "componentProps.bordered",
       },
       {
         label: "尺寸",
@@ -96,83 +96,83 @@ export default {
         field: "componentProps.size",
       },
       {
-        label: '小时选项间隔',
-        type: 'number',
-        field: 'componentProps.hourStep',
+        label: "小时选项间隔",
+        type: "number",
+        field: "componentProps.hourStep",
         componentProps: {
-          placeholder:'请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
-        label: '分钟选项间隔',
-        type: 'number',
-        field: 'componentProps.minuteStep',
+        label: "分钟选项间隔",
+        type: "number",
+        field: "componentProps.minuteStep",
         componentProps: {
-          placeholder:'请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
-        label: '秒选项间隔',
-        type: 'number',
-        field: 'componentProps.secondStep',
+        label: "秒选项间隔",
+        type: "number",
+        field: "componentProps.secondStep",
         componentProps: {
-          placeholder:'请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
-        label: '弹出框位置',
-        type: 'select',
+        label: "弹出框位置",
+        type: "select",
         componentProps: {
           options: [
             {
-              label: 'bottomLeft',
-              value: 'bottomLeft'
+              label: "bottomLeft",
+              value: "bottomLeft",
             },
             {
-              label: 'bottomRight',
-              value: 'bottomRight'
+              label: "bottomRight",
+              value: "bottomRight",
             },
             {
-              label: 'topLeft',
-              value: 'topLeft'
+              label: "topLeft",
+              value: "topLeft",
             },
             {
-              label: 'topRight',
-              value: 'topRight'
-            }
-          ]
+              label: "topRight",
+              value: "topRight",
+            },
+          ],
         },
-        field: 'componentProps.placement'
+        field: "componentProps.placement",
       },
       {
-        label: '可清空',
-        type: 'switch',
-        field: 'componentProps.allowClear'
+        label: "可清空",
+        type: "switch",
+        field: "componentProps.allowClear",
       },
       {
-        label: '禁用',
-        type: 'switch',
-        field: 'componentProps.disabled'
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled",
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
       },
       {
-        label: '表单校验',
-        type: 'ERuleEditor',
-        layout: 'vertical',
-        field: 'rules',
-        describe: '校验规则需要配合表单使用'
-      }
+        label: "表单校验",
+        type: "ERuleEditor",
+        layout: "vertical",
+        field: "rules",
+        describe: "校验规则需要配合表单使用",
+      },
     ],
     event: [
       {
         type: "change",
         describe: "值变化时",
       },
-    ]
+    ],
   },
-  bindModel: 'value'
-} as ComponentConfigModel
+  bindModel: "value",
+} as ComponentConfigModel;

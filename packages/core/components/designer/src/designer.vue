@@ -1,5 +1,5 @@
 <template>
-  <div class="loading-box" v-if="!pluginManager.initialized.value">
+  <div class="epic-loading-box" v-if="!pluginManager.initialized.value">
     <!-- <EAsyncLoader /> -->
   </div>
   <Suspense v-else @resolve="handleReady">
@@ -38,7 +38,7 @@
       </div>
     </template>
     <template #fallback>
-      <div class="loading-box">
+      <div class="epic-loading-box">
         <EAsyncLoader />
       </div>
 
@@ -51,7 +51,6 @@ import { DesignerState, ComponentSchema, PageSchema } from '../../../types/epic-
 import { getMatchedById, loadAsyncComponent, revoke, usePageManager, pluginManager, deepCompareAndModify, deepEqual, deepClone } from '@epic-designer/utils'
 import { DesignerProps } from './types'
 import { useShareStore } from '@epic-designer/utils'
-
 
 const EHeader = loadAsyncComponent(() => import('./modules/header/index.vue'))
 const EActionBar = loadAsyncComponent(() => import('./modules/actionBar/index.vue'))

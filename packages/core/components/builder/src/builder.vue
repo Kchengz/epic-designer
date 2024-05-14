@@ -1,5 +1,5 @@
 <template>
-  <div class="loading-box" v-if="!pluginManager.initialized.value">
+  <div class="epic-loading-box" v-if="!pluginManager.initialized.value">
     <!-- <EAsyncLoader /> -->
   </div>
   <Suspense v-else @resolve="handleReady">
@@ -9,7 +9,7 @@
       </div>
     </template>
     <template #fallback>
-      <div class="loading-box">
+      <div class="epic-loading-box">
         <EAsyncLoader />
       </div>
     </template>

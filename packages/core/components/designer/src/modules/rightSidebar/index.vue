@@ -1,8 +1,8 @@
 <template>
-  <div v-if="sidebarComponent" class="relative bg-white">
+  <div v-if="sidebarComponent" class="epic-right-sidebar-container relative">
     <!-- 折叠按钮 start -->
     <div
-      class="absolute left--18px top-80px shadow-lg shadow-gray-400 text-#999 cursor-pointer bg-white rounded-full flex justify-center items-center w-28px h-28px z-9"
+      class="epic-right-sidebar-hide-btn absolute left--18px top-80px cursor-pointer rounded-full flex justify-center items-center w-28px h-28px z-9"
       @click="handleHideRight">
       <EIcon prefix="" class="iconfont transition-all" :class="{ 'rotate-180': hideRightMain }"
         name="epic-icon-zhankai" />

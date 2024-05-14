@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("ant-design-vue")).RadioGroup,
+  groupName: "表单",
+  icon: "epic-icon-danxuan-cuxiantiao",
   defaultSchema: {
     label: "单选框",
     type: "radio",
-    icon: "epic-icon-danxuan-cuxiantiao",
     field: "radio",
     input: true,
     componentProps: {
@@ -21,7 +22,6 @@ export default {
       optionType: "default",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

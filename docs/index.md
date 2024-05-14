@@ -39,10 +39,3 @@ features:
     title: 开箱即用
     details: 这是一款开箱即用的设计器，更可以通过插件扩展需要的功能。
 ---
-
-<script setup>
-import { onMounted } from 'vue'
-
-onMounted(() => {
-})
-</script>

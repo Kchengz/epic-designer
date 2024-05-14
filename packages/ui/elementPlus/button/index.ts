@@ -1,15 +1,14 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./button"),
-  // component: ElButton,
+  groupName: "表单",
+  icon: "epic-icon-button-remove",
   defaultSchema: {
     label: "按钮",
     type: "button",
     field: "input",
-    icon: "epic-icon-button-remove",
     input: false,
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

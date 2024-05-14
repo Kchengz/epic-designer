@@ -1,6 +1,4 @@
 .epic-tree {
-  // background: white;
-
   .epic-tree-main {
     padding-right: 10px;
   }
@@ -10,34 +8,34 @@
     padding: 0;
   }
   a {
-    color: @text-main;
+    color: var(--epic-text-main);
     display: flex;
     &:hover {
-      color: @text-main;
+      color: var(--epic-text-main);
     }
     .text {
       display: inline-block;
       width: 100%;
-      &:hover,
       &.hover {
-        background-color: #f2f2f2;
+        background-color: var(--epic-widget-hover-color);
       }
 
       &.checked {
-        background: @primary-hover-bg-color;
-        color: @primary-color;
+        background: var(--epic-primary-hover-color);
+        color: var(--epic-primary-color);
       }
 
-      .text-padding {
+      .epic-text-padding {
         padding: 0 6px;
         white-space: nowrap;
+        color: var(--epic-text-main);
       }
     }
   }
 
   .epic-node-type-text {
-    font-size: 10px;
-    color: #0000004f;
+    font-size: var(--epic-text-sm);
+    color: var(--epic-text-disabled);
     margin-left: 6px;
   }
 
@@ -55,9 +53,8 @@
       position: absolute;
       left: 8px;
       transition: transform 0.3s;
-      color: #888;
-      font-size: 12px;
-
+      color: var(--epic-border-color);
+      font-size: var(--epic-text-sm);
 
       &.expanded {
         transform: rotate(90deg);
@@ -79,7 +76,7 @@
       &::before {
         content: "";
         position: absolute;
-        background: #e8e9eb;
+        background: var(--epic-border-color);
         z-index: 99;
       }
       &::after {

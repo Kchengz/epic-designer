@@ -1,26 +1,27 @@
-.event-item {
-  .event-info {
+.epic-event-item {
+  .epic-event-info {
     display: flex;
-    background-color: #f8f8f8;
+    background-color: var(--epic-event-item-color);
     padding: 0 12px;
     justify-content: space-between;
     align-items: center;
     height: 36px;
-    border: 1px solid @border-color;
+    border: 1px solid var(--epic-border-color);
+    color: var(--epic-text-main);
     margin: 0px -1px -1px 0px;
   }
 
-  .event-btn > span {
+  .epic-event-btn > span {
     cursor: pointer;
   }
 
   .epic-action-editor-main {
-    // padding: 16px;
     .epic-editor-item {
       margin: 8px 0px;
-      // background-color: #fafafa;
-      border: 1px solid @border-color;
-      padding: 8px;
+      border: 1px solid var(--epic-border-color);
+    background-color: var(--epic-event-item-color);
+    color: var(--epic-text-main);
+    padding: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -32,29 +33,28 @@
 
 .epic-modal-action-main {
   display: flex;
-  // min-height: 560px;
   height: 100%;
 }
 
 .epic-modal-left-panel,
 .epic-script-left-panel {
   width: 240px;
-  border: 1px solid @border-color;
+  border: 1px solid var(--epic-border-color);
   overflow: auto;
   padding: 8px;
   box-sizing: border-box;
 
   .fun-btn {
-    border: 1px solid @border-color;
+    border: 1px solid var(--epic-border-color);
     padding: 8px 12px;
     border-radius: 3px;
     cursor: pointer;
     margin-bottom: 6px;
     
     &.checked {
-      background-color: @primary-hover-bg-color;
-      border-color: @primary-color;
-      color: @primary-color;
+      background-color: var(--epic-primary-hover-color);
+      border-color: var(--epic-primary-color);
+      color: var(--epic-primary-color);
     }
   }
 }
@@ -62,7 +62,7 @@
 .epic-modal-right-panel,
 .epic-script-right-panel {
   flex: 1;
-  border: 1px solid @border-color;
+  border: 1px solid var(--epic-border-color);
   margin-left: 8px;
   padding: 8px;
 
@@ -90,7 +90,7 @@
       .action {
         opacity: 0;
         pointer-events: none;
-        color: @primary-color;
+        color: var(--epic-primary-color);
       }
       &:hover .action {
         opacity: 1;
@@ -107,7 +107,7 @@
 }
 
 .epic-action-select {
-  border-top: 1px solid @border-color;
+  border-top: 1px solid var(--epic-border-color);
   margin-top: 12px;
   padding: 8px;
   padding-right: 0;
@@ -122,13 +122,13 @@
     border: 1px solid transparent;
 
     &:hover {
-      background-color: @primary-hover-bg-color;
-      color: @primary-color;
+      background-color: var(--epic-primary-hover-color);
+      color: var(--epic-primary-color);
     }
     &.checked {
-      background-color: @primary-hover-bg-color;
-      border-color: @primary-color;
-      color: @primary-color;
+      background-color: var(--epic-primary-hover-color);
+      border-color: var(--epic-primary-color);
+      color: var(--epic-primary-color);
     }
   }
 }
@@ -138,10 +138,10 @@
   align-items: center;
   padding-top: 6px;
 
-  .opr-box {
+  .epic-action-box {
     display: flex;
 
-    .del-btn {
+    .epic-del-btn {
       width: 30px;
       height: 100%;
       text-align: center;
@@ -152,14 +152,14 @@
       }
     }
 
-    .edit-btn {
+    .epic-edit-btn {
       width: 30px;
       height: 100%;
       text-align: center;
       cursor: pointer;
 
       &:hover {
-        color: @primary-color;
+        color: var(--epic-primary-color);
       }
     }
   }
@@ -168,5 +168,5 @@
 .add-btn {
   cursor: pointer;
   margin-top: 6px;
-  color: @primary-color;
+  color: var(--epic-primary-color);
 }

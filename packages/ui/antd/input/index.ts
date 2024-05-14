@@ -1,18 +1,18 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("ant-design-vue")).Input,
+  groupName: "表单",
+  icon: "epic-icon-write",
   defaultSchema: {
     label: "输入框",
     type: "input",
     field: "input",
-    icon: "epic-icon-write",
     input: true,
     componentProps: {
       bordered: true,
       placeholder: "请输入",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

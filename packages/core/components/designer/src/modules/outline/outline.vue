@@ -3,10 +3,11 @@
     <ETree :options="pageSchema.schemas" draggable :selected-keys="selectedKeys" :hover-key="designer.state.hoverNode?.id"
       @nodeClick="handleNodeClick">
       <template #tree-node="{ schema }">
-        <div class="text-padding" @mouseenter.stop="designer.setHoverNode(schema)"
+        <div class="epic-text-padding" @mouseenter.stop="designer.setHoverNode(schema)"
           @mouseleave.stop="designer.setHoverNode(null)">
           {{ schema.label ??
-            pluginManager.getComponentConfingByType(schema.type)?.defaultSchema.label }}<span class="epic-node-type-text">
+            pluginManager.getComponentConfingByType(schema.type)?.defaultSchema.label }}
+            <span class="epic-node-type-text">
             {{ schema.type }}
           </span>
         </div>

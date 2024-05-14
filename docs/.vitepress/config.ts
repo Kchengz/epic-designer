@@ -5,22 +5,22 @@ export default defineConfig({
   // 网站描述
   description: "低代码可视化设计器及生成器",
   lang: "zh-CN",
-  base: "/epic-designer",
+  base: "/",
+  sitemap: {
+    hostname: "https://docs.epicjs.cn",
+  },
   // 打包目录
   head: [
     // 添加图标
-    [
-      "link",
-      { rel: "epic-icon", type: "image/x-icon", href: "/epic-designer/favicon.ico" },
-    ],
+    ["link", { rel: "epic-icon", type: "image/x-icon", href: "/favicon.ico" }],
   ],
   // 主题配置
   themeConfig: {
-    logo: 'https://epic.kcz66.com/static/logo.png',
+    logo: "https://epic.kcz66.com/static/logo.png",
     algolia: {
-      appId:'PUN9QM5E0U',
-      apiKey: '29a246325412eeb2df1f9108a3a11885',
-      indexName: 'kcz66-gitee'
+      appId: "PUN9QM5E0U",
+      apiKey: "29a246325412eeb2df1f9108a3a11885",
+      indexName: "kcz66-gitee",
     },
     editLink: {
       text: "为此页提供修改建议",
@@ -31,7 +31,8 @@ export default defineConfig({
       { icon: "github", link: "https://github.com/Kchengz/epic-designer" },
     ],
     footer: {
-      copyright: "本文档内容版权为 EpicDesigner 作者kchengz所有，保留所有权利。",
+      copyright:
+        "本文档内容版权为 EpicDesigner 作者kchengz所有，保留所有权利。",
     },
     nav: [
       {
@@ -40,7 +41,11 @@ export default defineConfig({
         activeMatch: "/guide/start/index",
       },
       { text: "更新日志", link: "/updateLog", activeMatch: "/updateLog" },
-      { text: "关于作者 | 赞助", link: "/guide/about/about", activeMatch: "/about" },
+      {
+        text: "关于作者 | 赞助",
+        link: "/guide/about/about",
+        activeMatch: "/about",
+      },
       // { text: "个人博客", link: "https://www.kcz66.com" },
       {
         text: "相关链接",
@@ -77,6 +82,14 @@ export default defineConfig({
               text: "国际化",
               link: "/guide/start/i18n-cn",
             },
+            {
+              text: "定制主题",
+              link: "/guide/start/theme",
+            },
+            {
+              text: "暗黑模式",
+              link: "/guide/start/dark-mode",
+            },
           ],
         },
         {
@@ -108,6 +121,10 @@ export default defineConfig({
         {
           text: "扩展",
           items: [
+            {
+              text: "Icon 图标",
+              link: "/guide/extensions/icon",
+            },
             {
               text: "组件扩展",
               link: "/guide/extensions/component",

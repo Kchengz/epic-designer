@@ -4,7 +4,6 @@ export default {
   defaultSchema: {
     label: '模态框',
     type: 'modal',
-    icon: 'epic-icon-xiala',
     children: []
   },
   config: {

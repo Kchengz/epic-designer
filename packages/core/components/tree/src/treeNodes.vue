@@ -1,7 +1,7 @@
 <template>
   <draggable v-if="!pluginManager.getComponentConfingByType(props.parentSchema?.type || '')?.childImmovable"
     v-model="modelSchemas" item-key="id" :component-data="{
-    }" class="draggable-range" v-bind="{
+    }" class="epic-draggable-range" v-bind="{
       animation: 200,
       tag: 'ul',
       group: 'tree-draggable',

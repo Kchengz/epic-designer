@@ -4,7 +4,6 @@
   "description": "epic-designer base ui",
   "main": "index.ts",
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build"
   },
   "author": "kchengz",
   "devDependencies": {

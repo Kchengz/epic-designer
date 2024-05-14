@@ -5,7 +5,7 @@ import BaseLayout from "@/layout/baseLayout.vue";
 // 定义每个 UI 框架的子路由信息
 export const frameworkRoutes = [
   {
-    path: "/:ui/designer",
+    path: "/designer",
     name: "designer",
     component: BaseLayout,
     meta: {
@@ -31,7 +31,7 @@ export const frameworkRoutes = [
     ],
   },
   {
-    path: "/:ui/builder",
+    path: "/builder",
     name: "builder",
     component: BaseLayout,
     meta: {
@@ -44,6 +44,14 @@ export const frameworkRoutes = [
         component: () => import("@/views/builder/basic/index.vue"),
         meta: {
           title: "基础用法",
+        },
+      },
+      {
+        path: "/:ui/builderLoadData",
+        name: "builderLoadData",
+        component: () => import("@/views/builder/loadData/index.vue"),
+        meta: {
+          title: "数据回显",
         },
       },
       {

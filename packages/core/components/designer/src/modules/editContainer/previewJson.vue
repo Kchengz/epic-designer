@@ -1,8 +1,8 @@
 <template>
   <Modal v-model="visible" title="查看数据" class="w-900px" width="900px" @close="handleClose" @ok="handleExportData"
     okText="导出数据">
-    <div class="min-w-750px rounded bg-white h-full">
-      <MonacoEditor ref="monacoEditorRef" class="editor h-full" :config="MonacoEditorConfig" language="json" />
+    <div class="min-w-750px rounded h-full">
+      <MonacoEditor ref="monacoEditorRef" class="editor h-full" autoToggleTheme :config="MonacoEditorConfig" language="json" />
     </div>
   </Modal>
 </template>

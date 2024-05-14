@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("naive-ui/lib/cascader")).NCascader,
+  groupName: "表单",
+  icon: "epic-icon-guanlian",
   defaultSchema: {
     label: "级联选择器",
     type: "cascader",
-    icon: "epic-icon-guanlian",
     field: "cascader",
     input: true,
     componentProps: {
@@ -25,7 +26,6 @@ export default {
       placement: "bottom-start",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

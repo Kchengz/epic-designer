@@ -1,155 +1,154 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
-  component:  () => import('./button.vue'),
-  defaultSchema: {
-    label: '按钮',
-    type: 'button',
-    field: 'input',
-    icon: 'epic-icon-button-remove',
-    input: false,
-    componentProps: {
-    }
-  },
+  component: () => import("./button.vue"),
   groupName: "表单",
+  icon: "epic-icon-button-remove",
+  defaultSchema: {
+    label: "按钮",
+    type: "button",
+    field: "input",
+    input: false,
+    componentProps: {},
+  },
   config: {
     attribute: [
       {
-        label: '标题',
-        type: 'input',
-        field: 'label'
+        label: "标题",
+        type: "input",
+        field: "label",
       },
       {
-        label: '类型',
-        type: 'select',
+        label: "类型",
+        type: "select",
         componentProps: {
-          placeholder: '请选择',
+          placeholder: "请选择",
           clearable: true,
           options: [
             {
-              label: 'primary',
-              value: 'primary'
+              label: "primary",
+              value: "primary",
             },
             {
-              label: 'ghost',
-              value: 'ghost'
+              label: "ghost",
+              value: "ghost",
             },
             {
-              label: 'dashed',
-              value: 'dashed'
+              label: "dashed",
+              value: "dashed",
             },
             {
-              label: 'link',
-              value: 'link'
+              label: "link",
+              value: "link",
             },
             {
-              label: 'text',
-              value: 'text'
+              label: "text",
+              value: "text",
             },
             {
-              label: 'default',
-              value: 'default'
-            }
-          ]
+              label: "default",
+              value: "default",
+            },
+          ],
         },
-        field: 'componentProps.type'
+        field: "componentProps.type",
       },
       {
-        label: '链接',
-        type: 'input',
-        field: 'componentProps.href',
+        label: "链接",
+        type: "input",
+        field: "componentProps.href",
         componentProps: {
           allowClear: true,
-          placeholder: '请输入'
-        }
+          placeholder: "请输入",
+        },
       },
       {
-        label: '链接打开方式',
-        type: 'select',
-        field: 'componentProps.target',
-        show: ({values}) => values.componentProps.href,
+        label: "链接打开方式",
+        type: "select",
+        field: "componentProps.target",
+        show: ({ values }) => values.componentProps.href,
         componentProps: {
-          placeholder: '请选择',
+          placeholder: "请选择",
           clearable: true,
           options: [
             {
-              label: 'blank',
-              value: '_blank'
+              label: "blank",
+              value: "_blank",
             },
             {
-              label: 'parent',
-              value: '_parent'
+              label: "parent",
+              value: "_parent",
             },
             {
-              label: 'self',
-              value: '_self'
+              label: "self",
+              value: "_self",
             },
             {
-              label: 'top',
-              value: '_top'
+              label: "top",
+              value: "_top",
             },
-          ]
-        }
+          ],
+        },
       },
       {
-        label: '尺寸',
-        type: 'select',
+        label: "尺寸",
+        type: "select",
         componentProps: {
           placeholder: "请选择",
           allowClear: true,
           options: [
             {
-              label: 'default',
-              value: 'default'
+              label: "default",
+              value: "default",
             },
             {
-              label: 'small',
-              value: 'small'
+              label: "small",
+              value: "small",
             },
             {
-              label: 'large',
-              value: 'large'
-            }
-          ]
+              label: "large",
+              value: "large",
+            },
+          ],
         },
-        field: 'componentProps.size'
+        field: "componentProps.size",
       },
       {
-        label: '形状',
-        type: 'select',
+        label: "形状",
+        type: "select",
         componentProps: {
-          placeholder: '请选择',
+          placeholder: "请选择",
           clearable: true,
           options: [
             {
-              label: 'default',
-              value: 'default'
+              label: "default",
+              value: "default",
             },
             {
-              label: 'circle',
-              value: 'circle'
+              label: "circle",
+              value: "circle",
             },
             {
-              label: 'round',
-              value: 'round'
-            }
-          ]
+              label: "round",
+              value: "round",
+            },
+          ],
         },
-        field: 'componentProps.shape'
+        field: "componentProps.shape",
       },
       {
-        label: '危险按钮',
-        type: 'switch',
-        field: 'componentProps.danger'
+        label: "危险按钮",
+        type: "switch",
+        field: "componentProps.danger",
       },
       {
-        label: '禁用',
-        type: 'switch',
-        field: 'componentProps.disabled'
+        label: "禁用",
+        type: "switch",
+        field: "componentProps.disabled",
       },
       {
-        label: '隐藏',
-        type: 'switch',
-        field: 'componentProps.hidden'
+        label: "隐藏",
+        type: "switch",
+        field: "componentProps.hidden",
       },
     ],
     event: [
@@ -160,7 +159,7 @@ export default {
       {
         type: "dblclick",
         describe: "双击按钮时",
-      }
-    ]
-  }
-} as ComponentConfigModel
+      },
+    ],
+  },
+} as ComponentConfigModel;

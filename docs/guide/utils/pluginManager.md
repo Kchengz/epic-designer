@@ -12,13 +12,14 @@ import { pluginManager,type ComponentConfigModel } from 'epic-designer'
 
 const Test = {
   component: () => import('./cmp.vue'),
+  groupName:"自定义组件",
+  icon: "epic-icon-write",
   defaultSchema: {
     label: '测试扩展组件',
     type: 'test',
     componentProps: {
     }
   },
-  groupName:"自定义组件",
   config: {
     attribute: [
       {

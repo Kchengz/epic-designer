@@ -1,0 +1,175 @@
+// Light theme
+@epic-primary-color: #3e8bf2;
+@epic-designer-color: #fafafc;
+@epic-designer-dot-color: #373739;
+@epic-edit-range-color: #fff;
+@epic-view-color: #fff;
+@epic-edit-color: #ccc;
+@epic-action-bar-color: #fff;
+@epic-header-color: white;
+@epic-action-hover-color: #f8f8f8;
+@epic-widget-hover-color: #f8f8f8;
+@epic-event-item-color: #f8f8f8;
+@epic-shadow-color: #0000003d;
+@epic-text-main: #000000de;
+@epic-text-secondary: #00000099;
+@epic-text-helper: #00000066;
+@epic-text-disabled: #00000042;
+@epic-border-color: #d9d9d9;
+@epic-compoent-tabs-color: #f8f8f8;
+@epic-text-sm: 12px;
+@epic-text-md: 14px;
+@epic-text-lg: 16px;
+
+// Dark theme
+@epic-dark-primary-color: #3e8bf2;
+@epic-dark-designer-color: #18181c;
+@epic-dark-designer-dot-color: #86909c;
+@epic-dark-edit-range-color: #232324;
+@epic-dark-view-color: #252526;
+@epic-dark-edit-color: #ccc;
+@epic-dark-action-bar-color: #252526;
+@epic-dark-header-color: #252526;
+@epic-dark-action-hover-color: #000;
+@epic-dark-widget-hover-color: #111;
+@epic-dark-event-item-color: #111;
+@epic-dark-shadow-color: #000000;
+@epic-dark-text-main: #ffffffde;
+@epic-dark-text-secondary: #ffffff99;
+@epic-dark-text-helper: #ffffff66;
+@epic-dark-text-disabled: #666;
+@epic-dark-border-color: #ffffff20;
+@epic-dark-compoent-tabs-color: #2c2c2c;
+
+:root {
+  // 主色
+  --epic-primary-color: @epic-primary-color;
+  // hover颜色
+  --epic-primary-hover-color: rgba(@epic-primary-color, 8%);
+
+  // 设计器背景色
+  --epic-designer-color: @epic-designer-color;
+  // 设计器点颜色
+  --epic-designer-dot-color: @epic-designer-dot-color;
+  // 画布背景
+  --epic-edit-range-color: @epic-edit-range-color;
+
+  // 属性视图背景色
+  --epic-view-color: @epic-view-color;
+
+  // 拖拽区域背景色
+  --epic-edit-color: @epic-edit-color;
+
+  // 活动视图切换器背景色
+  --epic-action-bar-color: @epic-action-bar-color;
+
+  // 顶部颜色
+  --epic-header-color: @epic-header-color;
+
+  // 动作栏 hover
+  --epic-action-hover-color: @epic-action-hover-color;
+
+  // 窗口部件 hover
+  --epic-widget-hover-color: @epic-widget-hover-color;
+
+  // 窗口部件遮罩颜色
+  --epic-widget-shade-color: rgba(@epic-primary-color, 6%);
+
+  // 事件项背景色
+  --epic-event-item-color: @epic-event-item-color;
+
+  // 阴影颜色
+  --epic-shadow-color: @epic-shadow-color;
+
+  // 主要文本颜色
+  --epic-text-main: @epic-text-main;
+
+  // 二级文本颜色（介于正文和标题之间）
+  --epic-text-secondary: @epic-text-secondary;
+
+  // 辅助文本颜色（更浅）
+  --epic-text-helper: @epic-text-helper;
+  
+  // 禁用文本颜色
+  --epic-text-disabled: @epic-text-disabled;
+
+  // 边框颜色
+  --epic-border-color: @epic-border-color;
+
+  // 组件tabs颜色
+  --epic-compoent-tabs-color: @epic-compoent-tabs-color;
+
+  // 组件hover颜色
+  --epic-compoent-hover-color: rgba(@epic-primary-color, 6%);
+
+  // 字体大小
+  --epic-text-sm: @epic-text-sm;
+  --epic-text-md: @epic-text-md;
+  --epic-text-lg: @epic-text-lg;
+}
+
+// 黑暗主题 start
+.dark {
+  // 主色
+  --epic-primary-color: @epic-dark-primary-color;
+
+  --epic-primary-hover-color: rgba(@epic-dark-primary-color, 8%);
+
+  --epic-primary-hover-color: rgba(@epic-dark-primary-color, 8%);
+
+  // 设计器背景色
+  --epic-designer-color: @epic-dark-designer-color;
+
+  --epic-designer-dot-color: @epic-dark-designer-dot-color;
+  // 画布背景
+  --epic-edit-range-color: @epic-dark-edit-range-color;
+
+  // 属性视图背景色
+  --epic-view-color: @epic-dark-view-color;
+
+  // 拖拽区域背景色
+  --epic-edit-color: @epic-dark-edit-color;
+
+  // 活动视图切换器背景色
+  --epic-action-bar-color: @epic-dark-action-bar-color;
+
+  // 顶部颜色
+  --epic-header-color: @epic-dark-header-color;
+
+  // 动作栏 hover
+  --epic-action-hover-color: @epic-dark-action-hover-color;
+
+  // 窗口部件 hover
+  --epic-widget-hover-color: @epic-dark-widget-hover-color;
+
+  // 窗口部件遮罩颜色
+  --epic-widget-shade-color: rgba(@epic-dark-primary-color, 6%);
+
+  // 事件项背景色
+  --epic-event-item-color: @epic-dark-event-item-color;
+
+  // 阴影颜色
+  --epic-shadow-color: @epic-dark-shadow-color;
+
+  // 主要文本颜色
+  --epic-text-main: @epic-dark-text-main;
+
+  // 二级文本颜色（介于正文和标题之间）
+  --epic-text-secondary: @epic-dark-text-secondary;
+
+  // 辅助文本颜色（更浅）
+  --epic-text-helper: @epic-dark-text-helper;
+  
+  // 禁用文本颜色
+  --epic-text-disabled: @epic-dark-text-disabled;
+
+  // 边框颜色
+  --epic-border-color: @epic-dark-border-color;
+
+  // 组件tabs颜色
+  --epic-compoent-tabs-color: @epic-dark-compoent-tabs-color;
+
+  // 组件hover颜色
+  --epic-compoent-hover-color: rgba(@epic-dark-primary-color, 6%);
+}
+// 黑暗主题 end

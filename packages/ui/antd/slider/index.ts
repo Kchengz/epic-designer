@@ -1,14 +1,14 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("ant-design-vue")).Slider,
+  groupName: "表单",
+  icon: "epic-icon-menu",
   defaultSchema: {
     label: "滑块",
     type: "slider",
-    icon: "epic-icon-menu",
     field: "slider",
     input: true,
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

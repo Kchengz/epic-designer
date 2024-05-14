@@ -1,11 +1,12 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("ant-design-vue")).Cascader,
+  groupName: "表单",
+  icon: "epic-icon-guanlian",
   defaultSchema: {
     label: "级联选择器",
     type: "cascader",
     field: "cascader",
-    icon: "epic-icon-guanlian",
     input: true,
     componentProps: {
       options: [
@@ -22,7 +23,6 @@ export default {
       placement: "bottomLeft",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

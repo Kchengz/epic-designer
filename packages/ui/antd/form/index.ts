@@ -2,10 +2,11 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 
 export default {
   component: () => import("./form.vue"),
+  groupName: "表单",
+  icon: "epic-icon-daibanshixiang",
   defaultSchema: {
     label: "表单",
     type: "form",
-    icon: "epic-icon-daibanshixiang",
     componentProps: {
       layout: "horizontal",
       name: "default",
@@ -24,7 +25,6 @@ export default {
     },
     children: [],
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

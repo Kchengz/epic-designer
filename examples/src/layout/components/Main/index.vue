@@ -1,5 +1,5 @@
 <template>
-    <div :key="uiKey" class="epic-page-main">
+    <div :key="uiKey" class="epic-page-container">
         <Maximize />
         <router-view></router-view>
     </div>

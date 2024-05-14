@@ -1,15 +1,11 @@
 <template>
-  <div ref="editContainer" class="code-editor" />
+  <div ref="editContainer" class="epic-code-editor" />
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-// import 'monaco-editor/esm/vs/editor/editor.all.js';
-// import 'monaco-editor/esm/vs/editor/standalone/browser/accessibilityHelp/accessibilityHelp.js';
-// import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import { ref, watch, nextTick, onMounted } from 'vue'
 import * as monaco from 'monaco-editor'
 import type { editor } from 'monaco-editor'
-
-
+import { useTheme } from '@epic-designer/utils'
 const props = withDefaults(defineProps<{
   language?: string,
   readOnly?: boolean,
@@ -17,8 +13,8 @@ const props = withDefaults(defineProps<{
   modelValue?: any,
   config?: editor.IStandaloneEditorConstructionOptions,
   lineNumbers?: 'on' | 'off',
-  theme?: 'vs-light' | 'vs-drak'
-
+  autoToggleTheme?: boolean,
+  theme?: 'vs-light' | 'vs-dark' | 'hc-black'
 }>(), {
   language: 'json',
   readOnly: false,
@@ -26,12 +22,10 @@ const props = withDefaults(defineProps<{
   lineNumbers: 'on',
   theme: 'vs-light',
   config: () => ({
-    // theme: 'vs-light',
     selectOnLineNumbers: true,
     minimap: {
       enabled: false
     },
-    // lineNumbers: 'on'
   })
 })
 
@@ -40,6 +34,19 @@ const emit = defineEmits(['update:modelValue'])
 const editContainer = ref<HTMLElement | null>(null)
 
 let monacoEditor: monaco.editor.IStandaloneCodeEditor | null = null
+const { isDark } = useTheme()
+
+
+
+function handleToggleTheme() {
+  if (isDark.value) {
+    monaco.editor.setTheme('vs-dark')
+  } else {
+    monaco.editor.setTheme('vs-light')
+  }
+}
+
+
 
 /**
  * 设置文本
@@ -79,13 +86,22 @@ function insertText(text: string) {
 onMounted(() => {
   monacoEditor = monaco.editor.create(editContainer.value as HTMLElement, {
     value: getValue(),
+    ...props.config,
     language: props.language,
     readOnly: props.readOnly,
     lineNumbers: props.lineNumbers,
     theme: props.theme,
-    ...props.config,
     automaticLayout: true
   })
+
+  // 自动切换主题
+  if (props.autoToggleTheme) {
+    watch(() => isDark.value, () => {
+      nextTick(() => handleToggleTheme())
+    }, {
+      immediate: true
+    })
+  }
 
   // 获取值
   function getValue() {
@@ -120,7 +136,7 @@ defineExpose({
 })
 </script>
 <style lang="less" scoped>
-.code-editor {
+.epic-code-editor {
   width: 100%;
   min-height: 150px;
 

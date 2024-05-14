@@ -1,7 +1,7 @@
 <template>
   <div class="epic-component-view flex flex-col">
     <!-- 搜素框 start -->
-    <div class="search-box px-10px py-6px">
+    <div class="epic-search-box px-10px py-6px">
       <Input placeholder="搜索组件"  v-model="keyword" clearable allowClear v-model:value="keyword">
       <template #prefix>
         <EIcon name="icon-chaxun" />
@@ -11,8 +11,8 @@
     <!-- 搜素框 end -->
     <div class="flex flex-1 overflow-auto">
       <!-- 分类选项 start  -->
-      <div class="tabs-box">
-        <div class="tab cursor-pointer truncate" :class="{ checked: activeItem.title === item.title }"
+      <div class="epic-tabs-box">
+        <div class="epic-tab cursor-pointer truncate" :class="{ checked: activeItem.title === item.title }"
           v-for="(item, index) in getSchemaTypeList" :key="index" :title="item.title" @click="handelChecked(item)">
           {{ item.title }}
         </div>
@@ -27,8 +27,8 @@
           ghostClass: 'moving'
         }" :clone="generateNewSchema" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2">
           <template #item="{ element }">
-            <div class="source-componet-item flex items-center truncate" @click="handleClick(element)">
-              <EIcon prefix="" :name="element.icon" />
+            <div class="epic-componet-item flex items-center truncate" @click="handleClick(element)">
+              <EIcon prefix="" :name="pluginManager.getComponentConfingByType(element.type).icon ?? ''" />
               <div>{{ element.label }}</div>
             </div>
           </template>

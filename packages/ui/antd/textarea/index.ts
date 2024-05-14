@@ -1,17 +1,17 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("ant-design-vue")).Textarea,
+  groupName: "表单",
+  icon: "epic-icon-edit",
   defaultSchema: {
     label: "文本域",
     type: "textarea",
     field: "textarea",
-    icon: "epic-icon-edit",
     input: true,
     componentProps: {
       placeholder: "请输入",
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {

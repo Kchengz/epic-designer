@@ -1,16 +1,16 @@
 // 活动视图切换器
 .epic-action-bar {
   width: 56px;
-  background-color: @action-bar-bg;
-  border-right: 1px solid #eaeaea;
-  border-left: 1px solid #eaeaea;
+  background-color: var(--epic-action-bar-color);
+  border-right: 1px solid var(--epic-border-color);
+  border-left: 1px solid var(--epic-border-color);
 
   .epic-action-item {
     text-align: center;
     height: 72px;
     position: relative;
     cursor: pointer;
-    color: #777;
+    color: var(--epic-text-main);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,7 +22,7 @@
     }
 
     &:hover {
-      color: @primary-color;
+      color: var(--epic-primary-color);
     }
 
     &::before {
@@ -34,18 +34,18 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: @primary-hover-bg-color;
+      background-color: var(--epic-primary-hover-color);
       opacity: 0;
       transition: all .3s;
     }
 
     &.checked {
-      color: @primary-color;
+      color: var(--epic-primary-color);
       // &::after {
       //   content: "";
       //   height: 100%;
       //   width: 2px;
-      //   background-color: @primary-color;
+      //   background-color: var(--epic-primary-color);
       //   position: absolute;
       //   top: 0;
       //   left: 0;
@@ -61,11 +61,11 @@
 // 左侧栏
 .epic-left-sidebar {
   width: 320px;
-  background-color: @view-bg;
+  background-color: var(--epic-view-color);
   overflow-x: hidden;
   overflow-y: auto;
   transition: all 0.3s;
-  border-right: 1px solid #eaeaea;
+  border-right: 1px solid var(--epic-border-color);
 
   .epic-sidebar-container {
     min-width: 280px;

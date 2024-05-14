@@ -1,7 +1,7 @@
 <template>
   <draggable v-model="modelSchemas" item-key="id" :component-data="{
     type: 'transition-group',
-  }" class="draggable-range" v-bind="{
+  }" class="epic-draggable-range" v-bind="{
   animation: 200,
   group: 'edit-draggable',
   handle: '.draggable-item',

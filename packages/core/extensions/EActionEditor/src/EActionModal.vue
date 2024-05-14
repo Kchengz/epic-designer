@@ -7,7 +7,7 @@
     @ok="handleSave"
     title="动作配置"
   >
-    <div class="rounded bg-white epic-modal-action-main">
+    <div class="rounded epic-modal-action-main">
       <div class="epic-modal-left-panel h-full flex flex-col">
         <!-- 动作所属对象 start -->
         <div class="flex flex-1 h-0 flex-col">

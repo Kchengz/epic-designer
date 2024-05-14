@@ -1,10 +1,11 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./uploadFile"),
+  groupName: "表单",
+  icon: "epic-icon-upload",
   defaultSchema: {
     label: "上传文件",
     type: "upload-file",
-    icon: "epic-icon-upload",
     field: "uploadFile",
     input: true,
     componentProps: {
@@ -13,7 +14,6 @@ export default {
       showFileList: true,
     },
   },
-  groupName: "表单",
   config: {
     attribute: [
       {
