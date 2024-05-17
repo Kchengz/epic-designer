@@ -1,5 +1,5 @@
 import { createSharedComposable } from "@vueuse/core";
-import { ref} from "vue";
+import { ref } from "vue";
 import { useKeyPress } from "../common/element";
 import { useDark } from "../common/theme";
 
@@ -12,7 +12,7 @@ export function useStore() {
   // 画布缩放启用状态
   const disabledZoom = ref(false);
 
-  const isDark = useDark();
+  const { isDark } = useDark();
 
   // 获取键盘状态
   const { pressSpace, pressShift, pressCtrl } = useKeyPress();
@@ -25,7 +25,6 @@ export function useStore() {
     isDark,
   };
 }
-
 
 // 创建共享状态
 export const useShareStore = createSharedComposable(useStore);
