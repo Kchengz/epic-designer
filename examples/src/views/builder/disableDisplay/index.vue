@@ -52,7 +52,6 @@ const pageSchema = ref<PageSchema>({
               "label": "栅格布局",
               "type": "row",
               "icon": "icon-zhage",
-              "childImmovable": true,
               "children": [
                 {
                   "type": "col",

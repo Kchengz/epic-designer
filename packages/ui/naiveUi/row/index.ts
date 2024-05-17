@@ -6,7 +6,6 @@ export default {
   defaultSchema: {
     label: "栅格布局",
     type: "row",
-    childImmovable: true,
     children: [
       {
         type: "col",
@@ -23,6 +22,9 @@ export default {
         },
       },
     ],
+  },
+  editConstraints:{
+    childImmovable: true,
   },
   config: {
     attribute: [

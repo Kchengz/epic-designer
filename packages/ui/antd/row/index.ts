@@ -1,7 +1,6 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./row"),
-  childImmovable: true,
   groupName: "布局",
   icon: "epic-icon-zhage",
   defaultSchema: {
@@ -23,6 +22,9 @@ export default {
         },
       },
     ],
+  },
+  editConstraints:{
+    childImmovable: true,
   },
   config: {
     attribute: [
