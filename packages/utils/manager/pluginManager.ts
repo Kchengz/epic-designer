@@ -52,7 +52,7 @@ export interface ComponentConfigModel {
   // 默认组件结构数据
   defaultSchema: ComponentSchema;
   // 编辑约束
-  editConstraints: EditConstraintsModel;
+  editConstraints?: EditConstraintsModel;
   // 配置
   config: {
     // 属性编辑列表
