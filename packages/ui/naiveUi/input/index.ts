@@ -12,7 +12,6 @@ export default {
       defaultValue: "",
       placeholder: "请输入",
       type: "text",
-      size: "medium",
     },
   },
   config: {

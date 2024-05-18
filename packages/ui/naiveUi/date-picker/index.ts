@@ -11,7 +11,6 @@ export default {
     componentProps: {
       type: "date",
       placeholder: "请选择",
-      size: "medium",
       format: "yyyy-MM-dd",
       valueFormat: "yyyy-MM-dd",
     },

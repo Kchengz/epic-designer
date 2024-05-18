@@ -20,7 +20,6 @@ export default {
       labelPlacement: "left",
       labelAlign: "right",
       requireMarkPlacement: "right",
-      size: "medium",
     },
     children: [],
   },
@@ -54,7 +53,7 @@ export default {
         },
       },
       {
-        label: "标签文本对齐方式",
+        label: "标签对齐方式",
         type: "select",
         field: "componentProps.labelAlign",
         componentProps: {
@@ -71,7 +70,7 @@ export default {
         },
       },
       {
-        label: "必填星号的位置",
+        label: "必填星号位置",
         type: "select",
         field: "componentProps.requireMarkPlacement",
         componentProps: {
@@ -109,24 +108,19 @@ export default {
         },
       },
       {
-        label: "scrollToError",
-        type: "switch",
-        field: "componentProps.scrollToError",
-      },
-      {
         label: "行内模式",
         type: "switch",
         field: "componentProps.inline",
       },
-      // {
-      //   label: '隐藏',
-      //   type: 'switch',
-      //   field: 'componentProps.hidden'
-      // },
       {
         label: "禁用",
         type: "switch",
         field: "componentProps.disabled",
+      },
+      {
+        label: '隐藏',
+        type: 'switch',
+        field: 'componentProps.hidden'
       },
     ],
     action: [

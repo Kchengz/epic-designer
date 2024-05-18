@@ -11,7 +11,6 @@ export default {
     input: true,
     componentProps: {
       placeholder: "请输入",
-      size: "medium",
       buttonPlacement: "right",
     },
   },

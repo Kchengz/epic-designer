@@ -19,7 +19,6 @@ export default {
           value: "选项2",
         },
       ],
-      size: "medium",
     },
   },
   config: {

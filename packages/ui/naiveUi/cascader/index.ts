@@ -22,7 +22,6 @@ export default {
       placeholder: "请选择",
       cascade: false,
       showPath: true,
-      size: "medium",
       placement: "bottom-start",
     },
   },

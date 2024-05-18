@@ -11,7 +11,6 @@ export default {
     componentProps: {
       defaultValue: false,
       round: true,
-      size: "medium",
     },
   },
   config: {
