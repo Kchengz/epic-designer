@@ -32,8 +32,8 @@ export default {
         field: "componentProps.name",
       },
       {
-        label: "标签长度",
-        type: "input",
+        label: "标签宽度",
+        type: "EInputSize",
         field: "componentProps.labelWidth",
       },
       {

@@ -10,7 +10,7 @@ export default {
     componentProps: {
       layout: "horizontal",
       name: "default",
-      labelWidth: 100,
+      labelWidth: "100px",
       labelLayout: "fixed",
       labelCol: {
         span: 5,
@@ -18,7 +18,6 @@ export default {
       wrapperCol: {
         span: 19,
       },
-      hideRequiredMark: false,
       colon: true,
       labelAlign: "right",
       size: "middle",
@@ -50,8 +49,8 @@ export default {
         },
       },
       {
-        label: "labelWidth",
-        type: "input",
+        label: "标签宽度",
+        type: "EInputSize",
         field: "componentProps.labelWidth",
         show: ({ values }) => {
           return values.componentProps?.labelLayout === "fixed";
@@ -77,6 +76,11 @@ export default {
         label: "显示冒号",
         type: "switch",
         field: "componentProps.colon",
+      },
+      {
+        label: "隐藏必须标志",
+        type: "switch",
+        field: "componentProps.hideRequiredMark",
       },
       {
         label: "对齐方式",

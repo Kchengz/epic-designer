@@ -108,7 +108,7 @@ function setScroll() {
 
     const scrollTop = canvasHeight / 2
     const scrollLeft = canvasWidth / 2
-    editScreenContainerRef.value!.scrollTo(scrollLeft, scrollTop)
+    editScreenContainerRef.value?.scrollTo(scrollLeft, scrollTop)
   })
 }
 

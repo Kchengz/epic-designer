@@ -31,12 +31,12 @@ export default {
         field: "componentProps.name",
       },
       {
-        label: "标签长度",
-        type: "input",
+        label: "标签宽度",
+        type: "EInputSize",
         field: "componentProps.labelWidth",
       },
       {
-        label: "域内标签后缀",
+        label: "标签后缀",
         type: "input",
         field: "componentProps.labelSuffix",
         componentProps: {
