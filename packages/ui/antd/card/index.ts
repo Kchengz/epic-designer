@@ -16,6 +16,44 @@ export default {
         field: "label",
       },
       {
+        label: "尺寸",
+        type: "select",
+        componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
+          options: [
+            {
+              label: "default",
+              value: "default",
+            },
+            {
+              label: "small",
+              value: "small",
+            },
+          ],
+        },
+        field: "componentProps.size",
+      },
+      {
+        label: "无边框",
+        type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
+        field: "componentProps.bordered",
+      },
+      {
+        label: "鼠标悬停阴影",
+        type: "switch",
+        field: "componentProps.hoverable",
+      },
+      {
+        label: "加载状态",
+        type: "switch",
+        field: "componentProps.loading",
+      },
+      {
         label: "隐藏",
         type: "switch",
         field: "componentProps.hidden",

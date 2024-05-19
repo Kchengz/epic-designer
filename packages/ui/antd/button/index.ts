@@ -8,7 +8,6 @@ export default {
     type: "button",
     field: "input",
     input: false,
-    componentProps: {},
   },
   config: {
     attribute: [
@@ -51,6 +50,29 @@ export default {
           ],
         },
         field: "componentProps.type",
+      },
+      {
+        label: "操作类型",
+        type: "select",
+        componentProps: {
+          placeholder: "请选择",
+          clearable: true,
+          options: [
+            {
+              label: "button",
+              value: "button",
+            },
+            {
+              label: "submit",
+              value: "submit",
+            },
+            {
+              label: "reset",
+              value: "reset",
+            },
+          ],
+        },
+        field: "componentProps.htmlType",
       },
       {
         label: "链接",
@@ -134,6 +156,21 @@ export default {
           ],
         },
         field: "componentProps.shape",
+      },
+      {
+        label: "幽灵按钮",
+        type: "switch",
+        field: "componentProps.ghost",
+      },
+      {
+        label: "加载状态",
+        type: "switch",
+        field: "componentProps.loading",
+      },
+      {
+        label: "宽度自适应",
+        type: "switch",
+        field: "componentProps.block",
       },
       {
         label: "危险按钮",

@@ -106,8 +106,12 @@ export default {
         field: "componentProps.stringMode",
       },
       {
-        label: "有边框",
+        label: "无边框",
         type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
         field: "componentProps.bordered",
       },
       {

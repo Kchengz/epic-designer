@@ -73,16 +73,6 @@ export default {
         },
       },
       {
-        label: "显示冒号",
-        type: "switch",
-        field: "componentProps.colon",
-      },
-      {
-        label: "隐藏必须标志",
-        type: "switch",
-        field: "componentProps.hideRequiredMark",
-      },
-      {
         label: "对齐方式",
         type: "select",
         componentProps: {
@@ -99,6 +89,17 @@ export default {
         },
         field: "componentProps.labelAlign",
       },
+      {
+        label: "显示冒号",
+        type: "switch",
+        field: "componentProps.colon",
+      },
+      {
+        label: "隐藏必须标志",
+        type: "switch",
+        field: "componentProps.hideRequiredMark",
+      },
+
       {
         label: "标签文本换行",
         type: "switch",
@@ -146,6 +147,11 @@ export default {
           ],
         },
         field: "componentProps.size",
+      },
+      {
+        label: "滚动校验错误",
+        type: "switch",
+        field: "componentProps.scrollToFirstError",
       },
       {
         label: "禁用",

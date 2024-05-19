@@ -54,11 +54,6 @@ export default {
         },
       },
       {
-        label: "有边框",
-        type: "switch",
-        field: "componentProps.bordered",
-      },
-      {
         label: "尺寸",
         type: "select",
         componentProps: {
@@ -88,6 +83,15 @@ export default {
         componentProps: {
           placeholder: "请输入",
         },
+      },
+      {
+        label: "无边框",
+        type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
+        field: "componentProps.bordered",
       },
       {
         label: "统计字数",

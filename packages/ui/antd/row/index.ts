@@ -23,7 +23,7 @@ export default {
       },
     ],
   },
-  editConstraints:{
+  editConstraints: {
     childImmovable: true,
   },
   config: {
@@ -94,6 +94,15 @@ export default {
         label: "列编辑",
         type: "EColEditor",
         field: "children",
+      },
+      {
+        label: "不自动换行",
+        type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
+        field: "componentProps.wrap",
       },
       {
         label: "隐藏",

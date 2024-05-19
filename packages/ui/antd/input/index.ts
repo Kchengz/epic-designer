@@ -9,7 +9,6 @@ export default {
     field: "input",
     input: true,
     componentProps: {
-      bordered: true,
       placeholder: "请输入",
     },
   },
@@ -85,13 +84,12 @@ export default {
         field: "componentProps.size",
       },
       {
-        label: "可清空",
+        label: "无边框",
         type: "switch",
-        field: "componentProps.allowClear",
-      },
-      {
-        label: "有边框",
-        type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
         field: "componentProps.bordered",
       },
       {
@@ -103,9 +101,14 @@ export default {
         },
       },
       {
-        label: "统计字数",
+        label: "展示字数",
         type: "switch",
         field: "componentProps.showCount",
+      },
+      {
+        label: "可清空",
+        type: "switch",
+        field: "componentProps.allowClear",
       },
       {
         label: "禁用",
@@ -128,37 +131,37 @@ export default {
     event: [
       {
         type: "input",
-        describe: "输入值",
+        describe: "输入值时",
       },
       {
         type: "change",
-        describe: "值修改",
+        describe: "值修改时",
       },
       {
         type: "pressEnter",
-        describe: "按下回车的回调",
+        describe: "按下回车时",
       },
       {
         type: "focus",
-        describe: "获取焦点",
+        describe: "获取焦点时",
       },
       {
         type: "blur",
-        describe: "失去焦点",
+        describe: "失去焦点时",
       },
     ],
     action: [
       {
         type: "focus",
-        describe: "使 input 获取焦点",
+        describe: "使输入框获取焦点",
       },
       {
         type: "blur",
-        describe: "使 input 失去焦点",
+        describe: "使输入框失去焦点",
       },
       {
         type: "select",
-        describe: "选中 input 中的文字",
+        describe: "选中输入框中的文字",
       },
     ],
   },

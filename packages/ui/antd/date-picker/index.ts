@@ -199,9 +199,6 @@ export default {
           placeholder: "请输入",
         },
         field: "componentProps.valueFormat",
-        // onChange: (e) => {
-        //   e.values.componentProps.format = e.value;
-        // },
       },
       {
         label: "尺寸",

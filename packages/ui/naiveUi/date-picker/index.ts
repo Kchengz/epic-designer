@@ -59,7 +59,7 @@ export default {
         field: "componentProps.placeholder",
       },
       {
-        label: "显示类型",
+        label: "日期类型",
         type: "select",
         field: "componentProps.type",
         componentProps: {
@@ -128,7 +128,7 @@ export default {
         },
       },
       {
-        label: "日期格式",
+        label: "显示格式",
         type: "input",
         field: "componentProps.format",
       },
