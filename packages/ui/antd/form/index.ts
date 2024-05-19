@@ -8,7 +8,6 @@ export default {
     label: "表单",
     type: "form",
     componentProps: {
-      layout: "horizontal",
       name: "default",
       labelWidth: "100px",
       labelLayout: "fixed",
@@ -18,9 +17,6 @@ export default {
       wrapperCol: {
         span: 19,
       },
-      colon: true,
-      labelAlign: "right",
-      size: "middle",
     },
     children: [],
   },
@@ -76,6 +72,8 @@ export default {
         label: "对齐方式",
         type: "select",
         componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
           options: [
             {
               label: "left",
@@ -90,25 +88,11 @@ export default {
         field: "componentProps.labelAlign",
       },
       {
-        label: "显示冒号",
-        type: "switch",
-        field: "componentProps.colon",
-      },
-      {
-        label: "隐藏必须标志",
-        type: "switch",
-        field: "componentProps.hideRequiredMark",
-      },
-
-      {
-        label: "标签文本换行",
-        type: "switch",
-        field: "componentProps.labelWrap",
-      },
-      {
         label: "表单布局",
         type: "select",
         componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
           options: [
             {
               label: "horizontal",
@@ -131,6 +115,8 @@ export default {
         type: "select",
         defaultValue: "default",
         componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
           options: [
             {
               label: "large",
@@ -149,7 +135,27 @@ export default {
         field: "componentProps.size",
       },
       {
-        label: "滚动校验错误",
+        label: "隐藏冒号",
+        type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
+        field: "componentProps.colon",
+      },
+      {
+        label: "隐藏必须标志",
+        type: "switch",
+        field: "componentProps.hideRequiredMark",
+      },
+
+      {
+        label: "标签文本换行",
+        type: "switch",
+        field: "componentProps.labelWrap",
+      },
+      {
+        label: "滚动校验错误处",
         type: "switch",
         field: "componentProps.scrollToFirstError",
       },

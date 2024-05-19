@@ -101,11 +101,11 @@ export default {
         type: "switch",
         field: "componentProps.dots",
       },
-      {
-        label: "持续显示提示",
-        type: "switch",
-        field: "componentProps.tooltipOpen",
-      },
+      // {
+      //   label: "持续显示提示",
+      //   type: "switch",
+      //   field: "componentProps.tooltipOpen",
+      // },
       {
         label: "禁用",
         type: "switch",

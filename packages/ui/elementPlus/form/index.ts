@@ -9,17 +9,7 @@ export default {
     type: "form",
     componentProps: {
       name: "default",
-      labelWidth: 100,
-      labelCol: {
-        span: 5,
-      },
-      wrapperCol: {
-        span: 19,
-      },
-      hideRequiredMark: false,
-      labelPosition: "right",
-      size: "default",
-      requireAsteriskPosition: "left",
+      labelWidth: 100
     },
     children: [],
   },
@@ -46,8 +36,10 @@ export default {
       {
         label: "标签位置",
         type: "select",
-        field: "componentProps.labelPosition",
+        field: "componentProps.label-position",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "left",
@@ -69,6 +61,8 @@ export default {
         type: "select",
         field: "componentProps.size",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "large",
@@ -88,8 +82,10 @@ export default {
       {
         label: "星号位置",
         type: "select",
-        field: "componentProps.requireAsteriskPosition",
+        field: "componentProps.require-asterisk-position",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "left",
@@ -105,17 +101,17 @@ export default {
       {
         label: "行内展示校验信息",
         type: "switch",
-        field: "componentProps.inlineMessage",
+        field: "componentProps.inline-message",
       },
       {
         label: "校验反馈图标",
         type: "switch",
-        field: "componentProps.statusIcon",
+        field: "componentProps.status-icon",
       },
       {
-        label: "scrollToError",
+        label: "滚动校验错误处",
         type: "switch",
-        field: "componentProps.scrollToError",
+        field: "componentProps.scroll-to-error",
       },
       {
         label: "行内模式",

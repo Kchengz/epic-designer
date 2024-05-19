@@ -28,9 +28,9 @@ export default {
       {
         label: "尺寸",
         type: "select",
-        defaultValue: "default",
         componentProps: {
           placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "large",

@@ -8,11 +8,6 @@ export default {
     type: "color-picker",
     field: "color-picker",
     input: true,
-    componentProps: {
-      style: { width: "100%" },
-      size: "default",
-      colorFormat: "hex",
-    },
   },
   config: {
     attribute: [
@@ -34,8 +29,9 @@ export default {
       {
         label: "尺寸",
         type: "select",
-        defaultValue: "default",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "large",
@@ -54,14 +50,11 @@ export default {
         field: "componentProps.size",
       },
       {
-        label: "透明度选择",
-        type: "switch",
-        field: "componentProps.showAlpha",
-      },
-      {
         label: "格式",
         type: "select",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "hsl",
@@ -82,6 +75,11 @@ export default {
           ],
         },
         field: "componentProps.colorFormat",
+      },
+      {
+        label: "透明度选择",
+        type: "switch",
+        field: "componentProps.showAlpha",
       },
       {
         label: "禁用",

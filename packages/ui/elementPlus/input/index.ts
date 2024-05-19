@@ -10,8 +10,6 @@ export default {
     input: true,
     componentProps: {
       placeholder: "请输入",
-      size: "default",
-      type: "text",
     },
   },
   config: {
@@ -27,10 +25,22 @@ export default {
         field: "label",
       },
       {
+        label: "默认值",
+        type: "input",
+        field: "componentProps.defaultValue",
+      },
+      {
+        label: "占位内容",
+        type: "input",
+        field: "componentProps.placeholder",
+      },
+      {
         label: "尺寸",
         type: "select",
         defaultValue: "default",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "large",
@@ -54,28 +64,24 @@ export default {
         field: "componentProps.maxlength",
         componentProps: {
           placeholder: "请输入",
+          min: 0
         },
       },
       {
         label: "统计字数",
         type: "switch",
         field: "componentProps.showWordLimit",
-      },
-      {
-        label: "默认值",
-        type: "input",
-        field: "componentProps.defaultValue",
-      },
-      {
-        label: "占位内容",
-        type: "input",
-        field: "componentProps.placeholder",
+        show: ({ values }) => {
+          return values.componentProps.maxlength;
+        },
       },
       {
         label: "输入类型",
         type: "select",
         defaultValue: "text",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "text",
@@ -94,12 +100,17 @@ export default {
         field: "componentProps.type",
       },
       {
-        label: "显示密码",
+        label: "显示切换图标",
         type: "switch",
         field: "componentProps.showPassword",
         show: ({ values }) => {
           return values.componentProps.type === "password";
         },
+      },
+      {
+        label: "只读",
+        type: "switch",
+        field: "componentProps.readonly",
       },
       {
         label: "可清空",
@@ -127,19 +138,23 @@ export default {
     event: [
       {
         type: "input",
-        describe: "输入值",
+        describe: "输入值时",
       },
       {
         type: "change",
-        describe: "值修改",
+        describe: "值修改时",
       },
       {
         type: "focus",
-        describe: "获取焦点",
+        describe: "获取焦点时",
       },
       {
         type: "blur",
-        describe: "失去焦点",
+        describe: "失去焦点时",
+      },
+      {
+        type: "clear",
+        describe: "点击清空按钮时",
       },
     ],
     action: [
