@@ -4,9 +4,19 @@ import { DatePicker } from "ant-design-vue";
 export default defineComponent({
   name: "EDatePicker",
   emits: ["update:modelValue", "change", "blur"],
-  setup(_, { emit, attrs }) {
+  props: {
+    modelValue: {
+      type: [String, Object, Array],
+      default: null,
+    },
+    type: {
+      type: String,
+      default: "date",
+    },
+  },
+  setup(props, { emit }) {
     watch(
-      () => attrs.type,
+      () => props.type,
       () => {
         handleUpdate();
       }
@@ -19,30 +29,19 @@ export default defineComponent({
     }
     return () => {
       let cmp: any = DatePicker;
-      const type = attrs.type;
 
-      const props: Record<string, any> = {
-        ...attrs,
-        value: attrs.modelValue,
+      const compProps: Record<string, any> = {
+        value: props.modelValue,
+        showTime: props.type.includes("time"),
+        picker: props.type.replace(/range$/, ""),
         "onUpdate:value": handleUpdate,
       };
 
-      // 判断显示类型，渲染相应组件
-      if (type === "daterange") {
-        // 默认值与组件类型不匹配时需清空默认值
-        if (typeof props.value !== "object" && props.value !== null) {
-          props.value = null;
-        }
+      // 判断日期类型，渲染相应组件
+      if (props.type.includes("range")) {
         cmp = DatePicker.RangePicker;
-      } else if (type === "month") {
-        // 默认值与组件类型不匹配时需清空默认值
-        if (typeof props.value === "object") props.value = null;
-        cmp = DatePicker.MonthPicker;
-      } else {
-        // 默认值与组件类型不匹配时需清空默认值
-        if (typeof props.value === "object") props.value = null;
       }
-      return h(cmp, props);
+      return h(cmp, compProps);
     };
   },
 });
