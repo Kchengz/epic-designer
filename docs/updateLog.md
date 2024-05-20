@@ -1,3 +1,20 @@
+## 0.9.12（2024-05-20）
+
+
+
+### ✨ Feat
+- 重构注册配置接口，新增editConstraints约束配置对象
+- antd日期选择器新增更多日期类型
+- antd组件属性补充
+- elementPlus组件属性补充
+### ✨ Refactor
+- 重构注册配置接口，新增editConstraints约束配置对象
+- 调整图标font-class影响范围,防止与项目其他的icon冲突
+- 将page组件name属性移至componentProps内
+### 🐛 Bug Fixes
+- 修复暗黑主题在组件渲染之前设置，导致异常问题
+- 修复isDark状态错误问题
+
 ## 0.9.11（2024-05-13）
 
 调整注册配置，将’icon‘属性移至 ComponentConfigModel 接口的‘defaultSchema’对象之外

@@ -87,7 +87,7 @@ export default {
         label: "链接打开方式",
         type: "select",
         field: "componentProps.target",
-        show: ({ values }) => values.componentProps.href,
+        show: ({ values }) => values.componentProps?.href,
         componentProps: {
           placeholder: "请选择",
           clearable: true,
