@@ -20,9 +20,6 @@ export default {
         },
       ],
       placeholder: "请选择",
-      showAllLevels: true,
-      separator: "/",
-      size: "default",
       props: {
         expandTrigger: "click",
       },
@@ -53,8 +50,9 @@ export default {
       {
         label: "尺寸",
         type: "select",
-        defaultValue: "default",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "large",
@@ -71,6 +69,38 @@ export default {
           ],
         },
         field: "componentProps.size",
+      },
+      {
+        label: "分割符",
+        type: "input",
+        componentProps: {
+          placeholder: "请输入",
+        },
+        field: "componentProps.separator",
+      },
+      {
+        label: "次级菜单展开方式",
+        type: "select",
+        field: "componentProps.props.expandTrigger",
+        componentProps: {
+          placeholder: "请选择",
+          clearable: true,
+          options: [
+            {
+              label: "click",
+              value: "click",
+            },
+            {
+              label: "hover",
+              value: "hover",
+            },
+          ],
+        },
+      },
+      {
+        label: "可搜索",
+        type: "switch",
+        field: "componentProps.filterable",
       },
       {
         label: "可多选",
@@ -99,36 +129,28 @@ export default {
           values.componentProps.collapseTags,
       },
       {
-        label: "展示完整路径",
+        label: "不显示路径",
         type: "switch",
+        componentProps: {
+          activeValue: false,
+          inactiveValue: true,
+        },
         field: "componentProps.showAllLevels",
       },
       {
-        label: "次级菜单展开方式",
-        type: "select",
-        field: "componentProps.props.expandTrigger",
-        componentProps: {
-          options: [
-            {
-              label: "click",
-              value: "click",
-            },
-            {
-              label: "hover",
-              value: "hover",
-            },
-          ],
-        },
-      },
-      {
-        label: "可搜索",
+        label: "父级可选",
         type: "switch",
-        field: "componentProps.filterable",
+        field: "componentProps.props.checkStrictly",
+        describe: "父子节点不互相关联",
       },
       {
-        label: "分割符",
-        type: "input",
-        field: "componentProps.separator",
+        label: "只获取选中节点",
+        type: "switch",
+        field: "componentProps.props.emitPath",
+        componentProps: {
+          activeValue: false,
+          inactiveValue: true,
+        },
       },
       {
         label: "可清空",
@@ -172,14 +194,22 @@ export default {
         describe: "选中节点变化时",
       },
       {
-        type: "close",
-        describe: "面板的关闭事件",
+        type: "blur",
+        describe: "	当失去焦点时触发",
+      },
+      {
+        type: "focus",
+        describe: "当获得焦点时触发",
       },
     ],
     action: [
       {
         type: "getCheckedNodes",
         describe: "获取当前选中节点",
+      },
+      {
+        type: "togglePopperVisible",
+        describe: "切换 popper 可见状态",
       },
     ],
   },

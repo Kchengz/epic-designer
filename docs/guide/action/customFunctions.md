@@ -67,7 +67,6 @@ epic.json 数据
               "label": "栅格布局",
               "type": "row",
               "icon": "epic-icon-zhage",
-              "childImmovable": true,
               "children": [
                 {
                   "type": "col",
@@ -321,7 +320,6 @@ const pageSchema = {
               "label": "栅格布局",
               "type": "row",
               "icon": "epic-icon-zhage",
-              "childImmovable": true,
               "children": [
                 {
                   "type": "col",

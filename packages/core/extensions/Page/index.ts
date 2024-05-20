@@ -16,7 +16,7 @@ export default {
         componentProps: {
           placeholder: "请输入",
         },
-        field: "name",
+        field: "componentProps.name",
       },
     ],
   },

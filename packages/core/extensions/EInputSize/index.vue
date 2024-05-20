@@ -10,12 +10,10 @@ import { pluginManager } from '@epic-designer/utils'
 import { ref, watch, nextTick } from 'vue'
 const Input = pluginManager.getComponent('input')
 const Select = pluginManager.getComponent('select')
-const props = defineProps({
-  modelValue: {
-    type: String,
-    default: null
-  }
-})
+const props = defineProps<{
+  modelValue?: string | number
+}>()
+
 const emit = defineEmits(['update:modelValue'])
 const size = ref<string | null>(null)
 const unit = ref('px')
@@ -29,6 +27,13 @@ const unitArray = [
   { label: 'pt', value: 'pt' }
 ]
 watch(() => props.modelValue, e => {
+  if (!e) return
+  // 默认传入数值时 单位默认为px
+  if (typeof e === 'number') {
+    size.value = String(e)
+    unit.value = 'px'
+    return
+  }
   const num = parseFloat(e)
   // 传入值为空或不正常时
   if (isNaN(num)) {

@@ -5,7 +5,7 @@
         <div class="epic-attr-label" :title="item.label">
           {{ item.label }}
         </div>
-        <div class="epic-attr-input">
+        <div class="epic-attr-input" :class="{ 'block!': item.layout === 'vertical' }">
           <ENode
             :componentSchema="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), input: false, field: undefined, hidden: false }, show: true, noFormItem: true }"
             :model-value="getAttributeValue(item.field!, item.editData ?? checkedNode!)"

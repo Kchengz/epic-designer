@@ -10,8 +10,7 @@ export default {
     input: true,
     componentProps: {
       valueFormat: "HH:mm:ss",
-      size: "middle",
-      placement: "bottomLeft",
+      format: "HH:mm:ss",
       placeholder: "请输入",
     },
   },
@@ -38,39 +37,20 @@ export default {
         field: "componentProps.placeholder",
       },
       {
-        label: "格式",
+        label: "显示格式",
         type: "input",
-        field: "componentProps.valueFormat",
-        onChange: (e) => {
-          e.values.componentProps.format = e.value;
-        },
-      },
-      {
-        label: "尺寸",
-        type: "select",
-        defaultValue: "default",
         componentProps: {
-          options: [
-            {
-              label: "large",
-              value: "large",
-            },
-            {
-              label: "middle",
-              value: "middle",
-            },
-            {
-              label: "small",
-              value: "small",
-            },
-          ],
+          placeholder: "请输入",
         },
-        field: "componentProps.size",
+        field: "componentProps.format",
       },
       {
-        label: "有边框",
-        type: "switch",
-        field: "componentProps.bordered",
+        label: "数据格式",
+        type: "input",
+        componentProps: {
+          placeholder: "请输入",
+        },
+        field: "componentProps.valueFormat",
       },
       {
         label: "尺寸",
@@ -123,6 +103,7 @@ export default {
         label: "弹出框位置",
         type: "select",
         componentProps: {
+          placeholder: "请选择",
           options: [
             {
               label: "bottomLeft",
@@ -143,6 +124,36 @@ export default {
           ],
         },
         field: "componentProps.placement",
+      },
+      {
+        label: "12小时制",
+        type: "switch",
+        field: "componentProps.use12Hours",
+        changeSync: true,
+        onChange({ values, value }) {
+          values.componentProps.defaultValue = null;
+          if (value) {
+            values.componentProps.format = "h:mm:ss a";
+            values.componentProps.valueFormat = "h:mm:ss a";
+          } else {
+            values.componentProps.format = "HH:mm:ss";
+            values.componentProps.valueFormat = "HH:mm:ss";
+          }
+        },
+      },
+      {
+        label: "无边框",
+        type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
+        field: "componentProps.bordered",
+      },
+      {
+        label: "禁止键盘输入",
+        type: "switch",
+        field: "componentProps.inputReadOnly",
       },
       {
         label: "可清空",

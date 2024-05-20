@@ -61,7 +61,7 @@ function validate() {
 onMounted(async () => {
   if (props.componentSchema?.type === 'form' && forms.value && form.value) {
     const name = props.componentSchema?.componentProps?.name ??
-    props.componentSchema?.name ?? 'default' as string
+      props.componentSchema?.name ?? 'default' as string
 
     forms.value[name] = form.value as any
     form.value.getData = getData
@@ -75,7 +75,7 @@ const componentProps = computed(() => {
   let labelCol = recordProps.labelCol
   let wrapperCol = recordProps.wrapperCol
   if (recordProps.labelLayout === 'fixed') {
-    labelCol = { style: `width:${recordProps.labelWidth}px` }
+    labelCol = { style: `width:${typeof recordProps.labelWidth === 'number' ? recordProps.labelWidth + 'px' : recordProps.labelWidth}` }
     wrapperCol = { style: 'width:auto;flex:1' }
   }
   return {

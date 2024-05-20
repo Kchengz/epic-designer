@@ -13,7 +13,6 @@ export default {
       type: "color",
       modes: ["hex"],
       showAlpha: true,
-      size: "medium",
       placement: "bottom-start",
     },
   },

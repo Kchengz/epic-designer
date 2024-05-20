@@ -28,15 +28,21 @@
 </template>
 <script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { pluginManager, useTheme } from '@epic-designer/utils'
 import { setupAntd, setupElementPlus, setupNaiveUi } from "@epic-designer/ui";
 import { Divider, Switch, Select } from 'ant-design-vue'
-
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import "ant-design-vue/dist/reset.css";
+import { useStorage } from '@vueuse/core'
 const { isDark } = useTheme()
+const epicDarkMode = useStorage<boolean>('epic-dark-mode', false)
+isDark.value = epicDarkMode.value
+watch(() => isDark.value, () => {
+    epicDarkMode.value = isDark.value
+})
+
 
 const links = [
     {

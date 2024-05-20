@@ -31,10 +31,16 @@ export default {
         field: "componentProps.defaultValue",
       },
       {
+        label: "占位内容",
+        type: "input",
+        field: "componentProps.placeholder",
+      },
+      {
         label: "尺寸",
         type: "select",
-        defaultValue: "default",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "large",
@@ -58,18 +64,16 @@ export default {
         field: "componentProps.maxlength",
         componentProps: {
           placeholder: "请输入",
+          min: 0
         },
       },
       {
         label: "统计字数",
         type: "switch",
         field: "componentProps.showWordLimit",
-      },
-
-      {
-        label: "占位内容",
-        type: "input",
-        field: "componentProps.placeholder",
+        show: ({ values }) => {
+          return values.componentProps.maxlength;
+        },
       },
       {
         label: "最小行数",

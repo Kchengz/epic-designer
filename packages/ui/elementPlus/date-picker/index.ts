@@ -15,7 +15,6 @@ export default {
       placeholder: "请选择",
       startPlaceholder: "请选择",
       endPlaceholder: "请选择",
-      size: "default",
     },
   },
   config: {
@@ -36,7 +35,7 @@ export default {
         field: "componentProps.defaultValue",
       },
       {
-        label: "显示类型",
+        label: "日期类型",
         type: "select",
         field: "componentProps.type",
         componentProps: {
@@ -81,7 +80,6 @@ export default {
         },
         onChange({ values, value }) {
           values.componentProps.defaultValue = null;
-          console.log(value);
           if (["date", "daterange", "dates"].includes(value)) {
             values.componentProps.format = "YYYY-MM-DD";
             values.componentProps.valueFormat = "YYYY-MM-DD";
@@ -135,6 +133,8 @@ export default {
         type: "select",
         defaultValue: "default",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "large",
@@ -158,7 +158,7 @@ export default {
         field: "componentProps.editable",
       },
       {
-        label: "日期格式",
+        label: "显示格式",
         type: "input",
         field: "componentProps.format",
       },
@@ -172,7 +172,7 @@ export default {
         type: "input",
         field: "componentProps.rangeSeparator",
         componentProps: {
-          placeholder: "请选择",
+          placeholder: "请输入",
         },
         show({ values }) {
           return ["datetimerange", "daterange", "monthrange"].includes(
@@ -184,6 +184,11 @@ export default {
         label: "可清空",
         type: "switch",
         field: "componentProps.clearable",
+      },
+      {
+        label: "只读",
+        type: "switch",
+        field: "componentProps.readonly",
       },
       {
         label: "禁用",

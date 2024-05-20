@@ -8,7 +8,6 @@ export default {
     type: "card",
     children: [],
     componentProps: {
-      shadow: "hover",
     },
   },
   config: {
@@ -21,7 +20,6 @@ export default {
       {
         label: "阴影时机",
         type: "select",
-        defaultValue: "always",
         componentProps: {
           options: [
             {
@@ -38,6 +36,7 @@ export default {
             },
           ],
           placeholder: "请选择",
+          clearable: true,
         },
         field: "componentProps.shadow",
       },

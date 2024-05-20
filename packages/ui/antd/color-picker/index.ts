@@ -56,6 +56,15 @@ export default {
         field: "componentProps.size",
       },
       {
+        label: "无边框",
+        type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
+        field: "componentProps.bordered",
+      },
+      {
         label: "可清空",
         type: "switch",
         field: "componentProps.allowClear",
@@ -81,7 +90,15 @@ export default {
     event: [
       {
         type: "change",
-        describe: "值变化时",
+        describe: "值修改时",
+      },
+      {
+        type: "focus",
+        describe: "获取焦点时",
+      },
+      {
+        type: "blur",
+        describe: "失去焦点时",
       },
     ],
     action: [],

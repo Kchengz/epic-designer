@@ -58,7 +58,7 @@ export function generateNewSchema(schema: ComponentSchema) {
     // 存在字段名，则自动在字段名后补充id
     if (
       (newVal.field || newVal.input) &&
-      !pluginManager.getComponentConfingByType(newVal.type).fixedField
+      !pluginManager.getComponentConfingByType(newVal.type)?.editConstraints?.fixedField
     ) {
       newVal.field = newVal.id;
     }
@@ -604,7 +604,6 @@ export function recursionConvertedNode(
     if (type === "grid") {
       type = "row";
       // 待修改
-      item.childImmovable = true;
     }
 
     if (parent && parent.type === "grid") {
@@ -620,8 +619,6 @@ export function recursionConvertedNode(
       icon: item.icon || "",
       field: item.model,
       componentProps,
-      // 待修改
-      childImmovable: item.childImmovable,
       id: item.key,
     };
 

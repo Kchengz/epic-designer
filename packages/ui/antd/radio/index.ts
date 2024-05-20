@@ -19,7 +19,6 @@ export default {
           value: "选项2",
         },
       ],
-      optionType: "default",
     },
   },
   config: {
@@ -63,19 +62,11 @@ export default {
         field: "componentProps.size",
       },
       {
-        label: "option类型",
-        type: "select",
+        label: "按钮样式",
+        type: "switch",
         componentProps: {
-          options: [
-            {
-              label: "default",
-              value: "default",
-            },
-            {
-              label: "button",
-              value: "button",
-            },
-          ],
+          checkedValue: "button",
+          unCheckedValue: "default",
         },
         field: "componentProps.optionType",
       },

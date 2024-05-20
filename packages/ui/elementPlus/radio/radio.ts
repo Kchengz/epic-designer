@@ -23,7 +23,7 @@ export default defineComponent({
             )
             :
             props.options?.map((option: any) =>
-            h(ElRadio, { label: option.value }, { default: () => option.label })
+            h(ElRadio, { value: option.value }, { default: () => option.label })
           )
         ]
       })

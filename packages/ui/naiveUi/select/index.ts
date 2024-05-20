@@ -20,7 +20,6 @@ export default {
         },
       ],
       placeholder: "请选择",
-      size: "medium",
       placement: "bottom-start",
     },
   },

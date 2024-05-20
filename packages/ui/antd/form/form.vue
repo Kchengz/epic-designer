@@ -60,8 +60,8 @@ function setData(data: FormDataModel) {
 onMounted(async () => {
   if (props.componentSchema?.type === 'form' && forms.value && form.value) {
     const name = props.componentSchema?.componentProps?.name ??
-    props.componentSchema?.name ?? 'default' as string
-    
+      props.componentSchema?.name ?? 'default' as string
+
     form.value.validate = validate
     forms.value[name] = form.value
     form.value.getData = getData
@@ -75,7 +75,7 @@ const componentProps = computed(() => {
   let labelCol = recordProps.labelCol
   let wrapperCol = recordProps.wrapperCol
   if (recordProps.labelLayout === 'fixed') {
-    labelCol = { flex: `${recordProps.labelWidth}px` }
+    labelCol = { flex: `${typeof recordProps.labelWidth === 'number' ? recordProps.labelWidth + 'px' : recordProps.labelWidth}` }
     wrapperCol = { flex: 1 }
   }
   return {

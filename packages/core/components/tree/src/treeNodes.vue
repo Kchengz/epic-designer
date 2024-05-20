@@ -1,5 +1,5 @@
 <template>
-  <draggable v-if="!pluginManager.getComponentConfingByType(props.parentSchema?.type || '')?.childImmovable"
+  <draggable v-if="!pluginManager.getComponentConfingByType(props.parentSchema?.type || '')?.editConstraints?.childImmovable"
     v-model="modelSchemas" item-key="id" :component-data="{
     }" class="epic-draggable-range" v-bind="{
       animation: 200,
@@ -57,7 +57,7 @@ function handleSelect(index: number) {
 
 function isDraggable(schema: ComponentSchema) {
   // 判断当前节点类型是否允许拖拽
-  if (schema.type === 'page' || pluginManager.getComponentConfingByType(schema.type).immovable) {
+  if (schema.type === 'page' || pluginManager.getComponentConfingByType(schema.type).editConstraints?.immovable) {
     // 禁止拖拽
     return 'unmover-item'
   }

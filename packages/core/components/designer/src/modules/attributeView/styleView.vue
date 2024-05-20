@@ -63,7 +63,6 @@ const componentStyles: ComponentSchema[] = [
     componentProps: {
       type: 'color',
       style: {
-        // width: '60px'
       }
     }
   }

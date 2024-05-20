@@ -49,24 +49,19 @@ export default {
         },
         field: "componentProps.size",
       },
-      // {
-      //   label: "键盘可控",
-      //   type: "switch",
-      //   field: "componentProps.keyboard",
-      // },
-      // {
-      //   label: "范围选择",
-      //   type: "switch",
-      //   field: "componentProps.range",
-      //   changeSync: true,
-      //   onChange: ({ value, values }) => {
-      //     if (value) {
-      //       values.componentProps.defaultValue = [0, 100];
-      //     } else {
-      //       values.componentProps.defaultValue = 0;
-      //     }
-      //   },
-      // },
+      {
+        label: "范围选择",
+        type: "switch",
+        field: "componentProps.range",
+        changeSync: true,
+        onChange: ({ value, values }) => {
+          if (value) {
+            values.componentProps.defaultValue = [0, 100];
+          } else {
+            values.componentProps.defaultValue = 0;
+          }
+        },
+      },
       {
         label: "倒转轨道",
         type: "switch",
@@ -101,6 +96,16 @@ export default {
         type: "switch",
         field: "componentProps.vertical",
       },
+      {
+        label: "显示刻度",
+        type: "switch",
+        field: "componentProps.dots",
+      },
+      // {
+      //   label: "持续显示提示",
+      //   type: "switch",
+      //   field: "componentProps.tooltipOpen",
+      // },
       {
         label: "禁用",
         type: "switch",

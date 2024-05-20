@@ -1,7 +1,6 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./row"),
-  childImmovable: true,
   groupName: "布局",
   icon: "epic-icon-zhage",
   defaultSchema: {
@@ -23,6 +22,9 @@ export default {
         },
       },
     ],
+  },
+  editConstraints: {
+    childImmovable: true,
   },
   config: {
     attribute: [
@@ -92,6 +94,15 @@ export default {
         label: "列编辑",
         type: "EColEditor",
         field: "children",
+      },
+      {
+        label: "不自动换行",
+        type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
+        field: "componentProps.wrap",
       },
       {
         label: "隐藏",

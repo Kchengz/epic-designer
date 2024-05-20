@@ -19,7 +19,6 @@ export default {
           value: "选项2",
         },
       ],
-      listHeight: 256,
       placeholder: "请选择",
       placement: "bottomLeft",
     },
@@ -72,14 +71,13 @@ export default {
         },
         field: "componentProps.size",
       },
+
       {
-        label: "label包装到value中",
-        type: "switch",
-        field: "componentProps.labelInValue",
-      },
-      {
-        label: "设置弹窗高度",
+        label: "弹窗高度",
         type: "number",
+        componentProps: {
+          placeholder: "请输入",
+        },
         field: "componentProps.listHeight",
       },
       {
@@ -94,6 +92,10 @@ export default {
             {
               label: "tags",
               value: "tags",
+            },
+            {
+              label: "combobox",
+              value: "combobox",
             },
           ],
           placeholder: "请选择",
@@ -151,9 +153,23 @@ export default {
         field: "componentProps.placement",
       },
       {
+        label: "无边框",
+        type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
+        field: "componentProps.bordered",
+      },
+      {
         label: "可清空",
         type: "switch",
         field: "componentProps.allowClear",
+      },
+      {
+        label: "labelInValue",
+        type: "switch",
+        field: "componentProps.labelInValue",
       },
       {
         label: "禁用",

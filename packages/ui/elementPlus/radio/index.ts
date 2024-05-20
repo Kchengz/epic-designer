@@ -43,6 +43,8 @@ export default {
         label: "尺寸",
         type: "select",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "large",

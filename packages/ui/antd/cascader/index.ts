@@ -20,7 +20,6 @@ export default {
         },
       ],
       placeholder: "请选择",
-      placement: "bottomLeft",
     },
   },
   config: {
@@ -69,9 +68,30 @@ export default {
         field: "componentProps.size",
       },
       {
-        label: "多选",
-        type: "switch",
-        field: "componentProps.multiple",
+        label: "弹出框位置",
+        type: "select",
+        componentProps: {
+          placeholder: "请选择",
+          options: [
+            {
+              label: "bottomLeft",
+              value: "bottomLeft",
+            },
+            {
+              label: "bottomRight",
+              value: "bottomRight",
+            },
+            {
+              label: "topLeft",
+              value: "topLeft",
+            },
+            {
+              label: "topRight",
+              value: "topRight",
+            },
+          ],
+        },
+        field: "componentProps.placement",
       },
       {
         label: "可搜索",
@@ -79,7 +99,21 @@ export default {
         field: "componentProps.showSearch",
       },
       {
-        label: "最大tag文本长度",
+        label: "无边框",
+        type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
+        field: "componentProps.bordered",
+      },
+      {
+        label: "多选",
+        type: "switch",
+        field: "componentProps.multiple",
+      },
+      {
+        label: "标签最大长度",
         type: "number",
         field: "componentProps.maxTagTextLength",
         componentProps: {
@@ -88,7 +122,7 @@ export default {
         show: ({ values }) => values.componentProps.multiple,
       },
       {
-        label: "最大tag显示数",
+        label: "标签显示数量",
         type: "number",
         field: "componentProps.maxTagCount",
         componentProps: {
@@ -116,31 +150,7 @@ export default {
         field: "componentProps.showCheckedStrategy",
         show: ({ values }) => values.componentProps.multiple,
       },
-      {
-        label: "弹出框位置",
-        type: "select",
-        componentProps: {
-          options: [
-            {
-              label: "bottomLeft",
-              value: "bottomLeft",
-            },
-            {
-              label: "bottomRight",
-              value: "bottomRight",
-            },
-            {
-              label: "topLeft",
-              value: "topLeft",
-            },
-            {
-              label: "topRight",
-              value: "topRight",
-            },
-          ],
-        },
-        field: "componentProps.placement",
-      },
+
       {
         label: "可清空",
         type: "switch",

@@ -10,7 +10,6 @@ export default {
     input: true,
     componentProps: {
       placeholder: "请输入",
-      bordered: true,
     },
   },
   config: {
@@ -54,8 +53,12 @@ export default {
         field: "componentProps.size",
       },
       {
-        label: "有边框",
+        label: "无边框",
         type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
         field: "componentProps.bordered",
       },
       {
@@ -70,6 +73,20 @@ export default {
         label: "统计字数",
         type: "switch",
         field: "componentProps.showCount",
+      },
+      {
+        label: "密码可见",
+        type: "switch",
+        field: "componentProps.visible",
+      },
+      {
+        label: "隐藏切换按钮",
+        type: "switch",
+        componentProps: {
+          checkedValue: false,
+          unCheckedValue: true,
+        },
+        field: "componentProps.visibilityToggle",
       },
       {
         label: "可清空",

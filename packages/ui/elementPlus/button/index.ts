@@ -48,6 +48,37 @@ export default {
         field: "componentProps.type",
       },
       {
+        label: "操作类型",
+        type: "select",
+        componentProps: {
+          placeholder: "请选择",
+          clearable: true,
+          options: [
+            {
+              label: "button",
+              value: "button",
+            },
+            {
+              label: "submit",
+              value: "submit",
+            },
+            {
+              label: "reset",
+              value: "reset",
+            },
+          ],
+        },
+        field: "componentProps.native-type",
+      },
+      {
+        label: '自定义颜色',
+        type: 'color-picker',
+        field: 'componentProps.color',
+        componentProps: {
+          type: 'color',
+        }
+      },
+      {
         label: "朴素按钮",
         type: "switch",
         field: "componentProps.plain",
@@ -66,6 +97,11 @@ export default {
         label: "文字按钮",
         type: "switch",
         field: "componentProps.text",
+      },
+      {
+        label: "加载状态",
+        type: "switch",
+        field: "componentProps.loading",
       },
       {
         label: "禁用",

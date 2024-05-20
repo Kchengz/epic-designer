@@ -1,7 +1,7 @@
 <template>
   <ENode ref="nodeRef" :componentSchema="props.schema">
     <!-- childImmovable不可拖拽设计 start -->
-    <template v-if="pluginManager.getComponentConfingByType(props.schema.type)?.childImmovable" #edit-node>
+    <template v-if="pluginManager.getComponentConfingByType(props.schema.type)?.editConstraints?.childImmovable" #edit-node>
       <ENodeItem v-for="schema in props.schema.children" :key="schema.id" :schema="schema" />
     </template>
     <!-- childImmovable不可拖拽设计 end -->
