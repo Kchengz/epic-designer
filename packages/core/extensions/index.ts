@@ -27,7 +27,7 @@ export function setupComponent (pluginManager: PluginManager): void {
     icon: 'epic-icon-daima1',
     component: async () =>
       await import(
-        '../components/designer/src/modules/soundCode/index.vue'
+        '../components/designer/src/modules/sourceCode/index.vue'
       )
   })
 
