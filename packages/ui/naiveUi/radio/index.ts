@@ -29,14 +29,14 @@ export default {
         field: "field",
       },
       {
+        label: "标题",
+        type: "input",
+        field: "label",
+      },
+      {
         label: "默认值",
         type: "radio",
         field: "componentProps.defaultValue",
-      },
-      {
-        label: "文字",
-        type: "input",
-        field: "label",
       },
       {
         label: "尺寸",

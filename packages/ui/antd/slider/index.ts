@@ -17,7 +17,7 @@ export default {
         field: "field",
       },
       {
-        label: "文字",
+        label: "标题",
         type: "input",
         field: "label",
       },

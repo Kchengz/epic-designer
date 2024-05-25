@@ -21,9 +21,15 @@ export default {
         field: "field",
       },
       {
-        label: "文字",
+        label: "标题",
         type: "input",
         field: "label",
+      },
+
+      {
+        label: "默认值",
+        type: "slider",
+        field: "componentProps.defaultValue",
       },
       {
         label: "尺寸",
@@ -48,12 +54,6 @@ export default {
         },
         field: "componentProps.size",
       },
-      {
-        label: "默认值",
-        type: "slider",
-        field: "componentProps.defaultValue",
-      },
-
       {
         label: "最小值",
         type: "number",
