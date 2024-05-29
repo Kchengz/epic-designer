@@ -75,6 +75,15 @@ setupDesignerExtensions();
 ## ComponentConfigModel 类型及字段注释
 
 ```
+export interface EditConstraintsModel {
+   // 当前组件是否固定不可拖动，可选
+   immovable?: boolean;
+   // 子节点是否固定不可拖动,只控制下一级，可选
+   childImmovable?: boolean;
+   // 表单字段是否固定 不添加随机UUID
+   fixedField?: boolean;
+}
+  
 export interface ComponentConfigModel {
   // 组件
   component: any;
@@ -82,14 +91,10 @@ export interface ComponentConfigModel {
   groupName?: string;
   // 组件图标
   icon?: string;
-  // 当前组件是否固定不可拖动，可选
-  immovable?: boolean;
-  // 子节点是否固定不可拖动,只控制下一级，可选
-  childImmovable?: boolean;
-  // 表单字段是否固定 不添加随机UUID
-  fixedField?: boolean;
   // 默认组件结构数据
   defaultSchema: ComponentSchema;
+  // 设计编辑约束
+  editConstraints?: EditConstraintsModel;
   // 配置
   config: {
     // 属性编辑列表

@@ -51,7 +51,7 @@ export interface ComponentConfigModel {
   icon?: string;
   // 默认组件结构数据
   defaultSchema: ComponentSchema;
-  // 编辑约束
+  // 设计编辑约束
   editConstraints?: EditConstraintsModel;
   // 配置
   config: {
