@@ -1,6 +1,6 @@
 <template>
     <div class="epic-demo-header h-64px px-6 flex items-center justify-between">
-        <a class="decoration-none items-center flex" href="https://docs.epicjs.cn:1443/" target="_blank">
+        <a class="decoration-none items-center flex" href="https://docs.epicjs.cn" target="_blank">
             <img src="@/assets/logo.png" class="w-22px h-22px" alt="" srcset="">
             <span class="ml-4 font-bold text-16px">EpicDesigner低代码设计器</span>
         </a>
@@ -47,7 +47,7 @@ watch(() => isDark.value, () => {
 const links = [
     {
         title: '文档',
-        url: 'https://docs.epicjs.cn:1443/'
+        url: 'https://docs.epicjs.cn'
     },
     {
         title: '更新日志',

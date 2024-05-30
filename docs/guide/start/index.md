@@ -24,7 +24,7 @@
 
 📦gitee仓库：[https://gitee.com/kcz66/epic-designer](https://gitee.com/kcz66/epic-designer)
 
-📖文档地址：[https://docs.epicjs.cn:1443/](https://docs.epicjs.cn:1443/)
+📖文档地址：[https://docs.epicjs.cn](https://docs.epicjs.cn)
 
 💎项目预览地址：
 
