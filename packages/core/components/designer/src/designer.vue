@@ -44,13 +44,15 @@
 
     </template>
   </Suspense>
+  <EPreview ref="preview" />
 </template>
 <script lang="ts" setup>
-import { provide, reactive, toRaw, watch, nextTick, computed } from 'vue'
+import { ref, provide, reactive, toRaw, watch, nextTick, computed } from 'vue'
 import { DesignerState, ComponentSchema, PageSchema } from '../../../types/epic-designer'
 import { getMatchedById, loadAsyncComponent, revoke, usePageManager, pluginManager, deepCompareAndModify, deepEqual, deepClone } from '@epic-designer/utils'
 import { DesignerProps } from './types'
 import { useShareStore } from '@epic-designer/utils'
+import EPreview from './preview/index.vue'
 
 const EHeader = loadAsyncComponent(() => import('./modules/header/index.vue'))
 const EActionBar = loadAsyncComponent(() => import('./modules/actionBar/index.vue'))
@@ -85,7 +87,7 @@ function test (){
 
 // 通过defineExpose暴露的函数或者属性
 defineExpose({
- test 
+ test
 })`
   })
 })
@@ -95,6 +97,8 @@ pageManager.setDesignMode()
 pageManager.setDefaultComponentIds(props.defaultSchema.schemas)
 
 const emits = defineEmits(['ready', 'save', 'reset', 'toggleDeviceMode'])
+
+const preview = ref<InstanceType<typeof EPreview> | null>(null)
 
 const state = reactive<DesignerState>({
   checkedNode: null,
@@ -242,6 +246,9 @@ init()
 defineExpose({
   setData,
   getData,
-  reset
+  reset,
+  preview: () => {
+    preview.value!.handleOpen()
+  }
 })
 </script>
