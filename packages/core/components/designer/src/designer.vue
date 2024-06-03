@@ -7,7 +7,7 @@
       <div class="epic-designer-main">
         <div class="epic-header-container">
           <slot name="header">
-            <EHeader v-if="!props.hiddenHeader" @save="handleSave">
+            <EHeader @preview="handlePreview" v-if="!props.hiddenHeader" @save="handleSave">
               <template #header>
                 <slot name="header-prefix"></slot>
               </template>
@@ -35,16 +35,15 @@
           <EEditContainer />
           <ERightSidebar />
         </div>
+        <EPreview ref="previewRef" />
       </div>
     </template>
     <template #fallback>
       <div class="epic-loading-box">
         <EAsyncLoader />
       </div>
-
     </template>
   </Suspense>
-  <EPreview ref="preview" />
 </template>
 <script lang="ts" setup>
 import { ref, provide, reactive, toRaw, watch, nextTick, computed } from 'vue'
@@ -52,7 +51,7 @@ import { DesignerState, ComponentSchema, PageSchema } from '../../../types/epic-
 import { getMatchedById, loadAsyncComponent, revoke, usePageManager, pluginManager, deepCompareAndModify, deepEqual, deepClone } from '@epic-designer/utils'
 import { DesignerProps } from './types'
 import { useShareStore } from '@epic-designer/utils'
-import EPreview from './preview/index.vue'
+import EPreview from './modules/preview/index.vue'
 
 const EHeader = loadAsyncComponent(() => import('./modules/header/index.vue'))
 const EActionBar = loadAsyncComponent(() => import('./modules/actionBar/index.vue'))
@@ -98,7 +97,7 @@ pageManager.setDefaultComponentIds(props.defaultSchema.schemas)
 
 const emits = defineEmits(['ready', 'save', 'reset', 'toggleDeviceMode'])
 
-const preview = ref<InstanceType<typeof EPreview> | null>(null)
+const previewRef = ref<InstanceType<typeof EPreview> | null>(null)
 
 const state = reactive<DesignerState>({
   checkedNode: null,
@@ -241,14 +240,19 @@ function handleToggleDeviceMode(mode: string) {
   emits('toggleDeviceMode', mode)
 }
 
+/**
+ * 预览
+ */
+function handlePreview() {
+  previewRef.value!.handleOpen()
+}
+
 init()
 
 defineExpose({
   setData,
   getData,
   reset,
-  preview: () => {
-    preview.value!.handleOpen()
-  }
+  preview: handlePreview
 })
 </script>
