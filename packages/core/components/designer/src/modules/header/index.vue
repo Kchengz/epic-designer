@@ -35,7 +35,7 @@
   </header>
 </template>
 <script lang="ts" setup>
-import { ref, inject, type Ref } from 'vue'
+import { inject, type Ref } from 'vue'
 import { pluginManager } from '@epic-designer/utils'
 import EIcon from '../../../../icon'
 import { DesignerProps } from '../../types'
