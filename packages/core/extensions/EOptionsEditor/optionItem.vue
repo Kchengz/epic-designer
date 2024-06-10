@@ -1,5 +1,5 @@
 <template>
-  <draggable v-model="modelValueComputed" item-key="id" :component-data="{
+  <draggable v-model="innerValue" item-key="id" :component-data="{
     type: 'transition-group',
   }" group="option-list" handle=".handle" :animation="200">
     <template #item="{ element: option, index }">
@@ -13,7 +13,7 @@
           <EIcon class="text-lg hover:text-red cursor-pointer" name="icon-shanchu1" @click="handleRemove(index)" />
         </div>
         <div class="pl-4" v-if="option.children">
-          <EOptionsCol v-model="option.children" />
+          <EOptionItem v-model="option.children" />
         </div>
       </div>
     </template>
@@ -22,9 +22,10 @@
 
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { pluginManager, deepCompareAndModify, deepClone } from '@epic-designer/utils'
-import { inject, computed } from 'vue';
+import { pluginManager } from '@epic-designer/utils'
+import { inject } from 'vue';
 import EIcon from '../../components/icon'
+import { useVModel } from '@vueuse/core'
 
 interface Option {
   label: string,
@@ -33,7 +34,7 @@ interface Option {
 }
 
 defineOptions({
-  name: 'EOptionsCol'
+  name: 'EOptionItem'
 })
 
 const props = defineProps<{
@@ -42,14 +43,7 @@ const props = defineProps<{
 const Input = pluginManager.getComponent('input')
 const tree = inject('tree', false)
 const emit = defineEmits(['update:modelValue'])
-const modelValueComputed = computed({
-  get() {
-    return props.modelValue
-  },
-  set(value) {
-    emit('update:modelValue', value)
-  }
-})
+const innerValue = useVModel(props, 'modelValue', emit)
 
 
 /**
@@ -73,6 +67,6 @@ function handleAddChildren(option: Option) {
  * @param index 
  */
 function handleRemove(index: number) {
-  modelValueComputed.value?.splice(index, 1)
+  innerValue.value = innerValue.value.filter((_item, i) => i !== index)
 }
 </script>

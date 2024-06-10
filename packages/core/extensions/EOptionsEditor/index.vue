@@ -9,15 +9,15 @@
         <div class="text-center">value</div>
       </div>
     </div> -->
-    <EOptionsCol v-model="valueComputed" />
+    <EOptionItem v-model="innerValue" />
     <Button @click="handleAdd">添加选项</Button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import EOptionsCol from './optionsCol.vue'
-import { pluginManager, deepCompareAndModify, deepClone } from '@epic-designer/utils'
-import { provide, computed } from 'vue';
+import EOptionItem from './optionItem.vue'
+import { pluginManager } from '@epic-designer/utils'
+import { provide, reactive } from 'vue';
 import { useVModel } from '@vueuse/core'
 const Button = pluginManager.getComponent('button')
 const props = defineProps<{
@@ -28,16 +28,6 @@ const props = defineProps<{
 const emit = defineEmits(['update:modelValue'])
 
 const innerValue = useVModel(props, 'modelValue', emit)
-
-const valueComputed = computed({
-  get() {
-    return innerValue.value
-  },
-  set(val) {
-    deepCompareAndModify(innerValue.value, deepClone(val))
-  }
-})
-
 
 interface Option {
   label: string,
@@ -52,11 +42,11 @@ provide('tree', props.tree)
  *  添加选项
  */
 function handleAdd() {
-  const option: Option = {
+  const option: Option = reactive({
     label: "",
     value: ""
-  }
-  innerValue.value?.push(option)
+  })
+  innerValue.value = [...innerValue.value, option]
 }
 
 </script>
