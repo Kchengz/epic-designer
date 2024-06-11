@@ -7,7 +7,7 @@
   },
   "author": "kchengz",
   "devDependencies": {
-    "ant-design-vue": "^4.2.1",
+    "ant-design-vue": "^4.2.3",
     "element-plus": "^2.7.2",
     "naive-ui": "^2.38.1",
     "vite-plugin-dts": "^3.9.0"

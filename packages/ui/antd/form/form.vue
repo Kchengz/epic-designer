@@ -74,9 +74,14 @@ const componentProps = computed(() => {
   const recordProps = props.componentSchema!.componentProps
   let labelCol = recordProps.labelCol
   let wrapperCol = recordProps.wrapperCol
-  if (recordProps.labelLayout === 'fixed') {
-    labelCol = { flex: `${typeof recordProps.labelWidth === 'number' ? recordProps.labelWidth + 'px' : recordProps.labelWidth}` }
-    wrapperCol = { flex: 1 }
+  if (recordProps.layout === 'vertical') {
+      labelCol = 24
+      wrapperCol = 24
+  } else {
+    if (recordProps.labelLayout === 'fixed') {
+      labelCol = { flex: `${typeof recordProps.labelWidth === 'number' ? recordProps.labelWidth + 'px' : recordProps.labelWidth}` }
+      wrapperCol = { flex: 1 }
+    }
   }
   return {
     ...recordProps,

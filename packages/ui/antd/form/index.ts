@@ -28,66 +28,6 @@ export default {
         field: "componentProps.name",
       },
       {
-        label: "标签布局",
-        type: "radio",
-        field: "componentProps.labelLayout",
-        componentProps: {
-          options: [
-            {
-              label: "固定宽度",
-              value: "fixed",
-            },
-            {
-              label: "自适应宽度",
-              value: "flex",
-            },
-          ],
-        },
-      },
-      {
-        label: "标签宽度",
-        type: "EInputSize",
-        field: "componentProps.labelWidth",
-        show: ({ values }) => {
-          return values.componentProps?.labelLayout === "fixed";
-        },
-      },
-      {
-        label: "labelCol",
-        type: "input",
-        field: "componentProps.labelCol.span",
-        show: ({ values }) => {
-          return values.componentProps?.labelLayout === "flex";
-        },
-      },
-      {
-        label: "wrapperCol",
-        type: "input",
-        field: "componentProps.wrapperCol.span",
-        show: ({ values }) => {
-          return values.componentProps?.labelLayout === "flex";
-        },
-      },
-      {
-        label: "对齐方式",
-        type: "select",
-        componentProps: {
-          placeholder: "请选择",
-          allowClear: true,
-          options: [
-            {
-              label: "left",
-              value: "left",
-            },
-            {
-              label: "right",
-              value: "right",
-            },
-          ],
-        },
-        field: "componentProps.labelAlign",
-      },
-      {
         label: "表单布局",
         type: "select",
         componentProps: {
@@ -109,6 +49,66 @@ export default {
           ],
         },
         field: "componentProps.layout",
+      },
+      {
+        label: "标签布局",
+        type: "radio",
+        field: "componentProps.labelLayout",
+        componentProps: {
+          options: [
+            {
+              label: "固定宽度",
+              value: "fixed",
+            },
+            {
+              label: "自适应宽度",
+              value: "flex",
+            },
+          ],
+        },
+      },
+      {
+        label: "标签宽度",
+        type: "EInputSize",
+        field: "componentProps.labelWidth",
+        show: ({ values }) => {
+          return values.componentProps?.labelLayout === "fixed" && values.componentProps?.layout !== "vertical";
+        },
+      },
+      {
+        label: "labelCol",
+        type: "input",
+        field: "componentProps.labelCol.span",
+        show: ({ values }) => {
+          return values.componentProps?.labelLayout === "fixed" && values.componentProps?.layout !== "vertical";
+        },
+      },
+      {
+        label: "wrapperCol",
+        type: "input",
+        field: "componentProps.wrapperCol.span",
+        show: ({ values }) => {
+          return values.componentProps?.labelLayout === "fixed" && values.componentProps?.layout !== "vertical";
+        },
+      },
+      {
+        label: "对齐方式",
+        type: "select",
+        componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
+          options: [
+            {
+              label: "left",
+              value: "left",
+            },
+            {
+              label: "right",
+              value: "right",
+            },
+          ],
+        },
+        field: "componentProps.labelAlign",
       },
       {
         label: "尺寸",
