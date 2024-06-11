@@ -80,7 +80,7 @@ export default {
         type: "input",
         field: "componentProps.labelCol.span",
         show: ({ values }) => {
-          return values.componentProps?.labelLayout === "fixed" && values.componentProps?.layout !== "vertical";
+          return values.componentProps?.labelLayout === "flex";
         },
       },
       {
@@ -88,7 +88,7 @@ export default {
         type: "input",
         field: "componentProps.wrapperCol.span",
         show: ({ values }) => {
-          return values.componentProps?.labelLayout === "fixed" && values.componentProps?.layout !== "vertical";
+          return values.componentProps?.labelLayout === "flex";
         },
       },
       {
