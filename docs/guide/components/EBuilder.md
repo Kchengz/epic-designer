@@ -526,6 +526,7 @@ onMounted(async () => {
 | 参数       | 说明                             | 类型    | 默认值 | 版本  |
 | ---------- | -------------------------------- | ------- | ------ | ----- |
 | pageSchema | EDesigner 设计器生成的 json 数据 | json    | -      | -     |
+| formData   | 表单数据，用于数据回显(仅用于name为default的表单)           | FormDataModel | -  | 0.9.15 |
 | disabled   | 禁用EBuilder所有输入项           | boolean | false  | 0.9.4 |
 
 ## 函数

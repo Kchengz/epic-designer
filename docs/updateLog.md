@@ -1,3 +1,14 @@
+## 0.9.15（2024-06-14）
+### ✨ Feat
+- EDesigner组件暴露预览方法
+- EBuilder组件新增formData属性用于表单数据回显
+### 🐛 Bug Fixes
+- 修复选项管理拖拽后无法新增选项问题
+- 修复级联选项管理，子选项拖拽后数据重复问题
+- 修复扩展iconfont无效问题
+- 修复ant design vue 升级4.2.3后formItem的label部分场景显示异常
+- 修复预览时点击组件label会切换选中组件问题
+
 ## 0.9.14（2024-05-25）
 ### ✨ Refactor
 - 组件label统一修改为标题
