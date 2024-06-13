@@ -28,6 +28,29 @@ export default {
         field: "componentProps.name",
       },
       {
+        label: "表单布局",
+        type: "select",
+        componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
+          options: [
+            {
+              label: "horizontal",
+              value: "horizontal",
+            },
+            {
+              label: "vertical",
+              value: "vertical",
+            },
+            {
+              label: "inline",
+              value: "inline",
+            },
+          ],
+        },
+        field: "componentProps.layout",
+      },
+      {
         label: "标签布局",
         type: "radio",
         field: "componentProps.labelLayout",
@@ -49,7 +72,7 @@ export default {
         type: "EInputSize",
         field: "componentProps.labelWidth",
         show: ({ values }) => {
-          return values.componentProps?.labelLayout === "fixed";
+          return values.componentProps?.labelLayout === "fixed" && values.componentProps?.layout !== "vertical";
         },
       },
       {
@@ -86,29 +109,6 @@ export default {
           ],
         },
         field: "componentProps.labelAlign",
-      },
-      {
-        label: "表单布局",
-        type: "select",
-        componentProps: {
-          placeholder: "请选择",
-          allowClear: true,
-          options: [
-            {
-              label: "horizontal",
-              value: "horizontal",
-            },
-            {
-              label: "vertical",
-              value: "vertical",
-            },
-            {
-              label: "inline",
-              value: "inline",
-            },
-          ],
-        },
-        field: "componentProps.layout",
       },
       {
         label: "尺寸",
