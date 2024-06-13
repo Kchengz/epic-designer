@@ -55,6 +55,14 @@ export const frameworkRoutes = [
         },
       },
       {
+        path: "/:ui/builderLoadFormData",
+        name: "builderLoadFormData",
+        component: () => import("@/views/builder/loadFormData/index.vue"),
+        meta: {
+          title: "数据回显2",
+        },
+      },
+      {
         path: "/:ui/disableDisplay",
         name: "disableDisplay",
         component: () => import("@/views/builder/disableDisplay/index.vue"),

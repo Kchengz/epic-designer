@@ -1,7 +1,9 @@
 import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
-import { ref, type Ref, type ComponentPublicInstance } from "vue";
+import { ref, reactive, type Ref, type ComponentPublicInstance } from "vue";
 import { pluginManager } from "./pluginManager";
+import { deepCompareAndModify } from "../index";
 import { findSchemas } from "../index";
+
 
 export interface ActionsModel {
   componentId?: string;
@@ -14,6 +16,9 @@ export interface PageManager {
   funcs: Ref<Record<string, any>>;
   isDesignMode: Ref<boolean>;
   defaultComponentIds: Ref<string[]>;
+  forms: Record<string, any>;
+  addFormData(formData: Record<string, any>, formName?: string): void;
+  setFormData(formData: Record<string, any>, formName?: string): void;
   getComponentInstance: (id: string) => ComponentPublicInstance;
   find: (id: string) => ComponentPublicInstance;
   addComponentInstance: (id: string, instance: ComponentPublicInstance) => void;
@@ -21,7 +26,7 @@ export interface PageManager {
   setMethods: (scriptStr: string, outputError?: boolean) => void;
   doActions: (actions: ActionsModel[], ...args: any) => void;
   setDesignMode: (isDesign?: boolean) => void;
-  setDefaultComponentIds: (schemas:ComponentSchema[]) => void;
+  setDefaultComponentIds: (schemas: ComponentSchema[]) => void;
 }
 
 export function usePageManager(): PageManager {
@@ -30,6 +35,8 @@ export function usePageManager(): PageManager {
   // 当前模式 true 设计模式, false 渲染模式
   const isDesignMode = ref(false);
   const defaultComponentIds = ref<string[]>([]);
+
+  const forms = reactive({});
 
   /**
    * 获取组件实例
@@ -133,10 +140,29 @@ export function usePageManager(): PageManager {
     isDesignMode.value = isDesign;
   }
 
-  
-  function setDefaultComponentIds(schemas:ComponentSchema[]){
-    const componentSchemas = findSchemas(schemas,()=>true) as ComponentSchema[]
-    defaultComponentIds.value = componentSchemas.map(item=>item.id as string)
+
+  function setDefaultComponentIds(schemas: ComponentSchema[]) {
+    const componentSchemas = findSchemas(schemas, () => true) as ComponentSchema[]
+    defaultComponentIds.value = componentSchemas.map(item => item.id as string)
+  }
+
+  // 添加表单数据
+  function addFormData(formData: Record<string, any>, formName: string = 'default') {
+    if (forms[formName]) {
+      const oldData = forms[formName]
+      deepCompareAndModify(formData, oldData);
+    }
+    forms[formName] = formData
+  }
+
+  // 设置表单数据
+  function setFormData(formData: Record<string, any>, formName: string = 'default') {
+    if (forms[formName]) {
+      deepCompareAndModify(forms[formName], formData)
+      return
+    }
+
+    forms[formName] = formData
   }
 
   return {
@@ -144,6 +170,9 @@ export function usePageManager(): PageManager {
     funcs,
     isDesignMode,
     defaultComponentIds,
+    forms,
+    addFormData,
+    setFormData,
     getComponentInstance,
     // 简化查询函数, 推荐使用
     find: getComponentInstance,

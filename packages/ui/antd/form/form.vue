@@ -11,7 +11,9 @@
 import { ref, type Ref, type PropType, reactive, provide, computed, inject, onMounted } from 'vue'
 import { Form } from 'ant-design-vue'
 import type { ComponentSchema, FormDataModel } from '@epic-designer/core/types/epic-designer'
+import { type PageManager } from '@epic-designer/utils'
 
+const pageManager = inject('pageManager', {}) as PageManager
 interface FormInstance extends InstanceType<typeof Form> {
   getData?: () => FormDataModel
   setData?: (FormDataModel) => void
@@ -29,6 +31,8 @@ const props = defineProps({
 const form = ref<FormInstance | null>(null)
 const forms = inject('forms', {}) as Ref<{ [name: string]: any }>
 const formData = reactive<FormDataModel>({})
+pageManager.addFormData(formData, props.componentSchema?.componentProps?.name)
+
 provide('formData', formData)
 
 
@@ -75,8 +79,8 @@ const componentProps = computed(() => {
   let labelCol = recordProps.labelCol
   let wrapperCol = recordProps.wrapperCol
   if (recordProps.layout === 'vertical') {
-      labelCol = 24
-      wrapperCol = 24
+    labelCol = 24
+    wrapperCol = 24
   } else {
     if (recordProps.labelLayout === 'fixed') {
       labelCol = { flex: `${typeof recordProps.labelWidth === 'number' ? recordProps.labelWidth + 'px' : recordProps.labelWidth}` }

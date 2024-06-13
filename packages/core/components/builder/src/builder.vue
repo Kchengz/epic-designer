@@ -32,6 +32,7 @@ const forms = ref<any>({})
 const ready = ref<boolean>(false)
 const props = defineProps<{
   pageSchema: PageSchema;
+  formData?: FormDataModel;
   disabled?: boolean
 }>()
 
@@ -41,6 +42,14 @@ const pageSchemaReactive = reactive<PageSchema>({
 
 watch(() => props.pageSchema, e => {
   deepCompareAndModify(pageSchemaReactive, e)
+}, {
+  immediate: true,
+  deep: true
+})
+
+watch(() => props.formData, data => {
+  if (!data) return
+  setData(data)
 }, {
   immediate: true,
   deep: true
@@ -132,27 +141,7 @@ function validate(formName = 'default'): Promise<FormDataModel | boolean> {
  * @param data
  */
 function setData(data: FormDataModel, formName = 'default') {
-  // 判断表单是否已经初始化
-  if (!ready.value) {
-    // 监听表单初始化状态
-    const unwatch = watch(ready, () => {
-      // 注销监听
-      unwatch()
-      setData(data, formName)
-
-    })
-    return
-  }
-
-
-  const form = forms.value?.[formName]
-  // 通过表单查询不到表单实例
-  if (!form) {
-    console.error(`表单 [name=${formName}] 不存在`)
-    return false
-  }
-
-  form.setData(data)
+  pageManager.setFormData(data, formName)
 }
 
 /**
