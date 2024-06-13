@@ -61,20 +61,6 @@ const props = defineProps<{
   name?: string
 }>()
 
-// 内部schema数据
-let innerSchema = reactive<ComponentSchema>(deepClone(props.componentSchema))
-
-// 监听 props.componentSchema 的变化，并在变化时调用 deepCompareAndModify 方法更新内部schema数据
-watch(() => props.componentSchema, (componentSchema) => {
-  // 深度比较对象属性值是否变更, 忽略 children 节点
-  if (deepEqual(innerSchema, componentSchema, ['children'])) {
-    return
-  }
-  deepCompareAndModify(innerSchema, deepClone(componentSchema))
-}, {
-  deep: true
-})
-
 // 表单formData数据
 let formData = inject('formData', {}) as FormDataModel
 
@@ -87,6 +73,46 @@ const disabled = inject<Ref<boolean> | { value: false; }>('disabled', { value: f
 const ruleFieldPrefix = inject<any[] | null>('ruleFieldPrefix', null)
 // 重置表单数据，不设置到表单formData数据
 const resetFormDataInject = inject<boolean>('resetFormData', false)
+
+// 内部schema数据
+let innerSchema = reactive<ComponentSchema>(deepClone(props.componentSchema))
+// 设计模式模式下，添加字段后缀
+addDesignModeSuffix()
+
+// 监听 props.componentSchema 的变化，并在变化时调用 deepCompareAndModify 方法更新内部schema数据
+watch(() => props.componentSchema, (componentSchema) => {
+  // 深度比较对象属性值是否变更, 忽略 children 节点
+  if (deepEqual(innerSchema, componentSchema, ['children'])) {
+    return
+  }
+  deepCompareAndModify(innerSchema, deepClone(componentSchema))
+  addDesignModeSuffix()
+}, {
+  deep: true
+})
+
+/**
+ * 在设计模式下为innerSchema.field添加特殊后缀。
+ * 此函数用于标识在设计模式下使用的字段，通过添加'-design-mode'后缀，
+ * 可以区分运行时和设计时的数据字段，以便在设计工具中进行特殊处理。
+ * 
+ * @remarks
+ * 此函数仅在pageManager的isDesignMode为true时执行，确保只在设计模式下影响字段命名。
+ * 如果innerSchema.field已经是字符串类型，则直接追加后缀，否则不进行处理。
+ */
+function addDesignModeSuffix() {
+  // 检查当前是否处于设计模式
+  // 检查是否是设计模式
+  if (pageManager.isDesignMode.value) {
+    // 判断innerSchema.field的类型，仅在是字符串类型时追加后缀
+    // 检查 innerSchema.field 是否为字符串类型
+    if (typeof innerSchema.field === 'string') {
+      // 给字段名添加设计模式后缀
+      // 给 innerSchema.field 添加后缀 '-design-mode'
+      innerSchema.field += '-design-mode';
+    }
+  }
+}
 
 // 重置表单数据，移除表单数据引用
 if (props.resetFormData || resetFormDataInject) {
@@ -150,6 +176,8 @@ const getFormItemProps = computed(() => {
     model = deepClone(ruleFieldPrefix) as []
     model.push(innerSchema.field)
   }
+
+
   const formItemProps = {
     ...innerSchema,
     rules,
