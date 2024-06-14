@@ -81,9 +81,15 @@ export function deepCompareAndModify(
 ): void {
   // 循环遍历obj2的所有属性
   for (const [key, val2] of Object.entries(obj2)) {
-    const val1 = obj1?.[key];
+    let val1 = obj1?.[key];
     // 如果obj1的属性值是对象或数组，则递归调用该函数
     if (val1 && val2 && typeof val1 === "object" && typeof val2 === "object") {
+      // 如果val1是数组，val2为非数组
+      if (Array.isArray(val1) && !Array.isArray(val2)) {
+        val1 = obj1[key] = {}
+      } else if (!Array.isArray(val1) && Array.isArray(val2)) {
+        val1 = obj1[key] = []
+      } 
       deepCompareAndModify(val1, val2);
     } else {
       // 如果属性值不相等，则将obj2的属性值复制给obj1
