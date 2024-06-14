@@ -13,13 +13,13 @@ import { Form } from 'ant-design-vue'
 import type { ComponentSchema, FormDataModel } from '@epic-designer/core/types/epic-designer'
 import { type PageManager } from '@epic-designer/utils'
 
-const pageManager = inject('pageManager', {}) as PageManager
 interface FormInstance extends InstanceType<typeof Form> {
   getData?: () => FormDataModel
   setData?: (FormDataModel) => void
   validateFields: () => void
   validate: () => void
 }
+
 const props = defineProps({
   componentSchema: {
     type: Object as PropType<ComponentSchema>,
@@ -28,11 +28,11 @@ const props = defineProps({
   }
 })
 
+const pageManager = inject('pageManager', {}) as PageManager
 const form = ref<FormInstance | null>(null)
 const forms = inject('forms', {}) as Ref<{ [name: string]: any }>
 const formData = reactive<FormDataModel>({})
 pageManager.addFormData(formData, props.componentSchema?.componentProps?.name)
-
 provide('formData', formData)
 
 

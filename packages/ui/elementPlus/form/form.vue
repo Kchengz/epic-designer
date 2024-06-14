@@ -12,18 +12,12 @@
 import { ref, Ref, reactive, PropType, provide, computed, inject, onMounted } from 'vue'
 import { ElForm } from 'element-plus'
 import type { ComponentSchema, FormDataModel } from '@epic-designer/core/types/epic-designer'
+import { type PageManager } from '@epic-designer/utils'
 
 interface FormInstance extends InstanceType<typeof ElForm> {
   getData?: () => FormDataModel
   setData?: (FormDataModel) => void
 }
-
-
-const form = ref<FormInstance | null>(null)
-const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>
-const visible = ref(true)
-const formData = reactive<FormDataModel>({})
-provide('formData', formData)
 
 const props = defineProps({
   componentSchema: {
@@ -32,6 +26,16 @@ const props = defineProps({
     default: () => ({})
   }
 })
+
+const pageManager = inject('pageManager', {}) as PageManager
+const form = ref<FormInstance | null>(null)
+const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>
+const visible = ref(true)
+const formData = reactive<FormDataModel>({})
+pageManager.addFormData(formData, props.componentSchema?.componentProps?.name)
+provide('formData', formData)
+
+
 
 /**
  * 获取表单数据

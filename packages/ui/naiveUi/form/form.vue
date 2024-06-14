@@ -12,6 +12,7 @@ import type { Ref, PropType } from 'vue'
 import { ref, computed, inject, reactive, provide, onMounted } from 'vue'
 import { NForm } from 'naive-ui/lib/form'
 import type { ComponentSchema, FormDataModel } from '@epic-designer/core/types/epic-designer'
+import { type PageManager } from '@epic-designer/utils'
 
 interface FormInstance extends InstanceType<typeof NForm> {
   getData?: () => FormDataModel
@@ -25,12 +26,13 @@ const props = defineProps({
     default: () => ({})
   }
 })
+const pageManager = inject('pageManager', {}) as PageManager
 const form = ref<FormInstance | null>(null)
 const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>
 const visible = ref(true)
 const formData = reactive<FormDataModel>({})
 provide('formData', formData)
-
+pageManager.addFormData(formData, props.componentSchema?.componentProps?.name)
 /**
  * 获取表单数据
  * @param formName 表单name
