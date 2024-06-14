@@ -1,3 +1,7 @@
+## 0.9.16（2024-06-14）
+### 🐛 Bug Fixes
+- 修复elementPlus/naiveUi表单数据回显无效问题
+
 ## 0.9.15（2024-06-14）
 ### ✨ Feat
 - EDesigner组件暴露预览方法
