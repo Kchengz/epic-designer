@@ -79,10 +79,10 @@ const componentProps = computed(() => {
   let labelCol = recordProps.labelCol
   let wrapperCol = recordProps.wrapperCol
   if (recordProps.layout === 'vertical') {
-    labelCol = 24
-    wrapperCol = 24
+    labelCol = wrapperCol = { span:24 }
   } else {
     if (recordProps.labelLayout === 'fixed') {
+      // 兼容 旧版本 labelWidth 是 number 的情况
       labelCol = { flex: `${typeof recordProps.labelWidth === 'number' ? recordProps.labelWidth + 'px' : recordProps.labelWidth}` }
       wrapperCol = { flex: 1 }
     }
