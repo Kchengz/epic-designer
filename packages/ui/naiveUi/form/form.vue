@@ -16,6 +16,7 @@ import { type PageManager } from '@epic-designer/utils'
 
 interface FormInstance extends InstanceType<typeof NForm> {
   getData?: () => FormDataModel
+  clearValidate?: () => void
   setData?: (FormDataModel) => void
 }
 
@@ -57,6 +58,15 @@ function getData(): FormDataModel {
   return form.value?.validate()
 }
 
+/**
+ * 清除的表单验证信息
+ * @param data
+ */
+ function clearValidate() {
+  return form.value?.restoreValidation()
+}
+
+
 // form组件需要特殊处理
 onMounted(async (): Promise<void> => {
   if (props.componentSchema?.type === 'form' && forms.value && form.value) {
@@ -82,6 +92,7 @@ defineExpose({
   form,
   getData,
   setData,
-  validate
+  validate,
+  clearValidate
 })
 </script>

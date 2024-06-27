@@ -142,6 +142,10 @@ function validate(formName = 'default'): Promise<FormDataModel | boolean> {
  */
 function setData(data: FormDataModel, formName = 'default') {
   pageManager.setFormData(data, formName)
+
+  // 手动清除表单校验
+  const form = forms.value?.[formName]
+  form?.clearValidate()
 }
 
 /**
