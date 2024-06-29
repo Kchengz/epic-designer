@@ -80,13 +80,16 @@ const componentProps = computed(() => {
   let wrapperCol = recordProps.wrapperCol
   if (recordProps.layout === 'vertical') {
     labelCol = wrapperCol = { span:24 }
-  } else {
-    if (recordProps.labelLayout === 'fixed') {
+  }else if (recordProps.layout === 'inline' && recordProps.labelLayout === 'fixed') {
+    // 处理内联固定label宽度导致换行问题
+    labelCol = {}
+    wrapperCol = { flex: 1 }
+  }else if (recordProps.labelLayout === 'fixed') {
       // 兼容 旧版本 labelWidth 是 number 的情况
       labelCol = { flex: `${typeof recordProps.labelWidth === 'number' ? recordProps.labelWidth + 'px' : recordProps.labelWidth}` }
       wrapperCol = { flex: 1 }
-    }
   }
+  
   return {
     ...recordProps,
     labelCol,
