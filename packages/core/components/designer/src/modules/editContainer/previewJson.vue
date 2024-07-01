@@ -46,9 +46,8 @@ function handleOpen() {
  * 导出数据
  */
 function handleExportData(fileName = `epic-data.json`) {
-  let content = "data:text/json;charset=utf-8,";
-  content += JSON.stringify(pageSchema, null, 2);
-  var encodedUri = encodeURI(content);
+  const content = JSON.stringify(pageSchema, null, 2);
+  var encodedUri = `data:text/json;charset=utf-8,${encodeURIComponent(content)}`;
   var actions = document.createElement("a");
   actions.setAttribute("href", encodedUri);
   actions.setAttribute("download", fileName);
