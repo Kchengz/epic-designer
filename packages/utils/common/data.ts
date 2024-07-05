@@ -71,13 +71,15 @@ export function generateNewSchema(schema: ComponentSchema) {
 /**
  * 不改变obj1引用，将obj2所有属性遍历复制给obj1。
  * 递归比较两个对象，将obj2的属性复制给obj1。
- * 如果obj1中有obj2没有的属性，则删除该属性。
+ * 如果obj1中有obj2没有的属性，根据shouldDelete参数决定是否删除该属性。
  * @param obj1 - 要修改的对象。
  * @param obj2 - 要比较的对象。
+ * @param shouldDelete - 如果为true，则删除obj2中不存在的obj1的属性。
  */
 export function deepCompareAndModify(
   obj1: Record<string, any>,
-  obj2: Record<string, any>
+  obj2: Record<string, any>,
+  shouldDelete: boolean = true
 ): void {
   // 循环遍历obj2的所有属性
   for (const [key, val2] of Object.entries(obj2)) {
@@ -89,17 +91,16 @@ export function deepCompareAndModify(
         val1 = obj1[key] = {}
       } else if (!Array.isArray(val1) && Array.isArray(val2)) {
         val1 = obj1[key] = []
-      } 
-      deepCompareAndModify(val1, val2);
+      }
+      deepCompareAndModify(val1, val2, shouldDelete);
     } else {
       // 如果属性值不相等，则将obj2的属性值复制给obj1
       obj1[key] = val2;
     }
   }
 
-  Object.keys(obj1)
-    .reverse()
-    .forEach((key) => {
+  if (shouldDelete) {
+    Object.keys(obj1).forEach((key) => {
       // 如果obj2中存在obj1的属性跳过
       if (obj2.hasOwnProperty(key)) {
         return;
@@ -113,6 +114,7 @@ export function deepCompareAndModify(
         delete obj1[key];
       }
     });
+  }
 }
 
 /**

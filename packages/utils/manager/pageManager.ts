@@ -146,7 +146,7 @@ export function usePageManager(): PageManager {
     defaultComponentIds.value = componentSchemas.map(item => item.id as string)
   }
 
-  // 添加表单数据
+  // 添加表单数据，内部表单
   function addFormData(formData: Record<string, any>, formName: string = 'default') {
     if (forms[formName]) {
       const oldData = forms[formName]
@@ -155,10 +155,10 @@ export function usePageManager(): PageManager {
     forms[formName] = formData
   }
 
-  // 设置表单数据
+  // 设置表单数据，外部
   function setFormData(formData: Record<string, any>, formName: string = 'default') {
     if (forms[formName]) {
-      deepCompareAndModify(forms[formName], formData)
+      deepCompareAndModify(forms[formName], formData, false)
       return
     }
 

@@ -201,8 +201,6 @@ const pageSchema = ref<PageSchema>({
 });
 
 onMounted(() => {
-setTimeout(() => {
-
   ebRef.value?.setData({
     radio_shndnr9b: "女",
     input_2drzm924: "芷音",
@@ -210,7 +208,11 @@ setTimeout(() => {
     checkbox_1l91io8k: ["唱", "跳", "rap", "篮球"],
     textarea_1ihmowjl: "Two and a half years of practice as a programmer",
   });
-},5000
-)
+
+  setTimeout(() => {
+    ebRef.value?.setData({
+      input_2drzm924: "妮泰梅",
+    });
+  }, 3000);
 });
 </script>
