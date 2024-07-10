@@ -10,8 +10,8 @@
     <div class="w-10px"></div>
     <!-- 折叠按钮 end -->
 
-    <div class="epic-right-sidebar w-280px" :class="{ hide: hideRightMain }">
-      <div class="w-280px">
+    <div class="epic-right-sidebar w-308px" :class="{ hide: hideRightMain }">
+      <div class="w-308px">
         <EBreadcrumb />
         <ul class="epic-actions-container">
           <li v-for="(item, index) in rightSidebars" :key="index" class="epic-action-item" :title="item.title"

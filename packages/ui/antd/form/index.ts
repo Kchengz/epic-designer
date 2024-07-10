@@ -23,30 +23,31 @@ export default {
   config: {
     attribute: [
       {
-        label: "name",
+        label: "Name",
         type: "input",
         field: "componentProps.name",
       },
       {
         label: "表单布局",
-        type: "select",
+        type: "radio",
         componentProps: {
           placeholder: "请选择",
           allowClear: true,
           options: [
             {
-              label: "horizontal",
+              label: "水平",
               value: "horizontal",
             },
             {
-              label: "vertical",
+              label: "垂直",
               value: "vertical",
             },
             {
-              label: "inline",
+              label: "内联",
               value: "inline",
             },
           ],
+          "option-type": "button"
         },
         field: "componentProps.layout",
       },
@@ -65,6 +66,7 @@ export default {
               value: "flex",
             },
           ],
+          "option-type": "button"
         },
       },
       {
@@ -72,41 +74,46 @@ export default {
         type: "EInputSize",
         field: "componentProps.labelWidth",
         show: ({ values }) => {
-          return values.componentProps?.labelLayout === "fixed" && values.componentProps?.layout !== "vertical";
+          return values.componentProps?.labelLayout === "fixed";
         },
       },
       {
-        label: "labelCol",
+        label: "标签占比",
         type: "input",
         field: "componentProps.labelCol.span",
         show: ({ values }) => {
           return values.componentProps?.labelLayout === "flex";
         },
+        componentProps: {
+          placeholder: "请输入",
+        }
       },
       {
-        label: "wrapperCol",
+        label: "控件占比",
         type: "input",
         field: "componentProps.wrapperCol.span",
         show: ({ values }) => {
           return values.componentProps?.labelLayout === "flex";
         },
+        componentProps: {
+          placeholder: "请输入",
+        }
       },
       {
-        label: "对齐方式",
-        type: "select",
+        label: "标签对齐",
+        type: "radio",
         componentProps: {
-          placeholder: "请选择",
-          allowClear: true,
           options: [
             {
-              label: "left",
+              label: "左",
               value: "left",
             },
             {
-              label: "right",
+              label: "右",
               value: "right",
             },
           ],
+          "option-type": "button"
         },
         field: "componentProps.labelAlign",
       },
@@ -119,15 +126,15 @@ export default {
           allowClear: true,
           options: [
             {
-              label: "large",
+              label: "大号",
               value: "large",
             },
             {
-              label: "middle",
+              label: "中等",
               value: "middle",
             },
             {
-              label: "small",
+              label: "小型",
               value: "small",
             },
           ],

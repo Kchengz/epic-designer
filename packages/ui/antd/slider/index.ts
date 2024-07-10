@@ -34,15 +34,15 @@ export default {
           allowClear: true,
           options: [
             {
-              label: "large",
+              label: "大号",
               value: "large",
             },
             {
-              label: "middle",
+              label: "中等",
               value: "middle",
             },
             {
-              label: "small",
+              label: "小型",
               value: "small",
             },
           ],
