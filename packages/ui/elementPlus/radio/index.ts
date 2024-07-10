@@ -47,15 +47,15 @@ export default {
           clearable: true,
           options: [
             {
-              label: "large",
+              label: "大号",
               value: "large",
             },
             {
-              label: "default",
+              label: "中等",
               value: "default",
             },
             {
-              label: "small",
+              label: "小型",
               value: "small",
             },
           ],

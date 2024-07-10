@@ -9,16 +9,40 @@ export default {
     type: "form",
     componentProps: {
       name: "default",
-      labelWidth: 100
+      labelWidth: "100px",
+      "label-position": "left"
     },
     children: [],
   },
   config: {
     attribute: [
       {
-        label: "name",
+        label: "Name",
         type: "input",
         field: "componentProps.name",
+      },
+      {
+        label: "标签位置",
+        type: "radio",
+        field: "componentProps.label-position",
+        componentProps: {
+          clearable: true,
+          radioButton: true,
+          options: [
+            {
+              label: "左边",
+              value: "left",
+            },
+            {
+              label: "右边",
+              value: "right",
+            },
+            {
+              label: "顶部",
+              value: "top",
+            },
+          ]
+        },
       },
       {
         label: "标签宽度",
@@ -33,29 +57,7 @@ export default {
           placeholder: "请输入",
         },
       },
-      {
-        label: "标签位置",
-        type: "select",
-        field: "componentProps.label-position",
-        componentProps: {
-          placeholder: "请选择",
-          clearable: true,
-          options: [
-            {
-              label: "left",
-              value: "left",
-            },
-            {
-              label: "right",
-              value: "right",
-            },
-            {
-              label: "top",
-              value: "top",
-            },
-          ],
-        },
-      },
+
       {
         label: "表单尺寸",
         type: "select",
@@ -65,15 +67,15 @@ export default {
           clearable: true,
           options: [
             {
-              label: "large",
+              label: "大号",
               value: "large",
             },
             {
-              label: "default",
+              label: "中等",
               value: "default",
             },
             {
-              label: "small",
+              label: "小型",
               value: "small",
             },
           ],
@@ -88,11 +90,11 @@ export default {
           clearable: true,
           options: [
             {
-              label: "left",
+              label: "左边",
               value: "left",
             },
             {
-              label: "right",
+              label: "右边",
               value: "right",
             },
           ],
