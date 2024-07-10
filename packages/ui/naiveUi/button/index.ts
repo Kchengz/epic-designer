@@ -65,21 +65,22 @@ export default {
         defaultValue: "default",
         componentProps: {
           placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "tiny",
               value: "tiny",
             },
             {
-              label: "large",
+              label: "大号",
               value: "large",
             },
             {
-              label: "medium",
+              label: "中等",
               value: "medium",
             },
             {
-              label: "small",
+              label: "小型",
               value: "small",
             },
           ],

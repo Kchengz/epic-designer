@@ -57,18 +57,20 @@ export default {
         type: "select",
         field: "componentProps.size",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
-              label: "small",
-              value: "small",
+              label: "大号",
+              value: "large",
             },
             {
-              label: "medium",
+              label: "中等",
               value: "medium",
             },
             {
-              label: "large",
-              value: "large",
+              label: "小型",
+              value: "small",
             },
           ],
         },

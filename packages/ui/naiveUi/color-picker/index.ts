@@ -12,8 +12,7 @@ export default {
     componentProps: {
       type: "color",
       modes: ["hex"],
-      showAlpha: true,
-      placement: "bottom-start",
+      showAlpha: true
     },
   },
   config: {
@@ -39,17 +38,18 @@ export default {
         defaultValue: "default",
         componentProps: {
           placeholder: "请选择",
+          clearable: true,
           options: [
             {
-              label: "large",
+              label: "大号",
               value: "large",
             },
             {
-              label: "medium",
+              label: "中等",
               value: "medium",
             },
             {
-              label: "small",
+              label: "小型",
               value: "small",
             },
           ],
@@ -61,6 +61,8 @@ export default {
         type: "select",
         field: "componentProps.placement",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "top-start",

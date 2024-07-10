@@ -91,6 +91,8 @@ export default {
         type: "select",
         field: "componentProps.placement",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "top-start",
@@ -141,8 +143,6 @@ export default {
               value: "left-end",
             },
           ],
-          clearable: true,
-          placeholder: "请输入",
         },
       },
       {

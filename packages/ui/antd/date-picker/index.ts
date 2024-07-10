@@ -228,6 +228,8 @@ export default {
         label: "弹出框位置",
         type: "select",
         componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
           options: [
             {
               label: "bottomLeft",
@@ -245,8 +247,7 @@ export default {
               label: "topRight",
               value: "topRight",
             },
-          ],
-          placeholder: "请选择",
+          ]
         },
         field: "componentProps.placement",
       },

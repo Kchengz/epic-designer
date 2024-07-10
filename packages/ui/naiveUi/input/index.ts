@@ -41,21 +41,23 @@ export default {
         type: "select",
         field: "componentProps.size",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
-              label: "tiny",
+              label: "极小",
               value: "tiny",
             },
             {
-              label: "small",
+              label: "小型",
               value: "small",
             },
             {
-              label: "medium",
+              label: "中等",
               value: "medium",
             },
             {
-              label: "large",
+              label: "大号",
               value: "large",
             },
           ],
@@ -66,6 +68,8 @@ export default {
         type: "select",
         defaultValue: "text",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "text",
@@ -99,6 +103,8 @@ export default {
         type: "select",
         field: "componentProps.showPasswordOn",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "click",
@@ -109,7 +115,6 @@ export default {
               value: "mousedown",
             },
           ],
-          clearable: true,
         },
         show: ({ values }) => values.componentProps.type === "password",
       },

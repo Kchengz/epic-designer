@@ -16,10 +16,7 @@ export default {
       wrapperCol: {
         span: 19,
       },
-      hideRequiredMark: false,
-      labelPlacement: "left",
-      labelAlign: "right",
-      requireMarkPlacement: "right",
+      hideRequiredMark: false
     },
     children: [],
   },
@@ -40,13 +37,15 @@ export default {
         type: "select",
         field: "componentProps.labelPlacement",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,  
           options: [
             {
-              label: "left",
+              label: "左边",
               value: "left",
             },
             {
-              label: "top",
+              label: "顶部",
               value: "top",
             },
           ],
@@ -57,13 +56,15 @@ export default {
         type: "select",
         field: "componentProps.labelAlign",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
-              label: "left",
+              label: "左边",
               value: "left",
             },
             {
-              label: "right",
+              label: "右边",
               value: "right",
             },
           ],
@@ -74,13 +75,15 @@ export default {
         type: "select",
         field: "componentProps.requireMarkPlacement",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
-              label: "left",
+              label: "左边",
               value: "left",
             },
             {
-              label: "right",
+              label: "右边",
               value: "right",
             },
           ],
@@ -91,17 +94,19 @@ export default {
         type: "select",
         field: "componentProps.size",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
-              label: "large",
+              label: "大号",
               value: "large",
             },
             {
-              label: "medium",
+              label: "中等",
               value: "medium",
             },
             {
-              label: "small",
+              label: "小型",
               value: "small",
             },
           ],

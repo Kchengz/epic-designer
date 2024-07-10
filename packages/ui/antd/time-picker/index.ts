@@ -104,6 +104,7 @@ export default {
         type: "select",
         componentProps: {
           placeholder: "请选择",
+          allowClear: true,
           options: [
             {
               label: "bottomLeft",

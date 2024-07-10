@@ -10,8 +10,7 @@ export default {
     field: "number",
     input: true,
     componentProps: {
-      placeholder: "请输入",
-      buttonPlacement: "right",
+      placeholder: "请输入"
     },
   },
   config: {
@@ -41,21 +40,23 @@ export default {
         type: "select",
         field: "componentProps.size",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
-              label: "tiny",
+              label: "极小",
               value: "tiny",
             },
             {
-              label: "small",
+              label: "小型",
               value: "small",
             },
             {
-              label: "medium",
+              label: "中等",
               value: "medium",
             },
             {
-              label: "large",
+              label: "大号",
               value: "large",
             },
           ],
@@ -66,6 +67,8 @@ export default {
         type: "select",
         field: "componentProps.buttonPlacement",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "both",

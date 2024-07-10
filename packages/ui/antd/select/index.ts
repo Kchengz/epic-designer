@@ -20,7 +20,6 @@ export default {
         },
       ],
       placeholder: "请选择",
-      placement: "bottomLeft",
     },
   },
   config: {
@@ -131,6 +130,8 @@ export default {
         label: "弹出框位置",
         type: "select",
         componentProps: {
+          placeholder: "请选择",
+          allowClear: true,
           options: [
             {
               label: "bottomLeft",

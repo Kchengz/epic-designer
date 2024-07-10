@@ -72,6 +72,7 @@ export default {
         type: "select",
         componentProps: {
           placeholder: "请选择",
+          allowClear: true,
           options: [
             {
               label: "bottomLeft",
@@ -135,6 +136,8 @@ export default {
         label: "回填方式",
         type: "select",
         componentProps: {
+          placeholder: "请选择",
+          clearable: true,
           options: [
             {
               label: "SHOW_PARENT",
@@ -144,8 +147,7 @@ export default {
               label: "SHOW_CHILD",
               value: "SHOW_CHILD",
             },
-          ],
-          placeholder: "请选择",
+          ]
         },
         field: "componentProps.showCheckedStrategy",
         show: ({ values }) => values.componentProps.multiple,
