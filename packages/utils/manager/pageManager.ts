@@ -90,7 +90,7 @@ export function usePageManager(): PageManager {
       })();
     } catch (error) {
       if (outputError) {
-        console.error("[epic-desinger：自定义函数]异常：", error);
+        console.error("[epic：自定义函数]异常：", error);
       }
     }
   }
@@ -116,7 +116,11 @@ export function usePageManager(): PageManager {
       }
 
       if (action.type === "custom") {
-        funcs.value[action.methodName]?.(...args);
+        try{
+          funcs.value[action.methodName]?.(...args);
+        }catch(err){
+          console.error(`[epic：自定义函数(${action.methodName})]执行异常:`,err)
+        }
       }
 
       if (action.type === "component") {
