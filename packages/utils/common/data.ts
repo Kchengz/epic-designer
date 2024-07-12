@@ -100,15 +100,15 @@ export function deepCompareAndModify(
   }
 
   if (shouldDelete) {
-    Object.keys(obj1).forEach((key) => {
+    Object.keys(obj1).reverse().forEach((key) => {
       // 如果obj2中存在obj1的属性跳过
       if (obj2.hasOwnProperty(key)) {
         return;
       }
       // 如果obj2中没有obj1的属性，则从obj1中删除该属性
-      if (Array.isArray(obj2)) {
-        // obj1 是数组
-        obj1.splice(key, 1);
+      if (Array.isArray(obj1)) {
+        // obj1 是数组，key 是字符串，需要转成数字索引
+        obj1.splice(Number(key), 1);
       } else {
         // obj1 是对象
         delete obj1[key];

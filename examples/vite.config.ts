@@ -13,8 +13,6 @@ export default defineConfig({
     (monacoEditorPlugin as any).default({
       languageWorkers: [
         "editorWorkerService",
-        "css",
-        "html",
         "json",
         "typescript",
       ],
