@@ -106,34 +106,100 @@ export function usePageManager(): PageManager {
   }
 
   /**
-   * 执行一组操作
-   * @param actions 操作数组
-   */
+  * 执行一组操作
+  * @param actions 操作数组
+  * @param args 其他参数
+  */
   function doActions(actions: ActionsModel[], ...args: any): void {
-    actions?.forEach((action) => {
-      if (action.type === "public") {
-        pluginManager.publicMethods[action.methodName]?.handler(...args);
-      }
+    // 检查是否提供了操作数组，如果没有提供，则发出警告并返回
+    if (!actions || actions.length === 0) {
+      console.warn('未提供任何动作');
+      return;
+    }
 
-      if (action.type === "custom") {
-        try{
-          funcs.value[action.methodName]?.(...args);
-        }catch(err){
-          console.error(`[epic：自定义函数(${action.methodName})]执行异常:`,err)
-        }
-      }
+    // 遍历每个操作
+    actions.forEach((action) => {
+      // 尝试解析操作参数，如果没有提供，则使用传入的参数
+      const methodArgs = action.args ? JSON.parse(action.args) : args;
+      // 根据操作的类型，调用不同的执行函数
+      switch (action.type) {
+        case "public":
+          // 执行公共方法
+          executePublicMethod(action, methodArgs);
+          break;
 
-      if (action.type === "component") {
-        const component =
-          action.componentId != null &&
-          (getComponentInstance(action.componentId) as any);
+        case "custom":
+          // 执行自定义方法
+          executeCustomMethod(action, methodArgs);
+          break;
 
-        component[action.methodName](
-          ...(action.args ? JSON.parse(action.args) : args)
-        );
-        return;
+        case "component":
+          // 执行组件方法
+          executeComponentMethod(action, methodArgs);
+          break;
+
+        default:
+          // 如果遇到未知的操作类型，发出警告
+          console.warn(`未知的动作类型: ${action.type}`);
+          break;
       }
     });
+  }
+
+  /**
+   * 执行公共方法
+   * @param action 操作
+   * @param args 参数
+   */
+  function executePublicMethod(action: ActionsModel, args: any): void {
+    try {
+      // 尝试调用公共方法处理程序
+      pluginManager.publicMethods[action.methodName]?.handler(...args);
+    } catch (err) {
+      // 如果调用失败，打印错误信息
+      console.error(`[Epic：公共函数(${action.methodName})]执行异常:`, err);
+    }
+  }
+
+  /**
+   * 执行自定义方法
+   * @param action 操作
+   * @param args 参数
+   */
+  function executeCustomMethod(action: ActionsModel, args: any): void {
+    try {
+      // 尝试调用自定义方法
+      funcs.value[action.methodName]?.(...args);
+    } catch (err) {
+      // 如果调用失败，打印错误信息
+      console.error(`[Epic：自定义函数(${action.methodName})]执行异常:`, err);
+    }
+  }
+
+  /**
+   * 执行组件方法
+   * @param action 操作
+   * @param args 参数
+   */
+  function executeComponentMethod(action: ActionsModel, args: any): void {
+    // 获取组件实例
+    const component =
+      action.componentId != null &&
+      (getComponentInstance(action.componentId) as any);
+
+    // 如果未找到组件实例，发出警告并返回
+    if (!component) {
+      console.warn(`[Epic：组件${action.componentId}]未找到`);
+      return;
+    }
+
+    try {
+      // 调用组件的方法
+      component[action.methodName](...args);
+    } catch (err) {
+      // 如果调用失败，打印错误信息
+      console.error(`[Epic：组件${action.componentId}函数(${action.methodName})]执行异常:`, err);
+    }
   }
 
   /**
