@@ -42,7 +42,12 @@ export default defineConfig({
       },
       { text: "更新日志", link: "/updateLog", activeMatch: "/updateLog" },
       {
-        text: "关于作者 | 赞助",
+        text: "权益声明",
+        link: "/guide/copyright/copyright",
+        activeMatch: "/copyright",
+      },
+      {
+        text: "关于 | 赞助",
         link: "/guide/about/about",
         activeMatch: "/about",
       },
