@@ -242,6 +242,10 @@ function handleAddComponentInstance() {
 
     // 添加属性设置方法
     instance.setAttr = (key: string, value: any) => {
+      // 初始化 componentProps 属性（如果尚未初始化）
+      if (!innerSchema.componentProps) {
+        innerSchema.componentProps = {};
+      }
       return innerSchema.componentProps[key] = value
     }
 
