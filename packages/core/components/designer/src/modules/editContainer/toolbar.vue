@@ -38,7 +38,8 @@
     <!-- 工具条 end  -->
 </template>
 <script lang="ts" setup>
-import { useShareStore, pluginManager, revoke, deepCompareAndModify, convertKFormData } from '@epic-designer/utils'
+import { pluginManager, revoke, deepCompareAndModify, convertKFormData } from '@epic-designer/utils'
+import { useShareStore } from '@epic-designer/hooks'
 import type { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { computed, inject, ref } from 'vue'
 import EIcon from '../../../../icon'

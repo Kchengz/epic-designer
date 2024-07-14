@@ -50,7 +50,7 @@ import { ref, provide, reactive, toRaw, watch, nextTick, computed } from 'vue'
 import { DesignerState, ComponentSchema, PageSchema } from '../../../types/epic-designer'
 import { getMatchedById, loadAsyncComponent, revoke, usePageManager, pluginManager, deepCompareAndModify, deepEqual, deepClone } from '@epic-designer/utils'
 import { DesignerProps } from './types'
-import { useShareStore } from '@epic-designer/utils'
+import { useShareStore } from '@epic-designer/hooks'
 import EPreview from './modules/preview/index.vue'
 
 const EHeader = loadAsyncComponent(() => import('./modules/header/index.vue'))

@@ -29,7 +29,9 @@
 <script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router'
 import { computed, watch } from 'vue'
-import { pluginManager, useTheme } from '@epic-designer/utils'
+import { pluginManager } from '@epic-designer/utils'
+import { useTheme } from '@epic-designer/hooks'
+
 import { setupAntd, setupElementPlus, setupNaiveUi } from "@epic-designer/ui";
 import { Divider, Switch, Select } from 'ant-design-vue'
 import 'element-plus/dist/index.css'

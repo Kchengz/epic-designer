@@ -20,6 +20,7 @@ export default defineConfig({
       "@epic-designer/core": path.resolve(__dirname, "../core"),
       "@epic-designer/ui": path.resolve(__dirname, "../ui"),
       "@epic-designer/utils": path.resolve(__dirname, "../utils"),
+      "@epic-designer/hooks": path.resolve(__dirname, "../hooks"),
     },
     // dedupe: ["vue"],
   },

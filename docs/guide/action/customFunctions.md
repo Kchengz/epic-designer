@@ -282,7 +282,7 @@ import { EDesigner,EBuilder,pluginManager } from "epic-designer";
 import { ref, onMounted } from 'vue';
 import { setupAntd } from "epic-designer/dist/ui/antd";
 import { ConfigProvider, theme } from 'ant-design-vue'
-import { useTheme } from '@epic-designer/utils'
+import { useTheme } from '@epic-designer/hooks'
 const { isDark } = useTheme()
 setupAntd(pluginManager);
 

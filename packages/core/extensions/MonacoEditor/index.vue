@@ -5,7 +5,7 @@
 import { ref, watch, nextTick, onMounted } from 'vue'
 import * as monaco from 'monaco-editor'
 import type { editor } from 'monaco-editor'
-import { useTheme } from '@epic-designer/utils'
+import { useTheme } from '@epic-designer/hooks'
 const props = withDefaults(defineProps<{
   language?: string,
   readOnly?: boolean,

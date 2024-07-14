@@ -21,6 +21,7 @@
     "@epic-designer/script": "workspace:*",
     "@epic-designer/ui": "workspace:*",
     "@epic-designer/utils": "workspace:*",
+    "@epic-designer/hooks": "workspace:*",
     "@turbo/gen": "^1.13.3",
     "@vitejs/plugin-vue": "^5.0.4",
     "element-plus": "^2.7.2",

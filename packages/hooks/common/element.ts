@@ -1,5 +1,5 @@
 import { onKeyUp, onKeyDown } from "@vueuse/core";
-import { useShareStore } from "../shareStore";
+import { useShareStore } from "../store";
 import { type Ref, watch, ref } from "vue";
 
 /**

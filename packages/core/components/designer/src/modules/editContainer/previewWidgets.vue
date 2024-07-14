@@ -1,20 +1,33 @@
 <template>
   <!-- 选中高亮 start  -->
-  <div v-show="showSelector && designer.state.checkedNode?.id !== 'root'" ref="selectorRef"
+  <div
+    v-show="showSelector && designer.state.checkedNode?.id !== 'root'"
+    ref="selectorRef"
     class="epic-checked-widget absolute pointer-events-none z-20"
-    :class="selectorPosition + ' ' + (selectorTransition ? 'transition-all' : '')">
+    :class="selectorPosition + ' ' + (selectorTransition ? 'transition-all' : '')"
+  >
     <div class="epic-widget-action-box" ref="actionBoxRef">
       <div class="epic-widget-action-item whitespace-nowrap">
         <!-- {{ designer.state.checkedNode?.type }} -->
-        {{ pluginManager.getComponentConfingByType(designer.state.checkedNode?.type
-          ?? '')?.defaultSchema.label }}
+        {{
+          pluginManager.getComponentConfingByType(designer.state.checkedNode?.type ?? "")
+            ?.defaultSchema.label
+        }}
       </div>
       <!-- 操作按钮 start  -->
       <div class="flex" v-if="isRemovableAndDraggable">
-        <div title="复制" class="epic-widget-action-item pointer-events-auto" @click="handleCopy">
+        <div
+          title="复制"
+          class="epic-widget-action-item pointer-events-auto"
+          @click="handleCopy"
+        >
           <EIcon name="icon-fuzhi3" />
         </div>
-        <div title="删除" class="epic-widget-action-item pointer-events-auto" @click="handleDelete">
+        <div
+          title="删除"
+          class="epic-widget-action-item pointer-events-auto"
+          @click="handleDelete"
+        >
           <EIcon name="icon-shanchu1" />
         </div>
       </div>
@@ -23,15 +36,19 @@
   </div>
   <!-- 选中高亮 end  -->
   <!-- 悬停效果 start  -->
-  <div v-show="showHover && designer.state.checkedNode?.id !== designer.state.hoverNode?.id" ref="hoverWidgetRef"
-    class="epic-hover-widget absolute transition-all pointer-events-none z-998" />
+  <div
+    v-show="showHover && designer.state.checkedNode?.id !== designer.state.hoverNode?.id"
+    ref="hoverWidgetRef"
+    class="epic-hover-widget absolute transition-all pointer-events-none z-998"
+  />
   <!-- 悬停效果 end  -->
 </template>
 <script lang="ts" setup>
 import { DesignerProps } from '../../types'
 import { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { inject, computed, ref, watch, type Ref } from 'vue'
-import { pluginManager, generateNewSchema, revoke, findSchemaInfoById, useShareStore, useTimedQuery, type PageManager } from '@epic-designer/utils'
+import { pluginManager, generateNewSchema, revoke, findSchemaInfoById,  type PageManager } from '@epic-designer/utils'
+import { useShareStore, useTimedQuery } from '@epic-designer/hooks'
 import { useResizeObserver } from '@vueuse/core'
 import EIcon from '../../../../icon'
 const pageManager = inject('pageManager', {}) as PageManager
@@ -369,5 +386,4 @@ function handleInit(epicEditRangeRef) {
 defineExpose({
   handleInit
 })
-
 </script>
