@@ -39,7 +39,7 @@
 </template>
 <script lang="ts" setup>
 import { pluginManager, revoke, deepCompareAndModify, convertKFormData } from '@epic-designer/utils'
-import { useShareStore } from '@epic-designer/hooks'
+import { useStore } from '@epic-designer/hooks'
 import type { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { computed, inject, ref } from 'vue'
 import EIcon from '../../../../icon'
@@ -48,7 +48,7 @@ import EPreviewJson from './previewJson.vue'
 const Slider = pluginManager.getComponent('slider')
 const Select = pluginManager.getComponent('select')
 
-const { canvasScale, disabledZoom } = useShareStore()
+const { canvasScale, disabledZoom } = useStore()
 const checkedKey = ref('pc')
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer

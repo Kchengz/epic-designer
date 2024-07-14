@@ -1,5 +1,5 @@
 import { onKeyUp, onKeyDown } from "@vueuse/core";
-import { useShareStore } from "../store";
+import { useStore } from "../store";
 import { type Ref, watch, ref } from "vue";
 
 /**
@@ -54,7 +54,7 @@ export function useKeyPress() {
 export function useElementDrag(
   editScreenContainer: Ref<HTMLDivElement | null>
 ) {
-  const { pressSpace } = useShareStore();
+  const { pressSpace } = useStore();
 
   let startX = 0;
   let startY = 0;
@@ -97,7 +97,7 @@ export function useElementDrag(
  * @returns
  */
 export function useElementZoom(draggableElRef: Ref<HTMLDivElement | null>) {
-  const { pressCtrl, canvasScale, disabledZoom } = useShareStore();
+  const { pressCtrl, canvasScale, disabledZoom } = useStore();
   /**
    * 缩放操作
    * @param e

@@ -24,7 +24,7 @@ import { watchOnce, useElementSize, useResizeObserver } from '@vueuse/core'
 import type { PageSchema } from '../../../../../types/epic-designer'
 
 import { debounce } from '@epic-designer/utils'
-import { useShareStore, useElementDrag, useElementZoom } from '@epic-designer/hooks'
+import { useStore, useElementDrag, useElementZoom } from '@epic-designer/hooks'
 import { ref, nextTick, inject, watch, shallowRef, unref, onMounted, UnwrapRef } from 'vue'
 import Toolbar from './toolbar.vue'
 
@@ -34,7 +34,7 @@ const editScreenContainerRef = ref<HTMLDivElement | null>(null)
 const draggableElRef = ref<HTMLDivElement | null>(null)
 const sizeBoxRef = ref<HTMLDivElement | null>(null)
 
-const { pressSpace, disabledZoom } = useShareStore()
+const { pressSpace, disabledZoom } = useStore()
 const { handleElementDragStart, handleElementDrag, handleElementDragEnd } = useElementDrag(editScreenContainerRef)
 const { width, height } = useElementSize(editScreenContainerRef)
 const { canvasScale, handleZoom } = useElementZoom(draggableElRef)

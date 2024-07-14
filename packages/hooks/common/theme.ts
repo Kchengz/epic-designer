@@ -1,8 +1,8 @@
 import { useToggle } from "@vueuse/core";
-import { useShareStore } from "../store";
+import { useStore } from "../store";
 import { watch, ref, onMounted, onUnmounted } from "vue";
 export function useTheme() {
-  const { isDark } = useShareStore();
+  const { isDark } = useStore();
   const toggleDark = useToggle(isDark);
   return {
     isDark,

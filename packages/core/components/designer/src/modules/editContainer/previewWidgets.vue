@@ -48,7 +48,7 @@ import { DesignerProps } from '../../types'
 import { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { inject, computed, ref, watch, type Ref } from 'vue'
 import { pluginManager, generateNewSchema, revoke, findSchemaInfoById,  type PageManager } from '@epic-designer/utils'
-import { useShareStore, useTimedQuery } from '@epic-designer/hooks'
+import { useStore, useTimedQuery } from '@epic-designer/hooks'
 import { useResizeObserver } from '@vueuse/core'
 import EIcon from '../../../../icon'
 const pageManager = inject('pageManager', {}) as PageManager
@@ -68,7 +68,7 @@ const selectorTransition = ref(true)
 
 const selectorPosition = ref<'top' | 'center' | 'bottom'>('top')
 
-const { canvasScale, disabledZoom } = useShareStore()
+const { canvasScale, disabledZoom } = useStore()
 
 let kEditRange: HTMLDivElement | null = null
 

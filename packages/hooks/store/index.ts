@@ -4,9 +4,9 @@ import { useKeyPress } from "../common/element";
 import { useDark } from "../common/theme";
 
 /**
- * 创建状态
+ * 初始化共享存储
  */
-export function useStore() {
+export function initStore() {
   // 设计区域画布缩放
   const canvasScale = ref(1);
   // 画布缩放启用状态
@@ -26,5 +26,5 @@ export function useStore() {
   };
 }
 
-// 创建共享状态
-export const useShareStore = createSharedComposable(useStore);
+// 使用共享状态
+export const useStore = createSharedComposable(initStore);
