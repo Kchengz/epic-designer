@@ -171,8 +171,23 @@ import monacoEditorPlugin from 'vite-plugin-monaco-editor'
 export default defineConfig({
 plugins: [
     vue(), 
+    (monacoEditorPlugin as any).default({
+      languageWorkers:['editorWorkerService', 'json']
+    })
+  ]
+});
+```
+
+> 如果因为插件依赖版本问题，上面写法不支持时可以改成下面这种方式
+
+```typescript
+import monacoEditorPlugin from 'vite-plugin-monaco-editor'
+ 
+export default defineConfig({
+plugins: [
+    vue(), 
     monacoEditorPlugin({
-      languageWorkers:['editorWorkerService', 'css', 'html', 'json', 'typescript']
+      languageWorkers:['editorWorkerService', 'json']
     })
   ]
 });
