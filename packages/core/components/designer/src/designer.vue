@@ -143,6 +143,7 @@ const formSchemas = [
       },
       colon: true,
       labelAlign: "right",
+      labelPlacement: "left",
     },
     children: [],
     id: "root",

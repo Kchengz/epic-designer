@@ -34,13 +34,13 @@ export interface ActionModel extends EventModel {
 }
 
 export interface EditConstraintsModel {
-   // 当前组件是否固定不可拖动，可选
-   immovable?: boolean;
-   // 子节点是否固定不可拖动,只控制下一级，可选
-   childImmovable?: boolean;
-   // 表单字段是否固定 不添加随机UUID
-   fixedField?: boolean;
-  }
+  // 当前组件是否固定不可拖动，可选
+  immovable?: boolean;
+  // 子节点是否固定不可拖动,只控制下一级，可选
+  childImmovable?: boolean;
+  // 表单字段是否固定 不添加随机UUID
+  fixedField?: boolean;
+}
 
 export interface ComponentConfigModel {
   // 组件
@@ -66,6 +66,8 @@ export interface ComponentConfigModel {
   };
   // 输入表单组件v-model绑定变量名称 默认 modelValue
   bindModel?: string;
+  // 用于组件排序，可选 默认值1000, 值越小，组件越靠前
+  sort?: number;
 }
 
 export type ComponentConfigModelRecords = Record<string, ComponentConfigModel>;
@@ -469,6 +471,15 @@ export class PluginManager {
         return -1; // b.title 不在 orderArray 中，排在前面
       }
       return indexA - indexB; // 按照 orderArray 中的顺序排序
+    });
+
+    // 对每个分组内部的组件按照 componentConfig.sort 字段排序
+    componentSchemaGroups.forEach((group) => {
+      group.list.sort((a, b) => {
+        const sortA = this.componentConfigs[a.type]?.sort ?? 1000;
+        const sortB = this.componentConfigs[b.type]?.sort ?? 1000;
+        return sortA - sortB;
+      });
     });
 
     this.componentSchemaGroups.value = componentSchemaGroups;
