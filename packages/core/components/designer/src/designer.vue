@@ -7,7 +7,11 @@
       <div class="epic-designer-main">
         <div class="epic-header-container">
           <slot name="header">
-            <EHeader @preview="handlePreview" v-if="!props.hiddenHeader" @save="handleSave">
+            <EHeader
+              @preview="handlePreview"
+              v-if="!props.hiddenHeader"
+              @save="handleSave"
+            >
               <template #header>
                 <slot name="header-prefix"></slot>
               </template>
@@ -46,38 +50,53 @@
   </Suspense>
 </template>
 <script lang="ts" setup>
-import { ref, provide, reactive, toRaw, watch, nextTick, computed } from 'vue'
-import { DesignerState, ComponentSchema, PageSchema } from '../../../types/epic-designer'
-import { getMatchedById, loadAsyncComponent, revoke, usePageManager, pluginManager, deepCompareAndModify, deepEqual, deepClone } from '@epic-designer/utils'
-import { DesignerProps } from './types'
-import { useStore } from '@epic-designer/hooks'
-import EPreview from './modules/preview/index.vue'
+import { ref, provide, reactive, toRaw, watch, nextTick, computed } from "vue";
+import { DesignerState, ComponentSchema, PageSchema } from "../../../types/epic-designer";
+import {
+  getMatchedById,
+  loadAsyncComponent,
+  revoke,
+  usePageManager,
+  pluginManager,
+  deepCompareAndModify,
+  deepEqual,
+  deepClone,
+} from "@epic-designer/utils";
+import { DesignerProps } from "./types";
+import { useStore } from "@epic-designer/hooks";
+import EPreview from "./modules/preview/index.vue";
 
-const EHeader = loadAsyncComponent(() => import('./modules/header/index.vue'))
-const EActionBar = loadAsyncComponent(() => import('./modules/actionBar/index.vue'))
-const EEditContainer = loadAsyncComponent(() => import('./modules/editContainer/index.vue'))
-const ERightSidebar = loadAsyncComponent(() => import('./modules/rightSidebar/index.vue'))
-const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
-const pageManager = usePageManager()
-
+const EHeader = loadAsyncComponent(() => import("./modules/header/index.vue"));
+const EActionBar = loadAsyncComponent(() => import("./modules/actionBar/index.vue"));
+const EEditContainer = loadAsyncComponent(
+  () => import("./modules/editContainer/index.vue")
+);
+const ERightSidebar = loadAsyncComponent(
+  () => import("./modules/rightSidebar/index.vue")
+);
+const EAsyncLoader = loadAsyncComponent(() => import("../../asyncLoader/index.vue"));
+const pageManager = usePageManager();
 
 const props = withDefaults(defineProps<DesignerProps>(), {
   disabledZoom: false,
   hiddenHeader: false,
   lockDefaultSchemaEdit: false,
+  formMode: false,
   title: "EpicDesigner默认项目",
   defaultSchema: () => ({
-    schemas: [{
-      type: 'page',
-      id: 'root',
-      label: '页面',
-      children: [],
-      componentProps: {
-        style: {
-          padding: '16px'
-        }
-      }
-    }],
+    schemas: [
+      {
+        type: "page",
+        id: "root",
+        label: "页面",
+        children: [],
+        componentProps: {
+          style: {
+            padding: "16px",
+          },
+        },
+      },
+    ],
     script: `const { defineExpose, find } = epic;
 
 function test (){
@@ -87,77 +106,146 @@ function test (){
 // 通过defineExpose暴露的函数或者属性
 defineExpose({
  test
-})`
-  })
-})
+})`,
+  }),
+});
+
+// 页面结构数据
+const pageSchemas = [
+  {
+    type: "page",
+    id: "root",
+    label: "页面",
+    children: [],
+    componentProps: {
+      style: {
+        padding: "16px",
+      },
+    },
+  },
+];
+
+// 表单默认数据
+const formSchemas = [
+  {
+    label: "表单",
+    type: "form",
+    componentProps: {
+      layout: "horizontal",
+      name: "default",
+      labelWidth: 100,
+      labelLayout: "fixed",
+      labelCol: {
+        span: 5,
+      },
+      wrapperCol: {
+        span: 19,
+      },
+      colon: true,
+      labelAlign: "right",
+    },
+    children: [],
+    id: "root",
+  },
+];
+
+// 内部默认页面数据
+let innerDefaultSchema: PageSchema = {
+  schemas: pageSchemas,
+};
+
+// 更新初始化数据
+watch(
+  () => props.defaultSchema,
+  (defaultSchema) => {
+    innerDefaultSchema = defaultSchema;
+    if (props.formMode) {
+      innerDefaultSchema.schemas = formSchemas;
+      pluginManager.hideComponent("form");
+    }
+  },
+  {
+    immediate: true,
+  }
+);
 
 // 设置为设计模式
-pageManager.setDesignMode()
-pageManager.setDefaultComponentIds(props.defaultSchema.schemas)
+pageManager.setDesignMode();
+pageManager.setDefaultComponentIds(innerDefaultSchema.schemas);
 
-const emits = defineEmits(['ready', 'save', 'reset', 'toggleDeviceMode'])
+const emits = defineEmits(["ready", "save", "reset", "toggleDeviceMode"]);
 
-const previewRef = ref<InstanceType<typeof EPreview> | null>(null)
+const previewRef = ref<InstanceType<typeof EPreview> | null>(null);
 
 const state = reactive<DesignerState>({
   checkedNode: null,
   hoverNode: null,
   disableHover: false,
-  matched: []
-})
+  matched: [],
+});
 
 const pageSchema = reactive<PageSchema>({
   schemas: [],
-  script: props.defaultSchema.script
-})
+  script: innerDefaultSchema.script,
+});
 
 // 记录缩放状态 start
-const { disabledZoom } = useStore()
-watch(() => props.disabledZoom, newVal => {
-  disabledZoom.value = newVal
-}, {
-  immediate: true
-})
+const { disabledZoom } = useStore();
+watch(
+  () => props.disabledZoom,
+  (newVal) => {
+    disabledZoom.value = newVal;
+  },
+  {
+    immediate: true,
+  }
+);
 // 记录缩放状态 end
 
-watch(() => pageSchema.script, e => {
-  if (e && e !== '') {
-    pageManager.setMethods(e)
+watch(
+  () => pageSchema.script,
+  (e) => {
+    if (e && e !== "") {
+      pageManager.setMethods(e);
+    }
+  },
+  {
+    immediate: true,
   }
-}, {
-  immediate: true
-})
+);
 
-provide('pageSchema', pageSchema)
-provide('pageManager', pageManager)
-provide('designerProps', computed(() => props))
+provide("pageSchema", pageSchema);
+provide("pageManager", pageManager);
+provide(
+  "designerProps",
+  computed(() => props)
+);
 
-provide('designer', {
+provide("designer", {
   setCheckedNode,
   setHoverNode,
   setDisableHover,
   handleToggleDeviceMode,
   reset,
-  state
-})
+  state,
+});
 
 function init() {
   // 初始化默认节点
-  pageSchema.schemas = deepClone(props.defaultSchema.schemas)
+  pageSchema.schemas = deepClone(innerDefaultSchema.schemas);
 
   // 选中根节点
-  setCheckedNode(pageSchema.schemas[0])
-  revoke.push(pageSchema.schemas, '初始化撤销功能')
+  setCheckedNode(pageSchema.schemas[0]);
+  revoke.push(pageSchema.schemas, "初始化撤销功能");
 }
-
 
 /**
  * 选中节点
  * @param schema
  */
 async function setCheckedNode(schema: ComponentSchema = pageSchema.schemas[0]) {
-  state.checkedNode = schema
-  state.matched = getMatchedById(pageSchema.schemas, schema.id!)
+  state.checkedNode = schema;
+  state.matched = getMatchedById(pageSchema.schemas, schema.id!);
 }
 
 /**
@@ -166,14 +254,14 @@ async function setCheckedNode(schema: ComponentSchema = pageSchema.schemas[0]) {
  */
 async function setHoverNode(schema: ComponentSchema | null = null) {
   if (!schema || state.disableHover) {
-    state.hoverNode = null
-    return false
+    state.hoverNode = null;
+    return false;
   }
   if (schema?.id === state.hoverNode?.id) {
-    return false
+    return false;
   }
   // console.log(schema?.id)
-  state.hoverNode = schema
+  state.hoverNode = schema;
 }
 
 /**
@@ -182,8 +270,8 @@ async function setHoverNode(schema: ComponentSchema | null = null) {
 function handleReady() {
   // 等待DOM更新循环结束后
   nextTick(() => {
-    emits('ready', { pageManager })
-  })
+    emits("ready", { pageManager });
+  });
 }
 
 /**
@@ -191,7 +279,7 @@ function handleReady() {
  * @param disableHover
  */
 async function setDisableHover(disableHover = false) {
-  state.disableHover = disableHover
+  state.disableHover = disableHover;
 }
 
 /**
@@ -200,7 +288,7 @@ async function setDisableHover(disableHover = false) {
  */
 function setData(schema: PageSchema) {
   // 调用 deepCompareAndModify 函数比较 pageSchema 和传入的 schema，进行修改
-  deepCompareAndModify(pageSchema, schema)
+  deepCompareAndModify(pageSchema, schema);
 }
 
 /**
@@ -208,7 +296,7 @@ function setData(schema: PageSchema) {
  */
 function getData(): PageSchema {
   // 返回一个对象，包含当前 schemas 对象的普通对象表示和当前 script 的值
-  return toRaw(pageSchema)
+  return toRaw(pageSchema);
 }
 
 /**
@@ -216,43 +304,47 @@ function getData(): PageSchema {
  */
 function reset() {
   // 判断数据是否已修改，如果未修改，则取消重置操作
-  if (deepEqual(pageSchema.schemas, props.defaultSchema.schemas) && pageSchema.script === props.defaultSchema.script) return
+  if (
+    deepEqual(pageSchema.schemas, innerDefaultSchema.schemas) &&
+    pageSchema.script === innerDefaultSchema.script
+  )
+    return;
 
-  // 调用 deepCompareAndModify 函数比较 pageSchema.schemas 和 props.defaultSchema.schemas，进行修改
-  deepCompareAndModify(pageSchema.schemas, props.defaultSchema.schemas)
+  // 调用 deepCompareAndModify 函数比较 pageSchema.schemas 和 innerDefaultSchema.schemas，进行修改
+  deepCompareAndModify(pageSchema.schemas, innerDefaultSchema.schemas);
   // 更新 script.value
-  pageSchema.script = props.defaultSchema.script
+  pageSchema.script = innerDefaultSchema.script;
   // 选中根节点
-  setCheckedNode(pageSchema.schemas[0])
-  revoke.push(pageSchema.schemas, '重置操作')
+  setCheckedNode(pageSchema.schemas[0]);
+  revoke.push(pageSchema.schemas, "重置操作");
 
-  emits('reset', pageSchema)
+  emits("reset", pageSchema);
 }
 
 /**
  * 保存数据
  */
 function handleSave() {
-  emits('save', toRaw(pageSchema))
+  emits("save", toRaw(pageSchema));
 }
 
 function handleToggleDeviceMode(mode: string) {
-  emits('toggleDeviceMode', mode)
+  emits("toggleDeviceMode", mode);
 }
 
 /**
  * 预览
  */
 function handlePreview() {
-  previewRef.value!.handleOpen()
+  previewRef.value!.handleOpen();
 }
 
-init()
+init();
 
 defineExpose({
   setData,
   getData,
   reset,
-  preview: handlePreview
-})
+  preview: handlePreview,
+});
 </script>
