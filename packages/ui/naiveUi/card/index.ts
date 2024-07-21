@@ -3,6 +3,7 @@ export default {
   component: () => import("./card"),
   groupName: "布局",
   icon: "epic-icon-qiapian",
+  sort: 900,
   defaultSchema: {
     label: "卡片布局",
     type: "card",

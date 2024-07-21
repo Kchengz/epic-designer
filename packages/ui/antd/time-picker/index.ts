@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("ant-design-vue")).TimePicker,
   groupName: "表单",
   icon: "epic-icon-time",
+  sort: 920,
   defaultSchema: {
     label: "时间选择器",
     type: "time",

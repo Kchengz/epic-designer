@@ -6,12 +6,12 @@ import { type OnFinish, type OnError } from 'naive-ui/es/upload/src/interface'
 export default defineComponent({
   props: {
     modelValue: {
-      type: Array as PropType<UploadFileInfo []>,
+      type: Array as PropType<UploadFileInfo[]>,
       default: () => []
     }
   },
   emits: ['update:modelValue'],
-  setup (props, { emit, attrs }) {
+  setup(props, { emit, attrs }) {
     const fileList = ref<UploadFileInfo[]>([])
     watch(fileList, (e) => {
       emit('update:modelValue', e)
@@ -29,7 +29,7 @@ export default defineComponent({
       },
       { deep: true, immediate: true }
     )
-    function handleUpdate (e: UploadFileInfo[]): void {
+    function handleUpdate(e: UploadFileInfo[]): void {
       console.log('onChange called->', e)
       nextTick(() => { fileList.value = e })
     }

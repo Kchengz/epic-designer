@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("ant-design-vue")).Select,
   groupName: "表单",
   icon: "epic-icon-xiala",
+  sort: 900,
   defaultSchema: {
     label: "选择框",
     type: "select",

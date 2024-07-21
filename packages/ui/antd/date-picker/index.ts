@@ -3,6 +3,7 @@ export default {
   component: () => import("./datePicker"),
   groupName: "表单",
   icon: "epic-icon-calendar",
+  sort: 910,
   defaultSchema: {
     label: "日期选择器",
     type: "date",

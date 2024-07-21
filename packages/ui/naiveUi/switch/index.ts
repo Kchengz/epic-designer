@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("naive-ui/lib/switch")).NSwitch,
   groupName: "表单",
   icon: "epic-icon-kaiguan3",
+  sort: 930,
   defaultSchema: {
     label: "开关",
     type: "switch",

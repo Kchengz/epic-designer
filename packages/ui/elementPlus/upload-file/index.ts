@@ -3,6 +3,7 @@ export default {
   component: () => import("./uploadFile"),
   groupName: "表单",
   icon: "epic-icon-upload",
+  sort: 920,
   defaultSchema: {
     label: "上传文件",
     type: "upload-file",

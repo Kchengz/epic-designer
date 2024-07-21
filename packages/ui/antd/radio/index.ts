@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("ant-design-vue")).RadioGroup,
   groupName: "表单",
   icon: "epic-icon-danxuan-cuxiantiao",
+  sort: 850,
   defaultSchema: {
     label: "单选框",
     type: "radio",

@@ -3,6 +3,7 @@ export default {
   component: () => import("./checkbox"),
   groupName: "表单",
   icon: "epic-icon-duoxuan1",
+  sort: 860,
   defaultSchema: {
     label: "复选框",
     type: "checkbox",

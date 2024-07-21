@@ -4,6 +4,7 @@ export default {
     (await import("naive-ui/lib/input-number")).NInputNumber,
   groupName: "表单",
   icon: "epic-icon-number",
+  sort: 710,
   defaultSchema: {
     label: "数字输入框",
     type: "number",

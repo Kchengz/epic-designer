@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("ant-design-vue")).Textarea,
   groupName: "表单",
   icon: "epic-icon-edit",
+  sort: 705,
   defaultSchema: {
     label: "文本域",
     type: "textarea",

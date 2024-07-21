@@ -3,8 +3,9 @@ export default {
   component: async () => (await import("element-plus")).ElCascader,
   groupName: "表单",
   icon: "epic-icon-guanlian",
+  sort: 900,
   defaultSchema: {
-    label: "级联选择器",
+  label: "级联选择器",
     type: "cascader",
     field: "cascader",
     input: true,

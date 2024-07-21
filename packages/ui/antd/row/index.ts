@@ -3,6 +3,7 @@ export default {
   component: () => import("./row"),
   groupName: "布局",
   icon: "epic-icon-zhage",
+  sort: 800,
   defaultSchema: {
     label: "栅格布局",
     type: "row",

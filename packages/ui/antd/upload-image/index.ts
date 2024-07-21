@@ -3,6 +3,7 @@ export default {
   component: () => import("./uploadImage.vue"),
   groupName: "表单",
   icon: "epic-icon-image",
+  sort: 920,
   defaultSchema: {
     label: "上传图片",
     type: "upload-image",

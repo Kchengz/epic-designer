@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("ant-design-vue")).CheckboxGroup,
   groupName: "表单",
   icon: "epic-icon-duoxuan1",
+  sort: 860,
   defaultSchema: {
     label: "多选框",
     type: "checkbox",

@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("ant-design-vue")).Cascader,
   groupName: "表单",
   icon: "epic-icon-guanlian",
+  sort: 900,
   defaultSchema: {
     label: "级联选择器",
     type: "cascader",

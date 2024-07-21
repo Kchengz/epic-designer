@@ -4,6 +4,7 @@ export default {
     (await import("naive-ui/lib/color-picker")).NColorPicker,
   groupName: "表单",
   icon: "epic-icon-yanse",
+  sort: 950,
   defaultSchema: {
     label: "颜色选择器",
     type: "color-picker",

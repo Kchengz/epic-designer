@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("naive-ui/lib/date-picker")).NDatePicker,
   groupName: "表单",
   icon: "epic-icon-calendar",
+  sort: 910,
   defaultSchema: {
     label: "日期选择器",
     type: "date",

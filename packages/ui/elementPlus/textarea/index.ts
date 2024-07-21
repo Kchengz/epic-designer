@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("element-plus")).ElInput,
   icon: "epic-icon-edit",
   groupName: "表单",
+  sort: 705,
   defaultSchema: {
     label: "文本域",
     type: "textarea",

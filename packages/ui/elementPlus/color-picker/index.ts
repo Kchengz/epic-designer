@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("element-plus")).ElColorPicker,
   groupName: "表单",
   icon: "epic-icon-yanse",
+  sort: 950,
   defaultSchema: {
     label: "颜色选择器",
     type: "color-picker",

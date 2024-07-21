@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("naive-ui/lib/cascader")).NCascader,
   groupName: "表单",
   icon: "epic-icon-guanlian",
+  sort: 880,
   defaultSchema: {
     label: "级联选择器",
     type: "cascader",

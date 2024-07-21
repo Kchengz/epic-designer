@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("element-plus")).ElSlider,
   groupName: "表单",
   icon: "epic-icon-menu",
+  sort: 930,
   defaultSchema: {
     label: "滑块",
     type: "slider",

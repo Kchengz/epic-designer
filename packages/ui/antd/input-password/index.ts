@@ -3,6 +3,7 @@ export default {
   component: async () => (await import("ant-design-vue")).InputPassword,
   groupName: "表单",
   icon: "epic-icon-mima",
+  sort: 720,
   defaultSchema: {
     label: "密码输入框",
     type: "password",
