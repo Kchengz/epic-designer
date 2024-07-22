@@ -10,7 +10,7 @@
 
 在src目录下新建designer-extensions 文件目录，下面是一个简单扩展示例
 
-### 新建 designer-extensions/actionBar/index.vue
+### 新建 designer-extensions/activityBar/index.vue
 
 ```vue
 <template>
@@ -26,8 +26,8 @@ import { pluginManager } from "epic-designer";
 
 // 安装扩展
 export function setupDesignerExtensions(): void {
-  // 添加右侧模块
-  pluginManager.registerRightSidebar({
+  // 添加活动栏
+  pluginManager.registerActivitybar({
     id: "test",
     title: "扩展活动栏",
     component: async () => await import("./actionBar/index.vue"),
