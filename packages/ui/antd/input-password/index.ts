@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("ant-design-vue")).InputPassword,
   groupName: "表单",
-  icon: "epic-icon-mima",
+  icon: "icon--epic--lock-outline",
   sort: 720,
   defaultSchema: {
     label: "密码输入框",

@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./select"),
   groupName: "表单",
-  icon: "epic-icon-xiala",
+  icon: "icon--epic--dns-outline",
   sort: 900,
   defaultSchema: {
     label: "选择框",

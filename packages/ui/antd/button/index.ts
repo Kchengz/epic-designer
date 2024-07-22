@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./button.vue"),
   groupName: "表单",
-  icon: "epic-icon-button-remove",
+  icon: "icon--epic--fit-screen-rounded",
   sort: 1200,
   defaultSchema: {
     label: "按钮",

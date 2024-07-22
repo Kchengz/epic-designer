@@ -29,7 +29,7 @@
           <template #item="{ element }">
             <div class="epic-componet-item flex items-center truncate" @click="handleClick(element)">
               <EIcon prefix="" :name="pluginManager.getComponentConfingByType(element.type).icon ?? ''" />
-              <div>{{ element.label }}</div>
+              <div class="epic-componet-label flex-1 w-0 truncate">{{ element.label }}</div>
             </div>
           </template>
         </draggable>

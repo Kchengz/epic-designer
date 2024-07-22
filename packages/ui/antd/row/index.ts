@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./row"),
   groupName: "布局",
-  icon: "epic-icon-zhage",
+  icon: "icon--epic--width-normal-outline",
   sort: 800,
   defaultSchema: {
     label: "栅格布局",

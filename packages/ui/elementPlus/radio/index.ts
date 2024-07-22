@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./radio"),
   groupName: "表单",
-  icon: "epic-icon-danxuan-cuxiantiao",
+  icon: "icon--epic--radio-button-checked-outline",
   sort: 850,
   defaultSchema: {
     label: "单选框",
