@@ -2,7 +2,7 @@
     <!-- 工具条 start  -->
     <div class="epic-edit-toolbar flex items-center justify-between px-4">
         <div class="flex-1 h-full flex items-center">
-            <div :title="item.title" class="epic-action-item h-90% px-10px flex items-center cursor-pointer"
+            <div :title="item.title" class="epic-action-item text-18px h-90% px-10px flex items-center cursor-pointer"
                 v-for="(item, index) in actionOptions" :class="{ disabled: item.disabled }" :key="index"
                 @click="item.on">
                 <EIcon :name="item.icon"></EIcon>
@@ -56,17 +56,17 @@ const previewJson = ref<InstanceType<typeof EPreviewJson> | null>(null)
 
 const deviceOptions = [
     {
-        icon: 'icon-a-diannaotoubu',
+        icon: 'icon--epic--computer-outline-rounded',
         title: 'pc',
         key: 'pc'
     },
     {
-        icon: 'icon-a-pingbantoubu',
+        icon: 'icon--epic--tablet-android-outline-rounded',
         title: '平板',
         key: 'pad'
     },
     {
-        icon: 'icon-a-shoujitoubu',
+        icon: 'icon--epic--phone-iphone-outline-sharp',
         title: '手机',
         key: 'mobile'
     },
@@ -80,28 +80,28 @@ const undoList = revoke.undoList
 const actionOptions = computed(() => {
     return [
         {
-            icon: 'icon-daima1',
+            icon: 'icon--epic--code-blocks-outline-rounded',
             title: '查看数据',
             on: () => handlePreview()
         },
         {
-            icon: 'icon-shangchuan1',
+            icon: 'icon--epic--exit-to-app-rounded',
             title: '导入数据',
             on: handleOpenFileSelector
         },
         {
-            icon: 'icon-shanchu1',
+            icon: 'icon--epic--delete-outline-rounded',
             title: '清空',
             on: handleReset
         },
         {
-            icon: 'icon-chexiao2x',
+            icon: 'icon--epic--undo-rounded',
             title: '撤销',
             on: handleUndo,
             disabled: !recordList.value.length
         },
         {
-            icon: 'icon-fanhui2x',
+            icon: 'icon--epic--redo-rounded',
             title: '重做',
             on: handleRedo,
             disabled: !undoList.value.length

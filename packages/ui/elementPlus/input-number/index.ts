@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("element-plus")).ElInputNumber,
   groupName: "表单",
-  icon: "epic-icon-number",
+  icon: "icon--epic--123-rounded",
   sort: 710,
   defaultSchema: {
     label: "数字输入框",

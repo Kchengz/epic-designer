@@ -19,13 +19,13 @@
       <slot name="right-action">
         <div>
           <Button size="small" @click="handlePreview">
-            <EIcon name="icon-yulan" style="margin-right:6px" />
+            <EIcon name="icon--epic--preview-outline" style="margin-right:6px" />
             预览
           </Button>
         </div>
         <div class="ml-2">
           <Button size="small" @click="handleSave">
-            <EIcon name="icon-baocun" style="margin-right:6px" />
+            <EIcon name="icon--epic--save-outline-rounded" style="margin-right:6px" />
             保存
           </Button>
         </div>

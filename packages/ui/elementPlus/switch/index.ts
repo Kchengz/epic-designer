@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("element-plus")).ElSwitch,
   groupName: "表单",
-  icon: "epic-icon-kaiguan3",
+  icon: "icon--epic--toggle-off-outline",
   sort: 930,
   defaultSchema: {
     label: "开关",

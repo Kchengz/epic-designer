@@ -62,7 +62,7 @@ export default defineComponent({
                 {
                   default: () => [
                     h('span', {
-                      class: 'iconfont epic-icon-shangchuan1',
+                      class: 'iconfont icon--epic icon--epic--upload-rounded',
                       style: { 'margin-right': '2px' }
                     }),
                     h('span', null, { default: () => '上传文件' })

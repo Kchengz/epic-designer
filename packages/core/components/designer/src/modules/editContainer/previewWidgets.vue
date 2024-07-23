@@ -21,14 +21,14 @@
           class="epic-widget-action-item pointer-events-auto"
           @click="handleCopy"
         >
-          <EIcon name="icon-fuzhi3" />
+          <EIcon name="icon--epic--copy-all-outline-rounded" />
         </div>
         <div
           title="删除"
           class="epic-widget-action-item pointer-events-auto"
           @click="handleDelete"
         >
-          <EIcon name="icon-shanchu1" />
+          <EIcon name="icon--epic--delete-outline-rounded" />
         </div>
       </div>
       <!-- 操作按钮 end  -->

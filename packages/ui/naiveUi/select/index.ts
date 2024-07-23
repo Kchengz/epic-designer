@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("naive-ui/lib/select")).NSelect,
   groupName: "表单",
-  icon: "epic-icon-xiala",
+  icon: "icon--epic--select",
   sort: 900,
   defaultSchema: {
     label: "选择框",
