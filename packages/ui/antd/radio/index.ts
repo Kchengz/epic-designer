@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("ant-design-vue")).RadioGroup,
   groupName: "表单",
-  icon: "epic-icon-danxuan-cuxiantiao",
+  icon: "icon--epic--radio-button-checked-outline",
   sort: 850,
   defaultSchema: {
     label: "单选框",

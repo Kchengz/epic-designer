@@ -11,7 +11,7 @@
     margin: 0px -1px -1px 0px;
   }
 
-  .epic-event-btn > span {
+  .epic-event-btn>span {
     cursor: pointer;
   }
 
@@ -19,9 +19,9 @@
     .epic-editor-item {
       margin: 8px 0px;
       border: 1px solid var(--epic-border-color);
-    background-color: var(--epic-event-item-color);
-    color: var(--epic-text-main);
-    padding: 8px;
+      background-color: var(--epic-event-item-color);
+      color: var(--epic-text-main);
+      padding: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -50,7 +50,7 @@
     border-radius: 3px;
     cursor: pointer;
     margin-bottom: 6px;
-    
+
     &.checked {
       background-color: var(--epic-primary-hover-color);
       border-color: var(--epic-primary-color);
@@ -87,11 +87,13 @@
       justify-content: space-between;
       align-items: center;
       padding: 0 8px;
+
       .action {
         opacity: 0;
         pointer-events: none;
         color: var(--epic-primary-color);
       }
+
       &:hover .action {
         opacity: 1;
         pointer-events: all;
@@ -100,6 +102,7 @@
 
 
   }
+
   .epic-script-right-panel {
     // width: 240px;
     // flex: none;
@@ -125,6 +128,7 @@
       background-color: var(--epic-primary-hover-color);
       color: var(--epic-primary-color);
     }
+
     &.checked {
       background-color: var(--epic-primary-hover-color);
       border-color: var(--epic-primary-color);
@@ -140,6 +144,8 @@
 
   .epic-action-box {
     display: flex;
+    align-items: center;
+
 
     .epic-del-btn {
       width: 30px;

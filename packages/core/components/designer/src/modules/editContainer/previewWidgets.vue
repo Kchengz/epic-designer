@@ -15,20 +15,20 @@
         }}
       </div>
       <!-- 操作按钮 start  -->
-      <div class="flex" v-if="isRemovableAndDraggable">
+      <div class="flex items-center" v-if="isRemovableAndDraggable">
         <div
           title="复制"
           class="epic-widget-action-item pointer-events-auto"
           @click="handleCopy"
         >
-          <EIcon name="icon-fuzhi3" />
+          <EIcon name="icon--epic--copy-all-outline-rounded" />
         </div>
         <div
           title="删除"
           class="epic-widget-action-item pointer-events-auto"
           @click="handleDelete"
         >
-          <EIcon name="icon-shanchu1" />
+          <EIcon name="icon--epic--delete-outline-rounded" />
         </div>
       </div>
       <!-- 操作按钮 end  -->

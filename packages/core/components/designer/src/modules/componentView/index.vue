@@ -4,7 +4,7 @@
     <div class="epic-search-box px-10px py-6px">
       <Input placeholder="搜索组件"  v-model="keyword" clearable allowClear v-model:value="keyword">
       <template #prefix>
-        <EIcon name="icon-chaxun" />
+        <EIcon class="text-$epic-text-helper" name="icon--epic--search-rounded" />
       </template>
       </Input>
     </div>
@@ -28,8 +28,8 @@
         }" :clone="generateNewSchema" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2">
           <template #item="{ element }">
             <div class="epic-componet-item flex items-center truncate" @click="handleClick(element)">
-              <EIcon prefix="" :name="pluginManager.getComponentConfingByType(element.type).icon ?? ''" />
-              <div>{{ element.label }}</div>
+              <EIcon :name="pluginManager.getComponentConfingByType(element.type).icon ?? ''" />
+              <div class="epic-componet-label flex-1 w-0 truncate">{{ element.label }}</div>
             </div>
           </template>
         </draggable>

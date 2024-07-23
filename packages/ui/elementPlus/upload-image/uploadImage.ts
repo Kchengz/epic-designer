@@ -122,8 +122,7 @@ export default defineComponent({
                 h('div', { style: { 'text-align': 'center' } }, {
                   default: () => [
                     h('span', {
-                      class: 'iconfont epic-icon-shangchuan1 text-md',
-                      style: { 'margin-right': '2px' }
+                      class: 'icon--epic icon--epic--cloud-upload-outlined mr-2px text-lg',
                     }),
                     h(
                       'div',

@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./card"),
   groupName: "布局",
-  icon: "epic-icon-qiapian",
+  icon: "icon--epic--wysiwyg-rounded",
   sort: 900,
   defaultSchema: {
     label: "卡片布局",

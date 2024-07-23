@@ -77,10 +77,15 @@
 
       .epic-widget-action-item {
         height: 30px;
-        line-height: 25px;
         padding: 0 4px;
         cursor: pointer;
         color: white;
+        display: flex;
+        align-items: center;
+
+        .iconfont {
+          font-size: 16px;
+        }
       }
     }
 
@@ -105,19 +110,22 @@
     box-sizing: border-box;
     border-bottom: 1px solid var(--epic-border-color);
 
-    .epic-action-item.disabled {
-      color: var(--epic-text-disabled);
-      cursor: no-drop;
+    .epic-action-item,.epic-device-item
+    {
+        color: var(--epic-text-medium);
+        &.disabled {
+        color: var(--epic-text-disabled);
+        cursor: no-drop;
+      }
+      &:hover {
+        background: var(--epic-action-hover-color);
+      }
     }
 
     .epic-device-item.checked {
       color: var(--epic-primary-color);
     }
 
-    .epic-device-item:hover,
-    .epic-action-item:hover {
-      background: var(--epic-action-hover-color);
-    }
   }
 
   .widget-box {

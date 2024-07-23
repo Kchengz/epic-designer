@@ -12,7 +12,9 @@
 @epic-event-item-color: #f8f8f8;
 @epic-shadow-color: #0000003d;
 @epic-text-main: #000000de;
+@epic-text-medium: #000000ab;
 @epic-text-secondary: #00000099;
+
 @epic-text-helper: #00000066;
 @epic-text-disabled: #00000042;
 @epic-border-color: #d9d9d9;
@@ -35,6 +37,7 @@
 @epic-dark-event-item-color: #111;
 @epic-dark-shadow-color: #000000;
 @epic-dark-text-main: #ffffffde;
+@epic-dark-text-medium: #ffffffab;
 @epic-dark-text-secondary: #ffffff99;
 @epic-dark-text-helper: #ffffff66;
 @epic-dark-text-disabled: #666;
@@ -84,7 +87,10 @@
   // 主要文本颜色
   --epic-text-main: @epic-text-main;
 
-  // 二级文本颜色（介于正文和标题之间）
+  /* 次级级文本颜色 */
+  --epic-text-medium: @epic-text-medium;
+
+  // 二级文本颜色
   --epic-text-secondary: @epic-text-secondary;
 
   // 辅助文本颜色（更浅）
@@ -153,6 +159,9 @@
 
   // 主要文本颜色
   --epic-text-main: @epic-dark-text-main;
+
+  /* 次级级文本颜色 */
+  --epic-text-medium: @epic-dark-text-medium;
 
   // 二级文本颜色（介于正文和标题之间）
   --epic-text-secondary: @epic-dark-text-secondary;

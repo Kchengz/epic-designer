@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("naive-ui/lib/cascader")).NCascader,
   groupName: "表单",
-  icon: "epic-icon-guanlian",
+  icon: "icon--epic--full-coverage-outline",
   sort: 880,
   defaultSchema: {
     label: "级联选择器",

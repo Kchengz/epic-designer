@@ -4,7 +4,7 @@
       <ul class="epic-actions-container">
         <li v-for="(item, index) in activitybars" :key="index" class="epic-action-item" :title="item.title"
           :class="{ checked: activityBarCheckedIndex === index }" @click="handleClick(item, index)">
-          <EIcon prefix="" class="iconfont relative" :name="item.icon" />
+          <EIcon class="relative" :name="item.icon" />
           <div class="text-14px">{{ item.title }}</div>
         </li>
       </ul>

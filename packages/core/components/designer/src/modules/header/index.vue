@@ -2,8 +2,17 @@
   <header class="epic-header relative">
     <div class="epic-header-item flex-1 items-center flex">
       <slot name="prefix">
-        <a class="decoration-none items-center flex" href="https://github.com/Kchengz/epic-designer" target="_blank">
-          <img src="../../../../../static/logo.png" class="w-18px h-18px" alt="" srcset="">
+        <a
+          class="decoration-none items-center flex"
+          href="https://github.com/Kchengz/epic-designer"
+          target="_blank"
+        >
+          <img
+            src="../../../../../static/logo.png"
+            class="w-18px h-18px"
+            alt=""
+            srcset=""
+          />
           <span class="ml-3">EpicDesigner</span>
         </a>
       </slot>
@@ -19,14 +28,18 @@
       <slot name="right-action">
         <div>
           <Button size="small" @click="handlePreview">
-            <EIcon name="icon-yulan" style="margin-right:6px" />
-            预览
+            <span class="flex! items-center h-full">
+              <EIcon name="icon--epic--preview-outline" class="mr-4px" />
+              预览
+            </span>
           </Button>
         </div>
         <div class="ml-2">
           <Button size="small" @click="handleSave">
-            <EIcon name="icon-baocun" style="margin-right:6px" />
-            保存
+            <span class="flex! items-center h-full">
+              <EIcon name="icon--epic--save-outline-rounded" class="mr-4px" />
+              保存
+            </span>
           </Button>
         </div>
       </slot>
@@ -56,5 +69,4 @@ function handlePreview() {
 function handleSave() {
   emits('save')
 }
-
 </script>

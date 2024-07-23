@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("element-plus")).ElInput,
   groupName: "表单",
-  icon: "epic-icon-write",
+  icon: "icon--epic--border-color-outline-rounded",
   sort: 700,
   defaultSchema: {
     label: "输入框",

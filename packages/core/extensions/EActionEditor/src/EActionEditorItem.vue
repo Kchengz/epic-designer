@@ -4,8 +4,8 @@
       <div class="epic-event-label" :title="item.describe">
         {{ item.describe }}
       </div>
-      <div class="epic-event-btn">
-        <EIcon name="icon-tianjia1" @click="handleOpen(item.type)" />
+      <div class="epic-event-btn text-lg text-$epic-text-main">
+        <EIcon name="icon--epic--add-rounded" @click="handleOpen(item.type)" />
       </div>
     </div>
     <div class="epic-action-editor-main">
@@ -14,8 +14,8 @@
       }" group="option-list" handle=".handle" :animation="200">
         <template #item="{ element: action, index }">
           <div class="epic-editor-item">
-            <div class="w-36px text-lg">
-              <EIcon class="mr-2 text-lg cursor-move handle" name="icon-tuozhuai" />
+            <div class="w-36px flex items-center text-lg">
+              <EIcon class="mr-2 text-lg cursor-move handle" name="icon--epic--drag" />
             </div>
             <div class="flex-1">
               <div v-if="action.type === 'component'">
@@ -29,12 +29,12 @@
               </div>
               {{ action.methodName }}
             </div>
-            <div class="epic-action-box">
+            <div class="epic-action-box text-lg">
               <div class="epic-edit-btn" @click="handleEdit(index, item.type, action)">
-                <EIcon name="icon-tiaozheng" />
+                <EIcon name="icon--epic--page-info-outline-rounded" />
               </div>
               <div class="epic-del-btn" @click="handleDelete(index, item.type)">
-                <EIcon name="icon-shanchu1" />
+                <EIcon name="icon--epic--delete-outline-rounded" />
               </div>
             </div>
           </div>

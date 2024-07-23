@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{
   name: string;
   prefix?: string;
 }>(), {
-  prefix: 'epic-'
+  prefix: ''
 })
 
 const computedClass = computed(() => {

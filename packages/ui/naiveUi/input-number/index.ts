@@ -3,7 +3,7 @@ export default {
   component: async () =>
     (await import("naive-ui/lib/input-number")).NInputNumber,
   groupName: "表单",
-  icon: "epic-icon-number",
+  icon: "icon--epic--123-rounded",
   sort: 710,
   defaultSchema: {
     label: "数字输入框",

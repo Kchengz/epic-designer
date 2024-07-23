@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./checkbox"),
   groupName: "表单",
-  icon: "epic-icon-duoxuan1",
+  icon: "icon--epic--dialogs-outline-rounded",
   sort: 860,
   defaultSchema: {
     label: "复选框",

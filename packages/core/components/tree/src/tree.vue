@@ -4,7 +4,7 @@
     <div class="epic-search-box px-10px py-6px">
       <Input placeholder="搜索节点" clearable allowClear v-model="keyword" v-model:value="keyword">
       <template #prefix>
-        <EIcon name="icon-chaxun" />
+        <EIcon name="icon--epic--search-rounded" />
       </template>
       </Input>
     </div>

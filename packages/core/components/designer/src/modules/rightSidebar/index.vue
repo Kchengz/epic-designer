@@ -4,8 +4,8 @@
     <div
       class="epic-right-sidebar-hide-btn absolute left--18px top-80px cursor-pointer rounded-full flex justify-center items-center w-28px h-28px z-9"
       @click="handleHideRight">
-      <EIcon prefix="" class="iconfont transition-all" :class="{ 'rotate-180': hideRightMain }"
-        name="epic-icon-zhankai" />
+      <EIcon class="transition-all" :class="{ 'rotate-180': hideRightMain }"
+        name="icon--epic--arrow-forward-ios-rounded" />
     </div>
     <div class="w-10px"></div>
     <!-- 折叠按钮 end -->

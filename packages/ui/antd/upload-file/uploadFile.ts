@@ -97,11 +97,13 @@ export default defineComponent({
             default: () => [
               h(
                 Button,
-                {},
+                {
+                  class: "flex items-center",
+                },
                 {
                   default: () => [
                     h("span", {
-                      class: "iconfont epic-icon-shangchuan1",
+                      class: "icon--epic icon--epic--cloud-upload-outlined text-lg",
                       style: { "margin-right": "2px" },
                     }),
                     h("span", null, { default: () => "上传文件" }),

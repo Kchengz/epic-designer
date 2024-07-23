@@ -2,7 +2,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("element-plus")).ElDatePicker,
   groupName: "表单",
-  icon: "epic-icon-calendar",
+  icon: "icon--epic--calendar-month-outline-rounded",
   sort: 910,
   defaultSchema: {
     label: "日期选择器",

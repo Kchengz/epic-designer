@@ -96,7 +96,10 @@ import './styles/common-vars.css'
 // 主要文本颜色
 --epic-text-main: #000000de;
 
-// 二级文本颜色（介于主要文本和辅助文本之间）
+/* 次级级文本颜色 */
+--epic-text-medium: #000000ab;
+
+// 二级文本颜色
 --epic-text-secondary: #00000099;
 
 // 辅助文本颜色（更浅）

@@ -1,7 +1,7 @@
 import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: async () => (await import("element-plus")).ElInput,
-  icon: "epic-icon-edit",
+  icon: "icon--epic--edit-square-outline-rounded",
   groupName: "表单",
   sort: 705,
   defaultSchema: {

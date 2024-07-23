@@ -3,7 +3,7 @@ import { type ComponentConfigModel } from "@epic-designer/utils";
 export default {
   component: () => import("./form.vue"),
   groupName: "表单",
-  icon: "epic-icon-daibanshixiang",
+  icon: "icon--epic--list-alt-outline-rounded",
   sort: 600,
   defaultSchema: {
     label: "表单",
