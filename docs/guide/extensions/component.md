@@ -108,6 +108,8 @@ export interface ComponentConfigModel {
   };
   // 输入表单组件v-model绑定变量名称 默认 modelValue
   bindModel?: string;
+  // 用于组件排序，可选 默认值1000, 值越小，组件越靠前
+  sort?: number;
 }
 ```
 

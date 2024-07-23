@@ -83,13 +83,14 @@ background: white;
 
 ## API
 
-| 参数                  | 说明                                                   | 类型       | 默认值 | 版本  |
-| --------------------- | ------------------------------------------------------ | ---------- | ------ | ----- |
-| title                 | 设计器头部标题                                         | string     | -      | 0.9.7 |
-| defaultSchema         | 默认pageSchema，初始化和重置设计器将以该数据为基础模板 | PageSchema | -      | 0.9.6 |
-| lockDefaultSchemaEdit | 锁定defaultSchema中组件不可以复制或移除                | boolean    | false  | 0.9.7 |
-| disabledZoom          | 禁止缩放功能                                           | boolean    | false  | -     |
-| hiddenHeader          | 隐藏头部                                               | boolean    | false  | -     |
+| 参数                  | 说明                                                       | 类型       | 默认值 | 版本   |
+| --------------------- | ---------------------------------------------------------- | ---------- | ------ | ------ |
+| title                 | 设计器头部标题                                             | string     | -      | 0.9.7  |
+| defaultSchema         | 默认pageSchema，初始化和重置设计器将以该数据为基础模板     | PageSchema | -      | 0.9.6  |
+| lockDefaultSchemaEdit | 锁定defaultSchema中组件不可以复制或移除                    | boolean    | false  | 0.9.7  |
+| disabledZoom          | 禁止缩放功能                                               | boolean    | false  | -      |
+| hiddenHeader          | 隐藏头部                                                   | boolean    | false  | -      |
+| formMode              | 单表单模式，开启后不可再拖入表单，跟节点默认切换为表单组件 | boolean    | false  | 0.9.19 |
 
 ## 函数
 
