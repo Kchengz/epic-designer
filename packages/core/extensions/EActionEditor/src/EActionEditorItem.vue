@@ -4,7 +4,7 @@
       <div class="epic-event-label" :title="item.describe">
         {{ item.describe }}
       </div>
-      <div class="epic-event-btn text-lg text-$epic-text-main">
+      <div class="epic-event-btn text-lg flex items-center text-$epic-text-secondary">
         <EIcon name="icon--epic--add-rounded" @click="handleOpen(item.type)" />
       </div>
     </div>
@@ -13,9 +13,9 @@
         type: 'transition-group',
       }" group="option-list" handle=".handle" :animation="200">
         <template #item="{ element: action, index }">
-          <div class="epic-editor-item">
+          <div class="epic-editor-item rounded">
             <div class="w-36px flex items-center text-lg">
-              <EIcon class="mr-2 text-lg cursor-move handle" name="icon--epic--drag" />
+              <EIcon class="mr-2 text-lg cursor-move handle text-$epic-text-medium" name="icon--epic--drag" />
             </div>
             <div class="flex-1">
               <div v-if="action.type === 'component'">
@@ -29,7 +29,7 @@
               </div>
               {{ action.methodName }}
             </div>
-            <div class="epic-action-box text-lg">
+            <div class="epic-action-box text-lg text-$epic-text-medium">
               <div class="epic-edit-btn" @click="handleEdit(index, item.type, action)">
                 <EIcon name="icon--epic--page-info-outline-rounded" />
               </div>
