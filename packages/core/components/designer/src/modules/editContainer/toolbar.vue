@@ -232,11 +232,11 @@ function handleSetCanvas(type: string) {
 
         },
         pad: {
-            width: '800px',
+            width: '780px',
             mode:type
         },
         mobile: {
-            width: '420px',
+            width: '390px',
             mode:type
         },
     }
