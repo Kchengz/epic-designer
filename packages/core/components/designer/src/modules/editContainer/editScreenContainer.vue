@@ -41,7 +41,7 @@ import { watchOnce, useElementSize, useResizeObserver } from "@vueuse/core";
 import type { PageSchema } from "../../../../../types/epic-designer";
 import { debounce } from "@epic-designer/utils";
 import { useStore, useElementDrag, useElementZoom } from "@epic-designer/hooks";
-import { ref, nextTick, inject, watch, shallowRef, onMounted, watchEffect } from "vue";
+import { ref, nextTick, inject, watch, shallowRef, watchEffect } from "vue";
 import Toolbar from "./toolbar.vue";
 
 const pageSchema = inject("pageSchema") as PageSchema;
