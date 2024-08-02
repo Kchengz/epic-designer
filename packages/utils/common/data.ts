@@ -11,7 +11,7 @@ import { pluginManager } from "../index";
  * @returns
  */
 export function deepClone(
-  obj: Record<string, any>,
+  obj: any,
   cache = new WeakMap()
 ): any {
   // 如果不是对象或数组，则直接返回
