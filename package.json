@@ -5,23 +5,26 @@
     "dev": "pnpm run checkCompiled && turbo run dev",
     "lib": "pnpm run build --filter epic-designer",
     "lint": "turbo run lint",
+    "test": "vitest",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "examples:build": "pnpm run build --filter @epic-designer/examples", 
+    "examples:build": "pnpm run build --filter @epic-designer/examples",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "checkCompiled": "turbo run checkCompiled --filter @epic-designer/script"
   },
   "dependencies": {
+    "@vue/test-utils": "2.4.5",
     "@vueuse/core": "^10.9.0",
-    "less": "^4.2.0"
+    "less": "^4.2.0",
+    "vitest": "^1.5.3"
   },
   "devDependencies": {
     "@epic-designer/core": "workspace:*",
+    "@epic-designer/hooks": "workspace:*",
     "@epic-designer/script": "workspace:*",
     "@epic-designer/ui": "workspace:*",
     "@epic-designer/utils": "workspace:*",
-    "@epic-designer/hooks": "workspace:*",
     "@turbo/gen": "^1.13.3",
     "@vitejs/plugin-vue": "^5.0.4",
     "element-plus": "^2.7.2",
