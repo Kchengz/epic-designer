@@ -7,4 +7,5 @@ export interface DesignerProps {
   formMode?: boolean;
   title?: string;
   defaultSchema?: PageSchema;
+  sourceCodeReadOnly?: boolean;
 }

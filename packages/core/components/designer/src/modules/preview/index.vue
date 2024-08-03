@@ -6,7 +6,7 @@
       <!-- 输出结果 start -->
       <Modal v-model="dataVisible" title="表单数据" class="w-860px" width="860px" @close="handleCloseData" @ok="handleCloseData">
         <div class="h-full rounded">
-          <MonacoEditor ref="monacoEditorRef" autoToggleTheme class="h-full editor" :model-value="formValues" />
+          <MonacoEditor ref="monacoEditorRef" autoToggleTheme readOnly class="h-full editor" :model-value="formValues" />
         </div>
       </Modal>
       <!-- 输出结果 end -->

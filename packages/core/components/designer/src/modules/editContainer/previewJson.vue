@@ -2,13 +2,13 @@
   <Modal v-model="visible" title="查看数据" class="w-900px" width="900px" @close="handleClose" @ok="handleExportData"
     okText="导出数据">
     <div class="min-w-750px rounded h-full">
-      <MonacoEditor ref="monacoEditorRef" class="editor h-full" autoToggleTheme :config="MonacoEditorConfig" language="json" />
+      <MonacoEditor ref="monacoEditorRef" class="editor h-full" autoToggleTheme readOnly :config="MonacoEditorConfig" language="json" />
     </div>
   </Modal>
 </template>
 <script lang="ts" setup>
 import { pluginManager } from '@epic-designer/utils'
-import { ref, inject, nextTick } from 'vue'
+import { ref, inject } from 'vue'
 import { PageSchema } from '../../../../../types/epic-designer'
 
 const Modal = pluginManager.getComponent('modal')
