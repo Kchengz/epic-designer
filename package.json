@@ -2,8 +2,8 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "pnpm run checkCompiled && turbo run dev",
-    "lib": "pnpm run build --filter epic-designer",
+    "dev": "vitest run && pnpm run checkCompiled && turbo run dev",
+    "lib": "vitest run && pnpm run build --filter epic-designer",
     "lint": "turbo run lint",
     "test": "vitest",
     "docs:dev": "vitepress dev docs",
