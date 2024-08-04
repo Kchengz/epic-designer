@@ -8,7 +8,7 @@
         <div class="epic-attr-input">
           <ENode
             :componentSchema="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), input: false, field: undefined, hidden: false }, show: true, noFormItem: true }"
-            :model-value="getAttributeValue(item.field!, item.editData ?? checkedNode!)"
+            :model-value="getValueByPath(item.editData ?? checkedNode!,item.field!)"
             @update:model-value="handleSetValue($event, item.field!, item, item.editData)" />
         </div>
       </div>
@@ -18,7 +18,7 @@
 <script lang="ts" setup>
 import ENode from '../../../../node/index'
 import { Designer, ComponentSchema, PageSchema } from '../../../../../types/epic-designer'
-import { revoke, getAttributeValue, setAttributeValue } from '@epic-designer/utils'
+import { revoke, getValueByPath, setValueByPath } from '@epic-designer/utils'
 
 import { inject, computed, nextTick } from 'vue'
 const designer = inject('designer') as Designer
@@ -90,10 +90,10 @@ function handleSetValue(value: any, field: string, item: ComponentSchema, editDa
   }
   // 判断是否同步修改属性值
   if (item.changeSync) {
-    setAttributeValue(value, field, editData!)
+    setValueByPath(editData!, field, value)
   } else {
     nextTick(() => {
-      setAttributeValue(value, field, editData!)
+      setValueByPath(editData!, field, value)
     })
   }
   // 将修改过的组件属性推入撤销操作的栈中

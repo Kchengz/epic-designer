@@ -25,6 +25,11 @@ export default {
       {
         label: "默认值",
         type: "slider",
+        componentProps: {
+          style: {
+            width: '100%'
+          }
+        },
         field: "componentProps.defaultValue",
       },
       {

@@ -4,7 +4,7 @@
       <EActionEditor
         :key="checkedNode.id"
         :event-list="eventList"
-        :model-value="getAttributeValue(`on`, checkedNode!)"
+        :model-value="getValueByPath(checkedNode!,`on`)"
         @update:model-value="handleSetValue($event, `on`)"
       />
     </div>
@@ -12,7 +12,7 @@
 </template>
 <script lang="ts" setup>
 import { Designer, PageSchema } from '../../../../../types/epic-designer'
-import { pluginManager, revoke, getAttributeValue, setAttributeValue } from '@epic-designer/utils'
+import { pluginManager, revoke, getValueByPath, setValueByPath } from '@epic-designer/utils'
 import { inject, computed } from 'vue'
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
@@ -69,7 +69,7 @@ const eventList = computed(() => {
  * 设置属性值
  */
 function handleSetValue (value: any, field: string) {
-  setAttributeValue(value, field, checkedNode.value!)
+  setValueByPath( checkedNode.value!, field,value)
   // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(pageSchema.schemas, '编辑组件属性')
 }

@@ -223,65 +223,60 @@ export function getMatchedById(
 }
 
 /**
- * 此函数接受一个字符串参数，表示对象中的字段 和 对象
- * 它通过将参数使用点“.”作为分隔符拆分成部分来检索字段的值
- * 然后通过迭代每一部分从对象中获取字段的值
- * 如果找不到字段值，则该函数返回null
- * @param field 属性路径
+ * 安全地从嵌套对象中提取值
+ * @param object - 要访问的对象
+ * @param path - 点分隔的路径字符串
+ * @param defaultValue - 如果路径不存在，返回的默认值
+ * @returns 通过路径获取的值
  */
-export function getAttributeValue(
-  field: string,
-  obj: Record<string, any>
-): Record<string, any> | undefined {
-  // 使用“.”作为分隔符拆分field字符串，以创建字段数组。
-  const fieldList = field.split(".");
-  let data: Record<string, any> | undefined = obj;
-  // 遍历fieldList中每个字段，以从obj中检索字段的值
-  for (let i = 0; i < fieldList.length; i++) {
-    // 更新nodeItem为nodeItem中当前字段的值。
-    data = data[fieldList[i]];
-    // 如果字段的值不存在，则返回空。
-    if (typeof data === "undefined") return;
+export function getValueByPath(object: Record<string, any>, path: string, defaultValue?: any): any {
+  // 将路径字符串拆分为数组
+  const pathArray = path.split('.');
+  
+  // 逐步从对象中提取值
+  let result = object;
+  for (let i = 0; i < pathArray.length; i++) {
+    if (result == null) {
+      // 如果中间的值为 null 或 undefined，返回默认值
+      return defaultValue;
+    }
+    result = result[pathArray[i]];
   }
-
-  // 假如数据是个空数组，则直接返回 undefined
-  // if (Array.isArray(data) && data.length === 0) {
-  //   return;
-  // }
-
-  // 返回从obj中检索到的最终字段的值。
-
-  return data;
+  
+  // 如果最终的值为 undefined，返回默认值
+  return result === undefined ? defaultValue : result;
 }
 
 /**
- * 设置属性值的函数
- * 这是一个设置属性值的函数，传入三个参数，一个是要设置的属性值，一个是要设置的属性路径,一个要设置的对象。
- * 函数主要工作是将属性路径拆分成数组，然后遍历这个数组，依次进入对象中的子属性，直到最后一个子属性，然后将属性值设置到这个子属性上。
- * @param value 属性值
- * @param field 属性路径
- * @param obj 属性路径
+ * 在嵌套对象中设置值
+ * @param obj - 要修改的对象
+ * @param path - 点分隔的路径字符串
+ * @param value - 要设置的值
+ * @returns 修改后的对象
  */
-export function setAttributeValue(
-  value: any,
-  field: string,
-  obj: Record<string, any>
-): void {
-  // 使用“.”作为分隔符拆分field字符串，以创建字段数组。
-  const fieldList = field.split(".");
-  let data: Record<string, any> = obj;
-
-  // 遍历属性路径数组
-  fieldList.forEach((item, index) => {
-    // 如果当前遍历到数组的最后一个元素，则将属性值设置到这个子属性上
-    if (index === fieldList.length - 1) {
-      data[item] = value;
-      return;
+export function setValueByPath(object: Record<string, any>, path: string, value: any): Record<string, any> {
+  // 将路径字符串拆分为数组
+  const pathArray = path.replace(/\[(\d+)\]/g, '.$1').split('.').filter(Boolean);
+  
+  // 逐步设置对象中的值
+  let current = object;
+  
+  for (let i = 0; i < pathArray.length - 1; i++) {
+    const key = pathArray[i];
+    
+    // 如果当前对象的属性不存在，则创建一个新对象或数组
+    if (current[key] == null) {
+      // 如果路径部分是数字，创建数组；否则，创建对象
+      current[key] = isNaN(Number(pathArray[i + 1])) ? {} : [];
     }
-
-    // 否则，进入子属性对象中
-    data = data[item] ?? (data[item] = {});
-  });
+    
+    current = current[key];
+  }
+  
+  // 在路径的最后一层设置值
+  current[pathArray[pathArray.length - 1]] = value;
+  
+  return object;
 }
 
 /**
