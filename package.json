@@ -14,10 +14,7 @@
     "checkCompiled": "turbo run checkCompiled --filter @epic-designer/script"
   },
   "dependencies": {
-    "@vue/test-utils": "2.4.5",
-    "@vueuse/core": "^10.9.0",
-    "less": "^4.2.0",
-    "vitest": "^1.5.3"
+    "@vueuse/core": "^10.9.0"
   },
   "devDependencies": {
     "@epic-designer/core": "workspace:*",
@@ -27,6 +24,7 @@
     "@epic-designer/utils": "workspace:*",
     "@turbo/gen": "^1.13.3",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/test-utils": "2.4.5",
     "element-plus": "^2.7.2",
     "epic-designer": "workspace:*",
     "eslint": "^9.1.1",
@@ -34,10 +32,12 @@
     "prettier": "^3.2.5",
     "turbo": "^1.13.3",
     "typescript": "^5.4.5",
+    "less": "^4.2.0",
     "unocss": "^0.59.4",
     "vite": "^5.2.10",
     "vite-plugin-dts": "^3.9.0",
     "vitepress": "1.1.4",
+    "vitest": "^1.5.3",
     "vue": "^3.4.26",
     "vue-tsc": "^2.0.16"
   },
