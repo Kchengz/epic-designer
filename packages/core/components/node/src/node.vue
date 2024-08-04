@@ -218,7 +218,7 @@ const getComponentConfing = computed(() => {
 
 // 计算绑定值
 const getBindValue = () => {
-  return formData[innerSchema.field ?? ''] ?? props.modelValue
+  return props.modelValue ?? formData[innerSchema.field ?? '']
 }
 
 
