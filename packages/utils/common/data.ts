@@ -223,7 +223,7 @@ export function getMatchedById(
 }
 
 /**
- * 安全地从嵌套对象中提取值
+ * 从嵌套对象中提取值
  * @param object - 要访问的对象
  * @param path - 点分隔的路径字符串
  * @param defaultValue - 如果路径不存在，返回的默认值
