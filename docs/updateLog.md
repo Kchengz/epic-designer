@@ -1,3 +1,11 @@
+## 0.9.20（2024-08-04）
+### ✨ Feat
+- EDesigner新增sourceCodeReadOnly属性设置源码面板为只读状态
+### ✨ Refactor
+- 优化画布自动缩放功能
+### 🐛 Bug Fixes
+- 修复在属性面板编辑后再使用源码面板编辑，属性面板无法正常回显数据
+
 ## 0.9.19（2024-07-23）
 ### ✨ Feat
 - EDesigner新增切换单表单模式属性formMode
