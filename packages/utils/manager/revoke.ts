@@ -12,23 +12,7 @@ export interface RecordModel {
 /**
  撤销重做功能
  */
-export function useRevoke (): {
-  recordList: Ref<Array<{
-    type: string
-    componentSchema: string
-  }>>
-  undoList: Ref<Array<{
-    type: string
-    componentSchema: string
-  }>>
-  currentRecord: Ref<{
-    type: string
-    componentSchema: string
-  } | null>
-  push: (componentSchema: ComponentSchema[], type?: string) => void
-  undo: () => RecordModel | false
-  redo: () => RecordModel | false
-} {
+export function useRevoke () {
   // 历史记录
   const recordList = ref<RecordModel[]>([])
 
@@ -66,8 +50,8 @@ export function useRevoke (): {
       componentSchema: JSON.stringify(componentSchema)
     }
 
-    // 最多存储20条记录，超过20条记录则删除之前的记录
-    if (recordList.value.length > 20) {
+    // 最多存储60条记录，超过60条记录则删除之前的记录
+    if (recordList.value.length > 60) {
       recordList.value.unshift()
     }
   }
@@ -115,14 +99,26 @@ export function useRevoke (): {
     return JSON.parse(recordObj.componentSchema)
   }
 
+  /**
+   * @description: 重置
+   * @param {*}
+   * @return {void}
+   */
+    function reset (): void {
+      recordList.value = []
+      undoList.value = []
+      currentRecord.value = null
+    }
+
   return {
     recordList,
     undoList,
     currentRecord,
     push,
     undo,
-    redo
+    redo,
+    reset
   }
 }
 
-export const revoke = useRevoke()
+export type Revoke = ReturnType<typeof useRevoke>;

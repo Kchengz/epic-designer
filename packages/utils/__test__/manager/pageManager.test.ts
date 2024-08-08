@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { defineComponent } from 'vue';
-import { usePageManager, findSchemas } from '../../';
+import { usePageManager } from '../../';
 
 describe('usePageManager 函数测试', () => {
     it('应该正确创建 PageManager 实例', () => {

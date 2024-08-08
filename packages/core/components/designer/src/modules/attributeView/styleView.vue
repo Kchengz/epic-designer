@@ -7,9 +7,23 @@
         </div>
         <div class="epic-attr-input">
           <ENode
-            :componentSchema="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), input: false, field: undefined, hidden: false }, show: true, noFormItem: true }"
+            :componentSchema="{
+              ...item,
+              componentProps: {
+                ...item.componentProps,
+                ...(item.field === 'componentProps.defaultValue'
+                  ? checkedNode?.componentProps
+                  : {}),
+                input: false,
+                field: undefined,
+                hidden: false,
+              },
+              show: true,
+              noFormItem: true,
+            }"
             :model-value="getValueByPath(item.editData ?? checkedNode!,item.field!)"
-            @update:model-value="handleSetValue($event, item.field!, item, item.editData)" />
+            @update:model-value="handleSetValue($event, item.field!, item, item.editData)"
+          />
         </div>
       </div>
     </div>
@@ -18,11 +32,12 @@
 <script lang="ts" setup>
 import ENode from '../../../../node/index'
 import { Designer, ComponentSchema, PageSchema } from '../../../../../types/epic-designer'
-import { revoke, getValueByPath, setValueByPath } from '@epic-designer/utils'
+import { type Revoke, getValueByPath, setValueByPath } from '@epic-designer/utils'
 
 import { inject, computed, nextTick } from 'vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
+const revoke = inject('revoke') as Revoke
 
 const componentStyles: ComponentSchema[] = [
   {
@@ -99,5 +114,4 @@ function handleSetValue(value: any, field: string, item: ComponentSchema, editDa
   // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(pageSchema.schemas, '编辑组件属性')
 }
-
 </script>

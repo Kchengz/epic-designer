@@ -17,13 +17,14 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { computed, inject } from 'vue'
-import { revoke, pluginManager } from '@epic-designer/utils'
+import { Revoke, pluginManager } from '@epic-designer/utils'
 import { ComponentSchema, PageSchema, Designer } from '../../../../../types/epic-designer'
 import ENodeItem from './nodeItem.vue'
 
 
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
+const revoke = inject('revoke') as Revoke
 defineOptions({
   name: 'EditNodeItem'
 })

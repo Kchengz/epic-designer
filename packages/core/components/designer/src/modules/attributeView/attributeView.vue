@@ -18,10 +18,11 @@
 <script lang="ts" setup>
 import ENode from '../../../../node/index'
 import { Designer, ComponentSchema, PageSchema } from '../../../../../types/epic-designer'
-import { pluginManager, revoke, getValueByPath, setValueByPath } from '@epic-designer/utils'
+import { pluginManager, getValueByPath, setValueByPath, type Revoke } from '@epic-designer/utils'
 import { inject, computed, ref, watch, nextTick } from 'vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
+const revoke = inject('revoke') as Revoke
 
 const componentConfings = pluginManager.getComponentConfings()
 const checkedNode = computed(() => {

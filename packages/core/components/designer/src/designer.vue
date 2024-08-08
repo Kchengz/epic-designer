@@ -55,7 +55,7 @@ import { DesignerState, ComponentSchema, PageSchema } from "../../../types/epic-
 import {
   getMatchedById,
   loadAsyncComponent,
-  revoke,
+  useRevoke,
   usePageManager,
   pluginManager,
   deepCompareAndModify,
@@ -76,6 +76,7 @@ const ERightSidebar = loadAsyncComponent(
 );
 const EAsyncLoader = loadAsyncComponent(() => import("../../asyncLoader/index.vue"));
 const pageManager = usePageManager();
+const revoke = useRevoke();
 
 const props = withDefaults(defineProps<DesignerProps>(), {
   disabledZoom: false,
@@ -216,6 +217,7 @@ watch(
 );
 
 provide("pageSchema", pageSchema);
+provide("revoke", revoke);
 provide("pageManager", pageManager);
 provide(
   "designerProps",

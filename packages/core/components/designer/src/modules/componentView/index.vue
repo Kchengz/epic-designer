@@ -42,12 +42,13 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
 import { ref, computed, inject } from 'vue'
-import { generateNewSchema, findSchemaInfoById, pluginManager, revoke } from '@epic-designer/utils'
+import { generateNewSchema, findSchemaInfoById, pluginManager, Revoke } from '@epic-designer/utils'
 import { ComponentSchema, PageSchema, Designer } from '../../../../../types/epic-designer'
 import EIcon from '../../../../icon'
 const Input = pluginManager.getComponent('input')
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
+const revoke = inject('revoke') as Revoke
 const sourceSchema = pluginManager.getComponentSchemaGroups()
 const keyword = ref("")
 const allSchema = {

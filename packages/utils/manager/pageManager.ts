@@ -11,25 +11,8 @@ export interface ActionsModel {
   methodName: string;
   type: "component" | "public" | "custom";
 }
-export interface PageManager {
-  componentInstances: Ref<Record<string, ComponentPublicInstance>>;
-  funcs: Ref<Record<string, any>>;
-  isDesignMode: Ref<boolean>;
-  defaultComponentIds: Ref<string[]>;
-  forms: Record<string, any>;
-  addFormData(formData: Record<string, any>, formName?: string): void;
-  setFormData(formData: Record<string, any>, formName?: string): void;
-  getComponentInstance: (id: string) => ComponentPublicInstance;
-  find: (id: string) => ComponentPublicInstance;
-  addComponentInstance: (id: string, instance: ComponentPublicInstance) => void;
-  removeComponentInstance: (id: string) => void;
-  setMethods: (scriptStr: string, outputError?: boolean) => void;
-  doActions: (actions: ActionsModel[], ...args: any) => void;
-  setDesignMode: (isDesign?: boolean) => void;
-  setDefaultComponentIds: (schemas: ComponentSchema[]) => void;
-}
 
-export function usePageManager(): PageManager {
+export function usePageManager() {
   const componentInstances = ref<Record<string, ComponentPublicInstance>>({});
   const funcs = ref<Record<string, any>>({});
   // 当前模式 true 设计模式, false 渲染模式
@@ -255,3 +238,5 @@ export function usePageManager(): PageManager {
     setDefaultComponentIds
   };
 }
+
+export type PageManager = ReturnType<typeof usePageManager>;

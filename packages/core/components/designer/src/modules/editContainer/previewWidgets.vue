@@ -47,7 +47,7 @@
 import { DesignerProps } from '../../types'
 import { PageSchema, Designer } from '../../../../../types/epic-designer'
 import { inject, computed, ref, watch, type Ref } from 'vue'
-import { pluginManager, generateNewSchema, revoke, findSchemaInfoById,  type PageManager } from '@epic-designer/utils'
+import { pluginManager, generateNewSchema, Revoke, findSchemaInfoById,  type PageManager } from '@epic-designer/utils'
 import { useStore, useTimedQuery } from '@epic-designer/hooks'
 import { useResizeObserver } from '@vueuse/core'
 import EIcon from '../../../../icon'
@@ -55,6 +55,7 @@ const pageManager = inject('pageManager', {}) as PageManager
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
 const designerProps = inject('designerProps') as Ref<DesignerProps>
+  const revoke = inject('revoke') as Revoke
 
 
 const selectorRef = ref<HTMLDivElement | null>(null)
