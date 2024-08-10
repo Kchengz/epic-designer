@@ -163,7 +163,6 @@ watch(
     innerDefaultSchema = defaultSchema;
     if (props.formMode) {
       innerDefaultSchema.schemas = formSchemas;
-      pluginManager.hideComponent("form");
     }
   },
   {

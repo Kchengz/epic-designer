@@ -28,6 +28,14 @@ export const frameworkRoutes = [
           title: "数据回显",
         },
       },
+      {
+        path: "/:ui/formMode",
+        name: "formMode",
+        component: () => import("@/views/designer/formMode/index.vue"),
+        meta: {
+          title: "表单模式",
+        },
+      },
     ],
   },
   {

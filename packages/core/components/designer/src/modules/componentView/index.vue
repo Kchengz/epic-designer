@@ -44,11 +44,14 @@ import draggable from 'vuedraggable'
 import { ref, computed, inject } from 'vue'
 import { generateNewSchema, findSchemaInfoById, pluginManager, Revoke } from '@epic-designer/utils'
 import { ComponentSchema, PageSchema, Designer } from '../../../../../types/epic-designer'
+import { DesignerProps } from '../../types'
+
 import EIcon from '../../../../icon'
 const Input = pluginManager.getComponent('input')
 const pageSchema = inject('pageSchema') as PageSchema
 const designer = inject('designer') as Designer
 const revoke = inject('revoke') as Revoke
+const designerProps = inject("designerProps") as Ref<DesignerProps>;
 const sourceSchema = pluginManager.getComponentSchemaGroups()
 const keyword = ref("")
 const allSchema = {
@@ -78,12 +81,9 @@ const getSourceSchemaList = computed(() => {
     })
     sourceSchemaList = ([] as ComponentSchema[]).concat(...sourceSchemaAllList)
   }
+  return sourceSchemaList.filter(item => item.label?.includes(keyword.value) &&
+  (!designerProps.value.formMode || item.type !== "form"))
 
-  if (keyword.value) {
-    return sourceSchemaList.filter(item => item.label?.includes(keyword.value))
-  }
-
-  return sourceSchemaList
 })
 
 
