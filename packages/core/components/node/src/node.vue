@@ -62,7 +62,7 @@ const props = defineProps<{
 }>()
 
 // 表单formData数据
-let formData = inject('formData', {}) as FormDataModel
+let formData = inject('formData', reactive({})) as FormDataModel
 
 const slots = inject('slots', {}) as Slots
 // 接收页面管理对象
