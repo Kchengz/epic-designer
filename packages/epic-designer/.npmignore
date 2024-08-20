@@ -1,11 +1,12 @@
 node_modules/
-docs/
 vite.config.ts
 pnpm-lock.yaml
 *.map
 *.html
 index.ts
 uno.config.ts
+.eslintrc.cjs
+.babelrc
 
 # local env files
 .env.local
