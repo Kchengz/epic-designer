@@ -1,5 +1,5 @@
 <template>
-    <Menu class="h-full" :selectedKeys="[routeName]" :openKeys="openKeys" id="dddddd" mode="inline" @click="handleClick"
+    <Menu class="h-full" :selectedKeys="[routeName]" :openKeys="openKeys" mode="inline" @click="handleClick"
         :items="items"></Menu>
 </template>
 <script lang="ts" setup>

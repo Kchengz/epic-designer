@@ -1,25 +1,18 @@
-.DS_Store
 node_modules/
-examples/
-public/
-dist/
-static/
 docs/
 vite.config.ts
 pnpm-lock.yaml
 *.map
 *.html
+index.ts
+uno.config.ts
 
 # local env files
 .env.local
 .env.*.local
 
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
 # Editor directories and files
+.turbo
 .idea
 .vscode
 *.suo

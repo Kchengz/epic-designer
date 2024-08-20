@@ -33,8 +33,6 @@
     "lint": "eslint . --fix --ext .js,.jsx,.json,.ts,.tsx,.vue"
   },
   "dependencies": {
-    "dayjs": "^1.11.11",
-    "monaco-editor": "^0.48.0",
     "vuedraggable": "4.1.0"
   },
   "peerDependencies": {
@@ -42,6 +40,8 @@
     "element-plus": ">=2.1.4",
     "epic-designer": ">=0.9.3",
     "naive-ui": ">=2.30.0",
+    "monaco-editor": ">=0.48.0",
+    "dayjs": ">=1.0.0",
     "vue": ">=3.1.0"
   },
   "devDependencies": {
@@ -65,7 +65,6 @@
     "rollup-plugin-external-globals": "^0.10.0",
     "unocss": "^0.59.4",
     "vite-plugin-eslint": "^1.8.1",
-    "vite-plugin-monaco-editor": "^1.1.0",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vitest": "^1.5.3",

@@ -3,7 +3,6 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 import dts from "vite-plugin-dts";
 import UnoCSS from "unocss/vite";
-import monacoEditorPlugin from "vite-plugin-monaco-editor";
 import rollupCopy from 'rollup-plugin-copy'
 export default defineConfig({
   plugins: [
@@ -13,7 +12,6 @@ export default defineConfig({
       entryRoot: "../",
       outDir: "dist",
     }),
-    (monacoEditorPlugin as any).default({}),
   ],
   resolve: {
     alias: {
@@ -33,7 +31,6 @@ export default defineConfig({
         antd: path.resolve(__dirname, "../ui/antd/index.ts"),
         elementPlus: path.resolve(__dirname, "../ui/elementPlus/index.ts"),
         naiveUi: path.resolve(__dirname, "../ui/naiveUi/index.ts"),
-        // antdV3: path.resolve(__dirname, "../ui/ui-antdv3/src/index.ts"),
       },
       // 指定组件编译入口文件
       name: "epic-designer",
@@ -52,7 +49,7 @@ export default defineConfig({
 
     // 库编译模式配置
     rollupOptions: {
-      // 确保外部化处理那些你不想打包进库的依赖
+      // 确保外部化处理那些不需要打包进库的依赖
       external: [
         "vue",
         "monaco-editor",
@@ -60,6 +57,7 @@ export default defineConfig({
         "ant-design-vue",
         "naive-ui",
         "epic-designer",
+        "dayjs"
       ],
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
