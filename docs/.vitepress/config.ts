@@ -117,10 +117,6 @@ export default defineConfig({
               text: "自定义函数",
               link: "/guide/action/customFunctions",
             },
-            {
-              text: "公共函数",
-              link: "/guide/action/publicMethods",
-            },
           ],
         },
         {
@@ -131,7 +127,7 @@ export default defineConfig({
               link: "/guide/extensions/icon",
             },
             {
-              text: "组件扩展",
+              text: "自定义组件",
               link: "/guide/extensions/component",
             },
             {
@@ -141,6 +137,10 @@ export default defineConfig({
             {
               text: "右侧边栏扩展",
               link: "/guide/extensions/rightSidebar",
+            },
+            {
+              text: "公共函数",
+              link: "/guide/extensions/publicMethods",
             },
           ],
         },

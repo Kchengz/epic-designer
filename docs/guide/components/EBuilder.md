@@ -18,7 +18,7 @@
     <EBuilder :pageSchema="pageSchema" />
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import { EBuilder } from "epic-designer";
 
 const pageSchema = {
@@ -65,14 +65,15 @@ const pageSchema = {
 ```vue
 <template>
 	<div>
-		<EBuilder ref="ebForm" :pageSchema="pageSchemaForm" />
+		<EBuilder ref="ebForm" :pageSchema="pageSchema" />
   		<button @click="handleValidate">获取数据</button>
   	<div>
   {{formData}}
   </div>
 </div>
 </template>
-<script setup>
+<script lang="ts" setup>
+import { ref } from "vue";
 import { EBuilder } from "epic-designer";
 
 const pageSchema = {
@@ -208,89 +209,87 @@ async function handleValidate(){
 ```vue
 <template>
   <div>
-    <EBuilder ref="ebRef" :pageSchema="pageSchema">
-    </EBuilder>
-    <div @click="handleReset">
-      清空数据
-    </div>
+    <EBuilder ref="ebRef" :pageSchema="pageSchema"> </EBuilder>
+    <button @click="handleReset">重置数据</button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import { EBuilder, PageSchema } from 'epic-designer'
+import { ref, onMounted } from "vue";
+import { EBuilder, PageSchema } from "epic-designer";
 
-const ebRef = ref<any>(null)
+const ebRef = ref<any>(null);
 
 async function handleReset() {
   // 获取表单实例
-  const form = await ebRef.value?.getFormInstance()
-  // 调用组件实例方法，参考ui from 提供的方法
-  form?.resetFields()
+  const form = await ebRef.value?.getFormInstance();
+  // 调用组件实例方法，参考ui from 提供的重置方法，本案例以Ant Design Vue为基础UI
+  form?.resetFields();
 }
 const pageSchema = ref<PageSchema>({
-  "schemas": [
+  schemas: [
     {
-      "type": "page",
-      "id": "root",
-      "label": "页面",
-      "children": [
+      type: "page",
+      id: "root",
+      label: "页面",
+      children: [
         {
-          "label": "表单",
-          "type": "form",
-          "icon": "epic-icon-daibanshixiang",
-          "componentProps": {
-            "name": "default",
-            "labelWidth": 100,
-            "labelCol": {
-              "span": 5
+          label: "表单",
+          type: "form",
+          icon: "epic-icon-daibanshixiang",
+          componentProps: {
+            name: "default",
+            labelWidth: 100,
+            labelCol: {
+              span: 5,
             },
-            "wrapperCol": {
-              "span": 19
+            wrapperCol: {
+              span: 19,
             },
-            "hideRequiredMark": false,
-            "labelPlacement": "left",
-            "labelAlign": "right",
-            "requireMarkPlacement": "right",
-            "size": "medium"
+            hideRequiredMark: false,
+            labelPlacement: "left",
+            labelAlign: "right",
+            requireMarkPlacement: "right",
+            size: "medium",
           },
-          "children": [
+          children: [
             {
-              "label": "姓名",
-              "type": "input",
-              "field": "input_sb6jhfb8",
-              "icon": "epic-icon-write",
-              "input": true,
-              "componentProps": {
-                "defaultValue": "",
-                "placeholder": "请输入",
-                "type": "text",
-                "size": "medium",
-                "disabled": false
+              label: "姓名",
+              type: "input",
+              field: "input_sb6jhfb8",
+              icon: "epic-icon-write",
+              input: true,
+              componentProps: {
+                defaultValue: "",
+                placeholder: "请输入",
+                type: "text",
+                size: "medium",
+                disabled: false,
               },
-              "id": "input_sb6jhfb8"
-            }
+              id: "input_sb6jhfb8",
+            },
           ],
-          "id": "form_18vemlk8"
-        }
+          id: "form_18vemlk8",
+        },
       ],
-      "componentProps": {
-        "style": {
-          "padding": "16px"
-        }
-      }
-    }
-  ]
-})
+      componentProps: {
+        style: {
+          padding: "16px",
+        },
+      },
+    },
+  ],
+});
 
 // 表单赋值
 onMounted(async () => {
-  ebRef.value?.setData({
-    'input_sb6jhfb8': "自动填写的内容"
-  })
-})
+  setTimeout(() => {
+    ebRef.value?.setData({
+      input_sb6jhfb8: "自动填写的内容",
+    });
+  },200);
+});
 </script>
-
 ```
 
 <script setup>
@@ -512,9 +511,11 @@ const pageSchema2 = {
 }
 
 onMounted(async () => {
-  ebRef2.value?.setData({
-    'input_sb6jhfb8': "自动填写的内容"
-  })
+  setTimeout(() => {
+    ebRef2.value?.setData({
+      input_sb6jhfb8: "自动填写的内容",
+    });
+  },200);
 })
 
 

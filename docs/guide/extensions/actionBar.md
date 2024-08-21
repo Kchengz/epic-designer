@@ -4,7 +4,7 @@
 `pluginManager` 提供了registerRightSidebar方法扩展活动栏功能模块
 :::
 
-参考demo仓库： [https://gitee.com/kcz66/k-designer-demo](https://gitee.com/kcz66/k-designer-demo)
+参考demo仓库： [https://gitee.com/kcz66/epic-designer-demo](https://gitee.com/kcz66/epic-designer-demo)
 
 ## 活动扩展
 

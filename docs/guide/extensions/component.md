@@ -4,7 +4,7 @@
 `pluginManager` 提供了registerComponent方法添加组件
 :::
 
-参考demo仓库： [https://gitee.com/kcz66/k-designer-demo](https://gitee.com/kcz66/k-designer-demo)
+参考demo仓库： [https://gitee.com/kcz66/epic-designer-demo](https://gitee.com/kcz66/epic-designer-demo)
 
 ## 普通组件扩展
 

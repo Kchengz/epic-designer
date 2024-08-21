@@ -4,7 +4,7 @@
 `pluginManager` 提供了registerRightSidebar方法扩展右侧边栏功能模块
 :::
 
-参考demo仓库： [https://gitee.com/kcz66/k-designer-demo](https://gitee.com/kcz66/k-designer-demo)
+参考demo仓库： [https://gitee.com/kcz66/epic-designer-demo](https://gitee.com/kcz66/epic-designer-demo)
 
 ## 右侧边栏扩展
 
