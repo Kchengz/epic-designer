@@ -1,9 +1,6 @@
-## 软件著作权证书
-<img src="https://epic.kcz66.com/static/certificate.jpg" width="200px">
-
 ## 声明
 
-本项目采用 `MIT` 开源许可证，允许免费用于商业用途。任何使用者都必须遵守 `MIT` 许可证的相关条款，保留原始的许可证声明。
+本项目采用 `MIT` 开源许可证，允许免费用于商业用途。任何使用者都必须遵守 `MIT` 许可证的相关条款。
 
  `MIT` 协议内容如下：
 
@@ -32,6 +29,10 @@ SOFTWARE.
 ```
 
 使用必须遵守国家法律法规，⛔不允许非法项目使用，后果自负❗
+
+## 软件著作权证书
+
+<img src="https://epic.kcz66.com/static/certificate.jpg" width="320px">
 
 
 

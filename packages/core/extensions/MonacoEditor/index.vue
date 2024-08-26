@@ -91,6 +91,11 @@ onMounted(() => {
     readOnly: props.readOnly,
     lineNumbers: props.lineNumbers,
     theme: props.theme,
+    scrollBeyondLastLine:false,
+    scrollbar: {
+      verticalScrollbarSize:10,
+      horizontalScrollbarSize:10
+    },
     automaticLayout: true
   })
 
