@@ -6,8 +6,8 @@
   "author": "kchengz",
   "dependencies": {
     "ant-design-vue": "^4.2.3",
-    "dayjs": "^1.11.11",
-    "monaco-editor": "^0.48.0"
+    "dayjs": "^1.11.13",
+    "monaco-editor": "^0.51.0"
   },
   "devDependencies": {
     "vite-plugin-monaco-editor": "^1.1.0"

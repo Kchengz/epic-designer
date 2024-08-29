@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "epic-designer base ui",
   "main": "index.ts",
-  "scripts": {
-  },
+  "scripts": {},
   "author": "kchengz",
   "devDependencies": {
     "ant-design-vue": "^4.2.3",
-    "element-plus": "^2.7.2",
-    "naive-ui": "^2.38.1",
-    "vite-plugin-dts": "^3.9.0"
+    "element-plus": "^2.8.1",
+    "naive-ui": "^2.39.0",
+    "vite-plugin-dts": "^4.0.3"
   },
   "dependencies": {
-    "dayjs": "^1.11.11"
+    "dayjs": "^1.11.13"
   }
 }
