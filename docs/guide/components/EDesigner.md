@@ -90,7 +90,7 @@ background: white;
 | lockDefaultSchemaEdit | 锁定defaultSchema中组件不可以复制或移除                    | boolean    | false  | 0.9.7  |
 | disabledZoom          | 禁止缩放功能                                               | boolean    | false  | -      |
 | hiddenHeader          | 隐藏头部                                                   | boolean    | false  | -      |
-| formMode              | 单表单模式，开启后不可再拖入表单，跟节点默认切换为表单组件 | boolean    | false  | 0.9.19 |
+| formMode              | 单表单模式，开启后不可再拖入表单，根节点默认切换为表单组件 | boolean    | false  | 0.9.19 |
 | sourceCodeReadOnly    | 设置源码面板为只读状态                                     | boolean    | false  | 0.9.20 |
 
 ## 函数
