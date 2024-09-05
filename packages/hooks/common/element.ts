@@ -17,10 +17,11 @@ export function useKeyPress() {
   // 是否按住ctrl键
   const pressCtrl = ref(false);
   onKeyDown(" ", (e) => {
-    var element = e.target as HTMLElement;
-    if (!["INPUT", "TEXTAREA"].includes(element.tagName)) {
-      e.preventDefault();
-    }
+    // 修正 Safari 下按空格拖拽画布失效问题
+    // var element = e.target as HTMLElement;
+    // if (!["INPUT", "TEXTAREA"].includes(element.tagName)) {
+    //   e.preventDefault();
+    // }
     pressSpace.value = true;
   });
   onKeyUp(" ", () => {
@@ -55,10 +56,18 @@ export function useElementDrag(
   editScreenContainer: Ref<HTMLDivElement | null>
 ) {
   const { pressSpace } = useStore();
+  // 预先创建一个1x1的透明图片，修正 Chrome 下鼠标出现地球的问题，Safari 下拖拽阴影问题
+  const img = new Image(1, 1);
+  img.src =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
 
   let startX = 0;
   let startY = 0;
   function handleElementDragStart(event: DragEvent) {
+    // 只有按空格的时候才启用画布拖拽，修正 Safari 下拖拽组件失效问题
+    if (!pressSpace.value) {
+      return;
+    }
     startX = event.x;
     startY = event.y;
     event.dataTransfer?.setDragImage(document.createElement("div"), 0, 0);
