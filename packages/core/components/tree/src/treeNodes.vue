@@ -7,7 +7,7 @@
       group: 'tree-draggable',
       ghostClass: 'moveing',
       draggable: '.draggable-item',
-      disabled: !treeProps.draggable || modelSchemas[0]?.type === 'page'
+      disabled: !treeProps.draggable || modelSchemas[0]?.id === pageSchema.schemas[0]?.id
 
     }" @start="handleSelect($event.oldIndex)">
     <template #item="{ element, index }">
@@ -24,11 +24,14 @@ import { computed, inject } from 'vue'
 import { ComponentSchema, Designer } from '../../../types/epic-designer'
 import ETreeNodeItem from './treeNodeItem.vue'
 import draggable from 'vuedraggable'
-import { pluginManager } from '@epic-designer/utils'
+import { pluginManager,PageSchema } from '@epic-designer/utils'
+
 defineOptions({
   name: 'ETreeNodes'
 })
+
 const designer = inject('designer') as Designer
+const pageSchema = inject('pageSchema') as PageSchema
 const treeProps = inject('treeProps') as any
 
 const props = defineProps<{
