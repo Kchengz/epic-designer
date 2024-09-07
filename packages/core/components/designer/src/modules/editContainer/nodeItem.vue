@@ -13,7 +13,7 @@
 </template>
 <script lang="ts" setup>
 import ENode from '../../../../node'
-import { ComponentSchema, Designer } from '../../../../../types/epic-designer'
+import { ComponentSchema, Designer, PageSchema } from '../../../../../types/epic-designer'
 import KEditNodeItem from './editNodeItem.vue'
 import { useAttrs, provide, watch, ref, onUnmounted, computed, inject } from 'vue';
 import { pluginManager, type PageManager } from '@epic-designer/utils'
@@ -21,6 +21,7 @@ import { pluginManager, type PageManager } from '@epic-designer/utils'
 const attrs = useAttrs()
 const designer = inject('designer') as Designer
 const pageManager = inject('pageManager', {}) as PageManager
+const pageSchema = inject('pageSchema', {}) as PageSchema
 
 const nodeRef = ref<HTMLBaseElement | null>(null)
 
@@ -76,7 +77,8 @@ function setCheckedNode(event: Event) {
 }
 
 function setHoverNode(event: Event) {
-  if (props.schema.type === 'page') return
+  // 根节点不显示hover
+  if (props.schema.id === pageSchema.schemas[0]?.id) return
   event.stopPropagation()
   designer.setHoverNode(props.schema)
 }

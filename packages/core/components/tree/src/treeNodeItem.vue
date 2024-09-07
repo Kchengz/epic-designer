@@ -3,12 +3,14 @@
     class="epic-tree-node"
     :class="{
       expanded: props.schema.children?.length,
-      'level-1': props.schema.type === 'page',
+      'level-1': props.schema.id === pageSchema.schemas[0]?.id,
     }"
   >
     <a>
       <span
-        v-if="props.schema.children?.length && props.schema.type !== 'page'"
+        v-if="
+          props.schema.children?.length && props.schema.id !== pageSchema.schemas[0]?.id
+        "
         class="icon-expanded"
         :class="{ expanded }"
         @click="handleExpanded"
@@ -27,7 +29,7 @@
   </li>
 </template>
 <script lang="ts" setup>
-import { ComponentSchema } from "../../../types/epic-designer";
+import { ComponentSchema, PageSchema } from "../../../types/epic-designer";
 import EIcon from "../../icon";
 import { inject, computed, Ref, h, defineComponent, Slots } from "vue";
 import { pluginManager } from "@epic-designer/utils";
@@ -41,6 +43,7 @@ const props = defineProps<{
 }>();
 
 const slots = inject("slots", {}) as Slots;
+const pageSchema = inject("pageSchema", {}) as PageSchema;
 
 const expandedKeys = inject("expandedKeys") as Ref<string[]>;
 const treeProps = inject("treeProps") as any;

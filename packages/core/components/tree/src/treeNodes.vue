@@ -8,7 +8,6 @@
       ghostClass: 'moveing',
       draggable: '.draggable-item',
       disabled: !treeProps.draggable || modelSchemas[0]?.id === pageSchema.schemas[0]?.id
-
     }" @start="handleSelect($event.oldIndex)">
     <template #item="{ element, index }">
       <ETreeNodeItem :class="isDraggable(element)" :key="element.id" :schema="element" />
@@ -60,7 +59,7 @@ function handleSelect(index: number) {
 
 function isDraggable(schema: ComponentSchema) {
   // 判断当前节点类型是否允许拖拽
-  if (schema.type === 'page' || pluginManager.getComponentConfingByType(schema.type)?.editConstraints?.immovable) {
+  if (schema.id === pageSchema.schemas[0]?.id || pluginManager.getComponentConfingByType(schema.type)?.editConstraints?.immovable) {
     // 禁止拖拽
     return 'unmover-item'
   }

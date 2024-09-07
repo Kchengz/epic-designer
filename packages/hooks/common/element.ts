@@ -16,12 +16,7 @@ export function useKeyPress() {
   const pressShift = ref(false);
   // 是否按住ctrl键
   const pressCtrl = ref(false);
-  onKeyDown(" ", (e) => {
-    // 修正 Safari 下按空格拖拽画布失效问题
-    // var element = e.target as HTMLElement;
-    // if (!["INPUT", "TEXTAREA"].includes(element.tagName)) {
-    //   e.preventDefault();
-    // }
+  onKeyDown(" ", () => {
     pressSpace.value = true;
   });
   onKeyUp(" ", () => {
@@ -64,7 +59,7 @@ export function useElementDrag(
   let startX = 0;
   let startY = 0;
   function handleElementDragStart(event: DragEvent) {
-    // 只有按空格的时候才启用画布拖拽，修正 Safari 下拖拽组件失效问题
+    // 只有按空格的时候才启用画布拖拽
     if (!pressSpace.value) {
       return;
     }

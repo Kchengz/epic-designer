@@ -7,9 +7,23 @@
         </div>
         <div class="epic-attr-input" :class="{ 'block!': item.layout === 'vertical' }">
           <ENode
-            :componentSchema="{ ...item, componentProps: { ...item.componentProps, ...(item.field === 'componentProps.defaultValue' ? checkedNode?.componentProps : {}), input: false, field: undefined, hidden: false }, show: true, noFormItem: true }"
+            :componentSchema="{
+              ...item,
+              componentProps: {
+                ...item.componentProps,
+                ...(item.field === 'componentProps.defaultValue'
+                  ? checkedNode?.componentProps
+                  : {}),
+                input: false,
+                field: undefined,
+                hidden: false,
+              },
+              show: true,
+              noFormItem: true,
+            }"
             :model-value="getValueByPath(item.editData ?? checkedNode!,item.field!)"
-            @update:model-value="handleSetValue($event, item.field!, item, item.editData)" />
+            @update:model-value="handleSetValue($event, item.field!, item, item.editData)"
+          />
         </div>
       </div>
     </div>
@@ -19,7 +33,7 @@
 import ENode from '../../../../node/index'
 import { Designer, ComponentSchema, PageSchema } from '../../../../../types/epic-designer'
 import { pluginManager, getValueByPath, setValueByPath, type Revoke } from '@epic-designer/utils'
-import { inject, computed, ref, watch, nextTick } from 'vue'
+import { inject, computed, ref, watchEffect, nextTick } from 'vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
 const revoke = inject('revoke') as Revoke
@@ -44,9 +58,9 @@ function isShow(item: ComponentSchema) {
 }
 
 const componentAttributes = ref<ComponentSchema[]>([])
-watch(() => designer.state.checkedNode?.type, () => {
+  watchEffect(() => {
   const type = designer.state.checkedNode?.type
-  if (!type) {
+  if (!designer.state.checkedNode || !type) {
     return []
   }
   const attribute = componentConfings[type]?.config.attribute ?? []
@@ -63,7 +77,7 @@ watch(() => designer.state.checkedNode?.type, () => {
     ...attribute
   ]
 
-  if (type === 'page') {
+  if (designer.state.checkedNode.id === pageSchema.schemas[0]?.id) {
     componentAttributes.value.push(...[
       {
         label: '画布宽度',
@@ -79,8 +93,6 @@ watch(() => designer.state.checkedNode?.type, () => {
       }
     ])
   }
-}, {
-  immediate: true
 })
 
 /**
@@ -101,5 +113,4 @@ function handleSetValue(value: any, field: string, item: ComponentSchema, editDa
   // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(pageSchema.schemas, '编辑组件属性')
 }
-
 </script>
