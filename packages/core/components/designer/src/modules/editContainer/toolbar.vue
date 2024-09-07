@@ -1,18 +1,21 @@
 <template>
   <!-- 工具条 start  -->
-  <div class="epic-edit-toolbar flex items-center justify-between px-4">
+  <div class="epic-edit-toolbar flex items-center justify-between px-2">
+    <!-- 操作按钮 start  -->
     <div class="flex-1 h-full flex items-center">
-      <div
-        :title="item.title"
-        class="epic-action-item text-18px h-90% px-10px flex items-center cursor-pointer"
-        v-for="(item, index) in actionOptions"
-        :class="{ disabled: item.disabled }"
-        :key="index"
-        @click="item.on"
-      >
-        <EIcon :name="item.icon"></EIcon>
-      </div>
+      <template v-for="(action, index) in actionOptions" :key="index">
+        <div v-if="action.divider" class="epic-divider"></div>
+        <div
+          :title="action.title"
+          class="epic-action-item text-base h-90% px-10px flex items-center cursor-pointer"
+          :class="{ disabled: action.disabled }"
+          @click="action.on"
+        >
+          <EIcon :name="action.icon"></EIcon>
+        </div>
+      </template>
     </div>
+    <!-- 操作按钮 end  -->
 
     <input
       type="file"
@@ -22,19 +25,21 @@
       @change="handleFileSelected"
     />
 
-    <div class="flex-1 h-full flex items-center justify-center">
-      <div
-        :title="item.title"
-        class="epic-device-item h-90% px-10px flex items-center cursor-pointer"
-        :class="{ checked: item.key === checkedKey }"
-        v-for="item in deviceOptions"
-        :key="item.key"
-        @click="handleSetCanvas(item.key)"
-      >
-        <EIcon :name="item.icon"></EIcon>
-      </div>
-    </div>
     <div class="flex-1 h-full flex items-center justify-end">
+      <!-- 画布类型切换 start -->
+      <div class="epic-device h-28px items-center gap-1 rounded-md border p-2px flex">
+        <template v-for="item in deviceOptions" :key="item.key">
+          <div
+            :title="item.title"
+            class="epic-device-item h-full px-1 flex items-center cursor-pointer text-base transition-colors rounded-sm"
+            :class="{ checked: item.key === checkedKey }"
+            @click="handleSetCanvas(item.key)"
+          >
+            <EIcon :name="item.icon"></EIcon>
+          </div>
+        </template>
+      </div>
+      <!-- 画布类型切换 end -->
       <!-- 缩放操作 start  -->
       <div v-if="!disabledZoom" class="flex items-center ml-12px">
         <div class="pr-8px w-82px cursor-pointer">
@@ -44,16 +49,6 @@
             :options="canvasScaleOptions"
             size="small"
           ></Select>
-        </div>
-        <div class="w-90px cursor-pointer">
-          <Slider
-            :min="0.6"
-            :max="1.4"
-            :step="0.01"
-            :tooltip="false"
-            v-model:value="canvasScale"
-            v-model="canvasScale"
-          />
         </div>
       </div>
       <!-- 缩放操作 end  -->
@@ -75,7 +70,6 @@ import { computed, inject, ref } from "vue";
 import EIcon from "../../../../icon";
 import EPreviewJson from "./previewJson.vue";
 
-const Slider = pluginManager.getComponent("slider");
 const Select = pluginManager.getComponent("select");
 
 const { canvasScale, disabledZoom } = useStore();
@@ -105,7 +99,7 @@ const deviceOptions = [
 const actionOptions = computed(() => {
   return [
     {
-      icon: "icon--epic--code-blocks-outline-rounded",
+      icon: "icon--epic--code",
       title: "查看数据",
       on: () => handlePreview(),
     },
@@ -115,18 +109,19 @@ const actionOptions = computed(() => {
       on: handleOpenFileSelector,
     },
     {
-      icon: "icon--epic--delete-outline-rounded",
+      icon: "icon--epic--trash",
       title: "清空",
       on: handleReset,
     },
     {
-      icon: "icon--epic--undo-rounded",
+      icon: "icon--epic--undo",
       title: "撤销",
       on: handleUndo,
       disabled: !revoke.recordList.value.length,
+      divider: true,
     },
     {
-      icon: "icon--epic--redo-rounded",
+      icon: "icon--epic--redo",
       title: "重做",
       on: handleRedo,
       disabled: !revoke.undoList.value.length,

@@ -20,17 +20,17 @@
       width: 100%;
     }
 
-    > div > .epic-draggable-range {
+    >div>.epic-draggable-range {
       border: transparent;
 
       // 屏蔽antd element-plus label点击事件
-      .ant-form-item-label > label,
-      .el-form-item > .el-form-item__label {
+      .ant-form-item-label>label,
+      .el-form-item>.el-form-item__label {
         pointer-events: none;
       }
     }
 
-    .root-node > .form-main > form > .epic-draggable-range {
+    .root-node>.form-main>form>.epic-draggable-range {
       border: transparent;
     }
   }
@@ -110,28 +110,50 @@
     box-sizing: border-box;
     border-bottom: 1px solid var(--epic-border-color);
 
-    .epic-action-item,.epic-device-item
-    {
-        color: var(--epic-text-medium);
-        &.disabled {
+    .epic-divider {
+      width: 1px;
+      height: 20px;
+      background-color: var(--epic-divider-color);
+      margin: 0 4px;
+    }
+
+    .epic-action-item {
+      color: var(--epic-text-medium);
+      height: 32px;
+      border-radius: 4px;
+
+      &.disabled {
         color: var(--epic-text-disabled);
         cursor: no-drop;
       }
+
       &:hover {
         background: var(--epic-action-hover-color);
       }
     }
 
-    .epic-device-item.checked {
-      color: var(--epic-primary-color);
+
+    .epic-device {
+      border: 1px solid var(--epic-border-color);
+
+      .epic-device-item {
+
+        &.checked {
+          color: var(--epic-primary-color);
+          background: var(--epic-action-hover-color);
+        }
+      }
     }
 
+
+
   }
+
 
   .widget-box {
     cursor: move;
   }
 
   background-image: linear-gradient(var(--epic-designer-color) 14px, transparent 0),
-    linear-gradient(90deg, transparent 14px, var(--epic-designer-dot-color) 0);
+  linear-gradient(90deg, transparent 14px, var(--epic-designer-dot-color) 0);
 }
