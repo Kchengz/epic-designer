@@ -10,10 +10,16 @@
       <template #tree-node="{ schema }">
         <div
           class="epic-text-padding flex"
+          :class="{ hidden: schema.componentProps?.hidden }"
           @mouseenter.stop="designer.setHoverNode(schema)"
           @mouseleave.stop="designer.setHoverNode(null)"
         >
           <span class="max-w-full truncate">
+            <EIcon
+              v-if="schema.componentProps?.hidden"
+              name="icon--epic--visibility-off-outline-rounded"
+              class="translate-y-2px"
+            ></EIcon>
             {{
               schema.label ??
               pluginManager.getComponentConfingByType(schema.type)?.defaultSchema.label
@@ -32,6 +38,7 @@ import ETree from "../../../../tree";
 import { inject, computed } from "vue";
 import { PageSchema, Designer } from "../../../../../types/epic-designer";
 import { pluginManager } from "@epic-designer/utils";
+import EIcon from "../../../../../components/icon";
 
 const designer = inject("designer") as Designer;
 const pageSchema = inject("pageSchema") as PageSchema;

@@ -7,15 +7,19 @@
     list-style: none;
     padding: 0;
   }
+
   a {
     color: var(--epic-text-main);
     display: flex;
+
     &:hover {
       color: var(--epic-text-main);
     }
+
     .text {
       display: inline-block;
       width: 100%;
+
       &.hover {
         background-color: var(--epic-widget-hover-color);
       }
@@ -29,6 +33,10 @@
         padding: 0 6px;
         white-space: nowrap;
         color: var(--epic-text-main);
+
+        &.hidden {
+          color: var(--epic-text-helper);
+        }
       }
     }
   }
@@ -69,6 +77,7 @@
     &.expanded {
       height: auto;
     }
+
     .epic-tree-node {
       position: relative;
 
@@ -79,12 +88,14 @@
         background: var(--epic-border-color);
         z-index: 99;
       }
+
       &::after {
         width: 1px;
         height: 100%;
         left: 4px;
         top: 0;
       }
+
       &::before {
         width: 8px;
         height: 1px;

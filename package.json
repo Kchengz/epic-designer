@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "vitest run && pnpm run checkCompiled && turbo run dev",
+    "dev": "pnpm run checkCompiled && turbo run dev",
     "lib": "vitest run && pnpm run build --filter epic-designer",
     "lint": "turbo run lint",
     "test": "vitest",
