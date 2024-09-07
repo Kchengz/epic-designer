@@ -21,10 +21,10 @@
 </template>
 <script lang="ts" setup>
 import { computed, inject } from 'vue'
-import { ComponentSchema, Designer } from '../../../types/epic-designer'
+import { ComponentSchema, Designer, PageSchema } from '../../../types/epic-designer'
 import ETreeNodeItem from './treeNodeItem.vue'
 import draggable from 'vuedraggable'
-import { pluginManager,PageSchema } from '@epic-designer/utils'
+import { pluginManager } from '@epic-designer/utils'
 
 defineOptions({
   name: 'ETreeNodes'
