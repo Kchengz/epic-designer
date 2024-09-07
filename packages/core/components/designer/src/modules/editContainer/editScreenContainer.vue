@@ -123,16 +123,6 @@ watch(getCanvasAttribute, updateScrollBoxStyle);
  * 并相应地更新滚动框和画布的样式。
  */
 function updateScrollBoxStyle() {
-  // 如果禁用缩放功能
-  if (disabledZoom.value) {
-    // 禁用画布缩放功能，设置固定的画布尺寸和位置
-    canvasBoxStyle.value = {
-      width: contentRectWidth + "px", // 画布宽度
-      height: contentRectHeight + "px", // 画布高度
-      transform: "translate(0px, 20px)", // 位置偏移
-    };
-    return; // 退出
-  }
 
   // 获取画布的宽度和高度，如果没有提供，则使用默认值
   let canvasWidth = getCanvasAttribute.value.width || contentRectWidth;
