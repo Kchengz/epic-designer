@@ -26,6 +26,18 @@
     />
 
     <div class="flex-1 h-full flex items-center justify-end">
+      <!-- 缩放操作 start  -->
+      <div v-if="!disabledZoom" class="flex items-center ml-12px">
+        <div class="pr-8px w-82px cursor-pointer">
+          <Select
+            v-model:value="canvasScaleComuted"
+            v-model="canvasScaleComuted"
+            :options="canvasScaleOptions"
+            size="small"
+          ></Select>
+        </div>
+      </div>
+      <!-- 缩放操作 end  -->
       <!-- 画布类型切换 start -->
       <div class="epic-device h-28px items-center gap-1 rounded-md border p-2px flex">
         <template v-for="item in deviceOptions" :key="item.key">
@@ -40,18 +52,6 @@
         </template>
       </div>
       <!-- 画布类型切换 end -->
-      <!-- 缩放操作 start  -->
-      <div v-if="!disabledZoom" class="flex items-center ml-12px">
-        <div class="pr-8px w-82px cursor-pointer">
-          <Select
-            v-model:value="canvasScaleComuted"
-            v-model="canvasScaleComuted"
-            :options="canvasScaleOptions"
-            size="small"
-          ></Select>
-        </div>
-      </div>
-      <!-- 缩放操作 end  -->
     </div>
   </div>
   <EPreviewJson ref="previewJson" />
@@ -135,30 +135,31 @@ const canvasScaleComuted = computed({
     return `${(canvasScale.value * 100).toFixed(0)}%`;
   },
   set(value) {
-    canvasScale.value = Number(value);
+    const percentage = parseFloat(value);
+    canvasScale.value = percentage / 100;
   },
 });
 
 const canvasScaleOptions = [
   {
     label: "60%",
-    value: "0.6",
+    value: "60%",
   },
   {
     label: "80%",
-    value: "0.8",
+    value: "80%",
   },
   {
     label: "100%",
-    value: "1.0",
+    value: "100%",
   },
   {
     label: "120%",
-    value: "1.2",
+    value: "120%",
   },
   {
     label: "140%",
-    value: "1.4",
+    value: "140%",
   },
 ];
 
