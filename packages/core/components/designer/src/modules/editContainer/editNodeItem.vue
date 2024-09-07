@@ -64,7 +64,7 @@ function handleAdd() {
 
 function isDraggable(schemas: ComponentSchema) {
   // 判断当前节点类型是否允许拖拽
-  if (schemas.type === 'page' || pluginManager.getComponentConfingByType(schemas.type).editConstraints?.immovable) {
+  if (schemas.type === 'page' || pluginManager.getComponentConfingByType(schemas.type)?.editConstraints?.immovable) {
     // 禁止拖拽
     return 'unmover-item'
   }
