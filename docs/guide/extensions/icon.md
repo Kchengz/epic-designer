@@ -98,7 +98,7 @@ icon: 'icon-xxx'
 
 > 以下为`EpicDesigner`默认内置的Icon
 
-<iframe width="720px" height="1500px" frameborder="0" src="/icons/iconify.html">
+<iframe width="730px" height="1650px" frameborder="0" src="/icons/iconify.html">
 
 </iframe>
 
@@ -106,6 +106,6 @@ icon: 'icon-xxx'
 
 > 该Icon库已在`v0.9.18`版本移除，如果需要继续使用该icon库，可以从[点击这里下载](https://gitee.com/kcz66/epic-designer/tree/develop/docs/public/icons)
 
-<iframe width="720px" height="2160px" frameborder="0" src="/icons/demo_index.html">
+<iframe width="730px" height="2160px" frameborder="0" src="/icons/demo_index.html">
 
 </iframe>
