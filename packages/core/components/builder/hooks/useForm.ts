@@ -124,6 +124,9 @@ export function useForm() {
     getData,
     setData,
     validate,
+    getForms,
+    setForms,
+    validateAll,
     getFormInstance,
   };
 }

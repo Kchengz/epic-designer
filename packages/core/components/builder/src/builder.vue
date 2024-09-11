@@ -55,6 +55,9 @@ const {
   getData,
   setData,
   validate,
+  getForms,
+  setForms,
+  validateAll,
   getFormInstance,
 } = useForm();
 
@@ -146,6 +149,9 @@ defineExpose({
   getData,
   setData,
   validate,
+  getForms,
+  setForms,
+  validateAll,
   getFormInstance,
 });
 </script>
