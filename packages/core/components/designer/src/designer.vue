@@ -50,7 +50,16 @@
   </Suspense>
 </template>
 <script lang="ts" setup>
-import { ref, provide, reactive, toRaw, watch, nextTick, computed } from "vue";
+import {
+  ref,
+  provide,
+  reactive,
+  toRaw,
+  watch,
+  nextTick,
+  computed,
+  watchEffect,
+} from "vue";
 import { DesignerState, ComponentSchema, PageSchema } from "../../../types/epic-designer";
 import {
   getMatchedById,
@@ -84,21 +93,24 @@ const props = withDefaults(defineProps<DesignerProps>(), {
   lockDefaultSchemaEdit: false,
   formMode: false,
   title: "EpicDesigner默认项目",
-  defaultSchema: () => ({
-    schemas: [
-      {
-        type: "page",
-        id: "root",
-        label: "页面",
-        children: [],
-        componentProps: {
-          style: {
-            padding: "16px",
-          },
+});
+
+// 内部默认页面数据
+let innerDefaultSchema: PageSchema = {
+  schemas: [
+    {
+      type: "page",
+      id: "root",
+      label: "页面",
+      children: [],
+      componentProps: {
+        style: {
+          padding: "16px",
         },
       },
-    ],
-    script: `const { defineExpose, find } = epic;
+    },
+  ],
+  script: `const { defineExpose, find } = epic;
 
 function test (){
     console.log('test')
@@ -108,67 +120,21 @@ function test (){
 defineExpose({
  test
 })`,
-  }),
-});
-
-// 页面结构数据
-const pageSchemas = [
-  {
-    type: "page",
-    id: "root",
-    label: "页面",
-    children: [],
-    componentProps: {
-      style: {
-        padding: "16px",
-      },
-    },
-  },
-];
-
-// 表单默认数据
-const formSchemas = [
-  {
-    label: "表单",
-    type: "form",
-    componentProps: {
-      layout: "horizontal",
-      name: "default",
-      labelWidth: 100,
-      labelLayout: "fixed",
-      labelCol: {
-        span: 5,
-      },
-      wrapperCol: {
-        span: 19,
-      },
-      colon: true,
-      labelAlign: "right",
-      labelPlacement: "left",
-    },
-    children: [],
-    id: "root",
-  },
-];
-
-// 内部默认页面数据
-let innerDefaultSchema: PageSchema = {
-  schemas: pageSchemas,
 };
 
 // 更新初始化数据
-watch(
-  () => props.defaultSchema,
-  (defaultSchema) => {
-    innerDefaultSchema = defaultSchema;
-    if (props.formMode) {
-      innerDefaultSchema.schemas = formSchemas;
-    }
-  },
-  {
-    immediate: true,
+watchEffect(() => {
+  // 如果props.defaultSchema有值，则更新 innerDefaultSchema 为 props.defaultSchema
+  if (props.defaultSchema) {
+    innerDefaultSchema = props.defaultSchema;
+    return;
   }
-);
+
+  // 启用表单模式
+  if (props.formMode) {
+    innerDefaultSchema.schemas = pluginManager.formSchemas;
+  }
+});
 
 // 设置为设计模式
 pageManager.setDesignMode();
@@ -215,6 +181,7 @@ watch(
   }
 );
 
+// 提供依赖注入的上下文
 provide("pageSchema", pageSchema);
 provide("revoke", revoke);
 provide("pageManager", pageManager);

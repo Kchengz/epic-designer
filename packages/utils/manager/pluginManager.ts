@@ -109,6 +109,31 @@ export class PluginManager {
   // 隐藏的组件列表，存储需要隐藏的组件名称
   hiddenComponents: string[] = [];
 
+  // 表单默认数据
+  formSchemas: ComponentSchema[] = [
+    {
+      label: "表单",
+      type: "form",
+      componentProps: {
+        layout: "horizontal",
+        name: "default",
+        labelWidth: 100,
+        labelLayout: "fixed",
+        labelCol: {
+          span: 5,
+        },
+        wrapperCol: {
+          span: 19,
+        },
+        colon: true,
+        labelAlign: "right",
+        labelPlacement: "left",
+      },
+      children: [],
+      id: "root",
+    },
+  ];
+
   // 组件分组名称映射，key 为组件原名称，value 为组件分组映射名称
   componentGroupNameMap: Record<string, string> = {};
 
