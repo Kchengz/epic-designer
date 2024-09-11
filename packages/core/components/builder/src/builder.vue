@@ -5,7 +5,11 @@
   <Suspense v-else @resolve="handleReady">
     <template #default>
       <div class="epic-builder-main">
-        <ENode v-for="item, index in pageSchemaReactive.schemas" :key="index" :componentSchema="item" />
+        <ENode
+          v-for="(item, index) in pageSchemaReactive.schemas"
+          :key="index"
+          :componentSchema="item"
+        />
       </div>
     </template>
     <template #fallback>
@@ -17,194 +21,131 @@
 </template>
 
 <script lang="ts" setup>
-import ENode from '../../node'
-import { reactive, provide, computed, ref, watch, useSlots, nextTick, getCurrentInstance, type ComponentInternalInstance } from 'vue'
-import { PageSchema, FormDataModel } from '../../../types/epic-designer'
-import { loadAsyncComponent, pluginManager, deepCompareAndModify, deepClone, usePageManager } from '@epic-designer/utils'
-const EAsyncLoader = loadAsyncComponent(() => import('../../asyncLoader/index.vue'))
+import ENode from "../../node";
+import {
+  reactive,
+  provide,
+  useSlots,
+  getCurrentInstance,
+  watch,
+  computed,
+  nextTick,
+} from "vue";
+import { PageSchema, FormDataModel } from "../../../types/epic-designer";
+import {
+  loadAsyncComponent,
+  deepCompareAndModify,
+  pluginManager,
+} from "@epic-designer/utils";
+import { useForm } from "../hooks/useForm";
 
-const pageManager = usePageManager()
+// 异步加载 EAsyncLoader 组件
+const EAsyncLoader = loadAsyncComponent(() => import("../../asyncLoader/index.vue"));
+
+// 定义事件发射器
 const emit = defineEmits<{
-  ready: any
-}>()
-const slots = useSlots()
-const forms = ref<any>({})
-const ready = ref<boolean>(false)
-const props = defineProps<{
-  pageSchema: PageSchema;
-  formData?: FormDataModel;
-  disabled?: boolean
-}>()
+  ready: any;
+}>();
 
-const pageSchemaReactive = reactive<PageSchema>({
-  schemas: []
-})
-
-watch(() => props.pageSchema, e => {
-  deepCompareAndModify(pageSchemaReactive, e)
-}, {
-  immediate: true,
-  deep: true
-})
-
-watch(() => props.formData, data => {
-  if (!data) return
-  setData(data)
-}, {
-  immediate: true,
-  deep: true
-})
-
-watch(() => pageSchemaReactive.script, e => {
-  if (e && e !== '') {
-    pageManager.setMethods(e, true)
-  }
-}, {
-  immediate: true
-})
-
-provide('slots', slots)
-provide('pageManager', pageManager)
-provide('forms', forms)
-provide('pageSchema', pageSchemaReactive)
-provide('disabled', computed(() => props.disabled))
-
-/**
- * 跳过验证直接获取表单数据
- * @param formName 表单name
- */
-function getData(formName = 'default'): Promise<FormDataModel | boolean> {
-  return new Promise(async (resolve, reject) => {
-
-    // 判断表单是否已经初始化
-    if (!ready.value) {
-      // 监听表单初始化状态
-      const unwatch = watch(ready, async () => {
-        // 注销监听
-        unwatch()
-        resolve(await getData(formName))
-      })
-      return
-    }
-
-    const form = forms.value?.[formName]
-    // 通过表单查询不到表单实例
-    if (!form) {
-      // console.error(`表单 [name=${formName}] 不存在`)
-      reject(`表单 [name=${formName}] 不存在`)
-      return false
-    }
-
-    const formData = deepClone(await form.getData())
-    resolve(formData)
-  })
-
-}
-
-/**
- * 验证并获取数据
- * @param formName 表单name
- */
-function validate(formName = 'default'): Promise<FormDataModel | boolean> {
-  return new Promise(async (resolve, reject) => {
-    // 判断表单是否已经初始化
-    if (!ready.value) {
-      // 监听表单初始化状态
-      const unwatch = watch(ready, async () => {
-        // 注销监听
-        unwatch()
-        resolve(await validate(formName))
-      })
-      return
-    }
-
-    const form = forms.value?.[formName]
-    // 通过表单查询不到表单实例
-    if (!form) {
-      // console.error(`表单 [name=${formName}] 不存在`)
-      reject(`表单 [name=${formName}] 不存在`)
-      return false
-    }
-    try {
-      await form.validate()
-      const formData = await form.getData()
-      resolve(formData)
-    } catch (error) {
-      reject(error)
-    }
-  })
-
-}
-
-/**
- * 设置表单数据
- * @param data
- */
-function setData(data: FormDataModel, formName = 'default') {
-  pageManager.setFormData(data, formName)
-
-  // 手动清除表单校验
-  const form = forms.value?.[formName]
-  form?.clearValidate()
-}
-
-/**
- * 获取表单实例的异步函数
- * @param {string} formName - 表单名称，默认为 'default'
- * @returns {Promise<any | boolean>} - 返回一个 Promise 对象，可能是表单实例或布尔值
- */
-function getFormInstance(formName = 'default'): Promise<any | boolean> {
-  return new Promise(async (resolve, reject) => {
-    // 判断表单是否已经初始化
-    if (!ready.value) {
-      // 监听表单初始化状态
-      const unwatch = watch(ready, async () => {
-        // 注销监听
-        unwatch();
-        // 重新调用 getFormInstance，直到表单初始化完成
-        resolve(await getFormInstance(formName));
-      });
-      return;
-    }
-
-    // 获取指定名称的表单实例
-    const form = forms.value?.[formName];
-    // 通过表单查询不到表单实例
-    if (!form) {
-      // 输出错误信息并拒绝 Promise
-      // console.error(`表单 [name=${formName}] 不存在`);
-      reject(`表单 [name=${formName}] 不存在`);
-      return false;
-    }
-
-    // 成功获取表单实例，解析 Promise
-    resolve(form);
-
-  })
-}
-
-
-const { proxy } = getCurrentInstance() as ComponentInternalInstance
-/**
- * 组件（包含异步组件）加载完成后
- */
-function handleReady() {
-  // 等待DOM更新循环结束后
-  nextTick(() => {
-    ready.value = true
-
-    emit('ready', pageManager)
-
-    // 注入builder对象
-    proxy && pageManager.addComponentInstance('builder', proxy)
-  })
-}
-
-defineExpose({
+// 使用 hooks 获取表单相关方法和状态
+const {
   ready,
+  pageManager,
+  forms,
   getData,
   setData,
   validate,
-  getFormInstance
-})
+  getFormInstance,
+} = useForm();
+
+// 定义组件的 props 类型
+const props = defineProps<{
+  pageSchema: PageSchema;
+  formData?: FormDataModel;
+  disabled?: boolean;
+}>();
+
+// 定义页面 schema
+const pageSchemaReactive = reactive<PageSchema>({
+  schemas: [],
+});
+
+// 监听 pageSchema 的变化，并更新 pageSchemaReactive
+watch(
+  () => props.pageSchema,
+  (newSchema) => {
+    deepCompareAndModify(pageSchemaReactive, newSchema);
+  },
+  {
+    immediate: true,
+    deep: true,
+  }
+);
+
+// 监听 formData 的变化，并设置表单数据
+watch(
+  () => props.formData,
+  (data) => {
+    if (data) {
+      setData(data);
+    }
+  },
+  {
+    immediate: true,
+    deep: true,
+  }
+);
+
+// 监听 pageSchemaReactive.script 的变化，并设置页面方法
+watch(
+  () => pageSchemaReactive.script,
+  (script) => {
+    if (script) {
+      pageManager.setMethods(script, true);
+    }
+  },
+  {
+    immediate: true,
+  }
+);
+
+// 提供依赖注入的上下文
+provide("slots", useSlots());
+provide("pageManager", pageManager);
+provide("forms", forms);
+provide("pageSchema", pageSchemaReactive);
+provide(
+  "disabled",
+  computed(() => props.disabled)
+);
+
+// 获取当前实例，并提取 proxy
+const instance = getCurrentInstance();
+const proxy = instance?.proxy;
+
+/**
+ * 组件加载完成后的处理函数
+ * @returns {void}
+ */
+function handleReady() {
+  nextTick(() => {
+    ready.value = true;
+    emit("ready", pageManager);
+
+    // 注入组件实例到 pageManager
+    if (proxy) {
+      pageManager.addComponentInstance("builder", proxy);
+    }
+  });
+}
+
+// 暴露组件的方法和状态
+defineExpose({
+  ready,
+  pageManager,
+  getData,
+  setData,
+  validate,
+  getFormInstance,
+});
 </script>
