@@ -55,7 +55,6 @@ import {
   provide,
   reactive,
   toRaw,
-  watch,
   nextTick,
   computed,
   watchEffect,
@@ -158,28 +157,17 @@ const pageSchema = reactive<PageSchema>({
 
 // 记录缩放状态 start
 const { disabledZoom } = useStore();
-watch(
-  () => props.disabledZoom,
-  (newVal) => {
-    disabledZoom.value = newVal;
-  },
-  {
-    immediate: true,
-  }
-);
+watchEffect(() => {
+  disabledZoom.value = props.disabledZoom;
+});
 // 记录缩放状态 end
 
-watch(
-  () => pageSchema.script,
-  (e) => {
-    if (e && e !== "") {
-      pageManager.setMethods(e);
-    }
-  },
-  {
-    immediate: true,
+watchEffect(() => {
+  const script = pageSchema.script;
+  if (script && script !== "") {
+    pageManager.setMethods(script);
   }
-);
+});
 
 // 提供依赖注入的上下文
 provide("pageSchema", pageSchema);
@@ -311,6 +299,7 @@ function handlePreview() {
 init();
 
 defineExpose({
+  revoke,
   setData,
   getData,
   reset,
