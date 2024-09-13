@@ -2,7 +2,7 @@ import { ref, watch } from 'vue';
 import { deepClone, usePageManager } from '@epic-designer/utils';
 import { FormDataModel } from '../../../types/epic-designer';
 
-export function useForm() {
+export function useBuilder() {
   const ready = ref<boolean>(false);
   const pageManager = usePageManager();
   const forms = ref<any>({});

@@ -37,12 +37,12 @@ import {
   deepCompareAndModify,
   pluginManager,
 } from "@epic-designer/utils";
-import { useForm } from "../hooks/useForm";
+import { useBuilder } from "../hooks/useBuilder";
 
 // 异步加载 EAsyncLoader 组件
 const EAsyncLoader = loadAsyncComponent(() => import("../../asyncLoader/index.vue"));
 
-// 定义事件发射器
+// 定义事件
 const emit = defineEmits<{
   ready: any;
 }>();
@@ -59,7 +59,7 @@ const {
   setForms,
   validateAll,
   getFormInstance,
-} = useForm();
+} = useBuilder();
 
 // 定义组件的 props 类型
 const props = defineProps<{
