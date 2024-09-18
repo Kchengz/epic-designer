@@ -1,8 +1,21 @@
 <template>
-  <FormItem v-if="innerSchema.noFormItem !== true && getComponentConfing?.defaultSchema.input && component && show"
-    ref="formItemRef" v-bind="getFormItemProps">
-    <component :is="component" ref="componentInstance" @vue:mounted="handleAddComponentInstance"
-      v-bind="{ ...getComponentProps, ...dataSource, [getComponentProps.bindModel]: getBindValue() }">
+  <FormItem
+    v-if="
+      innerSchema.noFormItem !== true &&
+      getComponentConfing?.defaultSchema.input &&
+      component &&
+      show
+    "
+    ref="formItemRef"
+    v-bind="getFormItemProps"
+  >
+    <component
+      :is="component"
+      ref="componentInstance"
+      @vue:mounted="handleAddComponentInstance"
+      v-bind="{ ...getComponentProps, ...dataSource }"
+      v-model:[getComponentProps.bindModel]="bindValue"
+    >
       <!-- 嵌套组件递归 start -->
       <!-- 渲染子组件 start -->
       <template #node="data">
@@ -17,9 +30,15 @@
     </component>
   </FormItem>
   <!-- 无需FormItem start -->
-  <component :is="component" v-else-if="component && show" @vue:mounted="handleAddComponentInstance"
-    ref="componentInstance" :model="formData"
-    v-bind="{ ...getComponentProps, ...dataSource, [getComponentProps.bindModel]: getBindValue() }">
+  <component
+    :is="component"
+    v-else-if="component && show"
+    @vue:mounted="handleAddComponentInstance"
+    ref="componentInstance"
+    :model="formData"
+    v-bind="{ ...getComponentProps, ...dataSource }"
+    v-model:[getComponentProps.bindModel]="bindValue"
+  >
     <!-- 嵌套组件递归 start -->
     <!-- 渲染子组件 start -->
     <template #node="data">
@@ -35,7 +54,7 @@
   <!-- 无需FormItem end -->
 </template>
 <script lang="ts" setup>
-import { shallowRef, ref, Ref, inject, computed, reactive, useAttrs, onUnmounted, provide, Slots, renderSlot, defineComponent, watch, h, type ComponentPublicInstance, type ComponentInternalInstance, getCurrentInstance } from 'vue'
+import { shallowRef, ref, Ref, inject, computed, reactive, useAttrs, onUnmounted, provide, Slots, renderSlot, defineComponent, watch, h, type ComponentPublicInstance, type ComponentInternalInstance, getCurrentInstance, watchEffect } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager, deepClone, deepCompareAndModify, deepEqual } from '@epic-designer/utils'
 import { FormDataModel, ComponentSchema } from '../../../types/epic-designer'
 
@@ -61,6 +80,8 @@ const props = defineProps<{
   name?: string
 }>()
 
+// 双向绑定Value
+const bindValue = ref(null)
 // 表单formData数据
 let formData = inject('formData', reactive({})) as FormDataModel
 
@@ -95,7 +116,7 @@ watch(() => props.componentSchema, (componentSchema) => {
  * 在设计模式下为innerSchema.field添加特殊后缀。
  * 此函数用于标识在设计模式下使用的字段，通过添加'-design-mode'后缀，
  * 可以区分运行时和设计时的数据字段，以便在设计工具中进行特殊处理。
- * 
+ *
  * @remarks
  * 此函数仅在pageManager的isDesignMode为true时执行，确保只在设计模式下影响字段命名。
  * 如果innerSchema.field已经是字符串类型，则直接追加后缀，否则不进行处理。
@@ -206,7 +227,6 @@ const getComponentProps = computed(() => {
     ...innerSchema.componentProps,
     disabled: disabled?.value || innerSchema.componentProps?.disabled,
     bindModel,
-    [`onUpdate:${bindModel}`]: handleUpdate,
     ...onEvent
   }
 })
@@ -216,10 +236,16 @@ const getComponentConfing = computed(() => {
   return pluginManager.getComponentConfingByType(innerSchema.type) ?? null
 })
 
-// 计算绑定值
-const getBindValue = () => {
-  return props.modelValue ?? formData[innerSchema.field ?? '']
-}
+// 获取双向绑定值
+watchEffect(() => {
+  bindValue.value = props.modelValue ?? formData[innerSchema.field ?? '']
+})
+
+// 更新双向绑定值
+watch(()=>bindValue.value,() => {
+  handleUpdate(bindValue.value)
+})
+
 
 
 // 监听组件实例是否初始化
@@ -356,5 +382,4 @@ watch(() => innerSchema, (newVal) => {
 
 // 组件卸载时移除组件实例
 onUnmounted(handleVnodeUnmounted)
-
 </script>
