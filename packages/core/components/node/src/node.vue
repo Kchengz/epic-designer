@@ -1,18 +1,17 @@
 <template>
-  <FormItem
-    v-if="
-      innerSchema.noFormItem !== true &&
-      getComponentConfing?.defaultSchema.input &&
-      component &&
-      show
+  <dynamicFormItem
+    v-if="component && show"
+    :hasFormItem="
+      innerSchema.noFormItem !== true && getComponentConfing?.defaultSchema.input
     "
-    ref="formItemRef"
-    v-bind="getFormItemProps"
+    :formItemProps="getFormItemProps"
+    @updateFormItemRef="updateFormItemRef"
   >
     <component
       :is="component"
       ref="componentInstance"
       @vue:mounted="handleAddComponentInstance"
+      :model="formData"
       v-bind="{ ...getComponentProps, ...dataSource }"
       v-model:[getComponentProps.bindModel]="bindValue"
     >
@@ -28,35 +27,13 @@
       </template>
       <!-- 渲染布局设计子组件列表 end -->
     </component>
-  </FormItem>
-  <!-- 无需FormItem start -->
-  <component
-    :is="component"
-    v-else-if="component && show"
-    @vue:mounted="handleAddComponentInstance"
-    ref="componentInstance"
-    :model="formData"
-    v-bind="{ ...getComponentProps, ...dataSource }"
-    v-model:[getComponentProps.bindModel]="bindValue"
-  >
-    <!-- 嵌套组件递归 start -->
-    <!-- 渲染子组件 start -->
-    <template #node="data">
-      <ENode v-bind="data" />
-    </template>
-    <!-- 渲染子组件 end -->
-    <!-- 渲染布局设计子组件列表 start -->
-    <template #edit-node>
-      <slot name="edit-node" />
-    </template>
-    <!-- 渲染布局设计子组件列表 end -->
-  </component>
-  <!-- 无需FormItem end -->
+  </dynamicFormItem>
 </template>
 <script lang="ts" setup>
 import { shallowRef, ref, Ref, inject, computed, reactive, useAttrs, onUnmounted, provide, Slots, renderSlot, defineComponent, watch, h, type ComponentPublicInstance, type ComponentInternalInstance, getCurrentInstance, watchEffect } from 'vue'
 import { pluginManager, capitalizeFirstLetter, PageManager, deepClone, deepCompareAndModify, deepEqual } from '@epic-designer/utils'
 import { FormDataModel, ComponentSchema } from '../../../types/epic-designer'
+import dynamicFormItem from './dynamicFormItem.vue'
 
 export interface ComponentNodeInstance extends ComponentPublicInstance {
   setValue?: (value: any) => void,
@@ -76,7 +53,7 @@ const props = defineProps<{
   componentSchema: ComponentSchema,
   modelValue?: any,
   ruleField?: string[],
-  resetFormData?: Boolean,
+  resetFormData?: boolean,
   name?: string
 }>()
 
@@ -142,12 +119,15 @@ if (props.resetFormData || resetFormDataInject) {
 
 // 定义组件的事件
 const emit = defineEmits(['update:modelValue', 'change'])
-// 获取插件管理器中的表单项组件
-const FormItem = pluginManager.getComponent('form-item')
+
 // 组件实例的引用
 const componentInstance = ref<ComponentNodeInstance>()
 // 表单项的引用
 const formItemRef = ref<ComponentPublicInstance>()
+// 处理子组件传递的 formItemRef
+const updateFormItemRef = (formItemInstance: ComponentPublicInstance) => {
+  formItemRef.value = formItemInstance
+}
 
 // 传递额外的attrs
 const attrs = useAttrs()
@@ -175,7 +155,7 @@ const show = computed(() => {
 })
 
 // 获取FormItemProps
-const getFormItemProps = computed(() => {
+const getFormItemProps = computed<ComponentSchema>(() => {
   const rules = show.value && innerSchema.rules?.map(item => ({
     ...item,
     validator: item.validator && pageManager.funcs.value[item.validator] // 自定义校验函数
@@ -204,7 +184,7 @@ const getFormItemProps = computed(() => {
     rules,
     rule: rules,
     field: model
-  }
+  } as ComponentSchema
 
   // 移除元素只读属性 children
   if (formItemProps['children']) {
