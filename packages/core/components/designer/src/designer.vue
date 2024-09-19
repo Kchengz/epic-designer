@@ -245,7 +245,7 @@ async function setDisableHover(disableHover = false) {
  */
 function setData(schema: PageSchema) {
   // 调用 deepCompareAndModify 函数比较 pageSchema 和传入的 schema，进行修改
-  deepCompareAndModify(pageSchema, schema);
+  deepCompareAndModify(pageSchema, deepClone(schema));
 }
 
 /**
