@@ -1,5 +1,7 @@
 {
+  "name": "epic-designer-project",
   "private": true,
+  "version": "0.9.23",
   "scripts": {
     "build": "turbo run build",
     "dev": "pnpm run checkCompiled && turbo run dev",
@@ -41,6 +43,5 @@
     "vue": "^3.4.38",
     "vue-tsc": "^2.1.0"
   },
-  "packageManager": "pnpm@7.15.0",
-  "name": "epic-designer-project"
+  "packageManager": "pnpm@7.15.0"
 }
