@@ -16,7 +16,7 @@ export default defineConfig({
   ],
   // 主题配置
   themeConfig: {
-    logo: "https://epic.kcz66.com/static/logo.png",
+    logo: "https://examples.epicjs.cn/static/logo.png",
     algolia: {
       appId: "D2HVZWN04E",
       apiKey: "99ba99d14a34ec161f62dec1d1f303df",

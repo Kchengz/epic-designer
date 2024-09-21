@@ -21,4 +21,4 @@ Gitee主页：[https://gitee.com/kcz66](https://gitee.com/kcz66)
 ## 赞助
 如果你觉得EpicDesigner对你有帮助，欢迎给我捐赠
 
-![](https://epic.kcz66.com/static/donation.png)
+![](https://examples.epicjs.cn/static/donation.png)

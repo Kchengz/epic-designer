@@ -32,7 +32,7 @@ const { toggleDark } = useTheme()
 toggleDark()
 ```
 
-![](https://epic.kcz66.com/static/dark.png)
+![](https://examples.epicjs.cn/static/dark.png)
 
 ## 修改暗黑主题
 

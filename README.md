@@ -1,4 +1,4 @@
-![](https://epic.kcz66.com/static/logo.png#pic_center)
+![](https://examples.epicjs.cn/static/logo.png#pic_center)
 
 <h3 align="center" style="background-image:-webkit-linear-gradient(left,#44c0fa,#c26cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">EpicDesigner</h3>
 
@@ -28,9 +28,9 @@
 
 💎项目预览地址：
 
-- ElementPlus：[https://epic.kcz66.com/element-plus/basic](https://epic.kcz66.com/element-plus/basic?maximize=1)
-- AntDesignVue：[https://epic.kcz66.com/ant-designe-vue/basic](https://epic.kcz66.com/ant-designe-vue/basic?maximize=1)
-- NaiveUi：[https://epic.kcz66.com/naive-ui/basic](https://epic.kcz66.com/naive-ui/basic?maximize=1)
+- ElementPlus：[https://examples.epicjs.cn/element-plus/basic](https://examples.epicjs.cn/element-plus/basic?maximize=1)
+- AntDesignVue：[https://examples.epicjs.cn/ant-designe-vue/basic](https://examples.epicjs.cn/ant-designe-vue/basic?maximize=1)
+- NaiveUi：[https://examples.epicjs.cn/naive-ui/basic](https://examples.epicjs.cn/naive-ui/basic?maximize=1)
 
 > 使用必须遵守国家法律法规，⛔不允许非法项目使用，后果自负❗
 
@@ -48,12 +48,12 @@
 #### 功能
 
 - [x] 拖拽设计
-- [x] 自定义 actionBar
-- [x] 布局组件扩展
+- [x] 自定义动作栏扩展
 - [x] 自定义组件扩展
+- [x] 布局组件扩展
 - [x] 事件扩展
 - [x] 组件懒加载
-- [x] 完善布局
+- [x] 右侧栏扩展
 - [x] 组件属性自定义
 - [x] 支持不同 UI
 - [x] 插件扩展
@@ -232,5 +232,5 @@ const pageSchema = {
 ## 捐赠
 如果你觉得epic-designer对你有帮助，欢迎给我捐赠
 
-![](https://epic.kcz66.com/static/donation.png)
+![](https://examples.epicjs.cn/static/donation.png)
 

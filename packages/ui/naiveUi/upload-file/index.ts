@@ -10,7 +10,7 @@ export default {
     field: "uploadFile",
     input: true,
     componentProps: {
-      action: "https://epic.kcz66.com/static/upload-img.json",
+      action: "https://examples.epicjs.cn/static/upload-img.json",
     },
   },
   config: {

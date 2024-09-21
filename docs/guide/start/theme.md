@@ -31,7 +31,7 @@ import "epic-designer/dist/style.css";
 import './styles/common-vars.css'
 ```
 
- ![](https://epic.kcz66.com/static/theme.jpg)
+ ![](https://examples.epicjs.cn/static/theme.jpg)
 
 ## UI组件主题定制
 

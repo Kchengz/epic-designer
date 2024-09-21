@@ -54,7 +54,7 @@ const pageSchema = ref<PageSchema>({
               "field": "upload",
               "input": true,
               "componentProps": {
-                "action": "https://epic.kcz66.com/static/upload-img.json",
+                "action": "https://examples.epicjs.cn/static/upload-img.json",
                 "name": "file",
                 "showFileList": true
               },

@@ -32,7 +32,7 @@ SOFTWARE.
 
 ## 软件著作权证书
 
-<img src="https://epic.kcz66.com/static/certificate.jpg" width="320px">
+<img src="https://examples.epicjs.cn/static/certificate.jpg" width="320px">
 
 
 

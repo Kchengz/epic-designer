@@ -28,9 +28,9 @@
 
 💎项目预览地址：
 
-- ElementPlus：[https://epic.kcz66.com/element-plus/basic](https://epic.kcz66.com/element-plus/basic?maximize=1)
-- AntDesignVue：[https://epic.kcz66.com/ant-designe-vue/basic](https://epic.kcz66.com/ant-designe-vue/basic?maximize=1)
-- NaiveUi：[https://epic.kcz66.com/naive-ui/basic](https://epic.kcz66.com/naive-ui/basic?maximize=1)
+- ElementPlus：[https://examples.epicjs.cn/element-plus/basic](https://examples.epicjs.cn/element-plus/basic?maximize=1)
+- AntDesignVue：[https://examples.epicjs.cn/ant-designe-vue/basic](https://examples.epicjs.cn/ant-designe-vue/basic?maximize=1)
+- NaiveUi：[https://examples.epicjs.cn/naive-ui/basic](https://examples.epicjs.cn/naive-ui/basic?maximize=1)
 
 ## 特性
 
