@@ -12,7 +12,7 @@
       ref="componentInstance"
       @vue:mounted="handleAddComponentInstance"
       :model="formData"
-      v-bind="{ ...getComponentProps, ...dataSource }"
+      v-bind="{ ...getComponentProps }"
       v-model:[getComponentProps.bindModel]="bindValue"
     >
       <!-- 嵌套组件递归 start -->
@@ -137,8 +137,6 @@ if (Object.keys(attrs).length) {
 
 // 定义组件及组件props字段
 const component = shallowRef<any>(null)
-// const componentProps = shallowRef<any>({})
-const dataSource = reactive<any>({})
 
 const show = computed(() => {
   // hidden 属性优先级最高

@@ -109,7 +109,7 @@ export class PluginManager {
   // 隐藏的组件列表，存储需要隐藏的组件名称
   hiddenComponents: string[] = [];
 
-  // 表单默认数据
+  // 表单模式默认schema数据
   formSchemas: ComponentSchema[] = [
     {
       label: "表单",

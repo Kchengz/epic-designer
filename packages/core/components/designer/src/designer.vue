@@ -123,13 +123,13 @@ defineExpose({
 
 // 更新初始化数据
 watchEffect(() => {
-  // 如果props.defaultSchema有值，则更新 innerDefaultSchema 为 props.defaultSchema
+  // 如果props.defaultSchema有值，则优先使用props.defaultSchema
   if (props.defaultSchema) {
     innerDefaultSchema = props.defaultSchema;
     return;
   }
 
-  // 启用表单模式
+  // 切换表单模式默认schema数据
   if (props.formMode) {
     innerDefaultSchema.schemas = pluginManager.formSchemas;
   }
