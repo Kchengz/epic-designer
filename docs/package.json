@@ -5,9 +5,9 @@
   "description": "epic-designer docs",
   "author": "kchengz",
   "dependencies": {
-    "ant-design-vue": "^4.2.3",
+    "ant-design-vue": "^4.2.5",
     "dayjs": "^1.11.13",
-    "monaco-editor": "^0.51.0"
+    "monaco-editor": "^0.52.0"
   },
   "devDependencies": {
     "vite-plugin-monaco-editor": "^1.1.0"

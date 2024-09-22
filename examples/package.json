@@ -10,18 +10,18 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
-    "ant-design-vue": "^4.2.3",
+    "ant-design-vue": "^4.2.5",
     "dayjs": "^1.11.13",
-    "vue": "^3.4.38",
-    "vue-router": "^4.4.3"
+    "vue": "^3.5.8",
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.2",
-    "typescript": "^5.5.4",
-    "unocss": "^0.62.3",
-    "vite": "^5.4.2",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "typescript": "^5.6.2",
+    "unocss": "^0.62.4",
+    "vite": "^5.4.7",
     "vite-plugin-monaco-editor": "^1.1.0",
-    "vite-plugin-vue-devtools": "7.3.9",
-    "vue-tsc": "^2.1.0"
+    "vite-plugin-vue-devtools": "7.4.5",
+    "vue-tsc": "^2.1.6"
   }
 }
