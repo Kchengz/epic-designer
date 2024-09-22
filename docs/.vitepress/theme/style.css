@@ -34,3 +34,11 @@
   .DocSearch-Button:hover {
     background-color: #f5f5f6;
   }
+
+  .VPFooter .copyright > .beian-link,.VPFooter .copyright > .beian-link:hover{
+    margin-left: 24px;
+    text-decoration: none;
+    color: var(--vp-c-brand-1);
+  }
+
+  

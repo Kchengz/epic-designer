@@ -32,7 +32,7 @@ export default defineConfig({
     ],
     footer: {
       copyright:
-        "本文档内容版权为 EpicDesigner 作者kchengz所有，保留所有权利。",
+        `本文档内容版权为 EpicDesigner 作者所有，保留所有权利。<a class="beian-link" href="https://beian.miit.gov.cn/">桂ICP备17005529号-4</a>`,
     },
     nav: [
       {
