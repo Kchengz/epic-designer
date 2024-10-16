@@ -221,6 +221,10 @@ watchEffect(() => {
 
 // 更新双向绑定值
 watch(()=>bindValue.value,() => {
+  // 值相同时,无需重复更新数据
+  if(bindValue.value === (props.modelValue ?? formData[innerSchema.field ?? ''])){
+    return
+  }
   handleUpdate(bindValue.value)
 })
 

@@ -123,7 +123,6 @@ function handleUpdate() {
   } else {
     delete v.validator
   }
-  // emit('update:rule', v)
   emit('change', v)
 }
 
