@@ -1,7 +1,7 @@
 {
   "name": "@epic-designer/core",
   "private": false,
-  "version": "0.9.23",
+  "version": "0.9.24",
   "type": "module",
   "main": "index.ts",
   "description": "基于vue3的设计器,可视化开发页面表单",
