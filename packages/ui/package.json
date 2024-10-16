@@ -1,6 +1,6 @@
 {
   "name": "@epic-designer/ui",
-  "version": "0.9.24",
+  "version": "0.9.25",
   "description": "epic-designer base ui",
   "main": "index.ts",
   "scripts": {},
