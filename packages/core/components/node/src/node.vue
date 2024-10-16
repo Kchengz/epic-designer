@@ -14,6 +14,7 @@
       :model="formData"
       v-bind="{ ...getComponentProps }"
       v-model:[getComponentProps.bindModel]="bindValue"
+      :[`onUpdate:${getComponentProps.bindModel}`]="handleUpdate"
     >
       <!-- 嵌套组件递归 start -->
       <!-- 渲染子组件 start -->
