@@ -28,7 +28,7 @@
 import { type ComponentConfigModel } from 'epic-designer'
 
 export default {
-  component: async () => await import('./cmp.vue'),
+  component: async () => await import('./index.vue'),
   groupName:"自定义组件",
   icon: "epic-icon-write",
   defaultSchema: {

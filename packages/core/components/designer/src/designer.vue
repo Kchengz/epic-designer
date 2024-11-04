@@ -35,7 +35,7 @@
           </slot>
         </div>
         <div class="epic-split-view-container" :class="{ 'hidden-header': hiddenHeader }">
-          <EActionBar />
+          <EActivityBar />
           <EEditContainer />
           <ERightSidebar />
         </div>
@@ -75,7 +75,7 @@ import { useStore } from "@epic-designer/hooks";
 import EPreview from "./modules/preview/index.vue";
 
 const EHeader = loadAsyncComponent(() => import("./modules/header/index.vue"));
-const EActionBar = loadAsyncComponent(() => import("./modules/actionBar/index.vue"));
+const EActivityBar = loadAsyncComponent(() => import("./modules/activityBar/index.vue"));
 const EEditContainer = loadAsyncComponent(
   () => import("./modules/editContainer/index.vue")
 );

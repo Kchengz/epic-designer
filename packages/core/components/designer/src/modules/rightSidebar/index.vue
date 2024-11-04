@@ -15,7 +15,7 @@
         <EBreadcrumb />
         <ul class="epic-actions-container">
           <li v-for="(item, index) in rightSidebars" :key="index" class="epic-action-item" :title="item.title"
-            :class="{ checked: actionBarCheckedIndex === index }" @click="handleClick(item, index)">
+            :class="{ checked: activityBarCheckedIndex === index }" @click="handleClick(item, index)">
             {{ item.title }}
           </li>
         </ul>
@@ -40,7 +40,7 @@ const rightSidebars = computed(() => {
   return pluginManager.viewsContainers.rightSidebars.value.filter(item => item.visible)
 })
 
-const actionBarCheckedIndex = ref<number | null>(0)
+const activityBarCheckedIndex = ref<number | null>(0)
 const sidebarComponent = shallowRef<any>(null)
 sidebarComponent.value = rightSidebars.value[0]?.component
 
@@ -49,10 +49,10 @@ function handleHideRight() {
 }
 
 function handleClick(item: RightSidebarModel, index: number) {
-  if (actionBarCheckedIndex.value === index) {
+  if (activityBarCheckedIndex.value === index) {
     return false
   }
   sidebarComponent.value = item.component
-  actionBarCheckedIndex.value = index
+  activityBarCheckedIndex.value = index
 }
 </script>

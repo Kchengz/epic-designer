@@ -132,7 +132,7 @@ export default defineConfig({
             },
             {
               text: "活动栏扩展",
-              link: "/guide/extensions/actionBar",
+              link: "/guide/extensions/activityBar",
             },
             {
               text: "右侧边栏扩展",

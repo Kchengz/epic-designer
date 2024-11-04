@@ -6,7 +6,7 @@
 
 参考demo仓库： [https://gitee.com/kcz66/epic-designer-demo](https://gitee.com/kcz66/epic-designer-demo)
 
-## 活动扩展
+## 活动栏扩展示例
 
 在src目录下新建designer-extensions 文件目录，下面是一个简单扩展示例
 
@@ -30,7 +30,7 @@ export function setupDesignerExtensions(): void {
   pluginManager.registerActivitybar({
     id: "test",
     title: "扩展活动栏",
-    component: async () => await import("./actionBar/index.vue"),
+    component: async () => await import("./activityBar/index.vue"),
   });
 }
 ```
