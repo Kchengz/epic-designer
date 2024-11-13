@@ -17,6 +17,10 @@
 import { pluginManager } from "@epic-designer/utils";
 import { ComponentSchema } from "../../../types/epic-designer";
 import { ref } from "vue";
+
+defineOptions({
+  inheritAttrs: false,
+});
 // 获取插件管理器中的表单项组件
 const FormItem = pluginManager.getComponent("form-item");
 
