@@ -18,6 +18,9 @@ export default defineConfig({
       ],
     }),
   ],
+  server:{
+    port: 9980,
+  },
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
