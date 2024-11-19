@@ -8,4 +8,5 @@ export interface DesignerProps {
   title?: string;
   defaultSchema?: PageSchema;
   sourceCodeReadOnly?: boolean;
+  hidePreviewConfirm?: boolean;
 }

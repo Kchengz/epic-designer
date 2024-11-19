@@ -39,7 +39,7 @@
           <EEditContainer />
           <ERightSidebar />
         </div>
-        <EPreview ref="previewRef" />
+        <EPreview :hideConfirm="props.hidePreviewConfirm" ref="previewRef" />
       </div>
     </template>
     <template #fallback>
@@ -50,15 +50,7 @@
   </Suspense>
 </template>
 <script lang="ts" setup>
-import {
-  ref,
-  provide,
-  reactive,
-  toRaw,
-  nextTick,
-  computed,
-  watchEffect,
-} from "vue";
+import { ref, provide, reactive, toRaw, nextTick, computed, watchEffect } from "vue";
 import { DesignerState, ComponentSchema, PageSchema } from "../../../types/epic-designer";
 import {
   getMatchedById,

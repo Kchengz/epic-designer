@@ -1,18 +1,19 @@
 <template>
-  <Modal v-bind="componentSchema">
+  <Modal v-bind="getComponentProps">
     <div class="epic-modal-main">
-      <slot name="edit-node">
-        <template v-if="children.length">
-          <slot v-for="item in children" name="node" :componentSchema="item" />
-        </template>
-        <slot v-else></slot>
+      <slot>
+        <slot name="edit-node">
+          <template>
+            <slot v-for="item in children" name="node" :componentSchema="item" />
+          </template>
+        </slot>
       </slot>
     </div>
     <div class="epic-modal-footer">
       <Space align="end">
         <Button @click="handleClose">关闭</Button>
-        <Button type="primary" @click="handleOk">{{
-          componentSchema.okText ?? "确定"
+        <Button v-if="!props.hideConfirm" type="primary" @click="handleOk">{{
+          getComponentProps.okText ?? "确定"
         }}</Button>
       </Space>
     </div>
@@ -20,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, h, type PropType, useAttrs } from "vue";
+import { computed, useAttrs } from "vue";
 import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 import { Modal, Button, Space } from "ant-design-vue";
 import { version } from "ant-design-vue";
@@ -29,12 +30,10 @@ import { version } from "ant-design-vue";
   const firstNumber = parseInt(versionArray[0]);
 
 const attrs = useAttrs()
-const props = defineProps({
-  componentSchema: {
-    type: Object as PropType<ComponentSchema>,
-    default: () => ({}),
-  },
-})
+const props = defineProps<{
+  componentSchema?:ComponentSchema,
+  hideConfirm?: boolean
+}>()
 
 const emits = defineEmits(["ok", "close", "update:modelValue"])
 const dialogStyle = {
@@ -53,7 +52,7 @@ const bodyStyle = {
   padding: 0,
 };
 
-const componentSchema = computed<Record<string, any>>(() => ({
+const getComponentProps = computed<Record<string, any>>(() => ({
   ...props.componentSchema,
   ...attrs,
   title: props.componentSchema?.label ?? "",
@@ -69,7 +68,7 @@ const componentSchema = computed<Record<string, any>>(() => ({
   children: null
 }))
 
-const children = props.componentSchema.children ?? [];
+const children = computed(()=>props.componentSchema?.children ?? []) ;
 
 function handleOk() {
   emits("ok");

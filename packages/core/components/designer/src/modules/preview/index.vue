@@ -6,6 +6,7 @@
     width="900px"
     @close="handleClose"
     @ok="handleOk"
+    :hideConfirm="props.hideConfirm"
     okText="表单数据"
   >
     <div class="min-w-750px rounded">
@@ -39,6 +40,10 @@ import EBuilder from "../../../../builder";
 import { pluginManager, getUUID } from "@epic-designer/utils";
 import { ref, inject, nextTick } from "vue";
 import { PageSchema } from "../../../../../types/epic-designer";
+
+const props = defineProps<{
+  hideConfirm?: boolean;
+}>()
 const MonacoEditor = pluginManager.getComponent("monacoEditor");
 const Modal = pluginManager.getComponent("modal");
 const monacoEditorRef = ref<any>(null);
