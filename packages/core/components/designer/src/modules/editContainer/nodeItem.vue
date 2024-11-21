@@ -34,7 +34,8 @@ const props = defineProps<{
   name?: string
 }>()
 
-
+// 判断是否为叶子节点
+const isLeaf = computed(() => !props.schema.children);
 
 /**
  * 获取当前组件dom元素
@@ -58,9 +59,16 @@ const getComponentElement = computed<HTMLBaseElement | null>(() => {
 
 // 监听选中dom元素变化
 watch(() => getComponentElement.value, (componentElement) => {
-  componentElement?.addEventListener('click', setCheckedNode, false)
-  componentElement?.addEventListener('mouseover', setHoverNode, false)
-  componentElement?.addEventListener('mouseout', clearHoverNode, false)
+  if(!componentElement) return
+  componentElement.addEventListener('click', setCheckedNode, false)
+  componentElement.addEventListener('mouseover', setHoverNode, false)
+  componentElement.addEventListener('mouseout', clearHoverNode, false)
+
+  if(isLeaf.value) {
+    componentElement.classList.add("epic-node-mask");
+  }else{
+    componentElement.classList.remove("epic-node-mask");
+  }
 })
 
 onUnmounted(() => {

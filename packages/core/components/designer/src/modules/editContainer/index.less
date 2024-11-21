@@ -132,7 +132,6 @@
       }
     }
 
-
     .epic-device {
       border: 1px solid var(--epic-border-color);
 
@@ -145,10 +144,7 @@
       }
     }
 
-
-
   }
-
 
   .widget-box {
     cursor: move;
@@ -156,4 +152,18 @@
 
   background-image: linear-gradient(var(--epic-designer-color) 14px, transparent 0),
   linear-gradient(90deg, transparent 14px, var(--epic-designer-dot-color) 0);
+}
+
+.epic-node-mask {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
 }
