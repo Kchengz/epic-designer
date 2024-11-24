@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from "@/layout/index.vue";
 import BaseLayout from "@/layout/baseLayout.vue";
+import BuilderLayout from "@/layout/builderLayout.vue";
 
 // 定义每个 UI 框架的子路由信息
 export const frameworkRoutes = [
   {
-    path: "/designer",
+    path: "/:ui/designer",
     name: "designer",
     component: BaseLayout,
     meta: {
@@ -13,7 +14,7 @@ export const frameworkRoutes = [
     },
     children: [
       {
-        path: "/:ui/basic",
+        path: "basic",
         name: "basic",
         component: () => import("@/views/designer/basic/index.vue"),
         meta: {
@@ -21,7 +22,7 @@ export const frameworkRoutes = [
         },
       },
       {
-        path: "/:ui/loadData",
+        path: "loadData",
         name: "loadData",
         component: () => import("@/views/designer/loadData/index.vue"),
         meta: {
@@ -29,7 +30,7 @@ export const frameworkRoutes = [
         },
       },
       {
-        path: "/:ui/formMode",
+        path: "formMode",
         name: "formMode",
         component: () => import("@/views/designer/formMode/index.vue"),
         meta: {
@@ -39,15 +40,15 @@ export const frameworkRoutes = [
     ],
   },
   {
-    path: "/builder",
+    path: "/:ui/builder",
     name: "builder",
-    component: BaseLayout,
+    component: BuilderLayout,
     meta: {
       title: "生成器",
     },
     children: [
       {
-        path: "/:ui/builderBasic",
+        path: "basic",
         name: "builderBasic",
         component: () => import("@/views/builder/basic/index.vue"),
         meta: {
@@ -55,7 +56,7 @@ export const frameworkRoutes = [
         },
       },
       {
-        path: "/:ui/builderLoadData",
+        path: "loadData",
         name: "builderLoadData",
         component: () => import("@/views/builder/loadData/index.vue"),
         meta: {
@@ -63,7 +64,7 @@ export const frameworkRoutes = [
         },
       },
       {
-        path: "/:ui/builderLoadFormData",
+        path: "loadFormData",
         name: "builderLoadFormData",
         component: () => import("@/views/builder/loadFormData/index.vue"),
         meta: {
@@ -71,7 +72,7 @@ export const frameworkRoutes = [
         },
       },
       {
-        path: "/:ui/disableDisplay",
+        path: "disableDisplay",
         name: "disableDisplay",
         component: () => import("@/views/builder/disableDisplay/index.vue"),
         meta: {
@@ -79,7 +80,7 @@ export const frameworkRoutes = [
         },
       },
       {
-        path: "/:ui/sum",
+        path: "sum",
         name: "sum",
         component: () => import("@/views/builder/sum/index.vue"),
         meta: {
@@ -95,7 +96,7 @@ const routes = [
     path: "/",
     component: Layout,
     name: "uiFrameworks",
-    redirect: "/ant-designe-vue/basic",
+    redirect: "/ant-designe-vue/designer/basic",
     children: frameworkRoutes,
   },
   // Resolve refresh page, route warnings

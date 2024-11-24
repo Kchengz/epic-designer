@@ -1,6 +1,12 @@
 <template>
-    <Menu class="h-full" :selectedKeys="[routeName]" :openKeys="openKeys" mode="inline" @click="handleClick"
-        :items="items"></Menu>
+  <Menu
+    class="h-full"
+    :selectedKeys="[routeName]"
+    :openKeys="openKeys"
+    mode="inline"
+    @click="handleClick"
+    :items="items"
+  ></Menu>
 </template>
 <script lang="ts" setup>
 
@@ -44,6 +50,7 @@ function traverseRoutes(routes: RouteRecordRaw[]) {
     });
 }
 const handleClick: MenuProps['onClick'] = e => {
-    router.push({ path: '/' + route.path.split('/')[1] + '/' + e.key })
+    // router.push({ path: '/' + route.path.split('/')[1] + '/' + e.key })
+    router.push({ name: e.key as string })
 };
 </script>

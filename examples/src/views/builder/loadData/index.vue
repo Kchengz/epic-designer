@@ -1,27 +1,12 @@
 <template>
-  <div class="epic-page-main p-2 h-full flex flex-col">
-    <h2 class="pt-4 pl-8 text-24px block">数据回显</h2>
-    <EBuilder ref="ebRef" :pageSchema="pageSchema"> </EBuilder>
-    <Divider orientation="left">页面结构数据</Divider>
-    <MonacoEditor
-      class="flex-1"
-      :modelValue="pageSchema"
-      autoToggleTheme
-      readOnly
-      valueFormat="json"
-    />
-  </div>
+  <EBuilder ref="ebRef" :pageSchema="pageSchema"> </EBuilder>
 </template>
 
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
 import { EBuilder, PageSchema } from "@epic-designer/core";
-import { pluginManager } from "@epic-designer/utils";
-import { Divider } from "ant-design-vue";
 
-const MonacoEditor = pluginManager.getComponent("monacoEditor");
 const ebRef = ref<InstanceType<typeof EBuilder>>();
-
 const pageSchema = ref<PageSchema>({
   schemas: [
     {
