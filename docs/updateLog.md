@@ -1,3 +1,10 @@
+## 0.9.26（2024-11-27）
+### ✨ Feat
+- EDesigner组件新增hidePreviewConfirm属性，隐藏预览表单数据按钮
+- 设计界面新增节点遮罩，防止误触发节点事件
+### 🐛 Bug Fixes
+- 解决dynamicFormItem组件属性透传警告问题
+
 ## 0.9.25（2024-10-16）
 ### 🐛 Bug Fixes
 - 修复antd组件校验异常问题

@@ -29,9 +29,9 @@
 
 💎项目预览地址：
 
-- ElementPlus：[https://examples.epicjs.cn/element-plus/basic](https://examples.epicjs.cn/element-plus/basic?maximize=1)
-- AntDesignVue：[https://examples.epicjs.cn/ant-designe-vue/basic](https://examples.epicjs.cn/ant-designe-vue/basic?maximize=1)
-- NaiveUi：[https://examples.epicjs.cn/naive-ui/basic](https://examples.epicjs.cn/naive-ui/basic?maximize=1)
+- ElementPlus：[https://examples.epicjs.cn/element-plus/designer/basic](https://examples.epicjs.cn/element-plus/designer/basic?maximize=1)
+- AntDesignVue：[https://examples.epicjs.cn/ant-designe-vue/designer/basic](https://examples.epicjs.cn/ant-designe-vue/designer/basic?maximize=1)
+- NaiveUi：[https://examples.epicjs.cn/naive-ui/designer/basic](https://examples.epicjs.cn/naive-ui/designer/basic?maximize=1)
 
 > 使用必须遵守国家法律法规，⛔不允许非法项目使用，后果自负❗
 
