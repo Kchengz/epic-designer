@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
+    "@shikijs/monaco": "^1.23.1",
     "ant-design-vue": "^4.2.5",
     "dayjs": "^1.11.13",
+    "shiki": "^1.23.1",
     "vue": "^3.5.8",
     "vue-router": "^4.4.5"
   },
