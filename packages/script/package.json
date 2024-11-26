@@ -1,6 +1,6 @@
 {
   "name": "@epic-designer/script",
-  "version": "0.9.25",
+  "version": "0.9.26",
   "main": "index.ts",
   "scripts": {
     "checkCompiled": "ts-node ./src/check-compiled"
