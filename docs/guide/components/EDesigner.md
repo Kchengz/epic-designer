@@ -92,6 +92,7 @@ background: white;
 | hiddenHeader          | 隐藏头部                                                   | boolean    | false  | -      |
 | formMode              | 单表单模式，开启后不可再拖入表单，根节点默认切换为表单组件 | boolean    | false  | 0.9.19 |
 | sourceCodeReadOnly    | 设置源码面板为只读状态                                     | boolean    | false  | 0.9.20 |
+| hidePreviewConfirm    | 隐藏预览页面`表单数据`按钮                                 | boolean    | false  | 0.9.26 |
 
 ## 函数
 
