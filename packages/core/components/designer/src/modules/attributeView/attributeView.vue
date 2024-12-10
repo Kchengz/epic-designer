@@ -57,15 +57,14 @@ function isShow(item: ComponentSchema) {
   return true
 }
 
-const componentAttributes = ref<ComponentSchema[]>([])
-  watchEffect(() => {
-  const type = designer.state.checkedNode?.type
-  if (!designer.state.checkedNode || !type) {
+// 获取组件属性配置
+const componentAttributes = computed(() => {
+  if (!checkedNode.value || !checkedNode.value.type) {
     return []
   }
-  const attribute = componentConfings[type]?.config.attribute ?? []
 
-  componentAttributes.value = [
+  const attribute = componentConfings[checkedNode.value.type]?.config.attribute ?? []
+  let attributes = [
     {
       label: '组件ID',
       type: 'input',
@@ -77,8 +76,8 @@ const componentAttributes = ref<ComponentSchema[]>([])
     ...attribute
   ]
 
-  if (designer.state.checkedNode.id === pageSchema.schemas[0]?.id) {
-    componentAttributes.value.push(...[
+  if (checkedNode.value.id === pageSchema.schemas[0]?.id) {
+    attributes.push(
       {
         label: '画布宽度',
         type: 'EInputSize',
@@ -91,8 +90,10 @@ const componentAttributes = ref<ComponentSchema[]>([])
         field: 'canvas.height',
         editData: pageSchema,
       }
-    ])
+    )
   }
+
+  return attributes
 })
 
 /**

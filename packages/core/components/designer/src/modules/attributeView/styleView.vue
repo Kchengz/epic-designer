@@ -32,14 +32,21 @@
 <script lang="ts" setup>
 import ENode from '../../../../node/index'
 import { Designer, ComponentSchema, PageSchema } from '../../../../../types/epic-designer'
-import { type Revoke, getValueByPath, setValueByPath } from '@epic-designer/utils'
+import { pluginManager, getValueByPath, setValueByPath, type Revoke } from '@epic-designer/utils'
 
 import { inject, computed, nextTick } from 'vue'
 const designer = inject('designer') as Designer
 const pageSchema = inject('pageSchema') as PageSchema
 const revoke = inject('revoke') as Revoke
+const componentConfings = pluginManager.getComponentConfings()
 
-const componentStyles: ComponentSchema[] = [
+// const componentStyles: ComponentSchema[] =
+
+const checkedNode = computed(() => {
+  return designer.state.checkedNode
+})
+
+const defaultStyle = [
   {
     label: '宽度',
     type: 'EInputSize',
@@ -83,9 +90,19 @@ const componentStyles: ComponentSchema[] = [
   }
 ]
 
-const checkedNode = computed(() => {
-  return designer.state.checkedNode
+// 获取组件样式配置
+const componentStyles = computed(() => {
+
+  if (!checkedNode.value || !checkedNode.value.type) {
+    return []
+  }
+  const style = componentConfings[checkedNode.value.type]?.config.style ?? []
+  return [
+    ...defaultStyle,
+    ...style
+  ]
 })
+
 
 function isShow(item: ComponentSchema) {
   // show属性为boolean类型则直接返回

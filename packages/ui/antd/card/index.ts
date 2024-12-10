@@ -59,6 +59,6 @@ export default {
         type: "switch",
         field: "componentProps.hidden",
       },
-    ],
+    ]
   },
 } as ComponentConfigModel;
