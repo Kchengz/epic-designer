@@ -3,7 +3,7 @@
   <div
     v-show="showSelector && designer.state.checkedNode?.id !== 'root'"
     ref="selectorRef"
-    class="epic-checked-widget absolute pointer-events-none z-20"
+    class="epic-checked-widget absolute pointer-events-none z-9999"
     :class="selectorPosition + ' ' + (selectorTransition ? 'transition-all' : '')"
   >
     <div class="epic-widget-action-box" ref="actionBoxRef">
