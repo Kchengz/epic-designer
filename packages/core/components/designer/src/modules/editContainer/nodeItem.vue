@@ -7,14 +7,14 @@
     <!-- childImmovable不可拖拽设计 end -->
 
     <template v-else #edit-node>
-      <KEditNodeItem v-if="props.schema.children" v-model:schemas="props.schema.children" />
+      <EditNodeItem v-if="props.schema.children" v-model:schemas="props.schema.children" />
     </template>
   </ENode>
 </template>
 <script lang="ts" setup>
 import ENode from '../../../../node'
+import EditNodeItem from './editNodeItem.vue'
 import { ComponentSchema, Designer, PageSchema } from '../../../../../types/epic-designer'
-import KEditNodeItem from './editNodeItem.vue'
 import { useAttrs, provide, watch, ref, onUnmounted, computed, inject } from 'vue';
 import { pluginManager, type PageManager } from '@epic-designer/utils'
 

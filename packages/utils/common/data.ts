@@ -83,16 +83,16 @@ export function deepCompareAndModify(
 ): void {
   // 循环遍历obj2的所有属性
   for (const [key, val2] of Object.entries(obj2)) {
-    let val1 = obj1?.[key];
     // 如果obj1的属性值是对象或数组，则递归调用该函数
-    if (val1 && val2 && typeof val1 === "object" && typeof val2 === "object") {
-      // 如果val1是数组，val2为非数组
-      if (Array.isArray(val1) && !Array.isArray(val2)) {
-        val1 = obj1[key] = {}
-      } else if (!Array.isArray(val1) && Array.isArray(val2)) {
-        val1 = obj1[key] = []
+    if (obj1[key] && val2 && typeof obj1[key] === "object" && typeof val2 === "object") {
+      // 如果obj1[key]是数组，val2为非数组
+      if (Array.isArray(obj1[key]) && !Array.isArray(val2)) {
+        obj1[key] = {}
+      } else if (!Array.isArray(obj1[key]) && Array.isArray(val2)) {
+        obj1[key] = []
       }
-      deepCompareAndModify(val1, val2, shouldDelete);
+      // 递归比较
+      deepCompareAndModify(obj1[key], val2, shouldDelete);
     } else {
       // 如果属性值不相等，则将obj2的属性值复制给obj1
       obj1[key] = val2;
@@ -232,7 +232,7 @@ export function getMatchedById(
 export function getValueByPath(object: Record<string, any>, path: string, defaultValue?: any): any {
   // 将路径字符串拆分为数组
   const pathArray = path.split('.');
-  
+
   // 逐步从对象中提取值
   let result = object;
   for (let i = 0; i < pathArray.length; i++) {
@@ -242,7 +242,7 @@ export function getValueByPath(object: Record<string, any>, path: string, defaul
     }
     result = result[pathArray[i]];
   }
-  
+
   // 如果最终的值为 undefined，返回默认值
   return result === undefined ? defaultValue : result;
 }
@@ -257,25 +257,25 @@ export function getValueByPath(object: Record<string, any>, path: string, defaul
 export function setValueByPath(object: Record<string, any>, path: string, value: any): Record<string, any> {
   // 将路径字符串拆分为数组
   const pathArray = path.replace(/\[(\d+)\]/g, '.$1').split('.').filter(Boolean);
-  
+
   // 逐步设置对象中的值
   let current = object;
-  
+
   for (let i = 0; i < pathArray.length - 1; i++) {
     const key = pathArray[i];
-    
+
     // 如果当前对象的属性不存在，则创建一个新对象或数组
     if (current[key] == null) {
       // 如果路径部分是数字，创建数组；否则，创建对象
       current[key] = isNaN(Number(pathArray[i + 1])) ? {} : [];
     }
-    
+
     current = current[key];
   }
-  
+
   // 在路径的最后一层设置值
   current[pathArray[pathArray.length - 1]] = value;
-  
+
   return object;
 }
 

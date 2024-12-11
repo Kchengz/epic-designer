@@ -245,7 +245,7 @@ function setData(schema: PageSchema) {
  */
 function getData(): PageSchema {
   // 返回一个对象，包含当前 schemas 对象的普通对象表示和当前 script 的值
-  return toRaw(pageSchema);
+  return deepClone(pageSchema);
 }
 
 /**
@@ -274,7 +274,7 @@ function reset() {
  * 保存数据
  */
 function handleSave() {
-  emits("save", toRaw(pageSchema));
+  emits("save", getData());
 }
 
 function handleToggleDeviceMode(mode: string) {
