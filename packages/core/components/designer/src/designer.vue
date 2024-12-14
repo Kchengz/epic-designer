@@ -4,7 +4,7 @@
   </div>
   <Suspense v-else @resolve="handleReady">
     <template #default>
-      <div class="epic-designer-main">
+      <div class="epic-designer-main" @wheel="handleWheel">
         <div class="epic-header-container">
           <slot name="header">
             <EHeader
@@ -286,6 +286,11 @@ function handleToggleDeviceMode(mode: string) {
  */
 function handlePreview() {
   previewRef.value!.handleOpen();
+}
+
+function handleWheel(event) {
+  // 禁止浏览器默认操作
+  event.preventDefault();
 }
 
 init();

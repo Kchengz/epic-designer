@@ -16,6 +16,7 @@ export function useKeyPress() {
   const pressShift = ref(false);
   // 是否按住ctrl键
   const pressCtrl = ref(false);
+
   onKeyDown(" ", () => {
     pressSpace.value = true;
   });
@@ -108,7 +109,7 @@ export function useElementZoom(draggableElRef: Ref<HTMLDivElement | null>) {
    * @returns
    */
   function handleZoom(event: WheelEvent) {
-    if (!pressCtrl.value || disabledZoom.value) {
+    if (!event.ctrlKey || disabledZoom.value) {
       return;
     }
     event.preventDefault();
