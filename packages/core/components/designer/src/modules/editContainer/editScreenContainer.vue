@@ -6,13 +6,13 @@
 
     <div
       ref="editScreenContainerRef"
-      class="flex-1 overflow-auto overflow-y-hidden epic-edit-screen-container"
-      :class="{ 'cursor-grab': pressSpace }"
-      :draggable="pressSpace"
+      class="epic-edit-screen-container flex-1 overflow-auto overflow-y-hidden"
+      :class="{ 'cursor-grab': draggableComputed }"
+      :draggable="draggableComputed"
       @wheel="handleZoom"
-      @dragstart="handleElementDragStart"
+      @dragstart="handleElementDragStart($event,draggableComputed)"
+      @drag="handleElementDrag($event,draggableComputed)"
       @dragend="handleElementDragEnd"
-      @drag="handleElementDrag"
     >
       <div
         id="canvasContainer"
@@ -20,7 +20,10 @@
         :style="scrollBoxStyle"
       >
         <div ref="draggableElRef" class="transition-all">
-          <div :class="{ 'pointer-events-none': pressSpace }" :style="canvasBoxStyle">
+          <div
+            :class="{ 'pointer-events-none': draggableComputed }"
+            :style="canvasBoxStyle"
+          >
             <slot />
           </div>
         </div>
@@ -41,9 +44,10 @@ import { watchOnce, useElementSize, useResizeObserver } from "@vueuse/core";
 import type { PageSchema } from "../../../../../types/epic-designer";
 import { debounce } from "@epic-designer/utils";
 import { useStore, useElementDrag, useElementZoom } from "@epic-designer/hooks";
-import { ref, nextTick, inject, watch, shallowRef, watchEffect } from "vue";
+import { ref, nextTick, inject, watch, shallowRef, watchEffect, type Ref, computed } from "vue";
 import Toolbar from "./toolbar.vue";
-
+import { DesignerProps } from '../../types'
+const designerProps = inject("designerProps") as Ref<DesignerProps>;
 const pageSchema = inject("pageSchema") as PageSchema;
 
 const editScreenContainerRef = ref<HTMLDivElement | null>(null);
@@ -58,6 +62,10 @@ const {
 } = useElementDrag(editScreenContainerRef);
 const { width, height } = useElementSize(editScreenContainerRef);
 const { canvasScale, handleZoom } = useElementZoom(draggableElRef);
+
+const draggableComputed = computed(()=>{
+  return pressSpace.value && designerProps.value.draggable
+})
 
 let contentRectWidth = 0;
 let contentRectHeight = 0;

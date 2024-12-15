@@ -41,7 +41,7 @@
 </template>
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { ref, computed, inject } from 'vue'
+import { ref, computed, inject, type Ref } from 'vue'
 import { generateNewSchema, findSchemaInfoById, pluginManager, Revoke } from '@epic-designer/utils'
 import { ComponentSchema, PageSchema, Designer } from '../../../../../types/epic-designer'
 import { DesignerProps } from '../../types'

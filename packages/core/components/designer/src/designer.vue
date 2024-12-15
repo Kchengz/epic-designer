@@ -79,6 +79,7 @@ const pageManager = usePageManager();
 const revoke = useRevoke();
 
 const props = withDefaults(defineProps<DesignerProps>(), {
+  draggable: true,
   disabledZoom: false,
   hiddenHeader: false,
   lockDefaultSchemaEdit: false,

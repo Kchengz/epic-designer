@@ -59,9 +59,9 @@ export function useElementDrag(
 
   let startX = 0;
   let startY = 0;
-  function handleElementDragStart(event: DragEvent) {
-    // 只有按空格的时候才启用画布拖拽
-    if (!pressSpace.value) {
+  function handleElementDragStart(event: DragEvent,draggable = false) {
+    // 检查是否启用画布拖拽
+    if (!draggable) {
       return;
     }
     startX = event.x;
@@ -73,10 +73,10 @@ export function useElementDrag(
    * 拖拽设计区域
    * @param event
    */
-  function handleElementDrag(event: DragEvent) {
+  function handleElementDrag(event: DragEvent,draggable = false) {
     event.preventDefault();
     // 计算新的光标位置：
-    if (!event.x || !event.y || !pressSpace.value) {
+    if (!event.x || !event.y || !draggable) {
       return;
     }
     const offsetX = event.x - startX;
@@ -102,7 +102,7 @@ export function useElementDrag(
  * @returns
  */
 export function useElementZoom(draggableElRef: Ref<HTMLDivElement | null>) {
-  const { pressCtrl, canvasScale, disabledZoom } = useStore();
+  const { canvasScale, disabledZoom } = useStore();
   /**
    * 缩放操作
    * @param e

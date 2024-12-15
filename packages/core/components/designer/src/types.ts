@@ -2,6 +2,7 @@ import { PageSchema } from "../../../types/epic-designer";
 
 export interface DesignerProps {
   disabledZoom?: boolean;
+  draggable?: boolean;
   hiddenHeader?: boolean;
   lockDefaultSchemaEdit?: boolean;
   formMode?: boolean;
