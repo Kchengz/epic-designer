@@ -44,7 +44,7 @@
           <div
             :title="item.title"
             class="epic-device-item h-full px-1 flex items-center cursor-pointer text-base transition-colors rounded-sm"
-            :class="{ checked: item.key === checkedKey }"
+            :class="{ checked: item.key === selectedKey }"
             @click="handleSetCanvas(item.key)"
           >
             <EIcon :name="item.icon"></EIcon>
@@ -73,11 +73,11 @@ import EPreviewJson from "./previewJson.vue";
 const Select = pluginManager.getComponent("select");
 
 const { canvasScale, disabledZoom } = useStore();
-const checkedKey = ref("pc");
 const pageSchema = inject("pageSchema") as PageSchema;
 const designer = inject("designer") as Designer;
 const revoke = inject("revoke") as Revoke;
 const previewJson = ref<InstanceType<typeof EPreviewJson> | null>(null);
+
 const deviceOptions = [
   {
     icon: "icon--epic--computer-outline-rounded",
@@ -127,6 +127,28 @@ const actionOptions = computed(() => {
       disabled: !revoke.undoList.value.length,
     },
   ];
+});
+
+const canvasConfigs = {
+  pc: {},
+  pad: {
+    width: "780px",
+    mode: "pad",
+  },
+  mobile: {
+    width: "390px",
+    mode: "mobile",
+  },
+};
+
+const selectedKey = computed({
+  get() {
+    return pageSchema.canvas?.mode ?? "pc";
+  },
+  set(type: string) {
+    designer.handleToggleDeviceMode(type);
+    pageSchema.canvas = canvasConfigs[type];
+  },
 });
 
 const fileRef = ref<HTMLInputElement | null>(null);
@@ -240,19 +262,6 @@ function handleImporttData(content?: string) {
  */
 function handleSetCanvas(type: string) {
   designer.handleToggleDeviceMode(type);
-  checkedKey.value = type;
-  const canvasConfigs = {
-    pc: {},
-    pad: {
-      width: "780px",
-      mode: type,
-    },
-    mobile: {
-      width: "390px",
-      mode: type,
-    },
-  };
-
-  pageSchema.canvas = canvasConfigs[type];
+  selectedKey.value = type;
 }
 </script>

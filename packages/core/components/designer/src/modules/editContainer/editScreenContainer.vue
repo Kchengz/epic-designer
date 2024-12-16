@@ -10,8 +10,8 @@
       :class="{ 'cursor-grab': draggableComputed }"
       :draggable="draggableComputed"
       @wheel="handleZoom"
-      @dragstart="handleElementDragStart($event,draggableComputed)"
-      @drag="handleElementDrag($event,draggableComputed)"
+      @dragstart="handleElementDragStart($event, draggableComputed)"
+      @drag="handleElementDrag($event, draggableComputed)"
       @dragend="handleElementDragEnd"
     >
       <div
@@ -44,7 +44,7 @@ import { watchOnce, useElementSize, useResizeObserver } from "@vueuse/core";
 import type { PageSchema } from "../../../../../types/epic-designer";
 import { debounce } from "@epic-designer/utils";
 import { useStore, useElementDrag, useElementZoom } from "@epic-designer/hooks";
-import { ref, nextTick, inject, watch, shallowRef, watchEffect, type Ref, computed } from "vue";
+import { ref, nextTick, inject, watch, shallowRef, watchEffect, onMounted, type Ref, computed } from "vue";
 import Toolbar from "./toolbar.vue";
 import { DesignerProps } from '../../types'
 const designerProps = inject("designerProps") as Ref<DesignerProps>;
@@ -94,8 +94,10 @@ const getCanvasAttribute = shallowRef<{
 watchEffect(updateSizeBoxStyle)
 
 // 监听 `sizeBoxStyle` 的变化，DOM 更新后调用 `updateCanvasAttribute` 函数。
-watch(sizeBoxStyle, () => {
-  nextTick(updateCanvasAttribute);
+onMounted(()=>{
+  watch(sizeBoxStyle, () => {
+    nextTick(updateCanvasAttribute);
+  }, { immediate: true });
 });
 
 // 更新 `getCanvasAttribute`，将当前画布元素的大小赋值给它。
@@ -116,7 +118,6 @@ function updateSizeBoxStyle() {
     width: pageSchema.canvas?.width ?? "0",
     height: pageSchema.canvas?.height ?? "0",
   };
-
 }
 
 // 初始化页面样式
