@@ -65,9 +65,9 @@ watch(() => getComponentElement.value, (componentElement) => {
   componentElement.addEventListener('mouseout', clearHoverNode, false)
 
   if(isLeaf.value) {
-    componentElement.classList.add("epic-node-mask");
+    componentElement.classList?.add("epic-node-mask");
   }else{
-    componentElement.classList.remove("epic-node-mask");
+    componentElement.classList?.remove("epic-node-mask");
   }
 })
 

@@ -120,12 +120,19 @@ const getSelectComponentElement = computed<HTMLBaseElement | null>(() => {
  */
 const getHoverComponentElement = computed<HTMLBaseElement | null>(() => {
   const componentInstances = pageManager.componentInstances.value
-  const id = designer.state.hoverNode?.id
-  const componentConfing = pluginManager.getComponentConfingByType(designer.state.hoverNode?.type!) ?? null
+  const {hoverNode} = designer.state
+  // 组件隐藏状态时，返回null
+  if(!hoverNode || hoverNode.componentProps?.hidden) {
+    return null
+  }
+
+  const id = hoverNode.id
+  const componentConfing = pluginManager.getComponentConfingByType(hoverNode.type!) ?? null
   if (!id || !componentInstances?.[id]) {
     return null
   }
-  if (componentConfing?.defaultSchema.input && designer.state.hoverNode?.noFormItem !== true) {
+
+  if (componentConfing?.defaultSchema.input && hoverNode.noFormItem !== true) {
     return componentInstances[id + 'formItem']?.$el
   }
   const componentInstance = componentInstances[id]
@@ -158,12 +165,6 @@ watch(() => getSelectComponentElement.value, (selectComponentElement) => {
       }
     }
     setSeletorStyle()
-
-
-
-
-
-
 
   } else {
     showSelector.value = false
