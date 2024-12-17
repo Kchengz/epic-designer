@@ -186,7 +186,7 @@ function init() {
 
   // 选中根节点
   setCheckedNode(pageSchema.schemas[0]);
-  revoke.push(pageSchema.schemas, "初始化撤销功能");
+  revoke.push(pageSchema.schemas, "初始化");
 }
 
 /**
@@ -239,6 +239,7 @@ async function setDisableHover(disableHover = false) {
 function setData(schema: PageSchema) {
   // 调用 deepCompareAndModify 函数比较 pageSchema 和传入的 schema，进行修改
   deepCompareAndModify(pageSchema, deepClone(schema));
+  revoke.push(pageSchema.schemas, "加载数据");
 }
 
 /**

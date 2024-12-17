@@ -12,7 +12,7 @@ export interface RecordModel {
 /**
  撤销重做功能
  */
-export function useRevoke () {
+export function useRevoke() {
   // 历史记录
   const recordList = ref<RecordModel[]>([])
 
@@ -29,14 +29,23 @@ export function useRevoke () {
    * @param {object}componentSchema
    * @return {boolean}
    */
-  function push (componentSchema: ComponentSchema[], type = '插入组件'): void {
-    // 忽略低于150ms时间差的记录
+  function push(componentSchema: ComponentSchema[], type = '插入组件'): void {
+
+    // 加载数据前只有初始化记录时，直接使用加载的数据作为初始化记录
+    if (type === "加载数据" && currentRecord.value?.type === "初始化") {
+      // 将json转成字符串存储
+      currentRecord.value = {
+        type,
+        componentSchema: JSON.stringify(componentSchema)
+      }
+    }
+
     const nowTime = Date.now()
+    // 忽略低于150ms时间差的记录
     if (lastPushTime + 150 > nowTime) {
       return
     }
     lastPushTime = nowTime
-
     // 判断之前是否已经存在currentRecord记录，有则存储到recordList
     if (currentRecord.value != null) {
       recordList.value.push(currentRecord.value)
@@ -61,7 +70,7 @@ export function useRevoke () {
    * @param {*}
    * @return {object}
    */
-  function undo (): RecordModel | false {
+  function undo(): RecordModel | false {
     // 没有记录时,返回false
     if (recordList.value.length === 0) {
       return false
@@ -83,7 +92,7 @@ export function useRevoke () {
    * @param {*}
    * @return {*}
    */
-  function redo (): RecordModel | false {
+  function redo(): RecordModel | false {
     // 没有重做记录时,返回false
     if (undoList.value.length === 0) {
       return false
@@ -104,11 +113,11 @@ export function useRevoke () {
    * @param {*}
    * @return {void}
    */
-    function reset (): void {
-      recordList.value = []
-      undoList.value = []
-      currentRecord.value = null
-    }
+  function reset(): void {
+    recordList.value = []
+    undoList.value = []
+    currentRecord.value = null
+  }
 
   return {
     recordList,
