@@ -77,10 +77,13 @@ const route = useRoute()
 const selectValue = computed({
     get() {
         return route.params.ui as string
-
     },
     set(ui) {
-        router.push(`/${ui}/${route.path.split('/')[2]}`)
+        router.push({
+            params:{
+                ui
+            }
+        })
         switchUI(ui)
     }
 })

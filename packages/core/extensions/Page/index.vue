@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-full box-border wh-full!"
+    class="box-border wh-full"
   >
     <slot name="edit-node">
       <slot
