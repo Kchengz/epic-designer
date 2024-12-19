@@ -17,7 +17,7 @@
       <div
         id="canvasContainer"
         class="flex items-center justify-center"
-        :style="scrollBoxStyle"
+        :style="scrollBoxStyleComputed"
       >
         <div ref="draggableElRef" class="transition-all">
           <div
@@ -90,6 +90,19 @@ const getCanvasAttribute = shallowRef<{
   height: number;
 }>({ width: 0, height: 0 });
 
+
+// 判断是否允许拖拽画布,如果允许拖拽，返回返回滚动容器的样式，否则返回默认的样式。
+const scrollBoxStyleComputed = computed(() => {
+  if(designerProps.value.draggable){
+    return scrollBoxStyle.value
+  }else{
+    return {
+      width: "100%",
+      height: "100%",
+    }
+  }
+})
+
 // 监听 `pageSchema` 中画布尺寸的变化，当变化时调用 `updateSizeBoxStyle` 函数。
 watchEffect(updateSizeBoxStyle)
 
@@ -126,10 +139,10 @@ watchOnce(width, updateScrollBoxStyle);
 watch(getCanvasAttribute, updateScrollBoxStyle);
 
 /**
- * 更新滚动框和画布的样式。
+ * 更新滚动容器和画布的样式。
  *
  * 根据 `disabledZoom` 的值，决定是否禁用画布的缩放功能，
- * 并相应地更新滚动框和画布的样式。
+ * 并相应地更新滚动容器和画布的样式。
  */
 function updateScrollBoxStyle() {
 
@@ -137,11 +150,12 @@ function updateScrollBoxStyle() {
   let canvasWidth = getCanvasAttribute.value.width || contentRectWidth;
   let canvasHeight = getCanvasAttribute.value.height || contentRectHeight;
 
-  // 更新滚动框的样式，考虑到画布的尺寸和额外的宽度/高度
+  // 更新滚动容器的样式，画布的尺寸和额外的宽度/高度
   scrollBoxStyle.value = {
-    width: width.value + canvasWidth + "px", // 滚动框宽度，包含额外的宽度
-    height: height.value + canvasHeight + "px", // 滚动框高度，包含额外的高度
+    width: width.value + canvasWidth + "px", // 滚动容器宽度
+    height: height.value + canvasHeight + "px", // 滚动容器高度
   };
+
 
   // 更新画布的样式，使用实际的画布尺寸
   canvasBoxStyle.value = {
@@ -149,7 +163,7 @@ function updateScrollBoxStyle() {
     height: canvasHeight + "px", // 画布高度
   };
 
-  // 调整滚动框的位置，以适应更新后的样式
+  // 调整滚动容器的位置，以适应更新后的样式
   setScroll();
 }
 
