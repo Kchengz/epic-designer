@@ -84,7 +84,7 @@ export default defineConfig({
               link: "/guide/start/quick-start",
             },
             {
-              text: "国际化",
+              text: "UI组件国际化",
               link: "/guide/start/i18n-cn",
             },
             {
