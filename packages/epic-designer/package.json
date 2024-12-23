@@ -1,23 +1,25 @@
 {
   "name": "epic-designer",
   "private": false,
-  "version": "0.9.26",
+  "version": "0.9.27-beta.9",
   "type": "module",
-  "main": "dist/index.es",
-  "module": "dist/index.es",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "typings": "dist/epic-designer/index.d.ts",
   "description": "基于vue3的设计器,可视化开发页面表单",
   "author": "kchengz",
   "keywords": [
-    "form",
-    "epic-designer",
-    "设计器",
-    "页面设计",
-    "designer",
-    "设计工具",
+    "表单设计",
+    "表单设计器",
     "低代码",
     "可视化",
-    "工作流"
+    "设计器",
+    "页面设计",
+    "设计工具",
+    "工作流",
+    "form",
+    "designer",
+    "epic-designer"
   ],
   "bugs": {
     "url": "https://github.com/Kchengz/epic-designer/issues"
