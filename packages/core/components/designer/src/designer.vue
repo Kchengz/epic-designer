@@ -290,9 +290,11 @@ function handlePreview() {
   previewRef.value!.handleOpen();
 }
 
-function handleWheel(event) {
-  // 禁止浏览器默认操作
-  event.preventDefault();
+function handleWheel(event: WheelEvent) {
+  if (event.ctrlKey) {
+    // 按下ctrl键时，禁止浏览器默认操作
+    event.preventDefault();
+  }
 }
 
 init();
