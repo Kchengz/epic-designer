@@ -69,6 +69,7 @@
         </div>
         <EArgsEditor
           v-else
+          :key="argsEditorKey"
           v-model="state.actionItem.args"
           :actionArgsConfigs="actionArgsConfigs"
         />
@@ -85,7 +86,7 @@ import {
   findSchemaById,
   getUUID,
 } from "@epic-designer/utils";
-import { ref, inject, toRaw, reactive, computed, nextTick } from "vue";
+import { ref, inject, toRaw, reactive, computed, nextTick, watch } from "vue";
 import ETree from "../../../components/tree";
 import { ComponentSchema, PageSchema, FormDataModel } from "../../../types/epic-designer";
 import EScriptEdit from "./EScriptEdit.vue";
@@ -98,6 +99,7 @@ const pageManager = inject("pageManager", {}) as PageManager;
 const visible = ref(false);
 const selectedKeys = ref<string[]>([]);
 const componentSchema = ref<ComponentSchema | null>(null);
+const argsEditorKey = ref<string>("");
 
 const emit = defineEmits(["add", "edit"]);
 
@@ -132,6 +134,16 @@ const methodOptions = computed(() => {
 
   return [];
 });
+
+watch(
+  () => componentSchema.value,
+  () => {
+    if (componentSchema.value) {
+      argsEditorKey.value = componentSchema.value.id!;
+    }
+  },
+  { immediate: true }
+);
 
 const actionArgsConfigs = computed(() => {
   if (state.actionItem.type === "component") {
