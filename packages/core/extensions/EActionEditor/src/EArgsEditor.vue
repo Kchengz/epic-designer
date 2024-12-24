@@ -1,6 +1,6 @@
 <template>
   <div class="epic-attribute-view">
-    <div v-for="item in props.actionArgsConfigs" :key="item.field + item.type + item.id">
+    <div v-for="item in props.actionArgsConfigs" :key="item.id">
       <div v-show="isShow(item)" class="epic-attr-item" :class="item.layout">
         <div class="epic-attr-label" :title="item.label">
           {{ item.label }}
