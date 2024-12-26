@@ -17,6 +17,13 @@
       <!-- 操作按钮 start  -->
       <div class="flex items-center" v-if="isRemovableAndDraggable">
         <div
+          title="选择父节点"
+          class="epic-widget-action-item pointer-events-auto"
+          @click="handleSelectParentNode"
+        >
+          <EIcon name="icon--epic--upward" />
+        </div>
+        <div
           title="复制"
           class="epic-widget-action-item pointer-events-auto"
           @click="handleCopy"
@@ -336,6 +343,18 @@ function initObserve(func: () => void) {
     mutationObserver,
     observerConfig
   }
+}
+
+/**
+ * 选择父节点
+ */
+function handleSelectParentNode() {
+  const data = findSchemaInfoById(pageSchema.schemas, designer.state.checkedNode?.id ?? 'root')
+  if (!data) {
+    return false
+  }
+  const { parentSchema, schema } = data
+  designer.setCheckedNode(parentSchema)
 }
 
 /**
