@@ -453,6 +453,7 @@ export function findSchemaInfoById(
   list: ComponentSchema[];
   schema: ComponentSchema;
   index: number;
+  parentSchema: ComponentSchema
 } {
   const stack: ComponentSchema[] = [{ type: "", children: schemas }];
   let index: number = 0;
@@ -499,6 +500,7 @@ export function findSchemaInfoById(
     list: children,
     schema: children[index],
     index,
+    parentSchema
   };
 }
 
