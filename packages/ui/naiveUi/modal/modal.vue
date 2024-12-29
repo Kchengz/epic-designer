@@ -2,8 +2,9 @@
   <NModal
     v-bind="getComponentProps"
     :title="getComponentProps.label ?? ''"
-    class="epic-modal-n"
+    class="epic-modal-n epic-scoped"
     preset="card"
+     :style="{ width }"
     @update:show="handleClose"
   >
     <div class="epic-modal-main">
@@ -34,10 +35,16 @@ import { ComponentSchema } from "@epic-designer/core/types/epic-designer";
 const attrs = useAttrs();
 
 // 定义 props
-const props = defineProps<{
-  componentSchema?: ComponentSchema;
-  hideConfirm?: boolean;
-}>();
+const props = withDefaults(
+  defineProps<{
+    componentSchema?: ComponentSchema;
+    hideConfirm?: boolean;
+    width?: string;
+  }>(),
+  {
+    width: "900px",
+  }
+);
 
 // Emits
 const emit = defineEmits(["ok", "close", "update:modelValue"]);
@@ -48,7 +55,7 @@ const getComponentProps = computed<Record<string, any>>(() => ({
   title: props.componentSchema?.label ?? "",
   class: "epic-modal-n",
   preset: "card",
-  show: attrs.modelValue
+  show: attrs.modelValue,
 }));
 
 const children = computed(() => props.componentSchema?.children ?? []);

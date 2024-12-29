@@ -2,8 +2,7 @@
   <Modal
     v-model="visible"
     title="预览"
-    class="w-900px"
-    width="900px"
+    :width="width"
     @close="handleClose"
     @ok="handleOk"
     :hideConfirm="props.hideConfirm"
@@ -16,7 +15,6 @@
       <Modal
         v-model="dataVisible"
         title="表单数据"
-        class="w-860px"
         width="860px"
         @close="handleCloseData"
         @ok="handleCloseData"
@@ -41,9 +39,15 @@ import { pluginManager, getUUID } from "@epic-designer/utils";
 import { ref, inject, nextTick } from "vue";
 import { PageSchema } from "../../../../../types/epic-designer";
 
-const props = defineProps<{
-  hideConfirm?: boolean;
-}>()
+const props = withDefaults(
+  defineProps<{
+    hideConfirm?: boolean;
+    width?: string;
+  }>(),
+  {
+    width: "900px",
+  }
+);
 const MonacoEditor = pluginManager.getComponent("monacoEditor");
 const Modal = pluginManager.getComponent("modal");
 const monacoEditorRef = ref<any>(null);
@@ -89,13 +93,13 @@ async function handleOk() {
     // 将验证后的表单数据转换为 JSON 字符串格式，并赋值给 formValues
     formValues.value = JSON.stringify(values, null, 2);
 
+    // 显示数据弹窗
+    dataVisible.value = true;
+
     // 在下一次 DOM 更新时，将 formValues 的值设置到 Monaco Editor 中
     nextTick(() => {
       monacoEditorRef.value?.setValue(formValues.value);
     });
-
-    // 显示数据弹窗
-    dataVisible.value = true;
   } catch (err) {
     // 捕获并输出错误
     console.error(err);

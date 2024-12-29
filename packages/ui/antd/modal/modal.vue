@@ -1,6 +1,6 @@
 <template>
   <Modal v-bind="getComponentProps">
-    <div class="epic-modal-main">
+    <div class="epic-modal-main epic-scoped">
       <slot>
         <slot name="edit-node">
           <template>

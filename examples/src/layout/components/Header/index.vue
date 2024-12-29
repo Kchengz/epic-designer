@@ -34,8 +34,8 @@ import { useTheme } from '@epic-designer/hooks'
 
 import { setupAntd, setupElementPlus, setupNaiveUi } from "@epic-designer/ui";
 import { Divider, Switch, Select } from 'ant-design-vue'
-import 'element-plus/dist/index.css'
-import 'element-plus/theme-chalk/dark/css-vars.css'
+// import 'element-plus/dist/index.css'
+// import 'element-plus/theme-chalk/dark/css-vars.css'
 import "ant-design-vue/dist/reset.css";
 import { useStorage } from '@vueuse/core'
 const { isDark } = useTheme()

@@ -4,7 +4,7 @@
   </div>
   <Suspense v-else @resolve="handleReady">
     <template #default>
-      <div class="epic-builder-main">
+      <div class="epic-builder-main epic-scoped">
         <ENode
           v-for="(item, index) in pageSchemaReactive.schemas"
           :key="index"

@@ -2,7 +2,7 @@
   <ElDialog
     v-bind="getComponentProps"
     :title="getComponentProps.label ?? ''"
-    class="epic-modal-el epic-modal-main"
+    class="epic-modal-el epic-modal-main epic-scoped"
     destroy-on-close
     @update:modelValue="handleClose"
   >

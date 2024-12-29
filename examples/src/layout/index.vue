@@ -1,6 +1,6 @@
 <template>
     <ConfigProvider :theme="{ algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm }">
-        <Layout class="maximize">
+        <Layout class="maximize epic-scoped">
             <EHeader />
             <Layout>
                 <LayoutSider>

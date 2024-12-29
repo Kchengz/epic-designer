@@ -1,7 +1,6 @@
 <template>
   <Modal
     v-model="visible"
-    class="w-1200px"
     width="1200px"
     @close="handleClose"
     @ok="handleSave"
