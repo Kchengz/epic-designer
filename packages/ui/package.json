@@ -6,10 +6,10 @@
   "scripts": {},
   "author": "kchengz",
   "devDependencies": {
-    "ant-design-vue": "^4.2.5",
-    "element-plus": "^2.8.3",
-    "naive-ui": "^2.39.0",
-    "vite-plugin-dts": "^4.2.1"
+    "ant-design-vue": "^4.2.6",
+    "element-plus": "^2.9.1",
+    "naive-ui": "^2.40.4",
+    "vite-plugin-dts": "^4.4.0"
   },
   "dependencies": {
     "dayjs": "^1.11.13"

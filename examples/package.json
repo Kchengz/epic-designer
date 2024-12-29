@@ -10,21 +10,22 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
-    "@shikijs/monaco": "^1.23.1",
-    "ant-design-vue": "^4.2.5",
+    "@shikijs/monaco": "^1.24.4",
+    "ant-design-vue": "^4.2.6",
+    "element-plus": "^2.9.1",
     "dayjs": "^1.11.13",
-    "monaco-editor": "^0.52.0",
-    "shiki": "^1.23.1",
-    "vue": "^3.5.8",
-    "vue-router": "^4.4.5"
+    "monaco-editor": "^0.52.2",
+    "shiki": "^1.24.4",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.4",
-    "typescript": "^5.6.2",
-    "unocss": "^0.62.4",
-    "vite": "^5.4.7",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "^5.7.2",
+    "unocss": "^0.65.3",
+    "vite": "^6.0.6",
     "vite-plugin-monaco-editor": "^1.1.0",
-    "vite-plugin-vue-devtools": "7.4.5",
-    "vue-tsc": "^2.1.6"
+    "vite-plugin-vue-devtools": "7.6.8",
+    "vue-tsc": "^2.2.0"
   }
 }
