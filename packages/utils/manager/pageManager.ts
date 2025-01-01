@@ -1,9 +1,8 @@
 import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
-import { ref, reactive, type Ref, type ComponentPublicInstance } from "vue";
+import { ref, reactive, watchEffect, type ComponentPublicInstance } from "vue";
 import { pluginManager } from "./pluginManager";
-import { deepCompareAndModify } from "../index";
-import { findSchemas } from "../index";
-
+import { deepCompareAndModify, findSchemas } from "../index";
+import { usePageSchema } from '@epic-designer/hooks'
 
 export interface ActionsModel {
   componentId?: string;
@@ -21,13 +20,22 @@ export function usePageManager() {
 
   const forms = reactive({});
 
+  // 初始化
+  const { pageSchema, setPageSchema } = usePageSchema()
+
   /**
    * 获取组件实例
-   * @param id
+   * @param queryValue 要查找的查询值
+   * @param queryField - 要查找的查询字段 默认值 id
    * @returns
    */
-  function getComponentInstance(id: string): ComponentPublicInstance {
-    return componentInstances.value[id];
+  function getComponentInstance(queryValue: string, queryField = 'id'): ComponentPublicInstance {
+    if (queryField === 'id') {
+      // findSchemas()
+
+    }
+
+    return componentInstances.value[queryValue];
   }
 
   /**
@@ -219,11 +227,21 @@ export function usePageManager() {
     forms[formName] = formData
   }
 
+  // 监听自定义函数
+  watchEffect(() => {
+    const script = pageSchema.script;
+    if (script && script !== "") {
+      setMethods(script, !isDesignMode.value);
+    }
+  });
+
   return {
     componentInstances,
     funcs,
     isDesignMode,
     defaultComponentIds,
+    pageSchema,
+    setPageSchema,
     forms,
     addFormData,
     setFormData,

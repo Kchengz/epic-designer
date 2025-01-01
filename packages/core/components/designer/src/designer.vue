@@ -119,18 +119,18 @@ watchEffect(() => {
   // 如果props.defaultSchema有值，则优先使用props.defaultSchema
   if (props.defaultSchema) {
     innerDefaultSchema = props.defaultSchema;
-    return;
+  } else {
+    // 切换表单模式默认schema数据
+    if (props.formMode) {
+      innerDefaultSchema.schemas = pluginManager.formSchemas;
+    }
   }
-
-  // 切换表单模式默认schema数据
-  if (props.formMode) {
-    innerDefaultSchema.schemas = pluginManager.formSchemas;
-  }
+  // 记录默认组件id
+  pageManager.setDefaultComponentIds(innerDefaultSchema.schemas);
 });
 
-// 设置为设计模式
+// 设计模式
 pageManager.setDesignMode();
-pageManager.setDefaultComponentIds(innerDefaultSchema.schemas);
 
 const emits = defineEmits(["ready", "save", "reset", "toggleDeviceMode"]);
 
@@ -143,10 +143,7 @@ const state = reactive<DesignerState>({
   matched: [],
 });
 
-const pageSchema = reactive<PageSchema>({
-  schemas: [],
-  script: innerDefaultSchema.script,
-});
+const pageSchema = pageManager.pageSchema;
 
 // 记录缩放状态 start
 const { disabledZoom } = useStore();
@@ -154,13 +151,6 @@ watchEffect(() => {
   disabledZoom.value = props.disabledZoom;
 });
 // 记录缩放状态 end
-
-watchEffect(() => {
-  const script = pageSchema.script;
-  if (script && script !== "") {
-    pageManager.setMethods(script);
-  }
-});
 
 // 提供依赖注入的上下文
 provide("pageSchema", pageSchema);
@@ -237,8 +227,7 @@ async function setDisableHover(disableHover = false) {
  * @param pageSchema
  */
 function setData(schema: PageSchema) {
-  // 调用 deepCompareAndModify 函数比较 pageSchema 和传入的 schema，进行修改
-  deepCompareAndModify(pageSchema, deepClone(schema));
+  pageManager.setPageSchema(schema);
   revoke.push(pageSchema.schemas, "加载数据");
 }
 

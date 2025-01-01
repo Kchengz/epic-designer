@@ -6,7 +6,7 @@
     <template #default>
       <div class="epic-builder-main epic-scoped">
         <ENode
-          v-for="(item, index) in pageSchemaReactive.schemas"
+          v-for="(item, index) in pageManager.pageSchema.schemas"
           :key="index"
           :componentSchema="item"
         />
@@ -23,7 +23,6 @@
 <script lang="ts" setup>
 import ENode from "../../node";
 import {
-  reactive,
   provide,
   useSlots,
   getCurrentInstance,
@@ -68,16 +67,11 @@ const props = defineProps<{
   disabled?: boolean;
 }>();
 
-// 定义页面 schema
-const pageSchemaReactive = reactive<PageSchema>({
-  schemas: [],
-});
-
-// 监听 pageSchema 的变化，并更新 pageSchemaReactive
+// 监听 pageSchema 的变化，并更新 pageManager.pageSchema
 watch(
   () => props.pageSchema,
   (newSchema) => {
-    deepCompareAndModify(pageSchemaReactive, newSchema);
+    deepCompareAndModify(pageManager.pageSchema, newSchema);
   },
   {
     immediate: true,
@@ -99,24 +93,11 @@ watch(
   }
 );
 
-// 监听 pageSchemaReactive.script 的变化，并设置页面方法
-watch(
-  () => pageSchemaReactive.script,
-  (script) => {
-    if (script) {
-      pageManager.setMethods(script, true);
-    }
-  },
-  {
-    immediate: true,
-  }
-);
-
 // 提供依赖注入的上下文
 provide("slots", useSlots());
 provide("pageManager", pageManager);
 provide("forms", forms);
-provide("pageSchema", pageSchemaReactive);
+provide("pageSchema", pageManager.pageSchema);
 provide(
   "disabled",
   computed(() => props.disabled)
