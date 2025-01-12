@@ -1,7 +1,7 @@
 import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 import { ref, reactive, watchEffect, type ComponentPublicInstance } from "vue";
 import { pluginManager } from "./pluginManager";
-import { deepCompareAndModify, findSchemas } from "../index";
+import { deepCompareAndModify, findSchemas, getValueByPath } from "../index";
 import { usePageSchema } from '@epic-designer/hooks'
 
 export interface ActionsModel {
@@ -29,13 +29,28 @@ export function usePageManager() {
    * @param queryField - 要查找的查询字段 默认值 id
    * @returns
    */
-  function getComponentInstance(queryValue: string, queryField = 'id'): ComponentPublicInstance {
+  function getComponentInstance(queryValue: string, queryField = 'id'): ComponentPublicInstance | ComponentPublicInstance[] | undefined {
     if (queryField === 'id') {
-      // findSchemas()
-
+      return componentInstances.value[queryValue];
     }
 
-    return componentInstances.value[queryValue];
+    // 查找指定字段的组件schema
+    const queryResults = findSchemas(pageSchema.schemas, (schema) => {
+      return getValueByPath(schema, queryField) === queryValue
+    }) as ComponentSchema[]
+
+    // 查找组件实例
+    const instances = queryResults.map(schema => componentInstances.value[schema.id!]).filter(item => item)
+
+    switch (instances.length) {
+      case 0:
+        return undefined;
+      case 1:
+        return instances[0];
+      default:
+        return instances;
+    }
+
   }
 
   /**
