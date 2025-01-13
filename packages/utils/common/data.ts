@@ -333,7 +333,7 @@ export function getFormSchemas(
  * @param schemas
  * @param handler
  * @param once  当once为true，表示只需要查询一条符合添加的数据之后结束函数
- * @param filter  节点过滤，函数返回 false,则不查询该节点得所有子节点 children
+ * @param filter  节点过滤，函数返回 false,则不查询该节点的子节点 children
  * @returns
  */
 export function findSchemas(

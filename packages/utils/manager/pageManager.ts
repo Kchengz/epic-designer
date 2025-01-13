@@ -27,26 +27,26 @@ export function usePageManager() {
   * 查找组件实例
   * @param queryValue - 要查找的查询值
   * @param queryField - 要查找的查询字段，默认为 "id"
-  * @returns - 匹配的组件实例，若无匹配则返回 undefined
+  * @returns - 匹配的组件实例，若无匹配则返回 null
   */
-  function find(queryValue: string, queryField = 'id'): ComponentPublicInstance | undefined {
+  function find(queryValue: string, queryField = 'id'): ComponentPublicInstance | null {
     // 如果查询字段是 id，直接在组件实例映射中查找
     if (queryField === 'id') {
-      return componentInstances.value[queryValue];
+      return componentInstances.value[queryValue] ?? null;
     }
 
-    // 通过递归查询所有组件 schema，找到与指定字段和值匹配的 schema
-    const matchingSchemas = findSchemas(pageSchema.schemas, (schema) =>
-      getValueByPath(schema, queryField) === queryValue
-    ) as ComponentSchema[];
+    // 通过递归查询所有组件 schema，找到第一个与指定字段和值匹配的 schema
+    const matchingSchema = findSchemas(pageSchema.schemas, (schema) =>
+      getValueByPath(schema, queryField) === queryValue, true
+    ) as false | ComponentSchema;
 
-    // 从匹配的 schema 中获取组件实例
-    const instances = matchingSchemas
-      .map((schema) => componentInstances.value[schema.id!])
-      .filter(Boolean); // 过滤掉 undefined 或 null 的实例
+    // 如果未找到匹配的 schema，返回 null
+    if (!matchingSchema) {
+      return null
+    }
 
-    // 返回第一个匹配的组件实例
-    return instances.length > 0 ? instances[0] : undefined;
+    // 返回组件实例
+    return componentInstances.value[matchingSchema.id!] ?? null;
   }
 
   /**
@@ -307,4 +307,3 @@ export function usePageManager() {
 }
 
 export type PageManager = ReturnType<typeof usePageManager>;
-
