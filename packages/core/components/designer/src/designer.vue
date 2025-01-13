@@ -167,6 +167,8 @@ provide("designer", {
   setDisableHover,
   handleToggleDeviceMode,
   reset,
+  preview: handlePreview,
+  save: handleSave,
   state,
 });
 
@@ -294,5 +296,6 @@ defineExpose({
   getData,
   reset,
   preview: handlePreview,
+  save: handleSave,
 });
 </script>

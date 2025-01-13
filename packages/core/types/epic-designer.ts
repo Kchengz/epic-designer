@@ -52,6 +52,8 @@ export interface Designer {
   setDisableHover: (disableHover?: boolean) => void;
   handleToggleDeviceMode: (mode: string) => void;
   reset: () => void;
+  preview: () => void;
+  save: () => void;
   state: DesignerState;
   // schemas: ComponentSchema[];
 }

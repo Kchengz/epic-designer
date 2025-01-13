@@ -29,7 +29,7 @@
         <div>
           <Button size="small" @click="handlePreview">
             <span class="flex! items-center h-full">
-              <EIcon name="icon--epic--preview-outline" class="mr-4px" />
+              <EIcon name="icon--epic--eye" class="mr-4px" />
               预览
             </span>
           </Button>

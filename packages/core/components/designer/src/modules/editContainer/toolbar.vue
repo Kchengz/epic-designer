@@ -4,8 +4,9 @@
     <!-- 操作按钮 start  -->
     <div class="flex-1 h-full flex items-center">
       <template v-for="(action, index) in actionOptions" :key="index">
-        <div v-if="action.divider" class="epic-divider"></div>
+        <div v-if="action.divider && isShow(action.show)" class="epic-divider"></div>
         <div
+          v-if="isShow(action.show)"
           :title="action.title"
           class="epic-action-item text-base h-90% px-10px flex items-center cursor-pointer"
           :class="{ disabled: action.disabled }"
@@ -66,9 +67,10 @@ import {
 } from "@epic-designer/utils";
 import { useStore } from "@epic-designer/hooks";
 import type { PageSchema, Designer } from "../../../../../types/epic-designer";
-import { computed, inject, ref } from "vue";
+import { computed, inject, ref, type Ref } from "vue";
 import EIcon from "../../../../icon";
 import EPreviewJson from "./previewJson.vue";
+import { DesignerProps } from '../../types'
 
 const Select = pluginManager.getComponent("select");
 
@@ -76,6 +78,7 @@ const { canvasScale, disabledZoom } = useStore();
 const pageSchema = inject("pageSchema") as PageSchema;
 const designer = inject("designer") as Designer;
 const revoke = inject("revoke") as Revoke;
+const designerProps = inject("designerProps") as Ref<DesignerProps>;
 const previewJson = ref<InstanceType<typeof EPreviewJson> | null>(null);
 
 const deviceOptions = [
@@ -101,7 +104,7 @@ const actionOptions = computed(() => {
     {
       icon: "icon--epic--code",
       title: "查看数据",
-      on: () => handlePreview(),
+      on: handlePreviewJSON,
     },
     {
       icon: "icon--epic--exit-to-app-rounded",
@@ -111,7 +114,7 @@ const actionOptions = computed(() => {
     {
       icon: "icon--epic--trash",
       title: "清空",
-      on: handleReset,
+      on: designer.reset,
     },
     {
       icon: "icon--epic--undo",
@@ -126,8 +129,23 @@ const actionOptions = computed(() => {
       on: handleRedo,
       disabled: !revoke.undoList.value.length,
     },
+    {
+      icon: "icon--epic--eye",
+      title: "预览",
+      show:()=>designerProps.value.hiddenHeader,
+      on: designer.preview,
+      divider: true,
+    },
+    {
+      icon: "icon--epic--save-outline-rounded",
+      title: "保存",
+      show:()=>designerProps.value.hiddenHeader,
+      on: designer.save,
+    },
   ];
 });
+
+
 
 const canvasConfigs = {
   pc: {},
@@ -185,6 +203,15 @@ const canvasScaleOptions = [
   },
 ];
 
+function isShow(show: any) {
+  // show属性为function类型则执行
+  if (typeof show === 'function') {
+    return show()
+  }
+
+  return true
+}
+
 /**
  * 撤销操作
  */
@@ -205,15 +232,9 @@ function handleRedo() {
   designer.setCheckedNode(pageSchema.schemas[0]);
 }
 
-/**
- * 重置页面数据
- */
-function handleReset() {
-  designer.reset();
-}
 
 // 预览数据
-function handlePreview() {
+function handlePreviewJSON() {
   previewJson.value!.handleOpen();
 }
 
