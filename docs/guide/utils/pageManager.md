@@ -85,13 +85,18 @@ function handleReady(pageManager: PageManager) {
 
 #### find
 
-类型：`(id: string) => ComponentPublicInstance `
+类型：`(queryValue: string, queryField = 'id') => ComponentPublicInstance | undefined `
 
-说明：用于获取组件实例
+说明：用于获取组件实例，只找到一个组件并返回一个组件
 
-#### getComponentInstance
+#### ~~getComponentInstance~~
 
-类型：`(id: string) => ComponentPublicInstance `
+~~类型：`(queryValue: string, queryField = 'id') => ComponentPublicInstance | undefined `~~
 
-说明：通过id获取组件实例，跟find函数效果一致，find函数名称更简短
+~~说明：通过id获取组件实例，与find函数相同，推荐使用find函数~~
 
+#### findAll
+
+类型：`(queryValue: string, queryField = 'id') => ComponentPublicInstance[] `
+
+说明：用于获取所有满足条件的组件实例
