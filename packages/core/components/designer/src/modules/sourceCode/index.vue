@@ -31,7 +31,7 @@ function setSchemas(e: string) {
     oldVal = JSON.parse(e)
     deepCompareAndModify(designer.state.checkedNode, oldVal)
   } catch (error) {
-    console.warn("[epic-desinger：源码]异常：", error);
+    console.warn("[Epic：源码]异常：", error);
   }
 }
 </script>

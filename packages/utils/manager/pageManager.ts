@@ -24,33 +24,64 @@ export function usePageManager() {
   const { pageSchema, setPageSchema } = usePageSchema()
 
   /**
-   * 获取组件实例
-   * @param queryValue 要查找的查询值
-   * @param queryField - 要查找的查询字段 默认值 id
-   * @returns
-   */
-  function getComponentInstance(queryValue: string, queryField = 'id'): ComponentPublicInstance | ComponentPublicInstance[] | undefined {
+  * 查找组件实例
+  * @param queryValue - 要查找的查询值
+  * @param queryField - 要查找的查询字段，默认为 "id"
+  * @returns - 匹配的组件实例，若无匹配则返回 undefined
+  */
+  function find(queryValue: string, queryField = 'id'): ComponentPublicInstance | undefined {
+    // 如果查询字段是 id，直接在组件实例映射中查找
     if (queryField === 'id') {
       return componentInstances.value[queryValue];
     }
 
-    // 查找指定字段的组件schema
-    const queryResults = findSchemas(pageSchema.schemas, (schema) => {
-      return getValueByPath(schema, queryField) === queryValue
-    }) as ComponentSchema[]
+    // 通过递归查询所有组件 schema，找到与指定字段和值匹配的 schema
+    const matchingSchemas = findSchemas(pageSchema.schemas, (schema) =>
+      getValueByPath(schema, queryField) === queryValue
+    ) as ComponentSchema[];
 
-    // 查找组件实例
-    const instances = queryResults.map(schema => componentInstances.value[schema.id!]).filter(item => item)
+    // 从匹配的 schema 中获取组件实例
+    const instances = matchingSchemas
+      .map((schema) => componentInstances.value[schema.id!])
+      .filter(Boolean); // 过滤掉 undefined 或 null 的实例
 
-    switch (instances.length) {
-      case 0:
-        return undefined;
-      case 1:
-        return instances[0];
-      default:
-        return instances;
+    // 返回第一个匹配的组件实例
+    return instances.length > 0 ? instances[0] : undefined;
+  }
+
+  /**
+   * 查找所有匹配的组件实例
+   * @param queryValue - 要查找的查询值
+   * @param queryField - 要查找的查询字段，默认为 "id"
+   * @returns - 匹配的组件实例数组
+   */
+  function findAll(queryValue: string, queryField = 'id'): ComponentPublicInstance[] {
+    // 如果查询字段是 id，直接返回对应的组件实例数组
+    if (queryField === 'id') {
+      const instance = componentInstances.value[queryValue];
+      return instance ? [instance] : [];
     }
 
+    // 通过递归查询所有组件 schema，找到与指定字段和值匹配的 schema
+    const matchingSchemas = findSchemas(pageSchema.schemas, (schema) =>
+      getValueByPath(schema, queryField) === queryValue
+    ) as ComponentSchema[];
+
+    // 从匹配的 schema 中获取组件实例
+    return matchingSchemas
+      .map((schema) => componentInstances.value[schema.id!])
+      .filter(Boolean); // 过滤掉 undefined 或 null 的实例
+  }
+
+  /**
+   * 查找组件（废弃）
+   * @param queryValue 要查找的查询值
+   * @param queryField - 要查找的查询字段 默认值 id
+   * @returns
+   */
+  function getComponent(queryValue: string, queryField = 'id') {
+    console.warn('[Epic 自定义函数]: `getComponent`方法已废弃，后续版本可能移除该函数，请使用`find`方法')
+    return find(queryValue, queryField)
   }
 
   /**
@@ -88,15 +119,16 @@ export function usePageManager() {
     try {
       new Function(`const epic = this;${scriptStr}`).bind({
         ...publicMethods,
-        getComponent: getComponentInstance,
-        find: getComponentInstance,
+        getComponent,
+        find: find,
+        findAll,
         defineExpose,
         publicMethods: publicMethods,
         pluginManager,
       })();
     } catch (error) {
       if (outputError) {
-        console.error("[epic：自定义函数]异常：", error);
+        console.error("[Epic：自定义函数]异常：", error);
       }
     }
   }
@@ -192,7 +224,7 @@ export function usePageManager() {
     // 获取组件实例
     const component =
       action.componentId != null &&
-      (getComponentInstance(action.componentId) as any);
+      (find(action.componentId) as any);
 
     // 如果未找到组件实例，发出警告并返回
     if (!component) {
@@ -260,9 +292,11 @@ export function usePageManager() {
     forms,
     addFormData,
     setFormData,
-    getComponentInstance,
-    // 简化查询函数, 推荐使用
-    find: getComponentInstance,
+    // 兼容函数
+    getComponentInstance: find,
+    // 推荐使用 find 函数
+    find,
+    findAll,
     addComponentInstance,
     removeComponentInstance,
     setMethods,
