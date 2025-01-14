@@ -23,7 +23,7 @@ describe('usePageManager 函数测试', () => {
         expect(pageManager.find('component1')).toEqual(mockInstance);
 
         pageManager.removeComponentInstance('component1');
-        expect(pageManager.find('component1')).toBeUndefined();
+        expect(pageManager.find('component1')).toBeNull();
     });
 
     it('应该正确设置和获取方法', () => {
