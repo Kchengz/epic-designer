@@ -1,7 +1,7 @@
 import { type PropType, defineComponent, h, nextTick, ref, watch } from "vue";
 import { NUpload } from "naive-ui";
 import type { UploadFileInfo } from "naive-ui";
-import type { OnFinish, OnError } from "naive-ui/es/upload/src/interface";
+import type { OnError } from "naive-ui/es/upload/src/interface";
 
 export default defineComponent({
   props: {
@@ -68,7 +68,7 @@ export default defineComponent({
     //   }
     // }
 
-    const handleSuccess: OnFinish = ({ file, event }) => {
+    const handleSuccess = ({ file, event }) => {
       console.log("OnFinish called->", file, event);
       const resInfo = event?.target as any;
       const resData = JSON.parse(resInfo.response ?? "{}");
