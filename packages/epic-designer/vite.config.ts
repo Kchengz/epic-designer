@@ -35,16 +35,16 @@ export default defineConfig({
       // 指定组件编译入口文件
       name: "epic-designer",
       // formats: ["es"],
-      formats: ["es", "cjs"], 
+      formats: ["es", "cjs"],
       fileName: (ModuleFormat, entryName) => {
         const extension = ModuleFormat === 'es' ? 'js' : ModuleFormat
-        const uiLibraryNames = ['antd','elementPlus','naiveUi']  
-        if(uiLibraryNames.includes(entryName)){
+        const uiLibraryNames = ['antd', 'elementPlus', 'naiveUi']
+        if (uiLibraryNames.includes(entryName)) {
           return `ui/${entryName}/index.${extension}`
         }
 
-        if(entryName.includes('node_modules')){
-          const newName =entryName.split('node_modules/')[1]
+        if (entryName.includes('node_modules')) {
+          const newName = entryName.split('node_modules/')[1]
           return `_virtual/${newName}.${extension}`
         }
 
@@ -66,7 +66,6 @@ export default defineConfig({
         "dayjs"
       ],
       output: {
-        
         preserveModules: true, // 保留模块的原始目录结构
         preserveModulesRoot: "../",
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
@@ -76,7 +75,11 @@ export default defineConfig({
       },
       plugins: [
         rollupCopy({
-          targets: [{ src: '../core/theme', dest: './dist/' }], // 路径
+          targets: [
+            { src: '../core/theme', dest: './dist/' },
+            // 新增的拷贝规则，将 epic-designer.css 拷贝为 style.css 兼容旧版本
+            { src: './dist/epic-designer.css', dest: './dist/', rename: 'style.css' }
+          ], // 路径
           hook: 'writeBundle', // 钩子，插件运行在rollup完成打包并将文件写入磁盘之前
           verbose: true // 在终端进行console.log
         })
