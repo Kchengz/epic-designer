@@ -132,7 +132,7 @@ watchEffect(() => {
 // 设计模式
 pageManager.setDesignMode();
 
-const emits = defineEmits(["ready", "save", "reset","imported", "toggleDeviceMode"]);
+const emits = defineEmits(["ready", "save", "reset", "imported", "toggleDeviceMode"]);
 
 const previewRef = ref<InstanceType<typeof EPreview> | null>(null);
 

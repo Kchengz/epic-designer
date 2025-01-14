@@ -10,7 +10,7 @@ export default {
     field: "uploadImage",
     input: true,
     componentProps: {
-      action: "https://examples.epicjs.cn/static/upload-img.json",
+      action: "https://examples.epicjs.cn/epic-mock/common/upload",
     },
   },
   config: {
