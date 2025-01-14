@@ -132,7 +132,7 @@ watchEffect(() => {
 // 设计模式
 pageManager.setDesignMode();
 
-const emits = defineEmits(["ready", "save", "reset", "toggleDeviceMode"]);
+const emits = defineEmits(["ready", "save", "reset","imported", "toggleDeviceMode"]);
 
 const previewRef = ref<InstanceType<typeof EPreview> | null>(null);
 
@@ -169,6 +169,7 @@ provide("designer", {
   reset,
   preview: handlePreview,
   save: handleSave,
+  handleImported,
   state,
 });
 
@@ -272,6 +273,14 @@ function handleSave() {
 
 function handleToggleDeviceMode(mode: string) {
   emits("toggleDeviceMode", mode);
+}
+
+/**
+ * 导入数据事件
+ * @param data
+ */
+function handleImported(data: PageSchema) {
+    emits("imported", data);
 }
 
 /**

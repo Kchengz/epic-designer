@@ -255,23 +255,29 @@ function handleFileSelected(e) {
   const reader = new FileReader();
   reader.readAsText(file);
   reader.onload = (res) => {
-    handleImporttData(res.target?.result as string);
+    handleImportData(res.target?.result as string);
   };
 }
 
 /**
  * 导入数据
  */
-function handleImporttData(content?: string) {
+function handleImportData(content?: string) {
   // 导入JSON
   try {
     let schema = JSON.parse(content ?? "");
     if (!schema.schemas) {
+      // 兼容 处理kform表单数据
       schema = convertKFormData(schema);
     }
 
     // 调用 deepCompareAndModify 函数比较 pageSchema 和传入的 schema，进行修改
     deepCompareAndModify(pageSchema, schema);
+
+    designer.handleImported(schema);
+
+    // 选中根节点
+    designer.setCheckedNode(pageSchema.schemas[0]);
   } catch (error) {
     console.error(error);
   }

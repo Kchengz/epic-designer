@@ -54,6 +54,7 @@ export interface Designer {
   reset: () => void;
   preview: () => void;
   save: () => void;
+  handleImported: (data:PageSchema) => void;
   state: DesignerState;
   // schemas: ComponentSchema[];
 }
