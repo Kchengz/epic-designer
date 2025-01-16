@@ -112,7 +112,7 @@ background: white;
 | save             | 点击保存按钮时回调                 | json       | 0.0.35 |
 | reset            | 点击清空重置按钮时触发             | PageSchema | 0.9.6  |
 | toggleDeviceMode | 点击切换设备模式时触发             | String     | 0.9.7  |
-| ready            | 组件（包含异步组件）加载完成后触发 | { pageManager }           |        |
+| ready            | 组件（包含异步组件）加载完成后触发 | { pageManager }           | - |
 | imported         | 导入数据完成后触发                 | PageSchema | 0.9.30 |
 
 ## 插槽

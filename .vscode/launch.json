@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "name": "epic dev",
+      "request": "launch",
+      "url": "http://localhost:9980",
+      "sourceMaps": true,
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}
