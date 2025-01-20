@@ -48,8 +48,16 @@ function getData(): FormDataModel {
  * 校验表单数据
  * @param data
  */
-function validate() {
-  return form.value?.validateFields()
+ async function validate() {
+  try {
+    return await form.value?.validateFields();
+  } catch (error) {
+    if (props.scrollToFirstError) {
+      // 滚动到第一个错误字段
+      form.value?.scrollToField(error.errorFields[0].name.toString());
+    }
+    throw error;
+  }
 }
 
 /**
