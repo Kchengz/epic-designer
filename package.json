@@ -4,7 +4,7 @@
   "version": "0.9.30",
   "scripts": {
     "build": "turbo run build",
-    "dev": "pnpm run checkCompiled && turbo run dev",
+    "dev": "epic checkCompiled && turbo run dev",
     "lib": "vitest run && pnpm run build --filter epic-designer",
     "lint": "turbo run lint",
     "test": "vitest",
@@ -13,7 +13,7 @@
     "docs:serve": "vitepress serve docs",
     "examples:build": "pnpm run build --filter epic-examples",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "checkCompiled": "turbo run checkCompiled --filter @epic-designer/script"
+    "postinstall": "pnpm -r run stub --if-present"
   },
   "dependencies": {
     "@vueuse/core": "^12.2.0"
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@epic-designer/core": "workspace:*",
     "@epic-designer/hooks": "workspace:*",
-    "@epic-designer/script": "workspace:*",
+    "@epic-designer/scripts": "workspace:*",
     "@epic-designer/ui": "workspace:*",
     "@epic-designer/utils": "workspace:*",
     "@turbo/gen": "^2.3.3",

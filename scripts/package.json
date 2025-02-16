@@ -1,17 +1,24 @@
 {
-  "name": "@epic-designer/script",
+  "name": "@epic-designer/scripts",
   "version": "0.9.30",
-  "main": "index.ts",
+  "main": "./dist/index.mjs",
   "scripts": {
-    "checkCompiled": "ts-node ./src/check-compiled"
+    "stub": "pnpm unbuild --stub"
+  },
+  "bin": {
+    "epic": "./dist/index.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@types/node": "^22.10.2",
+    "@manypkg/get-packages": "^2.2.2",
+    "@types/node": "^22.10.6",
+    "cac": "^6.7.14",
+    "find-up": "^7.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "unbuild": "^3.3.1"
   }
 }

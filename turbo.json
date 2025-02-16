@@ -11,10 +11,6 @@
     "dev": {
       "cache": false,
       "persistent": true
-    },
-    "checkCompiled": {
-      "cache": false,
-      "persistent": true
     }
   }
 }
