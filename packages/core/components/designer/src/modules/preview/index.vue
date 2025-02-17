@@ -3,13 +3,17 @@
     v-model="visible"
     title="预览"
     :width="width"
+    :hide-confirm="props.hideConfirm"
+    ok-text="表单数据"
     @close="handleClose"
     @ok="handleOk"
-    :hideConfirm="props.hideConfirm"
-    okText="表单数据"
   >
     <div class="min-w-750px rounded">
-      <EBuilder :key="EBuilderKey" ref="kb" :page-schema="pageSchema" />
+      <EBuilder
+        :key="EBuilderKey"
+        ref="kb"
+        :page-schema="pageSchema"
+      />
 
       <!-- 表单数据 start -->
       <Modal
@@ -22,8 +26,8 @@
         <div class="h-full rounded">
           <MonacoEditor
             ref="monacoEditorRef"
-            autoToggleTheme
-            readOnly
+            auto-toggle-theme
+            read-only
             class="h-full editor"
             :model-value="formValues"
           />

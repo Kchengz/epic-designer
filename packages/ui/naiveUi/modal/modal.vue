@@ -4,14 +4,18 @@
     :title="getComponentProps.label ?? ''"
     class="epic-modal-n epic-scoped"
     preset="card"
-     :style="{ width }"
+    :style="{ width }"
     @update:show="handleClose"
   >
     <div class="epic-modal-main">
       <slot>
         <slot name="edit-node">
           <template v-if="children.length">
-            <slot name="node" v-for="node in children" :componentSchema="node" />
+            <slot
+              v-for="node in children"
+              name="node"
+              :component-schema="node"
+            />
           </template>
         </slot>
       </slot>
@@ -19,8 +23,14 @@
 
     <div class="epic-modal-footer">
       <NSpace justify="end">
-        <NButton @click="handleClose">关闭</NButton>
-        <NButton v-if="!props.hideConfirm" type="primary" @click="handleOk">
+        <NButton @click="handleClose">
+          关闭
+        </NButton>
+        <NButton
+          v-if="!props.hideConfirm"
+          type="primary"
+          @click="handleOk"
+        >
           {{ getComponentProps.okText ?? "确定" }}
         </NButton>
       </NSpace>

@@ -1,9 +1,17 @@
 <template>
   <div class="maximize-box">
-    <div class="maximize" @click="exitMaximize">
-      <CompressOutlined v-if="maximize" class="iconfont" />
-      <ExpandOutlined v-else class="iconfont" />
-      
+    <div
+      class="maximize"
+      @click="exitMaximize"
+    >
+      <CompressOutlined
+        v-if="maximize"
+        class="iconfont"
+      />
+      <ExpandOutlined
+        v-else
+        class="iconfont"
+      />
     </div>
   </div>
 </template>

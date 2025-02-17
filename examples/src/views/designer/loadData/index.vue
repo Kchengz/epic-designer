@@ -1,12 +1,15 @@
 <template>
-  <EDesigner ref="designerRef" @save="handleSubmit" title="EpicDesigner数据回显示例">
+  <EDesigner
+    ref="designerRef"
+    title="EpicDesigner数据回显示例"
+    @save="handleSubmit"
+  >
     <template #header-prefix>
       <div>
         欢迎使用EpicDesigner设计器
       </div>
     </template>
   </EDesigner>
-
 </template>
 <script lang="ts" setup>
 import { EDesigner, type PageSchema } from '@epic-designer/core'

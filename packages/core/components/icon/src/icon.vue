@@ -1,5 +1,8 @@
 <template>
-  <span class="iconfont" :class="computedClass" />
+  <span
+    class="iconfont"
+    :class="computedClass"
+  />
 </template>
 <script lang="ts" setup>
 defineOptions({

@@ -4,18 +4,28 @@
     :title="getComponentProps.label ?? ''"
     class="epic-modal-el epic-modal-main epic-scoped"
     destroy-on-close
-    @update:modelValue="handleClose"
+    @update:model-value="handleClose"
   >
     <slot>
       <slot name="edit-node">
         <template v-if="children.length">
-          <slot name="node" v-for="node in children" :componentSchema="node" />
+          <slot
+            v-for="node in children"
+            name="node"
+            :component-schema="node"
+          />
         </template>
       </slot>
     </slot>
     <div class="epic-modal-footer">
-      <ElButton @click="handleClose">关闭</ElButton>
-      <ElButton v-if="!props.hideConfirm" type="primary" @click="handleOk">
+      <ElButton @click="handleClose">
+        关闭
+      </ElButton>
+      <ElButton
+        v-if="!props.hideConfirm"
+        type="primary"
+        @click="handleOk"
+      >
         {{ getComponentProps.okText ?? "确定" }}
       </ElButton>
     </div>

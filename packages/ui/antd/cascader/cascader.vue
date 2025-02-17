@@ -1,5 +1,5 @@
 <template>
-    <Cascader v-bind="getComponentProps" />
+  <Cascader v-bind="getComponentProps" />
 </template>
 <script setup lang="ts">
 import { Cascader } from 'ant-design-vue'

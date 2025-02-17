@@ -1,5 +1,10 @@
 <template>
-  <EDesigner ref="designerRef" formMode @save="handleSubmit" title="表单模式示例">
+  <EDesigner
+    ref="designerRef"
+    form-mode
+    title="表单模式示例"
+    @save="handleSubmit"
+  >
     <template #header-prefix>
       <div>
         欢迎使用EpicDesigner设计器

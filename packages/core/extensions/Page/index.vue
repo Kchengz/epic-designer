@@ -6,7 +6,7 @@
       <slot
         v-for="item in children"
         name="node"
-        :componentSchema="item"
+        :component-schema="item"
       />
     </slot>
   </div>

@@ -1,12 +1,12 @@
 <template>
   <Menu
     class="h-full"
-    :selectedKeys="[routeName]"
-    :openKeys="openKeys"
+    :selected-keys="[routeName]"
+    :open-keys="openKeys"
     mode="inline"
-    @click="handleClick"
     :items="items"
-  ></Menu>
+    @click="handleClick"
+  />
 </template>
 <script lang="ts" setup>
 

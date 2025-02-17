@@ -1,8 +1,21 @@
 <template>
-  <div class="form-main" style="height: 100%;">
-    <Form ref="form" :model="formData" v-bind="componentProps" style="height: 100%;" @finish="onFinish">
+  <div
+    class="form-main"
+    style="height: 100%;"
+  >
+    <Form
+      ref="form"
+      :model="formData"
+      v-bind="componentProps"
+      style="height: 100%;"
+      @finish="onFinish"
+    >
       <slot name="edit-node">
-        <slot v-for="item in children" name="node" :componentSchema="item" />
+        <slot
+          v-for="item in children"
+          name="node"
+          :component-schema="item"
+        />
       </slot>
     </Form>
   </div>

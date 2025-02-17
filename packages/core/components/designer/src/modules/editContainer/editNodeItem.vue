@@ -1,14 +1,27 @@
 <template>
-  <draggable v-model="modelSchemas" item-key="id" :component-data="{
-    type: 'transition-group',
-  }" class="epic-draggable-range" v-bind="{
-  animation: 200,
-  group: 'edit-draggable',
-  handle: '.draggable-item',
-  ghostClass: 'moveing'
-}" @start="handleSelect($event.oldIndex)" @end="handleEnd()" @add="handleSelect($event.newIndex); handleAdd()">
+  <draggable
+    v-model="modelSchemas"
+    item-key="id"
+    :component-data="{
+      type: 'transition-group',
+    }"
+    class="epic-draggable-range"
+    v-bind="{
+      animation: 200,
+      group: 'edit-draggable',
+      handle: '.draggable-item',
+      ghostClass: 'moveing'
+    }"
+    @start="handleSelect($event.oldIndex)"
+    @end="handleEnd()"
+    @add="handleSelect($event.newIndex); handleAdd()"
+  >
     <template #item="{ element, index }">
-      <div class="widget-box" :class="isDraggable(element)" :key="index">
+      <div
+        :key="index"
+        class="widget-box"
+        :class="isDraggable(element)"
+      >
         <ENodeItem :schema="element" />
       </div>
     </template>

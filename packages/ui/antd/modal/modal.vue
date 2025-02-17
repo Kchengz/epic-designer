@@ -4,17 +4,29 @@
       <slot>
         <slot name="edit-node">
           <template>
-            <slot v-for="item in children" name="node" :componentSchema="item" />
+            <slot
+              v-for="item in children"
+              name="node"
+              :component-schema="item"
+            />
           </template>
         </slot>
       </slot>
     </div>
     <div class="epic-modal-footer">
       <Space align="end">
-        <Button @click="handleClose">关闭</Button>
-        <Button v-if="!props.hideConfirm" type="primary" @click="handleOk">{{
-          getComponentProps.okText ?? "确定"
-        }}</Button>
+        <Button @click="handleClose">
+          关闭
+        </Button>
+        <Button
+          v-if="!props.hideConfirm"
+          type="primary"
+          @click="handleOk"
+        >
+          {{
+            getComponentProps.okText ?? "确定"
+          }}
+        </Button>
       </Space>
     </div>
   </Modal>

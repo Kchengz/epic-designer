@@ -1,12 +1,31 @@
 <template>
-  <Collapse v-model="activeNames" v-model:activeKey="activeNames" v-model:expanded-names="activeNames">
-    <CollapseItem v-for="(item) in filterEventList" :key="item.title" :title="item.title" :header="item.title"
-      :name="item.title">
-      <EActionEditorItem v-model="modelValueComputed" :item-events="item.events" :all-events="allEvents"
-        :events="events" @add="handleOpen" @edit="handleOpenEdit" />
+  <Collapse
+    v-model="activeNames"
+    v-model:active-key="activeNames"
+    v-model:expanded-names="activeNames"
+  >
+    <CollapseItem
+      v-for="(item) in filterEventList"
+      :key="item.title"
+      :title="item.title"
+      :header="item.title"
+      :name="item.title"
+    >
+      <EActionEditorItem
+        v-model="modelValueComputed"
+        :item-events="item.events"
+        :all-events="allEvents"
+        :events="events"
+        @add="handleOpen"
+        @edit="handleOpenEdit"
+      />
     </CollapseItem>
   </Collapse>
-  <EActionModal ref="EActionModalRef" @add="handleAdd" @edit="handleEdit" />
+  <EActionModal
+    ref="EActionModalRef"
+    @add="handleAdd"
+    @edit="handleEdit"
+  />
 </template>
 
 <script lang="ts" setup>

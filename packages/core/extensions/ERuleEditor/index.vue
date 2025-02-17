@@ -3,7 +3,10 @@
     <div
       class="rule-item-main m-t-2 p-2 rounded border border-solid transition-all relative"
     >
-      <template v-for="(componentSchema, index) in requiredRuleSchemas" :key="index">
+      <template
+        v-for="(componentSchema, index) in requiredRuleSchemas"
+        :key="index"
+      >
         <div
           v-if="componentSchema.show ? componentSchema.show() : true"
           class="flex m-t-2 first:m-0"
@@ -14,7 +17,7 @@
           <div class="flex-1">
             <ENode
               v-model="requiredRule[componentSchema.model]"
-              :componentSchema="{ ...componentSchema, noFormItem: true }"
+              :component-schema="{ ...componentSchema, noFormItem: true }"
               @change="handleUpdate"
             />
           </div>
@@ -28,7 +31,12 @@
       @delete="handleDelete(index)"
       @change="handleUpdate"
     />
-    <Button class="m-t-2" @click="handleAdd"> 添加规则 </Button>
+    <Button
+      class="m-t-2"
+      @click="handleAdd"
+    >
+      添加规则
+    </Button>
   </div>
 </template>
 <script lang="ts" setup>

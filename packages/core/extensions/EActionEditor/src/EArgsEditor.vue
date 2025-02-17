@@ -1,14 +1,26 @@
 <template>
   <div class="epic-attribute-view">
-    <div v-for="item in props.actionArgsConfigs" :key="item.id">
-      <div v-show="isShow(item)" class="epic-attr-item" :class="item.layout">
-        <div class="epic-attr-label" :title="item.label">
+    <div
+      v-for="item in props.actionArgsConfigs"
+      :key="item.id"
+    >
+      <div
+        v-show="isShow(item)"
+        class="epic-attr-item"
+        :class="item.layout"
+      >
+        <div
+          class="epic-attr-label"
+          :title="item.label"
+        >
           {{ item.label }}
         </div>
         <div class="epic-attr-input">
           <ENode
-            :componentSchema="{ ...item, componentProps: { ...item.componentProps, input: false, field: undefined, hidden: false }, show: true, noFormItem: true }"
-            :model-value="valueRef[item.field!]" @update:model-value="handleSetValue($event, item.field!)" />
+            :component-schema="{ ...item, componentProps: { ...item.componentProps, input: false, field: undefined, hidden: false }, show: true, noFormItem: true }"
+            :model-value="valueRef[item.field!]"
+            @update:model-value="handleSetValue($event, item.field!)"
+          />
         </div>
       </div>
     </div>

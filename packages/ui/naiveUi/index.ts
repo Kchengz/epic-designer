@@ -29,14 +29,14 @@ export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
     "FormItem",
     async () => (await import("naive-ui/lib/form")).NFormItem
   );
-  // eslint-disable-next-line vue/multi-word-component-names
+   
   pluginManager.component(
     "Tabs",
     async () => (await import("naive-ui/lib/tabs")).NTabs
   );
 
   pluginManager.component("TabPane", NTabPane);
-  // eslint-disable-next-line vue/multi-word-component-names
+   
   pluginManager.component(
     "Collapse",
     async () => (await import("naive-ui/lib/collapse")).NCollapse

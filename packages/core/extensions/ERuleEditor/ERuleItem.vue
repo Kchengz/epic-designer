@@ -1,19 +1,34 @@
 <template>
   <div
-    class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative">
-    <template v-for="(componentSchema, index) in ruleItemSchemas" :key="index">
-      <div v-if="componentSchema.show ? componentSchema.show() : true" class="flex m-t-2 first:m-0">
-        <div class="epic-attr-label" title="校验时机">
+    class="rule-item-main bg-white m-t-2 p-2 rounded  border border-solid border-gray-200 hover:border-primary transition-all relative"
+  >
+    <template
+      v-for="(componentSchema, index) in ruleItemSchemas"
+      :key="index"
+    >
+      <div
+        v-if="componentSchema.show ? componentSchema.show() : true"
+        class="flex m-t-2 first:m-0"
+      >
+        <div
+          class="epic-attr-label"
+          title="校验时机"
+        >
           {{ componentSchema.label }}
         </div>
         <div class="epic-attr-input">
-          <ENode v-model="modelRule[componentSchema.model]" :componentSchema="{ ...componentSchema, noFormItem: true }" @change="handleUpdate" />
+          <ENode
+            v-model="modelRule[componentSchema.model]"
+            :component-schema="{ ...componentSchema, noFormItem: true }"
+            @change="handleUpdate"
+          />
         </div>
       </div>
     </template>
     <div
       class="rule-btn-delete absolute top-0 text-md right-0 transition-all w-24px h-24px cursor-pointer rounded-bl-2 flex justify-center items-center color-white"
-      @click="handleDelete">
+      @click="handleDelete"
+    >
       <EIcon name="icon--epic--delete-outline-rounded" />
     </div>
   </div>

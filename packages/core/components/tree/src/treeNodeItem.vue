@@ -21,10 +21,10 @@
     </a>
     <ETreeNodes
       v-if="props.schema.children?.length"
+      v-model:schemas="props.schema.children"
       class="epic-tree-sublist"
       :class="{ expanded }"
-      v-model:schemas="props.schema.children"
-      :parentSchema="props.schema"
+      :parent-schema="props.schema"
     />
   </li>
 </template>

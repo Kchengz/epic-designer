@@ -1,19 +1,19 @@
 <template>
-    <ConfigProvider :theme="{ algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm }">
-        <Layout class="maximize epic-scoped">
-            <EHeader />
-            <Layout>
-                <LayoutSider>
-                    <div class="epic-demo-menu h-full">
-                        <EMenu />
-                    </div>
-                </LayoutSider>
-                <LayoutContent>
-                    <Main />
-                </LayoutContent>
-            </Layout>
-        </Layout>
-    </ConfigProvider>
+  <ConfigProvider :theme="{ algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm }">
+    <Layout class="maximize epic-scoped">
+      <EHeader />
+      <Layout>
+        <LayoutSider>
+          <div class="epic-demo-menu h-full">
+            <EMenu />
+          </div>
+        </LayoutSider>
+        <LayoutContent>
+          <Main />
+        </LayoutContent>
+      </Layout>
+    </Layout>
+  </ConfigProvider>
 </template>
 <script lang="ts" setup>
 import EMenu from './components/Menu/index.vue'

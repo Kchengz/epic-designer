@@ -1,18 +1,50 @@
 <template>
-  <draggable v-model="innerValue" item-key="id" :component-data="{
-    type: 'transition-group',
-  }" group="option-list" handle=".handle" :animation="200">
+  <draggable
+    v-model="innerValue"
+    item-key="id"
+    :component-data="{
+      type: 'transition-group',
+    }"
+    group="option-list"
+    handle=".handle"
+    :animation="200"
+  >
     <template #item="{ element: option, index }">
       <div>
-        <div :class="tree ? 'grid-cols-[16px_auto_auto_16px_16px]' : 'grid-cols-[16px_auto_auto_16px]'"
-          class="option-item text-16px grid text-$epic-text-secondary gap-2 items-center mb-2">
-          <EIcon class="mr-2 cursor-move handle" name="icon--epic--drag" />
-          <Input v-model="option.label" v-model:value="option.label" placeholder="label"></Input>
-          <Input v-model="option.value" v-model:value="option.value" placeholder="value"></Input>
-          <EIcon v-if="tree" class="cursor-pointer text-lg!" name="icon--epic--add-rounded" @click="handleAddChildren(option)" />
-          <EIcon class="hover:text-red cursor-pointer" name="icon--epic--delete-outline-rounded" @click="handleRemove(index)" />
+        <div
+          :class="tree ? 'grid-cols-[16px_auto_auto_16px_16px]' : 'grid-cols-[16px_auto_auto_16px]'"
+          class="option-item text-16px grid text-$epic-text-secondary gap-2 items-center mb-2"
+        >
+          <EIcon
+            class="mr-2 cursor-move handle"
+            name="icon--epic--drag"
+          />
+          <Input
+            v-model="option.label"
+            v-model:value="option.label"
+            placeholder="label"
+          />
+          <Input
+            v-model="option.value"
+            v-model:value="option.value"
+            placeholder="value"
+          />
+          <EIcon
+            v-if="tree"
+            class="cursor-pointer text-lg!"
+            name="icon--epic--add-rounded"
+            @click="handleAddChildren(option)"
+          />
+          <EIcon
+            class="hover:text-red cursor-pointer"
+            name="icon--epic--delete-outline-rounded"
+            @click="handleRemove(index)"
+          />
         </div>
-        <div class="pl-4" v-if="option.children">
+        <div
+          v-if="option.children"
+          class="pl-4"
+        >
           <EOptionItem v-model="option.children" />
         </div>
       </div>

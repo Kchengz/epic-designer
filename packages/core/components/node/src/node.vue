@@ -1,20 +1,20 @@
 <template>
   <dynamicFormItem
     v-if="component && show"
-    :hasFormItem="
+    :has-form-item="
       innerSchema.noFormItem !== true && getComponentConfing?.defaultSchema.input
     "
-    :formItemProps="getFormItemProps"
-    @updateFormItemRef="updateFormItemRef"
+    :form-item-props="getFormItemProps"
+    @update-form-item-ref="updateFormItemRef"
   >
     <component
       :is="component"
       ref="componentInstance"
-      @vue:mounted="handleAddComponentInstance"
-      :model="formData"
       v-bind="{ ...getComponentProps }"
       v-model:[getComponentProps.bindModel]="bindValue"
+      :model="formData"
       :[`onUpdate:${getComponentProps.bindModel}`]="handleUpdate"
+      @vue:mounted="handleAddComponentInstance"
     >
       <!-- 嵌套组件递归 start -->
       <!-- 渲染子组件 start -->

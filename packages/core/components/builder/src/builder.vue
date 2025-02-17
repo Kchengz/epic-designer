@@ -1,14 +1,20 @@
 <template>
-  <div class="epic-loading-box" v-if="!pluginManager.initialized.value">
+  <div
+    v-if="!pluginManager.initialized.value"
+    class="epic-loading-box"
+  >
     <!-- <EAsyncLoader /> -->
   </div>
-  <Suspense v-else @resolve="handleReady">
+  <Suspense
+    v-else
+    @resolve="handleReady"
+  >
     <template #default>
       <div class="epic-builder-main epic-scoped">
         <ENode
           v-for="(item, index) in pageManager.pageSchema.schemas"
           :key="index"
-          :componentSchema="item"
+          :component-schema="item"
         />
       </div>
     </template>

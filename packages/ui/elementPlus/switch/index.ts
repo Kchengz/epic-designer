@@ -137,7 +137,7 @@ export default {
 
 // 设置默认值
 function setDefaultValue(e) {
-  let defaultValue = e.values.componentProps?.inactiveValue || false;
+  const defaultValue = e.values.componentProps?.inactiveValue || false;
   // 如果inactiveValue === ''，则在下一个事件循环中删除 inactiveValue 属性
   if (e.values.componentProps.unCheckedValue === "") {
     delete e.values.componentProps.unCheckedValue;

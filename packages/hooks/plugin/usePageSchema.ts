@@ -7,7 +7,7 @@ import { reactive } from "vue";
 import { PageSchema } from "@epic-designer/core/types/epic-designer";
 
 // 内部默认页面数据
-let innerDefaultSchema: PageSchema = {
+const innerDefaultSchema: PageSchema = {
     schemas: [
         {
             type: "page",

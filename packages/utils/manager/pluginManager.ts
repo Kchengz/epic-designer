@@ -468,7 +468,7 @@ export class PluginManager {
         }
 
         // 查找当前组件在分组的列表中的索引
-        let componentIndex = componentSchemaGroups[groupIndex].list.findIndex(
+        const componentIndex = componentSchemaGroups[groupIndex].list.findIndex(
           (item) => item.type === componentConfig.defaultSchema.type
         );
 

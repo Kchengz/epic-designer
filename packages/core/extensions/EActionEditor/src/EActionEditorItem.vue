@@ -1,21 +1,41 @@
 <template>
-  <div v-for="item in itemEvents" :key="item.type" class="epic-event-item">
+  <div
+    v-for="item in itemEvents"
+    :key="item.type"
+    class="epic-event-item"
+  >
     <div class="epic-event-info">
-      <div class="epic-event-label" :title="item.describe">
+      <div
+        class="epic-event-label"
+        :title="item.describe"
+      >
         {{ item.describe }}
       </div>
       <div class="epic-event-btn text-lg flex items-center text-$epic-text-secondary">
-        <EIcon name="icon--epic--add-rounded" @click="handleOpen(item.type)" />
+        <EIcon
+          name="icon--epic--add-rounded"
+          @click="handleOpen(item.type)"
+        />
       </div>
     </div>
     <div class="epic-action-editor-main">
-      <draggable v-model="props.events[item.type]" item-key="id" :component-data="{
-        type: 'transition-group',
-      }" group="option-list" handle=".handle" :animation="200">
+      <draggable
+        v-model="props.events[item.type]"
+        item-key="id"
+        :component-data="{
+          type: 'transition-group',
+        }"
+        group="option-list"
+        handle=".handle"
+        :animation="200"
+      >
         <template #item="{ element: action, index }">
           <div class="epic-editor-item rounded">
             <div class="w-36px flex items-center text-lg">
-              <EIcon class="mr-2 text-lg cursor-move handle text-$epic-text-medium" name="icon--epic--drag" />
+              <EIcon
+                class="mr-2 text-lg cursor-move handle text-$epic-text-medium"
+                name="icon--epic--drag"
+              />
             </div>
             <div class="flex-1">
               <div v-if="action.type === 'component'">
@@ -30,10 +50,16 @@
               {{ action.methodName }}
             </div>
             <div class="epic-action-box text-lg text-$epic-text-medium">
-              <div class="epic-edit-btn" @click="handleEdit(index, item.type, action)">
+              <div
+                class="epic-edit-btn"
+                @click="handleEdit(index, item.type, action)"
+              >
                 <EIcon name="icon--epic--page-info-outline-rounded" />
               </div>
-              <div class="epic-del-btn" @click="handleDelete(index, item.type)">
+              <div
+                class="epic-del-btn"
+                @click="handleDelete(index, item.type)"
+              >
                 <EIcon name="icon--epic--delete-outline-rounded" />
               </div>
             </div>

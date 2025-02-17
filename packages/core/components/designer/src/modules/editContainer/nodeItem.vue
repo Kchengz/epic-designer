@@ -1,13 +1,29 @@
 <template>
-  <ENode ref="nodeRef" :componentSchema="props.schema">
+  <ENode
+    ref="nodeRef"
+    :component-schema="props.schema"
+  >
     <!-- childImmovable不可拖拽设计 start -->
-    <template v-if="pluginManager.getComponentConfingByType(props.schema.type)?.editConstraints?.childImmovable" #edit-node>
-      <ENodeItem v-for="schema in props.schema.children" :key="schema.id" :schema="schema" />
+    <template
+      v-if="pluginManager.getComponentConfingByType(props.schema.type)?.editConstraints?.childImmovable"
+      #edit-node
+    >
+      <ENodeItem
+        v-for="schema in props.schema.children"
+        :key="schema.id"
+        :schema="schema"
+      />
     </template>
     <!-- childImmovable不可拖拽设计 end -->
 
-    <template v-else #edit-node>
-      <EditNodeItem v-if="props.schema.children" v-model:schemas="props.schema.children" />
+    <template
+      v-else
+      #edit-node
+    >
+      <EditNodeItem
+        v-if="props.schema.children"
+        v-model:schemas="props.schema.children"
+      />
     </template>
   </ENode>
 </template>

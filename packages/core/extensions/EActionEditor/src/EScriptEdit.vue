@@ -3,8 +3,14 @@
     <div class="pb-2">
       自定义函数编辑
     </div>
-    <MonacoEditor ref="monacoEditorRef" autoToggleTheme v-model="pageSchema.script" class="epic-editor flex-1" :config="MonacoEditorConfig"
-      language="javascript" />
+    <MonacoEditor
+      ref="monacoEditorRef"
+      v-model="pageSchema.script"
+      auto-toggle-theme
+      class="epic-editor flex-1"
+      :config="MonacoEditorConfig"
+      language="javascript"
+    />
   </div>
 </template>
 <script lang="ts" setup>

@@ -37,7 +37,7 @@ export function useDark() {
  * @param isDark
  */
 export function getDarkState(isDark) {
-  var targetNode = document.documentElement;
+  const targetNode = document.documentElement;
   if (!targetNode) return;
   if (targetNode.classList.contains("dark")) {
     isDark.value = true;
@@ -52,11 +52,11 @@ export function getDarkState(isDark) {
  */
 function monitorHtml(isDark) {
   // 选择需要监听的元素
-  var targetNode = document.querySelector("html");
+  const targetNode = document.querySelector("html");
 
   // 创建MutationObserver对象
-  var observer = new MutationObserver(function (mutationsList) {
-    for (var mutation of mutationsList) {
+  const observer = new MutationObserver(function (mutationsList) {
+    for (const mutation of mutationsList) {
       if (
         mutation.type === "attributes" &&
         mutation.attributeName === "class"

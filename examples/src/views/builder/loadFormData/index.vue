@@ -1,5 +1,8 @@
 <template>
-  <EBuilder :pageSchema="pageSchema" :formData="formData" />
+  <EBuilder
+    :page-schema="pageSchema"
+    :form-data="formData"
+  />
 </template>
 
 <script lang="ts" setup>

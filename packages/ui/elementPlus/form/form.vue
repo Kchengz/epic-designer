@@ -1,8 +1,21 @@
 <template>
-  <div v-if="visible" class="form-main" style="height: 100%;">
-    <ElForm ref="form" :model="formData" v-bind="componentProps" style="height: 100%;">
+  <div
+    v-if="visible"
+    class="form-main"
+    style="height: 100%;"
+  >
+    <ElForm
+      ref="form"
+      :model="formData"
+      v-bind="componentProps"
+      style="height: 100%;"
+    >
       <slot name="edit-node">
-        <slot v-for="item in children" name="node" :componentSchema="item" />
+        <slot
+          v-for="item in children"
+          name="node"
+          :component-schema="item"
+        />
       </slot>
     </ElForm>
   </div>

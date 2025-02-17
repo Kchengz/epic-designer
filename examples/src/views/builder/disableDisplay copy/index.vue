@@ -1,7 +1,10 @@
 <template>
   <div class="epic-page-main p-2">
-    <EBuilder ref="ebRef" :pageSchema="pageSchema" @ready="handleReady">
-    </EBuilder>
+    <EBuilder
+      ref="ebRef"
+      :page-schema="pageSchema"
+      @ready="handleReady"
+    />
     <div @click="handleGetData">
       获取数据
     </div>

@@ -2,9 +2,9 @@
   <Modal
     v-model="visible"
     width="1200px"
+    title="动作配置"
     @close="handleClose"
     @ok="handleSave"
-    title="动作配置"
   >
     <div class="rounded epic-modal-action-main">
       <div class="epic-modal-left-panel h-full flex flex-col">
@@ -27,22 +27,24 @@
           组件
           <div class="flex-1 h-0">
             <ETree
-              v-model:selectedKeys="selectedKeys"
+              v-model:selected-keys="selectedKeys"
               :options="pageSchema.schemas"
-              @nodeClick="handleNodeClick"
+              @node-click="handleNodeClick"
             />
           </div>
         </div>
         <!-- 动作选择 start -->
         <div class="epic-action-select h-30/100 flex flex-col">
-          <div class="mb-2">动作选择</div>
+          <div class="mb-2">
+            动作选择
+          </div>
           <div class="flex-1 overflow-auto pr-8px">
             <div
               v-for="item in methodOptions"
-              :class="{ checked: item.value === state.actionItem.methodName }"
-              @click="handleCheckedMethod(item.value)"
               :key="item.value"
+              :class="{ checked: item.value === state.actionItem.methodName }"
               class="epic-action-item"
+              @click="handleCheckedMethod(item.value)"
             >
               <span>{{ item.label }}</span>
             </div>
@@ -70,7 +72,7 @@
           v-else
           :key="argsEditorKey"
           v-model="state.actionItem.args"
-          :actionArgsConfigs="actionArgsConfigs"
+          :action-args-configs="actionArgsConfigs"
         />
       </div>
       <!-- 动作配置 end -->

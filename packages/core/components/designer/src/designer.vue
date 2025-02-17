@@ -1,45 +1,60 @@
 <template>
-  <div class="epic-loading-box" v-if="!pluginManager.initialized.value">
+  <div
+    v-if="!pluginManager.initialized.value"
+    class="epic-loading-box"
+  >
     <!-- <EAsyncLoader /> -->
   </div>
-  <Suspense v-else @resolve="handleReady">
+  <Suspense
+    v-else
+    @resolve="handleReady"
+  >
     <template #default>
-      <div class="epic-designer-main epic-scoped" @wheel="handleWheel">
+      <div
+        class="epic-designer-main epic-scoped"
+        @wheel="handleWheel"
+      >
         <div class="epic-header-container">
           <slot name="header">
             <EHeader
-              @preview="handlePreview"
               v-if="!props.hiddenHeader"
+              @preview="handlePreview"
               @save="handleSave"
             >
               <template #header>
-                <slot name="header-prefix"></slot>
+                <slot name="header-prefix" />
               </template>
 
               <template #prefix>
-                <slot name="header-prefix"></slot>
+                <slot name="header-prefix" />
               </template>
               <template #title>
-                <slot name="header-title"></slot>
+                <slot name="header-title" />
               </template>
               <template #right-prefix>
-                <slot name="header-right-prefix"></slot>
+                <slot name="header-right-prefix" />
               </template>
               <template #right-action>
-                <slot name="header-right-action"></slot>
+                <slot name="header-right-action" />
               </template>
               <template #right-suffix>
-                <slot name="header-right-suffix"></slot>
+                <slot name="header-right-suffix" />
               </template>
             </EHeader>
           </slot>
         </div>
-        <div class="epic-split-view-container" :class="{ 'hidden-header': hiddenHeader }">
+        <div
+          class="epic-split-view-container"
+          :class="{ 'hidden-header': hiddenHeader }"
+        >
           <EActivityBar />
           <EEditContainer />
           <ERightSidebar />
         </div>
-        <EPreview :hideConfirm="props.hidePreviewConfirm" ref="previewRef" />
+        <EPreview
+          ref="previewRef"
+          :hide-confirm="props.hidePreviewConfirm"
+        />
       </div>
     </template>
     <template #fallback>

@@ -2,14 +2,28 @@
   <div class="flex relative">
     <div class="epic-action-bar">
       <ul class="epic-actions-container">
-        <li v-for="(item, index) in activitybars" :key="index" class="epic-action-item" :title="item.title"
-          :class="{ checked: activityBarCheckedIndex === index }" @click="handleClick(item, index)">
-          <EIcon class="relative" :name="item.icon" />
-          <div class="text-14px">{{ item.title }}</div>
+        <li
+          v-for="(item, index) in activitybars"
+          :key="index"
+          class="epic-action-item"
+          :title="item.title"
+          :class="{ checked: activityBarCheckedIndex === index }"
+          @click="handleClick(item, index)"
+        >
+          <EIcon
+            class="relative"
+            :name="item.icon"
+          />
+          <div class="text-14px">
+            {{ item.title }}
+          </div>
         </li>
       </ul>
     </div>
-    <div class="epic-left-sidebar" :class="{ hide: activityBarCheckedIndex === null }">
+    <div
+      class="epic-left-sidebar"
+      :class="{ hide: activityBarCheckedIndex === null }"
+    >
       <div class="epic-sidebar-container">
         <component :is="sidebarComponent" />
       </div>

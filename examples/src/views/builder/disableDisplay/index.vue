@@ -1,5 +1,8 @@
 <template>
-  <EBuilder ref="ebRef" :pageSchema="pageSchema" />
+  <EBuilder
+    ref="ebRef"
+    :page-schema="pageSchema"
+  />
 </template>
 
 <script lang="ts" setup>

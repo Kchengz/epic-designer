@@ -19,7 +19,10 @@
         class="flex items-center justify-center"
         :style="scrollBoxStyleComputed"
       >
-        <div ref="draggableElRef" class="transition-all">
+        <div
+          ref="draggableElRef"
+          class="transition-all"
+        >
           <div
             :class="{ 'pointer-events-none': draggableComputed }"
             :style="canvasBoxStyle"

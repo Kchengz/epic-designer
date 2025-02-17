@@ -1,8 +1,11 @@
 <template>
-    <div :key="uiKey" class="epic-page-container">
-        <Maximize />
-        <router-view></router-view>
-    </div>
+  <div
+    :key="uiKey"
+    class="epic-page-container"
+  >
+    <Maximize />
+    <router-view />
+  </div>
 </template>
 <script lang="ts" setup>
 import Maximize from './Maximize.vue'

@@ -2,8 +2,10 @@
   <div class="epic-upload-image">
     <Upload v-bind="getUploadProps">
       <div v-if="(fileList?.length ?? 0) < (props.maxCount ?? 999)">
-        <span class="icon--epic icon--epic--cloud-upload-outlined mr-2px text-lg text-$epic-text-main"></span>
-        <div class="ant-upload-text">点击上传</div>
+        <span class="icon--epic icon--epic--cloud-upload-outlined mr-2px text-lg text-$epic-text-main" />
+        <div class="ant-upload-text">
+          点击上传
+        </div>
       </div>
     </Upload>
     <Image

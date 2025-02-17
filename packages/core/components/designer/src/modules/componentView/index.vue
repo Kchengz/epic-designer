@@ -2,41 +2,71 @@
   <div class="epic-component-view flex flex-col">
     <!-- 搜素框 start -->
     <div class="epic-search-box px-10px py-6px">
-      <Input placeholder="搜索组件"  v-model="keyword" clearable allowClear v-model:value="keyword">
-      <template #prefix>
-        <EIcon class="text-$epic-text-helper" name="icon--epic--search-rounded" />
-      </template>
+      <Input
+        v-model="keyword"
+        v-model:value="keyword"
+        placeholder="搜索组件"
+        clearable
+        allow-clear
+      >
+        <template #prefix>
+          <EIcon
+            class="text-$epic-text-helper"
+            name="icon--epic--search-rounded"
+          />
+        </template>
       </Input>
     </div>
     <!-- 搜素框 end -->
     <div class="flex flex-1 overflow-auto">
       <!-- 分类选项 start  -->
       <div class="epic-tabs-box">
-        <div class="epic-tab cursor-pointer truncate" :class="{ checked: activeItem.title === item.title }"
-          v-for="(item, index) in getSchemaTypeList" :key="index" :title="item.title" @click="handelChecked(item)">
+        <div
+          v-for="(item, index) in getSchemaTypeList"
+          :key="index"
+          class="epic-tab cursor-pointer truncate"
+          :class="{ checked: activeItem.title === item.title }"
+          :title="item.title"
+          @click="handelChecked(item)"
+        >
           {{ item.title }}
         </div>
       </div>
       <!-- 分类选项 end  -->
 
       <div class="h-full flex-1 overflow-auto py-2 box-border">
-        <draggable v-model="getSourceSchemaList" v-bind="{
-          group: { name: 'edit-draggable', pull: 'clone', put: false },
-          sort: false,
-          animation: 180,
-          ghostClass: 'moving'
-        }" :clone="generateNewSchema" item-key="id" class="grid grid-cols-[auto_auto] px-10px gap-2">
+        <draggable
+          v-model="getSourceSchemaList"
+          v-bind="{
+            group: { name: 'edit-draggable', pull: 'clone', put: false },
+            sort: false,
+            animation: 180,
+            ghostClass: 'moving'
+          }"
+          :clone="generateNewSchema"
+          item-key="id"
+          class="grid grid-cols-[auto_auto] px-10px gap-2"
+        >
           <template #item="{ element }">
-            <div class="epic-componet-item flex items-center truncate" @click="handleClick(element)">
+            <div
+              class="epic-componet-item flex items-center truncate"
+              @click="handleClick(element)"
+            >
               <EIcon :name="pluginManager.getComponentConfingByType(element.type).icon ?? ''" />
-              <div class="epic-componet-label flex-1 w-0 truncate">{{ element.label }}</div>
+              <div class="epic-componet-label flex-1 w-0 truncate">
+                {{ element.label }}
+              </div>
             </div>
           </template>
         </draggable>
-        <div v-show="!getSourceSchemaList.length" class="text-center pt-42px text-gray-400">没有查询到的组件</div>
+        <div
+          v-show="!getSourceSchemaList.length"
+          class="text-center pt-42px text-gray-400"
+        >
+          没有查询到的组件
+        </div>
       </div>
     </div>
-
   </div>
 </template>
 <script lang="ts" setup>

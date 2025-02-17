@@ -1,21 +1,36 @@
 <template>
-  <draggable v-if="!pluginManager.getComponentConfingByType(props.parentSchema?.type || '')?.editConstraints?.childImmovable"
-    v-model="modelSchemas" item-key="id" :component-data="{
-    }" class="epic-draggable-range" v-bind="{
+  <draggable
+    v-if="!pluginManager.getComponentConfingByType(props.parentSchema?.type || '')?.editConstraints?.childImmovable"
+    v-model="modelSchemas"
+    item-key="id"
+    :component-data="{
+    }"
+    class="epic-draggable-range"
+    v-bind="{
       animation: 200,
       tag: 'ul',
       group: 'tree-draggable',
       ghostClass: 'moveing',
       draggable: '.draggable-item',
       disabled: !treeProps.draggable || modelSchemas[0]?.id === pageSchema.schemas[0]?.id
-    }" @start="handleSelect($event.oldIndex)">
+    }"
+    @start="handleSelect($event.oldIndex)"
+  >
     <template #item="{ element, index }">
-      <ETreeNodeItem :class="isDraggable(element)" :key="element.id" :schema="element" />
+      <ETreeNodeItem
+        :key="element.id"
+        :class="isDraggable(element)"
+        :schema="element"
+      />
     </template>
   </draggable>
 
   <ul v-else>
-    <ETreeNodeItem v-for="( element ) in modelSchemas" :key="element.id" :schema="element" />
+    <ETreeNodeItem
+      v-for="( element ) in modelSchemas"
+      :key="element.id"
+      :schema="element"
+    />
   </ul>
 </template>
 <script lang="ts" setup>

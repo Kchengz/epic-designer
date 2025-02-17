@@ -5,7 +5,7 @@
       draggable
       :selected-keys="selectedKeys"
       :hover-key="designer.state.hoverNode?.id"
-      @nodeClick="handleNodeClick"
+      @node-click="handleNodeClick"
     >
       <template #tree-node="{ schema }">
         <div
@@ -19,10 +19,10 @@
               v-if="schema.componentProps?.hidden"
               name="icon--epic--visibility-off-outline-rounded"
               class="translate-y-2px"
-            ></EIcon>
+            />
             {{
               schema.label ??
-              pluginManager.getComponentConfingByType(schema.type)?.defaultSchema.label
+                pluginManager.getComponentConfingByType(schema.type)?.defaultSchema.label
             }}
           </span>
           <span class="epic-node-type-text flex-1 w-0 truncate">

@@ -1,13 +1,16 @@
 <template>
-    <section class="epic-edit-canvas">
-        <KEditScreenContainer>
-            <div ref="epicEditRangeRef" class="epic-edit-range rounded-md overflow-auto relative"
-                :style="getEditRangestyle">
-                <ENodeItem :schema="rootSchema" />
-                <EPreviewWidgets ref="ePreviewWidgetsRef" />
-            </div>
-        </KEditScreenContainer>
-    </section>
+  <section class="epic-edit-canvas">
+    <KEditScreenContainer>
+      <div
+        ref="epicEditRangeRef"
+        class="epic-edit-range rounded-md overflow-auto relative"
+        :style="getEditRangestyle"
+      >
+        <ENodeItem :schema="rootSchema" />
+        <EPreviewWidgets ref="ePreviewWidgetsRef" />
+      </div>
+    </KEditScreenContainer>
+  </section>
 </template>
 <script lang="ts" setup>
 import { PageSchema } from '../../../../../types/epic-designer'

@@ -1,8 +1,10 @@
 <template>
   <div class="epic-page-main h-full flex">
     <div class="flex-1 p-2">
-      <h2 class="pt-4 pl-8 text-24px block">{{ route.meta.title }}</h2>
-      <router-view></router-view>
+      <h2 class="pt-4 pl-8 text-24px block">
+        {{ route.meta.title }}
+      </h2>
+      <router-view />
     </div>
     <div class="flex-1 w-0 relative">
       <MonacoEditor
@@ -12,9 +14,13 @@
         language="vue"
         read-only
       />
-      <Button type="primary" class="absolute bottom-3 right-4" @click="copyCode(pageSFC)"
-        >一键复制</Button
+      <Button
+        type="primary"
+        class="absolute bottom-3 right-4"
+        @click="copyCode(pageSFC)"
       >
+        一键复制
+      </Button>
     </div>
   </div>
 </template>

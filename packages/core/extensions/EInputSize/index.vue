@@ -1,8 +1,20 @@
 <template>
-  <Input class="epic-input-size" v-model="size" v-model:value="size" type="number" min="0" placeholder="请输入">
-  <template #suffix>
-    <Select v-model:value="unit" v-model="unit" style="width: 68px" :options="unitArray" />
-  </template>
+  <Input
+    v-model="size"
+    v-model:value="size"
+    class="epic-input-size"
+    type="number"
+    min="0"
+    placeholder="请输入"
+  >
+    <template #suffix>
+      <Select
+        v-model:value="unit"
+        v-model="unit"
+        style="width: 68px"
+        :options="unitArray"
+      />
+    </template>
   </Input>
 </template>
 <script lang="ts" setup>

@@ -1,13 +1,30 @@
 <template>
-  <div class="epic-attribute-view" :key="checkedNode?.id">
-    <div v-for="item in componentAttributes" :key="item.field">
-      <div v-if="isShow(item)" class="epic-attr-item" :class="item.layout">
-        <div v-if="item.label" class="epic-attr-label" :title="item.label">
+  <div
+    :key="checkedNode?.id"
+    class="epic-attribute-view"
+  >
+    <div
+      v-for="item in componentAttributes"
+      :key="item.field"
+    >
+      <div
+        v-if="isShow(item)"
+        class="epic-attr-item"
+        :class="item.layout"
+      >
+        <div
+          v-if="item.label"
+          class="epic-attr-label"
+          :title="item.label"
+        >
           {{ item.label }}
         </div>
-        <div class="epic-attr-input" :class="{ 'block!': item.layout === 'vertical' }">
+        <div
+          class="epic-attr-input"
+          :class="{ 'block!': item.layout === 'vertical' }"
+        >
           <ENode
-            :componentSchema="{
+            :component-schema="{
               ...item,
               componentProps: {
                 ...item.componentProps,

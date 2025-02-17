@@ -2,10 +2,16 @@
   <div class="epic-tree h-full flex flex-col">
     <!-- 搜素框 start -->
     <div class="epic-search-box px-10px py-6px">
-      <Input placeholder="搜索节点" clearable allowClear v-model="keyword" v-model:value="keyword">
-      <template #prefix>
-        <EIcon name="icon--epic--search-rounded" />
-      </template>
+      <Input
+        v-model="keyword"
+        v-model:value="keyword"
+        placeholder="搜索节点"
+        clearable
+        allow-clear
+      >
+        <template #prefix>
+          <EIcon name="icon--epic--search-rounded" />
+        </template>
       </Input>
     </div>
     <!-- 搜素框 end -->
@@ -13,7 +19,12 @@
       <ul>
         <ETreeNodes v-model:schemas="getTreeData" />
       </ul>
-      <div v-show="!getTreeData.length" class="text-center pt-42px text-gray-400">没有查询到的数据</div>
+      <div
+        v-show="!getTreeData.length"
+        class="text-center pt-42px text-gray-400"
+      >
+        没有查询到的数据
+      </div>
     </div>
   </div>
 </template>

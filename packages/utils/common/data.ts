@@ -200,7 +200,7 @@ export function getMatchedById(
 
     // 遍历插槽
     if (!found && node.slots) {
-      for (let key in node.slots) {
+      for (const key in node.slots) {
         for (let i = 0; i < node.slots[key].length; i++) {
           getNodePath(node.slots[key][i]);
           if (found) break;
@@ -356,7 +356,7 @@ export function findSchemas(
 
     // 检查插槽
     if (currentNode?.slots && (!filter || filter(currentNode))) {
-      for (let key in currentNode.slots) {
+      for (const key in currentNode.slots) {
         nodesToVisit.push(...currentNode.slots[key]);
       }
     }
@@ -400,7 +400,7 @@ export function mapSchemas(
     }
     // 检查插槽
     if (currentNode?.slots && (!filter || filter(currentNode))) {
-      for (let key in currentNode.slots) {
+      for (const key in currentNode.slots) {
         nodesToVisit.push(...currentNode.slots[key]);
       }
     }
@@ -421,7 +421,7 @@ export function findSchemaById(
   schemas: ComponentSchema[],
   id: string
 ): ComponentSchema {
-  let index: number = 0;
+  const index: number = 0;
 
   // 查询节点
   const schema = findSchemas(
@@ -466,7 +466,7 @@ export function findSchemaInfoById(
 
       if (!children) {
         if (currentNode?.slots) {
-          for (let key in currentNode.slots) {
+          for (const key in currentNode.slots) {
             children = currentNode.slots[key] as ComponentSchema[];
             for (let i = 0; i < children.length; i++) {
               if (children[i].id === id) {

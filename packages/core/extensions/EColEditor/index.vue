@@ -1,16 +1,30 @@
 <template>
   <div>
-    <div v-for="(item, index) in colList" :key="index" class="EColEditor-item">
-      <Number v-model:value="item.componentProps.span" v-model="item.componentProps.span" style="width:100%" :min="1"
-        :max="24" />
-      <div v-if="colList.length > 1" class="epic-del-btn">
+    <div
+      v-for="(item, index) in colList"
+      :key="index"
+      class="EColEditor-item"
+    >
+      <Number
+        v-model:value="item.componentProps.span"
+        v-model="item.componentProps.span"
+        style="width:100%"
+        :min="1"
+        :max="24"
+      />
+      <div
+        v-if="colList.length > 1"
+        class="epic-del-btn"
+      >
         <span @click="handleDelete(index)">
           <EIcon name="icon-shanchu1" />
         </span>
-
       </div>
     </div>
-    <div class="add-btn" @click="handleAdd">
+    <div
+      class="add-btn"
+      @click="handleAdd"
+    >
       添加
     </div>
   </div>

@@ -3,7 +3,6 @@ import { DatePicker } from "ant-design-vue";
 // 二次封装组件
 export default defineComponent({
   name: "EDatePicker",
-  emits: ["update:modelValue", "change", "blur"],
   props: {
     modelValue: {
       type: [String, Object, Array],
@@ -14,6 +13,7 @@ export default defineComponent({
       default: "date",
     },
   },
+  emits: ["update:modelValue", "change", "blur"],
   setup(props, { emit }) {
     watch(
       () => props.type,

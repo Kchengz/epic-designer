@@ -6,7 +6,10 @@
     class="epic-checked-widget absolute pointer-events-none z-999"
     :class="selectorPosition + ' ' + (selectorTransition ? 'transition-all' : '')"
   >
-    <div class="epic-widget-action-box" ref="actionBoxRef">
+    <div
+      ref="actionBoxRef"
+      class="epic-widget-action-box"
+    >
       <div class="epic-widget-action-item whitespace-nowrap">
         <!-- {{ designer.state.checkedNode?.type }} -->
         {{
@@ -15,7 +18,10 @@
         }}
       </div>
       <!-- 操作按钮 start  -->
-      <div class="flex items-center" v-if="isRemovableAndDraggable">
+      <div
+        v-if="isRemovableAndDraggable"
+        class="flex items-center"
+      >
         <div
           title="选择父节点"
           class="epic-widget-action-item pointer-events-auto"

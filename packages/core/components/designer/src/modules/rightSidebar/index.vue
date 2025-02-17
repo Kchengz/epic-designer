@@ -1,21 +1,37 @@
 <template>
-  <div v-if="sidebarComponent" class="epic-right-sidebar-container relative">
+  <div
+    v-if="sidebarComponent"
+    class="epic-right-sidebar-container relative"
+  >
     <!-- 折叠按钮 start -->
     <div
       class="epic-right-sidebar-hide-btn absolute left--18px top-80px cursor-pointer rounded-full flex justify-center items-center w-28px h-28px z-9"
-      @click="handleHideRight">
-      <EIcon class="transition-all" :class="{ 'rotate-180': hideRightMain }"
-        name="icon--epic--arrow-forward-ios-rounded" />
+      @click="handleHideRight"
+    >
+      <EIcon
+        class="transition-all"
+        :class="{ 'rotate-180': hideRightMain }"
+        name="icon--epic--arrow-forward-ios-rounded"
+      />
     </div>
-    <div class="w-10px"></div>
+    <div class="w-10px" />
     <!-- 折叠按钮 end -->
 
-    <div class="epic-right-sidebar w-308px" :class="{ hide: hideRightMain }">
+    <div
+      class="epic-right-sidebar w-308px"
+      :class="{ hide: hideRightMain }"
+    >
       <div class="w-308px">
         <EBreadcrumb />
         <ul class="epic-actions-container">
-          <li v-for="(item, index) in rightSidebars" :key="index" class="epic-action-item" :title="item.title"
-            :class="{ checked: activityBarCheckedIndex === index }" @click="handleClick(item, index)">
+          <li
+            v-for="(item, index) in rightSidebars"
+            :key="index"
+            class="epic-action-item"
+            :title="item.title"
+            :class="{ checked: activityBarCheckedIndex === index }"
+            @click="handleClick(item, index)"
+          >
             {{ item.title }}
           </li>
         </ul>
@@ -24,7 +40,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 <script lang="ts" setup>

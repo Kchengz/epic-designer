@@ -1,7 +1,14 @@
 <template>
   <div class="epic-sound-code">
-    <MonacoEditor ref="monacoEditorRef" autoToggleTheme class="epic-editor" :readOnly="designerProps.sourceCodeReadOnly" :model-value="initModelValue"
-      lineNumbers="off" @update:model-value="setSchemas" />
+    <MonacoEditor
+      ref="monacoEditorRef"
+      auto-toggle-theme
+      class="epic-editor"
+      :read-only="designerProps.sourceCodeReadOnly"
+      :model-value="initModelValue"
+      line-numbers="off"
+      @update:model-value="setSchemas"
+    />
   </div>
 </template>
 <script lang="ts" setup>

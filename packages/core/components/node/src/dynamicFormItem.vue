@@ -1,15 +1,15 @@
 <template>
   <!-- 如果有 FormItem，则包裹 slot，否则直接渲染 slot -->
   <FormItem
-    ref="formItemRef"
-    @vue:mounted="notifyFormItemMounted "
     v-if="props.hasFormItem"
+    ref="formItemRef"
     v-bind="props.formItemProps"
+    @vue:mounted="notifyFormItemMounted "
   >
-    <slot></slot>
+    <slot />
   </FormItem>
   <!-- 无FormItem start -->
-  <slot v-else></slot>
+  <slot v-else />
   <!-- 无FormItem end -->
 </template>
 

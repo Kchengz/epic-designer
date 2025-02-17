@@ -1,5 +1,8 @@
 <template>
-  <div ref="editContainer" class="epic-code-editor" />
+  <div
+    ref="editContainer"
+    class="epic-code-editor"
+  />
 </template>
 <script setup lang="ts">
 import { ref, watch, nextTick, onMounted } from 'vue'

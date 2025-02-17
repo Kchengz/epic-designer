@@ -113,7 +113,7 @@ export default {
 } as ComponentConfigModel;
 
 function setDefaultValue(e) {
-  let defaultValue = e.values.componentProps?.uncheckedValue || false;
+  const defaultValue = e.values.componentProps?.uncheckedValue || false;
   // 如果uncheckedValue === ''，则在下一个事件循环中删除 uncheckedValue 属性
   if (e.values.componentProps.uncheckedValue === "") {
     delete e.values.componentProps.uncheckedValue;

@@ -12,7 +12,7 @@
             class="w-18px h-18px"
             alt=""
             srcset=""
-          />
+          >
           <span class="ml-3">EpicDesigner</span>
         </a>
       </slot>
@@ -24,26 +24,38 @@
       </slot>
     </div>
     <div class="epic-header-item flex-1 flex justify-end items-center">
-      <slot name="right-prefix"></slot>
+      <slot name="right-prefix" />
       <slot name="right-action">
         <div>
-          <Button size="small" @click="handlePreview">
+          <Button
+            size="small"
+            @click="handlePreview"
+          >
             <span class="flex! items-center h-full">
-              <EIcon name="icon--epic--eye" class="mr-4px" />
+              <EIcon
+                name="icon--epic--eye"
+                class="mr-4px"
+              />
               预览
             </span>
           </Button>
         </div>
         <div class="ml-2">
-          <Button size="small" @click="handleSave">
+          <Button
+            size="small"
+            @click="handleSave"
+          >
             <span class="flex! items-center h-full">
-              <EIcon name="icon--epic--save-outline-rounded" class="mr-4px" />
+              <EIcon
+                name="icon--epic--save-outline-rounded"
+                class="mr-4px"
+              />
               保存
             </span>
           </Button>
         </div>
       </slot>
-      <slot name="right-suffix"></slot>
+      <slot name="right-suffix" />
     </div>
   </header>
 </template>

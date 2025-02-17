@@ -3,8 +3,14 @@
   <div class="epic-edit-toolbar flex items-center justify-between px-2">
     <!-- 操作按钮 start  -->
     <div class="flex-1 h-full flex items-center">
-      <template v-for="(action, index) in actionOptions" :key="index">
-        <div v-if="action.divider && isShow(action.show)" class="epic-divider"></div>
+      <template
+        v-for="(action, index) in actionOptions"
+        :key="index"
+      >
+        <div
+          v-if="action.divider && isShow(action.show)"
+          class="epic-divider"
+        />
         <div
           v-if="isShow(action.show)"
           :title="action.title"
@@ -12,43 +18,49 @@
           :class="{ disabled: action.disabled }"
           @click="action.on"
         >
-          <EIcon :name="action.icon"></EIcon>
+          <EIcon :name="action.icon" />
         </div>
       </template>
     </div>
     <!-- 操作按钮 end  -->
 
     <input
-      type="file"
-      ref="fileRef"
-      accept=".json,.txt"
       v-show="false"
+      ref="fileRef"
+      type="file"
+      accept=".json,.txt"
       @change="handleFileSelected"
-    />
+    >
 
     <div class="flex-1 h-full flex items-center justify-end">
       <!-- 缩放操作 start  -->
-      <div v-if="!disabledZoom" class="flex items-center ml-12px">
+      <div
+        v-if="!disabledZoom"
+        class="flex items-center ml-12px"
+      >
         <div class="pr-8px w-82px cursor-pointer">
           <Select
             v-model:value="canvasScaleComuted"
             v-model="canvasScaleComuted"
             :options="canvasScaleOptions"
             size="small"
-          ></Select>
+          />
         </div>
       </div>
       <!-- 缩放操作 end  -->
       <!-- 画布类型切换 start -->
       <div class="epic-device h-28px items-center gap-1 rounded-md border p-2px flex">
-        <template v-for="item in deviceOptions" :key="item.key">
+        <template
+          v-for="item in deviceOptions"
+          :key="item.key"
+        >
           <div
             :title="item.title"
             class="epic-device-item h-full px-1 flex items-center cursor-pointer text-base transition-colors rounded-sm"
             :class="{ checked: item.key === selectedKey }"
             @click="handleSetCanvas(item.key)"
           >
-            <EIcon :name="item.icon"></EIcon>
+            <EIcon :name="item.icon" />
           </div>
         </template>
       </div>
