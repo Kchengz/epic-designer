@@ -2,17 +2,18 @@
   "name": "epic-designer-project",
   "private": true,
   "version": "0.9.30",
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "dev": "epic checkCompiled && turbo run dev",
     "lib": "vitest run && pnpm run build --filter epic-designer",
-    "lint": "turbo run lint",
     "test": "vitest",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "examples:build": "pnpm run build --filter epic-examples",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "eslint . --fix",
     "postinstall": "pnpm -r run stub --if-present"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "@epic-designer/scripts": "workspace:*",
     "@epic-designer/ui": "workspace:*",
     "@epic-designer/utils": "workspace:*",
+    "@epic-designer/eslint-config": "workspace:*",
     "@turbo/gen": "^2.3.3",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/test-utils": "2.4.6",
