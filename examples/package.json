@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "unocss": "^0.65.3",
     "vite": "^6.0.6",
     "vite-plugin-monaco-editor": "^1.1.0",

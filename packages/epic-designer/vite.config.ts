@@ -1,27 +1,23 @@
+import type { PluginOption } from 'vite'
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import path from "path";
+import path from "node:path";
 import dts from "vite-plugin-dts";
 import UnoCSS from "unocss/vite";
 import rollupCopy from 'rollup-plugin-copy'
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 export default defineConfig({
   plugins: [
     vue(),
-    UnoCSS(),
+    UnoCSS() as PluginOption,
     dts({
       entryRoot: "../",
       outDir: "dist",
     }),
   ],
-  resolve: {
-    alias: {
-      "@epic-designer/core": path.resolve(__dirname, "../core"),
-      "@epic-designer/ui": path.resolve(__dirname, "../ui"),
-      "@epic-designer/utils": path.resolve(__dirname, "../utils"),
-      "@epic-designer/hooks": path.resolve(__dirname, "../hooks"),
-    },
-    // dedupe: ["vue"],
-  },
   // rollup打包配置
   build: {
     outDir: "dist", // 输出文件名称
@@ -78,11 +74,11 @@ export default defineConfig({
           targets: [
             { src: '../core/theme', dest: './dist/' },
             // 新增的拷贝规则，将 epic-designer.css 拷贝为 style.css 兼容旧版本
-            // { src: './dist/epic-designer.css', dest: './dist/', rename: 'style.css' }
+            { src: './dist/epic-designer.css', dest: './dist/', rename: 'style.css' }
           ], // 路径
           hook: 'writeBundle', // 钩子，插件运行在rollup完成打包并将文件写入磁盘之前
           verbose: true // 在终端进行console.log
-        })
+        }) as PluginOption
       ]
     },
     commonjsOptions: {
