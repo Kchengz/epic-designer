@@ -10,8 +10,5 @@
     "element-plus": "^2.9.1",
     "naive-ui": "^2.40.4",
     "vite-plugin-dts": "^4.4.0"
-  },
-  "dependencies": {
-    "dayjs": "^1.11.13"
   }
 }

@@ -39,7 +39,6 @@
   },
   "peerDependencies": {
     "ant-design-vue": ">=3.2.20",
-    "dayjs": ">=1.0.0",
     "element-plus": ">=2.6.0",
     "epic-designer": ">=0.9.3",
     "monaco-editor": ">=0.48.0",
@@ -51,6 +50,7 @@
     "@unocss/preset-rem-to-px": "^0.65.3",
     "rollup-plugin-copy": "^3.5.0",
     "unocss": "^0.65.3",
+    "rollup-plugin-node-externals": "^8.0.0",
     "vitest": "^2.1.8",
     "vue-tsc": "^2.2.0"
   }
