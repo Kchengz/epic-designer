@@ -10,6 +10,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "strict": true,
     "lib": ["ESNext", "DOM"],
     "strictNullChecks": true,
     "skipLibCheck": true

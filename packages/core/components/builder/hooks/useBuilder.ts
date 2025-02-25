@@ -1,5 +1,7 @@
 import { ref, watch } from 'vue';
+
 import { deepClone, usePageManager } from '@epic-designer/utils';
+
 import { FormDataModel } from '../../../types/epic-designer';
 
 export function useBuilder() {
@@ -39,7 +41,10 @@ export function useBuilder() {
    * @param {string} formName 表单名称
    * @param {Function} action 处理函数
    */
-  async function handleFormData(formName: string, action: (form: any) => Promise<FormDataModel>) {
+  async function handleFormData(
+    formName: string,
+    action: (form: any) => Promise<FormDataModel>,
+  ) {
     const form = await getFormInstance(formName);
     return deepClone(await action(form));
   }
@@ -49,7 +54,7 @@ export function useBuilder() {
    * @param {string} formName 表单名称
    */
   async function getData(formName = 'default'): Promise<FormDataModel> {
-    return await handleFormData(formName, form => form.getData());
+    return await handleFormData(formName, (form) => form.getData());
   }
 
   /**
@@ -68,7 +73,7 @@ export function useBuilder() {
    * @param {string} formName 表单名称
    */
   async function validate(formName = 'default'): Promise<FormDataModel> {
-    return await handleFormData(formName, async form => {
+    return await handleFormData(formName, async (form) => {
       await form.validate();
       return await form.getData();
     });
@@ -78,7 +83,9 @@ export function useBuilder() {
    * 处理所有表单数据
    * @param {Function} action 处理函数
    */
-  async function handleAllFormsData(action: (form: any) => Promise<FormDataModel>) {
+  async function handleAllFormsData(
+    action: (form: any) => Promise<FormDataModel>,
+  ) {
     await waitReady();
     const data: Record<string, FormDataModel> = {};
     for (const formName in forms.value) {
@@ -94,7 +101,7 @@ export function useBuilder() {
    * 获取所有表单数据
    */
   async function getForms(): Promise<Record<string, FormDataModel>> {
-    return await handleAllFormsData(form => form.getData());
+    return await handleAllFormsData((form) => form.getData());
   }
 
   /**
@@ -103,7 +110,7 @@ export function useBuilder() {
    */
   function setForms(data: Record<string, FormDataModel>) {
     for (const formName in data) {
-      setData(data[formName], formName)
+      setData(data[formName], formName);
     }
   }
 
@@ -111,22 +118,22 @@ export function useBuilder() {
    * 验证所有表单并获取数据
    */
   async function validateAll(): Promise<Record<string, FormDataModel>> {
-    return await handleAllFormsData(async form => {
+    return await handleAllFormsData(async (form) => {
       await form.validate();
       return await form.getData();
     });
   }
 
   return {
-    ready,
-    pageManager,
     forms,
     getData,
-    setData,
-    validate,
-    getForms,
-    setForms,
-    validateAll,
     getFormInstance,
+    getForms,
+    pageManager,
+    ready,
+    setData,
+    setForms,
+    validate,
+    validateAll,
   };
 }

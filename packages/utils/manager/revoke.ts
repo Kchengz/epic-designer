@@ -1,5 +1,5 @@
 import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
-import { ref, type Ref } from 'vue'
+import { ref } from 'vue'
 
 /**
 历史记录模型

@@ -13,6 +13,8 @@ describe('useRevoke', () => {
       push(mockSchema2, '插入组件')
       // 断言 recordList 中应包含一条记录
       expect(recordList.value).toHaveLength(1)
+
+      // 未通过测试
       expect(recordList.value[0].type).toBe('component1')
       expect(JSON.parse(recordList.value[0].componentSchema)).toEqual(mockSchema1)
       // 断言 undoList 应为空

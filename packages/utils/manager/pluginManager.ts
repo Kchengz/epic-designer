@@ -1,18 +1,25 @@
 import { type ComponentSchema } from "@epic-designer/core/types/epic-designer";
 import { loadAsyncComponent } from "../common";
+import type { Component, AsyncComponentLoader } from "vue";
 import { ref, shallowRef, type ShallowRef } from "vue";
+
+// 定义 ComponentType 类型
+export type ComponentType = Component | AsyncComponentLoader | string;
+
+type Atrr = "title" | "id";
+
 export interface ActivitybarModel {
   id: string;
   title: string;
   icon: string;
-  component: any;
+  component: ComponentType;
   visible?: boolean;
 }
 
 export interface RightSidebarModel {
   id: string;
   title: string;
-  component: any;
+  component: ComponentType;
   visible?: boolean;
 }
 
@@ -21,7 +28,7 @@ export interface ViewsContainersModel {
   rightSidebars: ShallowRef<RightSidebarModel[]>;
 }
 
-export type Components = Record<string, any>;
+export type Components = Record<string, ComponentType>;
 
 export interface EventModel {
   type: string;
@@ -30,7 +37,7 @@ export interface EventModel {
 
 export interface ActionModel extends EventModel {
   argsConfigs?: ComponentSchema[];
-  args?: any[];
+  args?: unknown[];
 }
 
 export interface EditConstraintsModel {
@@ -44,7 +51,7 @@ export interface EditConstraintsModel {
 
 export interface ComponentConfigModel {
   // 组件
-  component: any;
+  component: ComponentType;
   // 分组名称（组件分组），不设置分组时仅注册，但不会显示在组件列表中，可选
   groupName?: string;
   // 组件图标
@@ -76,8 +83,8 @@ export interface PublicMethodModel {
   describe?: string;
   methodName?: string;
   name: string;
-  method?: (...args) => any;
-  handler: (...args) => any;
+  method?: Function;
+  handler: Function;
 }
 
 export type PublicMethodsModel = Record<string, PublicMethodModel>;
@@ -164,9 +171,9 @@ export class PluginManager {
    * @param componentType 组件类型
    * @param component 组件
    */
-  component(componentType: string, component: any): void {
+  component(componentType: string, component: ComponentType): void {
     if (typeof component === "function") {
-      component = loadAsyncComponent(component);
+      component = loadAsyncComponent(component as AsyncComponentLoader);
     }
     // 注册组件
     this.components[componentType] = component;
@@ -191,24 +198,22 @@ export class PluginManager {
 
       // 补充组件可用方法
       componentConfig.config.action.unshift(
-        ...[
-          {
-            type: "setValue",
-            describe: "设置值",
-            // 参数配置
-            argsConfigs: [
-              {
-                ...componentConfig.defaultSchema,
-                label: "设置数据",
-                field: "0",
-              },
-            ],
-          },
-          {
-            type: "getValue",
-            describe: "获取值",
-          },
-        ]
+        {
+          type: "setValue",
+          describe: "设置值",
+          // 参数配置
+          argsConfigs: [
+            {
+              ...componentConfig.defaultSchema,
+              label: "设置数据",
+              field: "0",
+            },
+          ],
+        },
+        {
+          type: "getValue",
+          describe: "获取值",
+        }
       );
     }
 
@@ -268,7 +273,7 @@ export class PluginManager {
    * 通过type 查询相应的组件
    * @returns components
    */
-  getComponent(type: string): any {
+  getComponent(type: string) {
     return this.components[type];
   }
 
@@ -280,11 +285,13 @@ export class PluginManager {
   registerActivitybar(activitybar: ActivitybarModel): void {
     // 如果组件是一个函数，则异步加载该组件
     if (typeof activitybar.component === "function") {
-      activitybar.component = loadAsyncComponent(activitybar.component);
+      activitybar.component = loadAsyncComponent(
+        activitybar.component as AsyncComponentLoader
+      );
     }
 
     // 默认visible为true
-    if (typeof activitybar.visible === "undefined") {
+    if (activitybar.visible === undefined) {
       activitybar.visible = true;
     }
 
@@ -294,11 +301,11 @@ export class PluginManager {
     );
 
     // 如果找到相同 id 的活动栏，则更新该活动栏模型
-    if (index !== -1) {
-      this.viewsContainers.activitybars.value[index] = activitybar;
-    } else {
+    if (index === -1) {
       // 否则将新的活动栏模型添加到活动栏列表中
       this.viewsContainers.activitybars.value.push(activitybar);
+    } else {
+      this.viewsContainers.activitybars.value[index] = activitybar;
     }
   }
 
@@ -313,9 +320,9 @@ export class PluginManager {
   /**
    * 隐藏活动栏
    * @param value 属性
-   * @param attr 查询字段 默认值 title
+   * @param attr 匹配字段 title | id 默认值 title
    */
-  hideActivitybar(value: string, attr = "title") {
+  hideActivitybar(value: string, attr: "title" | "id" = "title") {
     // 查找具有指定属性和值的活动栏的索引
     const index = this.viewsContainers.activitybars.value.findIndex(
       (rightSidebar) => rightSidebar[attr] === value
@@ -330,9 +337,9 @@ export class PluginManager {
   /**
    * 显示活动栏
    * @param value 属性
-   * @param attr 查询字段 默认值 title
+   * @param attr 匹配字段 title | id 默认值 title
    */
-  showActivitybar(value: string, attr = "title") {
+  showActivitybar(value: string, attr: "title" | "id" = "title") {
     // 查找具有指定属性和值的活动栏的索引
     const index = this.viewsContainers.activitybars.value.findIndex(
       (rightSidebar) => rightSidebar[attr] === value
@@ -350,11 +357,13 @@ export class PluginManager {
    */
   registerRightSidebar(rightSidebar: RightSidebarModel): void {
     if (typeof rightSidebar.component === "function") {
-      rightSidebar.component = loadAsyncComponent(rightSidebar.component);
+      rightSidebar.component = loadAsyncComponent(
+        rightSidebar.component as AsyncComponentLoader
+      );
     }
 
     // 默认visible为true
-    if (typeof rightSidebar.visible === "undefined") {
+    if (rightSidebar.visible === undefined) {
       rightSidebar.visible = true;
     }
 
@@ -362,10 +371,10 @@ export class PluginManager {
       (sidebar) => sidebar.id === rightSidebar.id
     );
 
-    if (index !== -1) {
-      this.viewsContainers.rightSidebars.value[index] = rightSidebar;
-    } else {
+    if (index === -1) {
       this.viewsContainers.rightSidebars.value.push(rightSidebar);
+    } else {
+      this.viewsContainers.rightSidebars.value[index] = rightSidebar;
     }
   }
 
@@ -382,7 +391,7 @@ export class PluginManager {
    * @param value 属性
    * @param attr 查询字段 默认值 title
    */
-  hideRightSidebar(value: string, attr = "title") {
+  hideRightSidebar(value: string, attr: Atrr = "title") {
     // 查找具有指定属性和值的右侧边栏的索引
     const index = this.viewsContainers.rightSidebars.value.findIndex(
       (rightSidebar) => rightSidebar[attr] === value
@@ -400,7 +409,7 @@ export class PluginManager {
    * @param value 属性
    * @param attr 查询字段 默认值 title
    */
-  showRightSidebar(value: string, attr = "title") {
+  showRightSidebar(value: string, attr: Atrr = "title") {
     // 查找具有指定属性和值的右侧边栏的索引
     const index = this.viewsContainers.rightSidebars.value.findIndex(
       (rightSidebar) => rightSidebar[attr] === value
@@ -473,14 +482,14 @@ export class PluginManager {
         );
 
         // 如果找到相同类型的组件，则更新该组件结构数据
-        if (componentIndex !== -1) {
-          componentSchemaGroups[groupIndex].list[componentIndex] =
-            componentConfig.defaultSchema;
-        } else {
+        if (componentIndex === -1) {
           // 否则将新的组件结构数据添加到相应的分组中
           componentSchemaGroups[groupIndex].list.push(
             componentConfig.defaultSchema
           );
+        } else {
+          componentSchemaGroups[groupIndex].list[componentIndex] =
+            componentConfig.defaultSchema;
         }
       }
     });

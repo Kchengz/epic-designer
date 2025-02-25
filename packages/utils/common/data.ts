@@ -5,15 +5,16 @@ import {
 import { getUUID } from "./string";
 import { pluginManager } from "../index";
 
+
 /**
  * 深拷贝数据
  * @param obj
  * @returns
  */
-export function deepClone(
-  obj: any,
+export function deepClone<T extends Record<string, unknown> | unknown[]>(
+  obj: T,
   cache = new WeakMap()
-): any {
+): T {
   // 如果不是对象或数组，则直接返回
   if (typeof obj !== "object" || obj === null) {
     return obj;
@@ -26,20 +27,19 @@ export function deepClone(
 
   // 处理数组
   if (Array.isArray(obj)) {
-    const clonedArray = obj.map((item: any) => deepClone(item, cache));
+    const clonedArray = obj.map((item) => deepClone(item as T, cache)) as T;
     cache.set(obj, clonedArray);
     return clonedArray;
   }
 
   // 处理对象
-  const clonedObj = {} as any;
+  const clonedObj = {} as Record<string, unknown>;
   cache.set(obj, clonedObj);
   Object.keys(obj).forEach((key) => {
-    clonedObj[key] = deepClone(obj[key], cache);
+    clonedObj[key] = deepClone(obj[key] as T, cache);
   });
-  return clonedObj;
+  return clonedObj as T;
 }
-
 /**
  * 生成新的schema数据
  * 深拷贝数据,防止重复引用
@@ -77,8 +77,8 @@ export function generateNewSchema(schema: ComponentSchema) {
  * @param shouldDelete - 如果为true，则删除obj2中不存在的obj1的属性。
  */
 export function deepCompareAndModify(
-  obj1: Record<string, any>,
-  obj2: Record<string, any>,
+  obj1: Record<string, unknown>,
+  obj2: Record<string, unknown>,
   shouldDelete: boolean = true
 ): void {
   // 循环遍历obj2的所有属性
@@ -92,7 +92,7 @@ export function deepCompareAndModify(
         obj1[key] = []
       }
       // 递归比较
-      deepCompareAndModify(obj1[key], val2, shouldDelete);
+      deepCompareAndModify(obj1[key] as Record<string, unknown>, val2 as Record<string, unknown>, shouldDelete);
     } else {
       // 如果属性值不相等，则将obj2的属性值复制给obj1
       obj1[key] = val2;
@@ -102,7 +102,7 @@ export function deepCompareAndModify(
   if (shouldDelete) {
     Object.keys(obj1).reverse().forEach((key) => {
       // 如果obj2中存在obj1的属性跳过
-      if (obj2.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(obj2,key)) {
         return;
       }
       // 如果obj2中没有obj1的属性，则从obj1中删除该属性
@@ -117,12 +117,7 @@ export function deepCompareAndModify(
   }
 }
 
-/**
- * 深度比较两个对象是否相等
- * @param obj1
- * @param obj2
- * @returns
- */
+
 /**
  * 深度比较两个对象是否相等
  * @param obj1
@@ -131,12 +126,12 @@ export function deepCompareAndModify(
  * @returns
  */
 export function deepEqual(
-  obj1: Record<string, any>,
-  obj2: Record<string, any>,
+  obj1: Record<string, unknown>,
+  obj2: Record<string, unknown>,
   ignoreKeys: string[] = [],
   visitedObjs = new WeakMap()
 ): boolean {
-  const normalize = (obj: any): any => {
+  const normalize = (obj: unknown): unknown => {
     // 如果是数组类型，则递归调用 normalize 函数对每个元素进行标准化处理
     if (Array.isArray(obj)) {
       return obj.map(normalize);
@@ -151,11 +146,11 @@ export function deepEqual(
       visitedObjs.set(obj, true);
 
       const keys = Object.keys(obj).sort();
-      const normalizedObj: Record<string, any> = {};
+      const normalizedObj: Record<string, unknown> = {};
       keys.forEach((key) => {
         if (!ignoreKeys.includes(key)) {
           // 如果该属性不在忽略列表中
-          normalizedObj[key] = normalize(obj[key]);
+          normalizedObj[key] = normalize((obj as Record<string, unknown>)[key]);
         }
       });
 
@@ -229,18 +224,20 @@ export function getMatchedById(
  * @param defaultValue - 如果路径不存在，返回的默认值
  * @returns 通过路径获取的值
  */
-export function getValueByPath(object: Record<string, any>, path: string, defaultValue?: any): any {
+export function getValueByPath(object: Record<string, unknown>, path: string, defaultValue?: unknown) {
   // 将路径字符串拆分为数组
   const pathArray = path.split('.');
 
   // 逐步从对象中提取值
-  let result = object;
-  for (let i = 0; i < pathArray.length; i++) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let result:any = object;
+  for (const element of pathArray) {
     if (result == null) {
       // 如果中间的值为 null 或 undefined，返回默认值
       return defaultValue;
     }
-    result = result[pathArray[i]];
+   
+    result = result[element];
   }
 
   // 如果最终的值为 undefined，返回默认值
@@ -254,12 +251,17 @@ export function getValueByPath(object: Record<string, any>, path: string, defaul
  * @param value - 要设置的值
  * @returns 修改后的对象
  */
-export function setValueByPath(object: Record<string, any>, path: string, value: any): Record<string, any> {
+export function setValueByPath(
+  object: Record<string, unknown>,
+  path: string,
+  value: unknown
+) {
   // 将路径字符串拆分为数组
-  const pathArray = path.replace(/\[(\d+)\]/g, '.$1').split('.').filter(Boolean);
+  const pathArray = path.replaceAll(/\[(\d+)\]/g, '.$1').split('.').filter(Boolean);
 
   // 逐步设置对象中的值
-  let current = object;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let current:any = object;
 
   for (let i = 0; i < pathArray.length - 1; i++) {
     const key = pathArray[i];
@@ -267,7 +269,7 @@ export function setValueByPath(object: Record<string, any>, path: string, value:
     // 如果当前对象的属性不存在，则创建一个新对象或数组
     if (current[key] == null) {
       // 如果路径部分是数字，创建数组；否则，创建对象
-      current[key] = isNaN(Number(pathArray[i + 1])) ? {} : [];
+      current[key] = Number.isNaN(Number(pathArray[i + 1])) ? {} : [];
     }
 
     current = current[key];
@@ -346,7 +348,7 @@ export function findSchemas(
 
   const nodesToVisit: ComponentSchema[] = [...schemas];
 
-  while (nodesToVisit.length) {
+  while (nodesToVisit.length > 0) {
     const currentNode = nodesToVisit.pop() as ComponentSchema;
 
     // 检查默认子节点
@@ -391,7 +393,7 @@ export function mapSchemas(
 ) {
   const nodesToVisit: ComponentSchema[] = [...schemas];
 
-  while (nodesToVisit.length) {
+  while (nodesToVisit.length > 0) {
     const currentNode = nodesToVisit.pop() as ComponentSchema;
 
     // 检查默认子节点
@@ -421,7 +423,6 @@ export function findSchemaById(
   schemas: ComponentSchema[],
   id: string
 ): ComponentSchema {
-  const index: number = 0;
 
   // 查询节点
   const schema = findSchemas(
@@ -468,8 +469,8 @@ export function findSchemaInfoById(
         if (currentNode?.slots) {
           for (const key in currentNode.slots) {
             children = currentNode.slots[key] as ComponentSchema[];
-            for (let i = 0; i < children.length; i++) {
-              if (children[i].id === id) {
+            for (const [i, child] of children.entries()) {
+              if (child.id === id) {
                 index = i;
                 return true;
               }
@@ -479,8 +480,8 @@ export function findSchemaInfoById(
         return false;
       }
 
-      for (let i = 0; i < children.length; i++) {
-        if (children[i].id === id) {
+      for (const [i, child] of children.entries()) {
+        if (child.id === id) {
           index = i;
           return true;
         }
@@ -510,7 +511,11 @@ export function findSchemaInfoById(
  * @returns
  */
 
-export function convertKFormData(data) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function convertKFormData(data:any) {
+  if(!data.config){
+    data.config = {}
+  }
   const convertedData: PageSchema = {
     schemas: [
       {
@@ -557,22 +562,38 @@ export function convertKFormData(data) {
   return convertedData;
 }
 
+// 定义节点的类型
+interface OriginalNode {
+  type?: string;
+  options?: Record<string, unknown>;
+  label?: string;
+  icon?: string;
+  model?: string;
+  key?: string;
+  list?: OriginalNode[];
+  columns?: OriginalNode[];
+  trs?: OriginalNode[];
+  tds?: OriginalNode[];
+  rules?: { required: boolean }[];
+  span?: number;
+}
+
 /**
  * 递归转换子节点
  * @param children
  */
 export function recursionConvertedNode(
-  children: any,
-  parent?: any
+  children: OriginalNode[],
+  parent?: OriginalNode
 ): ComponentSchema[] {
-  return children.map((item: any) => {
+  return children.map((item) => {
     let type = item.type ?? "";
-    const componentProps = item.options ?? {};
+    const componentProps = item.options ?? {} as Record<string, unknown>;
 
     const handleUploadComponent = (uploadType: string, replacement: string) => {
       if (type === uploadType) {
         type = replacement;
-        if (componentProps.defaultValue) {
+        if (typeof componentProps.defaultValue === "string") {
           componentProps.defaultValue = JSON.parse(componentProps.defaultValue);
         }
       }
@@ -663,7 +684,7 @@ export function recursionConvertedNode(
       if (item.rules?.[0]?.required === false) {
         item.rules.shift();
       }
-      if (item.rules?.length > 0) {
+      if (item.rules && item.rules.length > 0) {
         newItem.rules = item.rules;
       }
     }

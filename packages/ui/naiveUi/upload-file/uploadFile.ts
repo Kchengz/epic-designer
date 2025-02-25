@@ -1,7 +1,7 @@
 import { type PropType, defineComponent, h, nextTick, ref, watch } from 'vue'
 import { NUpload, NButton } from 'naive-ui'
-import type { UploadFileInfo } from 'naive-ui'
-import { type OnFinish, type OnError } from 'naive-ui/es/upload/src/interface'
+import type { UploadFileInfo, UploadOnFinish } from 'naive-ui'
+import type {  OnError } from 'naive-ui/es/upload/src/interface'
 
 export default defineComponent({
   props: {
@@ -37,10 +37,10 @@ export default defineComponent({
     const handleError: OnError = ({ file, event }) => {
       console.log('OnError called->', file, event)
     }
-    const handleSuccess: OnFinish = ({ file, event }) => {
+    const handleSuccess: UploadOnFinish = ({ file, event }) => {
       console.log('OnFinish called->', file, event)
-      const resInfo = event?.target as any
-      const resData = JSON.parse(resInfo.response ?? '{}')
+      const resInfo = event?.target as XMLHttpRequest
+      const resData = JSON.parse(resInfo?.response ?? '{}')
       file.url = resData.data?.url
     }
 

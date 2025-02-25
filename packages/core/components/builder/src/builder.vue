@@ -27,6 +27,8 @@
 </template>
 
 <script lang="ts" setup>
+import type { PageManager } from '@epic-designer/utils'
+import type { PageSchema, FormDataModel } from "../../../types/epic-designer";
 import ENode from "../../node";
 import {
   provide,
@@ -36,7 +38,6 @@ import {
   computed,
   nextTick,
 } from "vue";
-import { PageSchema, FormDataModel } from "../../../types/epic-designer";
 import {
   loadAsyncComponent,
   deepCompareAndModify,
@@ -49,7 +50,7 @@ const EAsyncLoader = loadAsyncComponent(() => import("../../asyncLoader/index.vu
 
 // 定义事件
 const emit = defineEmits<{
-  ready: any;
+  ready: PageManager;
 }>();
 
 // 使用 hooks 获取表单相关方法和状态

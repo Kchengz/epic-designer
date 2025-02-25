@@ -3,17 +3,16 @@ import {
     type AsyncComponentLoader,
     type Component,
   } from "vue";
-  
-  
+
   /**
    * * 异步加载组件
    * @param loader
    * @returns
    */
   export const loadAsyncComponent = (
-    loader: AsyncComponentLoader<any>,
+    loader: AsyncComponentLoader,
     loadingComponent?: Component
-  ): any =>
+  ) =>
     defineAsyncComponent({
       loader,
       loadingComponent,
