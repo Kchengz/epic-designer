@@ -1,51 +1,51 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component: () => import("./card"),
-  groupName: "布局",
-  icon: "icon--epic--wysiwyg-rounded",
-  sort: 700,
-  defaultSchema: {
-    label: "卡片布局",
-    type: "card",
-    children: [],
-    componentProps: {
-    },
-  },
+  component: () => import('./card'),
   config: {
     attribute: [
       {
-        label: "标题",
-        type: "input",
-        field: "label",
+        field: 'label',
+        label: '标题',
+        type: 'input',
       },
       {
-        label: "阴影时机",
-        type: "select",
         componentProps: {
+          clearable: true,
           options: [
             {
-              label: "always",
-              value: "always",
+              label: 'always',
+              value: 'always',
             },
             {
-              label: "hover",
-              value: "hover",
+              label: 'hover',
+              value: 'hover',
             },
             {
-              label: "never",
-              value: "never",
+              label: 'never',
+              value: 'never',
             },
           ],
-          placeholder: "请选择",
-          clearable: true,
+          placeholder: '请选择',
         },
-        field: "componentProps.shadow",
+        field: 'componentProps.shadow',
+        label: '阴影时机',
+        type: 'select',
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        field: 'componentProps.hidden',
+        label: '隐藏',
+        type: 'switch',
       },
     ],
   },
+  defaultSchema: {
+    componentProps: {},
+    label: '卡片布局',
+    type: 'card',
+    children: [],
+  },
+  groupName: '布局',
+  icon: 'icon--epic--wysiwyg-rounded',
+  sort: 700,
 } as ComponentConfigModel;

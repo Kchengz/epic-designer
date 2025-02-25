@@ -5,7 +5,7 @@
 export function getUUID(randomLength = 10): string {
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
   let uuid = '';
-  
+
   for (let i = 0; i < randomLength; i++) {
     const randomIndex = Math.floor(Math.random() * characters.length);
     uuid += characters[randomIndex];

@@ -1,22 +1,22 @@
 {
   "name": "@epic-designer/eslint-config",
   "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "stub": "pnpm unbuild --stub"
+  },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "type": "module",
-  "license": "MIT",
-  "scripts": {
-    "stub": "pnpm unbuild --stub"
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "eslint-config-turbo": "^2.4.3",
     "eslint-plugin-command": "^3.1.0",
     "eslint-plugin-import-x": "^4.6.1",
     "typescript-eslint": "^8.24.0"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

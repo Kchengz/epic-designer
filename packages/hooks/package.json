@@ -2,6 +2,6 @@
   "name": "@epic-designer/hooks",
   "version": "0.9.30",
   "description": "epic-designer hooks",
-  "main": "index.ts",
-  "author": "kchengz"
+  "author": "kchengz",
+  "main": "index.ts"
 }

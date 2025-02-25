@@ -1,23 +1,23 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
 
 export default {
-  component: async () => await import("./index.vue"),
-  defaultSchema: {
-    label: "页面",
-    type: "page",
-    componentProps: {},
-    children: [],
-  },
+  component: async () => await import('./index.vue'),
   config: {
     attribute: [
       {
-        label: "页面名称",
-        type: "input",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
-        field: "componentProps.name",
+        field: 'componentProps.name',
+        label: '页面名称',
+        type: 'input',
       },
     ],
+  },
+  defaultSchema: {
+    componentProps: {},
+    label: '页面',
+    type: 'page',
+    children: [],
   },
 } as ComponentConfigModel;

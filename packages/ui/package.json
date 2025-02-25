@@ -2,9 +2,9 @@
   "name": "@epic-designer/ui",
   "version": "0.9.30",
   "description": "epic-designer base ui",
-  "main": "index.ts",
-  "scripts": {},
   "author": "kchengz",
+  "scripts": {},
+  "main": "index.ts",
   "devDependencies": {
     "ant-design-vue": "^4.2.6",
     "element-plus": "^2.9.1",

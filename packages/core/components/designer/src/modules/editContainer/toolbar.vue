@@ -1,179 +1,110 @@
-<template>
-  <!-- 工具条 start  -->
-  <div class="epic-edit-toolbar flex items-center justify-between px-2">
-    <!-- 操作按钮 start  -->
-    <div class="flex-1 h-full flex items-center">
-      <template
-        v-for="(action, index) in actionOptions"
-        :key="index"
-      >
-        <div
-          v-if="action.divider && isShow(action.show)"
-          class="epic-divider"
-        />
-        <div
-          v-if="isShow(action.show)"
-          :title="action.title"
-          class="epic-action-item text-base h-90% px-10px flex items-center cursor-pointer"
-          :class="{ disabled: action.disabled }"
-          @click="action.on"
-        >
-          <EIcon :name="action.icon" />
-        </div>
-      </template>
-    </div>
-    <!-- 操作按钮 end  -->
-
-    <input
-      v-show="false"
-      ref="fileRef"
-      type="file"
-      accept=".json,.txt"
-      @change="handleFileSelected"
-    >
-
-    <div class="flex-1 h-full flex items-center justify-end">
-      <!-- 缩放操作 start  -->
-      <div
-        v-if="!disabledZoom"
-        class="flex items-center ml-12px"
-      >
-        <div class="pr-8px w-82px cursor-pointer">
-          <Select
-            v-model:value="canvasScaleComuted"
-            v-model="canvasScaleComuted"
-            :options="canvasScaleOptions"
-            size="small"
-          />
-        </div>
-      </div>
-      <!-- 缩放操作 end  -->
-      <!-- 画布类型切换 start -->
-      <div class="epic-device h-28px items-center gap-1 rounded-md border p-2px flex">
-        <template
-          v-for="item in deviceOptions"
-          :key="item.key"
-        >
-          <div
-            :title="item.title"
-            class="epic-device-item h-full px-1 flex items-center cursor-pointer text-base transition-colors rounded-sm"
-            :class="{ checked: item.key === selectedKey }"
-            @click="handleSetCanvas(item.key)"
-          >
-            <EIcon :name="item.icon" />
-          </div>
-        </template>
-      </div>
-      <!-- 画布类型切换 end -->
-    </div>
-  </div>
-  <EPreviewJson ref="previewJson" />
-  <!-- 工具条 end  -->
-</template>
 <script lang="ts" setup>
+import type { Ref } from 'vue';
+
+import type { Designer, PageSchema } from '../../../../../types/epic-designer';
+
+import { computed, inject, ref } from 'vue';
+
+import { useStore } from '@epic-designer/hooks';
 import {
+  convertKFormData,
+  deepCompareAndModify,
   pluginManager,
   Revoke,
-  deepCompareAndModify,
-  convertKFormData,
-} from "@epic-designer/utils";
-import { useStore } from "@epic-designer/hooks";
-import type { PageSchema, Designer } from "../../../../../types/epic-designer";
-import { computed, inject, ref, type Ref } from "vue";
-import EIcon from "../../../../icon";
-import EPreviewJson from "./previewJson.vue";
-import { DesignerProps } from '../../types'
+} from '@epic-designer/utils';
 
-const Select = pluginManager.getComponent("select");
+import EIcon from '../../../../icon';
+import { DesignerProps } from '../../types';
+import EPreviewJson from './previewJson.vue';
+
+const Select = pluginManager.getComponent('select');
 
 const { canvasScale, disabledZoom } = useStore();
-const pageSchema = inject("pageSchema") as PageSchema;
-const designer = inject("designer") as Designer;
-const revoke = inject("revoke") as Revoke;
-const designerProps = inject("designerProps") as Ref<DesignerProps>;
+const pageSchema = inject('pageSchema') as PageSchema;
+const designer = inject('designer') as Designer;
+const revoke = inject('revoke') as Revoke;
+const designerProps = inject('designerProps') as Ref<DesignerProps>;
 const previewJson = ref<InstanceType<typeof EPreviewJson> | null>(null);
 
 const deviceOptions = [
   {
-    icon: "icon--epic--computer-outline-rounded",
-    title: "pc",
-    key: "pc",
+    icon: 'icon--epic--computer-outline-rounded',
+    key: 'pc',
+    title: 'pc',
   },
   {
-    icon: "icon--epic--tablet-android-outline-rounded",
-    title: "平板",
-    key: "pad",
+    icon: 'icon--epic--tablet-android-outline-rounded',
+    key: 'pad',
+    title: '平板',
   },
   {
-    icon: "icon--epic--phone-iphone-outline-sharp",
-    title: "手机",
-    key: "mobile",
+    icon: 'icon--epic--phone-iphone-outline-sharp',
+    key: 'mobile',
+    title: '手机',
   },
 ];
 
 const actionOptions = computed(() => {
   return [
     {
-      icon: "icon--epic--code",
-      title: "查看数据",
+      icon: 'icon--epic--code',
       on: handlePreviewJSON,
+      title: '查看数据',
     },
     {
-      icon: "icon--epic--exit-to-app-rounded",
-      title: "导入数据",
+      icon: 'icon--epic--exit-to-app-rounded',
       on: handleOpenFileSelector,
+      title: '导入数据',
     },
     {
-      icon: "icon--epic--trash",
-      title: "清空",
+      icon: 'icon--epic--trash',
       on: designer.reset,
+      title: '清空',
     },
     {
-      icon: "icon--epic--undo",
-      title: "撤销",
+      disabled: revoke.recordList.value.length === 0,
+      divider: true,
+      icon: 'icon--epic--undo',
       on: handleUndo,
-      disabled: !revoke.recordList.value.length,
-      divider: true,
+      title: '撤销',
     },
     {
-      icon: "icon--epic--redo",
-      title: "重做",
+      disabled: revoke.undoList.value.length === 0,
+      icon: 'icon--epic--redo',
       on: handleRedo,
-      disabled: !revoke.undoList.value.length,
+      title: '重做',
     },
     {
-      icon: "icon--epic--eye",
-      title: "预览",
-      show:()=>designerProps.value.hiddenHeader,
-      on: designer.preview,
       divider: true,
+      icon: 'icon--epic--eye',
+      on: designer.preview,
+      show: () => designerProps.value.hiddenHeader,
+      title: '预览',
     },
     {
-      icon: "icon--epic--save-outline-rounded",
-      title: "保存",
-      show:()=>designerProps.value.hiddenHeader,
+      icon: 'icon--epic--save-outline-rounded',
       on: designer.save,
+      show: () => designerProps.value.hiddenHeader,
+      title: '保存',
     },
   ];
 });
 
-
-
 const canvasConfigs = {
-  pc: {},
-  pad: {
-    width: "780px",
-    mode: "pad",
-  },
   mobile: {
-    width: "390px",
-    mode: "mobile",
+    mode: 'mobile',
+    width: '390px',
   },
+  pad: {
+    mode: 'pad',
+    width: '780px',
+  },
+  pc: {},
 };
 
 const selectedKey = computed({
   get() {
-    return pageSchema.canvas?.mode ?? "pc";
+    return pageSchema.canvas?.mode ?? 'pc';
   },
   set(type: string) {
     designer.handleToggleDeviceMode(type);
@@ -187,41 +118,41 @@ const canvasScaleComuted = computed({
     return `${(canvasScale.value * 100).toFixed(0)}%`;
   },
   set(value) {
-    const percentage = parseFloat(value);
+    const percentage = Number.parseFloat(value);
     canvasScale.value = percentage / 100;
   },
 });
 
 const canvasScaleOptions = [
   {
-    label: "60%",
-    value: "60%",
+    label: '60%',
+    value: '60%',
   },
   {
-    label: "80%",
-    value: "80%",
+    label: '80%',
+    value: '80%',
   },
   {
-    label: "100%",
-    value: "100%",
+    label: '100%',
+    value: '100%',
   },
   {
-    label: "120%",
-    value: "120%",
+    label: '120%',
+    value: '120%',
   },
   {
-    label: "140%",
-    value: "140%",
+    label: '140%',
+    value: '140%',
   },
 ];
 
 function isShow(show: any) {
   // show属性为function类型则执行
   if (typeof show === 'function') {
-    return show()
+    return show();
   }
 
-  return true
+  return true;
 }
 
 /**
@@ -244,7 +175,6 @@ function handleRedo() {
   designer.setCheckedNode(pageSchema.schemas[0]);
 }
 
-
 // 预览数据
 function handlePreviewJSON() {
   previewJson.value!.handleOpen();
@@ -266,9 +196,9 @@ function handleFileSelected(e) {
   // 通过json文件导入
   const reader = new FileReader();
   reader.readAsText(file);
-  reader.onload = (res) => {
+  reader.addEventListener('load', (res) => {
     handleImportData(res.target?.result as string);
-  };
+  });
 }
 
 /**
@@ -277,7 +207,7 @@ function handleFileSelected(e) {
 function handleImportData(content?: string) {
   // 导入JSON
   try {
-    let schema = JSON.parse(content ?? "");
+    let schema = JSON.parse(content ?? '');
     if (!schema.schemas) {
       // 兼容 处理kform表单数据
       schema = convertKFormData(schema);
@@ -304,3 +234,68 @@ function handleSetCanvas(type: string) {
   selectedKey.value = type;
 }
 </script>
+<template>
+  <!-- 工具条 start  -->
+  <div class="epic-edit-toolbar flex items-center justify-between px-2">
+    <!-- 操作按钮 start  -->
+    <div class="flex h-full flex-1 items-center">
+      <template v-for="(action, index) in actionOptions" :key="index">
+        <div
+          v-if="action.divider && isShow(action.show)"
+          class="epic-divider"
+        ></div>
+        <div
+          v-if="isShow(action.show)"
+          :title="action.title"
+          class="epic-action-item h-90% px-10px flex cursor-pointer items-center text-base"
+          :class="{ disabled: action.disabled }"
+          @click="action.on"
+        >
+          <EIcon :name="action.icon" />
+        </div>
+      </template>
+    </div>
+    <!-- 操作按钮 end  -->
+
+    <input
+      v-show="false"
+      ref="fileRef"
+      type="file"
+      accept=".json,.txt"
+      @change="handleFileSelected"
+    />
+
+    <div class="flex h-full flex-1 items-center justify-end">
+      <!-- 缩放操作 start  -->
+      <div v-if="!disabledZoom" class="ml-12px flex items-center">
+        <div class="pr-8px w-82px cursor-pointer">
+          <Select
+            v-model:value="canvasScaleComuted"
+            v-model="canvasScaleComuted"
+            :options="canvasScaleOptions"
+            size="small"
+          />
+        </div>
+      </div>
+      <!-- 缩放操作 end  -->
+      <!-- 画布类型切换 start -->
+      <div
+        class="epic-device h-28px p-2px flex items-center gap-1 rounded-md border"
+      >
+        <template v-for="item in deviceOptions" :key="item.key">
+          <div
+            :title="item.title"
+            class="epic-device-item flex h-full cursor-pointer items-center rounded-sm px-1 text-base transition-colors"
+            :class="{ checked: item.key === selectedKey }"
+            @click="handleSetCanvas(item.key)"
+          >
+            <EIcon :name="item.icon" />
+          </div>
+        </template>
+      </div>
+      <!-- 画布类型切换 end -->
+    </div>
+  </div>
+  <EPreviewJson ref="previewJson" />
+  <!-- 工具条 end  -->
+</template>

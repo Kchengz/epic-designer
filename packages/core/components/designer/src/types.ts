@@ -1,13 +1,13 @@
-import { PageSchema } from "../../../types/epic-designer";
+import { PageSchema } from '../../../types/epic-designer';
 
 export interface DesignerProps {
+  defaultSchema?: PageSchema;
   disabledZoom?: boolean;
   draggable?: boolean;
-  hiddenHeader?: boolean;
-  lockDefaultSchemaEdit?: boolean;
   formMode?: boolean;
-  title?: string;
-  defaultSchema?: PageSchema;
-  sourceCodeReadOnly?: boolean;
+  hiddenHeader?: boolean;
   hidePreviewConfirm?: boolean;
+  lockDefaultSchemaEdit?: boolean;
+  sourceCodeReadOnly?: boolean;
+  title?: string;
 }

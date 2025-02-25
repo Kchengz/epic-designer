@@ -1,213 +1,213 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component: async () => (await import("naive-ui/lib/date-picker")).NDatePicker,
-  groupName: "表单",
-  icon: "icon--epic--calendar-month-outline-rounded",
-  sort: 910,
-  defaultSchema: {
-    label: "日期选择器",
-    type: "date",
-    field: "date",
-    input: true,
-    componentProps: {
-      type: "date",
-      placeholder: "请选择",
-      format: "yyyy-MM-dd",
-      valueFormat: "yyyy-MM-dd",
-    },
-  },
+  bindModel: 'formatted-value',
+  component: async () => (await import('naive-ui/lib/date-picker')).NDatePicker,
   config: {
     attribute: [
       {
-        label: "字段名",
-        type: "input",
-        field: "field",
+        field: 'field',
+        label: '字段名',
+        type: 'input',
       },
       {
-        label: "标题",
-        type: "input",
-        field: "label",
+        field: 'label',
+        label: '标题',
+        type: 'input',
       },
       {
-        label: "默认值",
-        type: "date",
-        field: "componentProps.defaultValue",
+        field: 'componentProps.defaultValue',
+        label: '默认值',
+        type: 'date',
       },
       {
-        label: "尺寸",
-        type: "select",
-        field: "componentProps.size",
         componentProps: {
-          placeholder: "请选择",
           clearable: true,
           options: [
             {
-              label: "大号",
-              value: "large",
+              label: '大号',
+              value: 'large',
             },
             {
-              label: "中等",
-              value: "medium",
+              label: '中等',
+              value: 'medium',
             },
             {
-              label: "小型",
-              value: "small",
+              label: '小型',
+              value: 'small',
             },
           ],
+          placeholder: '请选择',
         },
+        field: 'componentProps.size',
+        label: '尺寸',
+        type: 'select',
       },
       {
-        label: "占位内容",
-        type: "input",
-        field: "componentProps.placeholder",
+        field: 'componentProps.placeholder',
+        label: '占位内容',
+        type: 'input',
       },
       {
-        label: "日期类型",
-        type: "select",
-        field: "componentProps.type",
         componentProps: {
           options: [
             {
-              label: "日期",
-              value: "date",
+              label: '日期',
+              value: 'date',
             },
             {
-              label: "日期时间",
-              value: "datetime",
+              label: '日期时间',
+              value: 'datetime',
             },
             {
-              label: "日期范围",
-              value: "daterange",
+              label: '日期范围',
+              value: 'daterange',
             },
             {
-              label: "时间范围",
-              value: "datetimerange",
+              label: '时间范围',
+              value: 'datetimerange',
             },
             {
-              label: "月份",
-              value: "month",
+              label: '月份',
+              value: 'month',
             },
             {
-              label: "月份范围",
-              value: "monthrange",
+              label: '月份范围',
+              value: 'monthrange',
             },
             {
-              label: "年份",
-              value: "year",
+              label: '年份',
+              value: 'year',
             },
 
             {
-              label: "季度",
-              value: "quarter",
+              label: '季度',
+              value: 'quarter',
             },
             {
-              label: "周",
-              value: "week",
+              label: '周',
+              value: 'week',
             },
           ],
         },
-        onChange({ values, value }) {
+        field: 'componentProps.type',
+        label: '日期类型',
+        onChange({ value, values }) {
           values.componentProps.defaultValue = null;
-          console.log(value);
-          if (["date", "daterange", "dates"].includes(value)) {
-            values.componentProps.format = "yyyy-MM-dd";
-            values.componentProps.valueFormat = "yyyy-MM-dd";
-          } else if (["week"].includes(value)) {
+          if (['date', 'daterange', 'dates'].includes(value)) {
+            values.componentProps.format = 'yyyy-MM-dd';
+            values.componentProps.valueFormat = 'yyyy-MM-dd';
+          } else if (['week'].includes(value)) {
             values.componentProps.format = null;
-            values.componentProps.valueFormat = "yyyy-MM-dd";
-          } else if (["quarter"].includes(value)) {
+            values.componentProps.valueFormat = 'yyyy-MM-dd';
+          } else if (['quarter'].includes(value)) {
             values.componentProps.format = null;
-            values.componentProps.valueFormat = "yyyy-MM-dd";
-          } else if (["month", "monthrange"].includes(value)) {
-            values.componentProps.format = "yyyy-MM";
-            values.componentProps.valueFormat = "yyyy-MM";
-          } else if (["datetime", "datetimerange"].includes(value)) {
-            values.componentProps.format = "yyyy-MM-dd HH:mm:ss";
-            values.componentProps.valueFormat = "yyyy-MM-dd HH:mm:ss";
-          } else if (["year"].includes(value)) {
-            values.componentProps.format = "yyyy";
-            values.componentProps.valueFormat = "yyyy";
+            values.componentProps.valueFormat = 'yyyy-MM-dd';
+          } else if (['month', 'monthrange'].includes(value)) {
+            values.componentProps.format = 'yyyy-MM';
+            values.componentProps.valueFormat = 'yyyy-MM';
+          } else if (['datetime', 'datetimerange'].includes(value)) {
+            values.componentProps.format = 'yyyy-MM-dd HH:mm:ss';
+            values.componentProps.valueFormat = 'yyyy-MM-dd HH:mm:ss';
+          } else if (['year'].includes(value)) {
+            values.componentProps.format = 'yyyy';
+            values.componentProps.valueFormat = 'yyyy';
           }
         },
+        type: 'select',
       },
       {
-        label: "显示格式",
-        type: "input",
-        field: "componentProps.format",
+        field: 'componentProps.format',
+        label: '显示格式',
+        type: 'input',
       },
       {
-        label: "数据格式",
-        type: "input",
-        field: "componentProps.valueFormat",
+        field: 'componentProps.valueFormat',
+        label: '数据格式',
+        type: 'input',
       },
       {
-        label: "分割符",
-        type: "input",
-        field: "componentProps.separator",
         componentProps: {
-          placeholder: "请输入",
           clearable: true,
+          placeholder: '请输入',
         },
+        field: 'componentProps.separator',
+        label: '分割符',
         show: ({ values }) =>
-          ["daterange", "datetimerange", "monthrange"].includes(
-            values.componentProps.type
+          ['daterange', 'datetimerange', 'monthrange'].includes(
+            values.componentProps.type,
           ),
+        type: 'input',
       },
       {
-        label: "start框占位符",
-        type: "input",
-        field: "componentProps.startPlaceholder",
         componentProps: {
-          placeholder: "请输入",
           clearable: true,
+          placeholder: '请输入',
         },
+        field: 'componentProps.startPlaceholder',
+        label: 'start框占位符',
         show: ({ values }) =>
-          ["daterange", "datetimerange", "monthrange"].includes(
-            values.componentProps.type
+          ['daterange', 'datetimerange', 'monthrange'].includes(
+            values.componentProps.type,
           ),
+        type: 'input',
       },
       {
-        label: "end框占位符",
-        type: "input",
-        field: "componentProps.endPlaceholder",
         componentProps: {
-          placeholder: "请输入",
           clearable: true,
+          placeholder: '请输入',
         },
+        field: 'componentProps.endPlaceholder',
+        label: 'end框占位符',
         show: ({ values }) =>
-          ["daterange", "datetimerange", "monthrange"].includes(
-            values.componentProps.type
+          ['daterange', 'datetimerange', 'monthrange'].includes(
+            values.componentProps.type,
           ),
+        type: 'input',
       },
       {
-        label: "可清空",
-        type: "switch",
-        field: "componentProps.clearable",
+        field: 'componentProps.clearable',
+        label: '可清空',
+        type: 'switch',
       },
       {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled",
+        field: 'componentProps.disabled',
+        label: '禁用',
+        type: 'switch',
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        field: 'componentProps.hidden',
+        label: '隐藏',
+        type: 'switch',
       },
       {
-        label: "表单校验",
-        type: "ERuleEditor",
-        layout: "vertical",
-        field: "rules",
-        describe: "校验规则需要配合表单使用",
+        describe: '校验规则需要配合表单使用',
+        field: 'rules',
+        label: '表单校验',
+        layout: 'vertical',
+        type: 'ERuleEditor',
       },
     ],
     event: [
       {
-        type: "change",
-        describe: "值变化时",
+        describe: '值变化时',
+        type: 'change',
       },
     ],
   },
-  bindModel: "formatted-value",
+  defaultSchema: {
+    componentProps: {
+      format: 'yyyy-MM-dd',
+      placeholder: '请选择',
+      type: 'date',
+      valueFormat: 'yyyy-MM-dd',
+    },
+    field: 'date',
+    input: true,
+    label: '日期选择器',
+    type: 'date',
+  },
+  groupName: '表单',
+  icon: 'icon--epic--calendar-month-outline-rounded',
+  sort: 910,
 } as ComponentConfigModel;

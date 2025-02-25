@@ -1,122 +1,123 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component: () => import("./radio"),
-  groupName: "表单",
-  icon: "icon--epic--radio-button-checked-outline",
-  sort: 850,
-  defaultSchema: {
-    label: "单选框",
-    type: "radio",
-    field: "radio",
-    input: true,
-    componentProps: {
-      options: [
-        {
-          label: "选项1",
-          value: "选项1",
-        },
-        {
-          label: "选项2",
-          value: "选项2",
-        },
-      ],
-      size: "default",
-    },
-  },
+  component: () => import('./radio'),
   config: {
     attribute: [
       {
-        label: "字段名",
-        type: "input",
-        field: "field",
+        field: 'field',
+        label: '字段名',
+        type: 'input',
       },
       {
-        label: "标题",
-        type: "input",
-        field: "label",
+        field: 'label',
+        label: '标题',
+        type: 'input',
       },
       {
-        label: "默认值",
-        type: "radio",
-        field: "componentProps.defaultValue",
+        field: 'componentProps.defaultValue',
+        label: '默认值',
+        type: 'radio',
       },
       {
-        label: "尺寸",
-        type: "select",
         componentProps: {
-          placeholder: "请选择",
           clearable: true,
           options: [
             {
-              label: "大号",
-              value: "large",
+              label: '大号',
+              value: 'large',
             },
             {
-              label: "中等",
-              value: "default",
+              label: '中等',
+              value: 'default',
             },
             {
-              label: "小型",
-              value: "small",
+              label: '小型',
+              value: 'small',
             },
           ],
+          placeholder: '请选择',
         },
-        field: "componentProps.size",
+        field: 'componentProps.size',
+        label: '尺寸',
+        type: 'select',
       },
       {
-        label: "按钮模式",
-        type: "switch",
-        field: "componentProps.radioButton",
+        field: 'componentProps.radioButton',
+        label: '按钮模式',
+        type: 'switch',
       },
       {
-        label: "选项文本颜色",
-        type: "color-picker",
-        layout: "horizontal",
-        field: "componentProps.textColor",
+        describe: '按钮模式下生效',
+        field: 'componentProps.textColor',
+        label: '选项文本颜色',
+        layout: 'horizontal',
         show: ({ values }) => {
           return values.componentProps.radioButton;
         },
-        describe: "按钮模式下生效",
+        type: 'color-picker',
       },
       {
-        label: "选项按钮颜色",
-        type: "color-picker",
-        layout: "horizontal",
-        field: "componentProps.fill",
+        describe: '按钮模式下生效',
+        field: 'componentProps.fill',
+        label: '选项按钮颜色',
+        layout: 'horizontal',
         show: ({ values }) => {
           return values.componentProps.radioButton;
         },
-        describe: "按钮模式下生效",
+        type: 'color-picker',
       },
       {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled",
+        field: 'componentProps.disabled',
+        label: '禁用',
+        type: 'switch',
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        field: 'componentProps.hidden',
+        label: '隐藏',
+        type: 'switch',
       },
       {
-        label: "选项管理",
-        type: "EOptionsEditor",
-        layout: "vertical",
-        field: "componentProps.options",
+        field: 'componentProps.options',
+        label: '选项管理',
+        layout: 'vertical',
+        type: 'EOptionsEditor',
       },
       {
-        label: "表单校验",
-        type: "ERuleEditor",
-        layout: "vertical",
-        field: "rules",
-        describe: "校验规则需要配合表单使用",
+        describe: '校验规则需要配合表单使用',
+        field: 'rules',
+        label: '表单校验',
+        layout: 'vertical',
+        type: 'ERuleEditor',
       },
     ],
     event: [
       {
-        type: "change",
-        describe: "值变化时",
+        describe: '值变化时',
+        type: 'change',
       },
     ],
   },
+  defaultSchema: {
+    componentProps: {
+      options: [
+        {
+          label: '选项1',
+          value: '选项1',
+        },
+        {
+          label: '选项2',
+          value: '选项2',
+        },
+      ],
+      size: 'default',
+    },
+    field: 'radio',
+    input: true,
+    label: '单选框',
+    type: 'radio',
+  },
+  groupName: '表单',
+  icon: 'icon--epic--radio-button-checked-outline',
+  sort: 850,
 } as ComponentConfigModel;

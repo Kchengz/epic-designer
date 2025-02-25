@@ -1,145 +1,146 @@
-import { describe, it, expect } from "vitest";
-import { findSchemaInfoById } from "../../";
+import { describe, expect, it } from 'vitest';
 
-describe("findSchemaInfoById 函数测试", () => {
+import { findSchemaInfoById } from '../../';
+
+describe('findSchemaInfoById 函数测试', () => {
   const schemas = [
     {
-      type: "page",
-      id: "root",
-      label: "页面",
+      componentProps: {
+        style: {
+          padding: '16px',
+        },
+      },
+      id: 'root',
+      label: '页面',
+      type: 'page',
       children: [
         {
-          label: "表单",
-          type: "form",
+          label: '表单',
+          type: 'form',
           componentProps: {
-            name: "default",
-            labelWidth: "100px",
-            labelLayout: "fixed",
             labelCol: {
               span: 5,
             },
+            labelLayout: 'fixed',
+            labelWidth: '100px',
+            name: 'default',
             wrapperCol: {
               span: 19,
             },
           },
           children: [
             {
-              label: "输入框",
-              type: "input",
-              field: "input_ttuyobv9",
+              label: '输入框',
+              type: 'input',
+              field: 'input_ttuyobv9',
               input: true,
               componentProps: {
-                placeholder: "请输入",
+                placeholder: '请输入',
               },
-              id: "input_ttuyobv9",
+              id: 'input_ttuyobv9',
             },
             {
-              label: "数字输入框",
-              type: "number",
-              field: "number_m7ogpi26",
+              label: '数字输入框',
+              type: 'number',
+              field: 'number_m7ogpi26',
               input: true,
               componentProps: {
+                placeholder: '请输入',
                 style: {
-                  width: "100%",
+                  width: '100%',
                 },
-                placeholder: "请输入",
               },
-              id: "number_m7ogpi26",
+              id: 'number_m7ogpi26',
             },
           ],
-          id: "form_oyvwbf00",
+          id: 'form_oyvwbf00',
         },
       ],
-      componentProps: {
-        style: {
-          padding: "16px",
-        },
-      },
     },
   ];
 
-  it("应该返回正确info", () => {
+  it('应该返回正确info', () => {
     const inputSchema = {
-      label: "输入框",
-      type: "input",
-      field: "input_ttuyobv9",
-      input: true,
       componentProps: {
-        placeholder: "请输入",
+        placeholder: '请输入',
       },
-      id: "input_ttuyobv9",
+      field: 'input_ttuyobv9',
+      id: 'input_ttuyobv9',
+      input: true,
+      label: '输入框',
+      type: 'input',
     };
 
     const listSchema = [
       {
-        label: "输入框",
-        type: "input",
-        field: "input_ttuyobv9",
-        input: true,
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
-        id: "input_ttuyobv9",
+        field: 'input_ttuyobv9',
+        id: 'input_ttuyobv9',
+        input: true,
+        label: '输入框',
+        type: 'input',
       },
       {
-        label: "数字输入框",
-        type: "number",
-        field: "number_m7ogpi26",
-        input: true,
         componentProps: {
+          placeholder: '请输入',
           style: {
-            width: "100%",
+            width: '100%',
           },
-          placeholder: "请输入",
         },
-        id: "number_m7ogpi26",
+        field: 'number_m7ogpi26',
+        id: 'number_m7ogpi26',
+        input: true,
+        label: '数字输入框',
+        type: 'number',
       },
     ];
 
     const formSchema = {
-      label: "表单",
-      type: "form",
       componentProps: {
-        name: "default",
-        labelWidth: "100px",
-        labelLayout: "fixed",
         labelCol: {
           span: 5,
         },
+        labelLayout: 'fixed',
+        labelWidth: '100px',
+        name: 'default',
         wrapperCol: {
           span: 19,
         },
       },
+      id: 'form_oyvwbf00',
+      label: '表单',
+      type: 'form',
       children: [
         {
-          label: "输入框",
-          type: "input",
-          field: "input_ttuyobv9",
+          label: '输入框',
+          type: 'input',
+          field: 'input_ttuyobv9',
           input: true,
           componentProps: {
-            placeholder: "请输入",
+            placeholder: '请输入',
           },
-          id: "input_ttuyobv9",
+          id: 'input_ttuyobv9',
         },
         {
-          label: "数字输入框",
-          type: "number",
-          field: "number_m7ogpi26",
+          label: '数字输入框',
+          type: 'number',
+          field: 'number_m7ogpi26',
           input: true,
           componentProps: {
+            placeholder: '请输入',
             style: {
-              width: "100%",
+              width: '100%',
             },
-            placeholder: "请输入",
           },
-          id: "number_m7ogpi26",
+          id: 'number_m7ogpi26',
         },
       ],
-      id: "form_oyvwbf00",
     };
-    const { list, schema, index, parentSchema } = findSchemaInfoById(
+    const { index, parentSchema, schema, list } = findSchemaInfoById(
       schemas,
-      "input_ttuyobv9"
+      'input_ttuyobv9',
     );
 
     expect(schema).toEqual(inputSchema);
@@ -148,10 +149,10 @@ describe("findSchemaInfoById 函数测试", () => {
     expect(parentSchema).toEqual(formSchema);
   });
 
-  it("应该找不到指定 id 的 schema 信息并抛出异常", () => {
-    const id = "test_1";
+  it('应该找不到指定 id 的 schema 信息并抛出异常', () => {
+    const id = 'test_1';
     expect(() => findSchemaInfoById(schemas, id)).toThrow(
-      `没有查询到id为${id}的节点`
+      `没有查询到id为${id}的节点`,
     );
   });
 });

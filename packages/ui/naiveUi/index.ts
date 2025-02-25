@@ -1,49 +1,52 @@
+import type { PluginManager } from 'epic-designer';
+
 // 注册naive-ui
-import { pluginManager as pManager, type PluginManager } from "epic-designer";
-import Input from "./input";
-import InputNumber from "./input-number";
-import Form from "./form";
-import FormItem from "./form-item";
-import Button from "./button";
-import Card from "./card";
-import Row from "./row";
-import Col from "./col";
-import Select from "./select";
-import Radio from "./radio";
-import Checkbox from "./checkbox";
-import Slider from "./slider";
-import ColorPicker from "./color-picker";
-import Switch from "./switch";
-import Cascader from "./cascader";
-import Collapse from "./collapse";
-import CollapseItem from "./collapse-item";
-import DatePicker from "./date-picker";
-import { NTabPane } from "naive-ui";
-import UploadFile from "./upload-file";
-import UploadImage from "./upload-image";
-import Modal from "./modal";
+import { pluginManager as pManager } from 'epic-designer';
+import { NTabPane } from 'naive-ui';
+
+import Button from './button';
+import Card from './card';
+import Cascader from './cascader';
+import Checkbox from './checkbox';
+import Col from './col';
+import Collapse from './collapse';
+import CollapseItem from './collapse-item';
+import ColorPicker from './color-picker';
+import DatePicker from './date-picker';
+import Form from './form';
+import FormItem from './form-item';
+import Input from './input';
+import InputNumber from './input-number';
+import Modal from './modal';
+import Radio from './radio';
+import Row from './row';
+import Select from './select';
+import Slider from './slider';
+import Switch from './switch';
+import UploadFile from './upload-file';
+import UploadImage from './upload-image';
 
 export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
   // 异步加载组件
   pluginManager.component(
-    "FormItem",
-    async () => (await import("naive-ui/lib/form")).NFormItem
-  );
-   
-  pluginManager.component(
-    "Tabs",
-    async () => (await import("naive-ui/lib/tabs")).NTabs
+    'FormItem',
+    async () => (await import('naive-ui/lib/form')).NFormItem,
   );
 
-  pluginManager.component("TabPane", NTabPane);
-   
   pluginManager.component(
-    "Collapse",
-    async () => (await import("naive-ui/lib/collapse")).NCollapse
+    'Tabs',
+    async () => (await import('naive-ui/lib/tabs')).NTabs,
+  );
+
+  pluginManager.component('TabPane', NTabPane);
+
+  pluginManager.component(
+    'Collapse',
+    async () => (await import('naive-ui/lib/collapse')).NCollapse,
   );
   pluginManager.component(
-    "CollapseItem",
-    async () => (await import("naive-ui/lib/collapse")).NCollapseItem
+    'CollapseItem',
+    async () => (await import('naive-ui/lib/collapse')).NCollapseItem,
   );
 
   const componentArray = [

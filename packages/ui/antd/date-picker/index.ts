@@ -1,304 +1,301 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component: () => import("./datePicker"),
-  groupName: "表单",
-  icon: "icon--epic--calendar-month-outline-rounded",
-  sort: 910,
-  defaultSchema: {
-    label: "日期选择器",
-    type: "date",
-    field: "date",
-    input: true,
-    componentProps: {
-      valueFormat: "YYYY-MM-DD",
-      format: "YYYY-MM-DD",
-      type: "date",
-      placeholder: "请选择",
-    },
-  },
+  bindModel: 'modelValue',
+  component: () => import('./datePicker'),
   config: {
     attribute: [
       {
-        label: "字段名",
-        type: "input",
-        field: "field",
+        field: 'field',
+        label: '字段名',
+        type: 'input',
       },
       {
-        label: "标题",
-        type: "input",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
-        field: "label",
+        field: 'label',
+        label: '标题',
+        type: 'input',
       },
       {
-        label: "默认值",
-        type: "date",
-        field: "componentProps.defaultValue",
+        field: 'componentProps.defaultValue',
+        label: '默认值',
+        type: 'date',
       },
       {
-        label: "日期类型",
-        type: "select",
-        field: "componentProps.type",
+        changeSync: true,
         componentProps: {
           options: [
             {
-              label: "日期",
-              value: "date",
+              label: '日期',
+              value: 'date',
             },
             {
-              label: "周",
-              value: "week",
+              label: '周',
+              value: 'week',
             },
             {
-              label: "月份",
-              value: "month",
+              label: '月份',
+              value: 'month',
             },
             {
-              label: "季度",
-              value: "quarter",
+              label: '季度',
+              value: 'quarter',
             },
             {
-              label: "年份",
-              value: "year",
+              label: '年份',
+              value: 'year',
             },
             {
-              label: "日期范围",
-              value: "daterange",
+              label: '日期范围',
+              value: 'daterange',
             },
             {
-              label: "周范围",
-              value: "weekrange",
+              label: '周范围',
+              value: 'weekrange',
             },
             {
-              label: "月份范围",
-              value: "monthrange",
+              label: '月份范围',
+              value: 'monthrange',
             },
             {
-              label: "季度范围",
-              value: "quarterrange",
+              label: '季度范围',
+              value: 'quarterrange',
             },
             {
-              label: "年份范围",
-              value: "yearrange",
+              label: '年份范围',
+              value: 'yearrange',
             },
           ],
         },
-        changeSync: true,
-        onChange({ values, value }) {
+        field: 'componentProps.type',
+        label: '日期类型',
+        onChange({ value, values }) {
           values.componentProps.defaultValue = null;
-          if (
-            [
-              "daterange",
-              "weekrange",
-              "monthrange",
-              "yearrange",
-              "quarterrange",
-            ].includes(value)
-          ) {
-            values.componentProps.placeholder = ["请输入", "请输入"];
-          } else {
-            values.componentProps.placeholder = "请输入";
-          }
+          values.componentProps.placeholder = [
+            'daterange',
+            'monthrange',
+            'quarterrange',
+            'weekrange',
+            'yearrange',
+          ].includes(value)
+            ? ['请输入', '请输入']
+            : '请输入';
 
-          if (["date", "daterange"].includes(value)) {
-            values.componentProps.format = "YYYY-MM-DD";
-            values.componentProps.valueFormat = "YYYY-MM-DD";
-          } else if (["week", "weekrange"].includes(value)) {
-            values.componentProps.format = "ww [周]";
-            values.componentProps.valueFormat = "YYYY-MM-DD";
-          } else if (["month", "monthrange"].includes(value)) {
-            values.componentProps.format = "YYYY-MM";
-            values.componentProps.valueFormat = "YYYY-MM";
-          } else if (["quarter", "quarterrange"].includes(value)) {
-            values.componentProps.format = "YYYY-Q季度";
-            values.componentProps.valueFormat = "YYYY-Q季度";
-          } else if (["year", '"yearrange"'].includes(value)) {
-            values.componentProps.format = "YYYY";
-            values.componentProps.valueFormat = "YYYY";
+          if (['date', 'daterange'].includes(value)) {
+            values.componentProps.format = 'YYYY-MM-DD';
+            values.componentProps.valueFormat = 'YYYY-MM-DD';
+          } else if (['week', 'weekrange'].includes(value)) {
+            values.componentProps.format = 'ww [周]';
+            values.componentProps.valueFormat = 'YYYY-MM-DD';
+          } else if (['month', 'monthrange'].includes(value)) {
+            values.componentProps.format = 'YYYY-MM';
+            values.componentProps.valueFormat = 'YYYY-MM';
+          } else if (['quarter', 'quarterrange'].includes(value)) {
+            values.componentProps.format = 'YYYY-Q季度';
+            values.componentProps.valueFormat = 'YYYY-Q季度';
+          } else if (['"yearrange"', 'year'].includes(value)) {
+            values.componentProps.format = 'YYYY';
+            values.componentProps.valueFormat = 'YYYY';
           }
         },
+        type: 'select',
       },
       {
-        label: "增加时间选择",
-        type: "switch",
-        field: "componentProps.showTime",
+        field: 'componentProps.showTime',
+        label: '增加时间选择',
         onChange: ({ value, values }) => {
           if (value) {
-            values.componentProps.valueFormat = "YYYY-MM-DD HH:mm:ss";
-            values.componentProps.format = "YYYY-MM-DD HH:mm:ss";
+            values.componentProps.valueFormat = 'YYYY-MM-DD HH:mm:ss';
+            values.componentProps.format = 'YYYY-MM-DD HH:mm:ss';
           } else {
-            values.componentProps.valueFormat = "YYYY-MM-DD";
-            values.componentProps.format = "YYYY-MM-DD";
+            values.componentProps.valueFormat = 'YYYY-MM-DD';
+            values.componentProps.format = 'YYYY-MM-DD';
           }
         },
         show({ values }) {
-          return ["date", "daterange"].includes(values.componentProps.type);
+          return ['date', 'daterange'].includes(values.componentProps.type);
         },
+        type: 'switch',
       },
       {
-        label: "占位内容",
-        type: "input",
-        field: "componentProps.placeholder",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.placeholder',
+        label: '占位内容',
         show: ({ values }) =>
           ![
-            "daterange",
-            "weekrange",
-            "monthrange",
-            "yearrange",
-            "quarterrange",
+            'daterange',
+            'monthrange',
+            'quarterrange',
+            'weekrange',
+            'yearrange',
           ].includes(values.componentProps.type),
+        type: 'input',
       },
       {
-        label: "开始占位符",
-        type: "input",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
-        field: "componentProps.placeholder.0",
+        field: 'componentProps.placeholder.0',
+        label: '开始占位符',
         show: ({ values }) =>
           [
-            "daterange",
-            "weekrange",
-            "monthrange",
-            "yearrange",
-            "quarterrange",
+            'daterange',
+            'monthrange',
+            'quarterrange',
+            'weekrange',
+            'yearrange',
           ].includes(values.componentProps.type),
+        type: 'input',
       },
 
       {
-        label: "结束占位符",
-        type: "input",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
-        field: "componentProps.placeholder.1",
+        field: 'componentProps.placeholder.1',
+        label: '结束占位符',
         show: ({ values }) =>
           [
-            "daterange",
-            "weekrange",
-            "monthrange",
-            "yearrange",
-            "quarterrange",
+            'daterange',
+            'monthrange',
+            'quarterrange',
+            'weekrange',
+            'yearrange',
           ].includes(values.componentProps.type),
+        type: 'input',
       },
       {
-        label: "显示格式",
-        type: "input",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
-        field: "componentProps.format",
+        field: 'componentProps.format',
+        label: '显示格式',
+        type: 'input',
       },
       {
-        label: "数据格式",
-        type: "input",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
-        field: "componentProps.valueFormat",
+        field: 'componentProps.valueFormat',
+        label: '数据格式',
+        type: 'input',
       },
       {
-        label: "尺寸",
-        type: "select",
         componentProps: {
-          placeholder: "请选择",
           allowClear: true,
           options: [
             {
-              label: "大号",
-              value: "large",
+              label: '大号',
+              value: 'large',
             },
             {
-              label: "中等",
-              value: "middle",
+              label: '中等',
+              value: 'middle',
             },
             {
-              label: "小型",
-              value: "small",
+              label: '小型',
+              value: 'small',
             },
           ],
+          placeholder: '请选择',
         },
-        field: "componentProps.size",
+        field: 'componentProps.size',
+        label: '尺寸',
+        type: 'select',
       },
 
       {
-        label: "弹出框位置",
-        type: "select",
         componentProps: {
-          placeholder: "请选择",
           allowClear: true,
           options: [
             {
-              label: "bottomLeft",
-              value: "bottomLeft",
+              label: 'bottomLeft',
+              value: 'bottomLeft',
             },
             {
-              label: "bottomRight",
-              value: "bottomRight",
+              label: 'bottomRight',
+              value: 'bottomRight',
             },
             {
-              label: "topLeft",
-              value: "topLeft",
+              label: 'topLeft',
+              value: 'topLeft',
             },
             {
-              label: "topRight",
-              value: "topRight",
+              label: 'topRight',
+              value: 'topRight',
             },
-          ]
+          ],
+          placeholder: '请选择',
         },
-        field: "componentProps.placement",
+        field: 'componentProps.placement',
+        label: '弹出框位置',
+        type: 'select',
       },
       {
-        label: "无边框",
-        type: "switch",
         componentProps: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: "componentProps.bordered",
+        field: 'componentProps.bordered',
+        label: '无边框',
+        type: 'switch',
       },
       {
-        label: "禁止键盘输入",
-        type: "switch",
-        field: "componentProps.inputReadOnly",
+        field: 'componentProps.inputReadOnly',
+        label: '禁止键盘输入',
+        type: 'switch',
       },
       {
-        label: "可清空",
-        type: "switch",
-        field: "componentProps.allowClear",
+        field: 'componentProps.allowClear',
+        label: '可清空',
+        type: 'switch',
       },
       {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled",
+        field: 'componentProps.disabled',
+        label: '禁用',
+        type: 'switch',
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        field: 'componentProps.hidden',
+        label: '隐藏',
+        type: 'switch',
       },
       {
-        label: "表单校验",
-        type: "ERuleEditor",
-        layout: "vertical",
-        field: "rules",
-        describe: "校验规则需要配合表单使用",
+        describe: '校验规则需要配合表单使用',
+        field: 'rules',
+        label: '表单校验',
+        layout: 'vertical',
+        type: 'ERuleEditor',
       },
     ],
     event: [
       {
-        type: "change",
-        describe: "值变化时",
+        describe: '值变化时',
+        type: 'change',
       },
       {
-        type: "ok",
-        describe: "点击确定按钮时",
+        describe: '点击确定按钮时',
+        type: 'ok',
       },
     ],
   },
-  bindModel: "modelValue",
+  defaultSchema: {
+    componentProps: {
+      format: 'YYYY-MM-DD',
+      placeholder: '请选择',
+      type: 'date',
+      valueFormat: 'YYYY-MM-DD',
+    },
+    field: 'date',
+    input: true,
+    label: '日期选择器',
+    type: 'date',
+  },
+  groupName: '表单',
+  icon: 'icon--epic--calendar-month-outline-rounded',
+  sort: 910,
 } as ComponentConfigModel;

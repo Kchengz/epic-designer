@@ -4,9 +4,12 @@
  * @param delay - 防抖延迟时间，单位为毫秒。
  * @returns 返回一个防抖处理后的函数。
  */
-export function debounce<T extends (...args: unknown[]) => void>(handler: T, delay: number): (...args: Parameters<T>) => void {
+export function debounce<T extends (...args: unknown[]) => void>(
+  handler: T,
+  delay: number,
+): (...args: Parameters<T>) => void {
   let timer: NodeJS.Timeout | null = null;
-  
+
   return (...args: Parameters<T>): void => {
     if (timer) {
       clearTimeout(timer);

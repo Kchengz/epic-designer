@@ -2,6 +2,6 @@
   "name": "@epic-designer/utils",
   "version": "0.9.30",
   "description": "epic-designer utils",
-  "main": "index.ts",
-  "author": "kchengz"
+  "author": "kchengz",
+  "main": "index.ts"
 }

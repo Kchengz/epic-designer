@@ -1,17 +1,17 @@
 export interface RuleItem {
-  required?: boolean
-  type?: string
-  pattern?: RegExp | string
-  min?: number
-  max?: number
-  len?: number
-  enum?: Array<string | number | boolean | null | undefined>
-  whitespace?: boolean
-  validator?: string
-  isValidator?: boolean
-  message?: string | ((a?: string) => string)
+  enum?: Array<boolean | null | number | string | undefined>;
+  isValidator?: boolean;
+  len?: number;
+  max?: number;
+  message?: ((a?: string) => string) | string;
+  min?: number;
+  pattern?: RegExp | string;
+  required?: boolean;
+  type?: string;
+  validator?: string;
+  whitespace?: boolean;
 }
 export interface FormItemRule extends RuleItem {
-  trigger?: string | string[]
-  [model: string]: any
+  [model: string]: any;
+  trigger?: string | string[];
 }

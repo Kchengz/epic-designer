@@ -14,20 +14,7 @@ export async function node(): Promise<Linter.Config[]> {
         'n/handle-callback-err': ['error', '^(err|error)$'],
         'n/no-deprecated-api': 'error',
         'n/no-exports-assign': 'error',
-        'n/no-extraneous-import': [
-          'error',
-          {
-            allowModules: [
-              'unbuild',
-              'vitest',
-              'vite',
-              'vue',
-              '@vue/test-utils',
-              '@epic-designer/utils',
-              '@playwright/test',
-            ],
-          },
-        ],
+        'n/no-extraneous-import': 'off',
         'n/no-new-require': 'error',
         'n/no-path-concat': 'error',
         // 'n/no-unpublished-import': 'off',

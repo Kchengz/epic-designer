@@ -1,29 +1,28 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import UnoCSS from "unocss/vite";
-import VueDevTools from "vite-plugin-vue-devtools";
-import monacoEditorPlugin from "vite-plugin-monaco-editor";
-import { resolve } from "path";
+import { resolve } from 'node:path';
+
+import vue from '@vitejs/plugin-vue';
+import UnoCSS from 'unocss/vite';
+import { defineConfig } from 'vite';
+import monacoEditorPlugin from 'vite-plugin-monaco-editor';
+import VueDevTools from 'vite-plugin-vue-devtools';
+
+const __dirname = import.meta.dirname;
 export default defineConfig({
-  base: "/",
+  base: '/',
   plugins: [
     VueDevTools(),
     vue(),
     UnoCSS(),
     (monacoEditorPlugin as any).default({
-      languageWorkers: [
-        "editorWorkerService",
-        "json",
-        "typescript",
-      ],
+      languageWorkers: ['editorWorkerService', 'json', 'typescript'],
     }),
   ],
-  server:{
-    port: 9980,
-  },
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src"),
+      '@': resolve(__dirname, 'src'),
     },
+  },
+  server: {
+    port: 9980,
   },
 });

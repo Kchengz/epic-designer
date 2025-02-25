@@ -1,27 +1,32 @@
-import { defineComponent, h } from 'vue'
-import { NRadioGroup, NRadio } from 'naive-ui'
+import { defineComponent, h } from 'vue';
+
+import { NRadio, NRadioGroup } from 'naive-ui';
 
 // 二次封装组件
 export default defineComponent({
   emits: ['update:modelValue'],
-  setup (_, { emit, attrs }) {
-    function handleUpdate (e = null): void {
-      emit('update:modelValue', e)
+  setup(_, { attrs, emit }) {
+    function handleUpdate(e = null): void {
+      emit('update:modelValue', e);
     }
 
     return () => {
       const props: Record<string, any> = {
         ...attrs,
+        'onUpdate:value': handleUpdate,
         value: attrs.modelValue,
-        'onUpdate:value': handleUpdate
-      }
+      };
       return h(NRadioGroup, props, {
         default: () => [
           props.options?.map((option: any) =>
-            h(NRadio, { value: option.value, key: option.value }, { default: () => option.label })
-          )
-        ]
-      })
-    }
-  }
-})
+            h(
+              NRadio,
+              { key: option.value, value: option.value },
+              { default: () => option.label },
+            ),
+          ),
+        ],
+      });
+    };
+  },
+});

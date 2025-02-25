@@ -1,7 +1,9 @@
-import { createSharedComposable } from "@vueuse/core";
-import { ref } from "vue";
-import { useKeyPress } from "../common/element";
-import { useDark } from "../common/theme";
+import { ref } from 'vue';
+
+import { createSharedComposable } from '@vueuse/core';
+
+import { useKeyPress } from '../common/element';
+import { useDark } from '../common/theme';
 
 /**
  * 初始化共享存储
@@ -15,14 +17,14 @@ export function initStore() {
   const { isDark } = useDark();
 
   // 获取键盘状态
-  const { pressSpace, pressShift, pressCtrl } = useKeyPress();
+  const { pressCtrl, pressShift, pressSpace } = useKeyPress();
   return {
     canvasScale,
-    pressSpace,
-    pressShift,
-    pressCtrl,
     disabledZoom,
     isDark,
+    pressCtrl,
+    pressShift,
+    pressSpace,
   };
 }
 

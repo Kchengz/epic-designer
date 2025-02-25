@@ -1,120 +1,70 @@
-<template>
-  <div
-    v-if="!pluginManager.initialized.value"
-    class="epic-loading-box"
-  >
-    <!-- <EAsyncLoader /> -->
-  </div>
-  <Suspense
-    v-else
-    @resolve="handleReady"
-  >
-    <template #default>
-      <div
-        class="epic-designer-main epic-scoped"
-        @wheel="handleWheel"
-      >
-        <div class="epic-header-container">
-          <slot name="header">
-            <EHeader
-              v-if="!props.hiddenHeader"
-              @preview="handlePreview"
-              @save="handleSave"
-            >
-              <template #header>
-                <slot name="header-prefix" />
-              </template>
-
-              <template #prefix>
-                <slot name="header-prefix" />
-              </template>
-              <template #title>
-                <slot name="header-title" />
-              </template>
-              <template #right-prefix>
-                <slot name="header-right-prefix" />
-              </template>
-              <template #right-action>
-                <slot name="header-right-action" />
-              </template>
-              <template #right-suffix>
-                <slot name="header-right-suffix" />
-              </template>
-            </EHeader>
-          </slot>
-        </div>
-        <div
-          class="epic-split-view-container"
-          :class="{ 'hidden-header': hiddenHeader }"
-        >
-          <EActivityBar />
-          <EEditContainer />
-          <ERightSidebar />
-        </div>
-        <EPreview
-          ref="previewRef"
-          :hide-confirm="props.hidePreviewConfirm"
-        />
-      </div>
-    </template>
-    <template #fallback>
-      <div class="epic-loading-box">
-        <EAsyncLoader />
-      </div>
-    </template>
-  </Suspense>
-</template>
 <script lang="ts" setup>
-import { ref, provide, reactive, toRaw, nextTick, computed, watchEffect } from "vue";
-import { DesignerState, ComponentSchema, PageSchema } from "../../../types/epic-designer";
+import { computed, nextTick, provide, reactive, ref, watchEffect } from 'vue';
+
+import { useStore } from '@epic-designer/hooks';
 import {
-  getMatchedById,
-  loadAsyncComponent,
-  useRevoke,
-  usePageManager,
-  pluginManager,
+  deepClone,
   deepCompareAndModify,
   deepEqual,
-  deepClone,
-} from "@epic-designer/utils";
-import { DesignerProps } from "./types";
-import { useStore } from "@epic-designer/hooks";
-import EPreview from "./modules/preview/index.vue";
+  getMatchedById,
+  loadAsyncComponent,
+  pluginManager,
+  usePageManager,
+  useRevoke,
+} from '@epic-designer/utils';
 
-const EHeader = loadAsyncComponent(() => import("./modules/header/index.vue"));
-const EActivityBar = loadAsyncComponent(() => import("./modules/activityBar/index.vue"));
-const EEditContainer = loadAsyncComponent(
-  () => import("./modules/editContainer/index.vue")
-);
-const ERightSidebar = loadAsyncComponent(
-  () => import("./modules/rightSidebar/index.vue")
-);
-const EAsyncLoader = loadAsyncComponent(() => import("../../asyncLoader/index.vue"));
-const pageManager = usePageManager();
-const revoke = useRevoke();
+import {
+  ComponentSchema,
+  DesignerState,
+  PageSchema,
+} from '../../../types/epic-designer';
+import EPreview from './modules/preview/index.vue';
+import { DesignerProps } from './types';
 
 const props = withDefaults(defineProps<DesignerProps>(), {
-  draggable: true,
   disabledZoom: false,
+  draggable: true,
+  formMode: false,
   hiddenHeader: false,
   lockDefaultSchemaEdit: false,
-  formMode: false,
-  title: "EpicDesigner默认项目",
+  title: 'EpicDesigner默认项目',
 });
+const emits = defineEmits([
+  'ready',
+  'save',
+  'reset',
+  'imported',
+  'toggleDeviceMode',
+]);
+const EHeader = loadAsyncComponent(() => import('./modules/header/index.vue'));
+const EActivityBar = loadAsyncComponent(
+  () => import('./modules/activityBar/index.vue'),
+);
+const EEditContainer = loadAsyncComponent(
+  () => import('./modules/editContainer/index.vue'),
+);
+const ERightSidebar = loadAsyncComponent(
+  () => import('./modules/rightSidebar/index.vue'),
+);
+const EAsyncLoader = loadAsyncComponent(
+  () => import('../../asyncLoader/index.vue'),
+);
+const pageManager = usePageManager();
+const revoke = useRevoke();
 
 // 内部默认页面数据
 let innerDefaultSchema: PageSchema = {
   schemas: [
     {
-      type: "page",
-      id: "root",
-      label: "页面",
-      children: [],
       componentProps: {
         style: {
-          padding: "16px",
+          padding: '16px',
         },
       },
+      id: 'root',
+      label: '页面',
+      type: 'page',
+      children: [],
     },
   ],
   script: `const { defineExpose, find } = epic;
@@ -147,14 +97,12 @@ watchEffect(() => {
 // 设计模式
 pageManager.setDesignMode();
 
-const emits = defineEmits(["ready", "save", "reset", "imported", "toggleDeviceMode"]);
-
 const previewRef = ref<InstanceType<typeof EPreview> | null>(null);
 
 const state = reactive<DesignerState>({
   checkedNode: null,
-  hoverNode: null,
   disableHover: false,
+  hoverNode: null,
   matched: [],
 });
 
@@ -168,23 +116,23 @@ watchEffect(() => {
 // 记录缩放状态 end
 
 // 提供依赖注入的上下文
-provide("pageSchema", pageSchema);
-provide("revoke", revoke);
-provide("pageManager", pageManager);
+provide('pageSchema', pageSchema);
+provide('revoke', revoke);
+provide('pageManager', pageManager);
 provide(
-  "designerProps",
-  computed(() => props)
+  'designerProps',
+  computed(() => props),
 );
 
-provide("designer", {
-  setCheckedNode,
-  setHoverNode,
-  setDisableHover,
-  handleToggleDeviceMode,
-  reset,
-  preview: handlePreview,
-  save: handleSave,
+provide('designer', {
   handleImported,
+  handleToggleDeviceMode,
+  preview: handlePreview,
+  reset,
+  save: handleSave,
+  setCheckedNode,
+  setDisableHover,
+  setHoverNode,
   state,
 });
 
@@ -194,7 +142,7 @@ function init() {
 
   // 选中根节点
   setCheckedNode(pageSchema.schemas[0]);
-  revoke.push(pageSchema.schemas, "初始化");
+  revoke.push(pageSchema.schemas, '初始化');
 }
 
 /**
@@ -228,7 +176,7 @@ async function setHoverNode(schema: ComponentSchema | null = null) {
 function handleReady() {
   // 等待DOM更新循环结束后
   nextTick(() => {
-    emits("ready", { pageManager });
+    emits('ready', { pageManager });
   });
 }
 
@@ -242,11 +190,10 @@ async function setDisableHover(disableHover = false) {
 
 /**
  * 接受一个PageSchema对象作为参数。根据传入的schemas和script属性，更新页面对应的数据
- * @param pageSchema
  */
 function setData(schema: PageSchema) {
   pageManager.setPageSchema(schema);
-  revoke.push(pageSchema.schemas, "加载数据");
+  revoke.push(pageSchema.schemas, '加载数据');
 }
 
 /**
@@ -274,20 +221,20 @@ function reset() {
   pageSchema.script = innerDefaultSchema.script;
   // 选中根节点
   setCheckedNode(pageSchema.schemas[0]);
-  revoke.push(pageSchema.schemas, "重置操作");
+  revoke.push(pageSchema.schemas, '重置操作');
 
-  emits("reset", pageSchema);
+  emits('reset', pageSchema);
 }
 
 /**
  * 保存数据
  */
 function handleSave() {
-  emits("save", getData());
+  emits('save', getData());
 }
 
 function handleToggleDeviceMode(mode: string) {
-  emits("toggleDeviceMode", mode);
+  emits('toggleDeviceMode', mode);
 }
 
 /**
@@ -295,7 +242,7 @@ function handleToggleDeviceMode(mode: string) {
  * @param data
  */
 function handleImported(data: PageSchema) {
-    emits("imported", data);
+  emits('imported', data);
 }
 
 /**
@@ -315,11 +262,65 @@ function handleWheel(event: WheelEvent) {
 init();
 
 defineExpose({
-  revoke,
-  setData,
   getData,
-  reset,
   preview: handlePreview,
+  reset,
+  revoke,
   save: handleSave,
+  setData,
 });
 </script>
+<template>
+  <div v-if="!pluginManager.initialized.value" class="epic-loading-box">
+    <!-- <EAsyncLoader /> -->
+  </div>
+  <Suspense v-else @resolve="handleReady">
+    <template #default>
+      <div class="epic-designer-main epic-scoped" @wheel="handleWheel">
+        <div class="epic-header-container">
+          <slot name="header">
+            <EHeader
+              v-if="!props.hiddenHeader"
+              @preview="handlePreview"
+              @save="handleSave"
+            >
+              <template #header>
+                <slot name="header-prefix"></slot>
+              </template>
+
+              <template #prefix>
+                <slot name="header-prefix"></slot>
+              </template>
+              <template #title>
+                <slot name="header-title"></slot>
+              </template>
+              <template #right-prefix>
+                <slot name="header-right-prefix"></slot>
+              </template>
+              <template #right-action>
+                <slot name="header-right-action"></slot>
+              </template>
+              <template #right-suffix>
+                <slot name="header-right-suffix"></slot>
+              </template>
+            </EHeader>
+          </slot>
+        </div>
+        <div
+          class="epic-split-view-container"
+          :class="{ 'hidden-header': hiddenHeader }"
+        >
+          <EActivityBar />
+          <EEditContainer />
+          <ERightSidebar />
+        </div>
+        <EPreview ref="previewRef" :hide-confirm="props.hidePreviewConfirm" />
+      </div>
+    </template>
+    <template #fallback>
+      <div class="epic-loading-box">
+        <EAsyncLoader />
+      </div>
+    </template>
+  </Suspense>
+</template>

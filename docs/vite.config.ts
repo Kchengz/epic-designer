@@ -1,5 +1,5 @@
-import { defineConfig } from "vite";
-import UnoCSS from "unocss/vite";
+import UnoCSS from 'unocss/vite';
+import { defineConfig } from 'vite';
 // import monacoEditorPlugin from "vite-plugin-monaco-editor";
 
 export default defineConfig({

@@ -1,7 +1,134 @@
+<script lang="ts" setup>
+import { PropType, ref, watchEffect } from 'vue';
+
+import { deepClone, pluginManager } from '@epic-designer/utils';
+import { useVModel } from '@vueuse/core';
+
+import ENode from '../../components/node/index';
+import { triggerOptions, typeOptions } from './data';
+import ERuleItem from './ERuleItem.vue';
+import { FormItemRule } from './types';
+
+const props = defineProps({
+  modelValue: {
+    default: undefined,
+    type: Array as PropType<FormItemRule[] | undefined>,
+  },
+  ruleType: {
+    default: 'string',
+    type: String,
+  },
+});
+const emits = defineEmits(['update:modelValue']);
+const Button = pluginManager.getComponent('button');
+const innerValue = useVModel(props, 'modelValue', emits);
+const requiredRule = ref<FormItemRule>({
+  message: '必填项',
+  required: false,
+  trigger: ['change'],
+  type: props.ruleType,
+});
+
+const requiredRuleSchemas = [
+  {
+    label: '必填项',
+    model: 'required',
+    type: 'switch',
+  },
+  {
+    componentProps: {
+      mode: 'multiple',
+      multiple: true,
+      options: triggerOptions,
+      placeholder: '校验时机',
+    },
+    label: '校验时机',
+    model: 'trigger',
+    show() {
+      return Boolean(requiredRule.value.required);
+    },
+    type: 'select',
+  },
+  {
+    componentProps: { options: typeOptions, placeholder: '类型' },
+    label: '类型',
+    model: 'type',
+    show() {
+      return Boolean(requiredRule.value.required);
+    },
+    type: 'select',
+  },
+  {
+    componentProps: { placeholder: '校验信息' },
+    label: '校验信息',
+    model: 'message',
+    show() {
+      return Boolean(requiredRule.value.required);
+    },
+    type: 'input',
+  },
+];
+
+const rules = ref<FormItemRule[]>([]);
+
+watchEffect(() => {
+  if (!innerValue.value) return;
+  rules.value = [];
+  innerValue.value.forEach((item) => {
+    // 必填项单独存储
+    if (item.required === undefined) {
+      rules.value.push(item);
+    } else {
+      requiredRule.value = item;
+    }
+  });
+});
+
+/**
+ * 新增检验规则
+ */
+function handleAdd() {
+  rules.value.push({
+    message: '',
+    trigger: ['change'],
+    type: props.ruleType,
+  });
+  handleUpdate();
+}
+
+/**
+ * 更新校验规则
+ */
+function handleUpdate() {
+  // 存在必填项时,合并其他规则
+  if (requiredRule.value.required) {
+    innerValue.value = deepClone([...rules.value, requiredRule.value]);
+    return;
+  }
+
+  // 存在其他规则
+  if (rules.value.length > 0) {
+    innerValue.value = deepClone(rules.value);
+    return;
+  }
+
+  // 没有任何校验规则
+  innerValue.value = undefined;
+}
+
+/**
+ * 通过下标删除校验规则项
+ * @param index
+ */
+function handleDelete(index: number) {
+  rules.value.splice(index, 1);
+  handleUpdate();
+}
+</script>
 <template>
   <div>
     <div
-      class="rule-item-main m-t-2 p-2 rounded border border-solid transition-all relative"
+      class="rule-item-main m-t-2 relative rounded border border-solid p-2 transition-all"
     >
       <template
         v-for="(componentSchema, index) in requiredRuleSchemas"
@@ -9,7 +136,7 @@
       >
         <div
           v-if="componentSchema.show ? componentSchema.show() : true"
-          class="flex m-t-2 first:m-0"
+          class="m-t-2 flex first:m-0"
         >
           <div class="epic-attr-label">
             {{ componentSchema.label }}
@@ -31,135 +158,6 @@
       @delete="handleDelete(index)"
       @change="handleUpdate"
     />
-    <Button
-      class="m-t-2"
-      @click="handleAdd"
-    >
-      添加规则
-    </Button>
+    <Button class="m-t-2" @click="handleAdd"> 添加规则 </Button>
   </div>
 </template>
-<script lang="ts" setup>
-import { pluginManager, deepClone } from "@epic-designer/utils";
-import { ref, watchEffect, PropType } from "vue";
-import { FormItemRule } from "./types";
-import ERuleItem from "./ERuleItem.vue";
-import ENode from "../../components/node/index";
-import { triggerOptions, typeOptions } from "./data";
-import { useVModel } from "@vueuse/core";
-const Button = pluginManager.getComponent("button");
-const props = defineProps({
-  ruleType: {
-    type: String,
-    default: "string",
-  },
-  modelValue: {
-    type: Array as PropType<FormItemRule[] | undefined>,
-    default: undefined,
-  },
-});
-const emits = defineEmits(["update:modelValue"]);
-const innerValue = useVModel(props, "modelValue", emits);
-const requiredRule = ref<FormItemRule>({
-  required: false,
-  message: "必填项",
-  type: props.ruleType,
-  trigger: ["change"],
-});
-
-const requiredRuleSchemas = [
-  {
-    type: "switch",
-    label: "必填项",
-    model: "required",
-  },
-  {
-    type: "select",
-    label: "校验时机",
-    model: "trigger",
-    show() {
-      return Boolean(requiredRule.value.required);
-    },
-    componentProps: {
-      options: triggerOptions,
-      placeholder: "校验时机",
-      multiple: true,
-      mode: "multiple",
-    },
-  },
-  {
-    type: "select",
-    label: "类型",
-    model: "type",
-    show() {
-      return Boolean(requiredRule.value.required);
-    },
-    componentProps: { options: typeOptions, placeholder: "类型" },
-  },
-  {
-    type: "input",
-    label: "校验信息",
-    model: "message",
-    show() {
-      return Boolean(requiredRule.value.required);
-    },
-    componentProps: { placeholder: "校验信息" },
-  },
-];
-
-const rules = ref<FormItemRule[]>([]);
-
-watchEffect(() => {
-  if (!innerValue.value) return;
-  rules.value = [];
-  innerValue.value.forEach((item) => {
-    // 必填项单独存储
-    if (typeof item.required !== "undefined") {
-      requiredRule.value = item;
-    } else {
-      rules.value.push(item);
-    }
-  });
-});
-
-/**
- * 新增检验规则
- */
-function handleAdd() {
-  rules.value.push({
-    message: "",
-    type: props.ruleType,
-    trigger: ["change"],
-  });
-  handleUpdate();
-}
-
-/**
- * 更新校验规则
- */
-function handleUpdate() {
-  // 存在必填项时,合并其他规则
-  if (requiredRule.value.required) {
-    innerValue.value = deepClone([...rules.value, requiredRule.value]);
-    return;
-  }
-
-  // 存在其他规则
-  if (rules.value.length) {
-    innerValue.value = deepClone(rules.value);
-    return;
-  }
-
-  // 没有任何校验规则
-  innerValue.value = undefined;
-}
-
-/**
- * 通过下标删除校验规则项
- * @param index
- */
-function handleDelete(index: number) {
-  rules.value.splice(index, 1);
-  handleUpdate();
-}
-</script>

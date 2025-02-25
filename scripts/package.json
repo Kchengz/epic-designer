@@ -1,17 +1,17 @@
 {
   "name": "@epic-designer/scripts",
   "version": "0.9.30",
-  "main": "./dist/index.mjs",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "scripts": {
     "stub": "pnpm unbuild --stub"
   },
   "bin": {
     "epic": "./dist/index.mjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "main": "./dist/index.mjs",
   "devDependencies": {
     "@manypkg/get-packages": "^2.2.2",
     "@types/node": "^22.10.6",

@@ -1,3 +1,1 @@
-import EBuilder from './src/builder.vue'
-
-export default EBuilder
+export { default } from './src/builder.vue';

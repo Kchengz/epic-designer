@@ -1,2 +1,1 @@
-import EIcon from './src/icon.vue'
-export default EIcon
+export { default } from './src/icon.vue';

@@ -1,6 +1,9 @@
-import { useToggle } from "@vueuse/core";
-import { useStore } from "../store";
-import { watch, ref, onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted, ref, watch } from 'vue';
+
+import { useToggle } from '@vueuse/core';
+
+import { useStore } from '../store';
+
 export function useTheme() {
   const { isDark } = useStore();
   const toggleDark = useToggle(isDark);
@@ -21,11 +24,11 @@ export function useDark() {
     () => isDark.value,
     () => {
       if (isDark.value) {
-        document.documentElement.classList.add("dark");
+        document.documentElement.classList.add('dark');
       } else {
-        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.remove('dark');
       }
-    }
+    },
   );
   return {
     isDark,
@@ -39,11 +42,7 @@ export function useDark() {
 export function getDarkState(isDark) {
   const targetNode = document.documentElement;
   if (!targetNode) return;
-  if (targetNode.classList.contains("dark")) {
-    isDark.value = true;
-  } else {
-    isDark.value = false;
-  }
+  isDark.value = !!targetNode.classList.contains('dark');
 }
 
 /**
@@ -52,30 +51,27 @@ export function getDarkState(isDark) {
  */
 function monitorHtml(isDark) {
   // 选择需要监听的元素
-  const targetNode = document.querySelector("html");
+  const targetNode = document.querySelector('html');
 
   // 创建MutationObserver对象
-  const observer = new MutationObserver(function (mutationsList) {
+  const observer = new MutationObserver((mutationsList) => {
     for (const mutation of mutationsList) {
       if (
-        mutation.type === "attributes" &&
-        mutation.attributeName === "class"
+        mutation.type === 'attributes' &&
+        mutation.attributeName === 'class'
       ) {
         const target = mutation.target as any;
-        if (new Array(...target.classList).includes("dark")) {
-          isDark.value = true;
-        } else {
-          isDark.value = false;
-        }
+        isDark.value = [...target.classList].includes('dark');
       }
     }
   });
 
   // 开始监听
-  observer.observe(targetNode!, {
-    attributes: true,
-    attributeFilter: ["class"],
-  });
+  targetNode &&
+    observer.observe(targetNode, {
+      attributeFilter: ['class'],
+      attributes: true,
+    });
 
   // 销毁监听
   onUnmounted(() => {

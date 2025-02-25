@@ -1,22 +1,22 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component:  () => import('./col'),
-  defaultSchema: {
-    label: '栅格布局-列',
-    type: 'col',
-    children: [],
-    componentProps: {
-      span: 6
-    }
-  },
+  component: () => import('./col'),
   config: {
     attribute: [
       {
+        field: 'componentProps.span',
         label: '占位格数',
         type: 'number',
-        field: 'componentProps.span'
-      }
-
-    ]
-  }
-} as ComponentConfigModel
+      },
+    ],
+  },
+  defaultSchema: {
+    componentProps: {
+      span: 6,
+    },
+    label: '栅格布局-列',
+    type: 'col',
+    children: [],
+  },
+} as ComponentConfigModel;

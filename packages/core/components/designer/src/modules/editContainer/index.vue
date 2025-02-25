@@ -1,9 +1,36 @@
+<script lang="ts" setup>
+import { computed, inject, onMounted, ref } from 'vue';
+
+import { PageSchema } from '../../../../../types/epic-designer';
+import KEditScreenContainer from './editScreenContainer.vue';
+import ENodeItem from './nodeItem.vue';
+import EPreviewWidgets from './previewWidgets.vue';
+
+const epicEditRangeRef = ref<HTMLDivElement | null>(null);
+const ePreviewWidgetsRef = ref<null | typeof EPreviewWidgets>(null);
+
+const pageSchema = inject('pageSchema') as PageSchema;
+const rootSchema = computed(() => {
+  return pageSchema.schemas[0];
+});
+
+const getEditRangestyle = computed(() => {
+  return {
+    height: '100%',
+    width: '100%',
+  };
+});
+
+onMounted(() => {
+  ePreviewWidgetsRef.value?.handleInit(epicEditRangeRef.value);
+});
+</script>
 <template>
   <section class="epic-edit-canvas">
     <KEditScreenContainer>
       <div
         ref="epicEditRangeRef"
-        class="epic-edit-range rounded-md overflow-auto relative"
+        class="epic-edit-range relative overflow-auto rounded-md"
         :style="getEditRangestyle"
       >
         <ENodeItem :schema="rootSchema" />
@@ -12,29 +39,3 @@
     </KEditScreenContainer>
   </section>
 </template>
-<script lang="ts" setup>
-import { PageSchema } from '../../../../../types/epic-designer'
-import EPreviewWidgets from './previewWidgets.vue'
-import ENodeItem from './nodeItem.vue'
-import KEditScreenContainer from './editScreenContainer.vue'
-import { ref, inject, computed, onMounted } from 'vue'
-
-const epicEditRangeRef = ref<HTMLDivElement | null>(null)
-const ePreviewWidgetsRef = ref<typeof EPreviewWidgets | null>(null)
-
-const pageSchema = inject('pageSchema') as PageSchema
-const rootSchema = computed(() => {
-    return pageSchema.schemas[0]
-})
-
-const getEditRangestyle = computed(() => {
-    return {
-        width: '100%',
-        height: '100%'
-    }
-})
-
-onMounted(() => {
-    ePreviewWidgetsRef.value?.handleInit(epicEditRangeRef.value)
-})
-</script>

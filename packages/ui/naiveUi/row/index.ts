@@ -1,32 +1,7 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component: () => import("./row"),
-  groupName: "布局",
-  icon: "icon--epic--width-normal-outline",
-  sort: 800,
-  defaultSchema: {
-    label: "栅格布局",
-    type: "row",
-    children: [
-      {
-        type: "col",
-        children: [],
-        componentProps: {
-          span: 12,
-        },
-      },
-      {
-        type: "col",
-        children: [],
-        componentProps: {
-          span: 12,
-        },
-      },
-    ],
-  },
-  editConstraints:{
-    childImmovable: true,
-  },
+  component: () => import('./row'),
   config: {
     attribute: [
       // {
@@ -84,23 +59,49 @@ export default {
       //   field: "componentProps.justify",
       // },
       {
-        label: "栅格间距",
-        type: "number",
-        field: "componentProps.gutter",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.gutter',
+        label: '栅格间距',
+        type: 'number',
       },
       {
-        label: "列编辑",
-        type: "EColEditor",
-        field: "children",
+        field: 'children',
+        label: '列编辑',
+        type: 'EColEditor',
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        field: 'componentProps.hidden',
+        label: '隐藏',
+        type: 'switch',
       },
     ],
   },
+  defaultSchema: {
+    label: '栅格布局',
+    type: 'row',
+    children: [
+      {
+        type: 'col',
+        children: [],
+        componentProps: {
+          span: 12,
+        },
+      },
+      {
+        type: 'col',
+        children: [],
+        componentProps: {
+          span: 12,
+        },
+      },
+    ],
+  },
+  editConstraints: {
+    childImmovable: true,
+  },
+  groupName: '布局',
+  icon: 'icon--epic--width-normal-outline',
+  sort: 800,
 } as ComponentConfigModel;

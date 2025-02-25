@@ -1,3 +1,1 @@
-import EDesigner from './src/designer.vue'
-
-export default EDesigner
+export { default } from './src/designer.vue';

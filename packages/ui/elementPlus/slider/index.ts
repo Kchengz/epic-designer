@@ -1,70 +1,57 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component: async () => (await import("element-plus")).ElSlider,
-  groupName: "表单",
-  icon: "icon--epic--switches",
-  sort: 930,
-  defaultSchema: {
-    label: "滑块",
-    type: "slider",
-    field: "slider",
-    input: true,
-    componentProps: {
-      placement: "top-start",
-      showTooltip: true,
-    },
-  },
+  component: async () => (await import('element-plus')).ElSlider,
   config: {
     attribute: [
       {
-        label: "字段名",
-        type: "input",
-        field: "field",
+        field: 'field',
+        label: '字段名',
+        type: 'input',
       },
       {
-        label: "标题",
-        type: "input",
-        field: "label",
+        field: 'label',
+        label: '标题',
+        type: 'input',
       },
 
       {
-        label: "默认值",
-        type: "slider",
-        field: "componentProps.defaultValue",
+        field: 'componentProps.defaultValue',
+        label: '默认值',
+        type: 'slider',
       },
       {
-        label: "尺寸",
-        type: "select",
         componentProps: {
-          placeholder: "请选择",
           clearable: true,
           options: [
             {
-              label: "大号",
-              value: "large",
+              label: '大号',
+              value: 'large',
             },
             {
-              label: "中等",
-              value: "default",
+              label: '中等',
+              value: 'default',
             },
             {
-              label: "小型",
-              value: "small",
+              label: '小型',
+              value: 'small',
             },
           ],
+          placeholder: '请选择',
         },
-        field: "componentProps.size",
+        field: 'componentProps.size',
+        label: '尺寸',
+        type: 'select',
       },
       {
-        label: "最小值",
-        type: "number",
-        field: "componentProps.min",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
-        onChange: ({ value, values, componentAttributes }) => {
+        field: 'componentProps.min',
+        label: '最小值',
+        onChange: ({ componentAttributes, value, values }) => {
           const componentIndex = componentAttributes.value.findIndex(
-            (item) => item.field === "componentProps.max"
+            (item) => item.field === 'componentProps.max',
           );
           const componentConfig = componentAttributes.value[componentIndex];
           componentConfig.componentProps = {
@@ -74,17 +61,17 @@ export default {
             values.componentProps.max = value;
           }
         },
+        type: 'number',
       },
       {
-        label: "最大值",
-        type: "number",
-        field: "componentProps.max",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
-        onChange: ({ value, values, componentAttributes }) => {
+        field: 'componentProps.max',
+        label: '最大值',
+        onChange: ({ componentAttributes, value, values }) => {
           const componentIndex = componentAttributes.value.findIndex(
-            (item) => item.field === "componentProps.min"
+            (item) => item.field === 'componentProps.min',
           );
           const componentConfig = componentAttributes.value[componentIndex];
           componentConfig.componentProps = {
@@ -94,145 +81,159 @@ export default {
             values.componentProps.min = value;
           }
         },
+        type: 'number',
       },
       {
-        label: "步长",
-        type: "number",
-        field: "componentProps.step",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.step',
+        label: '步长',
+        type: 'number',
       },
       {
-        label: "显示间断点",
-        type: "switch",
-        field: "componentProps.showStops",
+        field: 'componentProps.showStops',
+        label: '显示间断点',
+        type: 'switch',
       },
       {
-        label: "提示信息",
-        type: "switch",
-        field: "componentProps.showTooltip",
+        field: 'componentProps.showTooltip',
+        label: '提示信息',
+        type: 'switch',
       },
       {
-        label: "开启选择范围",
-        type: "switch",
-        field: "componentProps.range",
+        field: 'componentProps.range',
+        label: '开启选择范围',
+        type: 'switch',
       },
       {
-        label: "垂直模式",
-        type: "switch",
-        field: "componentProps.vertical",
+        field: 'componentProps.vertical',
+        label: '垂直模式',
+        type: 'switch',
       },
       {
-        label: "高度",
-        type: "EInputSize",
-        field: "componentProps.height",
+        field: 'componentProps.height',
+        label: '高度',
         show: ({ values }) => {
           return values.componentProps.vertical;
         },
+        type: 'EInputSize',
       },
       {
-        label: "显示数字框",
-        type: "switch",
-        field: "componentProps.showInput",
+        field: 'componentProps.showInput',
+        label: '显示数字框',
         onChange: ({ value, values }) => {
           value ? (values.componentProps.showInputControls = true) : null;
         },
+        type: 'switch',
       },
       {
-        label: "控制按钮",
-        type: "switch",
-        field: "componentProps.showInputControls",
+        field: 'componentProps.showInputControls',
+        label: '控制按钮',
         show: ({ values }) => values.componentProps.showInput,
+        type: 'switch',
       },
       {
-        label: "提示框位置",
-        type: "select",
-        defaultValue: "bottom-start",
         componentProps: {
           options: [
             {
-              label: "top",
-              value: "top",
+              label: 'top',
+              value: 'top',
             },
             {
-              label: "top-start",
-              value: "top-start",
+              label: 'top-start',
+              value: 'top-start',
             },
             {
-              label: "top-end",
-              value: "top-end",
+              label: 'top-end',
+              value: 'top-end',
             },
             {
-              label: "bottom",
-              value: "bottom",
+              label: 'bottom',
+              value: 'bottom',
             },
             {
-              label: "bottom-start",
-              value: "bottom-start",
+              label: 'bottom-start',
+              value: 'bottom-start',
             },
             {
-              label: "bottom-end",
-              value: "bottom-end",
+              label: 'bottom-end',
+              value: 'bottom-end',
             },
             {
-              label: "left",
-              value: "left",
+              label: 'left',
+              value: 'left',
             },
             {
-              label: "left-start",
-              value: "left-start",
+              label: 'left-start',
+              value: 'left-start',
             },
             {
-              label: "left-end",
-              value: "left-end",
+              label: 'left-end',
+              value: 'left-end',
             },
             {
-              label: "right",
-              value: "right",
+              label: 'right',
+              value: 'right',
             },
             {
-              label: "right-start",
-              value: "right-start",
+              label: 'right-start',
+              value: 'right-start',
             },
             {
-              label: "right-end",
-              value: "right-end",
+              label: 'right-end',
+              value: 'right-end',
             },
           ],
         },
-        field: "componentProps.placement",
+        defaultValue: 'bottom-start',
+        field: 'componentProps.placement',
+        label: '提示框位置',
+        type: 'select',
       },
       {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled",
+        field: 'componentProps.disabled',
+        label: '禁用',
+        type: 'switch',
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        field: 'componentProps.hidden',
+        label: '隐藏',
+        type: 'switch',
       },
       {
-        label: "表单校验",
-        type: "ERuleEditor",
-        layout: "vertical",
-        field: "rules",
-        describe: "校验规则需要配合表单使用",
         componentProps: {
-          ruleType: "number",
+          ruleType: 'number',
         },
+        describe: '校验规则需要配合表单使用',
+        field: 'rules',
+        label: '表单校验',
+        layout: 'vertical',
+        type: 'ERuleEditor',
       },
     ],
     event: [
       {
-        type: "input",
-        describe: "拖拽实时触发",
+        describe: '拖拽实时触发',
+        type: 'input',
       },
       {
-        type: "change",
-        describe: "拖拽结束改变值时",
+        describe: '拖拽结束改变值时',
+        type: 'change',
       },
     ],
   },
+  defaultSchema: {
+    componentProps: {
+      placement: 'top-start',
+      showTooltip: true,
+    },
+    field: 'slider',
+    input: true,
+    label: '滑块',
+    type: 'slider',
+  },
+  groupName: '表单',
+  icon: 'icon--epic--switches',
+  sort: 930,
 } as ComponentConfigModel;

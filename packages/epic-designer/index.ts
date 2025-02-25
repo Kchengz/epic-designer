@@ -1,3 +1,3 @@
-export * from '../core'
-export * from '../utils'
-export * from '../hooks'
+export * from '../core';
+export * from '../hooks';
+export * from '../utils';

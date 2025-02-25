@@ -1,55 +1,48 @@
-<template>
-  <div class="maximize-box">
-    <div
-      class="maximize"
-      @click="exitMaximize"
-    >
-      <CompressOutlined
-        v-if="maximize"
-        class="iconfont"
-      />
-      <ExpandOutlined
-        v-else
-        class="iconfont"
-      />
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
-import { CompressOutlined,ExpandOutlined } from '@ant-design/icons-vue'
 // const globalStore = useGlobalStore();
-import { computed, watch } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-const router = useRouter()
-const route = useRoute()
+import { computed, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+import { CompressOutlined, ExpandOutlined } from '@ant-design/icons-vue';
+
+const router = useRouter();
+const route = useRoute();
+const maximize = computed(() => {
+  return route.query.maximize === '1';
+});
+
 const exitMaximize = () => {
   router.push({
     query: {
       ...route.query,
-      maximize: maximize.value ? undefined : '1'
-    }
-  })
+      maximize: maximize.value ? undefined : '1',
+    },
+  });
 };
-
-const maximize = computed(() => {
-  return route.query.maximize == '1'
-})
 
 // 监听当前页面是否最大化，动态添加 class
 watch(
   () => maximize.value,
   () => {
-    const app = document.getElementById("app") as HTMLElement;
-    if (maximize.value) app.classList.add("main-maximize");
-    else app.classList.remove("main-maximize");
+    const app = document.querySelector('#app') as HTMLElement;
+    if (maximize.value) app.classList.add('main-maximize');
+    else app.classList.remove('main-maximize');
   },
-  { immediate: true }
+  { immediate: true },
 );
 </script>
 
+<template>
+  <div class="maximize-box">
+    <div class="maximize" @click="exitMaximize">
+      <CompressOutlined v-if="maximize" class="iconfont" />
+      <ExpandOutlined v-else class="iconfont" />
+    </div>
+  </div>
+</template>
+
 <style scoped lang="less">
-.maximize-box{
+.maximize-box {
   position: absolute;
   width: 42px;
   height: 42px;

@@ -1,17 +1,105 @@
+<script lang="ts" setup>
+import { computed, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+import { useTheme } from '@epic-designer/hooks';
+import { setupAntd, setupElementPlus, setupNaiveUi } from '@epic-designer/ui';
+import { pluginManager } from '@epic-designer/utils';
+import { useStorage } from '@vueuse/core';
+import { Divider, Select, Switch } from 'ant-design-vue';
+
+import 'element-plus/dist/index.css';
+import 'element-plus/theme-chalk/dark/css-vars.css';
+import 'ant-design-vue/dist/reset.css';
+
+const { isDark } = useTheme();
+const epicDarkMode = useStorage<boolean>('epic-dark-mode', false);
+isDark.value = epicDarkMode.value;
+watch(
+  () => isDark.value,
+  () => {
+    epicDarkMode.value = isDark.value;
+  },
+);
+
+const links = [
+  {
+    title: '文档',
+    url: 'https://docs.epicjs.cn',
+  },
+  {
+    title: '更新日志',
+    url: 'https://github.com/Kchengz/epic-designer/blob/develop/docs/updateLog.md',
+  },
+];
+
+const selectOptions = [
+  {
+    label: 'antDesigneVue',
+    value: 'ant-designe-vue',
+  },
+  {
+    label: 'elementPlus',
+    value: 'element-plus',
+  },
+  // {
+  //     label: 'naiveUi',
+  //     value: 'naive-ui',
+  // },
+];
+const router = useRouter();
+const route = useRoute();
+
+const selectValue = computed({
+  get() {
+    return route.params.ui as string;
+  },
+  set(ui) {
+    router.push({
+      params: {
+        ui,
+      },
+    });
+    switchUI(ui);
+  },
+});
+
+// 切换选择ui
+function switchUI(ui: string) {
+  pluginManager.removeBaseComponents();
+  pluginManager.initialized.value = false;
+
+  switch (ui) {
+    case 'ant-designe-vue': {
+      setupAntd();
+
+      break;
+    }
+    case 'element-plus': {
+      setupElementPlus();
+
+      break;
+    }
+    case 'naive-ui': {
+      setupNaiveUi();
+
+      break;
+    }
+    // No default
+  }
+}
+
+switchUI(selectValue.value);
+</script>
 <template>
-  <div class="epic-demo-header h-64px px-6 flex items-center justify-between">
+  <div class="epic-demo-header h-64px flex items-center justify-between px-6">
     <a
-      class="decoration-none items-center flex"
+      class="decoration-none flex items-center"
       href="https://docs.epicjs.cn"
       target="_blank"
     >
-      <img
-        src="@/assets/logo.png"
-        class="w-22px h-22px"
-        alt=""
-        srcset=""
-      >
-      <span class="ml-4 font-bold text-16px">EpicDesigner低代码设计器</span>
+      <img src="@/assets/logo.png" class="w-22px h-22px" alt="" srcset="" />
+      <span class="text-16px ml-4 font-bold">EpicDesigner低代码设计器</span>
     </a>
 
     <div class="epic-demo-header-right flex items-center">
@@ -20,29 +108,20 @@
         :key="index"
         class="mr-6"
         :href="item.url"
-      >{{ item.title }}</a>
+        >{{ item.title }}
+      </a>
       <Select
         v-model:value="selectValue"
         class="w-116px"
         size="small"
         :options="selectOptions"
       />
-      <Divider
-        type="vertical"
-        class="mx-3"
-      />
+      <Divider type="vertical" class="mx-3" />
       <Switch v-model:checked="isDark">
-        <template #checkedChildren>
-          Dark
-        </template>
-        <template #unCheckedChildren>
-          Light
-        </template>
+        <template #checkedChildren> Dark </template>
+        <template #unCheckedChildren> Light </template>
       </Switch>
-      <Divider
-        type="vertical"
-        class="mx-3"
-      />
+      <Divider type="vertical" class="mx-3" />
       <a
         class="w-26px"
         href="https://github.com/Kchengz/epic-designer"
@@ -51,11 +130,7 @@
         data-v-b354ede9=""
         data-v-82c704e6=""
       >
-        <svg
-          role="img"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <title>GitHub</title>
           <path
             fill="currentColor"
@@ -66,82 +141,3 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import { useRoute, useRouter } from 'vue-router'
-import { computed, watch } from 'vue'
-import { pluginManager } from '@epic-designer/utils'
-import { useTheme } from '@epic-designer/hooks'
-
-import { setupAntd, setupElementPlus, setupNaiveUi } from "@epic-designer/ui";
-import { Divider, Switch, Select } from 'ant-design-vue'
-import 'element-plus/dist/index.css'
-import 'element-plus/theme-chalk/dark/css-vars.css'
-import "ant-design-vue/dist/reset.css";
-import { useStorage } from '@vueuse/core'
-const { isDark } = useTheme()
-const epicDarkMode = useStorage<boolean>('epic-dark-mode', false)
-isDark.value = epicDarkMode.value
-watch(() => isDark.value, () => {
-    epicDarkMode.value = isDark.value
-})
-
-
-const links = [
-    {
-        title: '文档',
-        url: 'https://docs.epicjs.cn'
-    },
-    {
-        title: '更新日志',
-        url: 'https://github.com/Kchengz/epic-designer/blob/develop/docs/updateLog.md'
-    },
-]
-
-const selectOptions = [
-    {
-        label: 'antDesigneVue',
-        value: 'ant-designe-vue',
-    },
-    {
-        label: 'elementPlus',
-        value: 'element-plus',
-    },
-    // {
-    //     label: 'naiveUi',
-    //     value: 'naive-ui',
-    // },
-]
-const router = useRouter()
-const route = useRoute()
-
-const selectValue = computed({
-    get() {
-        return route.params.ui as string
-    },
-    set(ui) {
-        router.push({
-            params:{
-                ui
-            }
-        })
-        switchUI(ui)
-    }
-})
-
-// 切换选择ui
-function switchUI(ui: string) {
-    pluginManager.removeBaseComponents()
-    pluginManager.initialized.value = false
-
-    if (ui === 'ant-designe-vue') {
-        setupAntd()
-    } else if (ui === 'element-plus') {
-        setupElementPlus()
-    } else if (ui === 'naive-ui') {
-        setupNaiveUi()
-    }
-}
-
-
-switchUI(selectValue.value)
-</script>

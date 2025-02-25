@@ -1,12 +1,13 @@
-import { type ComponentSchema } from '@epic-designer/core/types/epic-designer'
-import { ref } from 'vue'
+import type { ComponentSchema } from '@epic-designer/core/types/epic-designer';
+
+import { ref } from 'vue';
 
 /**
 历史记录模型
 */
 export interface RecordModel {
-  type: string
-  componentSchema: string
+  componentSchema: string;
+  type: string;
 }
 
 /**
@@ -14,120 +15,116 @@ export interface RecordModel {
  */
 export function useRevoke() {
   // 历史记录
-  const recordList = ref<RecordModel[]>([])
+  const recordList = ref<RecordModel[]>([]);
 
   // 撤销记录，用于重做
-  const undoList = ref<RecordModel[]>([])
+  const undoList = ref<RecordModel[]>([]);
 
   // 当前记录用currentRecord变量暂时存储，当用户修改时，再存放到recordList
-  const currentRecord = ref<RecordModel | null>(null)
+  const currentRecord = ref<null | RecordModel>(null);
 
   // 最后记录时间
-  let lastPushTime = 0
+  let lastPushTime = 0;
   /**
    * @description: 插入历史记录
    * @param {object}componentSchema
    * @return {boolean}
    */
   function push(componentSchema: ComponentSchema[], type = '插入组件'): void {
-
     // 加载数据前只有初始化记录时，直接使用加载的数据作为初始化记录
-    if (type === "加载数据" && currentRecord.value?.type === "初始化") {
+    if (type === '加载数据' && currentRecord.value?.type === '初始化') {
       // 将json转成字符串存储
       currentRecord.value = {
+        componentSchema: JSON.stringify(componentSchema),
         type,
-        componentSchema: JSON.stringify(componentSchema)
-      }
+      };
     }
 
-    const nowTime = Date.now()
+    const nowTime = Date.now();
     // 忽略低于150ms时间差的记录
     if (lastPushTime + 150 > nowTime) {
-      return
+      return;
     }
-    lastPushTime = nowTime
+    lastPushTime = nowTime;
     // 判断之前是否已经存在currentRecord记录，有则存储到recordList
-    if (currentRecord.value != null) {
-      recordList.value.push(currentRecord.value)
+    if (currentRecord.value !== null) {
+      recordList.value.push(currentRecord.value);
       // 增加记录后则应该清空重做记录
-      undoList.value.splice(0, undoList.value.length)
+      undoList.value.splice(0, undoList.value.length);
     }
 
     // 将json转成字符串存储
     currentRecord.value = {
+      componentSchema: JSON.stringify(componentSchema),
       type,
-      componentSchema: JSON.stringify(componentSchema)
-    }
+    };
 
     // 最多存储60条记录，超过60条记录则删除之前的记录
     if (recordList.value.length > 60) {
-      recordList.value.unshift()
+      recordList.value.unshift();
     }
   }
 
   /**
    * @description: 撤销操作
-   * @param {*}
    * @return {object}
    */
-  function undo(): RecordModel | false {
+  function undo(): false | RecordModel {
     // 没有记录时,返回false
     if (recordList.value.length === 0) {
-      return false
+      return false;
     }
-    const recordObj = recordList.value.pop() as RecordModel
+    const recordObj = recordList.value.pop() as RecordModel;
 
     // 将当前记录添加到重做记录里面
-    if (currentRecord.value != null) {
-      undoList.value.push(currentRecord.value)
+    if (currentRecord.value !== null) {
+      undoList.value.push(currentRecord.value);
     }
     // 丢弃当前记录，防止重复添加
-    currentRecord.value = recordObj
+    currentRecord.value = recordObj;
 
-    return JSON.parse(recordObj.componentSchema)
+    return JSON.parse(recordObj.componentSchema);
   }
 
   /**
    * @description: 重做操作
-   * @param {*}
    * @return {*}
    */
-  function redo(): RecordModel | false {
+  function redo(): false | RecordModel {
     // 没有重做记录时,返回false
     if (undoList.value.length === 0) {
-      return false
+      return false;
     }
 
-    const recordObj = undoList.value.pop() as RecordModel
+    const recordObj = undoList.value.pop() as RecordModel;
     // 添加到重做记录里面
-    if (currentRecord.value != null) {
-      recordList.value.push(currentRecord.value)
+    if (currentRecord.value !== null) {
+      recordList.value.push(currentRecord.value);
     }
     // 丢弃当前记录，防止重复添加
-    currentRecord.value = recordObj
-    return JSON.parse(recordObj.componentSchema)
+    currentRecord.value = recordObj;
+    return JSON.parse(recordObj.componentSchema);
   }
 
   /**
    * @description: 重置
-   * @param {*}
    * @return {void}
    */
   function reset(): void {
-    recordList.value = []
-    undoList.value = []
-    currentRecord.value = null
+    recordList.value = [];
+    undoList.value = [];
+    currentRecord.value = null;
   }
 
   return {
-    recordList,
-    undoList,
     currentRecord,
     push,
-    undo,
+    recordList,
     redo,
-    reset
-  }
+    reset,
+    undo,
+    undoList,
+  };
 }
 
 export type Revoke = ReturnType<typeof useRevoke>;

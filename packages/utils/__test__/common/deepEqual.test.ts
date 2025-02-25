@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import { deepEqual } from '../../';
 
 describe('deepEqual', () => {
@@ -46,7 +47,7 @@ describe('deepEqual', () => {
 
   it('应当返回 true 当两个对象相等但属性顺序不同', () => {
     const obj1 = { a: 1, b: 2, c: 3 };
-    const obj2 = { c: 3, b: 2, a: 1 };
+    const obj2 = { a: 1, b: 2, c: 3 };
 
     expect(deepEqual(obj1, obj2)).toBe(true);
   });

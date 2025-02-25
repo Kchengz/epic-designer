@@ -1,155 +1,156 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component: async () => (await import("element-plus")).ElInput,
-  icon: "icon--epic--edit-square-outline-rounded",
-  groupName: "表单",
-  sort: 705,
-  defaultSchema: {
-    label: "文本域",
-    type: "textarea",
-    field: "textarea",
-    input: true,
-    componentProps: {
-      placeholder: "请输入",
-      type: "textarea",
-    },
-  },
+  component: async () => (await import('element-plus')).ElInput,
   config: {
+    action: [
+      {
+        describe: '使 input 获取焦点',
+        type: 'focus',
+      },
+      {
+        describe: '使 input 失去焦点',
+        type: 'blur',
+      },
+      {
+        describe: '清除 input 值',
+        type: 'clear',
+      },
+      {
+        describe: '选中 input 中的文字',
+        type: 'select',
+      },
+    ],
     attribute: [
       {
-        label: "字段名",
-        type: "input",
-        field: "field",
+        field: 'field',
+        label: '字段名',
+        type: 'input',
       },
       {
-        label: "标题",
-        type: "input",
-        field: "label",
+        field: 'label',
+        label: '标题',
+        type: 'input',
       },
       {
-        label: "默认值",
-        type: "textarea",
-        field: "componentProps.defaultValue",
+        field: 'componentProps.defaultValue',
+        label: '默认值',
+        type: 'textarea',
       },
       {
-        label: "占位内容",
-        type: "input",
-        field: "componentProps.placeholder",
+        field: 'componentProps.placeholder',
+        label: '占位内容',
+        type: 'input',
       },
       {
-        label: "尺寸",
-        type: "select",
         componentProps: {
-          placeholder: "请选择",
           clearable: true,
           options: [
             {
-              label: "大号",
-              value: "large",
+              label: '大号',
+              value: 'large',
             },
             {
-              label: "中等",
-              value: "default",
+              label: '中等',
+              value: 'default',
             },
             {
-              label: "小型",
-              value: "small",
+              label: '小型',
+              value: 'small',
             },
           ],
+          placeholder: '请选择',
         },
-        field: "componentProps.size",
+        field: 'componentProps.size',
+        label: '尺寸',
+        type: 'select',
       },
       {
-        label: "最大输入长度",
-        type: "number",
-        field: "componentProps.maxlength",
         componentProps: {
-          placeholder: "请输入",
-          min: 0
+          min: 0,
+          placeholder: '请输入',
         },
+        field: 'componentProps.maxlength',
+        label: '最大输入长度',
+        type: 'number',
       },
       {
-        label: "统计字数",
-        type: "switch",
-        field: "componentProps.showWordLimit",
+        field: 'componentProps.showWordLimit',
+        label: '统计字数',
         show: ({ values }) => {
           return values.componentProps.maxlength;
         },
+        type: 'switch',
       },
       {
-        label: "最小行数",
-        type: "number",
-        field: "componentProps.autosize.minRows",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.autosize.minRows',
+        label: '最小行数',
+        type: 'number',
       },
       {
-        label: "最大行数",
-        type: "number",
-        field: "componentProps.autosize.maxRows",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.autosize.maxRows',
+        label: '最大行数',
+        type: 'number',
       },
       {
-        label: "可清空",
-        type: "switch",
-        field: "componentProps.clearable",
+        field: 'componentProps.clearable',
+        label: '可清空',
+        type: 'switch',
       },
       {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled",
+        field: 'componentProps.disabled',
+        label: '禁用',
+        type: 'switch',
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        field: 'componentProps.hidden',
+        label: '隐藏',
+        type: 'switch',
       },
       {
-        label: "表单校验",
-        type: "ERuleEditor",
-        layout: "vertical",
-        field: "rules",
-        describe: "校验规则需要配合表单使用",
+        describe: '校验规则需要配合表单使用',
+        field: 'rules',
+        label: '表单校验',
+        layout: 'vertical',
+        type: 'ERuleEditor',
       },
     ],
     event: [
       {
-        type: "input",
-        describe: "输入值",
+        describe: '输入值',
+        type: 'input',
       },
       {
-        type: "change",
-        describe: "值修改",
+        describe: '值修改',
+        type: 'change',
       },
       {
-        type: "focus",
-        describe: "获取焦点",
+        describe: '获取焦点',
+        type: 'focus',
       },
       {
-        type: "blur",
-        describe: "失去焦点",
-      },
-    ],
-    action: [
-      {
-        type: "focus",
-        describe: "使 input 获取焦点",
-      },
-      {
-        type: "blur",
-        describe: "使 input 失去焦点",
-      },
-      {
-        type: "clear",
-        describe: "清除 input 值",
-      },
-      {
-        type: "select",
-        describe: "选中 input 中的文字",
+        describe: '失去焦点',
+        type: 'blur',
       },
     ],
   },
+  defaultSchema: {
+    componentProps: {
+      placeholder: '请输入',
+      type: 'textarea',
+    },
+    field: 'textarea',
+    input: true,
+    label: '文本域',
+    type: 'textarea',
+  },
+  groupName: '表单',
+  icon: 'icon--epic--edit-square-outline-rounded',
+  sort: 705,
 } as ComponentConfigModel;

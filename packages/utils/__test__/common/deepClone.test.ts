@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import { deepClone } from '../../';
 
 describe('deepClone', () => {
@@ -33,10 +34,8 @@ describe('deepClone', () => {
     expect(clonedObj.b).toBe(clonedObj); // 确保循环引用被正确处理
   });
 
-
   it('应处理空对象和空数组', () => {
     expect(deepClone({})).toEqual({});
     expect(deepClone([])).toEqual([]);
   });
-
 });

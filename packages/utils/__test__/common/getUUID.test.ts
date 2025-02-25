@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import { getUUID } from '../../';
 
 describe('getUUID 函数测试', () => {

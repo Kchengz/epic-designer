@@ -1,1 +1,1 @@
-export * from "./usePageSchema";
+export * from './usePageSchema';

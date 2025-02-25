@@ -1,6 +1,6 @@
+import presetRemToPx from '@unocss/preset-rem-to-px';
 // uno.config.ts
-import { defineConfig, presetUno, presetAttributify, transformerDirectives } from 'unocss'
-import presetRemToPx from '@unocss/preset-rem-to-px'
+import { defineConfig, presetUno, transformerDirectives } from 'unocss';
 
 export default defineConfig({
   exclude: [
@@ -12,25 +12,21 @@ export default defineConfig({
     'public',
     'build',
     'mock',
-    './stats.html'
+    './stats.html',
   ],
-  presets: [
-    presetUno({ dark: 'class' }),
-    presetRemToPx(),
-  ],
+  presets: [presetUno({ dark: 'class' }), presetRemToPx()],
+  shortcuts: {
+    'flex-center': 'flex justify-center items-center',
+    'wh-full': 'w-full h-full',
+  },
+  theme: {
+    colors: {},
+  },
+  transformers: [transformerDirectives()],
   variants: [
     (matcher) => ({
       matcher,
       selector: (s) => `.epic-scoped ${s}`,
     }),
   ],
-  transformers: [transformerDirectives()],
-  shortcuts: {
-    'wh-full': 'w-full h-full',
-    'flex-center': 'flex justify-center items-center',
-  },
-  theme: {
-    colors: {
-    }
-  },
-})
+});

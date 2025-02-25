@@ -1,196 +1,196 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
 
 export default {
-  component: () => import("./form.vue"),
-  groupName: "表单",
-  icon: "icon--epic--list-alt-outline-rounded",
-  sort: 600,
-  defaultSchema: {
-    label: "表单",
-    type: "form",
-    componentProps: {
-      name: "default",
-      labelWidth: "100px",
-      labelLayout: "fixed",
-      labelCol: {
-        span: 5,
-      },
-      wrapperCol: {
-        span: 19,
-      },
-    },
-    children: [],
-  },
+  component: () => import('./form.vue'),
   config: {
+    action: [
+      {
+        describe: '获取表单数据',
+        type: 'getData',
+      },
+      {
+        describe: '设置表单数据',
+        type: 'setData',
+      },
+      {
+        describe: '校验表单',
+        type: 'validate',
+      },
+    ],
     attribute: [
       {
-        label: "Name",
-        type: "input",
-        field: "componentProps.name",
+        field: 'componentProps.name',
+        label: 'Name',
+        type: 'input',
       },
       {
-        label: "表单布局",
-        type: "radio",
         componentProps: {
-          placeholder: "请选择",
+          allowClear: true,
+          'option-type': 'button',
+          options: [
+            {
+              label: '水平',
+              value: 'horizontal',
+            },
+            {
+              label: '垂直',
+              value: 'vertical',
+            },
+            {
+              label: '内联',
+              value: 'inline',
+            },
+          ],
+          placeholder: '请选择',
+        },
+        field: 'componentProps.layout',
+        label: '表单布局',
+        type: 'radio',
+      },
+      {
+        componentProps: {
+          'option-type': 'button',
+          options: [
+            {
+              label: '固定宽度',
+              value: 'fixed',
+            },
+            {
+              label: '自适应宽度',
+              value: 'flex',
+            },
+          ],
+        },
+        field: 'componentProps.labelLayout',
+        label: '标签布局',
+        type: 'radio',
+      },
+      {
+        field: 'componentProps.labelWidth',
+        label: '标签宽度',
+        show: ({ values }) => {
+          return values.componentProps?.labelLayout === 'fixed';
+        },
+        type: 'EInputSize',
+      },
+      {
+        componentProps: {
+          placeholder: '请输入',
+        },
+        field: 'componentProps.labelCol.span',
+        label: '标签占比',
+        show: ({ values }) => {
+          return values.componentProps?.labelLayout === 'flex';
+        },
+        type: 'input',
+      },
+      {
+        componentProps: {
+          placeholder: '请输入',
+        },
+        field: 'componentProps.wrapperCol.span',
+        label: '控件占比',
+        show: ({ values }) => {
+          return values.componentProps?.labelLayout === 'flex';
+        },
+        type: 'input',
+      },
+      {
+        componentProps: {
+          'option-type': 'button',
+          options: [
+            {
+              label: '左',
+              value: 'left',
+            },
+            {
+              label: '右',
+              value: 'right',
+            },
+          ],
+        },
+        field: 'componentProps.labelAlign',
+        label: '标签对齐',
+        type: 'radio',
+      },
+      {
+        componentProps: {
           allowClear: true,
           options: [
             {
-              label: "水平",
-              value: "horizontal",
+              label: '大号',
+              value: 'large',
             },
             {
-              label: "垂直",
-              value: "vertical",
+              label: '中等',
+              value: 'middle',
             },
             {
-              label: "内联",
-              value: "inline",
+              label: '小型',
+              value: 'small',
             },
           ],
-          "option-type": "button"
+          placeholder: '请选择',
         },
-        field: "componentProps.layout",
+        defaultValue: 'default',
+        field: 'componentProps.size',
+        label: '尺寸',
+        type: 'select',
       },
       {
-        label: "标签布局",
-        type: "radio",
-        field: "componentProps.labelLayout",
-        componentProps: {
-          options: [
-            {
-              label: "固定宽度",
-              value: "fixed",
-            },
-            {
-              label: "自适应宽度",
-              value: "flex",
-            },
-          ],
-          "option-type": "button"
-        },
-      },
-      {
-        label: "标签宽度",
-        type: "EInputSize",
-        field: "componentProps.labelWidth",
-        show: ({ values }) => {
-          return values.componentProps?.labelLayout === "fixed";
-        },
-      },
-      {
-        label: "标签占比",
-        type: "input",
-        field: "componentProps.labelCol.span",
-        show: ({ values }) => {
-          return values.componentProps?.labelLayout === "flex";
-        },
-        componentProps: {
-          placeholder: "请输入",
-        }
-      },
-      {
-        label: "控件占比",
-        type: "input",
-        field: "componentProps.wrapperCol.span",
-        show: ({ values }) => {
-          return values.componentProps?.labelLayout === "flex";
-        },
-        componentProps: {
-          placeholder: "请输入",
-        }
-      },
-      {
-        label: "标签对齐",
-        type: "radio",
-        componentProps: {
-          options: [
-            {
-              label: "左",
-              value: "left",
-            },
-            {
-              label: "右",
-              value: "right",
-            },
-          ],
-          "option-type": "button"
-        },
-        field: "componentProps.labelAlign",
-      },
-      {
-        label: "尺寸",
-        type: "select",
-        defaultValue: "default",
-        componentProps: {
-          placeholder: "请选择",
-          allowClear: true,
-          options: [
-            {
-              label: "大号",
-              value: "large",
-            },
-            {
-              label: "中等",
-              value: "middle",
-            },
-            {
-              label: "小型",
-              value: "small",
-            },
-          ],
-        },
-        field: "componentProps.size",
-      },
-      {
-        label: "隐藏冒号",
-        type: "switch",
         componentProps: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: "componentProps.colon",
+        field: 'componentProps.colon',
+        label: '隐藏冒号',
+        type: 'switch',
       },
       {
-        label: "隐藏必须标志",
-        type: "switch",
-        field: "componentProps.hideRequiredMark",
+        field: 'componentProps.hideRequiredMark',
+        label: '隐藏必须标志',
+        type: 'switch',
       },
 
       {
-        label: "标签文本换行",
-        type: "switch",
-        field: "componentProps.labelWrap",
+        field: 'componentProps.labelWrap',
+        label: '标签文本换行',
+        type: 'switch',
       },
       {
-        label: "滚动校验错误处",
-        type: "switch",
-        field: "componentProps.scrollToFirstError",
+        field: 'componentProps.scrollToFirstError',
+        label: '滚动校验错误处',
+        type: 'switch',
       },
       {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled",
+        field: 'componentProps.disabled',
+        label: '禁用',
+        type: 'switch',
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
-      },
-    ],
-    action: [
-      {
-        type: "getData",
-        describe: "获取表单数据",
-      },
-      {
-        type: "setData",
-        describe: "设置表单数据",
-      },
-      {
-        type: "validate",
-        describe: "校验表单",
+        field: 'componentProps.hidden',
+        label: '隐藏',
+        type: 'switch',
       },
     ],
   },
+  defaultSchema: {
+    componentProps: {
+      labelCol: {
+        span: 5,
+      },
+      labelLayout: 'fixed',
+      labelWidth: '100px',
+      name: 'default',
+      wrapperCol: {
+        span: 19,
+      },
+    },
+    label: '表单',
+    type: 'form',
+    children: [],
+  },
+  groupName: '表单',
+  icon: 'icon--epic--list-alt-outline-rounded',
+  sort: 600,
 } as ComponentConfigModel;

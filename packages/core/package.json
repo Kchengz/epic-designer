@@ -1,11 +1,8 @@
 {
   "name": "@epic-designer/core",
-  "private": false,
   "version": "0.9.30",
-  "type": "module",
-  "main": "index.ts",
   "description": "基于vue3的设计器,可视化开发页面表单",
-  "author": "kchengz",
+  "private": false,
   "keywords": [
     "form",
     "epic-designer",
@@ -22,10 +19,13 @@
     "type": "git",
     "url": "https://github.com/Kchengz/epic-designer"
   },
+  "author": "kchengz",
+  "type": "module",
   "scripts": {
     "preview": "vite preview",
     "test": "vitest"
   },
+  "main": "index.ts",
   "dependencies": {
     "monaco-editor": "^0.52.2",
     "vuedraggable": "4.1.0"

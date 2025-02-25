@@ -1,20 +1,18 @@
-<template>
-  <span
-    class="iconfont"
-    :class="computedClass"
-  />
-</template>
 <script lang="ts" setup>
+import { computed } from 'vue';
+
 defineOptions({
-  name: 'EIcon'
-})
-import { computed } from 'vue'
-const props = withDefaults(defineProps<{
-  name: string;
-  prefix?: string;
-}>(), {
-  prefix: ''
-})
+  name: 'EIcon',
+});
+const props = withDefaults(
+  defineProps<{
+    name: string;
+    prefix?: string;
+  }>(),
+  {
+    prefix: '',
+  },
+);
 
 const computedClass = computed(() => {
   let baseClass = props.name;
@@ -27,5 +25,7 @@ const computedClass = computed(() => {
   }
   return `${props.prefix}${baseClass}`;
 });
-
 </script>
+<template>
+  <span class="iconfont" :class="computedClass"></span>
+</template>

@@ -1,31 +1,32 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
+  bindModel: 'model-value',
   component: async () => await import('./index.vue'),
-  defaultSchema: {
-    label: '代码编辑器',
-    type: 'monacoEditor',
-    field: 'monacoEditor',
-    icon: 'epic-icon-write',
-    input: true
-  },
   config: {
     attribute: [
       {
+        field: 'field',
         label: '字段名',
         type: 'input',
-        field: 'field'
       },
       {
+        field: 'label',
         label: '标题',
         type: 'input',
-        field: 'label'
       },
       {
+        field: 'componentProps.defaultValue',
         label: '默认值',
         type: 'monacoEditor',
-        field: 'componentProps.defaultValue'
-      }
-    ]
+      },
+    ],
   },
-  bindModel: 'model-value'
-} as ComponentConfigModel
+  defaultSchema: {
+    field: 'monacoEditor',
+    icon: 'epic-icon-write',
+    input: true,
+    label: '代码编辑器',
+    type: 'monacoEditor',
+  },
+} as ComponentConfigModel;

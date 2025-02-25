@@ -1,3 +1,26 @@
+<script lang="ts" setup>
+import { computed, inject } from 'vue';
+
+import { pluginManager } from '@epic-designer/utils';
+
+import EIcon from '../../../../../components/icon';
+import { Designer, PageSchema } from '../../../../../types/epic-designer';
+import ETree from '../../../../tree';
+
+const designer = inject('designer') as Designer;
+const pageSchema = inject('pageSchema') as PageSchema;
+
+// 计算选中节点值
+const selectedKeys = computed(() => {
+  const id = designer.state.checkedNode?.id;
+  return id ? [id] : [];
+});
+
+// 设置选中节点
+function handleNodeClick(e: any) {
+  designer.setCheckedNode(e.componentSchema);
+}
+</script>
 <template>
   <div class="epic-outline">
     <ETree
@@ -22,10 +45,11 @@
             />
             {{
               schema.label ??
-                pluginManager.getComponentConfingByType(schema.type)?.defaultSchema.label
+              pluginManager.getComponentConfingByType(schema.type)
+                ?.defaultSchema.label
             }}
           </span>
-          <span class="epic-node-type-text flex-1 w-0 truncate">
+          <span class="epic-node-type-text w-0 flex-1 truncate">
             {{ schema.id }}
           </span>
         </div>
@@ -33,24 +57,3 @@
     </ETree>
   </div>
 </template>
-<script lang="ts" setup>
-import ETree from "../../../../tree";
-import { inject, computed } from "vue";
-import { PageSchema, Designer } from "../../../../../types/epic-designer";
-import { pluginManager } from "@epic-designer/utils";
-import EIcon from "../../../../../components/icon";
-
-const designer = inject("designer") as Designer;
-const pageSchema = inject("pageSchema") as PageSchema;
-
-// 计算选中节点值
-const selectedKeys = computed(() => {
-  const id = designer.state.checkedNode?.id;
-  return id ? [id] : [];
-});
-
-// 设置选中节点
-function handleNodeClick(e: any) {
-  designer.setCheckedNode(e.componentSchema);
-}
-</script>

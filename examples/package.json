@@ -1,7 +1,7 @@
 {
   "name": "epic-examples",
-  "private": true,
   "version": "0.9.30",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -12,8 +12,8 @@
     "@ant-design/icons-vue": "^7.0.1",
     "@shikijs/monaco": "^1.24.4",
     "ant-design-vue": "^4.2.6",
-    "element-plus": "^2.9.1",
     "dayjs": "^1.11.13",
+    "element-plus": "^2.9.1",
     "monaco-editor": "^0.52.2",
     "shiki": "^1.24.4",
     "vue": "^3.5.13",

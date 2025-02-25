@@ -1,47 +1,10 @@
-<template>
-  <Modal
-    v-model="visible"
-    title="预览"
-    :width="width"
-    :hide-confirm="props.hideConfirm"
-    ok-text="表单数据"
-    @close="handleClose"
-    @ok="handleOk"
-  >
-    <div class="min-w-750px rounded">
-      <EBuilder
-        :key="EBuilderKey"
-        ref="kb"
-        :page-schema="pageSchema"
-      />
-
-      <!-- 表单数据 start -->
-      <Modal
-        v-model="dataVisible"
-        title="表单数据"
-        width="860px"
-        @close="handleCloseData"
-        @ok="handleCloseData"
-      >
-        <div class="h-full rounded">
-          <MonacoEditor
-            ref="monacoEditorRef"
-            auto-toggle-theme
-            read-only
-            class="h-full editor"
-            :model-value="formValues"
-          />
-        </div>
-      </Modal>
-      <!-- 表单数据 end -->
-    </div>
-  </Modal>
-</template>
 <script lang="ts" setup>
-import EBuilder from "../../../../builder";
-import { pluginManager, getUUID } from "@epic-designer/utils";
-import { ref, inject, nextTick } from "vue";
-import { PageSchema } from "../../../../../types/epic-designer";
+import { inject, nextTick, ref } from 'vue';
+
+import { getUUID, pluginManager } from '@epic-designer/utils';
+
+import { PageSchema } from '../../../../../types/epic-designer';
+import EBuilder from '../../../../builder';
 
 const props = withDefaults(
   defineProps<{
@@ -49,20 +12,20 @@ const props = withDefaults(
     width?: string;
   }>(),
   {
-    width: "900px",
-  }
+    width: '900px',
+  },
 );
-const MonacoEditor = pluginManager.getComponent("monacoEditor");
-const Modal = pluginManager.getComponent("modal");
+const MonacoEditor = pluginManager.getComponent('monacoEditor');
+const Modal = pluginManager.getComponent('modal');
 const monacoEditorRef = ref<any>(null);
 
 const visible = ref(false);
 const dataVisible = ref(false);
 const formValues = ref({});
 
-const pageSchema = inject("pageSchema") as PageSchema;
+const pageSchema = inject('pageSchema') as PageSchema;
 const kb = ref<any>(null);
-const EBuilderKey = ref("");
+const EBuilderKey = ref('');
 
 function handleCloseData() {
   dataVisible.value = false;
@@ -84,14 +47,15 @@ async function handleOk() {
     let values = await kb.value.validateAll();
 
     // 如果没有表单数据，则弹出提示并返回
-    if (!Object.keys(values).length) {
-      alert("请添加表单组件后再尝试！");
+    if (Object.keys(values).length === 0) {
+      // eslint-disable-next-line no-alert
+      alert('请添加表单组件后再尝试！');
       return;
     }
 
     // 如果只有一个表单组件，则将 values 赋值为表单数据的值
     if (Object.keys(values).length === 1) {
-      values = values["default"];
+      values = values.default;
     }
 
     // 将验证后的表单数据转换为 JSON 字符串格式，并赋值给 formValues
@@ -104,9 +68,9 @@ async function handleOk() {
     nextTick(() => {
       monacoEditorRef.value?.setValue(formValues.value);
     });
-  } catch (err) {
+  } catch (error) {
     // 捕获并输出错误
-    console.error(err);
+    console.error(error);
   }
 }
 
@@ -114,3 +78,38 @@ defineExpose({
   handleOpen,
 });
 </script>
+<template>
+  <Modal
+    v-model="visible"
+    title="预览"
+    :width="width"
+    :hide-confirm="props.hideConfirm"
+    ok-text="表单数据"
+    @close="handleClose"
+    @ok="handleOk"
+  >
+    <div class="min-w-750px rounded">
+      <EBuilder :key="EBuilderKey" ref="kb" :page-schema="pageSchema" />
+
+      <!-- 表单数据 start -->
+      <Modal
+        v-model="dataVisible"
+        title="表单数据"
+        width="860px"
+        @close="handleCloseData"
+        @ok="handleCloseData"
+      >
+        <div class="h-full rounded">
+          <MonacoEditor
+            ref="monacoEditorRef"
+            auto-toggle-theme
+            read-only
+            class="editor h-full"
+            :model-value="formValues"
+          />
+        </div>
+      </Modal>
+      <!-- 表单数据 end -->
+    </div>
+  </Modal>
+</template>

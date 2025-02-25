@@ -1,219 +1,220 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component: async () => (await import("element-plus")).ElDatePicker,
-  groupName: "表单",
-  icon: "icon--epic--calendar-month-outline-rounded",
-  sort: 910,
-  defaultSchema: {
-    label: "日期选择器",
-    type: "date",
-    field: "date",
-    input: true,
-    componentProps: {
-      type: "date",
-      valueFormat: "YYYY-MM-DD",
-      format: "YYYY-MM-DD",
-      placeholder: "请选择",
-      startPlaceholder: "请选择",
-      endPlaceholder: "请选择",
-    },
-  },
+  component: async () => (await import('element-plus')).ElDatePicker,
   config: {
     attribute: [
       {
-        label: "字段名",
-        type: "input",
-        field: "field",
+        field: 'field',
+        label: '字段名',
+        type: 'input',
       },
       {
-        label: "标题",
-        type: "input",
-        field: "label",
+        field: 'label',
+        label: '标题',
+        type: 'input',
       },
       {
-        label: "默认值",
-        type: "date",
-        field: "componentProps.defaultValue",
+        field: 'componentProps.defaultValue',
+        label: '默认值',
+        type: 'date',
       },
       {
-        label: "日期类型",
-        type: "select",
-        field: "componentProps.type",
         componentProps: {
           options: [
             {
-              label: "日期",
-              value: "date",
+              label: '日期',
+              value: 'date',
             },
             {
-              label: "周",
-              value: "week",
+              label: '周',
+              value: 'week',
             },
             {
-              label: "月份",
-              value: "month",
+              label: '月份',
+              value: 'month',
             },
             {
-              label: "年份",
-              value: "year",
+              label: '年份',
+              value: 'year',
             },
             {
-              label: "时间",
-              value: "datetime",
+              label: '时间',
+              value: 'datetime',
             },
             {
-              label: "时间范围",
-              value: "datetimerange",
+              label: '时间范围',
+              value: 'datetimerange',
             },
             {
-              label: "日期范围",
-              value: "daterange",
+              label: '日期范围',
+              value: 'daterange',
             },
             {
-              label: "月份范围",
-              value: "monthrange",
+              label: '月份范围',
+              value: 'monthrange',
             },
             {
-              label: "多个日期",
-              value: "dates",
+              label: '多个日期',
+              value: 'dates',
             },
           ],
         },
-        onChange({ values, value }) {
+        field: 'componentProps.type',
+        label: '日期类型',
+        onChange({ value, values }) {
           values.componentProps.defaultValue = null;
-          if (["date", "daterange", "dates"].includes(value)) {
-            values.componentProps.format = "YYYY-MM-DD";
-            values.componentProps.valueFormat = "YYYY-MM-DD";
-          } else if (["week"].includes(value)) {
-            values.componentProps.format = "ww [周]";
-            values.componentProps.valueFormat = "YYYY-MM-DD";
-          } else if (["month", "monthrange"].includes(value)) {
-            values.componentProps.format = "YYYY-MM";
-            values.componentProps.valueFormat = "YYYY-MM";
-          } else if (["datetime", "datetimerange"].includes(value)) {
-            values.componentProps.format = "YYYY-MM-DD HH:mm:ss";
-            values.componentProps.valueFormat = "YYYY-MM-DD HH:mm:ss";
-          } else if (["year"].includes(value)) {
-            values.componentProps.format = "YYYY";
-            values.componentProps.valueFormat = "YYYY";
+          if (['date', 'daterange', 'dates'].includes(value)) {
+            values.componentProps.format = 'YYYY-MM-DD';
+            values.componentProps.valueFormat = 'YYYY-MM-DD';
+          } else if (['week'].includes(value)) {
+            values.componentProps.format = 'ww [周]';
+            values.componentProps.valueFormat = 'YYYY-MM-DD';
+          } else if (['month', 'monthrange'].includes(value)) {
+            values.componentProps.format = 'YYYY-MM';
+            values.componentProps.valueFormat = 'YYYY-MM';
+          } else if (['datetime', 'datetimerange'].includes(value)) {
+            values.componentProps.format = 'YYYY-MM-DD HH:mm:ss';
+            values.componentProps.valueFormat = 'YYYY-MM-DD HH:mm:ss';
+          } else if (['year'].includes(value)) {
+            values.componentProps.format = 'YYYY';
+            values.componentProps.valueFormat = 'YYYY';
           }
         },
+        type: 'select',
       },
       {
-        label: "开始占位符",
-        type: "input",
-        field: "componentProps.startPlaceholder",
+        field: 'componentProps.startPlaceholder',
+        label: '开始占位符',
         show({ values }) {
-          return ["datetimerange", "daterange", "monthrange"].includes(
-            values.componentProps.type
+          return ['daterange', 'datetimerange', 'monthrange'].includes(
+            values.componentProps.type,
           );
         },
+        type: 'input',
       },
       {
-        label: "结束占位符",
-        type: "input",
-        field: "componentProps.endPlaceholder",
+        field: 'componentProps.endPlaceholder',
+        label: '结束占位符',
         show({ values }) {
-          return ["datetimerange", "daterange", "monthrange"].includes(
-            values.componentProps.type
+          return ['daterange', 'datetimerange', 'monthrange'].includes(
+            values.componentProps.type,
           );
         },
+        type: 'input',
       },
       {
-        label: "占位内容",
-        type: "input",
-        field: "componentProps.placeholder",
+        field: 'componentProps.placeholder',
+        label: '占位内容',
         show({ values }) {
-          return !["datetimerange", "daterange", "monthrange"].includes(
-            values.componentProps.type
+          return !['daterange', 'datetimerange', 'monthrange'].includes(
+            values.componentProps.type,
           );
         },
+        type: 'input',
       },
       {
-        label: "尺寸",
-        type: "select",
-        defaultValue: "default",
         componentProps: {
-          placeholder: "请选择",
           clearable: true,
           options: [
             {
-              label: "大号",
-              value: "large",
+              label: '大号',
+              value: 'large',
             },
             {
-              label: "中等",
-              value: "default",
+              label: '中等',
+              value: 'default',
             },
             {
-              label: "小型",
-              value: "small",
+              label: '小型',
+              value: 'small',
             },
           ],
+          placeholder: '请选择',
         },
-        field: "componentProps.size",
+        defaultValue: 'default',
+        field: 'componentProps.size',
+        label: '尺寸',
+        type: 'select',
       },
       {
-        label: "可输入",
-        type: "switch",
-        field: "componentProps.editable",
+        field: 'componentProps.editable',
+        label: '可输入',
+        type: 'switch',
       },
       {
-        label: "显示格式",
-        type: "input",
-        field: "componentProps.format",
+        field: 'componentProps.format',
+        label: '显示格式',
+        type: 'input',
       },
       {
-        label: "数据格式",
-        type: "input",
-        field: "componentProps.valueFormat",
+        field: 'componentProps.valueFormat',
+        label: '数据格式',
+        type: 'input',
       },
       {
-        label: "分割符",
-        type: "input",
-        field: "componentProps.rangeSeparator",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.rangeSeparator',
+        label: '分割符',
         show({ values }) {
-          return ["datetimerange", "daterange", "monthrange"].includes(
-            values.componentProps.type
+          return ['daterange', 'datetimerange', 'monthrange'].includes(
+            values.componentProps.type,
           );
         },
+        type: 'input',
       },
       {
-        label: "可清空",
-        type: "switch",
-        field: "componentProps.clearable",
+        field: 'componentProps.clearable',
+        label: '可清空',
+        type: 'switch',
       },
       {
-        label: "只读",
-        type: "switch",
-        field: "componentProps.readonly",
+        field: 'componentProps.readonly',
+        label: '只读',
+        type: 'switch',
       },
       {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled",
+        field: 'componentProps.disabled',
+        label: '禁用',
+        type: 'switch',
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        field: 'componentProps.hidden',
+        label: '隐藏',
+        type: 'switch',
       },
       {
-        label: "表单校验",
-        type: "ERuleEditor",
-        layout: "vertical",
-        field: "rules",
-        describe: "校验规则需要配合表单使用",
+        describe: '校验规则需要配合表单使用',
+        field: 'rules',
+        label: '表单校验',
+        layout: 'vertical',
+        type: 'ERuleEditor',
       },
     ],
     event: [
       {
-        type: "change",
-        describe: "值变化时",
+        describe: '值变化时',
+        type: 'change',
       },
     ],
   },
+  defaultSchema: {
+    componentProps: {
+      endPlaceholder: '请选择',
+      format: 'YYYY-MM-DD',
+      placeholder: '请选择',
+      startPlaceholder: '请选择',
+      type: 'date',
+      valueFormat: 'YYYY-MM-DD',
+    },
+    field: 'date',
+    input: true,
+    label: '日期选择器',
+    type: 'date',
+  },
+  groupName: '表单',
+  icon: 'icon--epic--calendar-month-outline-rounded',
+  sort: 910,
 } as ComponentConfigModel;

@@ -1,3 +1,50 @@
+<script lang="ts" setup>
+import { computed, useAttrs } from 'vue';
+
+import { ComponentSchema } from '@epic-designer/core/types/epic-designer';
+import { NButton, NModal, NSpace } from 'naive-ui';
+// 定义 props
+const props = withDefaults(
+  defineProps<{
+    componentSchema?: ComponentSchema;
+    hideConfirm?: boolean;
+    width?: string;
+  }>(),
+  {
+    componentSchema: () => ({
+      type: 'modal',
+    }),
+    width: '900px',
+  },
+);
+
+// Emits
+const emit = defineEmits(['ok', 'close', 'update:modelValue']);
+
+const attrs = useAttrs();
+
+// 计算属性
+const getComponentProps = computed<Record<string, any>>(() => ({
+  ...props.componentSchema,
+  class: 'epic-modal-n',
+  preset: 'card',
+  show: attrs.modelValue,
+  title: props.componentSchema?.label ?? '',
+}));
+
+const children = computed(() => props.componentSchema?.children ?? []);
+
+// 方法
+const handleOk = () => {
+  emit('ok');
+};
+
+const handleClose = () => {
+  emit('update:modelValue', false);
+  emit('close');
+};
+</script>
+
 <template>
   <NModal
     v-bind="getComponentProps"
@@ -10,12 +57,12 @@
     <div class="epic-modal-main">
       <slot>
         <slot name="edit-node">
-          <template v-if="children.length">
+          <template v-if="children.length > 0">
             <slot
               v-for="node in children"
               name="node"
               :component-schema="node"
-            />
+            ></slot>
           </template>
         </slot>
       </slot>
@@ -23,60 +70,11 @@
 
     <div class="epic-modal-footer">
       <NSpace justify="end">
-        <NButton @click="handleClose">
-          关闭
-        </NButton>
-        <NButton
-          v-if="!props.hideConfirm"
-          type="primary"
-          @click="handleOk"
-        >
-          {{ getComponentProps.okText ?? "确定" }}
+        <NButton @click="handleClose"> 关闭 </NButton>
+        <NButton v-if="!props.hideConfirm" type="primary" @click="handleOk">
+          {{ getComponentProps.okText ?? '确定' }}
         </NButton>
       </NSpace>
     </div>
   </NModal>
 </template>
-
-<script lang="ts" setup>
-import { computed, useAttrs } from "vue";
-import { NModal, NButton, NSpace } from "naive-ui";
-import { ComponentSchema } from "@epic-designer/core/types/epic-designer";
-const attrs = useAttrs();
-
-// 定义 props
-const props = withDefaults(
-  defineProps<{
-    componentSchema?: ComponentSchema;
-    hideConfirm?: boolean;
-    width?: string;
-  }>(),
-  {
-    width: "900px",
-  }
-);
-
-// Emits
-const emit = defineEmits(["ok", "close", "update:modelValue"]);
-
-// 计算属性
-const getComponentProps = computed<Record<string, any>>(() => ({
-  ...props.componentSchema,
-  title: props.componentSchema?.label ?? "",
-  class: "epic-modal-n",
-  preset: "card",
-  show: attrs.modelValue,
-}));
-
-const children = computed(() => props.componentSchema?.children ?? []);
-
-// 方法
-const handleOk = () => {
-  emit("ok");
-};
-
-const handleClose = () => {
-  emit("update:modelValue", false);
-  emit("close");
-};
-</script>

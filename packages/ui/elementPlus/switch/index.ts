@@ -1,150 +1,151 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component: async () => (await import("element-plus")).ElSwitch,
-  groupName: "表单",
-  icon: "icon--epic--toggle-off-outline",
-  sort: 930,
-  defaultSchema: {
-    label: "开关",
-    type: "switch",
-    field: "switch",
-    input: true,
-    componentProps: {
-      defaultValue: false,
-    },
-  },
+  component: async () => (await import('element-plus')).ElSwitch,
   config: {
     attribute: [
       {
-        label: "字段名",
-        type: "input",
-        field: "field",
+        field: 'field',
+        label: '字段名',
+        type: 'input',
       },
       {
-        label: "标题",
-        type: "input",
-        field: "label",
+        field: 'label',
+        label: '标题',
+        type: 'input',
       },
       {
-        label: "默认值",
-        type: "switch",
-        field: "componentProps.defaultValue",
+        field: 'componentProps.defaultValue',
+        label: '默认值',
+        type: 'switch',
       },
       {
-        label: "ON状态值",
-        type: "input",
-        field: "componentProps.activeValue",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.activeValue',
+        label: 'ON状态值',
         onChange(e) {
           setTimeout(() => setDefaultValue(e));
         },
+        type: 'input',
       },
       {
-        label: "OFF状态值",
-        type: "input",
-        field: "componentProps.inactiveValue",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.inactiveValue',
+        label: 'OFF状态值',
         onChange(e) {
           setTimeout(() => setDefaultValue(e));
         },
+        type: 'input',
       },
       {
-        label: "ON状态描述",
-        type: "input",
-        field: "componentProps.activeText",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.activeText',
+        label: 'ON状态描述',
+        type: 'input',
       },
       {
-        label: "OFF状态描述",
-        type: "input",
-        field: "componentProps.inactiveText",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.inactiveText',
+        label: 'OFF状态描述',
+        type: 'input',
       },
       {
-        label: "尺寸",
-        type: "select",
         componentProps: {
-          placeholder: "请选择",
           clearable: true,
           options: [
             {
-              label: "大号",
-              value: "large",
+              label: '大号',
+              value: 'large',
             },
             {
-              label: "中等",
-              value: "default",
+              label: '中等',
+              value: 'default',
             },
             {
-              label: "小型",
-              value: "small",
+              label: '小型',
+              value: 'small',
             },
           ],
+          placeholder: '请选择',
         },
-        field: "componentProps.size",
+        field: 'componentProps.size',
+        label: '尺寸',
+        type: 'select',
       },
       {
-        label: "宽度",
-        type: "number",
-        field: "componentProps.width",
         componentProps: {
           min: 50,
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.width',
+        label: '宽度',
+        type: 'number',
       },
       {
-        label: "文本点内显示",
-        type: "switch",
-        field: "componentProps.inlinePrompt",
+        field: 'componentProps.inlinePrompt',
+        label: '文本点内显示',
+        type: 'switch',
       },
       {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled",
+        field: 'componentProps.disabled',
+        label: '禁用',
+        type: 'switch',
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        field: 'componentProps.hidden',
+        label: '隐藏',
+        type: 'switch',
       },
       {
-        label: "表单校验",
-        type: "ERuleEditor",
-        layout: "vertical",
-        field: "rules",
-        describe: "校验规则需要配合表单使用",
         componentProps: {
-          ruleType: "boolean",
+          ruleType: 'boolean',
         },
+        describe: '校验规则需要配合表单使用',
+        field: 'rules',
+        label: '表单校验',
+        layout: 'vertical',
+        type: 'ERuleEditor',
       },
     ],
     event: [
       {
-        type: "change",
-        describe: "状态发生变化时",
+        describe: '状态发生变化时',
+        type: 'change',
       },
     ],
   },
+  defaultSchema: {
+    componentProps: {
+      defaultValue: false,
+    },
+    field: 'switch',
+    input: true,
+    label: '开关',
+    type: 'switch',
+  },
+  groupName: '表单',
+  icon: 'icon--epic--toggle-off-outline',
+  sort: 930,
 } as ComponentConfigModel;
 
 // 设置默认值
 function setDefaultValue(e) {
   const defaultValue = e.values.componentProps?.inactiveValue || false;
   // 如果inactiveValue === ''，则在下一个事件循环中删除 inactiveValue 属性
-  if (e.values.componentProps.unCheckedValue === "") {
+  if (e.values.componentProps.unCheckedValue === '') {
     delete e.values.componentProps.unCheckedValue;
   }
 
   // 如果activeValue === ''，则在下一个事件循环中删除 activeValue 属性
-  if (e.values.componentProps.activeValue === "") {
+  if (e.values.componentProps.activeValue === '') {
     delete e.values.componentProps.activeValue;
   }
 

@@ -1,18 +1,19 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component:  () => import('./modal.vue'),
-  defaultSchema: {
-    label: '模态框',
-    type: 'modal',
-    children: []
-  },
+  component: () => import('./modal.vue'),
   config: {
     attribute: [
       {
+        field: 'title',
         label: '标题',
         type: 'input',
-        field: 'title'
-      }
-    ]
-  }
-} as ComponentConfigModel
+      },
+    ],
+  },
+  defaultSchema: {
+    label: '模态框',
+    type: 'modal',
+    children: [],
+  },
+} as ComponentConfigModel;

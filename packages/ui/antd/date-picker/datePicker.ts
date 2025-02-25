@@ -1,44 +1,45 @@
-import { defineComponent, h, watch } from "vue";
-import { DatePicker } from "ant-design-vue";
+import { defineComponent, h, watch } from 'vue';
+
+import { DatePicker } from 'ant-design-vue';
 // 二次封装组件
 export default defineComponent({
-  name: "EDatePicker",
+  emits: ['update:modelValue', 'change', 'blur'],
+  name: 'EDatePicker',
   props: {
     modelValue: {
-      type: [String, Object, Array],
       default: null,
+      type: [String, Object, Array],
     },
     type: {
+      default: 'date',
       type: String,
-      default: "date",
     },
   },
-  emits: ["update:modelValue", "change", "blur"],
   setup(props, { emit }) {
     watch(
       () => props.type,
       () => {
         handleUpdate();
-      }
+      },
     );
 
     function handleUpdate(e = null): void {
-      emit("update:modelValue", e);
-      emit("change", e);
-      emit("blur", e);
+      emit('update:modelValue', e);
+      emit('change', e);
+      emit('blur', e);
     }
     return () => {
       let cmp: any = DatePicker;
 
       const compProps: Record<string, any> = {
+        'onUpdate:value': handleUpdate,
+        picker: props.type.replace(/range$/, ''),
+        showTime: props.type.includes('time'),
         value: props.modelValue,
-        showTime: props.type.includes("time"),
-        picker: props.type.replace(/range$/, ""),
-        "onUpdate:value": handleUpdate,
       };
 
       // 判断日期类型，渲染相应组件
-      if (props.type.includes("range")) {
+      if (props.type.includes('range')) {
         cmp = DatePicker.RangePicker;
       }
       return h(cmp, compProps);

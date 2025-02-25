@@ -1,4 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { debounce } from '../../';
 
 describe('debounce', () => {
@@ -9,16 +10,17 @@ describe('debounce', () => {
 
     // 立即调用防抖函数
     debouncedFunction();
-    
+
     // 验证处理函数尚未被调用
     expect(handler).not.toHaveBeenCalled();
-    
+
     // 等待一段时间稍长于延迟
-    return new Promise((resolve) => setTimeout(resolve, delay + 10))
-      .then(() => {
+    return new Promise((resolve) => setTimeout(resolve, delay + 10)).then(
+      () => {
         // 验证处理函数在延迟后被调用
         expect(handler).toHaveBeenCalled();
-      });
+      },
+    );
   });
 
   it('如果在延迟时间内多次调用，处理函数应仅调用一次', () => {
@@ -30,15 +32,16 @@ describe('debounce', () => {
     debouncedFunction();
     debouncedFunction();
     debouncedFunction();
-    
+
     // 验证处理函数尚未被调用
     expect(handler).not.toHaveBeenCalled();
-    
+
     // 等待延迟时间
-    return new Promise((resolve) => setTimeout(resolve, delay + 10))
-      .then(() => {
+    return new Promise((resolve) => setTimeout(resolve, delay + 10)).then(
+      () => {
         // 验证处理函数仅被调用一次
         expect(handler).toHaveBeenCalledTimes(1);
-      });
+      },
+    );
   });
 });

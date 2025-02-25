@@ -1,126 +1,127 @@
-import { type ComponentConfigModel } from "@epic-designer/utils";
+import type { ComponentConfigModel } from '@epic-designer/utils';
+
 export default {
-  component: async () => (await import("naive-ui/lib/switch")).NSwitch,
-  groupName: "表单",
-  icon: "icon--epic--toggle-off-outline",
-  sort: 930,
-  defaultSchema: {
-    label: "开关",
-    type: "switch",
-    field: "switch",
-    input: true,
-    componentProps: {
-      defaultValue: false,
-      round: true,
-    },
-  },
+  bindModel: 'value',
+  component: async () => (await import('naive-ui/lib/switch')).NSwitch,
   config: {
     attribute: [
       {
-        label: "字段名",
-        type: "input",
-        field: "field",
+        field: 'field',
+        label: '字段名',
+        type: 'input',
       },
       {
-        label: "标题",
-        type: "input",
-        field: "label",
+        field: 'label',
+        label: '标题',
+        type: 'input',
       },
       {
-        label: "默认值",
-        type: "switch",
-        field: "componentProps.defaultValue",
+        field: 'componentProps.defaultValue',
+        label: '默认值',
+        type: 'switch',
       },
       {
-        label: "ON状态值",
-        type: "input",
-        field: "componentProps.checkedValue",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.checkedValue',
+        label: 'ON状态值',
         onChange(e) {
           setTimeout(() => setDefaultValue(e));
         },
+        type: 'input',
       },
       {
-        label: "OFF状态值",
-        type: "input",
-        field: "componentProps.uncheckedValue",
         componentProps: {
-          placeholder: "请输入",
+          placeholder: '请输入',
         },
+        field: 'componentProps.uncheckedValue',
+        label: 'OFF状态值',
         onChange(e) {
           setTimeout(() => setDefaultValue(e));
         },
+        type: 'input',
       },
       {
-        label: "尺寸",
-        type: "select",
-        field: "componentProps.size",
         componentProps: {
-          placeholder: "请选择",
           clearable: true,
           options: [
             {
-              label: "大号",
-              value: "large",
+              label: '大号',
+              value: 'large',
             },
             {
-              label: "中等",
-              value: "medium",
+              label: '中等',
+              value: 'medium',
             },
             {
-              label: "小型",
-              value: "small",
+              label: '小型',
+              value: 'small',
             },
           ],
+          placeholder: '请选择',
         },
+        field: 'componentProps.size',
+        label: '尺寸',
+        type: 'select',
       },
       {
-        label: "圆型按钮",
-        type: "switch",
-        field: "componentProps.round",
+        field: 'componentProps.round',
+        label: '圆型按钮',
+        type: 'switch',
       },
       {
-        label: "禁用",
-        type: "switch",
-        field: "componentProps.disabled",
+        field: 'componentProps.disabled',
+        label: '禁用',
+        type: 'switch',
       },
       {
-        label: "隐藏",
-        type: "switch",
-        field: "componentProps.hidden",
+        field: 'componentProps.hidden',
+        label: '隐藏',
+        type: 'switch',
       },
       {
-        label: "表单校验",
-        type: "ERuleEditor",
-        layout: "vertical",
-        field: "rules",
-        describe: "校验规则需要配合表单使用",
         componentProps: {
-          ruleType: "boolean",
+          ruleType: 'boolean',
         },
+        describe: '校验规则需要配合表单使用',
+        field: 'rules',
+        label: '表单校验',
+        layout: 'vertical',
+        type: 'ERuleEditor',
       },
     ],
     event: [
       {
-        type: "change",
-        describe: "状态发生变化时",
+        describe: '状态发生变化时',
+        type: 'change',
       },
     ],
   },
-  bindModel: "value",
+  defaultSchema: {
+    componentProps: {
+      defaultValue: false,
+      round: true,
+    },
+    field: 'switch',
+    input: true,
+    label: '开关',
+    type: 'switch',
+  },
+  groupName: '表单',
+  icon: 'icon--epic--toggle-off-outline',
+  sort: 930,
 } as ComponentConfigModel;
 
 function setDefaultValue(e) {
   const defaultValue = e.values.componentProps?.uncheckedValue || false;
   // 如果uncheckedValue === ''，则在下一个事件循环中删除 uncheckedValue 属性
-  if (e.values.componentProps.uncheckedValue === "") {
+  if (e.values.componentProps.uncheckedValue === '') {
     delete e.values.componentProps.uncheckedValue;
   }
 
   // 如果checkedValue === ''，则在下一个事件循环中删除 checkedValue 属性
-  if (e.values.componentProps.checkedValue === "") {
+  if (e.values.componentProps.checkedValue === '') {
     delete e.values.componentProps.checkedValue;
   }
 

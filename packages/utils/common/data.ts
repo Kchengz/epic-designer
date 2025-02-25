@@ -1,22 +1,20 @@
-import {
-  PageSchema,
-  type ComponentSchema,
-} from "@epic-designer/core/types/epic-designer";
-import { getUUID } from "./string";
-import { pluginManager } from "../index";
+import type { ComponentSchema } from '@epic-designer/core/types/epic-designer';
 
+import { PageSchema } from '@epic-designer/core/types/epic-designer';
+
+import { pluginManager } from '../index';
+import { getUUID } from './string';
 
 /**
  * 深拷贝数据
  * @param obj
- * @returns
  */
 export function deepClone<T extends Record<string, unknown> | unknown[]>(
   obj: T,
-  cache = new WeakMap()
+  cache = new WeakMap(),
 ): T {
   // 如果不是对象或数组，则直接返回
-  if (typeof obj !== "object" || obj === null) {
+  if (typeof obj !== 'object' || obj === null) {
     return obj;
   }
 
@@ -58,7 +56,8 @@ export function generateNewSchema(schema: ComponentSchema) {
     // 存在字段名，则自动在字段名后补充id
     if (
       (newVal.field || newVal.input) &&
-      !pluginManager.getComponentConfingByType(newVal.type)?.editConstraints?.fixedField
+      !pluginManager.getComponentConfingByType(newVal.type)?.editConstraints
+        ?.fixedField
     ) {
       newVal.field = newVal.id;
     }
@@ -79,20 +78,29 @@ export function generateNewSchema(schema: ComponentSchema) {
 export function deepCompareAndModify(
   obj1: Record<string, unknown>,
   obj2: Record<string, unknown>,
-  shouldDelete: boolean = true
+  shouldDelete: boolean = true,
 ): void {
   // 循环遍历obj2的所有属性
   for (const [key, val2] of Object.entries(obj2)) {
     // 如果obj1的属性值是对象或数组，则递归调用该函数
-    if (obj1[key] && val2 && typeof obj1[key] === "object" && typeof val2 === "object") {
+    if (
+      obj1[key] &&
+      val2 &&
+      typeof obj1[key] === 'object' &&
+      typeof val2 === 'object'
+    ) {
       // 如果obj1[key]是数组，val2为非数组
       if (Array.isArray(obj1[key]) && !Array.isArray(val2)) {
-        obj1[key] = {}
+        obj1[key] = {};
       } else if (!Array.isArray(obj1[key]) && Array.isArray(val2)) {
-        obj1[key] = []
+        obj1[key] = [];
       }
       // 递归比较
-      deepCompareAndModify(obj1[key] as Record<string, unknown>, val2 as Record<string, unknown>, shouldDelete);
+      deepCompareAndModify(
+        obj1[key] as Record<string, unknown>,
+        val2 as Record<string, unknown>,
+        shouldDelete,
+      );
     } else {
       // 如果属性值不相等，则将obj2的属性值复制给obj1
       obj1[key] = val2;
@@ -100,36 +108,36 @@ export function deepCompareAndModify(
   }
 
   if (shouldDelete) {
-    Object.keys(obj1).reverse().forEach((key) => {
-      // 如果obj2中存在obj1的属性跳过
-      if (Object.prototype.hasOwnProperty.call(obj2,key)) {
-        return;
-      }
-      // 如果obj2中没有obj1的属性，则从obj1中删除该属性
-      if (Array.isArray(obj1)) {
-        // obj1 是数组，key 是字符串，需要转成数字索引
-        obj1.splice(Number(key), 1);
-      } else {
-        // obj1 是对象
-        delete obj1[key];
-      }
-    });
+    Object.keys(obj1)
+      .reverse()
+      .forEach((key) => {
+        // 如果obj2中存在obj1的属性跳过
+        if (Object.prototype.hasOwnProperty.call(obj2, key)) {
+          return;
+        }
+        // 如果obj2中没有obj1的属性，则从obj1中删除该属性
+        if (Array.isArray(obj1)) {
+          // obj1 是数组，key 是字符串，需要转成数字索引
+          obj1.splice(Number(key), 1);
+        } else {
+          // obj1 是对象
+          delete obj1[key];
+        }
+      });
   }
 }
-
 
 /**
  * 深度比较两个对象是否相等
  * @param obj1
  * @param obj2
  * @param ignoreKeys 可选参数，指定要忽略比较的属性名数组
- * @returns
  */
 export function deepEqual(
   obj1: Record<string, unknown>,
   obj2: Record<string, unknown>,
   ignoreKeys: string[] = [],
-  visitedObjs = new WeakMap()
+  visitedObjs = new WeakMap(),
 ): boolean {
   const normalize = (obj: unknown): unknown => {
     // 如果是数组类型，则递归调用 normalize 函数对每个元素进行标准化处理
@@ -138,10 +146,10 @@ export function deepEqual(
     }
 
     // 如果是对象类型，则将所有属性名按照字母顺序排序，并递归调用 normalize 函数对每个属性值进行标准化处理
-    else if (typeof obj === "object" && obj !== null) {
+    else if (typeof obj === 'object' && obj !== null) {
       // 在访问过该对象时，直接返回一个占位符
       if (visitedObjs.has(obj)) {
-        return "[Circular]";
+        return '[Circular]';
       }
       visitedObjs.set(obj, true);
 
@@ -175,7 +183,7 @@ export function deepEqual(
  */
 export function getMatchedById(
   schemas: ComponentSchema[],
-  id: string
+  id: string,
 ): ComponentSchema[] {
   const matched: ComponentSchema[] = [];
   let found = false;
@@ -186,7 +194,7 @@ export function getMatchedById(
       found = true;
     }
     // 遍历默认子节点
-    if (!found && node.children != null && node.children.length > 0) {
+    if (!found && node.children && node.children.length > 0) {
       for (let i = 0; i < node.children.length; i++) {
         getNodePath(node.children[i]);
         if (found) break;
@@ -224,19 +232,24 @@ export function getMatchedById(
  * @param defaultValue - 如果路径不存在，返回的默认值
  * @returns 通过路径获取的值
  */
-export function getValueByPath(object: Record<string, unknown>, path: string, defaultValue?: unknown) {
+export function getValueByPath(
+  object: Record<string, unknown>,
+  path: string,
+  defaultValue?: unknown,
+) {
   // 将路径字符串拆分为数组
   const pathArray = path.split('.');
 
   // 逐步从对象中提取值
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let result:any = object;
+
+  let result: any = object;
   for (const element of pathArray) {
+    // eslint-disable-next-line eqeqeq
     if (result == null) {
       // 如果中间的值为 null 或 undefined，返回默认值
       return defaultValue;
     }
-   
+
     result = result[element];
   }
 
@@ -246,7 +259,7 @@ export function getValueByPath(object: Record<string, unknown>, path: string, de
 
 /**
  * 在嵌套对象中设置值
- * @param obj - 要修改的对象
+ * @param object - 要修改的对象
  * @param path - 点分隔的路径字符串
  * @param value - 要设置的值
  * @returns 修改后的对象
@@ -254,19 +267,23 @@ export function getValueByPath(object: Record<string, unknown>, path: string, de
 export function setValueByPath(
   object: Record<string, unknown>,
   path: string,
-  value: unknown
+  value: unknown,
 ) {
   // 将路径字符串拆分为数组
-  const pathArray = path.replaceAll(/\[(\d+)\]/g, '.$1').split('.').filter(Boolean);
+  const pathArray = path
+    .replaceAll(/\[(\d+)\]/g, '.$1')
+    .split('.')
+    .filter(Boolean);
 
   // 逐步设置对象中的值
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let current:any = object;
+
+  let current: any = object;
 
   for (let i = 0; i < pathArray.length - 1; i++) {
     const key = pathArray[i];
 
     // 如果当前对象的属性不存在，则创建一个新对象或数组
+    // eslint-disable-next-line eqeqeq
     if (current[key] == null) {
       // 如果路径部分是数字，创建数组；否则，创建对象
       current[key] = Number.isNaN(Number(pathArray[i + 1])) ? {} : [];
@@ -288,7 +305,7 @@ export function setValueByPath(
  */
 export function getFormFields(
   schemas: ComponentSchema[],
-  formName = "default"
+  formName = 'default',
 ) {
   const inputSchemaList = getFormSchemas(schemas, formName);
   return inputSchemaList.map((item) => item.field);
@@ -302,17 +319,17 @@ export function getFormFields(
  */
 export function getFormSchemas(
   schemas: ComponentSchema[],
-  formName = "default"
+  formName = 'default',
 ) {
   const formSchema = findSchemas(
     schemas,
     (currentNode) => {
       return (
-        currentNode.type === "form" &&
+        currentNode.type === 'form' &&
         (currentNode.componentProps?.name ?? currentNode.name === formName)
       );
     },
-    true
+    true,
   ) as ComponentSchema;
   // console.log(schema);
   const inputSchemaList = findSchemas(
@@ -323,8 +340,8 @@ export function getFormSchemas(
     false,
     (currentNode: ComponentSchema) => {
       // 过滤子表单子节点
-      return currentNode.type !== "subform";
-    }
+      return currentNode.type !== 'subform';
+    },
   ) as ComponentSchema[];
 
   return inputSchemaList;
@@ -336,13 +353,12 @@ export function getFormSchemas(
  * @param handler
  * @param once  当once为true，表示只需要查询一条符合添加的数据之后结束函数
  * @param filter  节点过滤，函数返回 false,则不查询该节点的子节点 children
- * @returns
  */
 export function findSchemas(
   schemas: ComponentSchema[],
   handler: (item: ComponentSchema) => boolean,
   once = false,
-  filter?: (item: ComponentSchema) => boolean
+  filter?: (item: ComponentSchema) => boolean,
 ) {
   const matchedNodes: ComponentSchema[] = [];
 
@@ -384,12 +400,11 @@ export function findSchemas(
  * @param schemas
  * @param handler 映射处理
  * @param filter  节点过滤，函数返回 false,则不映射该节点得所有子节点 children
- * @returns
  */
 export function mapSchemas(
   schemas: ComponentSchema[],
   handler: (item: ComponentSchema) => ComponentSchema,
-  filter?: (item: ComponentSchema) => boolean
+  filter?: (item: ComponentSchema) => boolean,
 ) {
   const nodesToVisit: ComponentSchema[] = [...schemas];
 
@@ -417,20 +432,18 @@ export function mapSchemas(
  * 通过id查询schema
  * @param schemas
  * @param id
- * @returns
  */
 export function findSchemaById(
   schemas: ComponentSchema[],
-  id: string
+  id: string,
 ): ComponentSchema {
-
   // 查询节点
   const schema = findSchemas(
     schemas,
     (currentNode) => {
       return currentNode.id === id;
     },
-    true
+    true,
   ) as ComponentSchema & { children: ComponentSchema };
 
   // 判断节点是否存在，不存在则抛出异常
@@ -445,18 +458,17 @@ export function findSchemaById(
  * 通过id查询schema及节点children index 信息
  * @param schemas
  * @param id
- * @returns
  */
 export function findSchemaInfoById(
   schemas: ComponentSchema[],
-  id: string
+  id: string,
 ): {
-  list: ComponentSchema[];
-  schema: ComponentSchema;
   index: number;
-  parentSchema: ComponentSchema
+  list: ComponentSchema[];
+  parentSchema: ComponentSchema;
+  schema: ComponentSchema;
 } {
-  const stack: ComponentSchema[] = [{ type: "", children: schemas }];
+  const stack: ComponentSchema[] = [{ type: '', children: schemas }];
   let index: number = 0;
   let children: ComponentSchema[] | null = null;
   // 查询父节点
@@ -489,7 +501,7 @@ export function findSchemaInfoById(
 
       return false;
     },
-    true
+    true,
   ) as ComponentSchema & { children: ComponentSchema };
 
   // 判断节点是否存在，不存在则抛出异常
@@ -498,10 +510,10 @@ export function findSchemaInfoById(
   }
 
   return {
-    list: children,
-    schema: children[index],
     index,
-    parentSchema
+    parentSchema,
+    schema: children[index],
+    list: children,
   };
 }
 
@@ -511,71 +523,78 @@ export function findSchemaInfoById(
  * @returns
  */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function convertKFormData(data:any) {
-  if(!data.config){
-    data.config = {}
+export function convertKFormData(data: any) {
+  if (!data.config) {
+    data.config = {};
   }
   const convertedData: PageSchema = {
     schemas: [
       {
-        type: "page",
-        id: "root",
-        label: "页面",
-        children: [
-          {
-            label: "表单",
-            type: "form",
-            icon: "epic-icon-daibanshixiang",
-            labelWidth: data.config.labelWidth || 100,
-            name: "default",
-            componentProps: {
-              layout: data.config.layout || "horizontal",
-              labelWidth: data.config.labelWidth || 100,
-              labelLayout:
-                data.config.labelLayout === "flex" ? "fixed" : "flex",
-              labelCol: data.config.labelCol || { span: 5 },
-              wrapperCol: data.config.wrapperCol || { span: 19 },
-              hideRequiredMark: data.config.hideRequiredMark || false,
-              colon: data.config.colon || true,
-              labelAlign: data.config.labelAlign || "right",
-              size: data.config.size || "middle",
-            },
-            children: [],
-            id: "form_" + getUUID(),
-          },
-        ],
         componentProps: {
           style: {
-            padding: "16px",
+            padding: '16px',
           },
         },
+        id: 'root',
+        label: '页面',
+        type: 'page',
+        children: [
+          {
+            label: '表单',
+            type: 'form',
+            icon: 'epic-icon-daibanshixiang',
+            labelWidth: data.config.labelWidth || 100,
+            name: 'default',
+            componentProps: {
+              colon: data.config.colon || true,
+              hideRequiredMark: data.config.hideRequiredMark || false,
+              labelAlign: data.config.labelAlign || 'right',
+              labelCol: data.config.labelCol || { span: 5 },
+              labelLayout:
+                data.config.labelLayout === 'flex' ? 'fixed' : 'flex',
+              labelWidth: data.config.labelWidth || 100,
+              layout: data.config.layout || 'horizontal',
+              size: data.config.size || 'middle',
+              wrapperCol: data.config.wrapperCol || { span: 19 },
+            },
+            children: [],
+            id: `form_${getUUID()}`,
+          },
+        ],
       },
     ],
-    script: data.script || "",
+    script: data.script || '',
   };
 
-  convertedData.schemas[0]!.children![0]!.children = recursionConvertedNode(
-    data.list
-  );
+  if (convertedData.schemas && convertedData.schemas.length > 0) {
+    const firstSchema = convertedData.schemas[0];
+    // 检查 firstSchema 的 children 是否存在且长度大于 0
+    if (firstSchema.children && firstSchema.children.length > 0) {
+      const firstChild = firstSchema.children[0];
+      // 检查 data.list 是否存在
+      if (data.list) {
+        firstChild.children = recursionConvertedNode(data.list);
+      }
+    }
+  }
 
   return convertedData;
 }
 
 // 定义节点的类型
 interface OriginalNode {
-  type?: string;
-  options?: Record<string, unknown>;
-  label?: string;
-  icon?: string;
-  model?: string;
-  key?: string;
-  list?: OriginalNode[];
   columns?: OriginalNode[];
-  trs?: OriginalNode[];
-  tds?: OriginalNode[];
+  icon?: string;
+  key?: string;
+  label?: string;
+  list?: OriginalNode[];
+  model?: string;
+  options?: Record<string, unknown>;
   rules?: { required: boolean }[];
   span?: number;
+  tds?: OriginalNode[];
+  trs?: OriginalNode[];
+  type?: string;
 }
 
 /**
@@ -584,41 +603,41 @@ interface OriginalNode {
  */
 export function recursionConvertedNode(
   children: OriginalNode[],
-  parent?: OriginalNode
+  parent?: OriginalNode,
 ): ComponentSchema[] {
   return children.map((item) => {
-    let type = item.type ?? "";
-    const componentProps = item.options ?? {} as Record<string, unknown>;
+    let type = item.type ?? '';
+    const componentProps = item.options ?? ({} as Record<string, unknown>);
 
     const handleUploadComponent = (uploadType: string, replacement: string) => {
       if (type === uploadType) {
         type = replacement;
-        if (typeof componentProps.defaultValue === "string") {
+        if (typeof componentProps.defaultValue === 'string') {
           componentProps.defaultValue = JSON.parse(componentProps.defaultValue);
         }
       }
     };
 
-    handleUploadComponent("uploadImg", "upload-image");
-    handleUploadComponent("uploadFile", "upload-file");
+    handleUploadComponent('uploadImg', 'upload-image');
+    handleUploadComponent('uploadFile', 'upload-file');
 
-    if (type === "date" && componentProps.range) {
-      componentProps.type = "daterange";
+    if (type === 'date' && componentProps.range) {
+      componentProps.type = 'daterange';
       delete componentProps.range;
     }
 
-    if (type === "date" || type === "time") {
+    if (type === 'date' || type === 'time') {
       componentProps.valueFormat = componentProps.format;
     }
 
-    if (type === "textarea") {
-      const { minRows, maxRows } = componentProps;
-      componentProps.autoSize = { minRows, maxRows };
+    if (type === 'textarea') {
+      const { maxRows, minRows } = componentProps;
+      componentProps.autoSize = { maxRows, minRows };
       delete componentProps.minRows;
       delete componentProps.maxRows;
     }
 
-    if (type === "number" && !componentProps.precision) {
+    if (type === 'number' && !componentProps.precision) {
       delete componentProps.precision;
     }
 
@@ -627,25 +646,25 @@ export function recursionConvertedNode(
       delete componentProps.width;
     }
 
-    if (type === "grid") {
-      type = "row";
+    if (type === 'grid') {
+      type = 'row';
       // 待修改
     }
 
-    if (parent && parent.type === "grid") {
-      type = "col";
+    if (parent && parent.type === 'grid') {
+      type = 'col';
       componentProps.span = item.span;
       item.key = getUUID();
     }
 
     // 创建新的节点数据
     const newItem: ComponentSchema = {
+      componentProps,
+      field: item.model,
+      icon: item.icon || '',
+      id: item.key,
       label: item.label,
       type,
-      icon: item.icon || "",
-      field: item.model,
-      componentProps,
-      id: item.key,
     };
 
     // 隐藏label 和 无FormItem 数据
@@ -663,21 +682,21 @@ export function recursionConvertedNode(
 
     // 输入组件
     const inputTypes = [
-      "input",
-      "textarea",
-      "number",
-      "password",
-      "select",
-      "cascader",
-      "checkbox",
-      "radio",
-      "date",
-      "time",
-      "slider",
-      "switch",
-      "color-picker",
-      "upload-file",
-      "upload-image",
+      'input',
+      'textarea',
+      'number',
+      'password',
+      'select',
+      'cascader',
+      'checkbox',
+      'radio',
+      'date',
+      'time',
+      'slider',
+      'switch',
+      'color-picker',
+      'upload-file',
+      'upload-image',
     ];
     if (inputTypes.includes(type)) {
       newItem.input = true;

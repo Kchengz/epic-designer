@@ -1,11 +1,10 @@
-import { type ComponentConfigModel } from '@epic-designer/utils'
+import type { ComponentConfigModel } from '@epic-designer/utils';
 
 export default {
   component: () => import('./formItem.vue'),
+  config: {},
   defaultSchema: {
     label: '表单项',
-    type: 'form-item'
+    type: 'form-item',
   },
-  config: {
-  }
-} as ComponentConfigModel
+} as ComponentConfigModel;
