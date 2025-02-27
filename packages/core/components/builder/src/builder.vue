@@ -30,7 +30,7 @@ const props = defineProps<{
 
 // 定义事件
 const emit = defineEmits<{
-  ready: PageManager;
+  ready: [pageManager: PageManager];
 }>();
 
 // 异步加载 EAsyncLoader 组件

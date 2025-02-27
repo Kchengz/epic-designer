@@ -66,6 +66,7 @@ export default defineConfig({
     UnoCSS() as PluginOption,
     dts({
       entryRoot: '../',
+      exclude: ['../**/__test__/**'],
       outDir: 'dist',
     }),
     nodeExternals(),

@@ -86,7 +86,7 @@ function handleSetValue(
   value: any,
   field: string,
   item: ComponentSchema,
-  editData = checkedNode.value,
+  editData: null | object = checkedNode.value,
 ) {
   if (typeof item.onChange === 'function') {
     item.onChange({ componentAttributes, value, values: editData! });

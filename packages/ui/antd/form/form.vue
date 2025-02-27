@@ -5,8 +5,6 @@ import type {
 } from '@epic-designer/core/types/epic-designer';
 import type { PageManager } from '@epic-designer/utils';
 
-import type { PropType, Ref } from 'vue';
-
 import { computed, inject, onMounted, provide, reactive, ref } from 'vue';
 
 import { Form } from 'ant-design-vue';
@@ -14,26 +12,25 @@ import { Form } from 'ant-design-vue';
 interface FormInstance extends InstanceType<typeof Form> {
   getData?: () => FormDataModel;
   scrollToField: (name: string) => void;
-  setData?: (FormDataModel) => void;
-  validate: () => void;
-  validateFields: () => void;
+  setData?: (data: FormDataModel) => void;
+  validate: () => Promise<unknown>;
+  validateFields: () => Promise<unknown>;
 }
 
-const props = defineProps({
-  componentSchema: {
-    default: () => ({}),
-    require: true,
-    type: Object as PropType<ComponentSchema>,
+const props = withDefaults(
+  defineProps<{
+    componentSchema: ComponentSchema;
+    scrollToFirstError?: boolean;
+  }>(),
+  {
+    componentSchema: () => ({ type: '' }),
+    scrollToFirstError: false,
   },
-  scrollToFirstError: {
-    default: false,
-    type: Boolean,
-  },
-});
+);
 
-const pageManager = inject('pageManager', {}) as PageManager;
+const pageManager = inject<PageManager>('pageManager', {} as PageManager);
 const form = ref<FormInstance | null>(null);
-const forms = inject('forms', {}) as Ref<{ [name: string]: any }>;
+const forms = inject<{ [name: string]: any }>('forms', {});
 const formData = reactive<FormDataModel>({});
 pageManager.addFormData(formData, props.componentSchema?.componentProps?.name);
 provide('formData', formData);

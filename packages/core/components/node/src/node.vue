@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance, ComponentPublicInstance } from 'vue';
+import type {
+  AsyncComponentLoader,
+  ComponentInternalInstance,
+  ComponentPublicInstance,
+} from 'vue';
 
 import {
   computed,
@@ -341,7 +345,7 @@ async function initComponent() {
 
   // 如果数据项为函数，则判定为懒加载组件
   if (typeof cmp === 'function') {
-    const res = await cmp();
+    const res = await (cmp as AsyncComponentLoader)();
     component.value = res.default ?? res;
   } else {
     // 否则为预加载组件

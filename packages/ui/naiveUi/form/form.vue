@@ -4,6 +4,7 @@ import type {
   FormDataModel,
 } from '@epic-designer/core/types/epic-designer';
 import type { PageManager } from '@epic-designer/utils';
+import type { FormInst } from 'naive-ui';
 
 import type { PropType, Ref } from 'vue';
 
@@ -14,7 +15,7 @@ import { NForm } from 'naive-ui/lib/form';
 interface FormInstance extends InstanceType<typeof NForm> {
   clearValidate?: () => void;
   getData?: () => FormDataModel;
-  setData?: (FormDataModel) => void;
+  setData?: (data: FormDataModel) => void;
 }
 
 const props = defineProps({
@@ -49,7 +50,7 @@ function setData(data: FormDataModel) {
 /**
  * 校验表单数据
  */
-function validate() {
+function validate(): ReturnType<FormInst['validate']> | undefined {
   return form.value?.validate();
 }
 

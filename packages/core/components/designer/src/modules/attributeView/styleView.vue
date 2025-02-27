@@ -71,7 +71,7 @@ const defaultStyle = [
 ];
 
 // 获取组件样式配置
-const componentStyles = computed(() => {
+const componentStyles = computed<ComponentSchema[]>(() => {
   if (!checkedNode.value || !checkedNode.value.type) {
     return [];
   }
@@ -94,7 +94,7 @@ function handleSetValue(
   value: any,
   field: string,
   item: ComponentSchema,
-  editData = checkedNode.value,
+  editData: null | object = checkedNode.value,
 ) {
   if (typeof item.onChange === 'function') {
     item.onChange({ componentStyles, value, values: editData! });

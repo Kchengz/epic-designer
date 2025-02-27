@@ -12,7 +12,7 @@ export interface ComponentSchema {
   // 组件属性，可选
   componentProps?: any;
   // 编辑组件数据，可选（属性编辑另外绑定编辑的数据，默认则为当前选中组件数据）
-  editData?: any;
+  editData?: object;
   // 节点字段，可选
   field?: string;
   // 节点ID，可选

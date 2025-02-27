@@ -9,10 +9,7 @@ import { getUUID } from './string';
  * 深拷贝数据
  * @param obj
  */
-export function deepClone<T extends Record<string, unknown> | unknown[]>(
-  obj: T,
-  cache = new WeakMap(),
-): T {
+export function deepClone<T extends object>(obj: T, cache = new WeakMap()): T {
   // 如果不是对象或数组，则直接返回
   if (typeof obj !== 'object' || obj === null) {
     return obj;
@@ -34,7 +31,10 @@ export function deepClone<T extends Record<string, unknown> | unknown[]>(
   const clonedObj = {} as Record<string, unknown>;
   cache.set(obj, clonedObj);
   Object.keys(obj).forEach((key) => {
-    clonedObj[key] = deepClone(obj[key] as T, cache);
+    clonedObj[key] = deepClone(
+      (obj as Record<string, unknown>)[key] as T,
+      cache,
+    );
   });
   return clonedObj as T;
 }
@@ -76,52 +76,54 @@ export function generateNewSchema(schema: ComponentSchema) {
  * @param shouldDelete - 如果为true，则删除obj2中不存在的obj1的属性。
  */
 export function deepCompareAndModify(
-  obj1: Record<string, unknown>,
-  obj2: Record<string, unknown>,
+  obj1: object,
+  obj2: object,
   shouldDelete: boolean = true,
 ): void {
+  const typedObj1 = obj1 as Record<string, unknown>;
+
   // 循环遍历obj2的所有属性
   for (const [key, val2] of Object.entries(obj2)) {
     // 如果obj1的属性值是对象或数组，则递归调用该函数
     if (
-      obj1[key] &&
+      typedObj1[key] &&
       val2 &&
-      typeof obj1[key] === 'object' &&
+      typeof typedObj1[key] === 'object' &&
       typeof val2 === 'object'
     ) {
-      // 如果obj1[key]是数组，val2为非数组
-      if (Array.isArray(obj1[key]) && !Array.isArray(val2)) {
-        obj1[key] = {};
-      } else if (!Array.isArray(obj1[key]) && Array.isArray(val2)) {
-        obj1[key] = [];
+      // 如果typedObj1[key]是数组，val2为非数组
+      if (Array.isArray(typedObj1[key]) && !Array.isArray(val2)) {
+        typedObj1[key] = {};
+      } else if (!Array.isArray(typedObj1[key]) && Array.isArray(val2)) {
+        typedObj1[key] = [];
       }
       // 递归比较
       deepCompareAndModify(
-        obj1[key] as Record<string, unknown>,
+        typedObj1[key] as Record<string, unknown>,
         val2 as Record<string, unknown>,
         shouldDelete,
       );
     } else {
-      // 如果属性值不相等，则将obj2的属性值复制给obj1
-      obj1[key] = val2;
+      // 如果属性值不相等，则将obj2的属性值复制给typedObj1
+      typedObj1[key] = val2;
     }
   }
 
   if (shouldDelete) {
-    Object.keys(obj1)
+    Object.keys(typedObj1)
       .reverse()
       .forEach((key) => {
-        // 如果obj2中存在obj1的属性跳过
+        // 如果obj2中存在typedObj1的属性跳过
         if (Object.prototype.hasOwnProperty.call(obj2, key)) {
           return;
         }
-        // 如果obj2中没有obj1的属性，则从obj1中删除该属性
-        if (Array.isArray(obj1)) {
-          // obj1 是数组，key 是字符串，需要转成数字索引
-          obj1.splice(Number(key), 1);
+        // 如果obj2中没有typedObj1的属性，则从typedObj1中删除该属性
+        if (Array.isArray(typedObj1)) {
+          // typedObj1 是数组，key 是字符串，需要转成数字索引
+          typedObj1.splice(Number(key), 1);
         } else {
-          // obj1 是对象
-          delete obj1[key];
+          // typedObj1 是对象
+          delete typedObj1[key];
         }
       });
   }
@@ -134,8 +136,8 @@ export function deepCompareAndModify(
  * @param ignoreKeys 可选参数，指定要忽略比较的属性名数组
  */
 export function deepEqual(
-  obj1: Record<string, unknown>,
-  obj2: Record<string, unknown>,
+  obj1: object,
+  obj2: object,
   ignoreKeys: string[] = [],
   visitedObjs = new WeakMap(),
 ): boolean {
@@ -233,7 +235,7 @@ export function getMatchedById(
  * @returns 通过路径获取的值
  */
 export function getValueByPath(
-  object: Record<string, unknown>,
+  object: object,
   path: string,
   defaultValue?: unknown,
 ) {
@@ -264,11 +266,7 @@ export function getValueByPath(
  * @param value - 要设置的值
  * @returns 修改后的对象
  */
-export function setValueByPath(
-  object: Record<string, unknown>,
-  path: string,
-  value: unknown,
-) {
+export function setValueByPath(object: object, path: string, value: unknown) {
   // 将路径字符串拆分为数组
   const pathArray = path
     .replaceAll(/\[(\d+)\]/g, '.$1')
