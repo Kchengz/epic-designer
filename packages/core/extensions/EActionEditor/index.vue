@@ -137,19 +137,10 @@ function handleEdit(action: any) {
  * @param {any} action - 要执行的动作
  */
 function handleAdd(action: any) {
-  // 如果 modelValueComputed.value 为 null 或 undefined，则创建一个新的对象
-  if (!modelValueComputed.value) {
-    modelValueComputed.value = {
-      [currentType]: [...(events.value[currentType] ?? []), action],
-    };
-    return;
-  }
-
-  // 否则，直接在 modelValueComputed.value[currentType] 中添加新的动作
-  modelValueComputed.value[currentType] = [
-    ...(events.value[currentType] ?? []),
-    action,
-  ];
+  modelValueComputed.value = {
+    ...modelValueComputed.value,
+    [currentType]: [...(events.value[currentType]?.value || []), action],
+  };
 }
 </script>
 

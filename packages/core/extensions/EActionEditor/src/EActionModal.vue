@@ -107,6 +107,7 @@ function handleOpen() {
     handleCheckedMethod(methodOptions.value[0].value);
   }
 }
+
 function handleOpenEdit(action: any) {
   visible.value = true;
   isAdd.value = false;
@@ -126,6 +127,7 @@ function handleOpenEdit(action: any) {
     state.actionItem.args = action.args;
   });
 }
+
 function handleSave() {
   if (!state.actionItem.methodName) {
     // eslint-disable-next-line no-alert
