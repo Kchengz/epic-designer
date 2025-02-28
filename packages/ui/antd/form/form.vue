@@ -5,7 +5,7 @@ import type {
 } from '@epic-designer/core/types/epic-designer';
 import type { PageManager } from '@epic-designer/utils';
 
-import { computed, inject, onMounted, provide, reactive, ref } from 'vue';
+import { computed, inject, provide, reactive, ref } from 'vue';
 
 import { Form } from 'ant-design-vue';
 
@@ -66,7 +66,9 @@ function setData(data: FormDataModel) {
 }
 
 // form组件需要特殊处理
-onMounted(async () => {
+const mountedForm = (event) => {
+  form.value = event.component.exposed;
+
   if (props.componentSchema?.type === 'form' && forms.value && form.value) {
     const name =
       props.componentSchema?.componentProps?.name ??
@@ -79,7 +81,7 @@ onMounted(async () => {
     form.value.setData = setData;
     return false;
   }
-});
+};
 
 const componentProps = computed(() => {
   const recordProps = props.componentSchema!.componentProps;
@@ -124,12 +126,13 @@ defineExpose({
 </script>
 <template>
   <div class="form-main" style="height: 100%">
-    <Form
-      ref="form"
+    <component
+      :is="Form"
       :model="formData"
       v-bind="componentProps"
       style="height: 100%"
       @finish="onFinish"
+      @vue:mounted="mountedForm"
     >
       <slot name="edit-node">
         <slot
@@ -138,6 +141,6 @@ defineExpose({
           :component-schema="item"
         ></slot>
       </slot>
-    </Form>
+    </component>
   </div>
 </template>
