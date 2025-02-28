@@ -364,16 +364,15 @@ export class PluginManager {
    * @param attr 匹配字段 title | id 默认值 title
    */
   hideActivitybar(value: string, attr: 'id' | 'title' = 'title') {
-    // 查找具有指定属性和值的活动栏的索引
-    const index = this.viewsContainers.activitybars.value.findIndex(
-      (rightSidebar) => rightSidebar[attr] === value,
-    );
-
-    // 如果找到匹配的活动栏
-    if (index !== -1) {
-      // 将匹配的活动栏的 'visible' 属性设置为 false
-      this.viewsContainers.activitybars.value[index].visible = false;
-    }
+    this.viewsContainers.activitybars.value =
+      this.viewsContainers.activitybars.value.map((activitybar) => {
+        // 查找具有指定属性和值的活动栏
+        if (activitybar[attr] === value) {
+          // 如果找到匹配的活动栏, 将匹配的活动栏的 'visible' 属性设置为 false
+          activitybar.visible = false;
+        }
+        return activitybar;
+      });
   }
 
   /**
@@ -391,16 +390,15 @@ export class PluginManager {
    * @param attr 查询字段 默认值 title
    */
   hideRightSidebar(value: string, attr: Atrr = 'title') {
-    // 查找具有指定属性和值的右侧边栏的索引
-    const index = this.viewsContainers.rightSidebars.value.findIndex(
-      (rightSidebar) => rightSidebar[attr] === value,
-    );
-
-    // 如果找到匹配的右侧边栏
-    if (index !== -1) {
-      // 将匹配的右侧边栏的 'visible' 属性设置为 false
-      this.viewsContainers.rightSidebars.value[index].visible = false;
-    }
+    this.viewsContainers.rightSidebars.value =
+      this.viewsContainers.rightSidebars.value.map((rightSidebar) => {
+        // 查找具有指定属性和值的右侧边栏
+        if (rightSidebar[attr] === value) {
+          // 如果找到匹配的右侧边栏, 将匹配的右侧边栏的 'visible' 属性设置为 false
+          rightSidebar.visible = false;
+        }
+        return rightSidebar;
+      });
   }
 
   /**
@@ -585,16 +583,15 @@ export class PluginManager {
    * @param attr 匹配字段 title | id 默认值 title
    */
   showActivitybar(value: string, attr: 'id' | 'title' = 'title') {
-    // 查找具有指定属性和值的活动栏的索引
-    const index = this.viewsContainers.activitybars.value.findIndex(
-      (rightSidebar) => rightSidebar[attr] === value,
-    );
-
-    // 如果找到匹配的活动栏
-    if (index !== -1) {
-      // 将匹配的活动栏的 'visible' 属性设置为 true
-      this.viewsContainers.activitybars.value[index].visible = true;
-    }
+    this.viewsContainers.activitybars.value =
+      this.viewsContainers.activitybars.value.map((activitybar) => {
+        // 查找具有指定属性和值的活动栏
+        if (activitybar[attr] === value) {
+          // 如果找到匹配的活动栏, 将匹配的活动栏的 'visible' 属性设置为 true
+          activitybar.visible = true;
+        }
+        return activitybar;
+      });
   }
 
   /**
@@ -614,16 +611,15 @@ export class PluginManager {
    * @param attr 查询字段 默认值 title
    */
   showRightSidebar(value: string, attr: Atrr = 'title') {
-    // 查找具有指定属性和值的右侧边栏的索引
-    const index = this.viewsContainers.rightSidebars.value.findIndex(
-      (rightSidebar) => rightSidebar[attr] === value,
-    );
-
-    // 如果找到匹配的右侧边栏
-    if (index !== -1) {
-      // 将匹配的右侧边栏的 'visible' 属性设置为 true
-      this.viewsContainers.rightSidebars.value[index].visible = true;
-    }
+    this.viewsContainers.rightSidebars.value =
+      this.viewsContainers.rightSidebars.value.map((rightSidebar) => {
+        // 查找具有指定属性和值的右侧边栏
+        if (rightSidebar[attr] === value) {
+          // 如果找到匹配的右侧边栏, 将匹配的右侧边栏的 'visible' 属性设置为 true
+          rightSidebar.visible = true;
+        }
+        return rightSidebar;
+      });
   }
 }
 
