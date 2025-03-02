@@ -9,6 +9,7 @@ import {
   pluginManager,
 } from '@epic-designer/utils';
 
+import EIcon from '../../../components/icon';
 import ETree from '../../../components/tree';
 import {
   ComponentSchema,
@@ -220,7 +221,30 @@ defineExpose({
               v-model:selected-keys="selectedKeys"
               :options="pageSchema.schemas"
               @node-click="handleNodeClick"
-            />
+            >
+              <template #tree-node="{ schema }">
+                <div
+                  class="epic-text-padding flex"
+                  :class="{ hidden: schema.componentProps?.hidden }"
+                >
+                  <span class="max-w-full truncate">
+                    <EIcon
+                      v-if="schema.componentProps?.hidden"
+                      name="icon--epic--visibility-off-outline-rounded"
+                      class="translate-y-2px"
+                    />
+                    {{
+                      schema.label ??
+                      pluginManager.getComponentConfingByType(schema.type)
+                        ?.defaultSchema.label
+                    }}
+                  </span>
+                  <span class="epic-node-type-text w-0 flex-1 truncate">
+                    {{ schema.id }}
+                  </span>
+                </div>
+              </template>
+            </ETree>
           </div>
         </div>
         <!-- 动作选择 start -->
