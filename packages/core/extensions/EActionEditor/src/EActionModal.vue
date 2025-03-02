@@ -8,6 +8,7 @@ import {
   PageManager,
   pluginManager,
 } from '@epic-designer/utils';
+import { useClipboard } from '@vueuse/core';
 
 import EIcon from '../../../components/icon';
 import ETree from '../../../components/tree';
@@ -21,12 +22,15 @@ import EScriptEdit from './EScriptEdit.vue';
 
 const emit = defineEmits(['add', 'edit']);
 const Modal = pluginManager.getComponent('modal');
+const Button = pluginManager.getComponent('button');
 const isAdd = ref(true);
 const pageSchema = inject('pageSchema') as PageSchema;
 const pageManager = inject('pageManager', {}) as PageManager;
 const visible = ref(false);
 const selectedKeys = ref<string[]>([]);
 const componentSchema = ref<ComponentSchema | null>(null);
+const { copy } = useClipboard({});
+
 const argsEditorKey = computed(() => {
   return componentSchema.value?.id ?? '';
 });
@@ -224,7 +228,7 @@ defineExpose({
             >
               <template #tree-node="{ schema }">
                 <div
-                  class="epic-text-padding flex"
+                  class="epic-text-padding group flex items-center hover:bg-gray-100"
                   :class="{ hidden: schema.componentProps?.hidden }"
                 >
                   <span class="max-w-full truncate">
@@ -242,6 +246,13 @@ defineExpose({
                   <span class="epic-node-type-text w-0 flex-1 truncate">
                     {{ schema.id }}
                   </span>
+                  <Button
+                    class="opacity-0 group-hover:opacity-100"
+                    size="small"
+                    @click.stop="copy(schema.id)"
+                  >
+                    复制ID
+                  </Button>
                 </div>
               </template>
             </ETree>

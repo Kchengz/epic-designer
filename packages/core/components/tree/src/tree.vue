@@ -109,9 +109,7 @@ provide('handleSelect', handleSelect);
     </div>
     <!-- 搜素框 end -->
     <div class="epic-tree-main h-0 flex-1 overflow-auto">
-      <ul>
-        <ETreeNodes v-model:schemas="getTreeData" />
-      </ul>
+      <ETreeNodes v-model:schemas="getTreeData" />
       <div
         v-show="getTreeData.length === 0"
         class="pt-42px text-center text-gray-400"
