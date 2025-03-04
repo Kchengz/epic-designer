@@ -120,7 +120,7 @@ export function usePageManager() {
    * @param scriptStr
    */
   function setMethods(scriptStr: string, outputError: boolean = false): void {
-    // 初始化一个空对象来存储最终结果
+    // 初始化一个空对象来存储公共方法
     const publicMethods: Record<string, Function> = {};
 
     // 遍历 pluginManager.publicMethods 对象的属性

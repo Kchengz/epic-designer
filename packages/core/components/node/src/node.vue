@@ -28,8 +28,10 @@ import {
   deepClone,
   deepCompareAndModify,
   deepEqual,
+  getValueByPath,
   PageManager,
   pluginManager,
+  setValueByPath,
 } from '@epic-designer/utils';
 
 import { ComponentSchema, FormDataModel } from '../../../types/epic-designer';
@@ -217,20 +219,23 @@ const getComponentProps = computed(() => {
   };
 });
 
+// 计算绑定值
+const getBindValue = () => {
+  return props.modelValue ?? getValueByPath(formData, innerSchema.field ?? '');
+};
+
 // 获取双向绑定值
 watchEffect(() => {
-  bindValue.value = props.modelValue ?? formData[innerSchema.field ?? ''];
+  bindValue.value = getBindValue();
 });
 
 // 更新双向绑定值
 watch(
   () => bindValue.value,
-  () => {
+  (newValue) => {
+    const currentValue = getBindValue();
     // 值相同时,无需重复更新数据
-    if (
-      bindValue.value ===
-      (props.modelValue ?? formData[innerSchema.field ?? ''])
-    ) {
+    if (newValue !== currentValue) {
       return;
     }
     handleUpdate(bindValue.value);
@@ -355,13 +360,13 @@ async function initComponent() {
 
 /**
  * 通过函数更新值
- * @param v value值
+ * @param value value值
  */
-function handleUpdate(v: any) {
-  emit('update:modelValue', v);
-  emit('change', v);
+function handleUpdate(value: any) {
+  emit('update:modelValue', value);
+  emit('change', value);
   if (innerSchema.field) {
-    formData[innerSchema.field!] = v;
+    setValueByPath(formData, innerSchema.field, value);
   }
 }
 
