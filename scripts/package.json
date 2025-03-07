@@ -3,15 +3,16 @@
   "version": "0.9.30",
   "description": "",
   "keywords": [],
-  "license": "ISC",
+  "license": "MIT",
   "author": "",
   "scripts": {
     "stub": "pnpm unbuild --stub"
   },
   "bin": {
-    "epic": "./dist/index.mjs"
+    "epic": "./bin/epic.mjs"
   },
   "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "devDependencies": {
     "@manypkg/get-packages": "^2.2.2",
     "@types/node": "^22.10.6",

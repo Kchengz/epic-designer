@@ -18,9 +18,9 @@ importers:
       '@epic-designer/hooks':
         specifier: workspace:*
         version: link:packages/hooks
-      '@epic-designer/script':
+      '@epic-designer/scripts':
         specifier: workspace:*
-        version: link:packages/script
+        version: link:packages/scripts
       '@epic-designer/ui':
         specifier: workspace:*
         version: link:packages/ui
@@ -319,7 +319,7 @@ importers:
 
   packages/hooks: {}
 
-  packages/script:
+  packages/scripts:
     devDependencies:
       '@types/node':
         specifier: ^20.12.7
