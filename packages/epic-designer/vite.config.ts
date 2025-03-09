@@ -55,6 +55,11 @@ export default defineConfig({
           targets: [
             // 路径
             { dest: './dist/', src: '../core/theme' },
+            {
+              dest: './dist/',
+              rename: 'style.css',
+              src: './dist/epic-designer.css',
+            },
           ],
           verbose: true, // 在终端进行console.log
         }) as PluginOption,
@@ -71,4 +76,12 @@ export default defineConfig({
     }),
     nodeExternals(),
   ],
+  resolve: {
+    alias: {
+      '@epic-designer/core': path.resolve(__dirname, '../core'),
+      '@epic-designer/hooks': path.resolve(__dirname, '../hooks'),
+      '@epic-designer/ui': path.resolve(__dirname, '../ui'),
+      '@epic-designer/utils': path.resolve(__dirname, '../utils'),
+    },
+  },
 });
