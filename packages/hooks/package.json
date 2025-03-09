@@ -3,5 +3,6 @@
   "version": "0.9.30",
   "description": "epic-designer hooks",
   "author": "kchengz",
-  "main": "index.ts"
+  "type": "module",
+  "main": "src/index.ts"
 }

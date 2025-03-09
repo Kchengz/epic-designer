@@ -3,6 +3,7 @@
   "version": "0.9.30",
   "description": "epic-designer base ui",
   "author": "kchengz",
+  "type": "module",
   "scripts": {},
   "main": "index.ts",
   "devDependencies": {
