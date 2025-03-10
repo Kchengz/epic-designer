@@ -1,0 +1,8 @@
+{
+  "name": "@epic-designer/types",
+  "version": "0.9.10",
+  "description": "epic-designer types",
+  "author": "kchengz",
+  "type": "module",
+  "main": "./src/index.ts"
+}

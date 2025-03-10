@@ -1,0 +1,12 @@
+{
+  "name": "@epic-designer/base-ui",
+  "version": "0.9.10",
+  "description": "epic-designer base-ui",
+  "author": "kchengz",
+  "type": "module",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "monaco-editor": "^0.52.2",
+    "vuedraggable": "4.1.0"
+  }
+}
