@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "turbo run build",
-    "dev": "epic checkCompiled && turbo run dev",
+    "dev": "turbo run dev",
     "lib": "vitest run && pnpm run build --filter epic-designer",
     "test": "vitest",
     "docs:dev": "vitepress dev docs",

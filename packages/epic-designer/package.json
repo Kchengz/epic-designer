@@ -37,7 +37,6 @@
   "peerDependencies": {
     "ant-design-vue": ">=3.2.20",
     "element-plus": ">=2.6.0",
-    "epic-designer": ">=0.9.3",
     "monaco-editor": ">=0.48.0",
     "naive-ui": ">=2.30.0",
     "vue": ">=3.1.0"

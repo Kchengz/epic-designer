@@ -271,9 +271,6 @@ importers:
       element-plus:
         specifier: '>=2.6.0'
         version: 2.9.6(vue@3.5.13(typescript@5.8.2))
-      epic-designer:
-        specifier: '>=0.9.3'
-        version: 0.9.30(ant-design-vue@4.2.6(vue@3.5.13(typescript@5.8.2)))(dayjs@1.11.13)(element-plus@2.9.6(vue@3.5.13(typescript@5.8.2)))(monaco-editor@0.52.2)(naive-ui@2.41.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       monaco-editor:
         specifier: '>=0.48.0'
         version: 0.52.2
@@ -2587,17 +2584,6 @@ packages:
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
-
-  epic-designer@0.9.30:
-    resolution: {integrity: sha512-wGOK14px5Q+cQcjDjjkjxbXwPpu+uSyyLrU6Lkq120p6VkHqkAp5oK1djp47E7m5MF6jeRZou+53ooRl/AsqCg==}
-    peerDependencies:
-      ant-design-vue: '>=3.2.20'
-      dayjs: '>=1.0.0'
-      element-plus: '>=2.6.0'
-      epic-designer: '>=0.9.3'
-      monaco-editor: '>=0.48.0'
-      naive-ui: '>=2.30.0'
-      vue: '>=3.1.0'
 
   errno@0.1.8:
     resolution: {integrity: sha512-dJ6oBr5SQ1VSd9qkk7ByRgb/1SH4JZjCHSW/mr63/QcXO9zLVxvJ6Oy13nio03rxpSnVDDjFor75SjVeZWPW/A==}
@@ -7591,17 +7577,6 @@ snapshots:
       tapable: 2.2.1
 
   entities@4.5.0: {}
-
-  epic-designer@0.9.30(ant-design-vue@4.2.6(vue@3.5.13(typescript@5.8.2)))(dayjs@1.11.13)(element-plus@2.9.6(vue@3.5.13(typescript@5.8.2)))(monaco-editor@0.52.2)(naive-ui@2.41.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2)):
-    dependencies:
-      ant-design-vue: 4.2.6(vue@3.5.13(typescript@5.8.2))
-      dayjs: 1.11.13
-      element-plus: 2.9.6(vue@3.5.13(typescript@5.8.2))
-      epic-designer: 0.9.30(ant-design-vue@4.2.6(vue@3.5.13(typescript@5.8.2)))(dayjs@1.11.13)(element-plus@2.9.6(vue@3.5.13(typescript@5.8.2)))(monaco-editor@0.52.2)(naive-ui@2.41.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
-      monaco-editor: 0.52.2
-      naive-ui: 2.41.0(vue@3.5.13(typescript@5.8.2))
-      vue: 3.5.13(typescript@5.8.2)
-      vuedraggable: 4.1.0(vue@3.5.13(typescript@5.8.2))
 
   errno@0.1.8:
     dependencies:
