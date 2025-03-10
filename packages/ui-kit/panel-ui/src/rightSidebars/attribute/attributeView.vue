@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+import type {
+  ComponentSchema,
+  Designer,
+  PageSchema,
+} from '@epic-designer/types';
 import type { Revoke } from '@epic-designer/utils';
 
 import { computed, inject, nextTick } from 'vue';
@@ -9,11 +14,6 @@ import {
   setValueByPath,
 } from '@epic-designer/utils';
 
-import {
-  ComponentSchema,
-  Designer,
-  PageSchema,
-} from '../../../../../types/epic-designer';
 import ENode from '../../../../node/index';
 
 const designer = inject('designer') as Designer;

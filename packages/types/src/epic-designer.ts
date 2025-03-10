@@ -1,4 +1,4 @@
-import type { FormItemRule } from '../extensions/ERuleEditor/types';
+import type { FormItemRule } from './rules';
 
 export interface RenderCallbackParams {
   values: Record<string, any>;

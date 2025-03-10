@@ -1,1 +1,1 @@
-export { default } from './src/icon.vue';
+export { default as EpicIcon } from './icon.vue';
