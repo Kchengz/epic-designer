@@ -78,10 +78,19 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@epic-designer/core': path.resolve(__dirname, '../core'),
-      '@epic-designer/hooks': path.resolve(__dirname, '../hooks'),
-      '@epic-designer/ui': path.resolve(__dirname, '../ui'),
-      '@epic-designer/utils': path.resolve(__dirname, '../utils'),
+      '@epic-designer/base-ui': path.resolve(
+        __dirname,
+        '../ui-kit/base-ui/src/index.ts',
+      ),
+      '@epic-designer/core': path.resolve(__dirname, '../core/src/index.ts'),
+      '@epic-designer/hooks': path.resolve(__dirname, '../hooks/src/index.ts'),
+      '@epic-designer/panel-ui': path.resolve(
+        __dirname,
+        '../ui-kit/panel-ui/src/index.ts',
+      ),
+      '@epic-designer/types': path.resolve(__dirname, '../types/src/index.ts'),
+      '@epic-designer/ui': path.resolve(__dirname, '../ui/'),
+      '@epic-designer/utils': path.resolve(__dirname, '../utils/src/index.ts'),
     },
   },
 });

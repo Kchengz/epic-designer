@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-import type { Designer, PageSchema } from '@epic-designer/types';
+import type { Designer, DesignerProps, PageSchema } from '@epic-designer/types';
 
 import type { Ref } from 'vue';
-
-import type { DesignerProps } from '../../types';
 
 import { computed, inject, ref } from 'vue';
 

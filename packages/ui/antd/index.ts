@@ -1,8 +1,8 @@
-import type { PluginManager } from 'epic-designer';
+import type { PluginManager } from '@epic-designer/utils';
 
-import { version } from 'ant-design-vue';
 // 注册ant-design-vue ui
-import { pluginManager as pManager } from 'epic-designer';
+import { pluginManager as pManager } from '@epic-designer/utils';
+import { version } from 'ant-design-vue';
 
 import Button from './button';
 import Card from './card';

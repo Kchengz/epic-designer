@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
+
 import type {
   AsyncComponentLoader,
   ComponentInternalInstance,
@@ -34,7 +36,6 @@ import {
   setValueByPath,
 } from '@epic-designer/utils';
 
-import { ComponentSchema, FormDataModel } from '@epic-designer/types';
 import dynamicFormItem from './dynamicFormItem.vue';
 
 export interface ComponentNodeInstance extends ComponentPublicInstance {
@@ -45,7 +46,7 @@ export interface ComponentNodeInstance extends ComponentPublicInstance {
 }
 
 defineOptions({
-  name: 'ENode',
+  name: 'EpicNode',
 });
 
 const props = defineProps<{
@@ -414,7 +415,7 @@ onUnmounted(handleVnodeUnmounted);
       <!-- 嵌套组件递归 start -->
       <!-- 渲染子组件 start -->
       <template #node="data">
-        <ENode v-bind="data" />
+        <EpicNode v-bind="data" />
       </template>
       <!-- 渲染子组件 end -->
       <!-- 渲染布局设计子组件列表 start -->

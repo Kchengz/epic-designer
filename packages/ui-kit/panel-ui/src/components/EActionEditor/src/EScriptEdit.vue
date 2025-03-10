@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import type { PageSchema } from '@epic-designer/types';
+
 import { inject, ref } from 'vue';
 
 import { pluginManager } from '@epic-designer/utils';
-
-import { PageSchema } from '@epic-designer/types';
 
 const MonacoEditor = pluginManager.getComponent('monacoEditor');
 const MonacoEditorConfig = {

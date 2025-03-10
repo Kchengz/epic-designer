@@ -1,5 +1,7 @@
-import type { PluginManager } from 'epic-designer';
+import type { PluginManager } from '@epic-designer/utils';
 
+// 注册element-plus ui
+import { pluginManager as pManager } from '@epic-designer/utils';
 import {
   ElCollapse,
   ElCollapseItem,
@@ -7,8 +9,6 @@ import {
   ElTabPane,
   ElTabs,
 } from 'element-plus';
-// 注册element-plus ui
-import { pluginManager as pManager } from 'epic-designer';
 
 import Button from './button';
 import Card from './card';

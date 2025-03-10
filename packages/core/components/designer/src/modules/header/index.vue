@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { Ref } from 'vue';
+import type { DesignerProps } from '@epic-designer/types';
 
-import type { DesignerProps } from '../../types';
+import type { Ref } from 'vue';
 
 import { inject } from 'vue';
 

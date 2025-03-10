@@ -1,14 +1,15 @@
 <script lang="ts" setup>
+import type {
+  ComponentSchema,
+  Designer,
+  PageSchema,
+} from '@epic-designer/types';
+
 import { computed, inject } from 'vue';
 
 import { pluginManager } from '@epic-designer/utils';
 import draggable from 'vuedraggable';
 
-import {
-  ComponentSchema,
-  Designer,
-  PageSchema,
-} from '@epic-designer/types';
 import ETreeNodeItem from './treeNodeItem.vue';
 
 defineOptions({

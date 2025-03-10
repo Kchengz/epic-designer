@@ -10,6 +10,7 @@ import { computed, nextTick, provide, reactive, ref, watchEffect } from 'vue';
 
 import { EpicBaseLoader } from '@epic-designer/base-ui';
 import { useStore } from '@epic-designer/hooks';
+import { setupPanel } from '@epic-designer/panel-ui';
 import {
   deepClone,
   deepCompareAndModify,
@@ -38,6 +39,8 @@ const emits = defineEmits([
   'imported',
   'toggleDeviceMode',
 ]);
+
+setupPanel(pluginManager);
 const EHeader = loadAsyncComponent(() => import('./modules/header/index.vue'));
 const EActivityBar = loadAsyncComponent(
   () => import('./modules/activityBar/index.vue'),

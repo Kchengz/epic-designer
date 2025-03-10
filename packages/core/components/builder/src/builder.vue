@@ -12,22 +12,22 @@ import {
 } from 'vue';
 
 import { EpicBaseLoader, EpicNode } from '@epic-designer/base-ui';
+import { setupPage } from '@epic-designer/panel-ui';
 import { deepCompareAndModify, pluginManager } from '@epic-designer/utils';
 
 import { useBuilder } from '../hooks/useBuilder';
-
 // 定义组件的 props 类型
 const props = defineProps<{
   disabled?: boolean;
   formData?: FormDataModel;
   pageSchema: PageSchema;
 }>();
-
 // 定义事件
 const emit = defineEmits<{
   ready: [pageManager: PageManager];
 }>();
 
+setupPage(pluginManager);
 // 使用 hooks 获取表单相关方法和状态
 const {
   forms,

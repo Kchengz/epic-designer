@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import type { ComponentSchema } from '@epic-designer/types';
+
 import { ref } from 'vue';
 
 import { pluginManager } from '@epic-designer/utils';
-
-import { ComponentSchema } from '@epic-designer/types';
 
 defineOptions({
   inheritAttrs: false,

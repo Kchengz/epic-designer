@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import type {
-  ComponentSchema,
-  FormDataModel,
-} from '@epic-designer/types';
+import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
 
 import {

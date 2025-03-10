@@ -1,7 +1,7 @@
-import type { PluginManager } from 'epic-designer';
+import type { PluginManager } from '@epic-designer/utils';
 
 // 注册naive-ui
-import { pluginManager as pManager } from 'epic-designer';
+import { pluginManager as pManager } from '@epic-designer/utils';
 import { NTabPane } from 'naive-ui';
 
 import Button from './button';
