@@ -25,7 +25,7 @@
     "preview": "vite preview",
     "test": "vitest"
   },
-  "main": "index.ts",
+  "main": "src/index.ts",
   "dependencies": {
     "monaco-editor": "^0.52.2",
     "vuedraggable": "4.1.0"
