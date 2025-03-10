@@ -12,6 +12,9 @@ importers:
         specifier: ^12.2.0
         version: 12.8.2(typescript@5.8.2)
     devDependencies:
+      '@epic-designer/base-ui':
+        specifier: workspace:*
+        version: link:packages/ui-kit/base-ui
       '@epic-designer/core':
         specifier: workspace:*
         version: link:packages/core
@@ -21,9 +24,15 @@ importers:
       '@epic-designer/hooks':
         specifier: workspace:*
         version: link:packages/hooks
+      '@epic-designer/panel-ui':
+        specifier: workspace:*
+        version: link:packages/ui-kit/panel-ui
       '@epic-designer/scripts':
         specifier: workspace:*
         version: link:scripts
+      '@epic-designer/types':
+        specifier: workspace:*
+        version: link:packages/types
       '@epic-designer/ui':
         specifier: workspace:*
         version: link:packages/ui
@@ -302,6 +311,8 @@ importers:
 
   packages/hooks: {}
 
+  packages/types: {}
+
   packages/ui:
     devDependencies:
       ant-design-vue:
@@ -316,6 +327,25 @@ importers:
       vite-plugin-dts:
         specifier: ^4.4.0
         version: 4.5.3(@types/node@22.13.9)(rollup@4.34.9)(typescript@5.8.2)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))
+
+  packages/ui-kit/base-ui:
+    dependencies:
+      monaco-editor:
+        specifier: ^0.52.2
+        version: 0.52.2
+      vuedraggable:
+        specifier: 4.1.0
+        version: 4.1.0(vue@3.5.13(typescript@5.8.2))
+
+  packages/ui-kit/panel-ui:
+    dependencies:
+      vuedraggable:
+        specifier: 4.1.0
+        version: 4.1.0(vue@3.5.13(typescript@5.8.2))
+    devDependencies:
+      monaco-editor:
+        specifier: ^0.52.2
+        version: 0.52.2
 
   packages/utils: {}
 

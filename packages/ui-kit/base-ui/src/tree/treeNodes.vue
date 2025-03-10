@@ -8,7 +8,7 @@ import {
   ComponentSchema,
   Designer,
   PageSchema,
-} from '../../../types/epic-designer';
+} from '@epic-designer/types';
 import ETreeNodeItem from './treeNodeItem.vue';
 
 defineOptions({

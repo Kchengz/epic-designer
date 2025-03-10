@@ -3,7 +3,7 @@ import { inject, nextTick, ref } from 'vue';
 
 import { getUUID, pluginManager } from '@epic-designer/utils';
 
-import { PageSchema } from '../../../../../types/epic-designer';
+import { PageSchema } from '@epic-designer/types';
 import EBuilder from '../../../../builder';
 
 const props = withDefaults(

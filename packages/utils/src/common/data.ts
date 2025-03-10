@@ -1,6 +1,6 @@
-import type { ComponentSchema } from '@epic-designer/core/types/epic-designer';
+import type { ComponentSchema } from '@epic-designer/types';
 
-import { PageSchema } from '@epic-designer/core/types/epic-designer';
+import { PageSchema } from '@epic-designer/types';
 
 import { pluginManager } from '../index';
 import { getUUID } from './string';

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { Ref } from 'vue';
+import type { DesignerProps, PageSchema } from '@epic-designer/types';
 
-import type { PageSchema } from '../../../../../types/epic-designer';
+import type { Ref } from 'vue';
 
 import {
   computed,
@@ -18,7 +18,6 @@ import { useElementDrag, useElementZoom, useStore } from '@epic-designer/hooks';
 import { debounce } from '@epic-designer/utils';
 import { useElementSize, useResizeObserver, watchOnce } from '@vueuse/core';
 
-import { DesignerProps } from '../../types';
 import Toolbar from './toolbar.vue';
 
 const designerProps = inject('designerProps') as Ref<DesignerProps>;

@@ -1,4 +1,4 @@
-import { PageSchema } from '../../../types/epic-designer';
+import { PageSchema } from '@epic-designer/types';
 
 export interface DesignerProps {
   defaultSchema?: PageSchema;

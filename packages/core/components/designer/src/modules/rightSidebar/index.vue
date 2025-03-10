@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { computed, ref, shallowRef } from 'vue';
 
+import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager, RightSidebarModel } from '@epic-designer/utils';
 
-import EIcon from '../../../../icon';
-import EBreadcrumb from './breadcrumb.vue';
+import EpicBreadcrumb from './breadcrumb.vue';
 
 const hideRightMain = ref(false);
 
@@ -37,7 +37,7 @@ function handleClick(item: RightSidebarModel, index: number) {
       class="epic-right-sidebar-hide-btn left--18px top-80px w-28px h-28px z-9 absolute flex cursor-pointer items-center justify-center rounded-full"
       @click="handleHideRight"
     >
-      <EIcon
+      <EpicIcon
         class="transition-all"
         :class="{ 'rotate-180': hideRightMain }"
         name="icon--epic--arrow-forward-ios-rounded"
@@ -48,7 +48,7 @@ function handleClick(item: RightSidebarModel, index: number) {
 
     <div class="epic-right-sidebar w-308px" :class="{ hide: hideRightMain }">
       <div class="w-308px">
-        <EBreadcrumb />
+        <EpicBreadcrumb />
         <ul class="epic-actions-container">
           <li
             v-for="(item, index) in rightSidebars"

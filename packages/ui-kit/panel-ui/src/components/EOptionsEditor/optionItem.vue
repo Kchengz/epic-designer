@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 import { inject } from 'vue';
 
+import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/utils';
 import { useVModel } from '@vueuse/core';
 import draggable from 'vuedraggable';
-
-import EIcon from '../../components/icon';
 
 interface Option {
   children?: Option[];
@@ -71,7 +70,7 @@ function handleRemove(index: number) {
           "
           class="option-item text-16px text-$epic-text-secondary mb-2 grid items-center gap-2"
         >
-          <EIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
+          <EpicIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
           <Input
             v-model="option.label"
             v-model:value="option.label"
@@ -82,13 +81,13 @@ function handleRemove(index: number) {
             v-model:value="option.value"
             placeholder="value"
           />
-          <EIcon
+          <EpicIcon
             v-if="tree"
             class="text-lg! cursor-pointer"
             name="icon--epic--add-rounded"
             @click="handleAddChildren(option)"
           />
-          <EIcon
+          <EpicIcon
             class="hover:text-red cursor-pointer"
             name="icon--epic--delete-outline-rounded"
             @click="handleRemove(index)"

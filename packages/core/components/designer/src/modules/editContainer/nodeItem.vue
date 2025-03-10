@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+import type {
+  ComponentSchema,
+  Designer,
+  PageSchema,
+} from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
 
 import {
@@ -11,14 +16,9 @@ import {
   watch,
 } from 'vue';
 
+import { EpicNode } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/utils';
 
-import {
-  ComponentSchema,
-  Designer,
-  PageSchema,
-} from '../../../../../types/epic-designer';
-import ENode from '../../../../node';
 import EditNodeItem from './editNodeItem.vue';
 
 defineOptions({
@@ -116,7 +116,7 @@ function clearHoverNode(event: Event) {
 }
 </script>
 <template>
-  <ENode ref="nodeRef" :component-schema="props.schema">
+  <EpicNode ref="nodeRef" :component-schema="props.schema">
     <!-- childImmovable不可拖拽设计 start -->
     <template
       v-if="
@@ -139,5 +139,5 @@ function clearHoverNode(event: Event) {
         v-model:schemas="props.schema.children"
       />
     </template>
-  </ENode>
+  </EpicNode>
 </template>

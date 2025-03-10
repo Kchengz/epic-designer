@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 import { pluginManager } from '@epic-designer/utils';
 
-import { ComponentSchema } from '../../../types/epic-designer';
+import { ComponentSchema } from '@epic-designer/types';
 
 defineOptions({
   inheritAttrs: false,

@@ -1,6 +1,13 @@
 <script lang="ts" setup>
+import type {
+  ComponentSchema,
+  FormDataModel,
+  PageSchema,
+} from '@epic-designer/types';
+
 import { computed, inject, nextTick, reactive, ref, toRaw } from 'vue';
 
+import { EpicIcon, EpicTree } from '@epic-designer/base-ui';
 import {
   deepClone,
   findSchemaById,
@@ -10,13 +17,6 @@ import {
 } from '@epic-designer/utils';
 import { useClipboard } from '@vueuse/core';
 
-import EIcon from '../../../components/icon';
-import ETree from '../../../components/tree';
-import {
-  ComponentSchema,
-  FormDataModel,
-  PageSchema,
-} from '../../../types/epic-designer';
 import EArgsEditor from './EArgsEditor.vue';
 import EScriptEdit from './EScriptEdit.vue';
 
@@ -221,7 +221,7 @@ defineExpose({
           </div>
           组件
           <div class="h-0 flex-1">
-            <ETree
+            <EpicTree
               v-model:selected-keys="selectedKeys"
               :options="pageSchema.schemas"
               @node-click="handleNodeClick"
@@ -232,7 +232,7 @@ defineExpose({
                   :class="{ hidden: schema.componentProps?.hidden }"
                 >
                   <span class="max-w-full truncate">
-                    <EIcon
+                    <EpicIcon
                       v-if="schema.componentProps?.hidden"
                       name="icon--epic--visibility-off-outline-rounded"
                       class="translate-y-2px"
@@ -255,7 +255,7 @@ defineExpose({
                   </Button>
                 </div>
               </template>
-            </ETree>
+            </EpicTree>
           </div>
         </div>
         <!-- 动作选择 start -->

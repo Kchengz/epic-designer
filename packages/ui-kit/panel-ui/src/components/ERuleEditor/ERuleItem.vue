@@ -1,12 +1,12 @@
 <script lang="ts" setup>
+import type { FormItemRule } from '@epic-designer/types';
+
 import { computed, inject } from 'vue';
 
+import { EpicIcon, EpicNode } from '@epic-designer/base-ui';
 import { PageManager } from '@epic-designer/utils';
 
-import EIcon from '../../components/icon';
-import ENode from '../../components/node/index';
 import { lenTypeOptions, triggerOptions, typeOptions } from './data';
-import { FormItemRule } from './types';
 
 const props = defineProps<{
   rule: FormItemRule;
@@ -145,7 +145,7 @@ function handleDelete() {
           {{ componentSchema.label }}
         </div>
         <div class="epic-attr-input">
-          <ENode
+          <EpicNode
             v-model="modelRule[componentSchema.model]"
             :component-schema="{ ...componentSchema, noFormItem: true }"
             @change="handleUpdate"
@@ -157,7 +157,7 @@ function handleDelete() {
       class="rule-btn-delete text-md w-24px h-24px rounded-bl-2 color-white absolute right-0 top-0 flex cursor-pointer items-center justify-center transition-all"
       @click="handleDelete"
     >
-      <EIcon name="icon--epic--delete-outline-rounded" />
+      <EpicIcon name="icon--epic--delete-outline-rounded" />
     </div>
   </div>
 </template>

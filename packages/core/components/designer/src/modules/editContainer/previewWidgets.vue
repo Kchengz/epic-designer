@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+import type { Designer, DesignerProps, PageSchema } from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
 
 import type { Ref } from 'vue';
 
 import { computed, inject, ref, watch } from 'vue';
 
+import { EpicIcon } from '@epic-designer/base-ui';
 import { useStore, useTimedQuery } from '@epic-designer/hooks';
 import {
   findSchemaInfoById,
@@ -13,10 +15,6 @@ import {
   Revoke,
 } from '@epic-designer/utils';
 import { useResizeObserver } from '@vueuse/core';
-
-import { Designer, PageSchema } from '../../../../../types/epic-designer';
-import EIcon from '../../../../icon';
-import { DesignerProps } from '../../types';
 
 const pageManager = inject('pageManager', {}) as PageManager;
 const pageSchema = inject('pageSchema') as PageSchema;
@@ -170,7 +168,7 @@ watch(
 );
 
 // 添加悬停节点监听，当悬停节点消失超过300ms,则隐藏悬停部件
-let hideTimer: NodeJS.Timeout | number = 0;
+let hideTimer: number = 0;
 watch(
   () => designer.state.hoverNode?.id,
   (e) => {
@@ -426,21 +424,21 @@ defineExpose({
           class="epic-widget-action-item pointer-events-auto"
           @click="handleSelectParentNode"
         >
-          <EIcon name="icon--epic--upward" />
+          <EpicIcon name="icon--epic--upward" />
         </div>
         <div
           title="复制"
           class="epic-widget-action-item pointer-events-auto"
           @click="handleCopy"
         >
-          <EIcon name="icon--epic--copy-all-outline-rounded" />
+          <EpicIcon name="icon--epic--copy-all-outline-rounded" />
         </div>
         <div
           title="删除"
           class="epic-widget-action-item pointer-events-auto"
           @click="handleDelete"
         >
-          <EIcon name="icon--epic--delete-outline-rounded" />
+          <EpicIcon name="icon--epic--delete-outline-rounded" />
         </div>
       </div>
       <!-- 操作按钮 end  -->

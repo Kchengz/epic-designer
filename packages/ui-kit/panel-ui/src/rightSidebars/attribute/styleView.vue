@@ -3,18 +3,13 @@ import type { Revoke } from '@epic-designer/utils';
 
 import { computed, inject, nextTick } from 'vue';
 
+import { EpicNode } from '@epic-designer/base-ui';
+import { ComponentSchema, Designer, PageSchema } from '@epic-designer/types';
 import {
   getValueByPath,
   pluginManager,
   setValueByPath,
 } from '@epic-designer/utils';
-
-import {
-  ComponentSchema,
-  Designer,
-  PageSchema,
-} from '../../../../../types/epic-designer';
-import ENode from '../../../../node/index';
 
 const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema') as PageSchema;
@@ -119,7 +114,7 @@ function handleSetValue(
           {{ item.label }}
         </div>
         <div class="epic-attr-input">
-          <ENode
+          <EpicNode
             :component-schema="{
               ...item,
               componentProps: {

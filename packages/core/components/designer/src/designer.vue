@@ -1,6 +1,14 @@
 <script lang="ts" setup>
+import type {
+  ComponentSchema,
+  DesignerProps,
+  DesignerState,
+  PageSchema,
+} from '@epic-designer/types';
+
 import { computed, nextTick, provide, reactive, ref, watchEffect } from 'vue';
 
+import { EpicBaseLoader } from '@epic-designer/base-ui';
 import { useStore } from '@epic-designer/hooks';
 import {
   deepClone,
@@ -13,13 +21,7 @@ import {
   useRevoke,
 } from '@epic-designer/utils';
 
-import {
-  ComponentSchema,
-  DesignerState,
-  PageSchema,
-} from '../../../types/epic-designer';
-import EPreview from './modules/preview/index.vue';
-import { DesignerProps } from './types';
+import EpicPreview from './modules/preview/index.vue';
 
 const props = withDefaults(defineProps<DesignerProps>(), {
   disabledZoom: false,
@@ -46,9 +48,7 @@ const EEditContainer = loadAsyncComponent(
 const ERightSidebar = loadAsyncComponent(
   () => import('./modules/rightSidebar/index.vue'),
 );
-const EAsyncLoader = loadAsyncComponent(
-  () => import('../../asyncLoader/index.vue'),
-);
+
 const pageManager = usePageManager();
 const revoke = useRevoke();
 
@@ -97,7 +97,7 @@ watchEffect(() => {
 // 设计模式
 pageManager.setDesignMode();
 
-const previewRef = ref<InstanceType<typeof EPreview> | null>(null);
+const previewRef = ref<InstanceType<typeof EpicPreview> | null>(null);
 
 const state = reactive<DesignerState>({
   checkedNode: null,
@@ -272,7 +272,7 @@ defineExpose({
 </script>
 <template>
   <div v-if="!pluginManager.initialized.value" class="epic-loading-box">
-    <!-- <EAsyncLoader /> -->
+    <!-- <EpicBaseLoader /> -->
   </div>
   <Suspense v-else @resolve="handleReady">
     <template #default>
@@ -314,12 +314,15 @@ defineExpose({
           <EEditContainer />
           <ERightSidebar />
         </div>
-        <EPreview ref="previewRef" :hide-confirm="props.hidePreviewConfirm" />
+        <EpicPreview
+          ref="previewRef"
+          :hide-confirm="props.hidePreviewConfirm"
+        />
       </div>
     </template>
     <template #fallback>
       <div class="epic-loading-box">
-        <EAsyncLoader />
+        <EpicBaseLoader />
       </div>
     </template>
   </Suspense>

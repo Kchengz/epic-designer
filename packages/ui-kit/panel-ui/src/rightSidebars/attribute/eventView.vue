@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { Designer, PageSchema } from '@epic-designer/types';
 import type { Revoke } from '@epic-designer/utils';
 
 import { computed, inject } from 'vue';
@@ -8,8 +9,6 @@ import {
   pluginManager,
   setValueByPath,
 } from '@epic-designer/utils';
-
-import { Designer, PageSchema } from '../../../../../types/epic-designer';
 
 const pageSchema = inject('pageSchema') as PageSchema;
 const designer = inject('designer') as Designer;

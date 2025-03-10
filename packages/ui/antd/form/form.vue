@@ -2,7 +2,7 @@
 import type {
   ComponentSchema,
   FormDataModel,
-} from '@epic-designer/core/types/epic-designer';
+} from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
 
 import { computed, inject, provide, reactive, ref } from 'vue';

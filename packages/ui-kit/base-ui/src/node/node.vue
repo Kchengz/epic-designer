@@ -34,7 +34,7 @@ import {
   setValueByPath,
 } from '@epic-designer/utils';
 
-import { ComponentSchema, FormDataModel } from '../../../types/epic-designer';
+import { ComponentSchema, FormDataModel } from '@epic-designer/types';
 import dynamicFormItem from './dynamicFormItem.vue';
 
 export interface ComponentNodeInstance extends ComponentPublicInstance {

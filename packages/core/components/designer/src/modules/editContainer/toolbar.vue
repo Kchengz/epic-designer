@@ -1,10 +1,13 @@
 <script lang="ts" setup>
+import type { Designer, PageSchema } from '@epic-designer/types';
+
 import type { Ref } from 'vue';
 
-import type { Designer, PageSchema } from '../../../../../types/epic-designer';
+import type { DesignerProps } from '../../types';
 
 import { computed, inject, ref } from 'vue';
 
+import { EpicIcon } from '@epic-designer/base-ui';
 import { useStore } from '@epic-designer/hooks';
 import {
   convertKFormData,
@@ -13,8 +16,6 @@ import {
   Revoke,
 } from '@epic-designer/utils';
 
-import EIcon from '../../../../icon';
-import { DesignerProps } from '../../types';
 import EPreviewJson from './previewJson.vue';
 
 const Select = pluginManager.getComponent('select');
@@ -251,7 +252,7 @@ function handleSetCanvas(type: string) {
           :class="{ disabled: action.disabled }"
           @click="action.on"
         >
-          <EIcon :name="action.icon" />
+          <EpicIcon :name="action.icon" />
         </div>
       </template>
     </div>
@@ -289,7 +290,7 @@ function handleSetCanvas(type: string) {
             :class="{ checked: item.key === selectedKey }"
             @click="handleSetCanvas(item.key)"
           >
-            <EIcon :name="item.icon" />
+            <EpicIcon :name="item.icon" />
           </div>
         </template>
       </div>

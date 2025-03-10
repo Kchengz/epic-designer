@@ -1,10 +1,11 @@
 <script lang="ts" setup>
+import type { ComponentSchema, PageSchema } from '@epic-designer/types';
+
 import { computed, defineComponent, h, inject, Ref, Slots } from 'vue';
 
+import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/utils';
 
-import { ComponentSchema, PageSchema } from '../../../types/epic-designer';
-import EIcon from '../../icon';
 import ETreeNodes from './treeNodes.vue';
 
 defineOptions({
@@ -109,7 +110,7 @@ init();
         :class="{ expanded }"
         @click="handleExpanded"
       >
-        <EIcon name="icon--epic--caret-right-outlined" />
+        <EpicIcon name="icon--epic--caret-right-outlined" />
       </span>
       <TreeNodeText />
     </a>

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { ComponentSchema } from '@epic-designer/core/types/epic-designer';
+import type { ComponentSchema } from '@epic-designer/types';
 
-import { PropType } from 'vue';
+import type { PropType } from 'vue';
 
 import { Button } from 'ant-design-vue';
 

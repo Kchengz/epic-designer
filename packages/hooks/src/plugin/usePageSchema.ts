@@ -1,6 +1,6 @@
 import { reactive } from 'vue';
 
-import { PageSchema } from '@epic-designer/core/types/epic-designer';
+import { PageSchema } from '@epic-designer/types';
 import { deepClone, deepCompareAndModify } from '@epic-designer/utils';
 
 // 内部默认页面数据

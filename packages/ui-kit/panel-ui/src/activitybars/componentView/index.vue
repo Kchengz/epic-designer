@@ -1,8 +1,16 @@
 <script lang="ts" setup>
+import type {
+  ComponentSchema,
+  Designer,
+  DesignerProps,
+  PageSchema,
+} from '@epic-designer/types';
+
 import type { Ref } from 'vue';
 
 import { computed, inject, ref } from 'vue';
 
+import { EpicIcon } from '@epic-designer/base-ui';
 import {
   findSchemaInfoById,
   generateNewSchema,
@@ -10,14 +18,6 @@ import {
   Revoke,
 } from '@epic-designer/utils';
 import draggable from 'vuedraggable';
-
-import {
-  ComponentSchema,
-  Designer,
-  PageSchema,
-} from '../../../../../types/epic-designer';
-import EIcon from '../../../../icon';
-import { DesignerProps } from '../../types';
 
 const Input = pluginManager.getComponent('input');
 const pageSchema = inject('pageSchema') as PageSchema;
@@ -103,7 +103,7 @@ function handleClick(schema: ComponentSchema) {
         allow-clear
       >
         <template #prefix>
-          <EIcon
+          <EpicIcon
             class="text-$epic-text-helper"
             name="icon--epic--search-rounded"
           />
@@ -145,7 +145,7 @@ function handleClick(schema: ComponentSchema) {
               class="epic-componet-item flex items-center truncate"
               @click="handleClick(element)"
             >
-              <EIcon
+              <EpicIcon
                 :name="
                   pluginManager.getComponentConfingByType(element.type).icon ??
                   ''

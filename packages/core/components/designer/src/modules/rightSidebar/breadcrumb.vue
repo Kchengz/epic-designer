@@ -1,10 +1,10 @@
 <script lang="ts" setup>
+import type { ComponentSchema, Designer } from '@epic-designer/types';
+
 import { inject } from 'vue';
 
+import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/utils';
-
-import { ComponentSchema, Designer } from '../../../../../types/epic-designer';
-import EIcon from '../../../../icon';
 
 const designer = inject('designer') as Designer;
 /**
@@ -29,7 +29,7 @@ function handleSelect(schema: ComponentSchema) {
           "
           >...
         </span>
-        <EIcon
+        <EpicIcon
           v-if="index !== 0"
           class="m-1"
           name="icon--epic--arrow-forward-ios-rounded"

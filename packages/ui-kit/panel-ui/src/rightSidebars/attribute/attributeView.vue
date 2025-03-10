@@ -8,13 +8,12 @@ import type { Revoke } from '@epic-designer/utils';
 
 import { computed, inject, nextTick } from 'vue';
 
+import { EpicNode } from '@epic-designer/base-ui';
 import {
   getValueByPath,
   pluginManager,
   setValueByPath,
 } from '@epic-designer/utils';
-
-import ENode from '../../../../node/index';
 
 const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema') as PageSchema;
@@ -114,7 +113,7 @@ function handleSetValue(
           class="epic-attr-input"
           :class="{ 'block!': item.layout === 'vertical' }"
         >
-          <ENode
+          <EpicNode
             :component-schema="{
               ...item,
               componentProps: {

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue';
 
+import type { DesignerProps } from '../../types';
+
 import { inject } from 'vue';
 
+import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/utils';
-
-import EIcon from '../../../../icon';
-import { DesignerProps } from '../../types';
 
 const emits = defineEmits(['save', 'reset', 'preview']);
 const Button = pluginManager.getComponent('button');
@@ -57,7 +57,7 @@ function handleSave() {
         <div>
           <Button size="small" @click="handlePreview">
             <span class="flex! h-full items-center">
-              <EIcon name="icon--epic--eye" class="mr-4px" />
+              <EpicIcon name="icon--epic--eye" class="mr-4px" />
               预览
             </span>
           </Button>
@@ -65,7 +65,10 @@ function handleSave() {
         <div class="ml-2">
           <Button size="small" @click="handleSave">
             <span class="flex! h-full items-center">
-              <EIcon name="icon--epic--save-outline-rounded" class="mr-4px" />
+              <EpicIcon
+                name="icon--epic--save-outline-rounded"
+                class="mr-4px"
+              />
               保存
             </span>
           </Button>

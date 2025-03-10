@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { Designer, DesignerProps } from '@epic-designer/types';
+
 import { inject, ref, toRaw, watch } from 'vue';
 
 import {
@@ -6,9 +8,6 @@ import {
   deepEqual,
   pluginManager,
 } from '@epic-designer/utils';
-
-import { Designer } from '../../../../../types/epic-designer';
-import { DesignerProps } from '../../types';
 
 const MonacoEditor = pluginManager.getComponent('monacoEditor');
 const monacoEditorRef = ref<any>(null);

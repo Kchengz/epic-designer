@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, useAttrs } from 'vue';
 
-import { ComponentSchema } from '@epic-designer/core/types/epic-designer';
+import { ComponentSchema } from '@epic-designer/types';
 import { NButton, NModal, NSpace } from 'naive-ui';
 // 定义 props
 const props = withDefaults(

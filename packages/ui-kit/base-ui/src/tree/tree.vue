@@ -1,12 +1,13 @@
 <script lang="ts" setup>
+import type { ComponentSchema } from '@epic-designer/types';
+
 import type { PropType } from 'vue';
 
 import { computed, provide, ref, useSlots } from 'vue';
 
+import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/utils';
 
-import { ComponentSchema } from '../../../types/epic-designer';
-import EIcon from '../../icon';
 import ETreeNodes from './treeNodes.vue';
 
 defineOptions({
@@ -103,7 +104,7 @@ provide('handleSelect', handleSelect);
         allow-clear
       >
         <template #prefix>
-          <EIcon name="icon--epic--search-rounded" />
+          <EpicIcon name="icon--epic--search-rounded" />
         </template>
       </Input>
     </div>

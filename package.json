@@ -20,10 +20,13 @@
     "@vueuse/core": "^12.2.0"
   },
   "devDependencies": {
+    "@epic-designer/base-ui": "workspace:*",
     "@epic-designer/core": "workspace:*",
     "@epic-designer/eslint-config": "workspace:*",
     "@epic-designer/hooks": "workspace:*",
+    "@epic-designer/panel-ui": "workspace:*",
     "@epic-designer/scripts": "workspace:*",
+    "@epic-designer/types": "workspace:*",
     "@epic-designer/ui": "workspace:*",
     "@epic-designer/utils": "workspace:*",
     "@turbo/gen": "^2.3.3",

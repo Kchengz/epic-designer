@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+import type { ComponentSchema } from '@epic-designer/types';
+
 import { computed } from 'vue';
 
-import ENode from '../../../components/node';
-import { ComponentSchema } from '../../../types/epic-designer';
+import { EpicNode } from '@epic-designer/base-ui';
 
 const props = defineProps<{
   actionArgsConfigs: ComponentSchema[];
@@ -48,7 +49,7 @@ function handleSetValue(value: any, field: string) {
           {{ item.label }}
         </div>
         <div class="epic-attr-input">
-          <ENode
+          <EpicNode
             :component-schema="{
               ...item,
               componentProps: {

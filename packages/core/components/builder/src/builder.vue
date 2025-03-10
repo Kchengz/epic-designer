@@ -1,7 +1,6 @@
 <script lang="ts" setup>
+import type { FormDataModel, PageSchema } from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
-
-import type { FormDataModel, PageSchema } from '../../../types/epic-designer';
 
 import {
   computed,
@@ -12,13 +11,9 @@ import {
   watch,
 } from 'vue';
 
-import {
-  deepCompareAndModify,
-  loadAsyncComponent,
-  pluginManager,
-} from '@epic-designer/utils';
+import { EpicBaseLoader, EpicNode } from '@epic-designer/base-ui';
+import { deepCompareAndModify, pluginManager } from '@epic-designer/utils';
 
-import ENode from '../../node';
 import { useBuilder } from '../hooks/useBuilder';
 
 // 定义组件的 props 类型
@@ -32,11 +27,6 @@ const props = defineProps<{
 const emit = defineEmits<{
   ready: [pageManager: PageManager];
 }>();
-
-// 异步加载 EAsyncLoader 组件
-const EAsyncLoader = loadAsyncComponent(
-  () => import('../../asyncLoader/index.vue'),
-);
 
 // 使用 hooks 获取表单相关方法和状态
 const {
@@ -124,12 +114,12 @@ defineExpose({
 
 <template>
   <div v-if="!pluginManager.initialized.value" class="epic-loading-box">
-    <!-- <EAsyncLoader /> -->
+    <!-- <EpicBaseLoader /> -->
   </div>
   <Suspense v-else @resolve="handleReady">
     <template #default>
       <div class="epic-builder-main epic-scoped">
-        <ENode
+        <EpicNode
           v-for="(item, index) in pageManager.pageSchema.schemas"
           :key="index"
           :component-schema="item"
@@ -138,7 +128,7 @@ defineExpose({
     </template>
     <template #fallback>
       <div class="epic-loading-box">
-        <EAsyncLoader />
+        <EpicBaseLoader />
       </div>
     </template>
   </Suspense>

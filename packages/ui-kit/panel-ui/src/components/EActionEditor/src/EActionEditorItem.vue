@@ -1,13 +1,13 @@
 <script lang="ts" setup>
+import type { PageSchema } from '@epic-designer/types';
+
 import type { PropType } from 'vue';
 
 import { inject } from 'vue';
 
+import { EpicIcon } from '@epic-designer/base-ui';
 import { findSchemaById } from '@epic-designer/utils';
 import draggable from 'vuedraggable';
-
-import EIcon from '../../../components/icon';
-import { PageSchema } from '../../../types/epic-designer';
 
 const props = defineProps({
   allEvents: {
@@ -100,7 +100,10 @@ function getNewEvents(type: string) {
       <div
         class="epic-event-btn text-$epic-text-secondary flex items-center text-lg"
       >
-        <EIcon name="icon--epic--add-rounded" @click="handleOpen(item.type)" />
+        <EpicIcon
+          name="icon--epic--add-rounded"
+          @click="handleOpen(item.type)"
+        />
       </div>
     </div>
     <div class="epic-action-editor-main">
@@ -117,7 +120,7 @@ function getNewEvents(type: string) {
         <template #item="{ element: action, index }">
           <div class="epic-editor-item rounded">
             <div class="w-36px flex items-center text-lg">
-              <EIcon
+              <EpicIcon
                 class="handle text-$epic-text-medium mr-2 cursor-move text-lg"
                 name="icon--epic--drag"
               />
@@ -135,10 +138,10 @@ function getNewEvents(type: string) {
                 class="epic-edit-btn"
                 @click="handleEdit(index, item.type, action)"
               >
-                <EIcon name="icon--epic--page-info-outline-rounded" />
+                <EpicIcon name="icon--epic--page-info-outline-rounded" />
               </div>
               <div class="epic-del-btn" @click="handleDelete(index, item.type)">
-                <EIcon name="icon--epic--delete-outline-rounded" />
+                <EpicIcon name="icon--epic--delete-outline-rounded" />
               </div>
             </div>
           </div>

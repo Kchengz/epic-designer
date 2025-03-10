@@ -1,11 +1,10 @@
 <script lang="ts" setup>
+import type { Designer, PageSchema } from '@epic-designer/types';
+
 import { computed, inject } from 'vue';
 
+import { EpicIcon, EpicTree } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/utils';
-
-import EIcon from '../../../../../components/icon';
-import { Designer, PageSchema } from '../../../../../types/epic-designer';
-import ETree from '../../../../tree';
 
 const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema') as PageSchema;
@@ -23,7 +22,7 @@ function handleNodeClick(e: any) {
 </script>
 <template>
   <div class="epic-outline">
-    <ETree
+    <EpicTree
       :options="pageSchema.schemas"
       draggable
       :selected-keys="selectedKeys"
@@ -38,7 +37,7 @@ function handleNodeClick(e: any) {
           @mouseleave.stop="designer.setHoverNode(null)"
         >
           <span class="max-w-full truncate">
-            <EIcon
+            <EpicIcon
               v-if="schema.componentProps?.hidden"
               name="icon--epic--visibility-off-outline-rounded"
               class="translate-y-2px"
@@ -54,6 +53,6 @@ function handleNodeClick(e: any) {
           </span>
         </div>
       </template>
-    </ETree>
+    </EpicTree>
   </div>
 </template>

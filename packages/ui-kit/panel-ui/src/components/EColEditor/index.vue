@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { computed, PropType } from 'vue';
+import type { ComponentSchema } from '@epic-designer/types';
 
+import type { PropType } from 'vue';
+
+import { computed } from 'vue';
+
+import { EpicIcon } from '@epic-designer/base-ui';
 import { getUUID, pluginManager } from '@epic-designer/utils';
-
-import EIcon from '../../components/icon';
-import { ComponentSchema } from '../../types/epic-designer';
 
 const props = defineProps({
   modelValue: {
@@ -58,7 +60,7 @@ function handleDelete(index: number) {
       />
       <div v-if="colList.length > 1" class="epic-del-btn">
         <span @click="handleDelete(index)">
-          <EIcon name="icon-shanchu1" />
+          <EpicIcon name="icon-shanchu1" />
         </span>
       </div>
     </div>
