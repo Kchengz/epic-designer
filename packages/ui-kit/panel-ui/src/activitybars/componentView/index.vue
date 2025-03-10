@@ -67,7 +67,7 @@ function handelChecked(item) {
 function handleClick(schema: ComponentSchema) {
   const data = findSchemaInfoById(
     pageSchema.schemas,
-    designer.state.checkedNode?.id ?? 'root',
+    designer.state.selectedNode?.id ?? 'root',
   );
   if (!data) {
     return false;
@@ -87,7 +87,7 @@ function handleClick(schema: ComponentSchema) {
   const newSchema = generateNewSchema(schema);
 
   list.splice(index + 1, 0, newSchema);
-  designer.setCheckedNode(newSchema);
+  designer.setSelectedNode(newSchema);
   revoke.push(pageSchema.schemas, '插入组件');
 }
 </script>

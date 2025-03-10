@@ -20,8 +20,8 @@ const pageSchema = inject('pageSchema') as PageSchema;
 const revoke = inject('revoke') as Revoke;
 
 const componentConfings = pluginManager.getComponentConfings();
-const checkedNode = computed(() => {
-  return designer.state.checkedNode;
+const selectedNode = computed(() => {
+  return designer.state.selectedNode;
 });
 
 function isShow(item: ComponentSchema) {
@@ -32,7 +32,7 @@ function isShow(item: ComponentSchema) {
 
   // show属性为function类型则执行
   if (typeof item.show === 'function') {
-    return item.show?.({ values: checkedNode.value! });
+    return item.show?.({ values: selectedNode.value! });
   }
 
   return true;
@@ -40,12 +40,12 @@ function isShow(item: ComponentSchema) {
 
 // 获取组件属性配置
 const componentAttributes = computed(() => {
-  if (!checkedNode.value || !checkedNode.value.type) {
+  if (!selectedNode.value || !selectedNode.value.type) {
     return [];
   }
 
   const attribute =
-    componentConfings[checkedNode.value.type]?.config.attribute ?? [];
+    componentConfings[selectedNode.value.type]?.config.attribute ?? [];
   const attributes = [
     {
       componentProps: {
@@ -58,7 +58,7 @@ const componentAttributes = computed(() => {
     ...attribute,
   ];
 
-  if (checkedNode.value.id === pageSchema.schemas[0]?.id) {
+  if (selectedNode.value.id === pageSchema.schemas[0]?.id) {
     attributes.push(
       {
         editData: pageSchema,
@@ -85,7 +85,7 @@ function handleSetValue(
   value: any,
   field: string,
   item: ComponentSchema,
-  editData: null | object = checkedNode.value,
+  editData: null | object = selectedNode.value,
 ) {
   if (typeof item.onChange === 'function') {
     item.onChange({ componentAttributes, value, values: editData! });
@@ -103,7 +103,7 @@ function handleSetValue(
 }
 </script>
 <template>
-  <div :key="checkedNode?.id" class="epic-attribute-view">
+  <div :key="selectedNode?.id" class="epic-attribute-view">
     <div v-for="item in componentAttributes" :key="item.field">
       <div v-if="isShow(item)" class="epic-attr-item" :class="item.layout">
         <div v-if="item.label" class="epic-attr-label" :title="item.label">
@@ -119,7 +119,7 @@ function handleSetValue(
               componentProps: {
                 ...item.componentProps,
                 ...(item.field === 'componentProps.defaultValue'
-                  ? checkedNode?.componentProps
+                  ? selectedNode?.componentProps
                   : {}),
                 input: false,
                 field: undefined,
@@ -129,7 +129,7 @@ function handleSetValue(
               noFormItem: true,
             }"
             :model-value="
-              getValueByPath(item.editData ?? checkedNode!, item.field!)
+              getValueByPath(item.editData ?? selectedNode!, item.field!)
             "
             @update:model-value="
               handleSetValue($event, item.field!, item, item.editData)

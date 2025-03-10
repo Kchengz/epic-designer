@@ -40,7 +40,7 @@ let kEditRange: HTMLDivElement | null = null;
  * 判断组件是否可移动和可拖拽删除
  */
 const isRemovableAndDraggable = computed(() => {
-  const schemas = designer.state.checkedNode;
+  const schemas = designer.state.selectedNode;
   // 没有id不可编辑
   if (!schemas?.id) return false;
   // 判断当前节点类型是否允许拖拽删除
@@ -59,22 +59,22 @@ const isRemovableAndDraggable = computed(() => {
  */
 const getSelectComponentElement = computed<HTMLBaseElement | null>(() => {
   const componentInstances = pageManager.componentInstances.value;
-  const id = designer.state.checkedNode?.id;
+  const id = designer.state.selectedNode?.id;
 
   // 组件隐藏状态
-  if (designer.state.checkedNode?.componentProps?.hidden) {
+  if (designer.state.selectedNode?.componentProps?.hidden) {
     return null;
   }
   const componentConfing =
     pluginManager.getComponentConfingByType(
-      designer.state.checkedNode?.type!,
+      designer.state.selectedNode?.type!,
     ) ?? null;
   if (!id || !componentInstances?.[id]) {
     return null;
   }
   if (
     componentConfing?.defaultSchema.input &&
-    designer.state.checkedNode?.noFormItem !== true
+    designer.state.selectedNode?.noFormItem !== true
   ) {
     return componentInstances[`${id}formItem`]?.$el;
   }
@@ -335,13 +335,13 @@ function initObserve(func: () => void) {
 function handleSelectParentNode() {
   const data = findSchemaInfoById(
     pageSchema.schemas,
-    designer.state.checkedNode?.id ?? 'root',
+    designer.state.selectedNode?.id ?? 'root',
   );
   if (!data) {
     return false;
   }
   const { parentSchema } = data;
-  designer.setCheckedNode(parentSchema);
+  designer.setSelectedNode(parentSchema);
 }
 
 /**
@@ -350,7 +350,7 @@ function handleSelectParentNode() {
 function handleCopy() {
   const data = findSchemaInfoById(
     pageSchema.schemas,
-    designer.state.checkedNode?.id ?? 'root',
+    designer.state.selectedNode?.id ?? 'root',
   );
   if (!data) {
     return false;
@@ -358,7 +358,7 @@ function handleCopy() {
   const { index, schema, list } = data;
   const node = generateNewSchema(schema);
   list.splice(index + 1, 0, node);
-  designer.setCheckedNode(node);
+  designer.setSelectedNode(node);
 
   revoke.push(pageSchema.schemas, '复制组件');
 }
@@ -369,7 +369,7 @@ function handleCopy() {
 function handleDelete() {
   const data = findSchemaInfoById(
     pageSchema.schemas,
-    designer.state.checkedNode?.id ?? 'root',
+    designer.state.selectedNode?.id ?? 'root',
   );
   if (!data) {
     return false;
@@ -379,7 +379,7 @@ function handleDelete() {
   if (index === list.length) {
     index--;
   }
-  designer.setCheckedNode(list[index]);
+  designer.setSelectedNode(list[index]);
   revoke.push(pageSchema.schemas, '删除组件');
 }
 
@@ -403,17 +403,17 @@ defineExpose({
 <template>
   <!-- 选中高亮 start  -->
   <div
-    v-show="showSelector && designer.state.checkedNode?.id !== 'root'"
+    v-show="showSelector && designer.state.selectedNode?.id !== 'root'"
     ref="selectorRef"
     class="epic-checked-widget z-999 pointer-events-none absolute"
     :class="`${selectorPosition} ${selectorTransition ? 'transition-all' : ''}`"
   >
     <div ref="actionBoxRef" class="epic-widget-action-box">
       <div class="epic-widget-action-item whitespace-nowrap">
-        <!-- {{ designer.state.checkedNode?.type }} -->
+        <!-- {{ designer.state.selectedNode?.type }} -->
         {{
           pluginManager.getComponentConfingByType(
-            designer.state.checkedNode?.type ?? '',
+            designer.state.selectedNode?.type ?? '',
           )?.defaultSchema.label
         }}
       </div>
@@ -449,7 +449,7 @@ defineExpose({
   <div
     v-show="
       showHover &&
-      designer.state.checkedNode?.id !== designer.state.hoverNode?.id
+      designer.state.selectedNode?.id !== designer.state.hoverNode?.id
     "
     ref="hoverWidgetRef"
     class="epic-hover-widget z-998 pointer-events-none absolute transition-all"

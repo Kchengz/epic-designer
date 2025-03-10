@@ -16,7 +16,7 @@ const designerProps = inject('designerProps') as DesignerProps;
 
 let oldVal: any = {};
 watch(
-  () => designer.state.checkedNode,
+  () => designer.state.selectedNode,
   (newVal: any) => {
     if (!deepEqual(oldVal, toRaw(newVal))) {
       monacoEditorRef.value?.setValue(JSON.stringify(newVal, null, 2));
@@ -27,15 +27,15 @@ watch(
   },
 );
 
-const initModelValue = JSON.stringify(designer.state.checkedNode, null, 2);
+const initModelValue = JSON.stringify(designer.state.selectedNode, null, 2);
 
 function setSchemas(e: string) {
   try {
-    if (!designer.state.checkedNode) {
+    if (!designer.state.selectedNode) {
       return false;
     }
     oldVal = JSON.parse(e);
-    deepCompareAndModify(designer.state.checkedNode, oldVal);
+    deepCompareAndModify(designer.state.selectedNode, oldVal);
   } catch (error) {
     console.warn('[Epic：源码]异常：', error);
   }

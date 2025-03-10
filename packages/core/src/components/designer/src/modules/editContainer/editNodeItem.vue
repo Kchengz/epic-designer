@@ -37,7 +37,7 @@ const modelSchemas = computed({
  * @param index
  */
 function handleSelect(index: number) {
-  designer.setCheckedNode(modelSchemas.value![index]);
+  designer.setSelectedNode(modelSchemas.value![index]);
   designer.setDisableHover(true);
 }
 

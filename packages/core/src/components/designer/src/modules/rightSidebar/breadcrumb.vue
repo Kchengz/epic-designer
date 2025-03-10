@@ -12,7 +12,7 @@ const designer = inject('designer') as Designer;
  * @param schema
  */
 function handleSelect(schema: ComponentSchema) {
-  designer.setCheckedNode(schema);
+  designer.setSelectedNode(schema);
 }
 </script>
 <template>

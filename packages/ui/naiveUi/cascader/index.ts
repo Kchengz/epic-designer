@@ -7,7 +7,7 @@ export default {
     action: [
       {
         describe: '获取当前选中节点',
-        type: 'getCheckedNodes',
+        type: 'getSelectedNodes',
       },
     ],
     attribute: [

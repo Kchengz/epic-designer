@@ -6,7 +6,7 @@ export default {
     action: [
       {
         describe: '获取当前选中节点',
-        type: 'getCheckedNodes',
+        type: 'getSelectedNodes',
       },
       {
         describe: '切换 popper 可见状态',

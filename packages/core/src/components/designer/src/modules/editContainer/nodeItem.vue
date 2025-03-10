@@ -68,7 +68,7 @@ watch(
   () => getComponentElement.value,
   (componentElement) => {
     if (!componentElement) return;
-    componentElement.addEventListener('click', setCheckedNode, false);
+    componentElement.addEventListener('click', setSelectedNode, false);
     componentElement.addEventListener('mouseover', setHoverNode, false);
     componentElement.addEventListener('mouseout', clearHoverNode, false);
 
@@ -83,7 +83,7 @@ watch(
 onUnmounted(() => {
   getComponentElement.value?.removeEventListener(
     'click',
-    setCheckedNode,
+    setSelectedNode,
     false,
   );
   getComponentElement.value?.removeEventListener(
@@ -98,9 +98,9 @@ onUnmounted(() => {
   );
 });
 
-function setCheckedNode(event: Event) {
+function setSelectedNode(event: Event) {
   event.stopPropagation();
-  designer.setCheckedNode(props.schema);
+  designer.setSelectedNode(props.schema);
 }
 
 function setHoverNode(event: Event) {

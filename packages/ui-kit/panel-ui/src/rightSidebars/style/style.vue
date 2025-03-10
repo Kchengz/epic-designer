@@ -18,8 +18,8 @@ const componentConfings = pluginManager.getComponentConfings();
 
 // const componentStyles: ComponentSchema[] =
 
-const checkedNode = computed(() => {
-  return designer.state.checkedNode;
+const selectedNode = computed(() => {
+  return designer.state.selectedNode;
 });
 
 const defaultStyle = [
@@ -67,10 +67,10 @@ const defaultStyle = [
 
 // 获取组件样式配置
 const componentStyles = computed<ComponentSchema[]>(() => {
-  if (!checkedNode.value || !checkedNode.value.type) {
+  if (!selectedNode.value || !selectedNode.value.type) {
     return [];
   }
-  const style = componentConfings[checkedNode.value.type]?.config.style ?? [];
+  const style = componentConfings[selectedNode.value.type]?.config.style ?? [];
   return [...defaultStyle, ...style];
 });
 
@@ -79,7 +79,7 @@ function isShow(item: ComponentSchema) {
   if (typeof item.show === 'boolean') {
     return item.show;
   }
-  return item.show?.({ values: checkedNode.value! }) ?? true;
+  return item.show?.({ values: selectedNode.value! }) ?? true;
 }
 
 /**
@@ -89,7 +89,7 @@ function handleSetValue(
   value: any,
   field: string,
   item: ComponentSchema,
-  editData: null | object = checkedNode.value,
+  editData: null | object = selectedNode.value,
 ) {
   if (typeof item.onChange === 'function') {
     item.onChange({ componentStyles, value, values: editData! });
@@ -107,7 +107,7 @@ function handleSetValue(
 }
 </script>
 <template>
-  <div :key="checkedNode?.id" class="epic-style-view">
+  <div :key="selectedNode?.id" class="epic-style-view">
     <div v-for="item in componentStyles" :key="item.field">
       <div v-if="isShow(item)" class="epic-attr-item" :class="item.layout">
         <div v-if="item.label" class="epic-attr-label" :title="item.label">
@@ -120,7 +120,7 @@ function handleSetValue(
               componentProps: {
                 ...item.componentProps,
                 ...(item.field === 'componentProps.defaultValue'
-                  ? checkedNode?.componentProps
+                  ? selectedNode?.componentProps
                   : {}),
                 input: false,
                 field: undefined,
@@ -130,7 +130,7 @@ function handleSetValue(
               noFormItem: true,
             }"
             :model-value="
-              getValueByPath(item.editData ?? checkedNode!, item.field!)
+              getValueByPath(item.editData ?? selectedNode!, item.field!)
             "
             @update:model-value="
               handleSetValue($event, item.field!, item, item.editData)

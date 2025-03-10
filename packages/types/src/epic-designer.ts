@@ -48,7 +48,7 @@ export interface FormConfig {
 export type FormDataModel = Record<string, any>;
 
 export interface DesignerState {
-  checkedNode: ComponentSchema | null;
+  selectedNode: ComponentSchema | null;
   disableHover: boolean;
   hoverNode: ComponentSchema | null;
   matched: ComponentSchema[];
@@ -70,7 +70,7 @@ export interface Designer {
   preview: () => void;
   reset: () => void;
   save: () => void;
-  setCheckedNode: (schema?: ComponentSchema) => void;
+  setSelectedNode: (schema?: ComponentSchema) => void;
   setDisableHover: (disableHover?: boolean) => void;
   setHoverNode: (schema: ComponentSchema | null) => void;
   state: DesignerState;

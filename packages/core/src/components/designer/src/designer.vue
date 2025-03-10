@@ -103,7 +103,7 @@ pageManager.setDesignMode();
 const previewRef = ref<InstanceType<typeof EpicPreview> | null>(null);
 
 const state = reactive<DesignerState>({
-  checkedNode: null,
+  selectedNode: null,
   disableHover: false,
   hoverNode: null,
   matched: [],
@@ -133,7 +133,7 @@ provide('designer', {
   preview: handlePreview,
   reset,
   save: handleSave,
-  setCheckedNode,
+  setSelectedNode,
   setDisableHover,
   setHoverNode,
   state,
@@ -144,7 +144,7 @@ function init() {
   pageSchema.schemas = deepClone(innerDefaultSchema.schemas);
 
   // 选中根节点
-  setCheckedNode(pageSchema.schemas[0]);
+  setSelectedNode(pageSchema.schemas[0]);
   revoke.push(pageSchema.schemas, '初始化');
 }
 
@@ -152,8 +152,8 @@ function init() {
  * 选中节点
  * @param schema
  */
-async function setCheckedNode(schema: ComponentSchema = pageSchema.schemas[0]) {
-  state.checkedNode = schema;
+async function setSelectedNode(schema: ComponentSchema = pageSchema.schemas[0]) {
+  state.selectedNode = schema;
   state.matched = getMatchedById(pageSchema.schemas, schema.id!);
 }
 
@@ -223,7 +223,7 @@ function reset() {
   // 更新 script.value
   pageSchema.script = innerDefaultSchema.script;
   // 选中根节点
-  setCheckedNode(pageSchema.schemas[0]);
+  setSelectedNode(pageSchema.schemas[0]);
   revoke.push(pageSchema.schemas, '重置操作');
 
   emits('reset', pageSchema);

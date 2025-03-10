@@ -41,7 +41,7 @@ const modelSchemas = computed({
  */
 function handleSelect(index: number) {
   designer.setDisableHover(true);
-  designer.setCheckedNode(modelSchemas.value![index]);
+  designer.setSelectedNode(modelSchemas.value![index]);
 }
 
 function isDraggable(schema: ComponentSchema) {

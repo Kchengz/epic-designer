@@ -16,8 +16,8 @@ const revoke = inject('revoke') as Revoke;
 const EActionEditor = pluginManager.getComponent('EActionEditor');
 
 const componentConfings = pluginManager.getComponentConfings();
-const checkedNode = computed(() => {
-  return designer.state.checkedNode;
+const selectedNode = computed(() => {
+  return designer.state.selectedNode;
 });
 
 const eventList = computed(() => {
@@ -57,7 +57,7 @@ const eventList = computed(() => {
     },
   ];
   const events =
-    componentConfings[designer.state.checkedNode?.type ?? '']?.config.event ??
+    componentConfings[designer.state.selectedNode?.type ?? '']?.config.event ??
     [];
   eventList.unshift({
     events,
@@ -70,18 +70,18 @@ const eventList = computed(() => {
  * 设置属性值
  */
 function handleSetValue(value: any, field: string) {
-  setValueByPath(checkedNode.value!, field, value);
+  setValueByPath(selectedNode.value!, field, value);
   // 将修改过的组件属性推入撤销操作的栈中
   revoke.push(pageSchema.schemas, '编辑组件属性');
 }
 </script>
 <template>
   <div class="epic-event-view">
-    <div v-if="checkedNode">
+    <div v-if="selectedNode">
       <EActionEditor
-        :key="checkedNode.id"
+        :key="selectedNode.id"
         :event-list="eventList"
-        :model-value="getValueByPath(checkedNode!, `on`)"
+        :model-value="getValueByPath(selectedNode!, `on`)"
         @update:model-value="handleSetValue($event, `on`)"
       />
     </div>

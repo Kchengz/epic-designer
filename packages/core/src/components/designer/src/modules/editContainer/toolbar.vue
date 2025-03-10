@@ -161,7 +161,7 @@ function handleUndo() {
   const componentSchema = revoke.undo();
   if (!componentSchema) return;
   deepCompareAndModify(pageSchema.schemas, componentSchema);
-  designer.setCheckedNode(pageSchema.schemas[0]);
+  designer.setSelectedNode(pageSchema.schemas[0]);
 }
 
 /**
@@ -171,7 +171,7 @@ function handleRedo() {
   const componentSchema = revoke.redo();
   if (!componentSchema) return;
   deepCompareAndModify(pageSchema.schemas, componentSchema);
-  designer.setCheckedNode(pageSchema.schemas[0]);
+  designer.setSelectedNode(pageSchema.schemas[0]);
 }
 
 // 预览数据
@@ -218,7 +218,7 @@ function handleImportData(content?: string) {
     designer.handleImported(schema);
 
     // 选中根节点
-    designer.setCheckedNode(pageSchema.schemas[0]);
+    designer.setSelectedNode(pageSchema.schemas[0]);
   } catch (error) {
     console.error(error);
   }

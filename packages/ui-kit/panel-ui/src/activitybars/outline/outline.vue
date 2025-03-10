@@ -11,13 +11,13 @@ const pageSchema = inject('pageSchema') as PageSchema;
 
 // 计算选中节点值
 const selectedKeys = computed(() => {
-  const id = designer.state.checkedNode?.id;
+  const id = designer.state.selectedNode?.id;
   return id ? [id] : [];
 });
 
 // 设置选中节点
 function handleNodeClick(e: any) {
-  designer.setCheckedNode(e.componentSchema);
+  designer.setSelectedNode(e.componentSchema);
 }
 </script>
 <template>

@@ -1,8 +1,8 @@
 import 'virtual:uno.css';
 import './index.less';
 
-export { default as EBuilder } from './components/builder/';
-export { default as EDesigner } from './components/designer/';
+export { EBuilder } from './components/builder/';
+export { EDesigner } from './components/designer/';
 // 初始化设计器
 
 // const components = [EBuilder, EDesigner]
