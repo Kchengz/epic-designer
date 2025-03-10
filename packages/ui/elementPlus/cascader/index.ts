@@ -5,11 +5,11 @@ export default {
   config: {
     action: [
       {
-        describe: '获取当前选中节点',
+        description: '获取当前选中节点',
         type: 'getSelectedNodes',
       },
       {
-        describe: '切换 popper 可见状态',
+        description: '切换 popper 可见状态',
         type: 'togglePopperVisible',
       },
     ],
@@ -121,7 +121,7 @@ export default {
         type: 'switch',
       },
       {
-        describe: '父子节点不互相关联',
+        description: '父子节点不互相关联',
         field: 'componentProps.props.checkStrictly',
         label: '父级可选',
         type: 'switch',
@@ -154,7 +154,7 @@ export default {
         componentProps: {
           tree: true,
         },
-        describe: '配置选项',
+        description: '配置选项',
         field: 'componentProps.options',
         label: '选项管理',
         layout: 'vertical',
@@ -164,7 +164,7 @@ export default {
         componentProps: {
           ruleType: 'array',
         },
-        describe: '校验规则需要配合表单使用',
+        description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
@@ -173,15 +173,15 @@ export default {
     ],
     event: [
       {
-        describe: '选中节点变化时',
+        description: '选中节点变化时',
         type: 'change',
       },
       {
-        describe: '	当失去焦点时触发',
+        description: '	当失去焦点时触发',
         type: 'blur',
       },
       {
-        describe: '当获得焦点时触发',
+        description: '当获得焦点时触发',
         type: 'focus',
       },
     ],

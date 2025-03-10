@@ -50,7 +50,7 @@ const methodOptions = computed(() => {
       const componentConfings = pluginManager.getComponentConfings();
       return componentConfings[componentSchema.value.type].config.action?.map(
         (item) => ({
-          label: item.describe,
+          label: item.describe ?? item.description,
           value: item.type,
         }),
       );

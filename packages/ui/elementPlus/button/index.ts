@@ -109,11 +109,11 @@ export default {
     ],
     event: [
       {
-        describe: '点击按钮时',
+        description: '点击按钮时',
         type: 'click',
       },
       {
-        describe: '双击按钮时',
+        description: '双击按钮时',
         type: 'dblclick',
       },
     ],

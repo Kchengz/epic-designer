@@ -94,8 +94,8 @@ function getNewEvents(type: string) {
 <template>
   <div v-for="item in itemEvents" :key="item.type" class="epic-event-item">
     <div class="epic-event-info">
-      <div class="epic-event-label" :title="item.describe">
-        {{ item.describe }}
+      <div class="epic-event-label" :title="item.describe ?? item.description">
+        {{ item.describe ?? item.description }}
       </div>
       <div
         class="epic-event-btn text-$epic-text-secondary flex items-center text-lg"

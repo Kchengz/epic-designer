@@ -48,7 +48,7 @@ export default {
         type: 'switch',
       },
       {
-        describe: '按钮模式下生效',
+        description: '按钮模式下生效',
         field: 'componentProps.textColor',
         label: '选项文本颜色',
         layout: 'horizontal',
@@ -58,7 +58,7 @@ export default {
         type: 'color-picker',
       },
       {
-        describe: '按钮模式下生效',
+        description: '按钮模式下生效',
         field: 'componentProps.fill',
         label: '选项按钮颜色',
         layout: 'horizontal',
@@ -84,7 +84,7 @@ export default {
         type: 'EOptionsEditor',
       },
       {
-        describe: '校验规则需要配合表单使用',
+        description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
@@ -93,7 +93,7 @@ export default {
     ],
     event: [
       {
-        describe: '值变化时',
+        description: '值变化时',
         type: 'change',
       },
     ],

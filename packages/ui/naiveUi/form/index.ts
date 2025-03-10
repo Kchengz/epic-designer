@@ -5,15 +5,15 @@ export default {
   config: {
     action: [
       {
-        describe: '获取表单数据',
+        description: '获取表单数据',
         type: 'getData',
       },
       {
-        describe: '设置表单数据',
+        description: '设置表单数据',
         type: 'setData',
       },
       {
-        describe: '校验表单',
+        description: '校验表单',
         type: 'validate',
       },
     ],

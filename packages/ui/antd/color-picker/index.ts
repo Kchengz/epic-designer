@@ -69,7 +69,7 @@ export default {
         type: 'switch',
       },
       {
-        describe: '校验规则需要配合表单使用',
+        description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
@@ -78,15 +78,15 @@ export default {
     ],
     event: [
       {
-        describe: '值修改时',
+        description: '值修改时',
         type: 'change',
       },
       {
-        describe: '获取焦点时',
+        description: '获取焦点时',
         type: 'focus',
       },
       {
-        describe: '失去焦点时',
+        description: '失去焦点时',
         type: 'blur',
       },
     ],

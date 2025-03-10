@@ -9,7 +9,7 @@ import { loadAsyncComponent } from '../common';
 // 定义 ComponentType 类型
 export type ComponentType = AsyncComponentLoader | Component | string;
 
-type Atrr = 'id' | 'title';
+type Attr = 'id' | 'title';
 
 export interface ActivitybarModel {
   component: ComponentType;
@@ -34,8 +34,13 @@ export interface ViewsContainersModel {
 export type Components = Record<string, ComponentType>;
 
 export interface EventModel {
-  describe: string;
+  description: string; 
   type: string;
+  
+  /**
+   * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
+   */
+  describe?: string;
 }
 
 export interface ActionModel extends EventModel {
@@ -83,11 +88,25 @@ export interface ComponentConfigModel {
 export type ComponentConfigModelRecords = Record<string, ComponentConfigModel>;
 
 export interface PublicMethodModel {
-  describe?: string;
-  handler: Function;
-  method?: Function;
-  methodName?: string;
   name: string;
+  description?: string; 
+  handler: Function;
+
+  /**
+   * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
+   */
+  describe?: string; 
+
+
+  /**
+   * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
+   */
+  method?: Function; 
+
+  /**
+   * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
+   */
+  methodName?: string; 
 }
 
 export type PublicMethodsModel = Record<string, PublicMethodModel>;
@@ -187,9 +206,10 @@ export class PluginManager {
     // method 变量改成 handler
     const name = publicMethod.methodName ?? publicMethod.name;
     const handler = publicMethod.method ?? publicMethod.handler;
+    const description = publicMethod.describe ?? publicMethod.description;
 
     this.publicMethods[name] = {
-      ...publicMethod,
+      description,
       handler,
       name,
     };
@@ -363,7 +383,7 @@ export class PluginManager {
    * @param value 属性
    * @param attr 匹配字段 title | id 默认值 title
    */
-  hideActivitybar(value: string, attr: 'id' | 'title' = 'title') {
+  hideActivitybar(value: string, attr: Attr= 'title') {
     this.viewsContainers.activitybars.value =
       this.viewsContainers.activitybars.value.map((activitybar) => {
         // 查找具有指定属性和值的活动栏
@@ -389,7 +409,7 @@ export class PluginManager {
    * @param value 属性
    * @param attr 查询字段 默认值 title
    */
-  hideRightSidebar(value: string, attr: Atrr = 'title') {
+  hideRightSidebar(value: string, attr: Attr = 'title') {
     this.viewsContainers.rightSidebars.value =
       this.viewsContainers.rightSidebars.value.map((rightSidebar) => {
         // 查找具有指定属性和值的右侧边栏
@@ -461,11 +481,11 @@ export class PluginManager {
               label: '设置数据',
             },
           ],
-          describe: '设置值',
+          description: '设置值',
           type: 'setValue',
         },
         {
-          describe: '获取值',
+          description: '获取值',
           type: 'getValue',
         },
       );
@@ -582,7 +602,7 @@ export class PluginManager {
    * @param value 属性
    * @param attr 匹配字段 title | id 默认值 title
    */
-  showActivitybar(value: string, attr: 'id' | 'title' = 'title') {
+  showActivitybar(value: string, attr: Attr= 'title') {
     this.viewsContainers.activitybars.value =
       this.viewsContainers.activitybars.value.map((activitybar) => {
         // 查找具有指定属性和值的活动栏
@@ -610,7 +630,7 @@ export class PluginManager {
    * @param value 属性
    * @param attr 查询字段 默认值 title
    */
-  showRightSidebar(value: string, attr: Atrr = 'title') {
+  showRightSidebar(value: string, attr: Attr = 'title') {
     this.viewsContainers.rightSidebars.value =
       this.viewsContainers.rightSidebars.value.map((rightSidebar) => {
         // 查找具有指定属性和值的右侧边栏

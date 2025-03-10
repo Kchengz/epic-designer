@@ -69,7 +69,7 @@ export default {
         type: 'switch',
       },
       {
-        describe: '配置选项',
+        description: '配置选项',
         field: 'componentProps.options',
         label: '选项管理',
         layout: 'vertical',
@@ -79,7 +79,7 @@ export default {
         componentProps: {
           ruleType: 'array',
         },
-        describe: '校验规则需要配合表单使用',
+        description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
@@ -88,7 +88,7 @@ export default {
     ],
     event: [
       {
-        describe: '值变化时',
+        description: '值变化时',
         type: 'change',
       },
     ],

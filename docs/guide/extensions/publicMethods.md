@@ -22,7 +22,7 @@ const methodItem: PublicMethodModel = {
     handler: ()=>{
         alert('myFun 被调用了')
     },
-    describe: "这是一个测试函数描述"
+    description: "这是一个测试函数描述"
 }
 
 

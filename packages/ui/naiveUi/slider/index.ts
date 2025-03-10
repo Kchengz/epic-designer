@@ -146,7 +146,7 @@ export default {
         componentProps: {
           ruleType: 'number',
         },
-        describe: '校验规则需要配合表单使用',
+        description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
@@ -155,11 +155,11 @@ export default {
     ],
     event: [
       {
-        describe: '拖拽实时触发',
+        description: '拖拽实时触发',
         type: 'input',
       },
       {
-        describe: '拖拽结束改变值时',
+        description: '拖拽结束改变值时',
         type: 'change',
       },
     ],

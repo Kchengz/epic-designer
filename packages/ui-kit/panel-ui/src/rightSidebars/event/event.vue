@@ -25,31 +25,31 @@ const eventList = computed(() => {
     {
       events: [
         {
-          describe: 'beforeMount',
+          description: 'beforeMount',
           type: 'vnodeBeforeMount',
         },
         {
-          describe: 'mounted',
+          description: 'mounted',
           type: 'vnodeMounted',
         },
         {
-          describe: 'beforeUpdate',
+          description: 'beforeUpdate',
           type: 'vnodeBeforeUpdate',
         },
         {
-          describe: 'updated',
+          description: 'updated',
           type: 'vnodeUpdated',
         },
         {
-          describe: 'beforeUnmount',
+          description: 'beforeUnmount',
           type: 'vnodeBeforeUnmount',
         },
         {
-          describe: 'unmounted',
+          description: 'unmounted',
           type: 'vnodeUnmounted',
         },
         {
-          describe: 'errorCaptured',
+          description: 'errorCaptured',
           type: 'vnodeErrorCaptured',
         },
       ],

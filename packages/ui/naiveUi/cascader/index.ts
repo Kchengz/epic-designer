@@ -6,7 +6,7 @@ export default {
   config: {
     action: [
       {
-        describe: '获取当前选中节点',
+        description: '获取当前选中节点',
         type: 'getSelectedNodes',
       },
     ],
@@ -168,7 +168,7 @@ export default {
         componentProps: {
           tree: true,
         },
-        describe: '配置选项',
+        description: '配置选项',
         field: 'componentProps.options',
         label: '选项管理',
         layout: 'vertical',
@@ -178,7 +178,7 @@ export default {
         componentProps: {
           ruleType: 'array',
         },
-        describe: '校验规则需要配合表单使用',
+        description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
@@ -187,11 +187,11 @@ export default {
     ],
     event: [
       {
-        describe: '选中节点变化时',
+        description: '选中节点变化时',
         type: 'change',
       },
       {
-        describe: '面板的关闭事件',
+        description: '面板的关闭事件',
         type: 'close',
       },
     ],

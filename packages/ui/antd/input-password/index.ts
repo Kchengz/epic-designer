@@ -6,15 +6,15 @@ export default {
   config: {
     action: [
       {
-        describe: '使 input 获取焦点',
+        description: '使 input 获取焦点',
         type: 'focus',
       },
       {
-        describe: '使 input 失去焦点',
+        description: '使 input 失去焦点',
         type: 'blur',
       },
       {
-        describe: '选中 input 中的文字',
+        description: '选中 input 中的文字',
         type: 'select',
       },
     ],
@@ -109,7 +109,7 @@ export default {
         type: 'switch',
       },
       {
-        describe: '校验规则需要配合表单使用',
+        description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
@@ -118,23 +118,23 @@ export default {
     ],
     event: [
       {
-        describe: '输入值',
+        description: '输入值',
         type: 'input',
       },
       {
-        describe: '值修改',
+        description: '值修改',
         type: 'change',
       },
       {
-        describe: '按下回车的回调',
+        description: '按下回车的回调',
         type: 'pressEnter',
       },
       {
-        describe: '获取焦点',
+        description: '获取焦点',
         type: 'focus',
       },
       {
-        describe: '失去焦点',
+        description: '失去焦点',
         type: 'blur',
       },
     ],

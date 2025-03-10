@@ -84,7 +84,7 @@ export default {
         componentProps: {
           ruleType: 'boolean',
         },
-        describe: '校验规则需要配合表单使用',
+        description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
@@ -93,7 +93,7 @@ export default {
     ],
     event: [
       {
-        describe: '状态发生变化时',
+        description: '状态发生变化时',
         type: 'change',
       },
     ],
