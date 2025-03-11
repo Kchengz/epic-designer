@@ -1,37 +1,56 @@
 import type { UploadFileInfo, UploadOnFinish } from 'naive-ui';
 import type { OnError } from 'naive-ui/es/upload/src/interface';
 
-import type { PropType } from 'vue';
-
 import { defineComponent, h, nextTick, ref, watch } from 'vue';
 
+import { getFileNameByUrl, getUUID } from '@epic-designer/utils';
 import { NButton, NUpload } from 'naive-ui';
 
 export default defineComponent({
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'change'],
   props: {
     modelValue: {
-      default: () => [],
-      type: Array as PropType<UploadFileInfo[]>,
+      default: '',
+      type: String,
     },
   },
   setup(props, { attrs, emit }) {
     const fileList = ref<UploadFileInfo[]>([]);
-    watch(fileList, (e) => {
-      emit('update:modelValue', e);
-    });
+    let urlString = '';
+
+    watch(
+      () => fileList.value,
+      (list) => {
+        urlString = list
+          .filter((file) => file.status === 'finished')
+          .map((file) => file.url)
+          .join(',');
+        emit('update:modelValue', urlString);
+        emit('change', urlString);
+      },
+    );
     // 处理传递进来的值
     watch(
       () => props.modelValue,
-      (e) => {
-        if (e && e.length > 0 && fileList.value) {
-          // props modelValue 等于 data 不进行处理
-          if (fileList.value === e) return;
-          fileList.value.length = 0;
-          fileList.value.push(...e);
+      (modelValue) => {
+        // urlString 等于 data 不进行处理
+        if (urlString === modelValue) return;
+
+        if (modelValue === '') {
+          fileList.value = [];
+          return;
+        }
+
+        if (modelValue !== null && fileList.value !== null) {
+          fileList.value = modelValue.split(',').map((url) => ({
+            id: getUUID() as string,
+            name: getFileNameByUrl(url),
+            status: 'finished',
+            url,
+          }));
         }
       },
-      { deep: true, immediate: true },
+      { immediate: true },
     );
     function handleUpdate(e: UploadFileInfo[]): void {
       nextTick(() => {

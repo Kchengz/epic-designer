@@ -17,11 +17,6 @@ export default defineComponent({
   setup(props, { attrs, emit }) {
     const fileList = ref<UploadFileInfo[]>([]);
     let urlString = '';
-    // const imgUrl = ref('')
-    // const visible = ref(false)
-    // const setVisible = (value: boolean): void => {
-    //   visible.value = value
-    // }
 
     watch(
       () => fileList.value,
@@ -55,7 +50,7 @@ export default defineComponent({
           }));
         }
       },
-      { deep: true, immediate: true },
+      { immediate: true },
     );
 
     function handleUpdate(e: UploadFileInfo[]): void {
@@ -73,19 +68,6 @@ export default defineComponent({
     const handleError: OnError = ({ event, file }) => {
       console.log('OnError called->', file, event);
     };
-
-    // 上传前处理
-    // const beforeUpload = (file: any): void => {
-    // const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-    // if (!isJpgOrPng) {
-    //   message.error('您只能上传JPG/PNG文件!');
-    // }
-    // const isLt2M = file.size / 1024 / 1024 < 2;
-    // if (!isLt2M) {
-    //   message.error('图片大小超过 2MB!');
-    // }
-    // return isJpgOrPng && isLt2M;
-    // }
 
     return () => {
       return h(

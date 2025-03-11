@@ -1,48 +1,65 @@
 import type { UploadProps, UploadUserFile } from 'element-plus';
 
-import type { PropType } from 'vue';
+import { computed, defineComponent, h, ref, watch } from 'vue';
 
-import { computed, defineComponent, h, nextTick, ref, watch } from 'vue';
-
+import { getFileNameByUrl, getUUID } from '@epic-designer/utils';
 import { ElButton, ElMessage, ElUpload } from 'element-plus';
 
 export default defineComponent({
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'change'],
   props: {
     modelValue: {
-      default: () => [],
-      type: Array as PropType<UploadUserFile[]>,
+      default: '',
+      type: String,
     },
   },
   setup(props, { attrs, emit }) {
     const fileList = ref<UploadUserFile[]>([]);
-    watch(fileList, (e) => {
-      emit('update:modelValue', e);
-    });
+    let urlString = '';
+    watch(
+      () => fileList.value,
+      (list) => {
+        console.log('list', list);
+        urlString = list
+          .filter((file) => file.status === 'success')
+          .map((file) => file.url)
+          .join(',');
+        emit('update:modelValue', urlString);
+        emit('change', urlString);
+      },
+    );
+    // 处理传递进来的值
     // 处理传递进来的值
     watch(
       () => props.modelValue,
-      (e) => {
-        if (e && e.length > 0 && fileList.value) {
-          // props modelValue 等于 data 不进行处理
-          if (fileList.value === e) return;
-          fileList.value.length = 0;
-          fileList.value.push(...e);
+      (modelValue) => {
+        // urlString 等于 data 不进行处理
+        if (urlString === modelValue) return;
+
+        if (modelValue === '') {
+          fileList.value = [];
+          return;
+        }
+
+        if (modelValue !== null && fileList.value !== null) {
+          fileList.value = modelValue.split(',').map((url) => ({
+            id: getUUID() as string,
+            name: getFileNameByUrl(url),
+            status: 'success',
+            url,
+          }));
         }
       },
-      { deep: true, immediate: true },
+      { immediate: true },
     );
 
     // function handleChange : UploadProps['onChange']  (e: UploadUserFile[]) => {
     //   nextTick(() => { fileList.value = e })
     // }
-    const handleChange: UploadProps['onChange'] = (
-      uploadFile,
-      uploadFiles,
-    ): void => {
-      nextTick(() => {
-        fileList.value = uploadFiles;
-      });
+    const handleChange: UploadProps['onChange'] = (): void => {
+      // nextTick(() => {
+      //   fileList.value = uploadFiles;
+      // });
     };
     // 处理数据结果
     // const handleChange = (info: UploadChangeParam): void => {
@@ -50,7 +67,7 @@ export default defineComponent({
     //     return
     //   }
     //
-    //   if (info.file.status === 'done') {
+    //   if (info.file.status === 'success') {
     //     // Get this url from response in real world.
     //     const url = info.file.response?.data?.url
     //     if (!info.file.url && !url) {
@@ -79,7 +96,17 @@ export default defineComponent({
       // }
       // return isJpgOrPng && isLt2M;
     };
-    const handleSuccess: UploadProps['onSuccess'] = () => {};
+
+    const handleSuccess: UploadProps['onSuccess'] = (
+      response,
+      uploadFile,
+      uploadFiles,
+    ) => {
+      fileList.value = uploadFiles.map((file: any) => ({
+        ...file,
+        url: file.response.data?.url,
+      }));
+    };
     const handleError: UploadProps['onError'] = (error) => {
       ElMessage.error('上传失败');
       console.error(error);

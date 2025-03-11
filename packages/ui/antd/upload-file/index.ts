@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/utils';
 
 export default {
   bindModel: 'modelValue',
-  component: () => import('./uploadFile'),
+  component: () => import('./uploadFile.vue'),
   config: {
     attribute: [
       {
