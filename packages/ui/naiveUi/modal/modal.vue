@@ -8,12 +8,14 @@ const props = withDefaults(
   defineProps<{
     componentSchema?: ComponentSchema;
     hideConfirm?: boolean;
+    okText?: string;
     width?: string;
   }>(),
   {
     componentSchema: () => ({
       type: 'modal',
     }),
+    okText: '确定',
     width: '900px',
   },
 );
@@ -72,7 +74,7 @@ const handleClose = () => {
       <NSpace justify="end">
         <NButton @click="handleClose"> 关闭 </NButton>
         <NButton v-if="!props.hideConfirm" type="primary" @click="handleOk">
-          {{ getComponentProps.okText ?? '确定' }}
+          {{ props.okText }}
         </NButton>
       </NSpace>
     </div>

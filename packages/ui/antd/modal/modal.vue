@@ -5,10 +5,19 @@ import { computed, useAttrs } from 'vue';
 
 import { Button, Modal, Space, version } from 'ant-design-vue';
 
-const props = defineProps<{
-  componentSchema?: ComponentSchema;
-  hideConfirm?: boolean;
-}>();
+const props = withDefaults(
+  defineProps<{
+    componentSchema?: ComponentSchema;
+    hideConfirm?: boolean;
+    okText?: string;
+  }>(),
+  {
+    componentSchema: () => ({
+      type: 'modal',
+    }),
+    okText: '确定',
+  },
+);
 const emits = defineEmits(['ok', 'close', 'update:modelValue']);
 const versionArray = version.split('.');
 // 获取版本号第一个数字
@@ -76,7 +85,7 @@ function handleClose() {
       <Space align="end">
         <Button @click="handleClose"> 关闭 </Button>
         <Button v-if="!props.hideConfirm" type="primary" @click="handleOk">
-          {{ getComponentProps.okText ?? '确定' }}
+          {{ props.okText }}
         </Button>
       </Space>
     </div>

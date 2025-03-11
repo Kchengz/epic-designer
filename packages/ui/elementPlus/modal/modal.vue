@@ -5,10 +5,19 @@ import { computed, useAttrs } from 'vue';
 
 import { ElButton, ElDialog } from 'element-plus';
 // 定义 props
-const props = defineProps<{
-  componentSchema?: ComponentSchema;
-  hideConfirm?: boolean;
-}>();
+const props = withDefaults(
+  defineProps<{
+    componentSchema?: ComponentSchema;
+    hideConfirm?: boolean;
+    okText?: string;
+  }>(),
+  {
+    componentSchema: () => ({
+      type: 'modal',
+    }),
+    okText: '确定',
+  },
+);
 // 定义 emits
 const emits = defineEmits(['ok', 'close', 'update:modelValue']);
 const attrs = useAttrs();
@@ -55,7 +64,7 @@ function handleClose() {
     <div class="epic-modal-footer">
       <ElButton @click="handleClose"> 关闭 </ElButton>
       <ElButton v-if="!props.hideConfirm" type="primary" @click="handleOk">
-        {{ getComponentProps.okText ?? '确定' }}
+        {{ props.okText }}
       </ElButton>
     </div>
   </ElDialog>
