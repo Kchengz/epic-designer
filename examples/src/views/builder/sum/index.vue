@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+import type { PageSchema } from '@epic-designer/types';
+
 import { ref } from 'vue';
 
-import { EBuilder, PageSchema } from '@epic-designer/core';
+import { EBuilder } from '@epic-designer/core';
 
 const ebRef = ref<InstanceType<typeof EBuilder>>();
 const pageSchema = ref<PageSchema>({

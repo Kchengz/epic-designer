@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { PageSchema } from '@epic-designer/core';
+import type { PageSchema } from '@epic-designer/types';
 
 import { onMounted, ref } from 'vue';
 
