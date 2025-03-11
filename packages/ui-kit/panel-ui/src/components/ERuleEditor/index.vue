@@ -3,10 +3,10 @@ import type { FormItemRule } from '@epic-designer/types';
 
 import type { PropType } from 'vue';
 
-import { ref, watchEffect } from 'vue';
+import { ref, watch } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
-import { deepClone, pluginManager } from '@epic-designer/utils';
+import { deepClone, deepEqual, pluginManager } from '@epic-designer/utils';
 import { useVModel } from '@vueuse/core';
 
 import { triggerOptions, typeOptions } from './data';
@@ -74,18 +74,23 @@ const requiredRuleSchemas = [
 
 const rules = ref<FormItemRule[]>([]);
 
-watchEffect(() => {
-  if (!innerValue.value) return;
-  rules.value = [];
-  innerValue.value.forEach((item) => {
-    // 必填项单独存储
-    if (item.required === undefined) {
-      rules.value.push(item);
-    } else {
-      requiredRule.value = item;
-    }
-  });
-});
+watch(
+  () => innerValue.value,
+  (newValue, oldValue) => {
+    if (!newValue) return;
+    if (deepEqual(newValue, oldValue ?? {})) return;
+    rules.value = [];
+    console.log(33);
+    newValue.forEach((item) => {
+      // 必填项单独存储
+      if (item.required === undefined) {
+        rules.value.push(item);
+      } else {
+        requiredRule.value = item;
+      }
+    });
+  },
+);
 
 /**
  * 新增检验规则
@@ -130,6 +135,7 @@ function handleDelete(index: number) {
 </script>
 <template>
   <div>
+    <!-- 必填项 start -->
     <div
       class="rule-item-main m-t-2 relative rounded border border-solid p-2 transition-all"
     >
@@ -154,6 +160,9 @@ function handleDelete(index: number) {
         </div>
       </template>
     </div>
+    <!-- 必填项 end -->
+
+    <!-- 其他校验规则 start -->
     <ERuleItem
       v-for="(item, index) in rules"
       :key="index"
@@ -161,6 +170,7 @@ function handleDelete(index: number) {
       @delete="handleDelete(index)"
       @change="handleUpdate"
     />
+    <!-- 其他校验规则 end -->
     <Button class="m-t-2" @click="handleAdd"> 添加规则 </Button>
   </div>
 </template>

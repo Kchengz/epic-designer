@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { FormItemRule } from '@epic-designer/types';
+import type { PageManager } from '@epic-designer/utils';
 
 import { computed, inject } from 'vue';
 
 import { EpicIcon, EpicNode } from '@epic-designer/base-ui';
-import { PageManager } from '@epic-designer/utils';
 
 import { lenTypeOptions, triggerOptions, typeOptions } from './data';
 
