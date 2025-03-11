@@ -5,7 +5,7 @@ import { inject, nextTick, ref } from 'vue';
 
 import { getUUID, pluginManager } from '@epic-designer/utils';
 
-import EBuilder from '../../../../builder';
+import { EBuilder } from '../../../../builder';
 
 const props = withDefaults(
   defineProps<{
