@@ -5,25 +5,26 @@ import type {
   UploadProps,
 } from 'ant-design-vue';
 
-import type { PropType } from 'vue';
-
 import { computed, nextTick, ref, useAttrs, watch } from 'vue';
 
+import { getUUID } from '@epic-designer/utils';
 import { Image, message, Upload } from 'ant-design-vue';
 
-const props = defineProps({
-  maxCount: {
-    default: 99,
-    type: Number,
+const props = withDefaults(
+  defineProps<{
+    maxCount?: number;
+    modelValue?: string;
+  }>(),
+  {
+    maxCount: 99,
+    modelValue: '',
   },
-  modelValue: {
-    default: () => [],
-    type: Array as PropType<UploadProps['fileList']>,
-  },
-});
+);
+
 const emits = defineEmits(['update:modelValue', 'change']);
 const attrs = useAttrs();
 const fileList = ref<UploadProps['fileList']>([]);
+let urlString = '';
 
 const imgUrl = ref('');
 const visible = ref(false);
@@ -31,19 +32,36 @@ const setVisible = (value: boolean): void => {
   visible.value = value;
 };
 
-watch(fileList, (e) => {
-  emits('update:modelValue', e);
-  emits('change', e);
-});
+watch(
+  () => fileList.value,
+  (list) => {
+    urlString = list!
+      .filter((file) => file.status === 'done')
+      .map((file) => file.url)
+      .join(',');
+    emits('update:modelValue', urlString);
+    emits('change', urlString);
+  },
+);
 // 处理传递进来的值
 watch(
   () => props.modelValue,
-  (e) => {
-    if (e && e.length > 0 && fileList.value) {
-      // props modelValue 等于 data 不进行处理
-      if (fileList.value === e) return;
-      fileList.value.length = 0;
-      fileList.value.push(...e);
+  (modelValue) => {
+    // urlString 等于 data 不进行处理
+    if (urlString === modelValue) return;
+
+    if (modelValue === '') {
+      fileList.value = [];
+      return;
+    }
+
+    if (modelValue && fileList.value) {
+      fileList.value = modelValue.split(',').map((url) => ({
+        name: url,
+        status: 'done',
+        uid: getUUID() as string,
+        url,
+      }));
     }
   },
   { deep: true, immediate: true },
