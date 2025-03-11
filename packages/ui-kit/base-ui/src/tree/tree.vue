@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ComponentSchema } from '@epic-designer/types';
 
-import type { PropType } from 'vue';
+import type { TreeProps } from './types';
 
 import { computed, provide, ref, useSlots } from 'vue';
 
@@ -13,24 +13,14 @@ import ETreeNodes from './treeNodes.vue';
 defineOptions({
   name: 'ETree',
 });
-const props = defineProps({
-  draggable: {
-    default: false,
-    type: Boolean,
-  },
-  hoverKey: {
-    default: '',
-    type: String,
-  },
-  options: {
-    default: () => [],
-    type: Array as PropType<ComponentSchema[]>,
-  },
-  selectedKeys: {
-    default: () => [],
-    type: Array,
-  },
+
+const props = withDefaults(defineProps<TreeProps>(), {
+  draggable: false,
+  hoverKey: '',
+  options: () => [],
+  selectedKeys: () => [],
 });
+
 const emits = defineEmits(['update:selectedKeys', 'nodeClick']);
 const slots = useSlots();
 provide('slots', slots);

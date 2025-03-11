@@ -5,6 +5,8 @@ import type {
   PageSchema,
 } from '@epic-designer/types';
 
+import type { TreeProps } from './types';
+
 import { computed, inject } from 'vue';
 
 import { pluginManager } from '@epic-designer/utils';
@@ -20,10 +22,11 @@ const props = defineProps<{
   parentSchema?: ComponentSchema;
   schemas: ComponentSchema[];
 }>();
+
 const emit = defineEmits(['update:schemas']);
 const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema') as PageSchema;
-const treeProps = inject('treeProps') as any;
+const treeProps = inject('treeProps') as TreeProps;
 
 const modelSchemas = computed({
   get() {
@@ -57,6 +60,13 @@ function isDraggable(schema: ComponentSchema) {
 
   return 'draggable-item';
 }
+
+const getDisabled = computed(() => {
+  return (
+    !treeProps.draggable ||
+    modelSchemas.value![0]?.id === pageSchema.schemas[0]?.id
+  );
+});
 </script>
 <template>
   <draggable
@@ -74,9 +84,7 @@ function isDraggable(schema: ComponentSchema) {
       group: 'tree-draggable',
       ghostClass: 'moveing',
       draggable: '.draggable-item',
-      disabled:
-        !treeProps.draggable ||
-        modelSchemas[0]?.id === pageSchema.schemas[0]?.id,
+      disabled: getDisabled,
     }"
     @start="handleSelect($event.oldIndex)"
   >
