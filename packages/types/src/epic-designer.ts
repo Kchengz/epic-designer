@@ -48,10 +48,10 @@ export interface FormConfig {
 export type FormDataModel = Record<string, any>;
 
 export interface DesignerState {
-  selectedNode: ComponentSchema | null;
-  disableHover: boolean;
+  disabledHover: boolean;
   hoverNode: ComponentSchema | null;
   matched: ComponentSchema[];
+  selectedNode: ComponentSchema | null;
 }
 
 export interface PageSchema {
@@ -70,9 +70,9 @@ export interface Designer {
   preview: () => void;
   reset: () => void;
   save: () => void;
-  setSelectedNode: (schema?: ComponentSchema) => void;
-  setDisableHover: (disableHover?: boolean) => void;
+  setDisabledHover: (disabledHover?: boolean) => void;
   setHoverNode: (schema: ComponentSchema | null) => void;
+  setSelectedNode: (schema?: ComponentSchema) => void;
   state: DesignerState;
   // schemas: ComponentSchema[];
 }

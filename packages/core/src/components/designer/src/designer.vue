@@ -103,10 +103,10 @@ pageManager.setDesignMode();
 const previewRef = ref<InstanceType<typeof EpicPreview> | null>(null);
 
 const state = reactive<DesignerState>({
-  selectedNode: null,
-  disableHover: false,
+  disabledHover: false,
   hoverNode: null,
   matched: [],
+  selectedNode: null,
 });
 
 const pageSchema = pageManager.pageSchema;
@@ -133,9 +133,9 @@ provide('designer', {
   preview: handlePreview,
   reset,
   save: handleSave,
-  setSelectedNode,
-  setDisableHover,
+  setDisabledHover,
   setHoverNode,
+  setSelectedNode,
   state,
 });
 
@@ -152,7 +152,9 @@ function init() {
  * 选中节点
  * @param schema
  */
-async function setSelectedNode(schema: ComponentSchema = pageSchema.schemas[0]) {
+async function setSelectedNode(
+  schema: ComponentSchema = pageSchema.schemas[0],
+) {
   state.selectedNode = schema;
   state.matched = getMatchedById(pageSchema.schemas, schema.id!);
 }
@@ -162,7 +164,7 @@ async function setSelectedNode(schema: ComponentSchema = pageSchema.schemas[0]) 
  * @param schema
  */
 async function setHoverNode(schema: ComponentSchema | null = null) {
-  if (!schema || state.disableHover) {
+  if (!schema || state.disabledHover) {
     state.hoverNode = null;
     return false;
   }
@@ -185,10 +187,10 @@ function handleReady() {
 
 /**
  * 设置hover状态
- * @param disableHover
+ * @param disabledHover
  */
-async function setDisableHover(disableHover = false) {
-  state.disableHover = disableHover;
+async function setDisabledHover(disabledHover = false) {
+  state.disabledHover = disabledHover;
 }
 
 /**

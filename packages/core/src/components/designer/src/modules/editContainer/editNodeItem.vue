@@ -38,11 +38,11 @@ const modelSchemas = computed({
  */
 function handleSelect(index: number) {
   designer.setSelectedNode(modelSchemas.value![index]);
-  designer.setDisableHover(true);
+  designer.setDisabledHover(true);
 }
 
 function handleEnd() {
-  designer.setDisableHover();
+  designer.setDisabledHover();
   revoke.push(pageSchema.schemas, '拖拽组件');
 }
 
