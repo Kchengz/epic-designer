@@ -6,15 +6,7 @@ import type {
 } from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
 
-import {
-  computed,
-  inject,
-  onUnmounted,
-  provide,
-  ref,
-  useAttrs,
-  watch,
-} from 'vue';
+import { computed, inject, onUnmounted, provide, useAttrs, watch } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/utils';
@@ -22,7 +14,7 @@ import { pluginManager } from '@epic-designer/utils';
 import EditNodeItem from './editNodeItem.vue';
 
 defineOptions({
-  name: 'ENodeItem',
+  name: 'EpicNodeItem',
 });
 const props = defineProps<{
   name?: string;
@@ -32,8 +24,6 @@ const attrs = useAttrs();
 const designer = inject('designer') as Designer;
 const pageManager = inject('pageManager', {}) as PageManager;
 const pageSchema = inject('pageSchema', {}) as PageSchema;
-
-const nodeRef = ref<HTMLBaseElement | null>(null);
 
 provide('nodeAttrs', attrs);
 // 判断是否为叶子节点
@@ -116,7 +106,7 @@ function clearHoverNode(event: Event) {
 }
 </script>
 <template>
-  <EpicNode ref="nodeRef" :component-schema="props.schema">
+  <EpicNode :component-schema="props.schema">
     <!-- childImmovable不可拖拽设计 start -->
     <template
       v-if="
@@ -125,7 +115,7 @@ function clearHoverNode(event: Event) {
       "
       #edit-node
     >
-      <ENodeItem
+      <EpicNodeItem
         v-for="node in props.schema.children"
         :key="node.id"
         :schema="node"

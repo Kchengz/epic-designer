@@ -34,7 +34,7 @@ const selectorPosition = ref<'bottom' | 'center' | 'top'>('top');
 
 const { canvasScale, disabledZoom } = useStore();
 
-let kEditRange: HTMLDivElement | null = null;
+let epicEditRange: HTMLDivElement | null = null;
 
 /**
  * 判断组件是否可移动和可拖拽删除
@@ -168,7 +168,7 @@ watch(
 );
 
 // 添加悬停节点监听，当悬停节点消失超过300ms,则隐藏悬停部件
-let hideTimer: number = 0;
+let hideTimer = 0;
 watch(
   () => designer.state.hoverNode?.id,
   (e) => {
@@ -191,16 +191,22 @@ let oldScrollLeft = 0;
  */
 function setSeletorStyle() {
   const element = getSelectComponentElement.value;
-  if (!element || !kEditRange) return;
+  if (!element || !epicEditRange) return;
 
-  const { left: offsetX, top: offsetY } = kEditRange.getBoundingClientRect();
+  const { left: offsetX, top: offsetY } = epicEditRange.getBoundingClientRect();
 
-  const { height, left, top, width } = element.getBoundingClientRect();
+  let rect = element.getBoundingClientRect?.();
+  if (!rect && element.nextElementSibling) {
+    // 如果第一个元素是文本节点/注释节点，则获取第二个元素的位置信息
+    rect = element.nextElementSibling.getBoundingClientRect();
+  }
+  const { height, left, top, width } = rect;
 
   const scale = disabledZoom.value ? 1 : canvasScale.value;
   // 计算选择器部件位置
-  const selectorTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * scale;
-  const selectorLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0) * scale;
+  const selectorTop = top - offsetY + (epicEditRange?.scrollTop ?? 0) * scale;
+  const selectorLeft =
+    left - offsetX + (epicEditRange?.scrollLeft ?? 0) * scale;
 
   const selectorRefHeight = height / scale;
 
@@ -244,9 +250,9 @@ function setSeletorStyle() {
 function scrollIntoView(selectorTop: number, selectorLeft: number) {
   // 自动滚动到元素可视区域 start
   const element = getSelectComponentElement.value;
-  if (!kEditRange || !element) return;
+  if (!epicEditRange || !element) return;
   // 获取两个元素的边界框信息
-  const rect2 = kEditRange.getBoundingClientRect();
+  const rect2 = epicEditRange.getBoundingClientRect();
   const { width } = element.getBoundingClientRect();
 
   const scale = disabledZoom.value ? 1 : canvasScale.value;
@@ -255,10 +261,10 @@ function scrollIntoView(selectorTop: number, selectorLeft: number) {
   const newScrollTop = selectorTop / scale - rect2.top;
   let newScrollLeft = selectorLeft / scale - rect2.left + width / scale;
   newScrollLeft < rect2.width && (newScrollLeft = 0);
-  const yMin = kEditRange.scrollTop - rect2.height / 3 + 60;
-  const yMax = kEditRange.scrollTop + (rect2.height / 3) * 2;
-  const xMin = kEditRange.scrollLeft - rect2.width + 200;
-  const xMax = kEditRange.scrollLeft + rect2.width - 200;
+  const yMin = epicEditRange.scrollTop - rect2.height / 3 + 60;
+  const yMax = epicEditRange.scrollTop + (rect2.height / 3) * 2;
+  const xMin = epicEditRange.scrollLeft - rect2.width + 200;
+  const xMax = epicEditRange.scrollLeft + rect2.width - 200;
 
   // 判断定位误差是否小于10px，小于则不处理
   if (
@@ -276,8 +282,8 @@ function scrollIntoView(selectorTop: number, selectorLeft: number) {
   )
     return;
 
-  kEditRange.scrollTop = newScrollTop;
-  kEditRange.scrollLeft = newScrollLeft;
+  epicEditRange.scrollTop = newScrollTop;
+  epicEditRange.scrollLeft = newScrollLeft;
   // 自动滚动到元素可视区域 end
 }
 
@@ -287,18 +293,20 @@ function scrollIntoView(selectorTop: number, selectorLeft: number) {
 function setHoverStyle() {
   const element = getHoverComponentElement.value;
 
-  if (!element) return;
-  const { left: offsetX, top: offsetY } =
-    kEditRange?.getBoundingClientRect() ?? { left: 0, top: 0 };
-  if (!element.nextElementSibling) return;
-  const { height, left, top, width } =
-    element.getBoundingClientRect?.() ??
-    element.nextElementSibling.getBoundingClientRect();
+  if (!element || !epicEditRange) return;
+  const { left: offsetX, top: offsetY } = epicEditRange.getBoundingClientRect();
+
+  let rect = element.getBoundingClientRect?.();
+  if (!rect && element.nextElementSibling) {
+    // 如果第一个元素是文本节点/注释节点，则获取第二个元素的位置信息
+    rect = element.nextElementSibling.getBoundingClientRect();
+  }
+  const { height, left, top, width } = rect;
   const scale = disabledZoom.value ? 1 : canvasScale.value;
 
   // 计算选择器部件位置
-  const hoverTop = top - offsetY + (kEditRange?.scrollTop ?? 0) * scale;
-  const hoverLeft = left - offsetX + (kEditRange?.scrollLeft ?? 0) * scale;
+  const hoverTop = top - offsetY + (epicEditRange.scrollTop ?? 0) * scale;
+  const hoverLeft = left - offsetX + (epicEditRange.scrollLeft ?? 0) * scale;
 
   if (hoverWidgetRef.value) {
     hoverWidgetRef.value.style.width = `${width / scale}px`;
@@ -385,8 +393,8 @@ function handleDelete() {
 
 // 初始化函数，传入一个指向 Epic 编辑范围的引用
 function handleInit(epicEditRangeRef) {
-  kEditRange = epicEditRangeRef;
-  kEditRange?.addEventListener('scroll', () => {
+  epicEditRange = epicEditRangeRef;
+  epicEditRange?.addEventListener('scroll', () => {
     setSeletorStyle();
   });
 

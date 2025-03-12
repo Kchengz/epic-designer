@@ -10,7 +10,7 @@ import { computed, inject } from 'vue';
 import { pluginManager, Revoke } from '@epic-designer/utils';
 import draggable from 'vuedraggable';
 
-import ENodeItem from './nodeItem.vue';
+import EpicNodeItem from './nodeItem.vue';
 
 defineOptions({
   name: 'EditNodeItem',
@@ -87,7 +87,7 @@ function isDraggable(schema: ComponentSchema) {
   >
     <template #item="{ element, index }">
       <div :key="index" class="widget-box" :class="isDraggable(element)">
-        <ENodeItem :schema="element" />
+        <EpicNodeItem :schema="element" />
       </div>
     </template>
   </draggable>

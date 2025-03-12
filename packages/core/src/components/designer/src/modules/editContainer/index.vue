@@ -3,12 +3,12 @@ import { computed, inject, onMounted, ref } from 'vue';
 
 import { PageSchema } from '@epic-designer/types';
 
-import KEditScreenContainer from './editScreenContainer.vue';
-import ENodeItem from './nodeItem.vue';
-import EPreviewWidgets from './previewWidgets.vue';
+import EpicEditScreenContainer from './editScreenContainer.vue';
+import EpicNodeItem from './nodeItem.vue';
+import EpicPreviewWidgets from './previewWidgets.vue';
 
 const epicEditRangeRef = ref<HTMLDivElement | null>(null);
-const ePreviewWidgetsRef = ref<null | typeof EPreviewWidgets>(null);
+const epicPreviewWidgetsRef = ref<null | typeof EpicPreviewWidgets>(null);
 
 const pageSchema = inject('pageSchema') as PageSchema;
 const rootSchema = computed(() => {
@@ -23,20 +23,20 @@ const getEditRangestyle = computed(() => {
 });
 
 onMounted(() => {
-  ePreviewWidgetsRef.value?.handleInit(epicEditRangeRef.value);
+  epicPreviewWidgetsRef.value?.handleInit(epicEditRangeRef.value);
 });
 </script>
 <template>
   <section class="epic-edit-canvas">
-    <KEditScreenContainer>
+    <EpicEditScreenContainer>
       <div
         ref="epicEditRangeRef"
         class="epic-edit-range relative overflow-auto rounded-md"
         :style="getEditRangestyle"
       >
-        <ENodeItem :schema="rootSchema" />
-        <EPreviewWidgets ref="ePreviewWidgetsRef" />
+        <EpicNodeItem :schema="rootSchema" />
+        <EpicPreviewWidgets ref="epicPreviewWidgetsRef" />
       </div>
-    </KEditScreenContainer>
+    </EpicEditScreenContainer>
   </section>
 </template>

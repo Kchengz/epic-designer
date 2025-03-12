@@ -14,7 +14,7 @@ import {
   Revoke,
 } from '@epic-designer/utils';
 
-import EPreviewJson from './previewJson.vue';
+import EpicPreviewJson from './previewJson.vue';
 
 const Select = pluginManager.getComponent('select');
 
@@ -23,7 +23,7 @@ const pageSchema = inject('pageSchema') as PageSchema;
 const designer = inject('designer') as Designer;
 const revoke = inject('revoke') as Revoke;
 const designerProps = inject('designerProps') as Ref<DesignerProps>;
-const previewJson = ref<InstanceType<typeof EPreviewJson> | null>(null);
+const previewJson = ref<InstanceType<typeof EpicPreviewJson> | null>(null);
 
 const deviceOptions = [
   {
@@ -295,6 +295,6 @@ function handleSetCanvas(type: string) {
       <!-- 画布类型切换 end -->
     </div>
   </div>
-  <EPreviewJson ref="previewJson" />
+  <EpicPreviewJson ref="previewJson" />
   <!-- 工具条 end  -->
 </template>
