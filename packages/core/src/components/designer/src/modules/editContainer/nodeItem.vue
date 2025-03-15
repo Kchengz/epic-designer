@@ -60,7 +60,6 @@ watch(
     if (!componentElement) return;
     componentElement.addEventListener('click', setSelectedNode, false);
     componentElement.addEventListener('mouseover', setHoverNode, false);
-    componentElement.addEventListener('mouseout', clearHoverNode, false);
 
     if (isLeaf.value) {
       componentElement.classList?.add('epic-node-mask');
@@ -71,19 +70,15 @@ watch(
 );
 
 onUnmounted(() => {
-  getComponentElement.value?.removeEventListener(
+  if (!getComponentElement.value) return;
+  getComponentElement.value.removeEventListener(
     'click',
     setSelectedNode,
     false,
   );
-  getComponentElement.value?.removeEventListener(
+  getComponentElement.value.removeEventListener(
     'mouseover',
     setHoverNode,
-    false,
-  );
-  getComponentElement.value?.removeEventListener(
-    'mouseout',
-    clearHoverNode,
     false,
   );
 });
@@ -98,11 +93,6 @@ function setHoverNode(event: Event) {
   if (props.schema.id === pageSchema.schemas[0]?.id) return;
   event.stopPropagation();
   designer.setHoverNode(props.schema);
-}
-
-function clearHoverNode(event: Event) {
-  event.stopPropagation();
-  designer.setHoverNode(null);
 }
 </script>
 <template>

@@ -281,7 +281,11 @@ defineExpose({
   </div>
   <Suspense v-else @resolve="handleReady">
     <template #default>
-      <div class="epic-designer-main epic-scoped" @wheel="handleWheel">
+      <div
+        class="epic-designer-main epic-scoped"
+        @wheel="handleWheel"
+        @mouseover="setHoverNode()"
+      >
         <div class="epic-header-container">
           <slot name="header">
             <EHeader

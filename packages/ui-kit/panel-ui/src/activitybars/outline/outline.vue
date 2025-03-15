@@ -6,8 +6,8 @@ import { computed, inject } from 'vue';
 import { EpicIcon, EpicTree } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/utils';
 
-const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema') as PageSchema;
+const designer = inject('designer') as Designer;
 
 // 计算选中节点值
 const selectedKeys = computed(() => {
@@ -26,7 +26,7 @@ function handleNodeClick(e: any) {
       :options="pageSchema.schemas"
       draggable
       :selected-keys="selectedKeys"
-      :hover-key="designer.state.hoverNode?.id"
+      :hover-key="designer.state.hoverNode?.id ?? ''"
       @node-click="handleNodeClick"
     >
       <template #tree-node="{ schema }">
