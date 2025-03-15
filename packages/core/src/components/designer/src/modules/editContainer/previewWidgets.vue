@@ -27,7 +27,6 @@ const hoverWidgetRef = ref<HTMLDivElement | null>(null);
 const actionBoxRef = ref<HTMLDivElement | null>(null);
 
 const showSelector = ref(false);
-const showHover = ref(false);
 const selectorTransition = ref(true);
 
 const selectorPosition = ref<'bottom' | 'center' | 'top'>('top');
@@ -35,9 +34,6 @@ const selectorPosition = ref<'bottom' | 'center' | 'top'>('top');
 const { canvasScale, disabledZoom } = useStore();
 
 let epicEditRange: HTMLDivElement | null = null;
-
-// 判断是否为叶子节点
-const isLeaf = computed(() => !designer.state.hoverNode?.children);
 
 /**
  * 判断组件是否可移动和可拖拽删除
@@ -167,23 +163,6 @@ watch(
       hoverMutationObserver.observe(hoverComponentElement, hoverObserverConfig);
       setHoverStyle();
     }
-  },
-);
-
-// 添加悬停节点监听，当悬停节点消失超过300ms,则隐藏悬停部件
-let hideTimer = 0;
-watch(
-  () => designer.state.hoverNode?.id,
-  (e) => {
-    if (e) {
-      showHover.value = true;
-      clearTimeout(hideTimer);
-      return;
-    }
-
-    hideTimer = setTimeout(() => {
-      showHover.value = false;
-    }, 300);
   },
 );
 
@@ -341,18 +320,6 @@ function initObserve(func: () => void) {
 }
 
 /**
- * 选中节点
- * @param event
- */
-function setSelectedNode(event: Event) {
-  event.stopPropagation();
-  console.log(333);
-  console.log(designer.state);
-  designer.state.hoverNode &&
-    designer.setSelectedNode(designer.state.hoverNode);
-}
-
-/**
  * 选择父节点
  */
 function handleSelectParentNode() {
@@ -474,11 +441,8 @@ defineExpose({
       designer.state.hoverNode &&
       designer.state.selectedNode?.id !== designer.state.hoverNode?.id
     "
-    @click="setSelectedNode"
-    @mouseover.stop=""
     ref="hoverWidgetRef"
-    class="epic-hover-widget z-998 pointer-events-none absolute transition-all"
-    :class="{ '': !isLeaf }"
+    class="epic-hover-widget z-998 pointer-events-none absolute"
   ></div>
   <!-- 悬停效果 end  -->
 </template>
