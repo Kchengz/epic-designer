@@ -55,10 +55,10 @@ function isDraggable(schema: ComponentSchema) {
       ?.immovable
   ) {
     // 禁止拖拽
-    return 'unmover-item';
+    return 'epic-unmover-item';
   }
 
-  return 'draggable-item';
+  return 'epic-draggable-item';
 }
 
 const getDisabled = computed(() => {
@@ -83,7 +83,7 @@ const getDisabled = computed(() => {
       tag: 'ul',
       group: 'tree-draggable',
       ghostClass: 'moveing',
-      draggable: '.draggable-item',
+      draggable: '.epic-draggable-item',
       disabled: getDisabled,
     }"
     @start="handleSelect($event.oldIndex)"

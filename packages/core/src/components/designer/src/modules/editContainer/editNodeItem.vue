@@ -7,7 +7,7 @@ import type {
 
 import { computed, inject } from 'vue';
 
-import { pluginManager, Revoke } from '@epic-designer/utils';
+import { Revoke } from '@epic-designer/utils';
 import draggable from 'vuedraggable';
 
 import EpicNodeItem from './nodeItem.vue';
@@ -22,9 +22,9 @@ const emit = defineEmits(['update:schemas']);
 const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema') as PageSchema;
 const revoke = inject('revoke') as Revoke;
+
 const modelSchemas = computed({
   get() {
-    // 判断props.schemas是否存在值
     return props.schemas;
   },
   set(e) {
@@ -49,20 +49,6 @@ function handleEnd() {
 function handleAdd() {
   revoke.push(pageSchema.schemas, '插入组件');
 }
-
-function isDraggable(schema: ComponentSchema) {
-  // 判断当前节点类型是否允许拖拽
-  if (
-    schema.id === pageSchema.schemas[0]?.id ||
-    pluginManager.getComponentConfingByType(schema.type)?.editConstraints
-      ?.immovable
-  ) {
-    // 禁止拖拽
-    return 'unmover-item';
-  }
-
-  return 'draggable-item';
-}
 </script>
 <template>
   <draggable
@@ -75,8 +61,8 @@ function isDraggable(schema: ComponentSchema) {
     v-bind="{
       animation: 200,
       group: 'edit-draggable',
-      handle: '.draggable-item',
-      ghostClass: 'moveing',
+      handle: '.epic-draggable-item',
+      ghostClass: 'epic-moveing',
     }"
     @start="handleSelect($event.oldIndex)"
     @end="handleEnd()"
@@ -86,9 +72,7 @@ function isDraggable(schema: ComponentSchema) {
     "
   >
     <template #item="{ element, index }">
-      <div :key="index" class="widget-box" :class="isDraggable(element)">
-        <EpicNodeItem :schema="element" />
-      </div>
+      <EpicNodeItem :key="index" :schema="element" />
     </template>
   </draggable>
 </template>
