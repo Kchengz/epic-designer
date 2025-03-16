@@ -17,7 +17,11 @@ import {
 
 import { EpicBaseLoader, EpicNode } from '@epic-designer/base-ui';
 import { setupPage } from '@epic-designer/panel-ui';
-import { deepCompareAndModify, pluginManager } from '@epic-designer/utils';
+import {
+  deepCompareAndModify,
+  findSchemas,
+  pluginManager,
+} from '@epic-designer/utils';
 
 import { useBuilder } from '../hooks/useBuilder';
 // 定义组件的 props 类型
@@ -90,6 +94,19 @@ function handleReady() {
   nextTick(() => {
     ready.value = true;
     emit('ready', pageManager);
+
+    // 执行绑定的ready事件
+    findSchemas(pageManager.pageSchema.schemas, (schema) => {
+      if (
+        schema.on &&
+        Object.prototype.hasOwnProperty.call(schema.on, 'epicReady')
+      ) {
+        pageManager.doActions(schema.on.epicReady);
+      }
+      return false;
+    });
+
+    // ;
   });
 }
 

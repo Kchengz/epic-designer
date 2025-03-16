@@ -5,7 +5,7 @@ import type {
   FormDataModel,
 } from '@epic-designer/types';
 
-import type { AsyncComponentLoader, ComponentPublicInstance } from 'vue';
+import type { AsyncComponentLoader, VNode } from 'vue';
 
 import {
   computed,
@@ -195,7 +195,7 @@ const getComponentProps = computed(() => {
   innerSchema.on &&
     Object.keys(innerSchema.on).forEach((item) => {
       onEvent[`on${capitalizeFirstLetter(item)}`] = (...args) =>
-        pageManager.doActions(innerSchema.on[item], ...args);
+        pageManager.doActions(innerSchema.on![item], ...args);
     });
 
   return {
@@ -231,9 +231,7 @@ watch(
 );
 
 // 添加组件实例
-function handleAddComponentInstance(
-  componentInstance?: ComponentPublicInstance,
-) {
+function handleAddComponentInstance(componentInstance?: VNode) {
   const instance = (componentInstance ?? nodeInstance) as ComponentNodeInstance;
   if (innerSchema.id && instance) {
     // 输入组件则添加setValue方法

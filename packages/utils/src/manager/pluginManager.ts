@@ -34,13 +34,13 @@ export interface ViewsContainersModel {
 export type Components = Record<string, ComponentType>;
 
 export interface EventModel {
-  description: string; 
-  type: string;
-  
   /**
    * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
    */
   describe?: string;
+  description: string;
+
+  type: string;
 }
 
 export interface ActionModel extends EventModel {
@@ -88,25 +88,24 @@ export interface ComponentConfigModel {
 export type ComponentConfigModelRecords = Record<string, ComponentConfigModel>;
 
 export interface PublicMethodModel {
-  name: string;
-  description?: string; 
+  /**
+   * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
+   */
+  describe?: string;
+  description?: string;
   handler: Function;
 
   /**
    * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
    */
-  describe?: string; 
-
-
-  /**
-   * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
-   */
-  method?: Function; 
+  method?: Function;
 
   /**
    * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
    */
-  methodName?: string; 
+  methodName?: string;
+
+  name: string;
 }
 
 export type PublicMethodsModel = Record<string, PublicMethodModel>;
@@ -383,7 +382,7 @@ export class PluginManager {
    * @param value 属性
    * @param attr 匹配字段 title | id 默认值 title
    */
-  hideActivitybar(value: string, attr: Attr= 'title') {
+  hideActivitybar(value: string, attr: Attr = 'title') {
     this.viewsContainers.activitybars.value =
       this.viewsContainers.activitybars.value.map((activitybar) => {
         // 查找具有指定属性和值的活动栏
@@ -602,7 +601,7 @@ export class PluginManager {
    * @param value 属性
    * @param attr 匹配字段 title | id 默认值 title
    */
-  showActivitybar(value: string, attr: Attr= 'title') {
+  showActivitybar(value: string, attr: Attr = 'title') {
     this.viewsContainers.activitybars.value =
       this.viewsContainers.activitybars.value.map((activitybar) => {
         // 查找具有指定属性和值的活动栏

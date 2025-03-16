@@ -25,29 +25,35 @@ const eventList = computed(() => {
     {
       events: [
         {
-          description: 'beforeMount',
-          type: 'vnodeBeforeMount',
+          description: 'ready',
+          type: 'epicReady',
         },
         {
           description: 'mounted',
           type: 'vnodeMounted',
         },
         {
-          description: 'beforeUpdate',
-          type: 'vnodeBeforeUpdate',
-        },
-        {
           description: 'updated',
           type: 'vnodeUpdated',
-        },
-        {
-          description: 'beforeUnmount',
-          type: 'vnodeBeforeUnmount',
         },
         {
           description: 'unmounted',
           type: 'vnodeUnmounted',
         },
+        {
+          description: 'beforeMount',
+          type: 'vnodeBeforeMount',
+        },
+        {
+          description: 'beforeUpdate',
+          type: 'vnodeBeforeUpdate',
+        },
+
+        {
+          description: 'beforeUnmount',
+          type: 'vnodeBeforeUnmount',
+        },
+
         {
           description: 'errorCaptured',
           type: 'vnodeErrorCaptured',

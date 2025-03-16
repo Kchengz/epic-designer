@@ -1,3 +1,5 @@
+import type { ActionsModel } from '@epic-designer/utils';
+
 import type { FormItemRule } from './rules';
 
 export interface RenderCallbackParams {
@@ -23,6 +25,10 @@ export interface ComponentSchema {
   label?: string;
   // 是否无需表单项，可选
   noFormItem?: boolean;
+  // 事件绑定
+  on?: {
+    [eventName: string]: ActionsModel[];
+  };
   // 表单验证规则，可选
   rules?: FormItemRule[];
   // 是否显示（属性编辑组件可以添加函数动态显示隐藏），可选
