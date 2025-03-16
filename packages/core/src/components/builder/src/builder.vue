@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-import type { FormDataModel, PageSchema } from '@epic-designer/types';
+import type {
+  ComponentNodeInstance,
+  FormDataModel,
+  PageSchema,
+} from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
 
 import {
@@ -78,10 +82,6 @@ provide(
   computed(() => props.disabled),
 );
 
-// 获取当前实例，并提取 proxy
-const instance = getCurrentInstance();
-const proxy = instance?.proxy;
-
 /**
  * 组件加载完成后的处理函数
  * @returns {void}
@@ -90,16 +90,10 @@ function handleReady() {
   nextTick(() => {
     ready.value = true;
     emit('ready', pageManager);
-
-    // 注入组件实例到 pageManager
-    if (proxy) {
-      pageManager.addComponentInstance('builder', proxy);
-    }
   });
 }
 
-// 暴露组件的方法和状态
-defineExpose({
+const exposes = {
   getData,
   getFormInstance,
   getForms,
@@ -109,7 +103,16 @@ defineExpose({
   setForms,
   validate,
   validateAll,
-});
+};
+
+// 获取当前实例，并提取 proxy
+const instance = getCurrentInstance() as ComponentNodeInstance;
+Object.assign(instance, exposes);
+// 注入组件实例到 pageManager
+pageManager.addComponentInstance('builder', instance);
+
+// 暴露组件的方法和状态
+defineExpose(exposes);
 </script>
 
 <template>

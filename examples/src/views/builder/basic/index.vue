@@ -6,6 +6,7 @@ import { ref } from 'vue';
 import { EBuilder } from '@epic-designer/core';
 
 const ebRef = ref<InstanceType<typeof EBuilder>>();
+
 const pageSchema = ref<PageSchema>({
   schemas: [
     {
