@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import type { ComponentSchema } from '@epic-designer/types';
+import type { PageManager } from '@epic-designer/utils';
 
-import { ref } from 'vue';
+import type { ComponentPublicInstance } from 'vue';
+
+import { inject } from 'vue';
 
 import { pluginManager } from '@epic-designer/utils';
 
@@ -13,18 +16,19 @@ const props = defineProps<{
   hasFormItem?: boolean;
 }>();
 
-const emit = defineEmits(['updateFormItemRef']);
-
+// 接收页面管理对象
+const pageManager = inject('pageManager', {}) as PageManager;
 // 获取插件管理器中的表单项组件
 const FormItem = pluginManager.getComponent('form-item');
-
-const formItemRef = ref<any>();
 
 /**
  * 当 FormItem 组件挂载时，向父组件发送 formItemRef
  */
-const notifyFormItemMounted = () => {
-  emit('updateFormItemRef', formItemRef.value);
+const notifyFormItemMounted = (componentInstance: ComponentPublicInstance) => {
+  pageManager.addComponentInstance(
+    `${props.formItemProps.id}formItem`,
+    componentInstance,
+  );
 };
 </script>
 
@@ -32,7 +36,6 @@ const notifyFormItemMounted = () => {
   <!-- 如果有 FormItem，则包裹 slot，否则直接渲染 slot -->
   <FormItem
     v-if="props.hasFormItem"
-    ref="formItemRef"
     v-bind="props.formItemProps"
     @vue:mounted="notifyFormItemMounted"
   >

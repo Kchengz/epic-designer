@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
-
 import type {
-  AsyncComponentLoader,
-  ComponentInternalInstance,
-  ComponentPublicInstance,
-} from 'vue';
+  ComponentNodeInstance,
+  ComponentSchema,
+  FormDataModel,
+} from '@epic-designer/types';
+
+import type { AsyncComponentLoader, ComponentPublicInstance } from 'vue';
 
 import {
   computed,
@@ -38,13 +38,6 @@ import {
 
 import dynamicFormItem from './dynamicFormItem.vue';
 
-export interface ComponentNodeInstance extends ComponentPublicInstance {
-  getAttr?: (key: string) => any;
-  getValue?: () => any;
-  setAttr?: (key: string, value: any) => any;
-  setValue?: (value: any) => void;
-}
-
 defineOptions({
   name: 'EpicNode',
 });
@@ -60,7 +53,7 @@ const props = defineProps<{
 // 定义组件的事件
 const emit = defineEmits(['update:modelValue', 'change']);
 
-const { proxy } = getCurrentInstance() as ComponentInternalInstance;
+const nodeInstance = getCurrentInstance();
 
 // 双向绑定Value
 const bindValue = ref(null);
@@ -130,12 +123,6 @@ if (props.resetFormData || resetFormDataInject) {
 
 // 组件实例的引用
 const componentInstance = ref<ComponentNodeInstance>();
-// 表单项的引用
-const formItemRef = ref<ComponentPublicInstance>();
-// 处理子组件传递的 formItemRef
-const updateFormItemRef = (formItemInstance: ComponentPublicInstance) => {
-  formItemRef.value = formItemInstance;
-};
 
 // 传递额外的attrs
 const attrs = useAttrs();
@@ -236,32 +223,23 @@ watch(
   (newValue) => {
     const currentValue = getBindValue();
     // 值相同时,无需重复更新数据
-    if (newValue !== currentValue) {
+    if (newValue === currentValue) {
       return;
     }
     handleUpdate(bindValue.value);
   },
 );
 
-// 监听组件实例是否初始化
-watch(
-  () => componentInstance.value,
-  () => {
-    handleAddComponentInstance();
-  },
-  { immediate: true },
-);
-
 // 添加组件实例
-function handleAddComponentInstance() {
-  const instance = (componentInstance.value || proxy) as ComponentNodeInstance;
+function handleAddComponentInstance(
+  componentInstance?: ComponentPublicInstance,
+) {
+  const instance = (componentInstance ?? nodeInstance) as ComponentNodeInstance;
   if (innerSchema.id && instance) {
     // 输入组件则添加setValue方法
     if (innerSchema.input) {
       instance.setValue = handleUpdate;
-      instance.getValue = () => {
-        return formData[innerSchema.field!] || props.modelValue;
-      };
+      instance.getValue = getBindValue;
     }
 
     // 添加属性设置方法
@@ -279,17 +257,6 @@ function handleAddComponentInstance() {
     };
 
     pageManager.addComponentInstance(innerSchema.id, instance);
-    // 添加实例 及 formItem实例
-    if (
-      getComponentConfing.value?.defaultSchema.input &&
-      innerSchema.noFormItem !== true &&
-      formItemRef.value
-    ) {
-      pageManager.addComponentInstance(
-        `${innerSchema.id}formItem`,
-        formItemRef.value,
-      );
-    }
   }
 }
 
@@ -390,6 +357,9 @@ watch(
   },
 );
 
+// 添加组件实例
+handleAddComponentInstance();
+
 // 组件卸载时移除组件实例
 onUnmounted(handleVnodeUnmounted);
 </script>
@@ -401,7 +371,6 @@ onUnmounted(handleVnodeUnmounted);
       getComponentConfing?.defaultSchema.input
     "
     :form-item-props="getFormItemProps"
-    @update-form-item-ref="updateFormItemRef"
   >
     <component
       :is="component"
@@ -409,7 +378,6 @@ onUnmounted(handleVnodeUnmounted);
       v-bind="{ ...getComponentProps }"
       v-model:[getComponentProps.bindModel]="bindValue"
       :model="formData"
-      :[`onUpdate:${getComponentProps.bindModel}`]="handleUpdate"
       @vue:mounted="handleAddComponentInstance"
     >
       <!-- 嵌套组件递归 start -->

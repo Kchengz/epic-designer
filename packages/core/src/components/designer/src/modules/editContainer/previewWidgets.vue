@@ -56,7 +56,7 @@ const isRemovableAndDraggable = computed(() => {
 /**
  * 获取选中组件dom元素
  */
-const getSelectComponentElement = computed<HTMLBaseElement | null>(() => {
+const getSelectComponentElement = computed<HTMLElement | null>(() => {
   const componentInstances = pageManager.componentInstances.value;
   const id = designer.state.selectedNode?.id;
 
@@ -71,28 +71,22 @@ const getSelectComponentElement = computed<HTMLBaseElement | null>(() => {
   if (!id || !componentInstances?.[id]) {
     return null;
   }
+
   if (
     componentConfing?.defaultSchema.input &&
     designer.state.selectedNode?.noFormItem !== true
   ) {
-    return componentInstances[`${id}formItem`]?.$el;
-  }
-  const componentInstance = componentInstances[id];
-  if (
-    !componentInstance?.$el ||
-    componentInstance?.$el.nodeName === '#text' ||
-    !componentInstance?.$el.getBoundingClientRect
-  ) {
-    return null;
+    return componentInstances[`${id}formItem`]?.el;
   }
 
-  return componentInstance?.$el;
+  const componentInstance = componentInstances[id];
+  return componentInstance?.el;
 });
 
 /**
  * 获取悬停组件dom元素
  */
-const getHoverComponentElement = computed<HTMLBaseElement | null>(() => {
+const getHoverComponentElement = computed<HTMLElement | null>(() => {
   const componentInstances = pageManager.componentInstances.value;
   const { hoverNode } = designer.state;
   // 组件隐藏状态时，返回null
@@ -108,13 +102,10 @@ const getHoverComponentElement = computed<HTMLBaseElement | null>(() => {
   }
 
   if (componentConfing?.defaultSchema.input && hoverNode.noFormItem !== true) {
-    return componentInstances[`${id}formItem`]?.$el;
+    return componentInstances[`${id}formItem`]?.el;
   }
   const componentInstance = componentInstances[id];
-  if (componentInstance?.$el.nodeName === '#text') {
-    return null;
-  }
-  return componentInstance?.$el;
+  return componentInstance?.el;
 });
 
 const { mutationObserver, observerConfig: DocumentObserverConfig } =
@@ -131,7 +122,7 @@ watch(
       // 监听dom元素及子元素的变化
       mutationObserver.observe(selectComponentElement, DocumentObserverConfig);
 
-      const parentNode = selectComponentElement.parentNode as HTMLBaseElement;
+      const parentNode = selectComponentElement.parentNode as HTMLElement;
       if (parentNode) {
         parentNode.addEventListener('dragstart', () => {
           selectorTransition.value = false;

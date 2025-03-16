@@ -1,6 +1,7 @@
-import type { ComponentSchema } from '@epic-designer/types';
-
-import type { ComponentPublicInstance } from 'vue';
+import type {
+  ComponentNodeInstance,
+  ComponentSchema,
+} from '@epic-designer/types';
 
 import { reactive, ref, watchEffect } from 'vue';
 
@@ -17,7 +18,7 @@ export interface ActionsModel {
 }
 
 export function usePageManager() {
-  const componentInstances = ref<Record<string, ComponentPublicInstance>>({});
+  const componentInstances = ref<Record<string, ComponentNodeInstance>>({});
   const funcs = ref<Record<string, Function>>({});
   // 当前模式 true 设计模式, false 渲染模式
   const isDesignMode = ref(false);
@@ -37,7 +38,7 @@ export function usePageManager() {
   function find(
     queryValue: string,
     queryField = 'id',
-  ): ComponentPublicInstance | null {
+  ): ComponentNodeInstance | null {
     // 如果查询字段是 id，直接在组件实例映射中查找
     if (queryField === 'id') {
       return componentInstances.value[queryValue] ?? null;
@@ -68,7 +69,7 @@ export function usePageManager() {
   function findAll(
     queryValue: string,
     queryField = 'id',
-  ): ComponentPublicInstance[] {
+  ): ComponentNodeInstance[] {
     // 如果查询字段是 id，直接返回对应的组件实例数组
     if (queryField === 'id') {
       const instance = componentInstances.value[queryValue];
@@ -104,7 +105,7 @@ export function usePageManager() {
    * @param id
    * @param instance
    */
-  function addComponentInstance(id: string, instance: ComponentPublicInstance) {
+  function addComponentInstance(id: string, instance: ComponentNodeInstance) {
     componentInstances.value[id] = instance;
   }
   /**
