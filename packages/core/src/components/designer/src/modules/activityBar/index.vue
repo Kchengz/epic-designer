@@ -10,9 +10,11 @@ defineOptions({
   name: 'EActivityBar',
 });
 const activitybars = computed(() => {
-  return pluginManager.viewsContainers.activitybars.value.filter(
-    (item) => item.visible,
-  );
+  return pluginManager.viewsContainers.activitybars.value
+    .filter((item) => item.visible)
+    .sort((a, b) => {
+      return a.sort - b.sort;
+    });
 });
 
 const activityBarCheckedIndex = ref<null | number>(0);

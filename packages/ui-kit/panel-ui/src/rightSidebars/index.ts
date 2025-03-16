@@ -10,17 +10,20 @@ export function setupRightSidebar(pluginManager: PluginManager): void {
   pluginManager.registerRightSidebar({
     component: async () => await import('./attribute/attribute.vue'),
     id: 'attribute_view',
+    sort: 100,
     title: '属性',
   });
 
   pluginManager.registerRightSidebar({
     component: async () => await import('./style/style.vue'),
     id: 'style_view',
+    sort: 200,
     title: '样式',
   });
   pluginManager.registerRightSidebar({
     component: async () => await import('./event/event.vue'),
     id: 'event_view',
+    sort: 300,
     title: '事件',
   });
 }

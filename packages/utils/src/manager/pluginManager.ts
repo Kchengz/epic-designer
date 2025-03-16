@@ -15,6 +15,7 @@ export interface ActivitybarModel {
   component: ComponentType;
   icon: string;
   id: string;
+  sort?: number;
   title: string;
   visible?: boolean;
 }
@@ -22,6 +23,7 @@ export interface ActivitybarModel {
 export interface RightSidebarModel {
   component: ComponentType;
   id: string;
+  sort?: number;
   title: string;
   visible?: boolean;
 }
@@ -438,6 +440,11 @@ export class PluginManager {
       activitybar.visible = true;
     }
 
+    // 默认sort设置为1000
+    if (activitybar.sort === undefined) {
+      activitybar.sort = 1000;
+    }
+
     // 查找活动栏在列表中的索引
     const index = this.viewsContainers.activitybars.value.findIndex(
       (item) => item.id === activitybar.id,
@@ -509,6 +516,11 @@ export class PluginManager {
     // 默认visible为true
     if (rightSidebar.visible === undefined) {
       rightSidebar.visible = true;
+    }
+
+    // 默认sort设置为1000
+    if (rightSidebar.sort === undefined) {
+      rightSidebar.sort = 1000;
     }
 
     const index = this.viewsContainers.rightSidebars.value.findIndex(
