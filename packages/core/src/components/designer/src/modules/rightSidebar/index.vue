@@ -12,7 +12,7 @@ const rightSidebars = computed(() => {
   return pluginManager.viewsContainers.rightSidebars.value
     .filter((item) => item.visible)
     .sort((a, b) => {
-      return a.sort - b.sort;
+      return a.sort! - b.sort!;
     });
 });
 

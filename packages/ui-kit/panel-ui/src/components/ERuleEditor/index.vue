@@ -22,9 +22,9 @@ const props = defineProps({
     type: String,
   },
 });
-const emits = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue']);
 const Button = pluginManager.getComponent('button');
-const innerValue = useVModel(props, 'modelValue', emits);
+const innerValue = useVModel(props, 'modelValue', emit);
 const requiredRule = ref<FormItemRule>({
   message: '必填项',
   required: false,
@@ -78,9 +78,8 @@ watch(
   () => innerValue.value,
   (newValue, oldValue) => {
     if (!newValue) return;
-    if (deepEqual(newValue, oldValue ?? {})) return;
+    if (deepEqual(newValue, oldValue ?? [])) return;
     rules.value = [];
-    console.log(33);
     newValue.forEach((item) => {
       // 必填项单独存储
       if (item.required === undefined) {
@@ -89,6 +88,9 @@ watch(
         requiredRule.value = item;
       }
     });
+  },
+  {
+    immediate: true,
   },
 );
 

@@ -13,7 +13,7 @@ const activitybars = computed(() => {
   return pluginManager.viewsContainers.activitybars.value
     .filter((item) => item.visible)
     .sort((a, b) => {
-      return a.sort - b.sort;
+      return a.sort! - b.sort!;
     });
 });
 
