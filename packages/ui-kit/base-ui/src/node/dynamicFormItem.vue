@@ -2,7 +2,7 @@
 import type { ComponentSchema } from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
 
-import type { ComponentPublicInstance } from 'vue';
+import type { VNode } from 'vue';
 
 import { inject } from 'vue';
 
@@ -24,7 +24,7 @@ const FormItem = pluginManager.getComponent('form-item');
 /**
  * 当 FormItem 组件挂载时，向父组件发送 formItemRef
  */
-const notifyFormItemMounted = (componentInstance: ComponentPublicInstance) => {
+const notifyFormItemMounted = (componentInstance: VNode) => {
   pageManager.addComponentInstance(
     `${props.formItemProps.id}formItem`,
     componentInstance,

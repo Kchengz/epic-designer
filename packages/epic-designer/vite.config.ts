@@ -1,7 +1,6 @@
 import type { PluginOption } from 'vite';
 
-import path, { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 
 import vue from '@vitejs/plugin-vue';
 import rollupCopy from 'rollup-plugin-copy';
@@ -10,8 +9,8 @@ import UnoCSS from 'unocss/vite';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = import.meta.dirname;
+
 export default defineConfig({
   build: {
     commonjsOptions: {

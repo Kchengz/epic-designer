@@ -8,6 +8,7 @@ export interface EpicNode extends VNode {
 }
 
 export interface EpicComponentInstance extends ComponentInternalInstance {
+  el: undefined;
   getAttr?: (key: string) => any;
   getValue?: () => any;
   setAttr?: (key: string, value: any) => any;
