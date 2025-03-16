@@ -24,9 +24,9 @@ const FormItem = pluginManager.getComponent('form-item');
 /**
  * 当 FormItem 组件挂载时，向父组件发送 formItemRef
  */
-const notifyFormItemMounted = (componentInstance: VNode) => {
+const addFormItemInstance = (componentInstance: VNode) => {
   pageManager.addComponentInstance(
-    `${props.formItemProps.id}formItem`,
+    `${props.formItemProps.id}_formItem`,
     componentInstance,
   );
 };
@@ -37,7 +37,7 @@ const notifyFormItemMounted = (componentInstance: VNode) => {
   <FormItem
     v-if="props.hasFormItem"
     v-bind="props.formItemProps"
-    @vue:mounted="notifyFormItemMounted"
+    @vue:mounted="addFormItemInstance"
   >
     <slot></slot>
   </FormItem>

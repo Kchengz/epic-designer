@@ -12,7 +12,7 @@ import {
   defineComponent,
   getCurrentInstance,
   inject,
-  onUnmounted,
+  onBeforeUnmount,
   provide,
   reactive,
   ref,
@@ -120,9 +120,6 @@ function addDesignModeSuffix() {
 if (props.resetFormData || resetFormDataInject) {
   formData = {};
 }
-
-// 组件实例的引用
-const componentInstance = ref<ComponentNodeInstance>();
 
 // 传递额外的attrs
 const attrs = useAttrs();
@@ -269,7 +266,7 @@ function handleVnodeUnmounted() {
       getComponentConfing.value?.defaultSchema.input &&
       innerSchema.noFormItem !== true
     ) {
-      pageManager.removeComponentInstance(`${innerSchema.id}formItem`);
+      pageManager.removeComponentInstance(`${innerSchema.id}_formItem`);
     }
   }
 }
@@ -359,7 +356,7 @@ watch(
 handleAddComponentInstance();
 
 // 组件卸载时移除组件实例
-onUnmounted(handleVnodeUnmounted);
+onBeforeUnmount(handleVnodeUnmounted);
 </script>
 <template>
   <dynamicFormItem
@@ -372,7 +369,6 @@ onUnmounted(handleVnodeUnmounted);
   >
     <component
       :is="component"
-      ref="componentInstance"
       v-bind="{ ...getComponentProps }"
       v-model:[getComponentProps.bindModel]="bindValue"
       :model="formData"

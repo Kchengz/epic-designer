@@ -76,7 +76,7 @@ const getComponentElement = (node: ComponentSchema) => {
   }
 
   if (componentConfing?.defaultSchema.input && node?.noFormItem !== true) {
-    return componentInstances[`${id}formItem`]?.el as HTMLElement;
+    return componentInstances[`${id}_formItem`]?.el as HTMLElement;
   }
 
   const componentInstance = componentInstances[id];
