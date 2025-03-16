@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-import type { Designer, DesignerProps, PageSchema } from '@epic-designer/types';
+import type {
+  ComponentSchema,
+  Designer,
+  DesignerProps,
+  PageSchema,
+} from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
 
 import type { Ref } from 'vue';
@@ -54,58 +59,44 @@ const isRemovableAndDraggable = computed(() => {
 });
 
 /**
- * 获取选中组件dom元素
+ * 获取组件DOM元素的通用函数
  */
-const getSelectComponentElement = computed<HTMLElement | null>(() => {
+const getComponentElement = (node: ComponentSchema) => {
   const componentInstances = pageManager.componentInstances.value;
-  const id = designer.state.selectedNode?.id;
+  const id = node.id;
 
   // 组件隐藏状态
-  if (designer.state.selectedNode?.componentProps?.hidden) {
+  if (node.componentProps?.hidden) {
     return null;
   }
   const componentConfing =
-    pluginManager.getComponentConfingByType(
-      designer.state.selectedNode?.type!,
-    ) ?? null;
+    pluginManager.getComponentConfingByType(node.type!) ?? null;
   if (!id || !componentInstances?.[id]) {
     return null;
   }
 
-  if (
-    componentConfing?.defaultSchema.input &&
-    designer.state.selectedNode?.noFormItem !== true
-  ) {
-    return componentInstances[`${id}formItem`]?.el;
+  if (componentConfing?.defaultSchema.input && node?.noFormItem !== true) {
+    return componentInstances[`${id}formItem`]?.el as HTMLElement;
   }
 
   const componentInstance = componentInstances[id];
-  return componentInstance?.el;
+  return componentInstance?.el as HTMLElement;
+};
+
+/**
+ * 获取选中组件DOM元素
+ */
+const getSelectComponentElement = computed<HTMLElement | null>(() => {
+  if (!designer.state.selectedNode) return null;
+  return getComponentElement(designer.state.selectedNode);
 });
 
 /**
- * 获取悬停组件dom元素
+ * 获取悬停组件DOM元素
  */
 const getHoverComponentElement = computed<HTMLElement | null>(() => {
-  const componentInstances = pageManager.componentInstances.value;
-  const { hoverNode } = designer.state;
-  // 组件隐藏状态时，返回null
-  if (!hoverNode || hoverNode.componentProps?.hidden) {
-    return null;
-  }
-
-  const id = hoverNode.id;
-  const componentConfing =
-    pluginManager.getComponentConfingByType(hoverNode.type!) ?? null;
-  if (!id || !componentInstances?.[id]) {
-    return null;
-  }
-
-  if (componentConfing?.defaultSchema.input && hoverNode.noFormItem !== true) {
-    return componentInstances[`${id}formItem`]?.el;
-  }
-  const componentInstance = componentInstances[id];
-  return componentInstance?.el;
+  if (!designer.state.hoverNode) return null;
+  return getComponentElement(designer.state.hoverNode);
 });
 
 const { mutationObserver, observerConfig: DocumentObserverConfig } =
@@ -113,13 +104,13 @@ const { mutationObserver, observerConfig: DocumentObserverConfig } =
 
 const { startTimedQuery, stopTimedQuery } = useTimedQuery(setSeletorStyle);
 
-// 监听选中dom元素变化
+// 监听选中DOM元素变化
 watch(
   () => getSelectComponentElement.value,
   (selectComponentElement) => {
     if (selectComponentElement) {
       showSelector.value = true;
-      // 监听dom元素及子元素的变化
+      // 监听DOM元素及子元素的变化
       mutationObserver.observe(selectComponentElement, DocumentObserverConfig);
 
       const parentNode = selectComponentElement.parentNode as HTMLElement;
@@ -145,12 +136,12 @@ const {
   observerConfig: hoverObserverConfig,
 } = initObserve(setHoverStyle);
 
-// 监听悬停dom元素变化
+// 监听悬停DOM元素变化
 watch(
   () => getHoverComponentElement.value,
   (hoverComponentElement) => {
     if (hoverComponentElement) {
-      // 监听dom元素及子元素的变化
+      // 监听DOM元素及子元素的变化
       hoverMutationObserver.observe(hoverComponentElement, hoverObserverConfig);
       setHoverStyle();
     }
