@@ -37,7 +37,7 @@ export type Components = Record<string, ComponentType>;
 
 export interface EventModel {
   /**
-   * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
+   * @deprecated 此属性用于兼容旧版，后期可能会移除，请使用description属性代替。
    */
   describe?: string;
   description: string;
@@ -91,19 +91,19 @@ export type ComponentConfigModelRecords = Record<string, ComponentConfigModel>;
 
 export interface PublicMethodModel {
   /**
-   * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
+   * @deprecated 此属性用于兼容旧版，后期可能会移除，请使用description属性代替。
    */
   describe?: string;
   description?: string;
   handler: Function;
 
   /**
-   * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
+   * @deprecated 此属性用于兼容旧版，后期可能会移除，请使用handler属性代替。
    */
   method?: Function;
 
   /**
-   * @deprecated 此属性用于兼容旧版，后期可能会移除，请避免使用。
+   * @deprecated 此属性用于兼容旧版，后期可能会移除，请使用name属性代替。
    */
   methodName?: string;
 
@@ -202,9 +202,25 @@ export class PluginManager {
    * @param publicMethod
    */
   addPublicMethod(publicMethod: PublicMethodModel): void {
+    if (publicMethod.methodName) {
+      console.warn(
+        `[Epic:公共函数]注册配置'methodName'属性已弃用,请使用'name'代替`,
+      );
+    }
+
+    if (publicMethod.method) {
+      console.warn(
+        `[Epic:公共函数]注册配置'method'属性已弃用,请使用'handler'代替`,
+      );
+    }
+
+    if (publicMethod.describe) {
+      console.warn(
+        `[Epic:公共函数]注册配置'describe'属性已弃用,请使用'description'代替`,
+      );
+    }
+
     // 兼容旧公共函数注册，后期可能移除该判断
-    // methodName 变量改成 name
-    // method 变量改成 handler
     const name = publicMethod.methodName ?? publicMethod.name;
     const handler = publicMethod.method ?? publicMethod.handler;
     const description = publicMethod.describe ?? publicMethod.description;
