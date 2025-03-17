@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type {
-  ComponentNodeInstance,
   ComponentSchema,
+  EpicNodeInstance,
   FormDataModel,
 } from '@epic-designer/types';
 
@@ -216,31 +216,34 @@ const getComponentProps = computed(() => {
 });
 
 // 添加组件实例
-function handleAddComponentInstance(componentInstance?: VNode) {
-  const instance = (componentInstance ?? nodeInstance) as ComponentNodeInstance;
-  if (innerSchema.id && instance) {
-    // 输入组件则添加setValue方法
-    if (innerSchema.input) {
-      instance.setValue = handleUpdate;
-      instance.getValue = getBindValue;
-    }
-
-    // 添加属性设置方法
-    instance.setAttr = (key: string, value: any) => {
-      // 初始化 componentProps 属性（如果尚未初始化）
-      if (!innerSchema.componentProps) {
-        innerSchema.componentProps = {};
-      }
-      return (innerSchema.componentProps[key] = value);
-    };
-
-    // 添加获取设置方法
-    instance.getAttr = (key: string) => {
-      return innerSchema.componentProps[key];
-    };
-
-    pageManager.addComponentInstance(innerSchema.id, instance);
+function handleAddComponentInstance(vNode?: VNode) {
+  const instance = (vNode?.component ?? nodeInstance) as EpicNodeInstance;
+  if (!innerSchema.id || !instance) {
+    return;
   }
+
+  // 确保 instance.exposed 对象存在
+  instance.exposed ??= {};
+
+  // 输入组件则添加setValue方法
+  if (innerSchema.input) {
+    instance.exposed.setValue = handleUpdate;
+    instance.exposed.getValue = getBindValue;
+  }
+
+  // 添加属性设置方法
+  instance.exposed.setAttr = (key: string, value: any) => {
+    // 确保 componentProps 属性对象存在
+    innerSchema.componentProps ??= {};
+    return (innerSchema.componentProps[key] = value);
+  };
+
+  // 添加获取设置方法
+  instance.exposed.getAttr = (key: string) => {
+    return innerSchema.componentProps?.[key];
+  };
+
+  pageManager.addComponentInstance(innerSchema.id, instance);
 }
 
 /**

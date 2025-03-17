@@ -1,18 +1,12 @@
-import type { ComponentInternalInstance, VNode } from 'vue';
+import type { ComponentInternalInstance } from 'vue';
 
-export interface EpicNode extends VNode {
+export interface ExtendedExposed {
   getAttr?: (key: string) => any;
   getValue?: () => any;
   setAttr?: (key: string, value: any) => any;
   setValue?: (value: any) => void;
 }
 
-export interface EpicComponentInstance extends ComponentInternalInstance {
-  el: undefined;
-  getAttr?: (key: string) => any;
-  getValue?: () => any;
-  setAttr?: (key: string, value: any) => any;
-  setValue?: (value: any) => void;
-}
-
-export type ComponentNodeInstance = EpicComponentInstance | EpicNode;
+export type EpicNodeInstance = ComponentInternalInstance & {
+  exposed?: ComponentInternalInstance['exposed'] & ExtendedExposed;
+};

@@ -1,7 +1,4 @@
-import type {
-  ComponentNodeInstance,
-  ComponentSchema,
-} from '@epic-designer/types';
+import type { ComponentSchema, EpicNodeInstance } from '@epic-designer/types';
 
 import { reactive, ref, watchEffect } from 'vue';
 
@@ -18,7 +15,7 @@ export interface ActionsModel {
 }
 
 export function usePageManager() {
-  const componentInstances = ref<Record<string, ComponentNodeInstance>>({});
+  const componentInstances = ref<Record<string, EpicNodeInstance>>({});
   const funcs = ref<Record<string, Function>>({});
   // 当前模式 true 设计模式, false 渲染模式
   const isDesignMode = ref(false);
@@ -30,15 +27,45 @@ export function usePageManager() {
   const { pageSchema, setPageSchema } = usePageSchema();
 
   /**
+   * 查找组件的exposed属性
+   * @param queryValue - 要查找的查询值
+   * @param queryField - 要查找的查询字段，默认为 "id"
+   * @returns - 匹配组件的exposed属性，若无匹配则返回 null
+   */
+  function find(
+    queryValue: string,
+    queryField = 'id',
+  ): EpicNodeInstance['exposed'] | null {
+    const instance = findInstance(queryValue, queryField);
+    // 返回组件实例的 exposed 属性
+    return instance?.exposed ?? null;
+  }
+
+  /**
+   * 查找所有匹配的组件的exposed属性
+   * @param queryValue - 要查找的查询值
+   * @param queryField - 要查找的查询字段，默认为 "id"
+   * @returns - 匹配的组件的exposed属性数组
+   */
+  function findAll(
+    queryValue: string,
+    queryField = 'id',
+  ): EpicNodeInstance['exposed'][] {
+    const instances = findAllInstance(queryValue, queryField);
+    // 返回组件实例的 exposed 属性数组
+    return instances.map((instance) => instance.exposed);
+  }
+
+  /**
    * 查找组件实例
    * @param queryValue - 要查找的查询值
    * @param queryField - 要查找的查询字段，默认为 "id"
    * @returns - 匹配的组件实例，若无匹配则返回 null
    */
-  function find(
+  function findInstance(
     queryValue: string,
     queryField = 'id',
-  ): ComponentNodeInstance | null {
+  ): EpicNodeInstance | null {
     // 如果查询字段是 id，直接在组件实例映射中查找
     if (queryField === 'id') {
       return componentInstances.value[queryValue] ?? null;
@@ -52,12 +79,12 @@ export function usePageManager() {
     ) as ComponentSchema | false;
 
     // 如果未找到匹配的 schema，返回 null
-    if (!matchingSchema) {
+    if (!matchingSchema || !matchingSchema.id) {
       return null;
     }
 
     // 返回组件实例
-    return componentInstances.value[matchingSchema.id ?? ''] ?? null;
+    return componentInstances.value[matchingSchema.id] ?? null;
   }
 
   /**
@@ -66,10 +93,10 @@ export function usePageManager() {
    * @param queryField - 要查找的查询字段，默认为 "id"
    * @returns - 匹配的组件实例数组
    */
-  function findAll(
+  function findAllInstance(
     queryValue: string,
     queryField = 'id',
-  ): ComponentNodeInstance[] {
+  ): EpicNodeInstance[] {
     // 如果查询字段是 id，直接返回对应的组件实例数组
     if (queryField === 'id') {
       const instance = componentInstances.value[queryValue];
@@ -105,7 +132,7 @@ export function usePageManager() {
    * @param id
    * @param instance
    */
-  function addComponentInstance(id: string, instance: ComponentNodeInstance) {
+  function addComponentInstance(id: string, instance: EpicNodeInstance) {
     componentInstances.value[id] = instance;
   }
   /**
@@ -245,7 +272,7 @@ export function usePageManager() {
    */
   function executeComponentMethod(action: ActionsModel, args: unknown[]): void {
     // 获取组件实例
-    const component = action.componentId && (find(action.componentId) as any);
+    const component = action.componentId && find(action.componentId);
 
     // 如果未找到组件实例，发出警告并返回
     if (!component) {

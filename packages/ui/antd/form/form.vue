@@ -2,6 +2,8 @@
 import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
 
+import type { VNode } from 'vue';
+
 import { computed, inject, provide, reactive, ref } from 'vue';
 
 import { Form } from 'ant-design-vue';
@@ -63,8 +65,8 @@ function setData(data: FormDataModel) {
 }
 
 // form组件需要特殊处理
-const mountedForm = (event) => {
-  form.value = event.component.exposed;
+const mountedForm = (vNode: VNode) => {
+  form.value = vNode.component?.exposed as FormInstance;
 
   if (props.componentSchema?.type === 'form' && forms.value && form.value) {
     const name =

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type {
-  ComponentNodeInstance,
+  EpicNodeInstance,
   FormDataModel,
   PageSchema,
 } from '@epic-designer/types';
@@ -110,7 +110,13 @@ function handleReady() {
   });
 }
 
-const exposes = {
+// 获取当前实例，并提取 proxy
+const instance = getCurrentInstance() as EpicNodeInstance;
+// 注入组件实例到 pageManager
+pageManager.addComponentInstance('builder', instance);
+
+// 暴露组件的方法和状态
+defineExpose({
   getData,
   getFormInstance,
   getForms,
@@ -120,16 +126,7 @@ const exposes = {
   setForms,
   validate,
   validateAll,
-};
-
-// 获取当前实例，并提取 proxy
-const instance = getCurrentInstance() as ComponentNodeInstance;
-Object.assign(instance, exposes);
-// 注入组件实例到 pageManager
-pageManager.addComponentInstance('builder', instance);
-
-// 暴露组件的方法和状态
-defineExpose(exposes);
+});
 </script>
 
 <template>

@@ -76,11 +76,15 @@ const getComponentElement = (node: ComponentSchema) => {
   }
 
   if (componentConfing?.defaultSchema.input && node?.noFormItem !== true) {
-    return componentInstances[`${id}_formItem`]?.el as HTMLElement;
+    return componentInstances[`${id}_formItem`]?.vnode.el as HTMLElement;
   }
 
   const componentInstance = componentInstances[id];
-  return componentInstance?.el as HTMLElement;
+  const dom = componentInstance?.vnode.el;
+  if (!dom || !dom.getBoundingClientRect) {
+    return null;
+  }
+  return dom as HTMLElement;
 };
 
 /**

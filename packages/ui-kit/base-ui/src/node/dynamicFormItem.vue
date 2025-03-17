@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ComponentSchema } from '@epic-designer/types';
+import type { ComponentSchema, EpicNodeInstance } from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
 
 import type { VNode } from 'vue';
@@ -24,11 +24,13 @@ const FormItem = pluginManager.getComponent('form-item');
 /**
  * 当 FormItem 组件挂载时，向父组件发送 formItemRef
  */
-const addFormItemInstance = (componentInstance: VNode) => {
-  pageManager.addComponentInstance(
-    `${props.formItemProps.id}_formItem`,
-    componentInstance,
-  );
+const addFormItemInstance = (vNode: VNode) => {
+  if (vNode.component) {
+    pageManager.addComponentInstance(
+      `${props.formItemProps.id}_formItem`,
+      vNode.component as EpicNodeInstance,
+    );
+  }
 };
 </script>
 
