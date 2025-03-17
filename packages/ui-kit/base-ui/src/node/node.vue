@@ -231,6 +231,8 @@ function handleAddComponentInstance(vNode?: VNode) {
     instance.exposed.getValue = getBindValue;
   }
 
+  instance.exposed.schema = innerSchema;
+
   // 添加属性设置方法
   instance.exposed.setAttr = (key: string, value: any) => {
     // 确保 componentProps 属性对象存在
