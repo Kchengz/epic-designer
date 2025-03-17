@@ -228,7 +228,7 @@ defineExpose({
             >
               <template #tree-node="{ schema }">
                 <div
-                  class="epic-text-padding group flex items-center hover:bg-gray-100"
+                  class="epic-text-padding flex items-center hover:bg-gray-100"
                   :class="{ hidden: schema.componentProps?.hidden }"
                 >
                   <span class="max-w-full truncate">
@@ -247,7 +247,7 @@ defineExpose({
                     {{ schema.id }}
                   </span>
                   <Button
-                    class="opacity-0 group-hover:opacity-100"
+                    class="epic-copy-id-btn opacity-0"
                     size="small"
                     @click.stop="copy(schema.id)"
                   >
