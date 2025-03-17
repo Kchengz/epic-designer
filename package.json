@@ -1,6 +1,6 @@
 {
   "name": "epic-designer-project",
-  "version": "0.9.30",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
