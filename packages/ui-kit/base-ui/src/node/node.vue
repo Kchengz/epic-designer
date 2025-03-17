@@ -15,14 +15,12 @@ import {
   onBeforeUnmount,
   provide,
   reactive,
-  ref,
   Ref,
   renderSlot,
   shallowRef,
   Slots,
   useAttrs,
   watch,
-  watchEffect,
 } from 'vue';
 
 import {
@@ -55,8 +53,6 @@ const emit = defineEmits(['update:modelValue', 'change']);
 
 const nodeInstance = getCurrentInstance();
 
-// 双向绑定Value
-const bindValue = ref(null);
 // 表单formData数据
 let formData = inject('formData', reactive({})) as FormDataModel;
 
@@ -74,6 +70,14 @@ const resetFormDataInject = inject<boolean>('resetFormData', false);
 
 // 内部schema数据
 const innerSchema = reactive<ComponentSchema>(deepClone(props.componentSchema));
+
+// 双向绑定Value
+const innerValue = computed({
+  get() {
+    return getBindValue();
+  },
+  set: handleUpdate,
+});
 // 设计模式模式下，添加字段后缀
 addDesignModeSuffix();
 
@@ -92,6 +96,13 @@ watch(
     deep: true,
   },
 );
+
+/**
+ * 获取表单项 数据
+ */
+function getBindValue() {
+  return props.modelValue ?? getValueByPath(formData, innerSchema.field ?? '');
+}
 
 /**
  * 在设计模式下为innerSchema.field添加特殊后缀。
@@ -204,29 +215,6 @@ const getComponentProps = computed(() => {
   };
 });
 
-// 计算绑定值
-const getBindValue = () => {
-  return props.modelValue ?? getValueByPath(formData, innerSchema.field ?? '');
-};
-
-// 获取双向绑定值
-watchEffect(() => {
-  bindValue.value = getBindValue();
-});
-
-// 更新双向绑定值
-watch(
-  () => bindValue.value,
-  (newValue) => {
-    const currentValue = getBindValue();
-    // 值相同时,无需重复更新数据
-    if (newValue === currentValue) {
-      return;
-    }
-    handleUpdate(bindValue.value);
-  },
-);
-
 // 添加组件实例
 function handleAddComponentInstance(componentInstance?: VNode) {
   const instance = (componentInstance ?? nodeInstance) as ComponentNodeInstance;
@@ -326,11 +314,16 @@ async function initComponent() {
  * @param value value值
  */
 function handleUpdate(value: any) {
-  emit('update:modelValue', value);
-  emit('change', value);
+  const oldValue = getBindValue();
+  // 值相同时,无需重复更新数据
+  if (value === oldValue) {
+    return;
+  }
   if (innerSchema.field) {
     setValueByPath(formData, innerSchema.field, value);
   }
+  emit('update:modelValue', value);
+  emit('change', value);
 }
 
 let oldData: null | string = null;
@@ -370,7 +363,7 @@ onBeforeUnmount(handleVnodeUnmounted);
     <component
       :is="component"
       v-bind="{ ...getComponentProps }"
-      v-model:[getComponentProps.bindModel]="bindValue"
+      v-model:[getComponentProps.bindModel]="innerValue"
       :model="formData"
       @vue:mounted="handleAddComponentInstance"
     >

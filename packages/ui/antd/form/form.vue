@@ -123,8 +123,7 @@ defineExpose({
 </script>
 <template>
   <div class="form-main" style="height: 100%">
-    <component
-      :is="Form"
+    <Form
       :model="formData"
       v-bind="componentProps"
       style="height: 100%"
@@ -138,6 +137,6 @@ defineExpose({
           :component-schema="item"
         ></slot>
       </slot>
-    </component>
+    </Form>
   </div>
 </template>
