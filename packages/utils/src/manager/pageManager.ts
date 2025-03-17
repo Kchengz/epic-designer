@@ -168,6 +168,8 @@ export function usePageManager() {
         defineExpose,
         find,
         findAll,
+        findAllInstance,
+        findInstance,
         getComponent,
         pluginManager,
         publicMethods,
@@ -353,12 +355,13 @@ export function usePageManager() {
     componentInstances,
     defaultComponentIds,
     doActions,
-    // 推荐使用 find 函数
     find,
     findAll,
+    findAllInstance,
+    findInstance,
     forms,
     funcs,
-    // 兼容函数
+    // 兼容处理, 后续版本可能会移除
     getComponentInstance: find,
     isDesignMode,
     pageSchema,
