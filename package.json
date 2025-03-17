@@ -1,12 +1,12 @@
 {
   "name": "epic-designer-project",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "lib": "vitest run && pnpm run build --filter epic-designer",
+    "lib": "vitest run && pnpm run build -F epic-designer",
     "test": "vitest",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",

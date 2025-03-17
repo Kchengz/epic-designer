@@ -22,10 +22,10 @@ describe('usePageManager 函数测试', () => {
     }) as any; // 模拟 Vue 组件实例
 
     pageManager.addComponentInstance('component1', mockInstance);
-    expect(pageManager.find('component1')).toEqual(mockInstance);
+    expect(pageManager.findInstance('component1')).toEqual(mockInstance);
 
     pageManager.removeComponentInstance('component1');
-    expect(pageManager.find('component1')).toBeNull();
+    expect(pageManager.findInstance('component1')).toBeNull();
   });
 
   it('应该正确设置和获取方法', () => {

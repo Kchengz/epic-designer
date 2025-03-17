@@ -1,3 +1,13 @@
+## 1.0.1（2025-03-17）
+### ✨ Feat
+- 组件暴露schema对象,可通过find函数获取并修改组件的schema属性
+- 新增findInstance、findAllInstance函数，用于获取组件实例
+### ✨ Refactor
+- 公共函数注册使用废弃属性时抛出警告提示
+- 组件注册配置类型标注describe属性废弃,请使用description属性代替
+### 🐛 Bug Fixes
+- 修复执行组件方法异常问题
+
 ## 1.0.0（2025-03-17）
 ### ✨ Feat
 - 新增支持Antd form组件 scrollToFirstError校验失败滚动到对应位置
