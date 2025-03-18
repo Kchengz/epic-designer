@@ -51,7 +51,7 @@ export function usePageManager() {
     queryValue: string,
     queryField = 'id',
   ): EpicNodeInstance['exposed'][] {
-    const instances = findAllInstance(queryValue, queryField);
+    const instances = findInstanceAll(queryValue, queryField);
     // 返回组件实例的 exposed 属性数组
     return instances.map((instance) => instance.exposed);
   }
@@ -93,7 +93,7 @@ export function usePageManager() {
    * @param queryField - 要查找的查询字段，默认为 "id"
    * @returns - 匹配的组件实例数组
    */
-  function findAllInstance(
+  function findInstanceAll(
     queryValue: string,
     queryField = 'id',
   ): EpicNodeInstance[] {
@@ -168,8 +168,8 @@ export function usePageManager() {
         defineExpose,
         find,
         findAll,
-        findAllInstance,
         findInstance,
+        findInstanceAll,
         getComponent,
         pluginManager,
         publicMethods,
@@ -357,8 +357,8 @@ export function usePageManager() {
     doActions,
     find,
     findAll,
-    findAllInstance,
     findInstance,
+    findInstanceAll,
     forms,
     funcs,
     // 兼容处理, 后续版本可能会移除
