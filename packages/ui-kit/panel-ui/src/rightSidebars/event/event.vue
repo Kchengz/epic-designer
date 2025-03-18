@@ -25,37 +25,37 @@ const eventList = computed(() => {
     {
       events: [
         {
-          description: 'ready',
+          description: '挂载完成（全部组件）',
           type: 'epicReady',
         },
         {
-          description: 'mounted',
+          description: '挂载完成（本组件）',
           type: 'vnodeMounted',
         },
         {
-          description: 'updated',
+          description: '更新完成',
           type: 'vnodeUpdated',
         },
         {
-          description: 'unmounted',
+          description: '卸载完成',
           type: 'vnodeUnmounted',
         },
         {
-          description: 'beforeMount',
+          description: '挂载前',
           type: 'vnodeBeforeMount',
         },
         {
-          description: 'beforeUpdate',
+          description: '更新前',
           type: 'vnodeBeforeUpdate',
         },
 
         {
-          description: 'beforeUnmount',
+          description: '卸载前',
           type: 'vnodeBeforeUnmount',
         },
 
         {
-          description: 'errorCaptured',
+          description: '错误捕获',
           type: 'vnodeErrorCaptured',
         },
       ],
