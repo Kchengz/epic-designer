@@ -60,16 +60,6 @@ const getCanvasAttribute = shallowRef<{
   width: number;
 }>({ height: 0, width: 0 });
 
-// 判断是否允许拖拽画布,如果允许拖拽，返回返回滚动容器的样式，否则返回默认的样式。
-const scrollBoxStyleComputed = computed(() => {
-  return designerProps.value.draggable
-    ? scrollBoxStyle.value
-    : {
-        height: '100%',
-        width: '100%',
-      };
-});
-
 // 监听 `pageSchema` 中画布尺寸的变化，当变化时调用 `updateSizeBoxStyle` 函数。
 watchEffect(updateSizeBoxStyle);
 
@@ -121,10 +111,15 @@ function updateScrollBoxStyle() {
   const canvasHeight = getCanvasAttribute.value.height || contentRectHeight;
 
   // 更新滚动容器的样式，画布的尺寸和额外的宽度/高度
-  scrollBoxStyle.value = {
-    height: `${height.value + canvasHeight}px`, // 滚动容器高度
-    width: `${width.value + canvasWidth}px`, // 滚动容器宽度
-  };
+  scrollBoxStyle.value = designerProps.value.draggable
+    ? {
+        height: `${height.value + canvasHeight}px`, // 滚动容器高度
+        width: `${width.value + canvasWidth}px`, // 滚动容器宽度
+      }
+    : {
+        height: `${height.value}px`, // 滚动容器高度
+        width: `${width.value}px`, // 滚动容器宽度
+      };
 
   // 更新画布的样式，使用实际的画布尺寸
   canvasBoxStyle.value = {
@@ -232,7 +227,7 @@ function computedScale() {
       <div
         id="canvasContainer"
         class="flex items-center justify-center"
-        :style="scrollBoxStyleComputed"
+        :style="scrollBoxStyle"
       >
         <div ref="draggableElRef" class="transition-all">
           <div
