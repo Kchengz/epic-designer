@@ -1,6 +1,4 @@
 import type {
-  ActivitybarModel,
-  Attr,
   ComponentConfigModel,
   ComponentConfigModelRecords,
   ComponentGroup,
@@ -9,13 +7,13 @@ import type {
   ComponentType,
   PublicMethodModel,
   PublicMethodsModel,
-  RightSidebarModel,
-  ViewsContainersModel,
 } from '@epic-designer/types';
 
 import type { AsyncComponentLoader } from 'vue';
 
-import { ref, shallowRef } from 'vue';
+import { ref } from 'vue';
+
+import { usePanel } from '@epic-designer/hooks';
 
 import { loadAsyncComponent } from '../common';
 
@@ -83,11 +81,17 @@ export function usePluginManager() {
   // 组件分组排序列表(设置之后，按该数组下标排序)
   let sortedGroups: string[] = ['表单', '布局'];
 
-  // 视图容器模型，包含活动栏和右侧边栏的配置
-  const viewsContainers: ViewsContainersModel = {
-    activitybars: shallowRef([]), // 活动栏配置列表
-    rightSidebars: shallowRef([]), // 右侧边栏配置列表
-  };
+  const {
+    getActivitybars,
+    getRightSidebars,
+    hideActivitybar,
+    hideRightSidebar,
+    registerActivitybar,
+    registerRightSidebar,
+    showActivitybar,
+    showRightSidebar,
+    viewsContainers,
+  } = usePanel();
 
   /**
    * 添加基础组件类型
@@ -239,14 +243,6 @@ export function usePluginManager() {
   }
 
   /**
-   * 获取所有activitybars
-   * @returns activitybars
-   */
-  function getActivitybars(): ActivitybarModel[] {
-    return viewsContainers.activitybars.value;
-  }
-
-  /**
    * 通过type 查询相应的组件
    * @returns components
    */
@@ -286,94 +282,12 @@ export function usePluginManager() {
   }
 
   /**
-   * 获取所有rightSidebars
-   * @returns rightSidebars
-   */
-  function getRightSidebars(): RightSidebarModel[] {
-    return viewsContainers.rightSidebars.value;
-  }
-
-  /**
-   * 隐藏活动栏
-   * @param value 属性
-   * @param attr 匹配字段 title | id 默认值 title
-   */
-  function hideActivitybar(value: string, attr: Attr = 'title') {
-    viewsContainers.activitybars.value = viewsContainers.activitybars.value.map(
-      (activitybar) => {
-        // 查找具有指定属性和值的活动栏
-        if (activitybar[attr] === value) {
-          // 如果找到匹配的活动栏, 将匹配的活动栏的 'visible' 属性设置为 false
-          activitybar.visible = false;
-        }
-        return activitybar;
-      },
-    );
-
-    console.log(viewsContainers.activitybars.value);
-  }
-
-  /**
    * 添加需要隐藏的组件类型
    * @param {*} type
    */
   function hideComponent(type: string) {
     hiddenComponents.push(type);
     computedComponentSchemaGroups();
-  }
-
-  /**
-   * 隐藏右侧边栏
-   * @param value 属性
-   * @param attr 查询字段 默认值 title
-   */
-  function hideRightSidebar(value: string, attr: Attr = 'title') {
-    viewsContainers.rightSidebars.value =
-      viewsContainers.rightSidebars.value.map((rightSidebar) => {
-        // 查找具有指定属性和值的右侧边栏
-        if (rightSidebar[attr] === value) {
-          // 如果找到匹配的右侧边栏, 将匹配的右侧边栏的 'visible' 属性设置为 false
-          rightSidebar.visible = false;
-        }
-        return rightSidebar;
-      });
-  }
-
-  /**
-   * 注册或更新活动栏（Activitybar）模型。
-   * 如果模型中的组件是一个函数，则异步加载该组件。
-   * @param activitybar 要注册或更新的活动栏模型
-   */
-  function registerActivitybar(activitybar: ActivitybarModel): void {
-    // 如果组件是一个函数，则异步加载该组件
-    if (typeof activitybar.component === 'function') {
-      activitybar.component = loadAsyncComponent(
-        activitybar.component as AsyncComponentLoader,
-      );
-    }
-
-    // 默认visible为true
-    if (activitybar.visible === undefined) {
-      activitybar.visible = true;
-    }
-
-    // 默认sort设置为1000
-    if (activitybar.sort === undefined) {
-      activitybar.sort = 1000;
-    }
-
-    // 查找活动栏在列表中的索引
-    const index = viewsContainers.activitybars.value.findIndex(
-      (item) => item.id === activitybar.id,
-    );
-
-    // 如果找到相同 id 的活动栏，则更新该活动栏模型
-    if (index === -1) {
-      // 否则将新的活动栏模型添加到活动栏列表中
-      viewsContainers.activitybars.value.push(activitybar);
-    } else {
-      viewsContainers.activitybars.value[index] = activitybar;
-    }
   }
 
   /**
@@ -415,37 +329,6 @@ export function usePluginManager() {
     componentConfigs[componentConfig.defaultSchema.type] = componentConfig;
 
     computedComponentSchemaGroups();
-  }
-
-  /**
-   * 注册右侧栏
-   */
-  function registerRightSidebar(rightSidebar: RightSidebarModel): void {
-    if (typeof rightSidebar.component === 'function') {
-      rightSidebar.component = loadAsyncComponent(
-        rightSidebar.component as AsyncComponentLoader,
-      );
-    }
-
-    // 默认visible为true
-    if (rightSidebar.visible === undefined) {
-      rightSidebar.visible = true;
-    }
-
-    // 默认sort设置为1000
-    if (rightSidebar.sort === undefined) {
-      rightSidebar.sort = 1000;
-    }
-
-    const index = viewsContainers.rightSidebars.value.findIndex(
-      (sidebar) => sidebar.id === rightSidebar.id,
-    );
-
-    if (index === -1) {
-      viewsContainers.rightSidebars.value.push(rightSidebar);
-    } else {
-      viewsContainers.rightSidebars.value[index] = rightSidebar;
-    }
   }
 
   /**
@@ -523,47 +406,12 @@ export function usePluginManager() {
   }
 
   /**
-   * 显示活动栏
-   * @param value 属性
-   * @param attr 匹配字段 title | id 默认值 title
-   */
-  function showActivitybar(value: string, attr: Attr = 'title') {
-    viewsContainers.activitybars.value = viewsContainers.activitybars.value.map(
-      (activitybar) => {
-        // 查找具有指定属性和值的活动栏
-        if (activitybar[attr] === value) {
-          // 如果找到匹配的活动栏, 将匹配的活动栏的 'visible' 属性设置为 true
-          activitybar.visible = true;
-        }
-        return activitybar;
-      },
-    );
-  }
-
-  /**
    * 移除需要隐藏的组件类型
    * @param {*} type
    */
   function showComponent(type: string) {
     hiddenComponents = hiddenComponents.filter((item) => item !== type);
     computedComponentSchemaGroups();
-  }
-
-  /**
-   * 显示右侧边栏
-   * @param value 属性
-   * @param attr 查询字段 默认值 title
-   */
-  function showRightSidebar(value: string, attr: Attr = 'title') {
-    viewsContainers.rightSidebars.value =
-      viewsContainers.rightSidebars.value.map((rightSidebar) => {
-        // 查找具有指定属性和值的右侧边栏
-        if (rightSidebar[attr] === value) {
-          // 如果找到匹配的右侧边栏, 将匹配的右侧边栏的 'visible' 属性设置为 true
-          rightSidebar.visible = true;
-        }
-        return rightSidebar;
-      });
   }
 
   return {

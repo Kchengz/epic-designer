@@ -4,8 +4,6 @@ import type { ComponentSchema } from './epic-designer';
 // 定义 ComponentType 类型
 export type ComponentType = AsyncComponentLoader | Component | string;
 
-export type Attr = 'id' | 'title';
-
 export interface ActivitybarModel {
   component: ComponentType;
   icon: string;
