@@ -1,8 +1,10 @@
 <script lang="ts" setup>
+import type { RightSidebarModel } from '@epic-designer/types';
+
 import { computed, ref, shallowRef } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { pluginManager, RightSidebarModel } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/utils';
 
 import EpicBreadcrumb from './breadcrumb.vue';
 

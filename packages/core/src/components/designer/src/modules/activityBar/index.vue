@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ActivitybarModel } from '@epic-designer/utils';
+import type { ActivitybarModel } from '@epic-designer/types';
 
 import { computed, ref, shallowRef } from 'vue';
 

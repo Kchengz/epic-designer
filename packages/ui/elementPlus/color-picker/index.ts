@@ -1,4 +1,4 @@
-import type { ComponentConfigModel } from '@epic-designer/utils';
+import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   component: async () => (await import('element-plus')).ElColorPicker,
