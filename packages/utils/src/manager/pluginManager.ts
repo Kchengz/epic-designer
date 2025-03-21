@@ -13,7 +13,7 @@ import type { AsyncComponentLoader } from 'vue';
 
 import { ref } from 'vue';
 
-import { usePanel } from '@epic-designer/hooks';
+import { useFormSchema, usePanel } from '@epic-designer/hooks';
 
 import { loadAsyncComponent } from '../common';
 
@@ -34,30 +34,7 @@ export function usePluginManager() {
   // 组件模式分组，使用 Vue Composition API 的 ref 进行响应式处理
   const componentSchemaGroups = ref<ComponentSchemaGroups>([]);
 
-  // 表单模式默认schema数据
-  // const formSchemas: ComponentSchema[] = [
-  //   {
-  //     componentProps: {
-  //       colon: true,
-  //       labelAlign: 'right',
-  //       labelCol: {
-  //         span: 5,
-  //       },
-  //       labelLayout: 'fixed',
-  //       labelPlacement: 'left',
-  //       labelWidth: 100,
-  //       layout: 'horizontal',
-  //       name: 'default',
-  //       wrapperCol: {
-  //         span: 19,
-  //       },
-  //     },
-  //     id: 'root',
-  //     label: '表单',
-  //     type: 'form',
-  //     children: [],
-  //   },
-  // ];
+  const { formSchema, setFormSchema } = useFormSchema();
 
   // 隐藏的组件列表，存储需要隐藏的组件名称
   let hiddenComponents: string[] = [];
@@ -425,6 +402,7 @@ export function usePluginManager() {
     componentGroupNameMap,
     components,
     componentSchemaGroups,
+    formSchema,
     getActivitybars,
     getComponent,
     getComponentConfingByType,
@@ -446,6 +424,7 @@ export function usePluginManager() {
     removePublicMethod,
     setBaseComponentTypes,
     setComponentGroupNameMap,
+    setFormSchema,
     setHideComponents,
     setInitialized,
     setSortedGroups,

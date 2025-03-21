@@ -90,7 +90,7 @@ watchEffect(() => {
   } else {
     // 切换表单模式默认schema数据
     if (props.formMode) {
-      innerDefaultSchema.schemas = pluginManager.formSchemas;
+      innerDefaultSchema.schemas = pluginManager.formSchema;
     }
   }
   // 记录默认组件id
