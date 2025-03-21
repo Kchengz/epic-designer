@@ -3,17 +3,21 @@ import presetRemToPx from '@unocss/preset-rem-to-px';
 import { defineConfig, presetUno, transformerDirectives } from 'unocss';
 
 export default defineConfig({
-  exclude: [
-    'node_modules',
-    'dist',
-    '.git',
-    '.husky',
-    '.vscode',
-    'public',
-    'build',
-    'mock',
-    './stats.html',
-  ],
+  content: {
+    pipeline: {
+      exclude: [
+        'node_modules',
+        'dist',
+        '.git',
+        '.husky',
+        '.vscode',
+        'public',
+        'build',
+        'mock',
+        './stats.html',
+      ],
+    },
+  },
   presets: [presetUno({ dark: 'class' }), presetRemToPx()],
   shortcuts: {
     'flex-center': 'flex justify-center items-center',
