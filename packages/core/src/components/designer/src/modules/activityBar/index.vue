@@ -10,7 +10,7 @@ defineOptions({
   name: 'EActivityBar',
 });
 const activitybars = computed(() => {
-  return pluginManager.viewsContainers.activitybars.value
+  return pluginManager.getActivitybars.value
     .filter((item) => item.visible)
     .sort((a, b) => {
       return a.sort! - b.sort!;

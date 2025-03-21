@@ -6,7 +6,7 @@ import type {
 
 import type { AsyncComponentLoader } from 'vue';
 
-import { shallowRef } from 'vue';
+import { computed, ref, shallowRef } from 'vue';
 
 import { loadAsyncComponent } from '@epic-designer/utils';
 
@@ -19,56 +19,22 @@ export function usePanel() {
     rightSidebars: shallowRef([]), // 右侧边栏配置列表
   };
 
-  /**
-   * 获取所有activitybars
-   * @returns activitybars
-   */
-  function getActivitybars(): ActivitybarModel[] {
-    return viewsContainers.activitybars.value;
-  }
+  const hiddenActivitybars = ref<string[]>([]); // 隐藏的活动栏配置列表
+  const hiddenRightSidebars = ref<string[]>([]); // 隐藏的右侧边栏配置列表
 
-  /**
-   * 获取所有rightSidebars
-   * @returns rightSidebars
-   */
-  function getRightSidebars(): RightSidebarModel[] {
-    return viewsContainers.rightSidebars.value;
-  }
-
-  /**
-   * 隐藏活动栏
-   * @param value 属性
-   * @param attr 匹配字段 title | id 默认值 title
-   */
-  function hideActivitybar(value: string, attr: Attr = 'title') {
-    viewsContainers.activitybars.value = viewsContainers.activitybars.value.map(
-      (activitybar) => {
-        // 查找具有指定属性和值的活动栏
-        if (activitybar[attr] === value) {
-          // 如果找到匹配的活动栏, 将匹配的活动栏的 'visible' 属性设置为 false
-          activitybar.visible = false;
-        }
-        return activitybar;
-      },
+  // 获取未隐藏的活动栏
+  const getActivitybars = computed(() => {
+    return viewsContainers.activitybars.value.filter(
+      (item) => !hiddenActivitybars.value.includes(item.title),
     );
-  }
+  });
 
-  /**
-   * 隐藏右侧边栏
-   * @param value 属性
-   * @param attr 查询字段 默认值 title
-   */
-  function hideRightSidebar(value: string, attr: Attr = 'title') {
-    viewsContainers.rightSidebars.value =
-      viewsContainers.rightSidebars.value.map((rightSidebar) => {
-        // 查找具有指定属性和值的右侧边栏
-        if (rightSidebar[attr] === value) {
-          // 如果找到匹配的右侧边栏, 将匹配的右侧边栏的 'visible' 属性设置为 false
-          rightSidebar.visible = false;
-        }
-        return rightSidebar;
-      });
-  }
+  // 获取未隐藏的右侧边栏
+  const getRightSidebars = computed(() => {
+    return viewsContainers.rightSidebars.value.filter(
+      (item) => !hiddenRightSidebars.value.includes(item.title),
+    );
+  });
 
   /**
    * 注册或更新活动栏（Activitybar）模型。
@@ -139,38 +105,41 @@ export function usePanel() {
   }
 
   /**
-   * 显示活动栏
-   * @param value 属性
-   * @param attr 匹配字段 title | id 默认值 title
+   * 隐藏活动栏
+   * @param title 属性
    */
-  function showActivitybar(value: string, attr: Attr = 'title') {
-    viewsContainers.activitybars.value = viewsContainers.activitybars.value.map(
-      (activitybar) => {
-        // 查找具有指定属性和值的活动栏
-        if (activitybar[attr] === value) {
-          // 如果找到匹配的活动栏, 将匹配的活动栏的 'visible' 属性设置为 true
-          activitybar.visible = true;
-        }
-        return activitybar;
-      },
-    );
+  function hideActivitybar(title: string) {
+    hiddenActivitybars.value.push(title);
+  }
+
+  /**
+   * 隐藏右侧边栏
+   * @param value 属性
+   */
+  function hideRightSidebar(value: string) {
+    hiddenRightSidebars.value.push(value);
+  }
+
+  /**
+   * 显示活动栏
+   * @param title 属性
+   */
+  function showActivitybar(title: string) {
+    const index = hiddenActivitybars.value.indexOf(title);
+    if (index !== -1) {
+      hiddenActivitybars.value.splice(index, 1);
+    }
   }
 
   /**
    * 显示右侧边栏
-   * @param value 属性
-   * @param attr 查询字段 默认值 title
+   * @param title 属性
    */
-  function showRightSidebar(value: string, attr: Attr = 'title') {
-    viewsContainers.rightSidebars.value =
-      viewsContainers.rightSidebars.value.map((rightSidebar) => {
-        // 查找具有指定属性和值的右侧边栏
-        if (rightSidebar[attr] === value) {
-          // 如果找到匹配的右侧边栏, 将匹配的右侧边栏的 'visible' 属性设置为 true
-          rightSidebar.visible = true;
-        }
-        return rightSidebar;
-      });
+  function showRightSidebar(title: string) {
+    const index = hiddenRightSidebars.value.indexOf(title);
+    if (index !== -1) {
+      hiddenRightSidebars.value.splice(index, 1);
+    }
   }
   return {
     getActivitybars,
