@@ -54,6 +54,7 @@ const {
 watch(
   () => props.pageSchema,
   (newSchema) => {
+    if (!newSchema) return;
     deepCompareAndModify(pageManager.pageSchema, newSchema);
   },
   {
@@ -130,8 +131,14 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="!pluginManager.initialized.value" class="epic-loading-box">
-    <!-- <EpicBaseLoader /> -->
+  <div
+    v-if="
+      !pluginManager.initialized.value ||
+      pageManager.pageSchema.schemas.length === 0
+    "
+    class="epic-loading-box"
+  >
+    <EpicBaseLoader />
   </div>
   <Suspense v-else @resolve="handleReady">
     <template #default>
