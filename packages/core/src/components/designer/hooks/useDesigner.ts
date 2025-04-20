@@ -17,6 +17,7 @@ import {
   usePageManager,
   useRevoke,
 } from '@epic-designer/utils';
+import { useMagicKeys } from '@vueuse/core';
 
 // 内部默认页面数据
 let innerDefaultSchema: PageSchema = {
@@ -173,7 +174,59 @@ export function useDesigner(props, emit) {
     revoke.push(pageSchema.schemas, '初始化');
   }
 
+  /**
+   * 设置快捷键
+   */
+  function setupHotkeys() {
+    const keys = useMagicKeys();
+
+    // 通过watchEffect监听快捷键状态变化
+    watchEffect(() => {
+      console.log(keys);
+      // 忽略输入框中的快捷键
+      const activeElement = document.activeElement;
+      if (
+        activeElement instanceof HTMLInputElement ||
+        activeElement instanceof HTMLTextAreaElement
+      ) {
+        return;
+      }
+
+      // 删除元素 (Delete 或 Backspace)
+      if ((keys.Delete.value || keys.Backspace.value) && state.selectedNode) {
+        handleDelete();
+      }
+
+      // 复制元素 (Ctrl+C)
+      if (keys['ctrl+c'].value && state.selectedNode) {
+        handleCopy();
+      }
+
+      // 撤销 (Ctrl+Z)
+      if (keys['ctrl+z'].value && !keys.shift.value) {
+        revoke.undo();
+      }
+
+      // 重做 (Ctrl+Shift+Z 或 Ctrl+Y)
+      if (keys['ctrl+shift+z'].value || keys['ctrl+y'].value) {
+        revoke.redo();
+      }
+
+      // 保存 (Ctrl+S)
+      if (keys['ctrl+s'].value) {
+        window.event?.preventDefault();
+        emit('save', pageSchema);
+      }
+
+      // 取消选择 (Escape)
+      if (keys.Escape.value) {
+        setSelectedNode(pageSchema.schemas[0]);
+      }
+    });
+  }
+
   init();
+  setupHotkeys();
 
   return {
     handleCopy,
