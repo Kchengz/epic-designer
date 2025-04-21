@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { Designer, PageSchema } from '@epic-designer/types';
-import type { EventModel, Revoke } from '@epic-designer/utils';
+import type { Designer, EventModel } from '@epic-designer/types';
+import type { Revoke } from '@epic-designer/utils';
 
 import { computed, inject } from 'vue';
 
@@ -10,7 +10,6 @@ import {
   setValueByPath,
 } from '@epic-designer/utils';
 
-const pageSchema = inject('pageSchema') as PageSchema;
 const designer = inject('designer') as Designer;
 const revoke = inject('revoke') as Revoke;
 const EActionEditor = pluginManager.getComponent('EActionEditor');
@@ -90,7 +89,7 @@ const eventList = computed(() => {
 function handleSetValue(value: any, field: string) {
   setValueByPath(selectedNode.value!, field, value);
   // 将修改过的组件属性推入撤销操作的栈中
-  revoke.push(pageSchema.schemas, '编辑组件属性');
+  revoke.push('编辑组件属性');
 }
 </script>
 <template>

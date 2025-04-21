@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import type {
-  ComponentSchema,
-  Designer,
-  PageSchema,
-} from '@epic-designer/types';
+import type { ComponentSchema, Designer } from '@epic-designer/types';
 
 import { computed, inject } from 'vue';
 
@@ -20,7 +16,6 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(['update:schemas']);
 const designer = inject('designer') as Designer;
-const pageSchema = inject('pageSchema') as PageSchema;
 const revoke = inject('revoke') as Revoke;
 
 const modelSchemas = computed({
@@ -43,11 +38,11 @@ function handleSelect(index: number) {
 
 function handleEnd() {
   designer.setDisabledHover();
-  revoke.push(pageSchema.schemas, '拖拽组件');
+  revoke.push('拖拽组件');
 }
 
 function handleAdd() {
-  revoke.push(pageSchema.schemas, '插入组件');
+  revoke.push('插入组件');
 }
 </script>
 <template>

@@ -111,7 +111,7 @@ async function setDisabledHover(disabledHover = false) {
  */
 function setData(schema: PageSchema) {
   pageManager.setPageSchema(schema);
-  revoke.push(pageSchema.schemas, '加载数据');
+  revoke.push('加载数据');
 }
 
 /**

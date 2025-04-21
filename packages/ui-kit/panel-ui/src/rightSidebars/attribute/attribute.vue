@@ -99,7 +99,7 @@ function handleSetValue(
     });
   }
   // 将修改过的组件属性推入撤销操作的栈中
-  revoke.push(pageSchema.schemas, '编辑组件属性');
+  revoke.push('编辑组件属性');
 }
 </script>
 <template>

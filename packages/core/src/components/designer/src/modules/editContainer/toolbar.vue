@@ -158,20 +158,14 @@ function isShow(show: any) {
  * 撤销操作
  */
 function handleUndo() {
-  const componentSchema = revoke.undo();
-  if (!componentSchema) return;
-  deepCompareAndModify(pageSchema.schemas, componentSchema);
-  designer.setSelectedNode(pageSchema.schemas[0]);
+  revoke.undo();
 }
 
 /**
  * 重做操作
  */
 function handleRedo() {
-  const componentSchema = revoke.redo();
-  if (!componentSchema) return;
-  deepCompareAndModify(pageSchema.schemas, componentSchema);
-  designer.setSelectedNode(pageSchema.schemas[0]);
+  revoke.redo();
 }
 
 // 预览数据

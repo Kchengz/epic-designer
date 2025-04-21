@@ -4,7 +4,7 @@ import type { Revoke } from '@epic-designer/utils';
 import { computed, inject, nextTick } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
-import { ComponentSchema, Designer, PageSchema } from '@epic-designer/types';
+import { ComponentSchema, Designer } from '@epic-designer/types';
 import {
   getValueByPath,
   pluginManager,
@@ -12,7 +12,6 @@ import {
 } from '@epic-designer/utils';
 
 const designer = inject('designer') as Designer;
-const pageSchema = inject('pageSchema') as PageSchema;
 const revoke = inject('revoke') as Revoke;
 const componentConfings = pluginManager.getComponentConfings();
 
@@ -103,7 +102,7 @@ function handleSetValue(
     });
   }
   // 将修改过的组件属性推入撤销操作的栈中
-  revoke.push(pageSchema.schemas, '编辑组件属性');
+  revoke.push('编辑组件属性');
 }
 </script>
 <template>

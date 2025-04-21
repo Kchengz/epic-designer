@@ -10,6 +10,7 @@ import {
   deepClone,
   deepCompareAndModify,
   deepEqual,
+  findSchemaById,
   findSchemaInfoById,
   generateNewSchema,
   getMatchedById,
@@ -50,7 +51,7 @@ export function useDesigner(props, emit) {
   const ready = ref<boolean>(false);
   const pageManager = usePageManager();
   const pageSchema = pageManager.pageSchema;
-  const revoke = useRevoke();
+  const revoke = useRevoke(pageSchema, setSelectedNode);
 
   const state = reactive<DesignerState>({
     disabledHover: false,
@@ -64,11 +65,9 @@ export function useDesigner(props, emit) {
     // 如果props.defaultSchema有值，则优先使用props.defaultSchema
     if (props.defaultSchema) {
       innerDefaultSchema = props.defaultSchema;
-    } else {
+    } else if (props.formMode) {
       // 切换表单模式默认schema数据
-      if (props.formMode) {
-        innerDefaultSchema.schemas = pluginManager.formSchema;
-      }
+      innerDefaultSchema.schemas = pluginManager.formSchema;
     }
     // 记录默认组件id
     pageManager.setDefaultComponentIds(innerDefaultSchema.schemas);
@@ -85,15 +84,14 @@ export function useDesigner(props, emit) {
       pageSchema.schemas,
       state.selectedNode?.id ?? 'root',
     );
-    if (!data) {
-      return false;
-    }
+    if (!data) return false;
+
     const { index, schema, list } = data;
     const node = generateNewSchema(schema);
     list.splice(index + 1, 0, node);
     setSelectedNode(node);
 
-    revoke.push(pageSchema.schemas, '复制组件');
+    revoke.push('复制组件');
   }
 
   /**
@@ -104,47 +102,55 @@ export function useDesigner(props, emit) {
       pageSchema.schemas,
       state.selectedNode?.id ?? 'root',
     );
-    if (!data) {
-      return false;
-    }
+    if (!data) return false;
+
     let { index, list } = data;
     list.splice(index, 1);
+
     if (index === list.length) {
       index--;
     }
+
     setSelectedNode(list[index]);
-    revoke.push(pageSchema.schemas, '删除组件');
+    revoke.push('删除组件');
   }
 
   /**
    * 选中节点
-   * @param schema
+   * @param schema 要选中的组件
    */
-  async function setSelectedNode(
-    schema: ComponentSchema = pageSchema.schemas[0],
+  function setSelectedNode(
+    schema: ComponentSchema | null = state.selectedNode,
   ) {
-    state.selectedNode = schema;
-    state.matched = getMatchedById(pageSchema.schemas, schema.id ?? '');
+    // 通过ID查找该组件在页面结构中是否存在
+    const selectedSchema = findSchemaById(pageSchema.schemas, schema?.id ?? '');
+    const finalSchema = selectedSchema || pageSchema.schemas[0];
+
+    // 获取从根节点到当前节点的路径匹配数组
+    state.matched = getMatchedById(pageSchema.schemas, finalSchema.id ?? '');
+    // 更新选中节点状态
+    state.selectedNode = finalSchema;
   }
 
   /**
    * 设置悬停节点
-   * @param schema
+   * @param schema 悬停的组件模式
    */
-  async function setHoverNode(schema: ComponentSchema | null = null) {
+  function setHoverNode(schema: ComponentSchema | null = null) {
     if (!schema || state.disabledHover) {
       state.hoverNode = null;
       return false;
     }
+
     if (schema?.id === state.hoverNode?.id) {
       return false;
     }
-    // console.log(schema?.id)
+
     state.hoverNode = schema;
   }
 
   /**
-   * 重置页面数据为默认数据。
+   * 重置页面数据为默认数据
    */
   function reset() {
     // 判断数据是否已修改，如果未修改，则取消重置操作
@@ -154,24 +160,26 @@ export function useDesigner(props, emit) {
     )
       return;
 
-    // 调用 deepCompareAndModify 函数比较 pageSchema.schemas 和 innerDefaultSchema.schemas，进行修改
+    // 调用 deepCompareAndModify 函数比较并修改
     deepCompareAndModify(pageSchema.schemas, innerDefaultSchema.schemas);
-    // 更新 script.value
+    // 更新 script
     pageSchema.script = innerDefaultSchema.script;
     // 选中根节点
     setSelectedNode(pageSchema.schemas[0]);
-    revoke.push(pageSchema.schemas, '重置操作');
+    revoke.push('重置操作');
 
     emit('reset', pageSchema);
   }
 
+  /**
+   * 初始化页面数据
+   */
   function init() {
     // 初始化默认节点
     pageSchema.schemas = deepClone(innerDefaultSchema.schemas);
-
     // 选中根节点
     setSelectedNode(pageSchema.schemas[0]);
-    revoke.push(pageSchema.schemas, '初始化');
+    revoke.push('初始化');
   }
 
   /**
@@ -182,7 +190,6 @@ export function useDesigner(props, emit) {
 
     // 通过watchEffect监听快捷键状态变化
     watchEffect(() => {
-      console.log(keys);
       // 忽略输入框中的快捷键
       const activeElement = document.activeElement;
       if (

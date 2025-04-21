@@ -88,7 +88,7 @@ function handleClick(schema: ComponentSchema) {
 
   list.splice(index + 1, 0, newSchema);
   designer.setSelectedNode(newSchema);
-  revoke.push(pageSchema.schemas, '插入组件');
+  revoke.push('插入组件');
 }
 </script>
 <template>
