@@ -98,10 +98,15 @@ export function useDesigner(props, emit) {
    * 删除元素
    */
   function handleDelete() {
-    const data = findSchemaInfoById(
-      pageSchema.schemas,
-      state.selectedNode?.id ?? 'root',
-    );
+    // 如果未选中节点或选中的是根节点则不执行删除
+    if (
+      !state.selectedNode?.id ||
+      state.selectedNode.id === pageSchema.schemas[0].id
+    ) {
+      return;
+    }
+
+    const data = findSchemaInfoById(pageSchema.schemas, state.selectedNode.id);
     if (!data) return false;
 
     let { index, list } = data;
@@ -184,9 +189,21 @@ export function useDesigner(props, emit) {
 
   /**
    * 设置快捷键
+   * @param target 接收键盘事件的目标元素，默认为document
    */
-  function setupHotkeys() {
-    const keys = useMagicKeys();
+  function setupHotkeys(target: Document | HTMLElement = document) {
+    const keys = useMagicKeys({ target });
+
+    // 添加事件监听器来阻止Ctrl+S的默认行为
+    target.addEventListener(
+      'keydown',
+      (e: KeyboardEvent) => {
+        if (e.ctrlKey && e.key === 's') {
+          e.preventDefault();
+        }
+      },
+      { capture: true },
+    );
 
     // 通过watchEffect监听快捷键状态变化
     watchEffect(() => {
@@ -221,7 +238,6 @@ export function useDesigner(props, emit) {
 
       // 保存 (Ctrl+S)
       if (keys['ctrl+s'].value) {
-        window.event?.preventDefault();
         emit('save', pageSchema);
       }
 
@@ -233,7 +249,6 @@ export function useDesigner(props, emit) {
   }
 
   init();
-  setupHotkeys();
 
   return {
     handleCopy,
@@ -245,6 +260,7 @@ export function useDesigner(props, emit) {
     revoke,
     setHoverNode,
     setSelectedNode,
+    setupHotkeys,
     state,
   };
 }
