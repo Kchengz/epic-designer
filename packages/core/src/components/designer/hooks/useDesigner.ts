@@ -51,7 +51,6 @@ export function useDesigner(props, emit) {
   const ready = ref<boolean>(false);
   const pageManager = usePageManager();
   const pageSchema = pageManager.pageSchema;
-  const revoke = useRevoke(pageSchema, setSelectedNode);
 
   const state = reactive<DesignerState>({
     disabledHover: false,
@@ -59,6 +58,7 @@ export function useDesigner(props, emit) {
     matched: [],
     selectedNode: null,
   });
+  const revoke = useRevoke(pageSchema, state, setSelectedNode);
 
   // 更新初始化数据
   watchEffect(() => {

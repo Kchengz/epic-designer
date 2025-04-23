@@ -1,13 +1,18 @@
-import type { ComponentSchema, PageSchema } from '@epic-designer/types';
+import type {
+  ComponentSchema,
+  DesignerState,
+  PageSchema,
+} from '@epic-designer/types';
 
 import { ref } from 'vue';
 
-import { deepCompareAndModify } from '@epic-designer/utils';
+import { deepCompareAndModify, findSchemaById } from '@epic-designer/utils';
 /**
  * 历史记录模型
  */
 export interface RecordModel {
   pageSchema: string;
+  selectedId?: string; // 添加选中组件ID字段
   type: string;
 }
 
@@ -16,6 +21,7 @@ export interface RecordModel {
  */
 export function useRevoke(
   pageSchema: PageSchema,
+  state: DesignerState,
   setSelectedNode: (schema?: ComponentSchema) => void,
 ) {
   // 历史记录
@@ -37,7 +43,12 @@ export function useRevoke(
   const applyRecord = (record: RecordModel): void => {
     try {
       deepCompareAndModify(pageSchema, JSON.parse(record.pageSchema));
-      setSelectedNode();
+
+      const selectedNode = record.selectedId
+        ? findSchemaById(pageSchema.schemas, record.selectedId)
+        : undefined;
+
+      setSelectedNode(selectedNode || undefined);
     } catch (error) {
       console.error('解析历史记录失败:', error);
     }
@@ -54,6 +65,7 @@ export function useRevoke(
       // 将json转成字符串存储
       currentRecord.value = {
         pageSchema: JSON.stringify(pageSchema),
+        selectedId: state.selectedNode?.id,
         type,
       };
       return;
@@ -76,6 +88,7 @@ export function useRevoke(
     // 将json转成字符串存储
     currentRecord.value = {
       pageSchema: JSON.stringify(pageSchema),
+      selectedId: state.selectedNode?.id,
       type,
     };
 
