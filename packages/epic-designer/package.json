@@ -35,14 +35,16 @@
   "module": "dist/index.js",
   "typings": "dist/epic-designer/index.d.ts",
   "peerDependencies": {
-    "ant-design-vue": ">=3.2.20",
-    "element-plus": ">=2.6.0",
     "monaco-editor": ">=0.48.0",
-    "naive-ui": ">=2.30.0",
     "vue": ">=3.1.0"
   },
   "dependencies": {
     "vuedraggable": "4.1.0"
+  },
+  "optionalDependencies": {
+    "ant-design-vue": ">=3.2.20",
+    "element-plus": ">=2.6.0",
+    "naive-ui": ">=2.30.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
