@@ -30,23 +30,20 @@ export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
   // 异步加载组件
   pluginManager.component(
     'FormItem',
-    async () => (await import('naive-ui/lib/form')).NFormItem,
+    async () => (await import('naive-ui')).NFormItem,
   );
 
-  pluginManager.component(
-    'Tabs',
-    async () => (await import('naive-ui/lib/tabs')).NTabs,
-  );
+  pluginManager.component('Tabs', async () => (await import('naive-ui')).NTabs);
 
   pluginManager.component('TabPane', NTabPane);
 
   pluginManager.component(
     'Collapse',
-    async () => (await import('naive-ui/lib/collapse')).NCollapse,
+    async () => (await import('naive-ui')).NCollapse,
   );
   pluginManager.component(
     'CollapseItem',
-    async () => (await import('naive-ui/lib/collapse')).NCollapseItem,
+    async () => (await import('naive-ui')).NCollapseItem,
   );
 
   const componentArray = [

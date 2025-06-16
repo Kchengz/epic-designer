@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'formatted-value',
-  component: async () => (await import('naive-ui/lib/date-picker')).NDatePicker,
+  component: async () => (await import('naive-ui')).NDatePicker,
   config: {
     attribute: [
       {

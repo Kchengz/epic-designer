@@ -2,8 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'value',
-  component: async () =>
-    (await import('naive-ui/lib/color-picker')).NColorPicker,
+  component: async () => (await import('naive-ui')).NColorPicker,
   config: {
     action: [],
     attribute: [

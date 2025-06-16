@@ -2,8 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'value',
-  component: async () =>
-    (await import('naive-ui/lib/input-number')).NInputNumber,
+  component: async () => (await import('naive-ui')).NInputNumber,
   config: {
     attribute: [
       {

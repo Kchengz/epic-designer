@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'value',
-  component: async () => (await import('naive-ui/lib/switch')).NSwitch,
+  component: async () => (await import('naive-ui')).NSwitch,
   config: {
     attribute: [
       {

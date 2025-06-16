@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'value',
-  component: async () => (await import('naive-ui/lib/slider')).NSlider,
+  component: async () => (await import('naive-ui')).NSlider,
   config: {
     attribute: [
       {
