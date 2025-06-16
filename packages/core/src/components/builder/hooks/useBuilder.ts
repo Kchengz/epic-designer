@@ -65,7 +65,7 @@ export function useBuilder() {
   function setData(data: FormDataModel, formName = 'default') {
     pageManager.setFormData(data, formName);
     const form = forms.value?.[formName];
-    form?.clearValidate();
+    form?.clearValidate?.() ?? form?.restoreValidation?.();
   }
 
   /**
