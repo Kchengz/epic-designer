@@ -43,6 +43,25 @@ const state = reactive({
   cacheData: {},
 });
 
+const actionTypeText = computed(() => {
+  const typeMap = {
+    component: '组件',
+    custom: '自定义函数',
+    public: '公共函数',
+  };
+
+  if (state.actionItem.type === 'component' && componentSchema.value) {
+    const label =
+      componentSchema.value.label ||
+      pluginManager.getComponentConfingByType(componentSchema.value.type)
+        ?.defaultSchema.label ||
+      '未命名组件';
+    return `${label}`;
+  }
+
+  return typeMap[state.actionItem.type] || state.actionItem.type;
+});
+
 const methodOptions = computed(() => {
   // 组件动作列表
   if (state.actionItem.type === 'component') {
@@ -67,10 +86,13 @@ const methodOptions = computed(() => {
 
   // 公共函数列表
   if (state.actionItem.type === 'public') {
-    return Object.entries(pluginManager.publicMethods).map(([label]) => ({
-      label,
-      value: label,
-    }));
+    return Object.entries(pluginManager.publicMethods).map(
+      ([label, publicMethod]) => ({
+        ...publicMethod,
+        label: publicMethod.description,
+        value: label,
+      }),
+    );
   }
 
   return [];
@@ -228,7 +250,7 @@ defineExpose({
             >
               <template #tree-node="{ schema }">
                 <div
-                  class="epic-text-padding flex items-center hover:bg-gray-100"
+                  class="epic-text-padding hover:bg-$epic-widget-hover-color flex items-center"
                   :class="{ hidden: schema.componentProps?.hidden }"
                 >
                   <span class="max-w-full truncate">
@@ -260,7 +282,7 @@ defineExpose({
         </div>
         <!-- 动作选择 start -->
         <div class="epic-action-select h-30/100 flex flex-col">
-          <div class="mb-2">动作选择</div>
+          <div class="mb-2">动作选择（{{ actionTypeText }}）</div>
           <div class="pr-8px flex-1 overflow-auto">
             <div
               v-for="item in methodOptions"
@@ -269,7 +291,7 @@ defineExpose({
               class="epic-action-item"
               @click="handleCheckedMethod(item.value)"
             >
-              <span>{{ item.label }}</span>
+              <span :title="item.value">{{ item.label }}</span>
             </div>
             <div
               v-show="!methodOptions?.length"
@@ -286,7 +308,32 @@ defineExpose({
       <div class="epic-modal-right-panel">
         <EScriptEdit v-if="state.actionItem.type === 'custom'" />
         <div
-          v-else-if="actionArgsConfigs.length === 0"
+          v-if="
+            state.actionItem.type !== 'custom' &&
+            state.actionItem.methodName &&
+            methodOptions?.length
+          "
+          class="bg-$epic-widget-hover-color mb-4 rounded-lg border p-4 transition-colors"
+        >
+          <div class="flex flex-col gap-1">
+            <div class="flex items-center">
+              <EpicIcon name="icon--epic--info" class="mr-2" />
+              <span class="text-$epic-text-medium text-sm font-medium">
+                {{ componentSchema?.label }}
+                <span class="text-$epic-text-main">
+                  {{
+                    methodOptions.find(
+                      (item) => item.value === state.actionItem.methodName,
+                    )?.label || '未知'
+                  }}
+                </span>
+                动作配置
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          v-if="actionArgsConfigs.length === 0"
           class="pt-42px text-center text-gray-400"
         >
           暂无配置

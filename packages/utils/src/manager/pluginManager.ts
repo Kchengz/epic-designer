@@ -46,12 +46,12 @@ export function usePluginManager() {
   const publicMethods: PublicMethodsModel = {
     // 示例数据
     // publicTest: {
-    //   describe: "测试函数",
-    //   name: "test",
+    //   description: '测试函数',
     //   handler: (e) => {
-    //     console.log(e)
+    //     console.log(e);
     //     // alert("测试函数弹出");
     //   },
+    //   name: 'test',
     // },
   };
 
