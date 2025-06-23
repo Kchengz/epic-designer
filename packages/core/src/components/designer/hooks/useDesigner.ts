@@ -61,7 +61,7 @@ export function useDesigner(props, emit) {
   const revoke = useRevoke(pageSchema, state, setSelectedNode);
 
   // 使用封装的clipboard hook
-  const { copy, duplicate, paste } = useClipboard(
+  const { copy, cut, duplicate, paste } = useClipboard(
     pageSchema,
     setSelectedNode,
     (message) => revoke.push(message),
@@ -88,6 +88,13 @@ export function useDesigner(props, emit) {
    */
   function handleDuplicate() {
     return duplicate(state.selectedNode?.id);
+  }
+
+  /**
+   * 剪切选中节点到剪贴板
+   */
+  function handleCut() {
+    return cut(state.selectedNode);
   }
 
   /**
@@ -238,6 +245,11 @@ export function useDesigner(props, emit) {
         handleDuplicate();
       }
 
+      // 剪切元素到剪贴板 (Ctrl+X)
+      if (keys['ctrl+x'].value && state.selectedNode) {
+        handleCut();
+      }
+
       // 撤销 (Ctrl+Z)
       if (keys['ctrl+z'].value && !keys.shift.value) {
         revoke.undo();
@@ -263,6 +275,7 @@ export function useDesigner(props, emit) {
   init();
 
   return {
+    handleCut,
     handleDelete,
     handleDuplicate,
     pageManager,

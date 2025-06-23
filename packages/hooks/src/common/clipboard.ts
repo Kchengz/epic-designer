@@ -74,9 +74,38 @@ export function useClipboard(
     return true;
   }
 
+  /**
+   * 剪切选中节点到剪贴板
+   * @param selectedNode 当前选中的节点
+   */
+  function cut(selectedNode: ComponentSchema | null): boolean {
+    if (!selectedNode?.id) return false;
+
+    // 复制节点到剪贴板
+    clipboardNode.value = deepClone(selectedNode);
+
+    // 查找并删除原节点
+    const data = findSchemaInfoById(pageSchema.schemas, selectedNode.id);
+    if (!data) return false;
+
+    const { index, list } = data;
+    list.splice(index, 1);
+
+    // 如果删除的是列表中最后一个元素，选中前一个元素
+    if (index === list.length) {
+      setSelectedNode(list[index - 1] || null);
+    } else {
+      setSelectedNode(list[index] || null);
+    }
+
+    revokePush('剪切组件');
+    return true;
+  }
+
   return {
     clipboardNode,
     copy,
+    cut,
     duplicate,
     paste,
   };
