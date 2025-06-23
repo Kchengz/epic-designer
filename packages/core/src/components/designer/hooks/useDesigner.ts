@@ -6,13 +6,13 @@ import type {
 
 import { reactive, ref, watchEffect } from 'vue';
 
+import { useClipboard } from '@epic-designer/hooks';
 import {
   deepClone,
   deepCompareAndModify,
   deepEqual,
   findSchemaById,
   findSchemaInfoById,
-  generateNewSchema,
   getMatchedById,
   pluginManager,
   usePageManager,
@@ -60,6 +60,13 @@ export function useDesigner(props, emit) {
   });
   const revoke = useRevoke(pageSchema, state, setSelectedNode);
 
+  // 使用封装的clipboard hook
+  const { copy, duplicate, paste } = useClipboard(
+    pageSchema,
+    setSelectedNode,
+    (message) => revoke.push(message),
+  );
+
   // 更新初始化数据
   watchEffect(() => {
     // 如果props.defaultSchema有值，则优先使用props.defaultSchema
@@ -77,21 +84,10 @@ export function useDesigner(props, emit) {
   pageManager.setDesignMode();
 
   /**
-   * 复制选中节点元素
+   * 复制并立即粘贴节点（复制当前节点）
    */
-  function handleCopy() {
-    const data = findSchemaInfoById(
-      pageSchema.schemas,
-      state.selectedNode?.id ?? 'root',
-    );
-    if (!data) return false;
-
-    const { index, schema, list } = data;
-    const node = generateNewSchema(schema);
-    list.splice(index + 1, 0, node);
-    setSelectedNode(node);
-
-    revoke.push('复制组件');
+  function handleDuplicate() {
+    return duplicate(state.selectedNode?.id);
   }
 
   /**
@@ -194,11 +190,17 @@ export function useDesigner(props, emit) {
   function setupHotkeys(target: Document | HTMLElement = document) {
     const keys = useMagicKeys({ target });
 
-    // 添加事件监听器来阻止Ctrl+S的默认行为
+    // 添加事件监听器来阻止默认行为
     target.addEventListener(
       'keydown',
       (e: KeyboardEvent) => {
+        // 阻止Ctrl+S的默认行为(保存)
         if (e.ctrlKey && e.key === 's') {
+          e.preventDefault();
+        }
+
+        // 阻止Ctrl+D的默认行为(添加书签)
+        if (e.ctrlKey && e.key === 'd') {
           e.preventDefault();
         }
       },
@@ -221,9 +223,19 @@ export function useDesigner(props, emit) {
         handleDelete();
       }
 
-      // 复制元素 (Ctrl+C)
+      // 复制元素到剪贴板 (Ctrl+C)
       if (keys['ctrl+c'].value && state.selectedNode) {
-        handleCopy();
+        copy(state.selectedNode);
+      }
+
+      // 粘贴元素 (Ctrl+V)
+      if (keys['ctrl+v'].value) {
+        return paste(state.selectedNode?.id);
+      }
+
+      // 复制并粘贴元素 (Ctrl+D)
+      if (keys['ctrl+d'].value && state.selectedNode) {
+        handleDuplicate();
       }
 
       // 撤销 (Ctrl+Z)
@@ -251,8 +263,8 @@ export function useDesigner(props, emit) {
   init();
 
   return {
-    handleCopy,
     handleDelete,
+    handleDuplicate,
     pageManager,
     pageSchema,
     ready,

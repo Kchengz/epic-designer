@@ -75,8 +75,8 @@ export interface PageSchema {
 }
 
 export interface Designer {
-  handleCopy: () => void;
   handleDelete: () => void;
+  handleDuplicate: () => void;
   handleImported: (data: PageSchema) => void;
   handleToggleDeviceMode: (mode: string) => void;
   preview: () => void;

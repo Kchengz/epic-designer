@@ -46,8 +46,8 @@ const ERightSidebar = loadAsyncComponent(
 const previewRef = ref<InstanceType<typeof EpicPreview> | null>(null);
 
 const {
-  handleCopy,
   handleDelete,
+  handleDuplicate,
   pageManager,
   pageSchema,
   ready,
@@ -76,8 +76,8 @@ provide(
 );
 
 provide('designer', {
-  handleCopy,
   handleDelete,
+  handleDuplicate,
   handleImported,
   handleToggleDeviceMode,
   preview: handlePreview,

@@ -4,9 +4,9 @@ import type {
   PageSchema,
 } from '@epic-designer/types';
 
-import { ref } from 'vue';
+import { shallowRef } from 'vue';
 
-import { deepCompareAndModify, findSchemaById } from '@epic-designer/utils';
+import { deepCompareAndModify, findSchemaById } from '../index';
 /**
  * 历史记录模型
  */
@@ -25,13 +25,13 @@ export function useRevoke(
   setSelectedNode: (schema?: ComponentSchema) => void,
 ) {
   // 历史记录
-  const recordList = ref<RecordModel[]>([]);
+  const recordList = shallowRef<RecordModel[]>([]);
 
   // 撤销记录，用于重做
-  const undoList = ref<RecordModel[]>([]);
+  const undoList = shallowRef<RecordModel[]>([]);
 
   // 当前记录用currentRecord变量暂时存储，当用户修改时，再存放到recordList
-  const currentRecord = ref<null | RecordModel>(null);
+  const currentRecord = shallowRef<null | RecordModel>(null);
 
   // 最后记录时间
   let lastPushTime = 0;

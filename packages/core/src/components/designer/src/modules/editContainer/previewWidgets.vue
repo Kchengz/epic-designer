@@ -360,7 +360,7 @@ defineExpose({
         <div
           title="复制"
           class="epic-widget-action-item pointer-events-auto"
-          @click="designer.handleCopy"
+          @click="designer.handleDuplicate"
         >
           <EpicIcon name="icon--epic--copy-all-outline-rounded" />
         </div>
