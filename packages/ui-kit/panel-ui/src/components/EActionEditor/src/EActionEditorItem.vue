@@ -45,7 +45,7 @@ function handleOpen(type: string) {
  */
 function getLabel(id: string) {
   const schema = findSchemaById(pageSchema.schemas, id);
-  return schema.label;
+  return schema?.label;
 }
 
 /**

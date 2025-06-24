@@ -73,9 +73,8 @@ describe('findSchemaById 函数测试', () => {
     });
   });
 
-  it('应该抛出错误当节点不存在', () => {
-    expect(() => findSchemaById(schemas, 'non_existent_id')).toThrowError(
-      '没有查询到id为non_existent_id的节点',
-    );
+  it('应该返回null当节点不存在', () => {
+    const result = findSchemaById(schemas, 'non_existent_id');
+    expect(result).toBeNull();
   });
 });

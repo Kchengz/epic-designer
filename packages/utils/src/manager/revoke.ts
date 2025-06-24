@@ -4,7 +4,7 @@ import type {
   PageSchema,
 } from '@epic-designer/types';
 
-import { shallowRef } from 'vue';
+import { effectScope, ref } from 'vue';
 
 import { deepCompareAndModify, findSchemaById } from '../index';
 /**
@@ -24,14 +24,23 @@ export function useRevoke(
   state: DesignerState,
   setSelectedNode: (schema?: ComponentSchema) => void,
 ) {
+  // 使用effectScope来管理所有的响应式效果
+  const scope = effectScope();
+
   // 历史记录
-  const recordList = shallowRef<RecordModel[]>([]);
+  const recordList = ref<RecordModel[]>([]);
 
   // 撤销记录，用于重做
-  const undoList = shallowRef<RecordModel[]>([]);
+  const undoList = ref<RecordModel[]>([]);
 
   // 当前记录用currentRecord变量暂时存储，当用户修改时，再存放到recordList
-  const currentRecord = shallowRef<null | RecordModel>(null);
+  const currentRecord = ref<null | RecordModel>(null);
+
+  // 最大记录数量
+  const MAX_RECORDS = 60;
+
+  // 记录防抖时间(ms)
+  const DEBOUNCE_TIME = 150;
 
   // 最后记录时间
   let lastPushTime = 0;
@@ -42,16 +51,34 @@ export function useRevoke(
    */
   const applyRecord = (record: RecordModel): void => {
     try {
-      deepCompareAndModify(pageSchema, JSON.parse(record.pageSchema));
+      // 使用JSON.parse解析存储的页面架构
+      const parsedSchema = JSON.parse(record.pageSchema);
 
+      // 应用变更到当前页面架构
+      deepCompareAndModify(pageSchema, parsedSchema);
+
+      // 恢复选中状态
       const selectedNode = record.selectedId
         ? findSchemaById(pageSchema.schemas, record.selectedId)
         : undefined;
 
-      setSelectedNode(selectedNode || undefined);
+      setSelectedNode(selectedNode ?? undefined);
     } catch (error) {
       console.error('解析历史记录失败:', error);
     }
+  };
+
+  /**
+   * @description: 创建当前状态的记录
+   * @param {string} type - 操作类型
+   * @return {RecordModel} 记录对象
+   */
+  const createRecord = (type: string): RecordModel => {
+    return {
+      pageSchema: JSON.stringify(pageSchema),
+      selectedId: state.selectedNode?.id,
+      type,
+    };
   };
 
   /**
@@ -60,40 +87,31 @@ export function useRevoke(
    * @return {void}
    */
   function push(type = '插入组件'): void {
-    // 加载数据前只有初始化记录时，直接使用加载的数据作为初始化记录
+    // 特殊情况：加载数据前只有初始化记录时，直接使用加载的数据作为初始化记录
     if (type === '加载数据' && currentRecord.value?.type === '初始化') {
-      // 将json转成字符串存储
-      currentRecord.value = {
-        pageSchema: JSON.stringify(pageSchema),
-        selectedId: state.selectedNode?.id,
-        type,
-      };
+      currentRecord.value = createRecord(type);
       return;
     }
 
     const nowTime = Date.now();
-    // 忽略低于150ms时间差的记录
-    if (lastPushTime + 150 > nowTime) {
+    // 防抖：忽略低于设定时间差的记录
+    if (lastPushTime + DEBOUNCE_TIME > nowTime) {
       return;
     }
     lastPushTime = nowTime;
 
-    // 判断之前是否已经存在currentRecord记录，有则存储到recordList
+    // 将当前记录添加到历史记录中
     if (currentRecord.value !== null) {
       recordList.value.push(currentRecord.value);
-      // 增加记录后则应该清空重做记录
+      // 增加新记录后清空重做记录
       undoList.value = [];
     }
 
-    // 将json转成字符串存储
-    currentRecord.value = {
-      pageSchema: JSON.stringify(pageSchema),
-      selectedId: state.selectedNode?.id,
-      type,
-    };
+    // 创建新的当前记录
+    currentRecord.value = createRecord(type);
 
-    // 最多存储60条记录，超过60条记录则删除之前的记录
-    if (recordList.value.length > 60) {
+    // 限制记录数量，超过最大数量则删除最早的记录
+    if (recordList.value.length > MAX_RECORDS) {
       recordList.value.shift();
     }
   }
@@ -108,6 +126,7 @@ export function useRevoke(
       return false;
     }
 
+    // 从历史记录中取出最后一条
     const recordObj = recordList.value.pop() as RecordModel;
 
     // 将当前记录添加到重做记录里面
@@ -115,7 +134,7 @@ export function useRevoke(
       undoList.value.push(currentRecord.value);
     }
 
-    // 丢弃当前记录，防止重复添加
+    // 更新当前记录并应用
     currentRecord.value = recordObj;
     applyRecord(recordObj);
     return true;
@@ -131,21 +150,22 @@ export function useRevoke(
       return false;
     }
 
+    // 从重做记录中取出最后一条
     const recordObj = undoList.value.pop() as RecordModel;
 
-    // 添加到重做记录里面
+    // 将当前记录添加到历史记录里面
     if (currentRecord.value !== null) {
       recordList.value.push(currentRecord.value);
     }
 
-    // 丢弃当前记录，防止重复添加
+    // 更新当前记录并应用
     currentRecord.value = recordObj;
     applyRecord(recordObj);
     return true;
   }
 
   /**
-   * @description: 重置
+   * @description: 重置所有记录
    * @return {void}
    */
   function reset(): void {
@@ -154,8 +174,33 @@ export function useRevoke(
     currentRecord.value = null;
   }
 
+  /**
+   * @description: 获取当前可撤销的操作数量
+   * @return {number} 可撤销的操作数量
+   */
+  function getUndoCount(): number {
+    return recordList.value.length;
+  }
+
+  /**
+   * @description: 获取当前可重做的操作数量
+   * @return {number} 可重做的操作数量
+   */
+  function getRedoCount(): number {
+    return undoList.value.length;
+  }
+
+  // 清理函数，在组件卸载时调用
+  function dispose() {
+    scope.stop();
+    reset();
+  }
+
   return {
     currentRecord,
+    dispose,
+    getRedoCount,
+    getUndoCount,
     push,
     recordList,
     redo,

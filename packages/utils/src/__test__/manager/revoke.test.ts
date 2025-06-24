@@ -1,109 +1,278 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import type { DesignerState } from '@epic-designer/types';
 
 import { useRevoke } from '../../';
 
 describe('useRevoke', () => {
-  it('应正确插入记录', () => {
-    const { currentRecord, push, recordList, undoList } = useRevoke();
+  // 模拟页面Schema和设计器状态
+  const mockPageSchema = { schemas: [] };
+  const mockState: DesignerState = { disabledHover: false, hoverNode: null, matched: [], selectedNode: null };
+  const mockSetSelectedNode = vi.fn();
 
-    const mockSchema1 = [{ type: 'component1' }];
-    const mockSchema2 = [{ type: 'component2' }];
-    push(mockSchema1, '插入组件');
-    setTimeout(() => {
-      // 延迟插入新记录
-      push(mockSchema2, '插入组件');
-      // 断言 recordList 中应包含一条记录
-      expect(recordList.value).toHaveLength(1);
-
-      // 未通过测试
-      expect(recordList.value[0].type).toBe('component1');
-      expect(JSON.parse(recordList.value[0].componentSchema)).toEqual(
-        mockSchema1,
-      );
-      // 断言 undoList 应为空
-      expect(undoList.value).toHaveLength(0);
-      // 断言 currentRecord 不为空
-      expect(currentRecord.value).not.toBeNull();
-    }, 200);
+  beforeEach(() => {
+    // 在每个测试前启用假定时器
+    vi.useFakeTimers();
+    // 重置所有模拟函数
+    vi.clearAllMocks();
   });
+
+  afterEach(() => {
+    // 在每个测试后恢复真实定时器
+    vi.useRealTimers();
+  });
+
+  it('应正确初始化', () => {
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    expect(revoke.recordList.value).toHaveLength(0);
+    expect(revoke.undoList.value).toHaveLength(0);
+    expect(revoke.currentRecord.value).toBeNull();
+  });
+
+  it('应正确插入记录', () => {
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    // 第一次push，currentRecord应该被设置，recordList应该为空
+    revoke.push('插入组件');
+    expect(revoke.currentRecord.value).not.toBeNull();
+    expect(revoke.currentRecord.value?.type).toBe('插入组件');
+    expect(revoke.recordList.value).toHaveLength(0);
+    
+    // 模拟时间间隔
+    vi.advanceTimersByTime(200);
+    
+    // 第二次push，之前的currentRecord应该被添加到recordList
+    revoke.push('修改组件');
+    expect(revoke.currentRecord.value?.type).toBe('修改组件');
+    expect(revoke.recordList.value).toHaveLength(1);
+    expect(revoke.recordList.value[0].type).toBe('插入组件');
+  });
+
   it('应正确撤销操作', () => {
-    const { currentRecord, push, recordList, redo, undo, undoList } =
-      useRevoke();
-
-    const mockSchema1 = [{ type: 'component1' }];
-    const mockSchema2 = [{ type: 'component2' }];
-
-    // 插入两条记录
-    push(mockSchema1, '插入组件1');
-    setTimeout(() => {
-      // 延迟插入新记录
-      push(mockSchema2, '插入组件2');
-
-      // 断言 recordList 中应包含两条记录
-      expect(recordList.value).toHaveLength(1);
-      expect(currentRecord.value).not.toBeNull();
-
-      const result = undo();
-
-      // 断言撤销后的结果应为第二条记录的组件 schema
-      expect(result).toEqual(mockSchema2);
-      // 断言 recordList 中应只剩下第一条记录
-      expect(recordList.value).toHaveLength(0);
-      // 断言 undoList 中应包含撤销的记录
-      expect(undoList.value).toHaveLength(1);
-      // 断言 currentRecord 不为空
-      expect(currentRecord.value).not.toBeNull();
-    }, 200);
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    // 准备两条记录
+    revoke.push('插入组件1');
+    vi.advanceTimersByTime(200);
+    revoke.push('插入组件2');
+    
+    // 撤销操作
+    revoke.undo();
+    
+    // 验证撤销结果
+    expect(revoke.recordList.value).toHaveLength(0);
+    expect(revoke.undoList.value).toHaveLength(1);
+    expect(revoke.undoList.value[0].type).toBe('插入组件2');
+    expect(revoke.currentRecord.value?.type).toBe('插入组件1');
+    
+    // 验证applyRecord被调用
+    expect(mockSetSelectedNode).toHaveBeenCalled();
   });
 
   it('应正确重做操作', () => {
-    const { currentRecord, push, recordList, redo, undo, undoList } =
-      useRevoke();
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    // 准备记录并撤销
+    revoke.push('插入组件1');
+    vi.advanceTimersByTime(200);
+    revoke.push('插入组件2');
+    revoke.undo();
+    
+    // 重置模拟函数计数
+    mockSetSelectedNode.mockClear();
+    
+    // 执行重做
+    revoke.redo();
+    
+    // 验证重做结果
+    expect(revoke.recordList.value).toHaveLength(1);
+    expect(revoke.recordList.value[0].type).toBe('插入组件1');
+    expect(revoke.undoList.value).toHaveLength(0);
+    expect(revoke.currentRecord.value?.type).toBe('插入组件2');
+    
+    // 验证applyRecord被调用
+    expect(mockSetSelectedNode).toHaveBeenCalled();
+  });
 
-    const mockSchema1 = [{ type: 'component1' }];
-    const mockSchema2 = [{ type: 'component2' }];
+  it('当没有记录时撤销应返回false', () => {
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    const result = revoke.undo();
+    expect(result).toBe(false);
+  });
 
-    // 插入记录并进行撤销
-    push(mockSchema1, '插入组件1');
-    setTimeout(() => {
-      // 延迟插入新记录
-      push(mockSchema2, '插入组件2');
-      undo();
-
-      // 断言撤销操作后，undoList 中应包含撤销的记录
-      expect(undoList.value).toHaveLength(1);
-      // 执行重做操作
-      const result = redo();
-
-      // 断言重做后的结果应为撤销的记录
-      expect(result).toEqual(mockSchema2);
-      // 断言 recordList 中应包含重做的记录
-      expect(recordList.value).toHaveLength(2);
-      // 断言 undoList 中应为空
-      expect(undoList.value).toHaveLength(0);
-      // 断言 currentRecord 不为空
-      expect(currentRecord.value).not.toBeNull();
-    }, 200);
+  it('当没有重做记录时重做应返回false', () => {
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    const result = revoke.redo();
+    expect(result).toBe(false);
   });
 
   it('应正确重置所有记录', () => {
-    const { currentRecord, push, recordList, redo, reset, undo, undoList } =
-      useRevoke();
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    // 准备记录
+    revoke.push('插入组件1');
+    vi.advanceTimersByTime(200);
+    revoke.push('插入组件2');
+    
+    // 执行重置
+    revoke.reset();
+    
+    // 验证重置结果
+    expect(revoke.recordList.value).toHaveLength(0);
+    expect(revoke.undoList.value).toHaveLength(0);
+    expect(revoke.currentRecord.value).toBeNull();
+  });
 
-    const mockSchema1 = [{ type: 'component1' }];
-    const mockSchema2 = [{ type: 'component2' }];
+  it('应处理加载数据的特殊情况', () => {
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    // 先设置初始化记录
+    revoke.push('初始化');
+    
+    // 然后加载数据
+    revoke.push('加载数据');
+    
+    // 验证结果 - 应该只更新currentRecord而不添加到recordList
+    expect(revoke.recordList.value).toHaveLength(0);
+    expect(revoke.currentRecord.value?.type).toBe('加载数据');
+  });
 
-    // 插入记录
-    push(mockSchema1, '插入组件1');
-    push(mockSchema2, '插入组件2');
-    undo();
+  it('应限制记录数量不超过60条', () => {
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    // 添加61条记录
+    revoke.push('初始记录');
+    
+    for (let i = 0; i < 61; i++) {
+      vi.advanceTimersByTime(200);
+      revoke.push(`记录${i}`);
+    }
+    
+    // 验证结果 - recordList应该只有60条，最早的记录应该被移除
+    expect(revoke.recordList.value).toHaveLength(60);
+    expect(revoke.recordList.value[0].type).toBe('记录0');
+    expect(revoke.currentRecord.value?.type).toBe('记录60');
+  });
 
-    // 执行重置操作
-    reset();
+  it('应忽略短时间内的重复记录', () => {
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    // 添加第一条记录
+    revoke.push('记录1');
+    
+    // 短时间内添加第二条记录（不到150ms）
+    vi.advanceTimersByTime(100);
+    revoke.push('记录2');
+    
+    // 验证结果 - 第二条记录应该被忽略
+    expect(revoke.recordList.value).toHaveLength(0);
+    expect(revoke.currentRecord.value?.type).toBe('记录1');
+    
+    // 足够时间后添加第三条记录
+    vi.advanceTimersByTime(200);
+    revoke.push('记录3');
+    
+    // 验证结果 - 第三条记录应该被添加
+    expect(revoke.recordList.value).toHaveLength(1);
+    expect(revoke.recordList.value[0].type).toBe('记录1');
+    expect(revoke.currentRecord.value?.type).toBe('记录3');
+  });
 
-    // 断言所有记录都应被清空
-    expect(recordList.value).toHaveLength(0);
-    expect(undoList.value).toHaveLength(0);
-    expect(currentRecord.value).toBeNull();
+  it('应正确获取可撤销和可重做的操作数量', () => {
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    // 初始状态
+    expect(revoke.getUndoCount()).toBe(0);
+    expect(revoke.getRedoCount()).toBe(0);
+    
+    // 添加记录
+    revoke.push('记录1');
+    vi.advanceTimersByTime(200);
+    revoke.push('记录2');
+    
+    // 添加记录后
+    expect(revoke.getUndoCount()).toBe(1);
+    expect(revoke.getRedoCount()).toBe(0);
+    
+    // 撤销操作
+    revoke.undo();
+    
+    // 撤销后
+    expect(revoke.getUndoCount()).toBe(0);
+    expect(revoke.getRedoCount()).toBe(1);
+    
+    // 重做操作
+    revoke.redo();
+    
+    // 重做后
+    expect(revoke.getUndoCount()).toBe(1);
+    expect(revoke.getRedoCount()).toBe(0);
+  });
+
+  it('应正确处理dispose方法', () => {
+    const revoke = useRevoke(
+      mockPageSchema,
+      mockState,
+      mockSetSelectedNode
+    );
+    
+    // 添加一些记录
+    revoke.push('记录1');
+    vi.advanceTimersByTime(200);
+    revoke.push('记录2');
+    
+    // 调用dispose方法
+    revoke.dispose();
+    
+    // 验证所有记录都被清空
+    expect(revoke.recordList.value).toHaveLength(0);
+    expect(revoke.undoList.value).toHaveLength(0);
+    expect(revoke.currentRecord.value).toBeNull();
   });
 });
