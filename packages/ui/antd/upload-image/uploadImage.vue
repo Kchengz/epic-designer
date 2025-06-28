@@ -8,7 +8,7 @@ import type {
 import { computed, nextTick, ref, useAttrs, watch } from 'vue';
 
 import { getUUID } from '@epic-designer/utils';
-import { Image, message, Upload } from 'ant-design-vue';
+import { Form, Image, message, Upload } from 'ant-design-vue';
 
 const props = withDefaults(
   defineProps<{
@@ -22,6 +22,7 @@ const props = withDefaults(
 );
 
 const emits = defineEmits(['update:modelValue', 'change']);
+const formItemContext = Form.useInjectFormItemContext();
 const attrs = useAttrs();
 const fileList = ref<UploadProps['fileList']>([]);
 let urlString = '';
@@ -41,6 +42,7 @@ watch(
       .join(',');
     emits('update:modelValue', urlString);
     emits('change', urlString);
+    formItemContext.onFieldChange();
   },
 );
 // 处理传递进来的值

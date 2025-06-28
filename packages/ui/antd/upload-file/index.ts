@@ -65,7 +65,7 @@ export default {
       },
       {
         componentProps: {
-          ruleType: 'array',
+          ruleType: 'string',
         },
         description: '校验规则需要配合表单使用',
         field: 'rules',
