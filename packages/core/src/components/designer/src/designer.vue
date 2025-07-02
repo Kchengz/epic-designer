@@ -113,6 +113,7 @@ async function setDisabledHover(disabledHover = false) {
  */
 function setData(schema: PageSchema) {
   pageManager.setPageSchema(schema);
+  setSelectedNode();
   revoke.push('加载数据');
 }
 
