@@ -28,12 +28,12 @@ const previewJson = ref<InstanceType<typeof EpicPreviewJson> | null>(null);
 const deviceOptions = [
   {
     icon: 'icon--epic--computer-outline-rounded',
-    key: 'pc',
+    key: 'desktop',
     title: 'pc',
   },
   {
     icon: 'icon--epic--tablet-android-outline-rounded',
-    key: 'pad',
+    key: 'tablet',
     title: '平板',
   },
   {
@@ -89,21 +89,57 @@ const actionOptions = computed(() => {
   ];
 });
 
+// 兼容旧数据的映射关系
+const legacyModeMap = {
+  mobile: 'mobile',
+  pad: 'tablet',
+  pc: 'desktop',
+} as const;
+
 const canvasConfigs = {
+  desktop: {},
   mobile: {
     mode: 'mobile',
     width: '390px',
   },
+  // 保留旧配置以兼容旧数据
   pad: {
-    mode: 'pad',
+    mode: 'tablet',
     width: '780px',
   },
-  pc: {},
+  pc: {
+    mode: 'desktop',
+  },
+  tablet: {
+    mode: 'tablet',
+    width: '780px',
+  },
 };
+
+// 规范化模式值，将旧模式枚举转换为新模式枚举
+function normalizeMode(
+  mode: string | undefined,
+): 'desktop' | 'mobile' | 'tablet' {
+  if (!mode) return 'desktop';
+
+  // 如果是旧模式枚举，转换为新模式枚举
+  if (mode in legacyModeMap) {
+    return legacyModeMap[mode as keyof typeof legacyModeMap];
+  }
+
+  // 如果已经是新模式枚举，直接返回
+  if (['desktop', 'mobile', 'tablet'].includes(mode)) {
+    return mode as 'desktop' | 'mobile' | 'tablet';
+  }
+
+  // 默认返回 desktop
+  return 'desktop';
+}
 
 const selectedKey = computed({
   get() {
-    return pageSchema.canvas?.mode ?? 'pc';
+    const currentMode = pageSchema.canvas?.mode;
+    return normalizeMode(currentMode);
   },
   set(type: string) {
     designer.handleToggleDeviceMode(type);
@@ -204,6 +240,15 @@ function handleImportData(content?: string) {
     if (!schema.schemas) {
       // 兼容 处理kform表单数据
       schema = convertKFormData(schema);
+    }
+
+    // 迁移旧的 canvas mode 数据
+    if (schema.canvas?.mode) {
+      const currentMode = schema.canvas.mode;
+      if (currentMode in legacyModeMap) {
+        schema.canvas.mode =
+          legacyModeMap[currentMode as keyof typeof legacyModeMap];
+      }
     }
 
     // 调用 deepCompareAndModify 函数比较 pageSchema 和传入的 schema，进行修改

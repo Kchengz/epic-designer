@@ -1,6 +1,7 @@
 import { PageSchema } from '@epic-designer/types';
 
 export interface DesignerProps {
+  canvasMode?: 'desktop' | 'mobile' | 'tablet';
   defaultSchema?: PageSchema;
   disabledZoom?: boolean;
   draggable?: boolean;

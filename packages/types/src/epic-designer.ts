@@ -67,7 +67,7 @@ export interface DesignerState {
 export interface PageSchema {
   canvas?: {
     height?: string;
-    mode?: string;
+    mode?: 'desktop' | 'mobile' | 'pad' | 'pc' | 'tablet'; // 支持新旧模式  'pad' | 'pc' 为旧数据
     width?: string;
   };
   schemas: ComponentSchema[];
