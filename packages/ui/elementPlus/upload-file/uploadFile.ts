@@ -53,36 +53,13 @@ export default defineComponent({
       { immediate: true },
     );
 
-    // function handleChange : UploadProps['onChange']  (e: UploadUserFile[]) => {
-    //   nextTick(() => { fileList.value = e })
-    // }
-    const handleChange: UploadProps['onChange'] = (): void => {
-      // nextTick(() => {
-      //   fileList.value = uploadFiles;
-      // });
+    // 删除文件
+    const handleRemove = (
+      _file: UploadUserFile,
+      uploadFiles: UploadUserFile[],
+    ) => {
+      fileList.value = uploadFiles;
     };
-    // 处理数据结果
-    // const handleChange = (info: UploadChangeParam): void => {
-    //   if (info.file.status === 'uploading') {
-    //     return
-    //   }
-    //
-    //   if (info.file.status === 'success') {
-    //     // Get this url from response in real world.
-    //     const url = info.file.response?.data?.url
-    //     if (!info.file.url && !url) {
-    //       info.file.status = 'error'
-    //       ElMessage.error('上传失败')
-    //       return
-    //     }
-    //     // 赋值url
-    //     info.file.url = url
-    //   }
-    //
-    //   if (info.file.status === 'error') {
-    //     ElMessage.error('upload error')
-    //   }
-    // }
 
     // 上传前处理
     const beforeUpload: UploadProps['beforeUpload'] = (): void => {
@@ -117,8 +94,8 @@ export default defineComponent({
     const getUploadProps = computed<UploadProps>(() => ({
       ...attrs,
       onBeforeUpload: beforeUpload,
-      onChange: handleChange,
       onError: handleError,
+      onRemove: handleRemove,
       onSuccess: handleSuccess,
       'file-list': fileList.value,
     }));

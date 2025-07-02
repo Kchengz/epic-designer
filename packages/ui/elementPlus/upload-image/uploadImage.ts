@@ -7,7 +7,7 @@ import { ElImageViewer, ElMessage, ElUpload } from 'element-plus';
 
 // 封装上传文件组件
 export default defineComponent({
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'change'],
   props: {
     modelValue: {
       default: '',
@@ -32,6 +32,7 @@ export default defineComponent({
           .map((file) => file.url)
           .join(',');
         emit('update:modelValue', urlString);
+        emit('change', urlString);
       },
     );
     // 处理传递进来的值
@@ -57,35 +58,13 @@ export default defineComponent({
       { deep: true, immediate: true },
     );
 
-    const handleChange: UploadProps['onChange'] = (): void => {
-      // nextTick(() => {
-      //   fileList.value = uploadFiles;
-      // });
+    // 删除文件
+    const handleRemove = (
+      _file: UploadUserFile,
+      uploadFiles: UploadUserFile[],
+    ) => {
+      fileList.value = uploadFiles;
     };
-
-    // 处理数据结果
-    // const handleChange = (info: UploadChangeParam): void => {
-    //   if (info.file.status === 'uploading') {
-    //     return
-    //   }
-    //
-    //   if (info.file.status === 'done') {
-    //     // Get this url from response in real world.
-    //     const url: string | undefined = info.file.response?.data?.url
-    //     if (!info.file.url && !url) {
-    //       info.file.status = 'error'
-    //       message.error('上传失败')
-    //       return
-    //     }
-    //     // 赋值url
-    //     info.file.url = url
-    //     info.file.thumbUrl = url
-    //   }
-    //
-    //   if (info.file.status === 'error') {
-    //     message.error('upload error')
-    //   }
-    // }
 
     /**
      * 预览功能
@@ -129,9 +108,9 @@ export default defineComponent({
       ...attrs,
       accept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
       onBeforeUpload: beforeUpload,
-      onChange: handleChange,
       onError: handleError,
       onPreview: handlePreview,
+      onRemove: handleRemove,
       onSuccess: handleSuccess,
       'file-list': fileList.value,
       'list-type': 'picture-card',
