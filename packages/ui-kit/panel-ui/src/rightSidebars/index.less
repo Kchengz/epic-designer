@@ -4,18 +4,16 @@
   padding: 16px;
   .epic-attr-item {
     display: flex;
-    // align-items  : center;
     margin-bottom: 12px;
 
     &.vertical {
       display: block;
     }
 
-    // &:hover{
-    //   background-color: var(--epic-primary-color);
-    // }
     .epic-attr-label {
       width: 80px;
+      min-width: 80px;
+      flex-shrink: 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -25,6 +23,7 @@
 
     .epic-attr-input {
       flex: 1;
+      min-width: 0;
       display: flex;
       align-items: center;
     }
