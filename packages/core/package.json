@@ -1,6 +1,6 @@
 {
   "name": "@epic-designer/core",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "基于vue3的设计器,可视化开发页面表单",
   "private": false,
   "keywords": [
