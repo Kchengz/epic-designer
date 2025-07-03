@@ -67,6 +67,18 @@ export function useDesigner(props, emit) {
     (message) => revoke.push(message),
   );
 
+  const canvasConfigs = {
+    desktop: {},
+    mobile: {
+      mode: 'mobile',
+      width: '390px',
+    },
+    tablet: {
+      mode: 'tablet',
+      width: '780px',
+    },
+  };
+
   // 更新初始化数据
   watchEffect(() => {
     // 如果props.defaultSchema有值，则优先使用props.defaultSchema
@@ -76,6 +88,13 @@ export function useDesigner(props, emit) {
       // 切换表单模式默认schema数据
       innerDefaultSchema.schemas = pluginManager.formSchema;
     }
+
+    const canvasMode = props.canvasMode ?? 'desktop';
+    // 根据canvasMode设置对应的画布属性
+    pageSchema.canvas = {
+      mode: canvasMode,
+      ...canvasConfigs[canvasMode],
+    };
     // 记录默认组件id
     pageManager.setDefaultComponentIds(innerDefaultSchema.schemas);
   });

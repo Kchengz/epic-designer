@@ -16,6 +16,7 @@ import { useDesigner } from '../hooks/useDesigner';
 import EpicPreview from './modules/preview/index.vue';
 
 const props = withDefaults(defineProps<DesignerProps>(), {
+  canvasMode: 'desktop',
   disabledZoom: false,
   draggable: true,
   formMode: false,
