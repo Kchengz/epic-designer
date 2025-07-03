@@ -90,6 +90,10 @@ export default defineConfig({
               link: '/guide/start/dark-mode',
               text: '暗黑模式',
             },
+            {
+              link: '/guide/other/hotkeys',
+              text: '快捷键',
+            },
           ],
         },
         {
