@@ -538,23 +538,41 @@ background: white;
 </style>
 
 ## Epic Methods
+### defineExpose
 
-#### defineExpose
+类型：`(exposed: Record<string, any>) => void`
 
-类型：`(exposed:Record<string, any>) => void `
+说明：暴露自定义函数或属性供外部访问（仅需执行一次）
 
-说明：暴露的自定义函数或者属性，注：该方法仅需要执行一次
+### find
 
-#### find
+类型：`(queryValue: string, queryField?: string) => EpicNodeInstance['exposed'] | null`
 
-类型：`(id: string) => ComponentPublicInstance `
+说明：根据指定字段查找组件实例并返回其暴露的属性和方法
 
-说明：通过id获取组件实例
+### findAll
 
-#### getComponent
+类型：`(queryValue: string, queryField?: string) => EpicNodeInstance['exposed'][]`
 
-类型：`(id: string) => ComponentPublicInstance `
+说明：根据指定字段查找所有匹配的组件实例并返回其暴露的属性和方法数组
 
-说明：通过id获取组件实例，跟find函数效果一致，find函数名称更简短
+### findInstance
+
+类型：`(queryValue: string, queryField?: string) => EpicNodeInstance | null`
+
+说明：根据指定字段查找组件实例并返回完整的组件实例对象
+
+### findInstanceAll
+
+类型：`(queryValue: string, queryField?: string) => EpicNodeInstance[]`
+
+说明：根据指定字段查找所有匹配的组件实例并返回完整的组件实例对象数组
+
+
+ ### ~~getComponent~~
+
+类型：`(id: string) => ComponentPublicInstance`
+
+说明：通过 ID 获取组件实例，功能与 find 函数一致
 
 > 除以上方法外还包含所有公共函数

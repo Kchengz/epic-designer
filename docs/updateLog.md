@@ -1,3 +1,27 @@
+## 1.0.2（2025-07-03）
+### ✨ Feat
+- 新增快捷键操作
+- 新增canvasMode属性设置默认画布模式
+- 新增usePanel面板状态管理函数
+- 新增setFormSchema函数
+### ✨ Refactor
+- findAllInstance函数修改为findInstanceAll
+- 重构EDesigner组件，使用hooks封装逻辑函数
+- 重构findSchemaById函数
+- 重构useRevoke函数
+### 🐛 Bug Fixes
+- 修复在弹窗组件加载EDesigner组件时，画布初始化异常问题
+- 修复组件初始化前调用隐藏显示侧边栏活动栏方法无效问题
+- 修复EBuilder组件pageSchema默认值设置为null报错问题
+- 将unocss配置文件中的排除项移入content.pipeline.exclude，以修复构建报错问题
+- 修复使用 Naive UI 报错问题
+- 修复使用 Navie UI 时重置表单校验找不到函数问题
+- 修复其余 UI 依赖也会传递问题
+- 修复图片文件上传组件校验无法正常校验问题
+- 修复设计器已存在数据并已经选择组件，重新setData数据后，再点击左侧组件插入报错异常
+- 修复ElementPlus上传组件删除文件后，数据未清空问题
+- 修复属性标签被输入内容挤压的布局问题
+
 ## 1.0.1（2025-03-17）
 ### ✨ Feat
 - 组件暴露schema对象,可通过find函数获取并修改组件的schema属性

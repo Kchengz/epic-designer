@@ -83,17 +83,18 @@ background: white;
 
 ## API
 
-| 参数                  | 说明                                                       | 类型       | 默认值 | 版本   |
-| --------------------- | ---------------------------------------------------------- | ---------- | ------ | ------ |
-| title                 | 设计器头部标题                                             | string     | -      | 0.9.7  |
-| defaultSchema         | 默认pageSchema，初始化和重置设计器将以该数据为基础模板     | PageSchema | -      | 0.9.6  |
-| lockDefaultSchemaEdit | 锁定defaultSchema中组件不可以复制或移除                    | boolean    | false  | 0.9.7  |
-| disabledZoom          | 是否禁止画布缩放                                           | boolean    | false  | -      |
-| draggable             | 是否允许拖拽画布                                           | boolean    | false  | 0.9.27 |
-| hiddenHeader          | 隐藏头部                                                   | boolean    | false  | -      |
-| formMode              | 单表单模式，开启后不可再拖入表单，根节点默认切换为表单组件 | boolean    | false  | 0.9.19 |
-| sourceCodeReadOnly    | 设置`源码`面板为只读状态                                   | boolean    | false  | 0.9.20 |
-| hidePreviewConfirm    | 隐藏预览页面`表单数据`按钮                                 | boolean    | false  | 0.9.26 |
+| 参数                  | 说明                                                       | 类型                               | 默认值    | 版本   |
+| --------------------- | ---------------------------------------------------------- | ---------------------------------- | --------- | ------ |
+| title                 | 设计器头部标题                                             | string                             | -         | 0.9.7  |
+| defaultSchema         | 默认pageSchema，初始化和重置设计器将以该数据为基础模板     | PageSchema                         | -         | 0.9.6  |
+| lockDefaultSchemaEdit | 锁定defaultSchema中组件不可以复制或移除                    | boolean                            | false     | 0.9.7  |
+| disabledZoom          | 是否禁止画布缩放                                           | boolean                            | false     | -      |
+| draggable             | 是否允许拖拽画布                                           | boolean                            | false     | 0.9.27 |
+| canvasMode            | 设置默认画布模式                                           | `'desktop'`, `'mobile'`, `'tablet'` | `'desktop'` | 1.0.2 |
+| hiddenHeader          | 隐藏头部                                                   | boolean                            | false     | -      |
+| formMode              | 单表单模式，开启后不可再拖入表单，根节点默认切换为表单组件 | boolean                            | false     | 0.9.19 |
+| sourceCodeReadOnly    | 设置`源码`面板为只读状态                                   | boolean                            | false     | 0.9.20 |
+| hidePreviewConfirm    | 隐藏预览页面`表单数据`按钮                                 | boolean                            | false     | 0.9.26 |
 
 ## 函数
 

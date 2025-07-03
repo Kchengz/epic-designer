@@ -83,20 +83,34 @@ function handleReady(pageManager: PageManager) {
 
 ## Methods
 
-#### find
+### find
 
-类型：`(queryValue: string, queryField = 'id') => ComponentPublicInstance | undefined `
+类型：`(queryValue: string, queryField?: string) => EpicNodeInstance['exposed'] | null`
 
-说明：用于获取组件实例，只找到一个组件并返回一个组件
+说明：根据指定字段查找组件实例并返回其暴露的属性和方法
 
-#### ~~getComponentInstance~~
+### findAll
+
+类型：`(queryValue: string, queryField?: string) => EpicNodeInstance['exposed'][]`
+
+说明：根据指定字段查找所有匹配的组件实例并返回其暴露的属性和方法数组
+
+### findInstance
+
+类型：`(queryValue: string, queryField?: string) => EpicNodeInstance | null`
+
+说明：根据指定字段查找组件实例并返回完整的组件实例对象
+
+### findInstanceAll
+
+类型：`(queryValue: string, queryField?: string) => EpicNodeInstance[]`
+
+说明：根据指定字段查找所有匹配的组件实例并返回完整的组件实例对象数组
+
+### ~~getComponentInstance~~
 
 ~~类型：`(queryValue: string, queryField = 'id') => ComponentPublicInstance | undefined `~~
 
 ~~说明：通过id获取组件实例，与find函数相同，推荐使用find函数~~
 
-#### findAll
 
-类型：`(queryValue: string, queryField = 'id') => ComponentPublicInstance[] `
-
-说明：用于获取所有满足条件的组件实例
