@@ -31,6 +31,16 @@ export function useBuilder() {
    */
   async function getFormInstance(formName = 'default'): Promise<any> {
     await waitReady();
+
+    // 获取所有表单的键
+    const formKeys = Object.keys(forms.value || {});
+
+    // 如果只有一个表单，直接返回该表单
+    if (formKeys.length === 1) {
+      return forms.value[formKeys[0]];
+    }
+
+    // 多个表单时按formName获取
     const form = forms.value?.[formName];
     if (!form) throw new Error(`表单 [name=${formName}] 不存在`);
     return form;
@@ -63,8 +73,14 @@ export function useBuilder() {
    * @param {string} formName 表单名称
    */
   function setData(data: FormDataModel, formName = 'default') {
-    pageManager.setFormData(data, formName);
-    const form = forms.value?.[formName];
+    // 获取所有表单的键
+    const formKeys = Object.keys(forms.value || {});
+
+    // 如果只有一个表单，使用该表单的名称
+    const targetFormName = formKeys.length === 1 ? formKeys[0] : formName;
+
+    pageManager.setFormData(data, targetFormName);
+    const form = forms.value?.[targetFormName];
     form?.clearValidate?.() ?? form?.restoreValidation?.();
   }
 
