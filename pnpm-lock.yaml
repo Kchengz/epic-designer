@@ -133,6 +133,9 @@ importers:
       element-plus:
         specifier: ^2.9.1
         version: 2.9.6(vue@3.5.13(typescript@5.8.2))
+      magic-string:
+        specifier: ^0.30.17
+        version: 0.30.17
       monaco-editor:
         specifier: ^0.52.2
         version: 0.52.2
@@ -258,7 +261,7 @@ importers:
     devDependencies:
       unocss:
         specifier: ^0.65.3
-        version: 0.65.4(postcss@8.5.3)(rollup@4.34.9)(vite@5.4.14(@types/node@22.13.9)(less@4.2.2))(vue@3.5.13(typescript@5.8.2))
+        version: 0.65.4(postcss@8.5.3)(rollup@4.34.9)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))(vue@3.5.13(typescript@5.8.2))
       vitest:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@22.13.9)(jsdom@26.0.0)(less@4.2.2)
@@ -1384,61 +1387,51 @@ packages:
     resolution: {integrity: sha512-88I+D3TeKItrw+Y/2ud4Tw0+3CxQ2kLgu3QvrogZ0OfkmX/DEppehus7L3TS2Q4lpB+hYyxhkQiYPJ6Mf5/dPg==}
     cpu: [arm]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.34.9':
     resolution: {integrity: sha512-3qyfWljSFHi9zH0KgtEPG4cBXHDFhwD8kwg6xLfHQ0IWuH9crp005GfoUUh/6w9/FWGBwEHg3lxK1iHRN1MFlA==}
     cpu: [arm]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.34.9':
     resolution: {integrity: sha512-6TZjPHjKZUQKmVKMUowF3ewHxctrRR09eYyvT5eFv8w/fXarEra83A2mHTVJLA5xU91aCNOUnM+DWFMSbQ0Nxw==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.34.9':
     resolution: {integrity: sha512-LD2fytxZJZ6xzOKnMbIpgzFOuIKlxVOpiMAXawsAZ2mHBPEYOnLRK5TTEsID6z4eM23DuO88X0Tq1mErHMVq0A==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-loongarch64-gnu@4.34.9':
     resolution: {integrity: sha512-dRAgTfDsn0TE0HI6cmo13hemKpVHOEyeciGtvlBTkpx/F65kTvShtY/EVyZEIfxFkV5JJTuQ9tP5HGBS0hfxIg==}
     cpu: [loong64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-powerpc64le-gnu@4.34.9':
     resolution: {integrity: sha512-PHcNOAEhkoMSQtMf+rJofwisZqaU8iQ8EaSps58f5HYll9EAY5BSErCZ8qBDMVbq88h4UxaNPlbrKqfWP8RfJA==}
     cpu: [ppc64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.34.9':
     resolution: {integrity: sha512-Z2i0Uy5G96KBYKjeQFKbbsB54xFOL5/y1P5wNBsbXB8yE+At3oh0DVMjQVzCJRJSfReiB2tX8T6HUFZ2k8iaKg==}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-s390x-gnu@4.34.9':
     resolution: {integrity: sha512-U+5SwTMoeYXoDzJX5dhDTxRltSrIax8KWwfaaYcynuJw8mT33W7oOgz0a+AaXtGuvhzTr2tVKh5UO8GVANTxyQ==}
     cpu: [s390x]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.34.9':
     resolution: {integrity: sha512-FwBHNSOjUTQLP4MG7y6rR6qbGw4MFeQnIBrMe161QGaQoBQLqSUEKlHIiVgF3g/mb3lxlxzJOpIBhaP+C+KP2A==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.34.9':
     resolution: {integrity: sha512-cYRpV4650z2I3/s6+5/LONkjIz8MBeqrk+vPXV10ORBnshpn8S32bPqQ2Utv39jCiDcO2eJTuSlPXpnvmaIgRA==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-win32-arm64-msvc@4.34.9':
     resolution: {integrity: sha512-z4mQK9dAN6byRA/vsSgQiPeuO63wdiDxZ9yg9iyX2QTzKuQM7T4xlBoeUP/J8uiFkqxkcWndWi+W7bXdPbt27Q==}
@@ -6466,18 +6459,6 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@unocss/astro@0.65.4(rollup@4.34.9)(vite@5.4.14(@types/node@22.13.9)(less@4.2.2))(vue@3.5.13(typescript@5.8.2))':
-    dependencies:
-      '@unocss/core': 0.65.4
-      '@unocss/reset': 0.65.4
-      '@unocss/vite': 0.65.4(rollup@4.34.9)(vite@5.4.14(@types/node@22.13.9)(less@4.2.2))(vue@3.5.13(typescript@5.8.2))
-    optionalDependencies:
-      vite: 5.4.14(@types/node@22.13.9)(less@4.2.2)
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-      - vue
-
   '@unocss/astro@0.65.4(rollup@4.34.9)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       '@unocss/core': 0.65.4
@@ -6617,22 +6598,6 @@ snapshots:
   '@unocss/transformer-variant-group@0.65.4':
     dependencies:
       '@unocss/core': 0.65.4
-
-  '@unocss/vite@0.65.4(rollup@4.34.9)(vite@5.4.14(@types/node@22.13.9)(less@4.2.2))(vue@3.5.13(typescript@5.8.2))':
-    dependencies:
-      '@ampproject/remapping': 2.3.0
-      '@rollup/pluginutils': 5.1.4(rollup@4.34.9)
-      '@unocss/config': 0.65.4
-      '@unocss/core': 0.65.4
-      '@unocss/inspector': 0.65.4(vue@3.5.13(typescript@5.8.2))
-      chokidar: 3.6.0
-      magic-string: 0.30.17
-      tinyglobby: 0.2.12
-      vite: 5.4.14(@types/node@22.13.9)(less@4.2.2)
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-      - vue
 
   '@unocss/vite@0.65.4(rollup@4.34.9)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))(vue@3.5.13(typescript@5.8.2))':
     dependencies:
@@ -9970,33 +9935,6 @@ snapshots:
   universalify@0.1.2: {}
 
   universalify@2.0.1: {}
-
-  unocss@0.65.4(postcss@8.5.3)(rollup@4.34.9)(vite@5.4.14(@types/node@22.13.9)(less@4.2.2))(vue@3.5.13(typescript@5.8.2)):
-    dependencies:
-      '@unocss/astro': 0.65.4(rollup@4.34.9)(vite@5.4.14(@types/node@22.13.9)(less@4.2.2))(vue@3.5.13(typescript@5.8.2))
-      '@unocss/cli': 0.65.4(rollup@4.34.9)
-      '@unocss/core': 0.65.4
-      '@unocss/postcss': 0.65.4(postcss@8.5.3)
-      '@unocss/preset-attributify': 0.65.4
-      '@unocss/preset-icons': 0.65.4
-      '@unocss/preset-mini': 0.65.4
-      '@unocss/preset-tagify': 0.65.4
-      '@unocss/preset-typography': 0.65.4
-      '@unocss/preset-uno': 0.65.4
-      '@unocss/preset-web-fonts': 0.65.4
-      '@unocss/preset-wind': 0.65.4
-      '@unocss/transformer-attributify-jsx': 0.65.4
-      '@unocss/transformer-compile-class': 0.65.4
-      '@unocss/transformer-directives': 0.65.4
-      '@unocss/transformer-variant-group': 0.65.4
-      '@unocss/vite': 0.65.4(rollup@4.34.9)(vite@5.4.14(@types/node@22.13.9)(less@4.2.2))(vue@3.5.13(typescript@5.8.2))
-    optionalDependencies:
-      vite: 5.4.14(@types/node@22.13.9)(less@4.2.2)
-    transitivePeerDependencies:
-      - postcss
-      - rollup
-      - supports-color
-      - vue
 
   unocss@0.65.4(postcss@8.5.3)(rollup@4.34.9)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))(vue@3.5.13(typescript@5.8.2)):
     dependencies:

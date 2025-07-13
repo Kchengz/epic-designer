@@ -1,28 +1,31 @@
 import fs from 'node:fs';
 import path from 'node:path';
+
 import MagicString from 'magic-string';
+
+// eslint-disable-next-line no-var, import/no-mutable-exports
 export var Languages;
 (function (Languages) {
-    Languages["bg"] = "bg";
-    Languages["cs"] = "cs";
-    Languages["de"] = "de";
-    Languages["en_gb"] = "en-gb";
-    Languages["es"] = "es";
-    Languages["fr"] = "fr";
-    Languages["hu"] = "hu";
-    Languages["id"] = "id";
-    Languages["it"] = "it";
-    Languages["ja"] = "ja";
-    Languages["ko"] = "ko";
-    Languages["nl"] = "nl";
-    Languages["pl"] = "pl";
-    Languages["ps"] = "ps";
-    Languages["pt_br"] = "pt-br";
-    Languages["ru"] = "ru";
-    Languages["tr"] = "tr";
-    Languages["uk"] = "uk";
-    Languages["zh_hans"] = "zh-hans";
-    Languages["zh_hant"] = "zh-hant";
+  Languages.bg = 'bg';
+  Languages.cs = 'cs';
+  Languages.de = 'de';
+  Languages.en_gb = 'en-gb';
+  Languages.es = 'es';
+  Languages.fr = 'fr';
+  Languages.hu = 'hu';
+  Languages.id = 'id';
+  Languages.it = 'it';
+  Languages.ja = 'ja';
+  Languages.ko = 'ko';
+  Languages.nl = 'nl';
+  Languages.pl = 'pl';
+  Languages.ps = 'ps';
+  Languages.pt_br = 'pt-br';
+  Languages.ru = 'ru';
+  Languages.tr = 'tr';
+  Languages.uk = 'uk';
+  Languages.zh_hans = 'zh-hans';
+  Languages.zh_hant = 'zh-hant';
 })(Languages || (Languages = {}));
 /**
  * 在vite中dev模式下会使用esbuild对node_modules进行预编译，导致找不到映射表中的filepath，
@@ -31,85 +34,98 @@ export var Languages;
  * @returns
  */
 export function esbuildPluginMonacoEditorNls(options) {
-    options = Object.assign({ locale: Languages.en_gb }, options);
-    const CURRENT_LOCALE_DATA = getLocalizeMapping(options.locale, options.localeData);
-    return {
-        name: 'esbuild-plugin-monaco-editor-nls',
-        setup(build) {
-            build.onLoad({ filter: /esm[/\\]vs[/\\]nls\.js/ }, async () => {
-                return {
-                    contents: getLocalizeCode(CURRENT_LOCALE_DATA),
-                    loader: 'js',
-                };
-            });
-            build.onLoad({ filter: /monaco-editor[/\\]esm[/\\]vs.+\.js/ }, async (args) => {
-                return {
-                    contents: transformLocalizeFuncCode(args.path, CURRENT_LOCALE_DATA),
-                    loader: 'js',
-                };
-            });
+  options = Object.assign({ locale: Languages.en_gb }, options);
+  const CURRENT_LOCALE_DATA = getLocalizeMapping(
+    options.locale,
+    options.localeData,
+  );
+  return {
+    name: 'esbuild-plugin-monaco-editor-nls',
+    setup(build) {
+      build.onLoad({ filter: /esm[/\\]vs[/\\]nls\.js/ }, async () => {
+        return {
+          contents: getLocalizeCode(CURRENT_LOCALE_DATA),
+          loader: 'js',
+        };
+      });
+      build.onLoad(
+        { filter: /monaco-editor[/\\]esm[/\\]vs.+\.js/ },
+        async (args) => {
+          return {
+            contents: transformLocalizeFuncCode(args.path, CURRENT_LOCALE_DATA),
+            loader: 'js',
+          };
         },
-    };
+      );
+    },
+  };
 }
 /**
  * 使用了monaco-editor-nls的语言映射包，把原始localize(data, message)的方法，替换成了localize(path, data, defaultMessage)
  * vite build 模式下，使用rollup处理
  * @param options 替换语言包
- * @returns
  */
-export default function (options) {
-    options = Object.assign({ locale: Languages.en_gb }, options);
-    const CURRENT_LOCALE_DATA = getLocalizeMapping(options.locale, options.localeData);
-    return {
-        name: 'rollup-plugin-monaco-editor-nls',
-        enforce: 'pre',
-        load(filepath) {
-            if (/esm[/\\]vs[/\\]nls\.js/.test(filepath)) {
-                return getLocalizeCode(CURRENT_LOCALE_DATA);
-            }
-        },
-        transform(code, filepath) {
-            if (/monaco-editor[/\\]esm[/\\]vs.+\.js/.test(filepath)
-                && !/esm[/\\]vs[/\\].*nls\.js/.test(filepath)) {
-                const re = /monaco-editor[/\\]esm[/\\](.+)(?=\.js)/;
-                if (re.exec(filepath) && code.includes('localize(')) {
-                    let path = RegExp.$1;
-                    path = path.replace(/\\/g, '/');
-                    code = code.replace(/localize\(/g, `localize('${path}', `);
-                    return {
-                        code: code,
-                        /** 使用magic-string 生成 source map */
-                        map: new MagicString(code).generateMap({
-                            includeContent: true,
-                            hires: true,
-                            source: filepath,
-                        }),
-                    };
-                }
-            }
-        },
-    };
+export default function monacoEditorNlsPlugin(options) {
+  options = Object.assign({ locale: Languages.en_gb }, options);
+  const CURRENT_LOCALE_DATA = getLocalizeMapping(
+    options.locale,
+    options.localeData,
+  );
+  return {
+    enforce: 'pre',
+    load(filepath) {
+      if (/esm[/\\]vs[/\\]nls\.js/.test(filepath)) {
+        return getLocalizeCode(CURRENT_LOCALE_DATA);
+      }
+    },
+    name: 'rollup-plugin-monaco-editor-nls',
+    transform(code, filepath) {
+      if (
+        /monaco-editor[/\\]esm[/\\]vs.+\.js/.test(filepath) &&
+        !/esm[/\\]vs[/\\].*nls\.js/.test(filepath)
+      ) {
+        // eslint-disable-next-line regexp/no-unused-capturing-group
+        const re = /monaco-editor[/\\]esm[/\\](.+)(?=\.js)/;
+        if (re.test(filepath) && code.includes('localize(')) {
+          // eslint-disable-next-line regexp/no-legacy-features
+          let path = RegExp.$1;
+          path = path.replaceAll('\\', '/');
+          code = code.replaceAll('localize(', `localize('${path}', `);
+          return {
+            code,
+            /** 使用magic-string 生成 source map */
+            map: new MagicString(code).generateMap({
+              hires: true,
+              includeContent: true,
+              source: filepath,
+            }),
+          };
+        }
+      }
+    },
+  };
 }
 /**
  * 替换调用方法接口参数，替换成相应语言包语言
  * @param filepath 路径
- * @param CURRENT_LOCALE_DATA 替换规则
- * @returns
+ * @param _CURRENT_LOCALE_DATA 替换规则
  */
 function transformLocalizeFuncCode(filepath, _CURRENT_LOCALE_DATA) {
-    let code = fs.readFileSync(filepath, 'utf8');
-    const re = /monaco-editor[/\\]esm[/\\](.+)(?=\.js)/;
-    if (re.exec(filepath)) {
-        let path = RegExp.$1;
-        path = path.replace(/\\/g, '/');
-        // if (filepath.includes('contextmenu')) {
-        //     console.log(filepath);
-        //     console.log(JSON.parse(CURRENT_LOCALE_DATA)[path]);
-        // }
-        // console.log(path, JSON.parse(CURRENT_LOCALE_DATA)[path])
-        code = code.replace(/localize\(/g, `localize('${path}', `);
-    }
-    return code;
+  let code = fs.readFileSync(filepath, 'utf8');
+  // eslint-disable-next-line regexp/no-unused-capturing-group
+  const re = /monaco-editor[/\\]esm[/\\](.+)(?=\.js)/;
+  if (re.test(filepath)) {
+    // eslint-disable-next-line regexp/no-legacy-features
+    let path = RegExp.$1;
+    path = path.replaceAll('\\', '/');
+    // if (filepath.includes('contextmenu')) {
+    //     console.log(filepath);
+    //     console.log(JSON.parse(CURRENT_LOCALE_DATA)[path]);
+    // }
+    // console.log(path, JSON.parse(CURRENT_LOCALE_DATA)[path])
+    code = code.replaceAll('localize(', `localize('${path}', `);
+  }
+  return code;
 }
 /**
  * 获取语言包
@@ -118,10 +134,10 @@ function transformLocalizeFuncCode(filepath, _CURRENT_LOCALE_DATA) {
  * @returns
  */
 function getLocalizeMapping(locale, localeData = undefined) {
-    if (localeData)
-        return JSON.stringify(localeData);
-    const locale_data_path = path.join(__dirname, `./locale/${locale}.json`);
-    return fs.readFileSync(locale_data_path);
+  if (localeData) return JSON.stringify(localeData);
+  // eslint-disable-next-line unicorn/prefer-module
+  const locale_data_path = path.join(__dirname, `./locale/${locale}.json`);
+  return fs.readFileSync(locale_data_path);
 }
 /**
  * 替换代码
@@ -129,7 +145,7 @@ function getLocalizeMapping(locale, localeData = undefined) {
  * @returns
  */
 function getLocalizeCode(CURRENT_LOCALE_DATA) {
-    return `
+  return `
     /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
