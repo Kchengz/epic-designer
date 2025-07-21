@@ -348,7 +348,11 @@ importers:
         specifier: ^0.52.2
         version: 0.52.2
 
-  packages/utils: {}
+  packages/utils:
+    dependencies:
+      rollup-plugin-node-externals:
+        specifier: ^8.0.0
+        version: 8.0.0(rollup@4.34.9)
 
   scripts:
     devDependencies:

@@ -148,6 +148,10 @@ export function usePageManager() {
    * @param scriptStr
    */
   function setMethods(scriptStr: string, outputError: boolean = false): void {
+    // 判断是否支持eval,如果不支持则不执行（例如小程序环境不受支持）
+    // eslint-disable-next-line no-eval
+    if (typeof eval === 'undefined') return;
+
     // 初始化一个空对象来存储公共方法
     const publicMethods: Record<string, Function> = {};
 
