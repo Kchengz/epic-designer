@@ -60,7 +60,7 @@ describe('usePageManager 函数测试', () => {
     const pageManager = usePageManager();
     const formData = { field1: 'value1' };
 
-    pageManager.addFormData(formData, 'form1');
+    pageManager.setFormData(formData, 'form1');
     expect(pageManager.forms.form1).toEqual(formData);
   });
 

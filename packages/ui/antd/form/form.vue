@@ -4,7 +4,7 @@ import type { PageManager } from '@epic-designer/utils';
 
 import type { VNode } from 'vue';
 
-import { computed, inject, provide, reactive, ref } from 'vue';
+import { computed, inject, provide, ref } from 'vue';
 
 import { Form } from 'ant-design-vue';
 
@@ -30,8 +30,10 @@ const props = withDefaults(
 const pageManager = inject<PageManager>('pageManager', {} as PageManager);
 const form = ref<FormInstance | null>(null);
 const forms = inject<{ [name: string]: any }>('forms', {});
-const formData = reactive<FormDataModel>({});
-pageManager.addFormData(formData, props.componentSchema?.componentProps?.name);
+const formData = pageManager.setFormData(
+  {},
+  props.componentSchema?.componentProps?.name,
+);
 provide('formData', formData);
 
 /**

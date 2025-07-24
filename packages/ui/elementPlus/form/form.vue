@@ -2,16 +2,7 @@
 import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
 import type { PageManager } from '@epic-designer/utils';
 
-import {
-  computed,
-  inject,
-  onMounted,
-  PropType,
-  provide,
-  reactive,
-  ref,
-  Ref,
-} from 'vue';
+import { computed, inject, onMounted, PropType, provide, ref, Ref } from 'vue';
 
 import { ElForm } from 'element-plus';
 
@@ -32,8 +23,10 @@ const pageManager = inject('pageManager', {}) as PageManager;
 const form = ref<FormInstance | null>(null);
 const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>;
 const visible = ref(true);
-const formData = reactive<FormDataModel>({});
-pageManager.addFormData(formData, props.componentSchema?.componentProps?.name);
+const formData = pageManager.setFormData(
+  {},
+  props.componentSchema?.componentProps?.name,
+);
 provide('formData', formData);
 
 /**

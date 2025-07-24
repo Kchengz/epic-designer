@@ -316,33 +316,29 @@ export function usePageManager() {
     );
   }
 
-  // 添加表单数据，内部表单
-  function addFormData(
-    formData: Record<string, unknown>,
-    formName: string = 'default',
-  ) {
-    if (forms[formName]) {
-      const oldData = forms[formName] as Record<string, unknown>;
-      deepCompareAndModify(formData, oldData);
-    }
-    forms[formName] = formData;
-  }
-
-  // 设置表单数据，外部
+  /**
+   * 设置表单数据
+   * 用于组件内部向表单管理器添加新的表单数据
+   * 如果表单已存在，会将新数据合并到现有数据中，保持响应式
+   * @param formData 要添加的表单数据对象
+   * @param formName 表单名称，默认为 'default'
+   * @returns 返回响应式的表单数据
+   */
   function setFormData(
     formData: Record<string, unknown>,
     formName: string = 'default',
   ) {
+    console.log('--------formData', formData, '--------formData');
     if (forms[formName]) {
-      deepCompareAndModify(
-        forms[formName] as Record<string, unknown>,
-        formData,
-        false,
-      );
-      return;
+      // 存在表单数据，合并到旧数据
+      const reactiveFormData = forms[formName] as Record<string, unknown>;
+      deepCompareAndModify(reactiveFormData, formData, false);
+      return forms[formName]; // 返回已存在的响应式数据
     }
-
-    forms[formName] = formData;
+    // 没有表单数据时，创建响应式数据
+    const reactiveFormData = reactive(formData);
+    forms[formName] = reactiveFormData;
+    return reactiveFormData; // 返回新创建的响应式数据
   }
 
   // 监听自定义函数
@@ -355,7 +351,6 @@ export function usePageManager() {
 
   return {
     addComponentInstance,
-    addFormData,
     componentInstances,
     defaultComponentIds,
     doActions,

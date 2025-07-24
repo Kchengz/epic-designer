@@ -5,7 +5,7 @@ import type { FormInst } from 'naive-ui';
 
 import type { PropType, Ref } from 'vue';
 
-import { computed, inject, onMounted, provide, reactive, ref } from 'vue';
+import { computed, inject, onMounted, provide, ref } from 'vue';
 
 import { NForm } from 'naive-ui/lib/form';
 
@@ -26,9 +26,11 @@ const pageManager = inject('pageManager', {}) as PageManager;
 const form = ref<FormInstance | null>(null);
 const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>;
 const visible = ref(true);
-const formData = reactive<FormDataModel>({});
+const formData = pageManager.setFormData(
+  {},
+  props.componentSchema?.componentProps?.name,
+);
 provide('formData', formData);
-pageManager.addFormData(formData, props.componentSchema?.componentProps?.name);
 /**
  * 获取表单数据
  */

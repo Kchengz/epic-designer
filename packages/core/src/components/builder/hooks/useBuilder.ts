@@ -78,9 +78,10 @@ export function useBuilder() {
 
     // 如果只有一个表单，使用该表单的名称
     const targetFormName = formKeys.length === 1 ? formKeys[0] : formName;
-
     pageManager.setFormData(data, targetFormName);
     const form = forms.value?.[targetFormName];
+
+    // 清除表单验证
     form?.clearValidate?.() ?? form?.restoreValidation?.();
   }
 
