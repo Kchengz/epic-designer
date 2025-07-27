@@ -39,18 +39,18 @@ function handleSelect(event: Event) {
    // console.log('setSelectedNode', event);
    const schema = getParentSchema(event.target);
       console.log('当前节点', schema);
- designer.setSelectedNode(schema);
-  designer.setDisabledHover(true);
+//  designer.setSelectedNode(schema);
+//   designer.setDisabledHover(true);
 }
 
 function handleEnd(e) {
-  designer.setDisabledHover();
-  revoke.push('拖拽组件');
+  // designer.setDisabledHover();
+  // revoke.push('拖拽组件');
   
 }
 
 function handleAdd(e) {
-  revoke.push('插入组件');
+  // revoke.push('插入组件');
 }
 function getParentSchema(target) {
   let ctx = target?.__vnode?.ctx;
@@ -64,9 +64,9 @@ function getParentSchema(target) {
 }
 function setSelectedNode(event: Event) {
 
-   const schema = getParentSchema(event.target);
-     console.log('当前节点', schema);
-  event.stopPropagation();
+   const schema = getParentSchema(event.item);
+     console.log('当前节点',  schema);
+ event.stopPropagation();
   designer.setSelectedNode(schema);
 }
 
@@ -92,11 +92,10 @@ function setHoverNode(event: Event) {
       @start="handleSelect"
       @end="handleEnd"
        @add=" handleSelect; handleAdd;"
-    @click.stop="setSelectedNode"
-    @mouseover.stop="setHoverNode"
+   @Choose="setSelectedNode"
   >
     
-      <EpicNodeItem  v-for="(element, index) in modelSchemas" :key="index" :schema="element" class="edit-draggable-widget epic-draggable-item epic-node-mask">
+      <EpicNodeItem  v-for="(element, index) in modelSchemas" :key="element.id" :schema="element"   class="edit-draggable-widget  epic-draggable-item epic-node-mask" >
 
 
 

@@ -42,8 +42,9 @@ function getParentSchema(target) {
   return null;
 }
 function setSelectedNode(event: Event) {
-  console.log('setSelectedNode', event);
+
    const schema = getParentSchema(event.target);
+     console.log('setSelectedNode', schema);
   event.stopPropagation();
   designer.setSelectedNode(schema);
 }
