@@ -5,7 +5,11 @@ import { computed, inject } from 'vue';
 
 import { Revoke } from '@epic-designer/utils';
 import draggable from 'vuedraggable';
-
+import {
+  VueDraggable,
+  type DraggableEvent,
+  type UseDraggableReturn,
+} from 'vue-draggable-plus'
 import EpicNodeItem from './nodeItem.vue';
 
 defineOptions({
@@ -31,43 +35,72 @@ const modelSchemas = computed({
  * 选中点击节点元素
  * @param index
  */
-function handleSelect(index: number) {
-  designer.setSelectedNode(modelSchemas.value![index]);
+function handleSelect(event: Event) {
+   // console.log('setSelectedNode', event);
+   const schema = getParentSchema(event.target);
+      console.log('当前节点', schema);
+ designer.setSelectedNode(schema);
   designer.setDisabledHover(true);
 }
 
-function handleEnd() {
+function handleEnd(e) {
   designer.setDisabledHover();
   revoke.push('拖拽组件');
+  
 }
 
-function handleAdd() {
+function handleAdd(e) {
   revoke.push('插入组件');
+}
+function getParentSchema(target) {
+  let ctx = target?.__vnode?.ctx;
+  for (let i = 0; i < 10 && ctx; i++) {
+    if (ctx.exposed?.schema) {
+      return ctx.exposed.schema;
+    }
+    ctx = ctx.parent;
+  }
+  return null;
+}
+function setSelectedNode(event: Event) {
+
+   const schema = getParentSchema(event.target);
+     console.log('当前节点', schema);
+  event.stopPropagation();
+  designer.setSelectedNode(schema);
+}
+
+function setHoverNode(event: Event) {
+   const schema = getParentSchema(event.target);
+  event.stopPropagation();
+  designer.setHoverNode(schema);
 }
 </script>
 <template>
-  <draggable
+  <VueDraggable
     v-model="modelSchemas"
     item-key="id"
     :component-data="{
       type: 'transition-group',
     }"
     class="epic-draggable-range"
-    v-bind="{
-      animation: 200,
-      group: 'edit-draggable',
-      handle: '.epic-draggable-item',
-      ghostClass: 'epic-moveing',
-    }"
-    @start="handleSelect($event.oldIndex)"
-    @end="handleEnd()"
-    @add="
-      handleSelect($event.newIndex);
-      handleAdd();
-    "
+   
+      :animation=200
+      group='edit-draggable'
+  
+      ghostClass='epic-moveing'
+      @start="handleSelect"
+      @end="handleEnd"
+       @add=" handleSelect; handleAdd;"
+    @click.stop="setSelectedNode"
+    @mouseover.stop="setHoverNode"
   >
-    <template #item="{ element, index }">
-      <EpicNodeItem :key="index" :schema="element" />
-    </template>
-  </draggable>
+    
+      <EpicNodeItem  v-for="(element, index) in modelSchemas" :key="index" :schema="element" class="edit-draggable-widget epic-draggable-item epic-node-mask">
+
+
+
+      </EpicNodeItem>
+   
+  </VueDraggable>
 </template>

@@ -31,15 +31,27 @@ const pageSchema = inject('pageSchema', {}) as PageSchema;
 provide('nodeAttrs', attrs);
 // 判断是否为叶子节点
 const isLeaf = computed(() => !props.schema.children);
-
+function getParentSchema(target) {
+  let ctx = target?.__vnode?.ctx;
+  for (let i = 0; i < 10 && ctx; i++) {
+    if (ctx.exposed?.schema) {
+      return ctx.exposed.schema;
+    }
+    ctx = ctx.parent;
+  }
+  return null;
+}
 function setSelectedNode(event: Event) {
+  console.log('setSelectedNode', event);
+   const schema = getParentSchema(event.target);
   event.stopPropagation();
-  designer.setSelectedNode(props.schema);
+  designer.setSelectedNode(schema);
 }
 
 function setHoverNode(event: Event) {
+   const schema = getParentSchema(event.target);
   event.stopPropagation();
-  designer.setHoverNode(props.schema);
+  designer.setHoverNode(schema);
 }
 
 function isDraggable() {
@@ -59,12 +71,7 @@ function isDraggable() {
 }
 </script>
 <template>
-  <div
-    class="edit-draggable-widget"
-    :class="[isDraggable(), isLeaf ? 'epic-node-mask' : '']"
-    @click.stop="setSelectedNode"
-    @mouseover.stop="setHoverNode"
-  >
+ 
     <EpicNode :component-schema="props.schema">
       <!-- childImmovable不可拖拽设计 start -->
       <template
@@ -87,8 +94,10 @@ function isDraggable() {
         <EpicNodes
           v-if="props.schema.children"
           v-model:schemas="props.schema.children"
+        
+
         />
       </template>
     </EpicNode>
-  </div>
+
 </template>
