@@ -65,7 +65,7 @@ function getParentSchema(target) {
 function setSelectedNode(event: Event) {
 
    const schema = getParentSchema(event.item);
-     console.log('当前节点',  schema);
+    //  console.log('当前节点',  schema);
  event.stopPropagation();
   designer.setSelectedNode(schema);
 }
@@ -89,13 +89,11 @@ function setHoverNode(event: Event) {
       group='edit-draggable'
   
       ghostClass='epic-moveing'
-      @start="handleSelect"
-      @end="handleEnd"
-       @add=" handleSelect; handleAdd;"
+    @mouseover.stop="setHoverNode"
    @Choose="setSelectedNode"
   >
     
-      <EpicNodeItem  v-for="(element, index) in modelSchemas" :key="element.id" :schema="element"   class="edit-draggable-widget  epic-draggable-item epic-node-mask" >
+      <EpicNodeItem  v-for="(element, index) in modelSchemas" :key="element.id" :schema="element"   class="edit-draggable-widget  epic-draggable-item epic-node-mask"  >
 
 
 
