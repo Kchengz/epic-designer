@@ -5,12 +5,12 @@ import type {
   PageSchema,
 } from '@epic-designer/types';
 
-import { computed, inject, provide, useAttrs } from 'vue';
+import { computed, inject, provide, useAttrs, watch } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/utils';
 
-import EpicNodes from './nodes.vue';
+import EditNodeItem from './nodes.vue';
 
 defineOptions({
   name: 'EpicNodeItem',
@@ -19,6 +19,7 @@ const props = withDefaults(
   defineProps<{
     draggable?: boolean;
     schema: ComponentSchema;
+   
   }>(),
   {
     draggable: true,
@@ -70,10 +71,13 @@ function isDraggable() {
 
   return 'epic-draggable-item';
 }
+
+
 </script>
 <template>
  
-    <EpicNode :component-schema="props.schema">
+    <EpicNode :component-schema="props.schema"    class="edit-draggable-widget"
+    :class="[isDraggable(), isLeaf ? 'epic-node-mask' : '']"  >
       <!-- childImmovable不可拖拽设计 start -->
       <template
         v-if="
@@ -92,12 +96,12 @@ function isDraggable() {
       <!-- childImmovable不可拖拽设计 end -->
 
       <template v-else #edit-node>
-        <EpicNodes
+        <EditNodeItem
           v-if="props.schema.children"
-          v-model:schemas="props.schema.children"
-           
-
-        />
+          v-model:schemas="props.schema.children" 
+          :key="props.schema.children.length"
+        
+          />
       </template>
     </EpicNode>
 
