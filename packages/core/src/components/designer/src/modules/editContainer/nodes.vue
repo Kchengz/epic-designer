@@ -9,7 +9,7 @@ import {
   VueDraggable,
   type DraggableEvent,
   type UseDraggableReturn,
-} from 'vue-draggable-plus'
+} from 'vue-draggable-plus';
 import EpicNodeItem from './nodeItem.vue';
 import { EpicNode } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/utils';
@@ -24,38 +24,19 @@ const designer = inject('designer') as Designer;
 const revoke = inject('revoke') as Revoke;
 
 const modelSchemas = computed({
-  get:()=>  props.schemas,
-  set:e =>emit('update:schemas', e)
-  
+  get: () => props.schemas,
+  set: (e) => emit('update:schemas', e),
 });
 
 /**
  * 选中点击节点元素
  * @param index
  */
-function handleSelect(event: Event) {
-   // console.log('setSelectedNode', event);
-   const schema = getParentSchema(event.target);
-      console.log('当前节点', schema);
-//  designer.setSelectedNode(schema);
-//   designer.setDisabledHover(true);
-}
 
-function handleEnd(e) {
-  // designer.setDisabledHover();
-  // revoke.push('拖拽组件');
-  
-}
-
-function 元素顺序更新事件(e) {
-  // revoke.push('插入组件');
- // console.log('handleAdd', e);
-}
 function getParentSchema(target) {
   let ctx = target?.__vnode?.ctx;
   for (let i = 0; i < 10 && ctx; i++) {
     if (ctx.exposed?.schema) {
-   
       return ctx.exposed.schema;
     }
     ctx = ctx.parent;
@@ -63,39 +44,27 @@ function getParentSchema(target) {
   return null;
 }
 function setSelectedNode(event: Event) {
-
-   const schema = getParentSchema(event.item);
-      console.log('当前节点',  schema,event);
- event.stopPropagation();
+  const schema = getParentSchema(event.item);
+  event.stopPropagation();
   designer.setSelectedNode(schema);
 }
 function setSelectedNode1(event: Event) {
+  const schema = getParentSchema(event.target);
 
-   const schema = getParentSchema(event.target);
- 
-if (schema.id=="root") {
-  
-   event.stopPropagation();
-  designer.setSelectedNode(schema);
+  if (schema.id == 'root') {
+    event.stopPropagation();
+    designer.setSelectedNode(schema);
+  }
 }
-}
-function 元素移入另一个列表事件(event: Event) {
-  //console.log('元素移入另一个列表事件', event);
-}
+
 function setHoverNode(event: Event) {
-   const schema = getParentSchema(event.target);
+  const schema = getParentSchema(event.target);
   event.stopPropagation();
   designer.setHoverNode(schema);
 }
-function 元素拖拽结束事件(event: Event) {
-  //console.log('元素拖拽结束事件', event,modelSchemas.value);
-
-}
-
 </script>
 
 <template>
-
   <VueDraggable
     v-model="modelSchemas"
     item-key="id"
@@ -103,26 +72,18 @@ function 元素拖拽结束事件(event: Event) {
       type: 'transition-group',
     }"
     class="epic-draggable-range"
-   
-      :animation="200"
-       group='edit-draggable'
-  
-      ghostClass='epic-moveing'
+    :animation="200"
+    group="edit-draggable"
+    ghostClass="epic-moveing"
     @mouseover.stop="setHoverNode"
-   @Choose="setSelectedNode"
-   @Update="元素顺序更新事件"
-   @Remove="元素移入另一个列表事件"
-   @End="元素拖拽结束事件"
-   @click.stop="setSelectedNode1"
+    @Choose="setSelectedNode"
+    @click.stop="setSelectedNode1"
   >
-    
-      <EpicNodeItem  v-for="(element, index) in modelSchemas" :key="element.id" :schema="element"  
-      
-      >
-
-      
-
-      </EpicNodeItem>
-  
+    <EpicNodeItem
+      v-for="(element, index) in modelSchemas"
+      :key="element.id"
+      :schema="element"
+    >
+    </EpicNodeItem>
   </VueDraggable>
 </template>
