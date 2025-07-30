@@ -4,7 +4,7 @@ import type { PageSchema } from '@epic-designer/types';
 import { ref } from 'vue';
 
 import { EDesigner } from '@epic-designer/core';
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 
 pluginManager.hideActivitybar('源码');
 pluginManager.hideRightSidebar('样式');

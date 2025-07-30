@@ -24,6 +24,7 @@
     "@epic-designer/core": "workspace:*",
     "@epic-designer/eslint-config": "workspace:*",
     "@epic-designer/hooks": "workspace:*",
+    "@epic-designer/manager": "workspace:*",
     "@epic-designer/panel-ui": "workspace:*",
     "@epic-designer/scripts": "workspace:*",
     "@epic-designer/types": "workspace:*",

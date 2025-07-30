@@ -9,7 +9,7 @@ import type { TreeProps } from './types';
 
 import { computed, inject } from 'vue';
 
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 import draggable from 'vuedraggable';
 
 import ETreeNodeItem from './treeNodeItem.vue';

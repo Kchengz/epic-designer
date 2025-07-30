@@ -6,7 +6,7 @@ import type { TreeProps } from './types';
 import { computed, provide, ref, useSlots } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 
 import ETreeNodes from './treeNodes.vue';
 

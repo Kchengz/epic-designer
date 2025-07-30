@@ -4,7 +4,7 @@ import type { ActivitybarModel } from '@epic-designer/types';
 import { computed, ref, shallowRef } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 
 defineOptions({
   name: 'EActivityBar',

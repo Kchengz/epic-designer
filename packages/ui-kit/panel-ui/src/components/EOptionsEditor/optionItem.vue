@@ -2,7 +2,7 @@
 import { inject } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 import { useVModel } from '@vueuse/core';
 import draggable from 'vuedraggable';
 

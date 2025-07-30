@@ -3,8 +3,12 @@ import type { ComponentSchema, EpicNodeInstance } from '@epic-designer/types';
 import { reactive, ref, watchEffect } from 'vue';
 
 import { usePageSchema } from '@epic-designer/hooks';
+import {
+  deepCompareAndModify,
+  findSchemas,
+  getValueByPath,
+} from '@epic-designer/utils';
 
-import { deepCompareAndModify, findSchemas, getValueByPath } from '../index';
 import { pluginManager } from './pluginManager';
 
 export interface ActionsModel {

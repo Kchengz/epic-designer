@@ -6,7 +6,8 @@ import type { PropType } from 'vue';
 import { ref, watch } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
-import { deepClone, deepEqual, pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
+import { deepClone, deepEqual } from '@epic-designer/utils';
 import { useVModel } from '@vueuse/core';
 
 import { triggerOptions, typeOptions } from './data';

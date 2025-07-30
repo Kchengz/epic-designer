@@ -4,7 +4,7 @@ import type { Designer, PageSchema } from '@epic-designer/types';
 import { computed, inject } from 'vue';
 
 import { EpicIcon, EpicTree } from '@epic-designer/base-ui';
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 
 const pageSchema = inject('pageSchema') as PageSchema;
 const designer = inject('designer') as Designer;

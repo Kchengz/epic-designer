@@ -11,16 +11,9 @@
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "typings": "dist/utils/src/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/utils/src/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
-    }
-  },
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "typings": "src/index.ts",
   "publishConfig": {
     "access": "public"
   },

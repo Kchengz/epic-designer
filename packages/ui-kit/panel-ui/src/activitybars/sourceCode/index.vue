@@ -3,11 +3,8 @@ import type { Designer, DesignerProps } from '@epic-designer/types';
 
 import { inject, ref, toRaw, watch } from 'vue';
 
-import {
-  deepCompareAndModify,
-  deepEqual,
-  pluginManager,
-} from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
+import { deepCompareAndModify, deepEqual } from '@epic-designer/utils';
 
 const MonacoEditor = pluginManager.getComponent('monacoEditor');
 const monacoEditorRef = ref<any>(null);

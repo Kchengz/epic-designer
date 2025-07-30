@@ -1,0 +1,30 @@
+{
+  "name": "@epic-designer/manager",
+  "version": "1.0.0",
+  "description": "Epic Designer 管理器模块，提供页面管理、插件管理、撤销重做等功能",
+  "private": false,
+  "author": "kchengz",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "typings": "src/index.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
+  "dependencies": {
+    "@epic-designer/hooks": "workspace:*",
+    "@epic-designer/types": "workspace:*",
+    "@epic-designer/utils": "workspace:*",
+    "rollup-plugin-node-externals": "^8.0.0"
+  }
+}

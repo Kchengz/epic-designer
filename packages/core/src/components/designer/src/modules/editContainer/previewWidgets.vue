@@ -1,11 +1,11 @@
 <script lang="ts" setup>
+import type { PageManager } from '@epic-designer/manager';
 import type {
   ComponentSchema,
   Designer,
   DesignerProps,
   PageSchema,
 } from '@epic-designer/types';
-import type { PageManager } from '@epic-designer/utils';
 
 import type { Ref } from 'vue';
 
@@ -13,7 +13,8 @@ import { computed, inject, ref, watch } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
 import { useStore, useTimedQuery } from '@epic-designer/hooks';
-import { findSchemaInfoById, pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
+import { findSchemaInfoById } from '@epic-designer/utils';
 import { useResizeObserver } from '@vueuse/core';
 
 const pageManager = inject('pageManager', {}) as PageManager;

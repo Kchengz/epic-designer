@@ -1,8 +1,8 @@
 import type { ComponentSchema } from '@epic-designer/types';
 
+import { pluginManager } from '@epic-designer/manager';
 import { PageSchema } from '@epic-designer/types';
 
-import { pluginManager } from '../index';
 import { getUUID } from './string';
 
 /**

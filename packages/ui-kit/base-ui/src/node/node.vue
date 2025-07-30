@@ -23,14 +23,13 @@ import {
   watch,
 } from 'vue';
 
+import { PageManager, pluginManager } from '@epic-designer/manager';
 import {
   capitalizeFirstLetter,
   deepClone,
   deepCompareAndModify,
   deepEqual,
   getValueByPath,
-  PageManager,
-  pluginManager,
   setValueByPath,
 } from '@epic-designer/utils';
 

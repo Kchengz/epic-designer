@@ -5,12 +5,9 @@ import { computed, nextTick, provide, ref, watchEffect } from 'vue';
 
 import { EpicBaseLoader } from '@epic-designer/base-ui';
 import { useStore } from '@epic-designer/hooks';
+import { pluginManager } from '@epic-designer/manager';
 import { setupPanel } from '@epic-designer/panel-ui';
-import {
-  deepClone,
-  loadAsyncComponent,
-  pluginManager,
-} from '@epic-designer/utils';
+import { deepClone, loadAsyncComponent } from '@epic-designer/utils';
 
 import { useDesigner } from '../hooks/useDesigner';
 import EpicPreview from './modules/preview/index.vue';

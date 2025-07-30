@@ -7,12 +7,8 @@ import { computed, inject, ref } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
 import { useStore } from '@epic-designer/hooks';
-import {
-  convertKFormData,
-  deepCompareAndModify,
-  pluginManager,
-  Revoke,
-} from '@epic-designer/utils';
+import { pluginManager, Revoke } from '@epic-designer/manager';
+import { convertKFormData, deepCompareAndModify } from '@epic-designer/utils';
 
 import EpicPreviewJson from './previewJson.vue';
 

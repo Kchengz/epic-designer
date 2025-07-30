@@ -8,13 +8,8 @@ import type {
 import { computed, inject, nextTick, reactive, ref, toRaw } from 'vue';
 
 import { EpicIcon, EpicTree } from '@epic-designer/base-ui';
-import {
-  deepClone,
-  findSchemaById,
-  getUUID,
-  PageManager,
-  pluginManager,
-} from '@epic-designer/utils';
+import { PageManager, pluginManager } from '@epic-designer/manager';
+import { deepClone, findSchemaById, getUUID } from '@epic-designer/utils';
 import { useClipboard } from '@vueuse/core';
 
 import EArgsEditor from './EArgsEditor.vue';

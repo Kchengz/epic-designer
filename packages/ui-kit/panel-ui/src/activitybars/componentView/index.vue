@@ -11,12 +11,8 @@ import type { Ref } from 'vue';
 import { computed, inject, ref } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import {
-  findSchemaInfoById,
-  generateNewSchema,
-  pluginManager,
-  Revoke,
-} from '@epic-designer/utils';
+import { pluginManager, Revoke } from '@epic-designer/manager';
+import { findSchemaInfoById, generateNewSchema } from '@epic-designer/utils';
 import draggable from 'vuedraggable';
 
 const Input = pluginManager.getComponent('input');

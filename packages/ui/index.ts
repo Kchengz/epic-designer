@@ -1,4 +1,4 @@
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 
 export function setupAntd() {
   import('./antd').then(({ setupAntd }) => {

@@ -6,7 +6,8 @@ import type { PropType } from 'vue';
 import { computed } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { getUUID, pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
+import { getUUID } from '@epic-designer/utils';
 
 const props = defineProps({
   modelValue: {

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, PropType, ref, toRaw, watch } from 'vue';
 
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 
 import EActionEditorItem from './src/EActionEditorItem.vue';
 import EActionModal from './src/EActionModal.vue';

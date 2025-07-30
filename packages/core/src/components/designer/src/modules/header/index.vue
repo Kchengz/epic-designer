@@ -6,7 +6,7 @@ import type { Ref } from 'vue';
 import { inject } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 
 const emits = defineEmits(['save', 'reset', 'preview']);
 const Button = pluginManager.getComponent('button');

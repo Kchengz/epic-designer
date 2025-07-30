@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { provide, reactive } from 'vue';
 
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 import { useVModel } from '@vueuse/core';
 
 import EOptionItem from './optionItem.vue';

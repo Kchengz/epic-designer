@@ -3,7 +3,7 @@ import type { PageSchema } from '@epic-designer/types';
 
 import { inject, ref } from 'vue';
 
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 
 const Modal = pluginManager.getComponent('modal');
 const MonacoEditor = pluginManager.getComponent('monacoEditor');

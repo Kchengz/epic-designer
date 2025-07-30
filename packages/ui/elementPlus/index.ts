@@ -1,7 +1,7 @@
-import type { PluginManager } from '@epic-designer/utils';
+import type { PluginManager } from '@epic-designer/manager';
 
 // 注册element-plus ui
-import { pluginManager as pManager } from '@epic-designer/utils';
+import { pluginManager as pManager } from '@epic-designer/manager';
 import {
   ElCollapse,
   ElCollapseItem,

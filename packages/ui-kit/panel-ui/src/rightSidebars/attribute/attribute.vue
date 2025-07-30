@@ -1,19 +1,16 @@
 <script lang="ts" setup>
+import type { Revoke } from '@epic-designer/manager';
 import type {
   ComponentSchema,
   Designer,
   PageSchema,
 } from '@epic-designer/types';
-import type { Revoke } from '@epic-designer/utils';
 
 import { computed, inject, nextTick } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
-import {
-  getValueByPath,
-  pluginManager,
-  setValueByPath,
-} from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
+import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 
 const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema') as PageSchema;

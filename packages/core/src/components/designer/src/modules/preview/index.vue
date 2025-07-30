@@ -3,7 +3,8 @@ import type { PageSchema } from '@epic-designer/types';
 
 import { inject, nextTick, ref } from 'vue';
 
-import { getUUID, pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
+import { getUUID } from '@epic-designer/utils';
 
 import { EBuilder } from '../../../../builder';
 

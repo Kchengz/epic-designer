@@ -8,15 +8,17 @@ import { reactive, ref, watchEffect } from 'vue';
 
 import { useClipboard } from '@epic-designer/hooks';
 import {
+  pluginManager,
+  usePageManager,
+  useRevoke,
+} from '@epic-designer/manager';
+import {
   deepClone,
   deepCompareAndModify,
   deepEqual,
   findSchemaById,
   findSchemaInfoById,
   getMatchedById,
-  pluginManager,
-  usePageManager,
-  useRevoke,
 } from '@epic-designer/utils';
 import { useMagicKeys } from '@vueuse/core';
 

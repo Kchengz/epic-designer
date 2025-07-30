@@ -6,7 +6,7 @@ import type {
 
 import { effectScope, ref } from 'vue';
 
-import { deepCompareAndModify, findSchemaById } from '../index';
+import { deepCompareAndModify, findSchemaById } from '@epic-designer/utils';
 /**
  * 历史记录模型
  */

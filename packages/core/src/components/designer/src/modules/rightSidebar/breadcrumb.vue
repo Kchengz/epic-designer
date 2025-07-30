@@ -4,7 +4,7 @@ import type { ComponentSchema, Designer } from '@epic-designer/types';
 import { inject } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 
 const designer = inject('designer') as Designer;
 /**

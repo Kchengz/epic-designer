@@ -3,8 +3,8 @@ import { computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import { useTheme } from '@epic-designer/hooks';
+import { pluginManager } from '@epic-designer/manager';
 import { setupAntd, setupElementPlus, setupNaiveUi } from '@epic-designer/ui';
-import { pluginManager } from '@epic-designer/utils';
 import { useStorage } from '@vueuse/core';
 import { Divider, Select, Switch } from 'ant-design-vue';
 

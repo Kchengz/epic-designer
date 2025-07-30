@@ -1,4 +1,4 @@
-import type { PluginManager } from '@epic-designer/utils';
+import type { PluginManager } from '@epic-designer/manager';
 
 import { EpicNode } from '@epic-designer/base-ui';
 

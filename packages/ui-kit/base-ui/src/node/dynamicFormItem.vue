@@ -1,12 +1,12 @@
 <script lang="ts" setup>
+import type { PageManager } from '@epic-designer/manager';
 import type { ComponentSchema, EpicNodeInstance } from '@epic-designer/types';
-import type { PageManager } from '@epic-designer/utils';
 
 import type { VNode } from 'vue';
 
 import { inject } from 'vue';
 
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 
 defineOptions({
   inheritAttrs: false,

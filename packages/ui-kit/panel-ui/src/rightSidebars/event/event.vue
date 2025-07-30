@@ -1,14 +1,11 @@
 <script lang="ts" setup>
+import type { Revoke } from '@epic-designer/manager';
 import type { Designer, EventModel } from '@epic-designer/types';
-import type { Revoke } from '@epic-designer/utils';
 
 import { computed, inject } from 'vue';
 
-import {
-  getValueByPath,
-  pluginManager,
-  setValueByPath,
-} from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
+import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 
 const designer = inject('designer') as Designer;
 const revoke = inject('revoke') as Revoke;

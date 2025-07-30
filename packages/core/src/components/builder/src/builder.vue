@@ -1,10 +1,10 @@
 <script lang="ts" setup>
+import type { PageManager } from '@epic-designer/manager';
 import type {
   EpicNodeInstance,
   FormDataModel,
   PageSchema,
 } from '@epic-designer/types';
-import type { PageManager } from '@epic-designer/utils';
 
 import {
   computed,
@@ -16,12 +16,9 @@ import {
 } from 'vue';
 
 import { EpicBaseLoader, EpicNode } from '@epic-designer/base-ui';
+import { pluginManager } from '@epic-designer/manager';
 import { setupPage } from '@epic-designer/panel-ui';
-import {
-  deepCompareAndModify,
-  findSchemas,
-  pluginManager,
-} from '@epic-designer/utils';
+import { deepCompareAndModify, findSchemas } from '@epic-designer/utils';
 
 import { useBuilder } from '../hooks/useBuilder';
 // 定义组件的 props 类型

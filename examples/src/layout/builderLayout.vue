@@ -2,7 +2,7 @@
 import { computed, onMounted, ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 import { useClipboard } from '@vueuse/core';
 import { Button, message } from 'ant-design-vue';
 

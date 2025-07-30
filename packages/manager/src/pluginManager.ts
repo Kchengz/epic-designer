@@ -14,8 +14,7 @@ import type { AsyncComponentLoader } from 'vue';
 import { ref } from 'vue';
 
 import { useFormSchema, usePanel } from '@epic-designer/hooks';
-
-import { loadAsyncComponent } from '../common';
+import { loadAsyncComponent } from '@epic-designer/utils';
 
 // 插件管理器类
 export function usePluginManager() {

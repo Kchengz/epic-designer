@@ -8,7 +8,7 @@ import type {
 import { computed, inject, provide, useAttrs } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
-import { pluginManager } from '@epic-designer/utils';
+import { pluginManager } from '@epic-designer/manager';
 
 import EpicNodes from './nodes.vue';
 

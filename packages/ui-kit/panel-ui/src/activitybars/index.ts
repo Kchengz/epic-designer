@@ -1,4 +1,4 @@
-import type { PluginManager } from '@epic-designer/utils';
+import type { PluginManager } from '@epic-designer/manager';
 
 /**
  * 初始化活动栏，向插件管理器注册活动栏项。

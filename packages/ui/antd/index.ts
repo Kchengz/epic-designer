@@ -1,7 +1,7 @@
-import type { PluginManager } from '@epic-designer/utils';
+import type { PluginManager } from '@epic-designer/manager';
 
 // 注册ant-design-vue ui
-import { pluginManager as pManager } from '@epic-designer/utils';
+import { pluginManager as pManager } from '@epic-designer/manager';
 import { version } from 'ant-design-vue';
 
 import Button from './button';
