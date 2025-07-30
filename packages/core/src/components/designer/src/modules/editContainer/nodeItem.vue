@@ -31,15 +31,20 @@ const pageSchema = inject('pageSchema', {}) as PageSchema;
 provide('nodeAttrs', attrs);
 // 判断是否为叶子节点
 const isLeaf = computed(() => !props.schema.children);
-
-function setSelectedNode(event: Event) {
-  event.stopPropagation();
-  designer.setSelectedNode(props.schema);
+function getParentSchema(target) {
+  let ctx = target?.__vnode?.ctx;
+  for (let i = 0; i < 10 && ctx; i++) {
+    if (ctx.exposed?.schema) {
+      return ctx.exposed.schema;
+    }
+    ctx = ctx.parent;
+  }
+  return null;
 }
-
-function setHoverNode(event: Event) {
+function setSelectedNode(event: Event) {
+  const schema = getParentSchema(event.target);
   event.stopPropagation();
-  designer.setHoverNode(props.schema);
+  designer.setSelectedNode(schema);
 }
 
 function isDraggable() {
@@ -59,36 +64,33 @@ function isDraggable() {
 }
 </script>
 <template>
-  <div
+  <EpicNode
+    :component-schema="props.schema"
     class="edit-draggable-widget"
     :class="[isDraggable(), isLeaf ? 'epic-node-mask' : '']"
-    @click.stop="setSelectedNode"
-    @mouseover.stop="setHoverNode"
   >
-    <EpicNode :component-schema="props.schema">
-      <!-- childImmovable不可拖拽设计 start -->
-      <template
-        v-if="
-          pluginManager.getComponentConfingByType(props.schema.type)
-            ?.editConstraints?.childImmovable
-        "
-        #edit-node
-      >
-        <EpicNodeItem
-          v-for="node in props.schema.children"
-          :key="node.id"
-          :schema="node"
-          :draggable="false"
-        />
-      </template>
-      <!-- childImmovable不可拖拽设计 end -->
-
-      <template v-else #edit-node>
-        <EpicNodes
-          v-if="props.schema.children"
-          v-model:schemas="props.schema.children"
-        />
-      </template>
-    </EpicNode>
-  </div>
+    <!-- childImmovable不可拖拽设计 start -->
+    <template
+      v-if="
+        pluginManager.getComponentConfingByType(props.schema.type)
+          ?.editConstraints?.childImmovable
+      "
+      #edit-node
+    >
+      <EpicNodeItem
+        v-for="node in props.schema.children"
+        :key="node.id"
+        :schema="node"
+        :draggable="false"
+      />
+    </template>
+    <!-- childImmovable不可拖拽设计 end -->
+    <template v-else #edit-node>
+      <EpicNodes
+        v-if="props.schema.children"
+        v-model:schemas="props.schema.children"
+        :key="props.schema.children.length"
+      />
+    </template>
+  </EpicNode>
 </template>
