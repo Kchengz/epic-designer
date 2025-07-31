@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import type { PageManager } from '@epic-designer/manager';
 import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
-import type { PageManager } from '@epic-designer/utils';
 
 import type { VNode } from 'vue';
 
@@ -126,21 +126,19 @@ defineExpose({
 });
 </script>
 <template>
-  <div class="form-main" style="height: 100%">
-    <Form
-      :model="formData"
-      v-bind="componentProps"
-      style="height: 100%"
-      @finish="onFinish"
-      @vue:mounted="mountedForm"
-    >
-      <slot name="edit-node">
-        <slot
-          v-for="item in children"
-          name="node"
-          :component-schema="item"
-        ></slot>
-      </slot>
-    </Form>
-  </div>
+  <Form
+    :model="formData"
+    v-bind="componentProps"
+    style="height: 100%"
+    @finish="onFinish"
+    @vue:mounted="mountedForm"
+  >
+    <slot name="edit-node">
+      <slot
+        v-for="item in children"
+        name="node"
+        :component-schema="item"
+      ></slot>
+    </slot>
+  </Form>
 </template>

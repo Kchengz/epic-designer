@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import type { PageManager } from '@epic-designer/manager';
 import type { FormItemRule } from '@epic-designer/types';
-import type { PageManager } from '@epic-designer/utils';
 
 import { computed, inject } from 'vue';
 

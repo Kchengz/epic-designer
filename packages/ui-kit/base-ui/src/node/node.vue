@@ -177,6 +177,7 @@ const getFormItemProps = computed<ComponentSchema>(() => {
 
   const formItemProps = {
     ...innerSchema,
+    ...attrs,
     field: model,
     rule: rules,
     rules,
@@ -207,6 +208,7 @@ const getComponentProps = computed(() => {
 
   return {
     ...props,
+    ...attrs,
     ...innerSchema.componentProps,
     bindModel,
     disabled: disabled?.value || innerSchema.componentProps?.disabled,

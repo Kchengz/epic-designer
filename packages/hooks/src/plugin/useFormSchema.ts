@@ -17,6 +17,9 @@ export function useFormSchema() {
         labelWidth: 100,
         layout: 'horizontal',
         name: 'default',
+        style: {
+          padding: '16px',
+        },
         wrapperCol: {
           span: 19,
         },

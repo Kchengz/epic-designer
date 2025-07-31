@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import type { PageManager } from '@epic-designer/manager';
 import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
-import type { PageManager } from '@epic-designer/utils';
 import type { FormInst } from 'naive-ui';
 
 import type { PropType, Ref } from 'vue';
@@ -25,7 +25,6 @@ const props = defineProps({
 const pageManager = inject('pageManager', {}) as PageManager;
 const form = ref<FormInstance | null>(null);
 const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>;
-const visible = ref(true);
 const formData = pageManager.setFormData(
   {},
   props.componentSchema?.componentProps?.name,
@@ -92,20 +91,18 @@ defineExpose({
 });
 </script>
 <template>
-  <div v-if="visible" class="form-main" style="height: 100%">
-    <NForm
-      ref="form"
-      :model="formData"
-      v-bind="componentProps"
-      style="height: 100%"
-    >
-      <slot name="edit-node">
-        <slot
-          v-for="item in children"
-          name="node"
-          :component-schema="item"
-        ></slot>
-      </slot>
-    </NForm>
-  </div>
+  <NForm
+    ref="form"
+    :model="formData"
+    v-bind="componentProps"
+    style="height: 100%"
+  >
+    <slot name="edit-node">
+      <slot
+        v-for="item in children"
+        name="node"
+        :component-schema="item"
+      ></slot>
+    </slot>
+  </NForm>
 </template>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import type { PageManager } from '@epic-designer/manager';
 import type { PageSchema } from '@epic-designer/types';
-import type { PageManager } from '@epic-designer/utils';
 
 import { onMounted, ref } from 'vue';
 

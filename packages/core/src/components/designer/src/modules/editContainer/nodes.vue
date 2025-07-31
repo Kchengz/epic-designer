@@ -1,18 +1,12 @@
 <script lang="ts" setup>
+import type { Revoke } from '@epic-designer/manager';
 import type { ComponentSchema, Designer } from '@epic-designer/types';
 
-import { computed, inject, nextTick, watch } from 'vue';
+import { computed, inject } from 'vue';
+import { VueDraggable } from 'vue-draggable-plus';
 
-import { Revoke } from '@epic-designer/utils';
-import draggable from 'vuedraggable';
-import {
-  VueDraggable,
-  type DraggableEvent,
-  type UseDraggableReturn,
-} from 'vue-draggable-plus';
 import EpicNodeItem from './nodeItem.vue';
-import { EpicNode } from '@epic-designer/base-ui';
-import { pluginManager } from '@epic-designer/utils';
+
 defineOptions({
   name: 'EditNodeItem',
 });
@@ -74,16 +68,15 @@ function setHoverNode(event: Event) {
     class="epic-draggable-range"
     :animation="200"
     group="edit-draggable"
-    ghostClass="epic-moveing"
+    ghost-class="epic-moveing"
     @mouseover.stop="setHoverNode"
-    @Choose="setSelectedNode"
+    @choose="setSelectedNode"
     @click.stop="setSelectedNode1"
   >
     <EpicNodeItem
-      v-for="(element, index) in modelSchemas"
+      v-for="element in modelSchemas"
       :key="element.id"
       :schema="element"
-    >
-    </EpicNodeItem>
+    />
   </VueDraggable>
 </template>
