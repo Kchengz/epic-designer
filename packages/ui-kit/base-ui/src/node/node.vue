@@ -198,13 +198,15 @@ const getComponentConfing = computed(() => {
 // 获取组件props数据
 const getComponentProps = computed(() => {
   const bindModel = getComponentConfing.value?.bindModel ?? 'modelValue';
-
   const onEvent: { [type: string]: Function } = {};
-  innerSchema.on &&
-    Object.keys(innerSchema.on).forEach((item) => {
-      onEvent[`on${capitalizeFirstLetter(item)}`] = (...args) =>
-        pageManager.doActions(innerSchema.on![item], ...args);
-    });
+  if (!pageManager.isDesignMode.value) {
+    // 设计模式下，不添加事件 防止误触发事件
+    innerSchema.on &&
+      Object.keys(innerSchema.on).forEach((item) => {
+        onEvent[`on${capitalizeFirstLetter(item)}`] = (...args) =>
+          pageManager.doActions(innerSchema.on![item], ...args);
+      });
+  }
 
   return {
     ...props,

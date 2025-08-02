@@ -30,7 +30,7 @@ const pageSchema = inject('pageSchema', {}) as PageSchema;
 
 provide('nodeAttrs', attrs);
 // 判断是否为叶子节点
-const isLeaf = computed(() => !props.schema.children);
+const isLeafNode = computed(() => !props.schema.children);
 function getParentSchema(target) {
   let ctx = target?.__vnode?.ctx;
   for (let i = 0; i < 10 && ctx; i++) {
@@ -57,17 +57,17 @@ function isDraggable() {
       ?.immovable
   ) {
     // 禁止拖拽
-    return 'epic-unmover-item';
+    return 'node-drag-disabled';
   }
 
-  return 'epic-draggable-item';
+  return 'node-drag-enabled';
 }
 </script>
 <template>
   <EpicNode
     :component-schema="props.schema"
     class="edit-draggable-widget"
-    :class="[isDraggable(), isLeaf ? 'epic-node-mask' : '']"
+    :class="[isDraggable(), isLeafNode ? 'epic-node-leaf' : '']"
   >
     <!-- childImmovable不可拖拽设计 start -->
     <template

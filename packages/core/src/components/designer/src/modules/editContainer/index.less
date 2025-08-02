@@ -19,7 +19,6 @@
       border: 1px var(--epic-border-color) dashed;
       width: 100%;
     }
-
   }
 
   .epic-hover-widget {
@@ -32,7 +31,7 @@
     background: var(--epic-widget-shade-color);
 
     &::before {
-      content: "";
+      content: '';
       height: 5px;
       background: var(--epic-primary-color);
       position: absolute;
@@ -75,7 +74,6 @@
         }
       }
     }
-  
   }
 
   // 隐藏设计区域滚动条
@@ -119,32 +117,31 @@
       border: 1px solid var(--epic-border-color);
 
       .epic-device-item {
-
         &.checked {
           color: var(--epic-primary-color);
           background: var(--epic-action-hover-color);
         }
       }
     }
-
   }
 
   .edit-draggable-widget {
     cursor: move;
     // display: inline-block;
-    &.epic-unmover-item{
+    &.node-drag-disabled {
       display: contents;
     }
   }
 
-  background-image: linear-gradient(var(--epic-designer-color) 14px, transparent 0),
-  linear-gradient(90deg, transparent 14px, var(--epic-designer-dot-color) 0);
+  background-image:
+    linear-gradient(var(--epic-designer-color) 14px, transparent 0),
+    linear-gradient(90deg, transparent 14px, var(--epic-designer-dot-color) 0);
 }
 
-.epic-node-mask {
+.epic-node-leaf {
   position: relative;
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
