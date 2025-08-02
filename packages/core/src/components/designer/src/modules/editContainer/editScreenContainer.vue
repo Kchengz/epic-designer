@@ -96,8 +96,14 @@ function updateSizeBoxStyle() {
 
 // 初始化页面样式
 watchOnce(width, updateScrollBoxStyle);
-// 动态适配设计区域宽度
-watch(getCanvasAttribute, updateScrollBoxStyle);
+
+// 监听画布尺寸（外部传入的值）变化，自动调整滚动容器样式以保持设计区域适配
+watch(getCanvasAttribute, (newVal, oldVal) => {
+  if (newVal.width === oldVal.width && newVal.height === oldVal.height) {
+    return;
+  }
+  updateScrollBoxStyle();
+});
 
 /**
  * 更新滚动容器和画布的样式。

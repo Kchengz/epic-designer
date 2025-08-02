@@ -96,7 +96,9 @@ export function useDesigner(props, emit) {
     pageSchema.canvas = {
       mode: canvasMode,
       ...canvasConfigs[canvasMode],
+      ...innerDefaultSchema.canvas,
     };
+
     // 记录默认组件id
     pageManager.setDefaultComponentIds(innerDefaultSchema.schemas);
   });
