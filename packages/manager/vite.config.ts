@@ -8,13 +8,19 @@ const __dirname = import.meta.dirname;
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      fileName: 'index',
-      formats: ['es'],
-      name: 'EpicDesignerManager',
+      entry: {
+        // 核心管理器（不包含revoke）
+        index: resolve(__dirname, 'src/index.ts'),
+        pageManager: resolve(__dirname, 'src/pageManager.ts'),
+        pluginManager: resolve(__dirname, 'src/pluginManager.ts'),
+        // 可选的revoke功能
+        revoke: resolve(__dirname, 'src/revoke.ts'),
+      },
+      fileName: (format, entryName) => `${entryName}.js`,
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
-      external: ['vue', '@epic-designer/types', '@epic-designer/hooks'],
+      external: ['vue'],
       output: {
         globals: {
           vue: 'Vue',
