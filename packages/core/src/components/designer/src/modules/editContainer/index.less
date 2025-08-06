@@ -129,7 +129,7 @@
     cursor: move;
     // display: inline-block;
     &.node-drag-disabled {
-      display: contents;
+      // display: contents;
     }
   }
 
@@ -147,6 +147,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 99;
+    z-index: 999;
+  }
+
+  .epic-node-leaf::before {
+    content: none;
   }
 }
