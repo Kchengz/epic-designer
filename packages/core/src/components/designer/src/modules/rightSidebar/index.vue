@@ -38,7 +38,7 @@ function handleClick(item: RightSidebarModel, index: number) {
   <div v-if="sidebarComponent" class="epic-right-sidebar-container relative">
     <!-- 折叠按钮 start -->
     <div
-      class="epic-right-sidebar-hide-btn left--18px top-80px w-28px h-28px z-9 absolute flex cursor-pointer items-center justify-center rounded-full"
+      class="epic-right-sidebar-hide-btn z-9 absolute flex cursor-pointer items-center justify-center"
       @click="handleHideRight"
     >
       <EpicIcon
@@ -47,7 +47,6 @@ function handleClick(item: RightSidebarModel, index: number) {
         name="icon--epic--arrow-forward-ios-rounded"
       />
     </div>
-    <div class="w-10px"></div>
     <!-- 折叠按钮 end -->
 
     <div class="epic-right-sidebar w-308px" :class="{ hide: hideRightMain }">
