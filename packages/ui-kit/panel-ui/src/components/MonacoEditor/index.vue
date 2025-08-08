@@ -3,12 +3,15 @@ import type { editor } from 'monaco-editor';
 
 import { nextTick, onMounted, ref, watch } from 'vue';
 
+import { EpicIcon } from '@epic-designer/base-ui';
 import { useTheme } from '@epic-designer/hooks';
 import * as monaco from 'monaco-editor';
 
 const props = withDefaults(
   defineProps<{
+    allowFullscreen?: boolean;
     autoToggleTheme?: boolean;
+    bordered?: boolean;
     config?: editor.IStandaloneEditorConstructionOptions;
     language?: string;
     lineNumbers?: 'off' | 'on';
@@ -18,6 +21,7 @@ const props = withDefaults(
     valueFormat?: string;
   }>(),
   {
+    allowFullscreen: true,
     config: () => ({
       minimap: {
         enabled: false,
@@ -26,7 +30,6 @@ const props = withDefaults(
     }),
     language: 'json',
     lineNumbers: 'on',
-    modelValue: '',
     readOnly: false,
     theme: 'vs-light',
     valueFormat: 'string',
@@ -34,6 +37,15 @@ const props = withDefaults(
 );
 
 const emit = defineEmits(['update:modelValue']);
+
+const isFullScreen = ref(false);
+
+const fullScreenStyle = `position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2999;`;
 
 const editContainer = ref<HTMLElement | null>(null);
 
@@ -96,10 +108,6 @@ onMounted(() => {
     language: props.language,
     lineNumbers: props.lineNumbers,
     readOnly: props.readOnly,
-    scrollbar: {
-      horizontalScrollbarSize: 10,
-      verticalScrollbarSize: 10,
-    },
     scrollBeyondLastLine: false,
     theme: props.theme,
   });
@@ -146,15 +154,37 @@ defineExpose({
 });
 </script>
 <template>
-  <div ref="editContainer" class="epic-code-editor"></div>
+  <div
+    ref="editContainer"
+    :class="{ bordered: props.bordered }"
+    :style="isFullScreen ? fullScreenStyle : ''"
+    class="epic-code-editor relative"
+  >
+    <div
+      class="z-999 text-$epic-text-helper absolute right-4 top-2 cursor-pointer text-xl"
+      @click="isFullScreen = !isFullScreen"
+      v-if="props.allowFullscreen"
+    >
+      <EpicIcon
+        :name="
+          isFullScreen
+            ? `icon--epic--close-fullscreen`
+            : `icon--epic--open-fullscreen`
+        "
+      />
+    </div>
+  </div>
 </template>
 <style lang="less" scoped>
 .epic-code-editor {
   width: 100%;
   min-height: 150px;
-
   :deep(.monaco-editor) {
     height: 100%;
+  }
+
+  &.bordered {
+    border: 1px solid var(--epic-border-color);
   }
 }
 </style>
