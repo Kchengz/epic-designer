@@ -6,15 +6,23 @@ import type {
   PageSchema,
 } from '@epic-designer/types';
 
-import { computed, inject, nextTick } from 'vue';
+import { computed, inject, nextTick, watchEffect } from 'vue';
 
-import { EpicNode } from '@epic-designer/base-ui';
+import { EpicIcon, EpicNode } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 import { getValueByPath, setValueByPath } from '@epic-designer/utils';
+import { useClipboard } from '@vueuse/core';
 
 const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema') as PageSchema;
 const revoke = inject('revoke') as Revoke;
+
+const { copied, copy } = useClipboard();
+watchEffect(() => {
+  if (copied.value) {
+    // pluginManager.global.$message.success('复制成功');
+  }
+});
 
 const componentConfings = pluginManager.getComponentConfings();
 const selectedNode = computed(() => {
@@ -43,17 +51,7 @@ const componentAttributes = computed(() => {
 
   const attribute =
     componentConfings[selectedNode.value.type]?.config.attribute ?? [];
-  const attributes = [
-    {
-      componentProps: {
-        disabled: true,
-      },
-      field: 'id',
-      label: '组件ID',
-      type: 'input',
-    },
-    ...attribute,
-  ];
+  const attributes = [...attribute];
 
   if (selectedNode.value.id === pageSchema.schemas[0]?.id) {
     attributes.push(
@@ -101,6 +99,22 @@ function handleSetValue(
 </script>
 <template>
   <div :key="selectedNode?.id" class="epic-attribute-view">
+    <!-- 组件id展示 start -->
+    <div
+      class="epic-attr-item mb-2 mt-2 flex h-8 cursor-pointer items-center px-4"
+    >
+      <div
+        class="bg-$epic-gray-3 rounded-1 h-full flex-1 px-2 leading-8"
+        @click="copy(designer.state.selectedNode?.id ?? '')"
+      >
+        <EpicIcon
+          class="epic-component-icon translate-y-2px mr-1"
+          :name="pluginManager.getIcon(designer.state.selectedNode!.type)"
+        />
+        {{ designer.state.selectedNode?.id }}
+      </div>
+    </div>
+    <!-- 组件id展示 end -->
     <div v-for="item in componentAttributes" :key="item.field">
       <div v-if="isShow(item)" class="epic-attr-item" :class="item.layout">
         <div v-if="item.label" class="epic-attr-label" :title="item.label">

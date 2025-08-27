@@ -227,6 +227,24 @@ export function usePluginManager() {
   }
 
   /**
+   * 获取
+   * @param type
+   * @returns label
+   */
+  function getLabel(type: string) {
+    return getComponentConfingByType(type)?.defaultSchema.label ?? '';
+  }
+
+  /**
+   * 获取图标
+   * @param type
+   * @returns icon
+   */
+  function getIcon(type: string) {
+    return getComponentConfingByType(type)?.icon ?? 'icon--epic--component';
+  }
+
+  /**
    * 通过type获取ComponentConfing
    */
   function getComponentConfingByType(type: string): ComponentConfigModel {
@@ -408,6 +426,8 @@ export function usePluginManager() {
     getComponentConfings,
     getComponents,
     getComponentSchemaGroups,
+    getIcon,
+    getLabel,
     getRightSidebars,
     hiddenComponents,
     hideActivitybar,
