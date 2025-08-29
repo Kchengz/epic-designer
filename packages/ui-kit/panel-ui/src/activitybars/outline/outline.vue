@@ -44,7 +44,7 @@ function handleNodeClick(e: any) {
             />
             {{
               schema.label ??
-              pluginManager.getComponentConfingByType(schema.type)
+              pluginManager.getComponentConfigByType(schema.type)
                 ?.defaultSchema.label
             }}
           </span>

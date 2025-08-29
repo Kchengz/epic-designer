@@ -11,7 +11,7 @@ const designer = inject('designer') as Designer;
 const revoke = inject('revoke') as Revoke;
 const EActionEditor = pluginManager.getComponent('EActionEditor');
 
-const componentConfings = pluginManager.getComponentConfings();
+const componentConfigs = pluginManager.getComponentConfigs();
 const selectedNode = computed(() => {
   return designer.state.selectedNode;
 });
@@ -69,7 +69,7 @@ const eventList = computed(() => {
 
   // 获取当前选中组件的事件配置
   const selectedNodeType = designer.state.selectedNode?.type;
-  const events = componentConfings[selectedNodeType ?? '']?.config.event ?? [];
+  const events = componentConfigs[selectedNodeType ?? '']?.config.event ?? [];
 
   // 将组件事件添加到事件列表的开头
   eventList.unshift({

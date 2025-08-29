@@ -79,7 +79,7 @@ function handleClick(schema: ComponentSchema) {
   // 如果选中元素存在children字段，则添加到children中
   if (
     checkedSchema.children &&
-    !pluginManager.getComponentConfingByType(checkedSchema.type)
+    !pluginManager.getComponentConfigByType(checkedSchema.type)
       ?.editConstraints?.childImmovable
   ) {
     list = checkedSchema.children;
@@ -154,7 +154,7 @@ function handleClick(schema: ComponentSchema) {
             >
               <EpicIcon
                 :name="
-                  pluginManager.getComponentConfingByType(item.type).icon ??
+                  pluginManager.getComponentConfigByType(item.type).icon ??
                   ''
                 "
               />

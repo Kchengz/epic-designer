@@ -64,13 +64,13 @@ const getComponentElement = (node: ComponentSchema) => {
   if (node.componentProps?.hidden) {
     return null;
   }
-  const componentConfing =
-    pluginManager.getComponentConfingByType(node.type!) ?? null;
+  const componentConfig =
+    pluginManager.getComponentConfigByType(node.type!) ?? null;
   if (!id || !componentInstances?.[id]) {
     return null;
   }
 
-  if (componentConfing?.defaultSchema.input && node?.noFormItem !== true) {
+  if (componentConfig?.defaultSchema.input && node?.noFormItem !== true) {
     return componentInstances[`${id}_formItem`]?.vnode.el as HTMLElement;
   }
 
@@ -344,7 +344,7 @@ defineExpose({
       <div class="epic-widget-action-item whitespace-nowrap">
         <!-- {{ designer.state.selectedNode?.type }} -->
         {{
-          pluginManager.getComponentConfingByType(
+          pluginManager.getComponentConfigByType(
             designer.state.selectedNode?.type ?? '',
           )?.defaultSchema.label
         }}

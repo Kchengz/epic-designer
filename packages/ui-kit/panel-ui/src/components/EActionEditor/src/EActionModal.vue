@@ -48,7 +48,7 @@ const actionTypeText = computed(() => {
   if (state.actionItem.type === 'component' && componentSchema.value) {
     const label =
       componentSchema.value.label ||
-      pluginManager.getComponentConfingByType(componentSchema.value.type)
+      pluginManager.getComponentConfigByType(componentSchema.value.type)
         ?.defaultSchema.label ||
       '未命名组件';
     return `${label}`;
@@ -61,8 +61,8 @@ const methodOptions = computed(() => {
   // 组件动作列表
   if (state.actionItem.type === 'component') {
     if (componentSchema.value) {
-      const componentConfings = pluginManager.getComponentConfings();
-      return componentConfings[componentSchema.value.type].config.action?.map(
+      const componentConfigs = pluginManager.getComponentConfigs();
+      return componentConfigs[componentSchema.value.type].config.action?.map(
         (item) => ({
           label: item.describe ?? item.description,
           value: item.type,
@@ -96,7 +96,7 @@ const methodOptions = computed(() => {
 const actionArgsConfigs = computed(() => {
   if (state.actionItem.type === 'component' && componentSchema.value) {
     const action =
-      pluginManager.getComponentConfings()[componentSchema.value.type].config
+      pluginManager.getComponentConfigs()[componentSchema.value.type].config
         .action;
     const actionItem = action?.find(
       (item) => item.type === state.actionItem.methodName,
@@ -256,7 +256,7 @@ defineExpose({
                     />
                     {{
                       schema.label ??
-                      pluginManager.getComponentConfingByType(schema.type)
+                      pluginManager.getComponentConfigByType(schema.type)
                         ?.defaultSchema.label
                     }}
                   </span>

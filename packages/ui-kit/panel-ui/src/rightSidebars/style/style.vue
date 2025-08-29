@@ -10,7 +10,7 @@ import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 
 const designer = inject('designer') as Designer;
 const revoke = inject('revoke') as Revoke;
-const componentConfings = pluginManager.getComponentConfings();
+const componentConfigs = pluginManager.getComponentConfigs();
 
 // const componentStyles: ComponentSchema[] =
 
@@ -66,7 +66,7 @@ const componentStyles = computed<ComponentSchema[]>(() => {
   if (!selectedNode.value || !selectedNode.value.type) {
     return [];
   }
-  const style = componentConfings[selectedNode.value.type]?.config.style ?? [];
+  const style = componentConfigs[selectedNode.value.type]?.config.style ?? [];
   return [...defaultStyle, ...style];
 });
 

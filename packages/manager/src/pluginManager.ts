@@ -232,7 +232,7 @@ export function usePluginManager() {
    * @returns label
    */
   function getLabel(type: string) {
-    return getComponentConfingByType(type)?.defaultSchema.label ?? '';
+    return getComponentConfigByType(type)?.defaultSchema.label ?? '';
   }
 
   /**
@@ -241,13 +241,13 @@ export function usePluginManager() {
    * @returns icon
    */
   function getIcon(type: string) {
-    return getComponentConfingByType(type)?.icon ?? 'icon--epic--component';
+    return getComponentConfigByType(type)?.icon ?? 'icon--epic--component';
   }
 
   /**
-   * 通过type获取ComponentConfing
+   * 通过type获取ComponentConfig
    */
-  function getComponentConfingByType(type: string): ComponentConfigModel {
+  function getComponentConfigByType(type: string): ComponentConfigModel {
     const componentConfig = componentConfigs[type];
     return componentConfig;
   }
@@ -256,7 +256,7 @@ export function usePluginManager() {
    * 获取所有插件管理中的所有组件配置
    * @returns componentAttrs
    */
-  function getComponentConfings(): ComponentConfigModelRecords {
+  function getComponentConfigs(): ComponentConfigModelRecords {
     return componentConfigs;
   }
 
@@ -422,8 +422,8 @@ export function usePluginManager() {
     formSchema,
     getActivitybars,
     getComponent,
-    getComponentConfingByType,
-    getComponentConfings,
+    getComponentConfigByType,
+    getComponentConfigs,
     getComponents,
     getComponentSchemaGroups,
     getIcon,

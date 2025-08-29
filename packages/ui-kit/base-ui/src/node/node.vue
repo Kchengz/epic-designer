@@ -191,13 +191,13 @@ const getFormItemProps = computed<ComponentSchema>(() => {
 });
 
 // 获取组件原配置
-const getComponentConfing = computed(() => {
-  return pluginManager.getComponentConfingByType(innerSchema.type) ?? null;
+const getComponentConfig = computed(() => {
+  return pluginManager.getComponentConfigByType(innerSchema.type) ?? null;
 });
 
 // 获取组件props数据
 const getComponentProps = computed(() => {
-  const bindModel = getComponentConfing.value?.bindModel ?? 'modelValue';
+  const bindModel = getComponentConfig.value?.bindModel ?? 'modelValue';
   const onEvent: { [type: string]: Function } = {};
   if (!pageManager.isDesignMode.value) {
     // 设计模式下，不添加事件 防止误触发事件
@@ -259,7 +259,7 @@ function handleVnodeUnmounted() {
     // 移除实例 及 formItem实例
     pageManager.removeComponentInstance(innerSchema.id);
     if (
-      getComponentConfing.value?.defaultSchema.input &&
+      getComponentConfig.value?.defaultSchema.input &&
       innerSchema.noFormItem !== true
     ) {
       pageManager.removeComponentInstance(`${innerSchema.id}_formItem`);
@@ -363,8 +363,7 @@ onBeforeUnmount(handleVnodeUnmounted);
   <dynamicFormItem
     v-if="component && show"
     :has-form-item="
-      innerSchema.noFormItem !== true &&
-      getComponentConfing?.defaultSchema.input
+      innerSchema.noFormItem !== true && getComponentConfig?.defaultSchema.input
     "
     :form-item-props="getFormItemProps"
   >

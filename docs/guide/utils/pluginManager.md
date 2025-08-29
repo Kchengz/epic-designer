@@ -57,7 +57,7 @@ pluginManager.registerComponent(Test);
 
 
 
-#### getComponentConfings
+#### getComponentConfigs
 
 类型：`() => ComponentConfigModelRecords`
 
@@ -65,7 +65,7 @@ pluginManager.registerComponent(Test);
 
 
 
-#### getComponentConfingByType
+#### getComponentConfigByType
 
 类型：`(type: string) => ComponentConfigModel`
 

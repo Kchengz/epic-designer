@@ -24,7 +24,7 @@ watchEffect(() => {
   }
 });
 
-const componentConfings = pluginManager.getComponentConfings();
+const componentConfigs = pluginManager.getComponentConfigs();
 const selectedNode = computed(() => {
   return designer.state.selectedNode;
 });
@@ -49,12 +49,12 @@ const componentAttributes = computed(() => {
     return [];
   }
 
-  const attribute =
-    componentConfings[selectedNode.value.type]?.config.attribute ?? [];
-  const attributes = [...attribute];
+  const baseAttributes =
+    componentConfigs[selectedNode.value.type]?.config.attribute ?? [];
+  const allAttributes = [...baseAttributes];
 
   if (selectedNode.value.id === pageSchema.schemas[0]?.id) {
-    attributes.push(
+    allAttributes.push(
       {
         editData: pageSchema,
         field: 'canvas.width',
@@ -70,7 +70,7 @@ const componentAttributes = computed(() => {
     );
   }
 
-  return attributes;
+  return allAttributes;
 });
 
 /**

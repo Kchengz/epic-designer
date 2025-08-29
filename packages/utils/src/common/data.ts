@@ -56,7 +56,7 @@ export function generateNewSchema(schema: ComponentSchema) {
     // 存在字段名，则自动在字段名后补充id
     if (
       (newVal.field || newVal.input) &&
-      !pluginManager.getComponentConfingByType(newVal.type)?.editConstraints
+      !pluginManager.getComponentConfigByType(newVal.type)?.editConstraints
         ?.fixedField
     ) {
       newVal.field = newVal.id;
