@@ -7,9 +7,9 @@
   "scripts": {},
   "main": "index.ts",
   "devDependencies": {
-    "ant-design-vue": "^4.2.6",
-    "element-plus": "^2.9.1",
-    "naive-ui": "^2.40.4",
-    "vite-plugin-dts": "^4.4.0"
+    "ant-design-vue": "catalog:",
+    "element-plus": "catalog:",
+    "naive-ui": "catalog:",
+    "vite-plugin-dts": "catalog:"
   }
 }

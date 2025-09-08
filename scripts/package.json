@@ -14,12 +14,12 @@
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "devDependencies": {
-    "@manypkg/get-packages": "^2.2.2",
-    "@types/node": "^22.10.6",
-    "cac": "^6.7.14",
-    "find-up": "^7.0.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.7.3",
-    "unbuild": "^3.3.1"
+    "@manypkg/get-packages": "catalog:",
+    "@types/node": "catalog:",
+    "cac": "catalog:",
+    "find-up": "catalog:",
+    "ts-node": "catalog:",
+    "typescript": "catalog:",
+    "unbuild": "catalog:"
   }
 }

@@ -17,7 +17,7 @@
     "postinstall": "pnpm -r run stub --if-present"
   },
   "dependencies": {
-    "@vueuse/core": "^12.2.0"
+    "@vueuse/core": "catalog:"
   },
   "devDependencies": {
     "@epic-designer/base-ui": "workspace:*",
@@ -30,25 +30,25 @@
     "@epic-designer/types": "workspace:*",
     "@epic-designer/ui": "workspace:*",
     "@epic-designer/utils": "workspace:*",
-    "@turbo/gen": "^2.3.3",
-    "@vitejs/plugin-vue": "^5.2.1",
-    "@vue/test-utils": "2.4.6",
+    "@turbo/gen": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vue/test-utils": "catalog:",
     "epic-designer": "workspace:*",
-    "eslint": "^9.20.0",
-    "jsdom": "^26.0.0",
-    "less": "^4.2.1",
-    "naive-ui": "^2.40.4",
-    "prettier": "^3.4.2",
-    "prettier-plugin-tailwindcss": "^0.6.11",
-    "turbo": "^2.3.3",
-    "typescript": "^5.7.3",
-    "unocss": "^0.65.3",
-    "vite": "^6.0.6",
-    "vite-plugin-dts": "^4.4.0",
-    "vitepress": "1.5.0",
-    "vitest": "^2.1.8",
-    "vue": "^3.5.13",
-    "vue-tsc": "^2.2.0"
+    "eslint": "catalog:",
+    "jsdom": "catalog:",
+    "less": "catalog:",
+    "naive-ui": "catalog:",
+    "prettier": "catalog:",
+    "prettier-plugin-tailwindcss": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:",
+    "unocss": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-dts": "catalog:",
+    "vitepress": "catalog:",
+    "vitest": "catalog:",
+    "vue": "catalog:",
+    "vue-tsc": "catalog:"
   },
   "packageManager": "pnpm@9.10.0"
 }

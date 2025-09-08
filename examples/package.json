@@ -9,25 +9,25 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ant-design/icons-vue": "^7.0.1",
-    "@shikijs/monaco": "^1.24.4",
-    "ant-design-vue": "^4.2.6",
-    "dayjs": "^1.11.13",
-    "element-plus": "^2.9.1",
-    "magic-string": "^0.30.17",
-    "monaco-editor": "^0.52.2",
-    "shiki": "^1.24.4",
-    "vue": "^3.5.13",
-    "vue-draggable-plus": "^0.6.0",
-    "vue-router": "^4.5.0"
+    "@ant-design/icons-vue": "catalog:",
+    "@shikijs/monaco": "catalog:",
+    "ant-design-vue": "catalog:",
+    "dayjs": "catalog:",
+    "element-plus": "catalog:",
+    "magic-string": "catalog:",
+    "monaco-editor": "catalog:",
+    "shiki": "catalog:",
+    "vue": "catalog:",
+    "vue-draggable-plus": "catalog:",
+    "vue-router": "catalog:"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.1",
-    "typescript": "^5.7.3",
-    "unocss": "^0.65.3",
-    "vite": "^6.0.6",
-    "vite-plugin-monaco-editor": "^1.1.0",
-    "vite-plugin-vue-devtools": "7.6.8",
-    "vue-tsc": "^2.2.0"
+    "@vitejs/plugin-vue": "catalog:",
+    "typescript": "catalog:",
+    "unocss": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-monaco-editor": "catalog:",
+    "vite-plugin-vue-devtools": "catalog:",
+    "vue-tsc": "catalog:"
   }
 }

@@ -19,12 +19,12 @@
     "access": "public"
   },
   "peerDependencies": {
-    "vue": "^3.3.0"
+    "vue": "catalog:"
   },
   "dependencies": {
     "@epic-designer/hooks": "workspace:*",
     "@epic-designer/types": "workspace:*",
     "@epic-designer/utils": "workspace:*",
-    "rollup-plugin-node-externals": "^8.0.0"
+    "rollup-plugin-node-externals": "catalog:"
   }
 }

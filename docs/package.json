@@ -5,12 +5,12 @@
   "author": "kchengz",
   "type": "module",
   "dependencies": {
-    "ant-design-vue": "^4.2.6",
-    "dayjs": "^1.11.13",
-    "element-plus": "^2.9.1",
-    "monaco-editor": "^0.52.2"
+    "ant-design-vue": "catalog:",
+    "dayjs": "catalog:",
+    "element-plus": "catalog:",
+    "monaco-editor": "catalog:"
   },
   "devDependencies": {
-    "vite-plugin-monaco-editor": "^1.1.0"
+    "vite-plugin-monaco-editor": "catalog:"
   }
 }

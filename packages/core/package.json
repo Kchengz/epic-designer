@@ -27,12 +27,12 @@
   },
   "main": "src/index.ts",
   "dependencies": {
-    "monaco-editor": "^0.52.2",
-    "vue-draggable-plus": "^0.6.0",
-    "vuedraggable": "4.1.0"
+    "monaco-editor": "catalog:",
+    "vue-draggable-plus": "catalog:",
+    "vuedraggable": "catalog:"
   },
   "devDependencies": {
-    "unocss": "^0.65.3",
-    "vitest": "^2.1.8"
+    "unocss": "catalog:",
+    "vitest": "catalog:"
   }
 }
