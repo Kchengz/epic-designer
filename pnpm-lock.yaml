@@ -4,12 +4,207 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@ant-design/icons-vue':
+      specifier: ^7.0.1
+      version: 7.0.1
+    '@eslint/js':
+      specifier: ^9.21.0
+      version: 9.21.0
+    '@manypkg/get-packages':
+      specifier: ^2.2.2
+      version: 2.2.2
+    '@shikijs/monaco':
+      specifier: ^1.24.4
+      version: 1.29.2
+    '@turbo/gen':
+      specifier: ^2.3.3
+      version: 2.4.4
+    '@types/eslint':
+      specifier: ^9.6.1
+      version: 9.6.1
+    '@types/node':
+      specifier: ^22.10.6
+      version: 22.13.9
+    '@typescript-eslint/eslint-plugin':
+      specifier: ^8.25.0
+      version: 8.26.0
+    '@typescript-eslint/parser':
+      specifier: ^8.25.0
+      version: 8.26.0
+    '@unocss/preset-rem-to-px':
+      specifier: ^0.65.3
+      version: 0.65.4
+    '@vitejs/plugin-vue':
+      specifier: ^5.2.1
+      version: 5.2.1
+    '@vue/test-utils':
+      specifier: 2.4.6
+      version: 2.4.6
+    '@vueuse/core':
+      specifier: ^12.2.0
+      version: 12.8.2
+    ant-design-vue:
+      specifier: ^4.2.6
+      version: 4.2.6
+    cac:
+      specifier: ^6.7.14
+      version: 6.7.14
+    dayjs:
+      specifier: ^1.11.13
+      version: 1.11.13
+    element-plus:
+      specifier: ^2.9.1
+      version: 2.9.6
+    eslint:
+      specifier: ^9.20.0
+      version: 9.21.0
+    eslint-config-turbo:
+      specifier: ^2.4.3
+      version: 2.4.4
+    eslint-plugin-command:
+      specifier: ^3.1.0
+      version: 3.1.0
+    eslint-plugin-eslint-comments:
+      specifier: ^3.2.0
+      version: 3.2.0
+    eslint-plugin-import-x:
+      specifier: ^4.6.1
+      version: 4.6.1
+    eslint-plugin-jsdoc:
+      specifier: ^50.6.3
+      version: 50.6.3
+    eslint-plugin-jsonc:
+      specifier: ^2.19.1
+      version: 2.19.1
+    eslint-plugin-n:
+      specifier: ^17.15.1
+      version: 17.16.2
+    eslint-plugin-no-only-tests:
+      specifier: ^3.3.0
+      version: 3.3.0
+    eslint-plugin-perfectionist:
+      specifier: ^4.9.0
+      version: 4.9.0
+    eslint-plugin-prettier:
+      specifier: ^5.2.3
+      version: 5.2.3
+    eslint-plugin-regexp:
+      specifier: ^2.7.0
+      version: 2.7.0
+    eslint-plugin-unicorn:
+      specifier: ^57.0.0
+      version: 57.0.0
+    eslint-plugin-unused-imports:
+      specifier: ^4.1.4
+      version: 4.1.4
+    eslint-plugin-vitest:
+      specifier: ^0.5.4
+      version: 0.5.4
+    eslint-plugin-vue:
+      specifier: ^9.32.0
+      version: 9.33.0
+    find-up:
+      specifier: ^7.0.0
+      version: 7.0.0
+    globals:
+      specifier: ^16.0.0
+      version: 16.0.0
+    jsdom:
+      specifier: ^26.0.0
+      version: 26.0.0
+    jsonc-eslint-parser:
+      specifier: ^2.4.0
+      version: 2.4.0
+    less:
+      specifier: ^4.2.1
+      version: 4.2.2
+    magic-string:
+      specifier: ^0.30.17
+      version: 0.30.17
+    monaco-editor:
+      specifier: ^0.52.2
+      version: 0.52.2
+    naive-ui:
+      specifier: ^2.40.4
+      version: 2.41.0
+    prettier:
+      specifier: ^3.4.2
+      version: 3.5.3
+    prettier-plugin-tailwindcss:
+      specifier: ^0.6.11
+      version: 0.6.11
+    rollup-plugin-copy:
+      specifier: ^3.5.0
+      version: 3.5.0
+    rollup-plugin-node-externals:
+      specifier: ^8.0.0
+      version: 8.0.0
+    shiki:
+      specifier: ^1.24.4
+      version: 1.29.2
+    ts-node:
+      specifier: ^10.9.2
+      version: 10.9.2
+    turbo:
+      specifier: ^2.3.3
+      version: 2.4.4
+    typescript:
+      specifier: ^5.7.3
+      version: 5.8.2
+    typescript-eslint:
+      specifier: ^8.24.0
+      version: 8.26.0
+    unbuild:
+      specifier: ^3.3.0
+      version: 3.5.0
+    unocss:
+      specifier: ^0.65.3
+      version: 0.65.4
+    vite:
+      specifier: ^6.0.6
+      version: 6.2.1
+    vite-plugin-dts:
+      specifier: ^4.4.0
+      version: 4.5.3
+    vite-plugin-monaco-editor:
+      specifier: ^1.1.0
+      version: 1.1.0
+    vite-plugin-vue-devtools:
+      specifier: 7.6.8
+      version: 7.6.8
+    vitepress:
+      specifier: 1.5.0
+      version: 1.5.0
+    vitest:
+      specifier: ^2.1.8
+      version: 2.1.9
+    vue:
+      specifier: ^3.5.13
+      version: 3.5.13
+    vue-draggable-plus:
+      specifier: ^0.6.0
+      version: 0.6.0
+    vue-eslint-parser:
+      specifier: ^9.4.3
+      version: 9.4.3
+    vue-router:
+      specifier: ^4.5.0
+      version: 4.5.0
+    vue-tsc:
+      specifier: ^2.2.0
+      version: 2.2.8
+    vuedraggable:
+      specifier: 4.1.0
+      version: 4.1.0
+
 importers:
 
   .:
     dependencies:
       '@vueuse/core':
-        specifier: ^12.2.0
+        specifier: 'catalog:'
         version: 12.8.2(typescript@5.8.2)
     devDependencies:
       '@epic-designer/base-ui':
@@ -43,236 +238,236 @@ importers:
         specifier: workspace:*
         version: link:packages/utils
       '@turbo/gen':
-        specifier: ^2.3.3
+        specifier: 'catalog:'
         version: 2.4.4(@types/node@22.13.9)(typescript@5.8.2)
       '@vitejs/plugin-vue':
-        specifier: ^5.2.1
+        specifier: 'catalog:'
         version: 5.2.1(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))(vue@3.5.13(typescript@5.8.2))
       '@vue/test-utils':
-        specifier: 2.4.6
+        specifier: 'catalog:'
         version: 2.4.6
       epic-designer:
         specifier: workspace:*
         version: link:packages/epic-designer
       eslint:
-        specifier: ^9.20.0
+        specifier: 'catalog:'
         version: 9.21.0(jiti@2.4.2)
       jsdom:
-        specifier: ^26.0.0
+        specifier: 'catalog:'
         version: 26.0.0
       less:
-        specifier: ^4.2.1
+        specifier: 'catalog:'
         version: 4.2.2
       naive-ui:
-        specifier: ^2.40.4
+        specifier: 'catalog:'
         version: 2.41.0(vue@3.5.13(typescript@5.8.2))
       prettier:
-        specifier: ^3.4.2
+        specifier: 'catalog:'
         version: 3.5.3
       prettier-plugin-tailwindcss:
-        specifier: ^0.6.11
+        specifier: 'catalog:'
         version: 0.6.11(prettier@3.5.3)
       turbo:
-        specifier: ^2.3.3
+        specifier: 'catalog:'
         version: 2.4.4
       typescript:
-        specifier: ^5.7.3
+        specifier: 'catalog:'
         version: 5.8.2
       unocss:
-        specifier: ^0.65.3
+        specifier: 'catalog:'
         version: 0.65.4(postcss@8.5.3)(rollup@4.34.9)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))(vue@3.5.13(typescript@5.8.2))
       vite:
-        specifier: ^6.0.6
+        specifier: 'catalog:'
         version: 6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3)
       vite-plugin-dts:
-        specifier: ^4.4.0
+        specifier: 'catalog:'
         version: 4.5.3(@types/node@22.13.9)(rollup@4.34.9)(typescript@5.8.2)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))
       vitepress:
-        specifier: 1.5.0
+        specifier: 'catalog:'
         version: 1.5.0(@algolia/client-search@5.20.4)(@types/node@22.13.9)(async-validator@4.2.5)(less@4.2.2)(postcss@8.5.3)(search-insights@2.17.3)(sortablejs@1.14.0)(typescript@5.8.2)
       vitest:
-        specifier: ^2.1.8
+        specifier: 'catalog:'
         version: 2.1.9(@types/node@22.13.9)(jsdom@26.0.0)(less@4.2.2)
       vue:
-        specifier: ^3.5.13
+        specifier: 'catalog:'
         version: 3.5.13(typescript@5.8.2)
       vue-tsc:
-        specifier: ^2.2.0
+        specifier: 'catalog:'
         version: 2.2.8(typescript@5.8.2)
 
   docs:
     dependencies:
       ant-design-vue:
-        specifier: ^4.2.6
+        specifier: 'catalog:'
         version: 4.2.6(vue@3.5.13(typescript@5.8.2))
       dayjs:
-        specifier: ^1.11.13
+        specifier: 'catalog:'
         version: 1.11.13
       element-plus:
-        specifier: ^2.9.1
+        specifier: 'catalog:'
         version: 2.9.6(vue@3.5.13(typescript@5.8.2))
       monaco-editor:
-        specifier: ^0.52.2
+        specifier: 'catalog:'
         version: 0.52.2
     devDependencies:
       vite-plugin-monaco-editor:
-        specifier: ^1.1.0
+        specifier: 'catalog:'
         version: 1.1.0(monaco-editor@0.52.2)
 
   examples:
     dependencies:
       '@ant-design/icons-vue':
-        specifier: ^7.0.1
+        specifier: 'catalog:'
         version: 7.0.1(vue@3.5.13(typescript@5.8.2))
       '@shikijs/monaco':
-        specifier: ^1.24.4
+        specifier: 'catalog:'
         version: 1.29.2
       ant-design-vue:
-        specifier: ^4.2.6
+        specifier: 'catalog:'
         version: 4.2.6(vue@3.5.13(typescript@5.8.2))
       dayjs:
-        specifier: ^1.11.13
+        specifier: 'catalog:'
         version: 1.11.13
       element-plus:
-        specifier: ^2.9.1
+        specifier: 'catalog:'
         version: 2.9.6(vue@3.5.13(typescript@5.8.2))
       magic-string:
-        specifier: ^0.30.17
+        specifier: 'catalog:'
         version: 0.30.17
       monaco-editor:
-        specifier: ^0.52.2
+        specifier: 'catalog:'
         version: 0.52.2
       shiki:
-        specifier: ^1.24.4
+        specifier: 'catalog:'
         version: 1.29.2
       vue:
-        specifier: ^3.5.13
+        specifier: 'catalog:'
         version: 3.5.13(typescript@5.8.2)
       vue-draggable-plus:
-        specifier: ^0.6.0
+        specifier: 'catalog:'
         version: 0.6.0(@types/sortablejs@1.15.8)
       vue-router:
-        specifier: ^4.5.0
+        specifier: 'catalog:'
         version: 4.5.0(vue@3.5.13(typescript@5.8.2))
     devDependencies:
       '@vitejs/plugin-vue':
-        specifier: ^5.2.1
+        specifier: 'catalog:'
         version: 5.2.1(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))(vue@3.5.13(typescript@5.8.2))
       typescript:
-        specifier: ^5.7.3
+        specifier: 'catalog:'
         version: 5.8.2
       unocss:
-        specifier: ^0.65.3
+        specifier: 'catalog:'
         version: 0.65.4(postcss@8.5.3)(rollup@4.34.9)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))(vue@3.5.13(typescript@5.8.2))
       vite:
-        specifier: ^6.0.6
+        specifier: 'catalog:'
         version: 6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3)
       vite-plugin-monaco-editor:
-        specifier: ^1.1.0
+        specifier: 'catalog:'
         version: 1.1.0(monaco-editor@0.52.2)
       vite-plugin-vue-devtools:
-        specifier: 7.6.8
+        specifier: 'catalog:'
         version: 7.6.8(rollup@4.34.9)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))(vue@3.5.13(typescript@5.8.2))
       vue-tsc:
-        specifier: ^2.2.0
+        specifier: 'catalog:'
         version: 2.2.8(typescript@5.8.2)
 
   internal/eslint-config:
     dependencies:
       eslint-config-turbo:
-        specifier: ^2.4.3
+        specifier: 'catalog:'
         version: 2.4.4(eslint@9.21.0(jiti@2.4.2))(turbo@2.4.4)
       eslint-plugin-command:
-        specifier: ^3.1.0
+        specifier: 'catalog:'
         version: 3.1.0(eslint@9.21.0(jiti@2.4.2))
       eslint-plugin-import-x:
-        specifier: ^4.6.1
+        specifier: 'catalog:'
         version: 4.6.1(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
       typescript-eslint:
-        specifier: ^8.24.0
+        specifier: 'catalog:'
         version: 8.26.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
     devDependencies:
       '@eslint/js':
-        specifier: ^9.21.0
+        specifier: 'catalog:'
         version: 9.21.0
       '@types/eslint':
-        specifier: ^9.6.1
+        specifier: 'catalog:'
         version: 9.6.1
       '@typescript-eslint/eslint-plugin':
-        specifier: ^8.25.0
+        specifier: 'catalog:'
         version: 8.26.0(@typescript-eslint/parser@8.26.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
       '@typescript-eslint/parser':
-        specifier: ^8.25.0
+        specifier: 'catalog:'
         version: 8.26.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
       eslint:
-        specifier: ^9.21.0
+        specifier: 'catalog:'
         version: 9.21.0(jiti@2.4.2)
       eslint-plugin-eslint-comments:
-        specifier: ^3.2.0
+        specifier: 'catalog:'
         version: 3.2.0(eslint@9.21.0(jiti@2.4.2))
       eslint-plugin-jsdoc:
-        specifier: ^50.6.3
+        specifier: 'catalog:'
         version: 50.6.3(eslint@9.21.0(jiti@2.4.2))
       eslint-plugin-jsonc:
-        specifier: ^2.19.1
+        specifier: 'catalog:'
         version: 2.19.1(eslint@9.21.0(jiti@2.4.2))
       eslint-plugin-n:
-        specifier: ^17.15.1
+        specifier: 'catalog:'
         version: 17.16.2(eslint@9.21.0(jiti@2.4.2))
       eslint-plugin-no-only-tests:
-        specifier: ^3.3.0
+        specifier: 'catalog:'
         version: 3.3.0
       eslint-plugin-perfectionist:
-        specifier: ^4.9.0
+        specifier: 'catalog:'
         version: 4.9.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
       eslint-plugin-prettier:
-        specifier: ^5.2.3
+        specifier: 'catalog:'
         version: 5.2.3(@types/eslint@9.6.1)(eslint@9.21.0(jiti@2.4.2))(prettier@3.5.3)
       eslint-plugin-regexp:
-        specifier: ^2.7.0
+        specifier: 'catalog:'
         version: 2.7.0(eslint@9.21.0(jiti@2.4.2))
       eslint-plugin-unicorn:
-        specifier: ^57.0.0
+        specifier: 'catalog:'
         version: 57.0.0(eslint@9.21.0(jiti@2.4.2))
       eslint-plugin-unused-imports:
-        specifier: ^4.1.4
+        specifier: 'catalog:'
         version: 4.1.4(@typescript-eslint/eslint-plugin@8.26.0(@typescript-eslint/parser@8.26.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.21.0(jiti@2.4.2))
       eslint-plugin-vitest:
-        specifier: ^0.5.4
+        specifier: 'catalog:'
         version: 0.5.4(@typescript-eslint/eslint-plugin@8.26.0(@typescript-eslint/parser@8.26.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)(vitest@2.1.9(@types/node@22.13.9)(jsdom@26.0.0)(less@4.2.2))
       eslint-plugin-vue:
-        specifier: ^9.32.0
+        specifier: 'catalog:'
         version: 9.33.0(eslint@9.21.0(jiti@2.4.2))
       globals:
-        specifier: ^16.0.0
+        specifier: 'catalog:'
         version: 16.0.0
       jsonc-eslint-parser:
-        specifier: ^2.4.0
+        specifier: 'catalog:'
         version: 2.4.0
       unbuild:
-        specifier: ^3.3.1
+        specifier: 'catalog:'
         version: 3.5.0(typescript@5.8.2)(vue-tsc@2.2.8(typescript@5.8.2))(vue@3.5.13(typescript@5.8.2))
       vue-eslint-parser:
-        specifier: ^9.4.3
+        specifier: 'catalog:'
         version: 9.4.3(eslint@9.21.0(jiti@2.4.2))
 
   packages/core:
     dependencies:
       monaco-editor:
-        specifier: ^0.52.2
+        specifier: 'catalog:'
         version: 0.52.2
       vue-draggable-plus:
-        specifier: ^0.6.0
+        specifier: 'catalog:'
         version: 0.6.0(@types/sortablejs@1.15.8)
       vuedraggable:
-        specifier: 4.1.0
+        specifier: 'catalog:'
         version: 4.1.0(vue@3.5.13(typescript@5.8.2))
     devDependencies:
       unocss:
-        specifier: ^0.65.3
-        version: 0.65.4(postcss@8.5.3)(rollup@4.34.9)(vite@5.4.14(@types/node@22.13.9)(less@4.2.2))(vue@3.5.13(typescript@5.8.2))
+        specifier: 'catalog:'
+        version: 0.65.4(postcss@8.5.3)(rollup@4.34.9)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))(vue@3.5.13(typescript@5.8.2))
       vitest:
-        specifier: ^2.1.8
+        specifier: 'catalog:'
         version: 2.1.9(@types/node@22.13.9)(jsdom@26.0.0)(less@4.2.2)
 
   packages/epic-designer:
@@ -284,7 +479,7 @@ importers:
         specifier: '>=3.1.0'
         version: 3.5.13(typescript@5.8.2)
       vuedraggable:
-        specifier: 4.1.0
+        specifier: 'catalog:'
         version: 4.1.0(vue@3.5.13(typescript@5.8.2))
     optionalDependencies:
       ant-design-vue:
@@ -298,25 +493,25 @@ importers:
         version: 2.41.0(vue@3.5.13(typescript@5.8.2))
     devDependencies:
       '@types/node':
-        specifier: ^22.10.2
+        specifier: 'catalog:'
         version: 22.13.9
       '@unocss/preset-rem-to-px':
-        specifier: ^0.65.3
+        specifier: 'catalog:'
         version: 0.65.4
       rollup-plugin-copy:
-        specifier: ^3.5.0
+        specifier: 'catalog:'
         version: 3.5.0
       rollup-plugin-node-externals:
-        specifier: ^8.0.0
+        specifier: 'catalog:'
         version: 8.0.0(rollup@4.34.9)
       unocss:
-        specifier: ^0.65.3
-        version: 0.65.4(postcss@8.5.3)(rollup@4.34.9)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))(vue@3.5.13(typescript@5.8.2))
+        specifier: 'catalog:'
+        version: 0.65.4(postcss@8.5.3)(rollup@4.34.9)(vite@5.4.14(@types/node@22.13.9)(less@4.2.2))(vue@3.5.13(typescript@5.8.2))
       vitest:
-        specifier: ^2.1.8
+        specifier: 'catalog:'
         version: 2.1.9(@types/node@22.13.9)(jsdom@26.0.0)(less@4.2.2)
       vue-tsc:
-        specifier: ^2.2.0
+        specifier: 'catalog:'
         version: 2.2.8(typescript@5.8.2)
 
   packages/hooks: {}
@@ -333,10 +528,10 @@ importers:
         specifier: workspace:*
         version: link:../utils
       rollup-plugin-node-externals:
-        specifier: ^8.0.0
+        specifier: 'catalog:'
         version: 8.0.0(rollup@4.34.9)
       vue:
-        specifier: ^3.3.0
+        specifier: 'catalog:'
         version: 3.5.13(typescript@5.8.2)
 
   packages/types: {}
@@ -344,16 +539,16 @@ importers:
   packages/ui:
     devDependencies:
       ant-design-vue:
-        specifier: ^4.2.6
+        specifier: 'catalog:'
         version: 4.2.6(vue@3.5.13(typescript@5.8.2))
       element-plus:
-        specifier: ^2.9.1
+        specifier: 'catalog:'
         version: 2.9.6(vue@3.5.13(typescript@5.8.2))
       naive-ui:
-        specifier: ^2.40.4
+        specifier: 'catalog:'
         version: 2.41.0(vue@3.5.13(typescript@5.8.2))
       vite-plugin-dts:
-        specifier: ^4.4.0
+        specifier: 'catalog:'
         version: 4.5.3(@types/node@22.13.9)(rollup@4.34.9)(typescript@5.8.2)(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3))
 
   packages/ui-kit/base-ui:
@@ -381,31 +576,31 @@ importers:
   packages/utils:
     dependencies:
       rollup-plugin-node-externals:
-        specifier: ^8.0.0
+        specifier: 'catalog:'
         version: 8.0.0(rollup@4.34.9)
 
   scripts:
     devDependencies:
       '@manypkg/get-packages':
-        specifier: ^2.2.2
+        specifier: 'catalog:'
         version: 2.2.2
       '@types/node':
-        specifier: ^22.10.6
+        specifier: 'catalog:'
         version: 22.13.9
       cac:
-        specifier: ^6.7.14
+        specifier: 'catalog:'
         version: 6.7.14
       find-up:
-        specifier: ^7.0.0
+        specifier: 'catalog:'
         version: 7.0.0
       ts-node:
-        specifier: ^10.9.2
+        specifier: 'catalog:'
         version: 10.9.2(@types/node@22.13.9)(typescript@5.8.2)
       typescript:
-        specifier: ^5.7.3
+        specifier: 'catalog:'
         version: 5.8.2
       unbuild:
-        specifier: ^3.3.1
+        specifier: 'catalog:'
         version: 3.5.0(typescript@5.8.2)(vue-tsc@2.2.8(typescript@5.8.2))(vue@3.5.13(typescript@5.8.2))
 
 packages:
@@ -1421,51 +1616,61 @@ packages:
     resolution: {integrity: sha512-88I+D3TeKItrw+Y/2ud4Tw0+3CxQ2kLgu3QvrogZ0OfkmX/DEppehus7L3TS2Q4lpB+hYyxhkQiYPJ6Mf5/dPg==}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.34.9':
     resolution: {integrity: sha512-3qyfWljSFHi9zH0KgtEPG4cBXHDFhwD8kwg6xLfHQ0IWuH9crp005GfoUUh/6w9/FWGBwEHg3lxK1iHRN1MFlA==}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.34.9':
     resolution: {integrity: sha512-6TZjPHjKZUQKmVKMUowF3ewHxctrRR09eYyvT5eFv8w/fXarEra83A2mHTVJLA5xU91aCNOUnM+DWFMSbQ0Nxw==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.34.9':
     resolution: {integrity: sha512-LD2fytxZJZ6xzOKnMbIpgzFOuIKlxVOpiMAXawsAZ2mHBPEYOnLRK5TTEsID6z4eM23DuO88X0Tq1mErHMVq0A==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-loongarch64-gnu@4.34.9':
     resolution: {integrity: sha512-dRAgTfDsn0TE0HI6cmo13hemKpVHOEyeciGtvlBTkpx/F65kTvShtY/EVyZEIfxFkV5JJTuQ9tP5HGBS0hfxIg==}
     cpu: [loong64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-powerpc64le-gnu@4.34.9':
     resolution: {integrity: sha512-PHcNOAEhkoMSQtMf+rJofwisZqaU8iQ8EaSps58f5HYll9EAY5BSErCZ8qBDMVbq88h4UxaNPlbrKqfWP8RfJA==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.34.9':
     resolution: {integrity: sha512-Z2i0Uy5G96KBYKjeQFKbbsB54xFOL5/y1P5wNBsbXB8yE+At3oh0DVMjQVzCJRJSfReiB2tX8T6HUFZ2k8iaKg==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-s390x-gnu@4.34.9':
     resolution: {integrity: sha512-U+5SwTMoeYXoDzJX5dhDTxRltSrIax8KWwfaaYcynuJw8mT33W7oOgz0a+AaXtGuvhzTr2tVKh5UO8GVANTxyQ==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.34.9':
     resolution: {integrity: sha512-FwBHNSOjUTQLP4MG7y6rR6qbGw4MFeQnIBrMe161QGaQoBQLqSUEKlHIiVgF3g/mb3lxlxzJOpIBhaP+C+KP2A==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.34.9':
     resolution: {integrity: sha512-cYRpV4650z2I3/s6+5/LONkjIz8MBeqrk+vPXV10ORBnshpn8S32bPqQ2Utv39jCiDcO2eJTuSlPXpnvmaIgRA==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-win32-arm64-msvc@4.34.9':
     resolution: {integrity: sha512-z4mQK9dAN6byRA/vsSgQiPeuO63wdiDxZ9yg9iyX2QTzKuQM7T4xlBoeUP/J8uiFkqxkcWndWi+W7bXdPbt27Q==}

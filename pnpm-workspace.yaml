@@ -20,6 +20,7 @@ catalog:
   'prettier-plugin-tailwindcss': ^0.6.11
   'turbo': ^2.3.3
   'typescript': ^5.7.3
+  'unbuild': ^3.3.0
   'unocss': ^0.65.3
   'vite': ^6.0.6
   'vite-plugin-dts': ^4.4.0
