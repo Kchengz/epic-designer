@@ -181,6 +181,7 @@ export function usePageManager() {
         getComponent,
         pluginManager,
         publicMethods,
+        state: pluginManager.state,
       })();
     } catch (error) {
       if (outputError) {

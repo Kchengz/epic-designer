@@ -13,7 +13,7 @@ import type { AsyncComponentLoader } from 'vue';
 
 import { ref } from 'vue';
 
-import { useFormSchema, usePanel } from '@epic-designer/hooks';
+import { useFormSchema, usePanel, useState } from '@epic-designer/hooks';
 import { loadAsyncComponent } from '@epic-designer/utils';
 
 // 插件管理器类
@@ -68,6 +68,17 @@ export function usePluginManager() {
     showRightSidebar,
     viewsContainers,
   } = usePanel();
+
+  // 全局状态管理
+  const {
+    clearState,
+    getState,
+    removeState,
+    resetState,
+    setState,
+    setStates,
+    state,
+  } = useState();
 
   /**
    * 添加基础组件类型
@@ -414,6 +425,7 @@ export function usePluginManager() {
     baseComponentTypes,
     clearComponentGroupNameMap,
     clearSortedGroups,
+    clearState,
     component,
     componentConfigs,
     componentGroupNameMap,
@@ -429,6 +441,7 @@ export function usePluginManager() {
     getIcon,
     getLabel,
     getRightSidebars,
+    getState,
     hiddenComponents,
     hideActivitybar,
     hideComponent,
@@ -441,16 +454,21 @@ export function usePluginManager() {
     removeBaseComponents,
     removeComponent,
     removePublicMethod,
+    removeState,
+    resetState,
     setBaseComponentTypes,
     setComponentGroupNameMap,
     setFormSchema,
     setHideComponents,
     setInitialized,
     setSortedGroups,
+    setState,
+    setStates,
     showActivitybar,
     showComponent,
     showRightSidebar,
     sortedGroups,
+    state,
     viewsContainers,
   };
 }
