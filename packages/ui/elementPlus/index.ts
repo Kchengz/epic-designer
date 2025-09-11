@@ -6,6 +6,7 @@ import {
   ElCollapse,
   ElCollapseItem,
   ElFormItem,
+  ElMessage,
   ElTabPane,
   ElTabs,
 } from 'element-plus';
@@ -71,6 +72,14 @@ export function setupElementPlus(
     pluginManager.registerComponent(item);
     pluginManager.addBaseComponentTypes(item.defaultSchema.type);
   });
+
+  // 注册全局提示函数
+  pluginManager.state.$message = {
+    error: ElMessage.error,
+    info: ElMessage.info,
+    success: ElMessage.success,
+    warning: ElMessage.warning,
+  };
 
   // ui初始化完成。
   pluginManager.setInitialized(true);

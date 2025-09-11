@@ -2,7 +2,7 @@ import type { PluginManager } from '@epic-designer/manager';
 
 // 注册naive-ui
 import { pluginManager as pManager } from '@epic-designer/manager';
-import { NTabPane } from 'naive-ui';
+import { createDiscreteApi, NTabPane } from 'naive-ui';
 
 import Button from './button';
 import Card from './card';
@@ -74,6 +74,15 @@ export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
     pluginManager.registerComponent(item);
     pluginManager.addBaseComponentTypes(item.defaultSchema.type);
   });
+
+  // 注册全局提示函数
+  const { message } = createDiscreteApi(['message']);
+  pluginManager.state.$message = {
+    error: message.error,
+    info: message.info,
+    success: message.success,
+    warning: message.warning,
+  };
 
   // ui初始化完成。
   pluginManager.setInitialized(true);

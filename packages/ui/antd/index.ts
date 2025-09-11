@@ -2,7 +2,7 @@ import type { PluginManager } from '@epic-designer/manager';
 
 // 注册ant-design-vue ui
 import { pluginManager as pManager } from '@epic-designer/manager';
-import { version } from 'ant-design-vue';
+import { message, version } from 'ant-design-vue';
 
 import Button from './button';
 import Card from './card';
@@ -107,6 +107,14 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
     pluginManager.registerComponent(item);
     pluginManager.addBaseComponentTypes(item.defaultSchema.type);
   });
+
+  // 注册全局提示函数
+  pluginManager.state.$message = {
+    error: message.error,
+    info: message.info,
+    success: message.success,
+    warning: message.warning,
+  };
 
   // ui初始化完成。
   pluginManager.setInitialized(true);
