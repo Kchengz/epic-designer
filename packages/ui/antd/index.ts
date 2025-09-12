@@ -109,7 +109,7 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
   });
 
   // 注册全局提示函数
-  pluginManager.state.$message = {
+  pluginManager.global.$message = {
     error: message.error,
     info: message.info,
     success: message.success,

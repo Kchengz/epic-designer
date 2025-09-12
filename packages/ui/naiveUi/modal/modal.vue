@@ -6,12 +6,14 @@ import { NButton, NModal, NSpace } from 'naive-ui';
 // 定义 props
 const props = withDefaults(
   defineProps<{
+    cancelText?: string;
     componentSchema?: ComponentSchema;
     hideConfirm?: boolean;
     okText?: string;
     width?: string;
   }>(),
   {
+    cancelText: '关闭',
     componentSchema: () => ({
       type: 'modal',
     }),
@@ -72,7 +74,7 @@ const handleClose = () => {
 
     <div class="epic-modal-footer">
       <NSpace justify="end">
-        <NButton @click="handleClose"> 关闭 </NButton>
+        <NButton @click="handleClose"> {{ props.cancelText }} </NButton>
         <NButton v-if="!props.hideConfirm" type="primary" @click="handleOk">
           {{ props.okText }}
         </NButton>

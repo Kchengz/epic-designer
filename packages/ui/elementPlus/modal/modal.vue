@@ -7,11 +7,13 @@ import { ElButton, ElDialog } from 'element-plus';
 // 定义 props
 const props = withDefaults(
   defineProps<{
+    cancelText?: string;
     componentSchema?: ComponentSchema;
     hideConfirm?: boolean;
     okText?: string;
   }>(),
   {
+    cancelText: '关闭',
     componentSchema: () => ({
       type: 'modal',
     }),
@@ -62,7 +64,7 @@ function handleClose() {
       </slot>
     </slot>
     <div class="epic-modal-footer">
-      <ElButton @click="handleClose"> 关闭 </ElButton>
+      <ElButton @click="handleClose"> {{ props.cancelText }} </ElButton>
       <ElButton v-if="!props.hideConfirm" type="primary" @click="handleOk">
         {{ props.okText }}
       </ElButton>

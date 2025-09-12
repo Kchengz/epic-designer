@@ -77,7 +77,7 @@ export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
 
   // 注册全局提示函数
   const { message } = createDiscreteApi(['message']);
-  pluginManager.state.$message = {
+  pluginManager.global.$message = {
     error: message.error,
     info: message.info,
     success: message.success,

@@ -1,4 +1,4 @@
 export * from './useFormSchema';
+export { useGlobal } from './useGlobal';
 export * from './usePageSchema';
 export * from './usePanel';
-export { useState } from './useState';

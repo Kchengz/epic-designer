@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import type { PageSchema } from '@epic-designer/types';
 
-import { inject, ref } from 'vue';
+import { inject, ref, watchEffect } from 'vue';
 
 import { pluginManager } from '@epic-designer/manager';
+import { useClipboard } from '@vueuse/core';
 
 const Modal = pluginManager.getComponent('modal');
 const MonacoEditor = pluginManager.getComponent('monacoEditor');
@@ -18,8 +19,17 @@ const MonacoEditorConfig = {
 const monacoEditorRef = ref<any>(null);
 const visible = ref(false);
 const pageSchema = inject('pageSchema') as PageSchema;
+const { copied, copy } = useClipboard();
+watchEffect(() => {
+  if (copied.value) {
+    pluginManager.global.$message.success('节点ID复制成功');
+  }
+});
+
 function handleClose() {
-  visible.value = false;
+  // visible.value = false;
+  const content = JSON.stringify(pageSchema, null, 2);
+  copy(content);
 }
 
 // 打开预览页面
@@ -58,6 +68,7 @@ defineExpose({
     class="w-900px"
     width="900px"
     ok-text="导出数据"
+    cancel-text="一键复制"
     @close="handleClose"
     @ok="handleExportData"
   >

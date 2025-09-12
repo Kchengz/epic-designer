@@ -74,7 +74,7 @@ export function setupElementPlus(
   });
 
   // 注册全局提示函数
-  pluginManager.state.$message = {
+  pluginManager.global.$message = {
     error: ElMessage.error,
     info: ElMessage.info,
     success: ElMessage.success,

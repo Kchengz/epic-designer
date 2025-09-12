@@ -7,11 +7,13 @@ import { Button, Modal, Space, version } from 'ant-design-vue';
 
 const props = withDefaults(
   defineProps<{
+    cancelText?: string;
     componentSchema?: ComponentSchema;
     hideConfirm?: boolean;
     okText?: string;
   }>(),
   {
+    cancelText: '关闭',
     componentSchema: () => ({
       type: 'modal',
     }),
@@ -83,7 +85,7 @@ function handleClose() {
     </div>
     <div class="epic-modal-footer">
       <Space align="end">
-        <Button @click="handleClose"> 关闭 </Button>
+        <Button @click="handleClose"> {{ props.cancelText }} </Button>
         <Button v-if="!props.hideConfirm" type="primary" @click="handleOk">
           {{ props.okText }}
         </Button>

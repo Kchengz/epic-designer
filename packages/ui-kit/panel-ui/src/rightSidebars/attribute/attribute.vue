@@ -20,7 +20,7 @@ const revoke = inject('revoke') as Revoke;
 const { copied, copy } = useClipboard();
 watchEffect(() => {
   if (copied.value) {
-    pluginManager.state.$message.success('复制成功');
+    pluginManager.global.$message.success('节点ID复制成功');
   }
 });
 
