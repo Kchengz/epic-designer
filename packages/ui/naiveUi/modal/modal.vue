@@ -43,10 +43,13 @@ const handleOk = () => {
   emit('ok');
 };
 
-const handleClose = () => {
-  emit('update:modelValue', false);
+function updateModelValue(value = false) {
+  emit('update:modelValue', value);
+}
+
+function handleClose() {
   emit('close');
-};
+}
 </script>
 
 <template>
@@ -56,7 +59,7 @@ const handleClose = () => {
     class="epic-modal-n epic-scoped"
     preset="card"
     :style="{ width }"
-    @update:show="handleClose"
+    @update:show="updateModelValue"
   >
     <div class="epic-modal-main">
       <slot>

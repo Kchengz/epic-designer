@@ -48,8 +48,8 @@ const getComponentProps = computed<Record<string, any>>(() => ({
   bodyStyle,
   dialogStyle,
   footer: null,
-  'onUpdate:open': handleClose,
-  'onUpdate:visible': handleClose,
+  'onUpdate:open': updateModelValue,
+  'onUpdate:visible': updateModelValue,
   open: attrs.modelValue,
   style: 'top:20px',
   title: props.componentSchema?.label ?? '',
@@ -64,8 +64,11 @@ function handleOk() {
   emits('ok');
 }
 
+function updateModelValue(value = false) {
+  emits('update:modelValue', value);
+}
+
 function handleClose() {
-  emits('update:modelValue', false);
   emits('close');
 }
 </script>

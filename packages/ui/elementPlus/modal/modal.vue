@@ -38,8 +38,11 @@ function handleOk() {
   emits('ok');
 }
 
+function updateModelValue(value = false) {
+  emits('update:modelValue', value);
+}
+
 function handleClose() {
-  emits('update:modelValue', false);
   emits('close');
 }
 </script>
@@ -50,7 +53,7 @@ function handleClose() {
     :title="getComponentProps.label ?? ''"
     class="epic-modal-el epic-modal-main epic-scoped"
     destroy-on-close
-    @update:model-value="handleClose"
+    @update:model-value="updateModelValue"
   >
     <slot>
       <slot name="edit-node">

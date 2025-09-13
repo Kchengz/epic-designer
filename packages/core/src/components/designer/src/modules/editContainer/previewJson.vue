@@ -22,7 +22,7 @@ const pageSchema = inject('pageSchema') as PageSchema;
 const { copied, copy } = useClipboard();
 watchEffect(() => {
   if (copied.value) {
-    pluginManager.global.$message.success('节点ID复制成功');
+    pluginManager.global.$message.success('复制成功');
   }
 });
 
