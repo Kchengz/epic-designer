@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { Revoke } from '@epic-designer/manager';
 import type { ComponentSchema, Designer } from '@epic-designer/types';
 
 import { computed, inject } from 'vue';
@@ -15,7 +14,6 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(['update:schemas']);
 const designer = inject('designer') as Designer;
-const revoke = inject('revoke') as Revoke;
 
 const modelSchemas = computed({
   get: () => props.schemas,
@@ -37,7 +35,9 @@ function getParentSchema(target) {
   }
   return null;
 }
-function setSelectedNode(event: Event) {
+
+function setSelectedNode(event: any) {
+  console.log(event);
   const schema = getParentSchema(event.item);
   event.stopPropagation();
   designer.setSelectedNode(schema);
@@ -45,7 +45,7 @@ function setSelectedNode(event: Event) {
 function setSelectedNode1(event: Event) {
   const schema = getParentSchema(event.target);
 
-  if (schema.id == 'root') {
+  if (schema.id === 'root') {
     event.stopPropagation();
     designer.setSelectedNode(schema);
   }

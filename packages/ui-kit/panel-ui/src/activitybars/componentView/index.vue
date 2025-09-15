@@ -9,12 +9,12 @@ import type {
 import type { Ref } from 'vue';
 
 import { computed, inject, ref } from 'vue';
+import { VueDraggable } from 'vue-draggable-plus';
 
 import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager, Revoke } from '@epic-designer/manager';
 import { findSchemaInfoById, generateNewSchema } from '@epic-designer/utils';
-import draggable from 'vuedraggable';
-import { VueDraggable } from 'vue-draggable-plus'
+
 const Input = pluginManager.getComponent('input');
 const pageSchema = inject('pageSchema') as PageSchema;
 const designer = inject('designer') as Designer;
@@ -40,21 +40,20 @@ const getSchemaTypeList = computed(() => {
  */
 const getSourceSchemaList = computed(() => {
   let sourceSchemaList: ComponentSchema[] = activeItem.value.list;
- 
+
   if (activeItem.value.title === '全部') {
-    
     const sourceSchemaAllList = sourceSchema.value.map((item) => {
       return item.list;
     });
-    
+
     sourceSchemaList = sourceSchemaAllList.flat();
   }
- let data=  sourceSchemaList.filter(
+  const data = sourceSchemaList.filter(
     (item) =>
       item.label?.includes(keyword.value) &&
       (!designerProps.value.formMode || item.type !== 'form'),
   );
-  
+
   return data;
 });
 
@@ -66,7 +65,6 @@ function handelChecked(item) {
  * 点击添加节点
  */
 function handleClick(schema: ComponentSchema) {
-
   const data = findSchemaInfoById(
     pageSchema.schemas,
     designer.state.selectedNode?.id ?? 'root',
@@ -79,8 +77,8 @@ function handleClick(schema: ComponentSchema) {
   // 如果选中元素存在children字段，则添加到children中
   if (
     checkedSchema.children &&
-    !pluginManager.getComponentConfigByType(checkedSchema.type)
-      ?.editConstraints?.childImmovable
+    !pluginManager.getComponentConfigByType(checkedSchema.type)?.editConstraints
+      ?.childImmovable
   ) {
     list = checkedSchema.children;
     index = checkedSchema.children.length - 1;
@@ -90,7 +88,7 @@ function handleClick(schema: ComponentSchema) {
 
   list.splice(index + 1, 0, newSchema);
   designer.setSelectedNode(newSchema);
-  revoke.push(pageSchema.schemas, '插入组件');
+  revoke.push('插入组件');
 }
 </script>
 <template>
@@ -132,37 +130,29 @@ function handleClick(schema: ComponentSchema) {
       <div class="box-border h-full flex-1 overflow-auto py-2">
         <VueDraggable
           v-model="getSourceSchemaList"
-          
-            :group="{ name: 'edit-draggable', pull: 'clone', put: false }"
-            :sort="false"
-            :animation="180"
-            ghostClass='moving'
-         
+          :group="{ name: 'edit-draggable', pull: 'clone', put: false }"
+          :sort="false"
+          :animation="180"
+          ghost-class="moving"
           :clone="generateNewSchema"
           item-key="id"
           class="px-10px grid grid-cols-[auto_auto] gap-2"
         >
-         
-       
-         
-            <div
-             v-for="item in getSourceSchemaList"
-        :key="item.type"
-              class="epic-componet-item flex items-center truncate"
-              @click="handleClick(item)"
-
-            >
-              <EpicIcon
-                :name="
-                  pluginManager.getComponentConfigByType(item.type).icon ??
-                  ''
-                "
-              />
-              <div class="epic-componet-label w-0 flex-1 truncate">
-                {{ item.label }}
-              </div>
+          <div
+            v-for="item in getSourceSchemaList"
+            :key="item.type"
+            class="epic-componet-item flex items-center truncate"
+            @click="handleClick(item)"
+          >
+            <EpicIcon
+              :name="
+                pluginManager.getComponentConfigByType(item.type).icon ?? ''
+              "
+            />
+            <div class="epic-componet-label w-0 flex-1 truncate">
+              {{ item.label }}
             </div>
-         
+          </div>
         </VueDraggable>
         <div
           v-show="getSourceSchemaList.length === 0"
