@@ -166,6 +166,8 @@ function setScroll() {
 useResizeObserver(editScreenContainerRef, computedScale);
 useResizeObserver(draggableElRef, computedScale);
 
+const debounceUpdateScrollBoxStyle = debounce(updateScrollBoxStyle, 10);
+
 function computedScale() {
   if (!editScreenContainerRef.value) return;
   const contentRect = editScreenContainerRef.value.getBoundingClientRect();
@@ -209,9 +211,8 @@ function computedScale() {
       scale < 1.4 && scale > 0.5 && (canvasScale.value = scale);
     }
   }
-
   // 更新滚动区域的样式，根据新的容器尺寸和画布缩放
-  debounce(updateScrollBoxStyle, 50)();
+  debounceUpdateScrollBoxStyle();
 }
 </script>
 <template>

@@ -86,7 +86,7 @@ const eventList = computed(() => {
 function handleSetValue(value: any, field: string) {
   setValueByPath(selectedNode.value!, field, value);
   // 将修改过的组件属性推入撤销操作的栈中
-  revoke.push('编辑组件属性');
+  revoke.push('属性编辑');
 }
 </script>
 <template>
