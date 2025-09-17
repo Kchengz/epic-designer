@@ -2,26 +2,25 @@
  * 生成一个用不重复的ID
  * @param randomLength 随机id长度 0 - 11
  */
-export function getUUID(randomLength = 6, type = 'string'): string {
-  let UUID = '';
+export function getUUID(
+  randomLength = 6,
+  type: 'number' | 'string' = 'string',
+): string {
   // 生成字符类型UUID
   if (type === 'string') {
-    const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-
+    const buf: string[] = [];
+    const max = 36; // 0-9, a-z 共36个字符
+    const offset = 87; // 'a'的charCodeAt值为97，97 - 10 = 87
     for (let i = 0; i < randomLength; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      UUID += characters[randomIndex];
+      const k = Math.floor(Math.random() * max);
+      buf.push(k < 10 ? k.toString() : String.fromCodePoint(offset + k));
     }
+    return buf.join('');
   }
 
   // 生成数值类型UUID
-  if (type === 'number') {
-    for (let i = 0; i < randomLength; i++) {
-      UUID += Math.floor(Math.random() * 10); // 生成 0 到 9 之间的随机整数
-    }
-  }
-
-  return UUID;
+  const times = 10 ** (randomLength - 1);
+  return (times + Math.floor(Math.random() * 9 * times)).toString();
 }
 
 /**
