@@ -61,7 +61,7 @@ function handleDelete(index: number) {
       />
       <div v-if="colList.length > 1" class="epic-del-btn">
         <span @click="handleDelete(index)">
-          <EpicIcon name="icon-shanchu1" />
+          <EpicIcon name="icon--epic--delete-outline-rounded" />
         </span>
       </div>
     </div>
