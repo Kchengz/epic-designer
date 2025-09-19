@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import type {
-  ComponentSchema,
-  FormDataModel,
-  PageSchema,
-} from '@epic-designer/types';
-
 import { computed, inject, nextTick, reactive, ref, toRaw } from 'vue';
 
 import { EpicIcon, EpicTree } from '@epic-designer/base-ui';
 import { PageManager, pluginManager } from '@epic-designer/manager';
+import {
+  ActionItem,
+  ComponentConfigModel,
+  ComponentSchema,
+  PageSchema,
+} from '@epic-designer/types';
 import { deepClone, findSchemaById, getUUID } from '@epic-designer/utils';
 import { useClipboard } from '@vueuse/core';
 
@@ -24,6 +24,7 @@ const pageManager = inject('pageManager', {}) as PageManager;
 const visible = ref(false);
 const selectedKeys = ref<string[]>([]);
 const componentSchema = ref<ComponentSchema | null>(null);
+const componentConfigModel = ref<ComponentConfigModel | null>(null);
 const { copy } = useClipboard({});
 
 const argsEditorKey = computed(() => {
@@ -34,7 +35,7 @@ const state = reactive({
     componentId: null,
     methodName: 'test',
     type: 'custom',
-  } as FormDataModel,
+  } as ActionItem,
   cacheData: {},
 });
 
@@ -126,7 +127,7 @@ function handleOpen() {
   state.actionItem.type = 'custom';
   state.actionItem.componentId = null;
   if (methodOptions.value?.length) {
-    handleCheckedMethod(methodOptions.value[0].value);
+    handleCheckedMethod(methodOptions.value[0]);
   }
 }
 
@@ -167,7 +168,7 @@ function handleClose() {
   state.cacheData = {};
 }
 
-function toggleMethod(type: string) {
+function toggleMethod(type: 'component' | 'custom' | 'public') {
   state.actionItem.componentId = null;
   state.actionItem.type = type;
   componentSchema.value = null;
@@ -175,14 +176,14 @@ function toggleMethod(type: string) {
 
   selectedKeys.value = [];
   if (methodOptions.value?.length) {
-    handleCheckedMethod(methodOptions.value[0].value);
+    handleCheckedMethod(methodOptions.value[0]);
   }
 }
 function handleNodeClick(e: any) {
   if (state.actionItem.args) {
     // 存在参数配置，缓存参数配置数据
     state.cacheData[
-      state.actionItem.componentId + state.actionItem.methodName
+      `${state.actionItem.componentId}${state.actionItem.methodName}`
     ] = state.actionItem.args;
   }
 
@@ -190,19 +191,23 @@ function handleNodeClick(e: any) {
   state.actionItem.type = 'component';
   state.actionItem.methodName = null;
   componentSchema.value = e.componentSchema;
+  componentConfigModel.value =
+    pluginManager.getComponentConfigs()[e.componentSchema.type];
 
   if (methodOptions.value?.length) {
-    handleCheckedMethod(methodOptions.value[0].value);
+    handleCheckedMethod(methodOptions.value[0]);
   }
 }
 
-function handleCheckedMethod(value: string) {
+function handleCheckedMethod({ args, value }: any) {
   // activeTab.value = '脚本编辑'
   state.actionItem.methodName = value;
 
   // 获取缓存参数配置
   state.actionItem.args =
-    state.cacheData[state.actionItem.componentId + state.actionItem.methodName];
+    state.cacheData[
+      `${state.actionItem.componentId}${state.actionItem.methodName}`
+    ] || args;
 }
 
 defineExpose({
@@ -284,7 +289,7 @@ defineExpose({
               :key="item.value"
               :class="{ checked: item.value === state.actionItem.methodName }"
               class="epic-action-item"
-              @click="handleCheckedMethod(item.value)"
+              @click="handleCheckedMethod(item)"
             >
               <span :title="item.value">{{ item.label }}</span>
             </div>
@@ -337,7 +342,9 @@ defineExpose({
           v-else
           :key="argsEditorKey"
           v-model="state.actionItem.args"
+          :action-item="state.actionItem"
           :action-args-configs="actionArgsConfigs"
+          :component-config-model="componentConfigModel"
         />
       </div>
       <!-- 动作配置 end -->

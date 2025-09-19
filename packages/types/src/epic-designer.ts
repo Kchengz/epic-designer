@@ -88,3 +88,10 @@ export interface Designer {
   state: DesignerState;
   // schemas: ComponentSchema[];
 }
+
+export interface ActionItem {
+  args?: string;
+  componentId?: null | string;
+  methodName?: null | string;
+  type: 'component' | 'custom' | 'public';
+}

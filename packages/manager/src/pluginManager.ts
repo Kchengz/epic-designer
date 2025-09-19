@@ -295,12 +295,11 @@ export function usePluginManager() {
     // 添加组件
     component(componentConfig.defaultSchema.type, componentConfig.component);
 
+    if (!componentConfig.config.action) {
+      componentConfig.config.action = [];
+    }
     // 输入组件增加动作配置
     if (componentConfig.defaultSchema.input) {
-      if (!componentConfig.config.action) {
-        componentConfig.config.action = [];
-      }
-
       // 补充组件可用方法
       componentConfig.config.action.unshift(
         {
@@ -321,6 +320,33 @@ export function usePluginManager() {
         },
       );
     }
+    componentConfig.config.action.push({
+      argsConfigs: [
+        {
+          componentProps: {
+            clearable: true,
+            options: [...(componentConfig.config.attribute || [])]
+              .filter(({ field }) => String(field).startsWith('componentProps'))
+              .map(({ field, label }) => ({
+                label,
+                value: String(field).replace('componentProps.', ''),
+              })),
+            placeholder: '请选择',
+          },
+          field: '0',
+          label: '选择属性',
+          type: 'select',
+        },
+        {
+          field: '1',
+          label: '属性值',
+          show: ({ values }) => values[0],
+          type: 'slot',
+        },
+      ],
+      description: '修改属性',
+      type: 'setAttr',
+    });
 
     // 添加组件配置
     componentConfigs[componentConfig.defaultSchema.type] = componentConfig;
