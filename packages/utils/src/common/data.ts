@@ -20,13 +20,6 @@ export function deepClone<T extends object>(obj: T, cache = new WeakMap()): T {
     return cache.get(obj);
   }
 
-  // https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone
-  if (typeof window.structuredClone === 'function') {
-    const cloned = structuredClone(obj);
-    cache.set(obj, cloned);
-    return cloned;
-  }
-
   // 处理数组
   if (Array.isArray(obj)) {
     const clonedArray = obj.map((item) => deepClone(item as T, cache)) as T;
