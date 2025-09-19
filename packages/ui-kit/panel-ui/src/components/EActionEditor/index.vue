@@ -139,7 +139,7 @@ function handleEdit(action: any) {
 function handleAdd(action: any) {
   modelValueComputed.value = {
     ...modelValueComputed.value,
-    [currentType]: [...(events.value[currentType]?.value || []), action],
+    [currentType]: [...(events.value[currentType] || []), action],
   };
 }
 </script>
