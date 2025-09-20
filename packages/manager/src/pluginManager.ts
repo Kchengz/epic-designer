@@ -295,12 +295,11 @@ export function usePluginManager() {
     // 添加组件
     component(componentConfig.defaultSchema.type, componentConfig.component);
 
+    if (!componentConfig.config.action) {
+      componentConfig.config.action = [];
+    }
     // 输入组件增加动作配置
     if (componentConfig.defaultSchema.input) {
-      if (!componentConfig.config.action) {
-        componentConfig.config.action = [];
-      }
-
       // 补充组件可用方法
       componentConfig.config.action.unshift(
         {
@@ -321,6 +320,47 @@ export function usePluginManager() {
         },
       );
     }
+    const componentAttributes = [
+      ...(componentConfig.config.attribute || []),
+    ].filter(({ field }) => String(field).startsWith('componentProps'));
+
+    // 为所有组件添加修改属性动作
+    componentConfig.config.action.push({
+      argsConfigs: [
+        // 第一个参数为选择属性
+        {
+          componentProps: {
+            clearable: true,
+            options: componentAttributes.map(({ field, label }) => ({
+              label,
+              value: String(field).replace('componentProps.', ''),
+            })),
+            placeholder: '请选择',
+          },
+          field: '0',
+          label: '选择属性',
+          type: 'select',
+        },
+        // 动态生成所有可被修改的属性参数
+        ...componentAttributes.map((attribute, index) => {
+          const attributeField = String(attribute.field).replace(
+            'componentProps.',
+            '',
+          );
+          return {
+            componentProps: attribute.componentProps,
+            // 属性字段默认为 index+1，即 args 数组的下标
+            field: String(index + 1),
+            label: attribute.label || '属性值',
+            // 仅当选择的属性与当前属性字段匹配时显示
+            show: ({ values }: any) => values['0'] === attributeField,
+            type: attribute.type || 'input',
+          };
+        }),
+      ],
+      description: '修改属性',
+      type: 'setAttr',
+    });
 
     // 添加组件配置
     componentConfigs[componentConfig.defaultSchema.type] = componentConfig;

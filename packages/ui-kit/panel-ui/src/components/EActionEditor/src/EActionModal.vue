@@ -151,10 +151,38 @@ function handleOpenEdit(action: any) {
 }
 
 function handleSave() {
-  if (!state.actionItem.methodName) {
+  const { methodName, type } = state.actionItem;
+  if (!methodName) {
     // eslint-disable-next-line no-alert
     alert('请先选择动作方法');
     return;
+  }
+  // 处理组件属性设置
+  else if (
+    type === 'component' &&
+    methodName === 'setAttr' &&
+    componentSchema.value
+  ) {
+    // 获取当前选中组件的配置
+    const componentConfig =
+      pluginManager.getComponentConfigs()[componentSchema.value.type].config;
+    // 过滤出以 componentProps 开头的可被修改的属性
+    const componentAttributes = (componentConfig.attribute || []).filter(
+      ({ field }) => String(field).startsWith('componentProps'),
+    );
+    // 解析当前动作的参数
+    const args = JSON.parse(state.actionItem.args || '[]');
+    // 查找参数对应的属性索引
+    const attributeIndex = componentAttributes.findIndex(
+      ({ field }) => field === `componentProps.${args[0]}`,
+    );
+    if (attributeIndex !== -1) {
+      // 重新构造参数，确保只包含属性名和属性值
+      state.actionItem.args = JSON.stringify([
+        args[0],
+        args[attributeIndex + 1],
+      ]);
+    }
   }
   emit(isAdd.value ? 'add' : 'edit', deepClone(toRaw(state.actionItem)));
   handleClose();
