@@ -1,5 +1,7 @@
 import type { ComponentSchema } from '@epic-designer/types';
 
+import { isProxy, toRaw } from 'vue';
+
 import { pluginManager } from '@epic-designer/manager';
 import { PageSchema } from '@epic-designer/types';
 
@@ -7,9 +9,16 @@ import { getUUID } from './string';
 
 /**
  * 深拷贝数据
- * @param obj
+ * @param obj 要拷贝的对象
+ * @param useStructuredClone 是否使用 structuredClone 方法
+ * @param cache 缓存对象，用于处理循环引用
+ * @returns 拷贝后的对象
  */
-export function deepClone<T extends object>(obj: T, cache = new WeakMap()): T {
+export function deepClone<T extends object>(
+  obj: T,
+  useStructuredClone = true,
+  cache = new WeakMap(),
+): T {
   // 如果不是对象或数组，则直接返回
   if (typeof obj !== 'object' || obj === null) {
     return obj;
@@ -21,15 +30,17 @@ export function deepClone<T extends object>(obj: T, cache = new WeakMap()): T {
   }
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone
-  if (typeof window.structuredClone === 'function') {
-    const cloned = structuredClone(obj);
-    cache.set(obj, cloned);
+  if (useStructuredClone && typeof window.structuredClone === 'function') {
+    const rawObj = deepToRaw(obj);
+    const cloned = structuredClone(rawObj);
     return cloned;
   }
 
   // 处理数组
   if (Array.isArray(obj)) {
-    const clonedArray = obj.map((item) => deepClone(item as T, cache)) as T;
+    const clonedArray = obj.map((item) =>
+      deepClone(item as T, useStructuredClone, cache),
+    ) as T;
     cache.set(obj, clonedArray);
     return clonedArray;
   }
@@ -40,11 +51,75 @@ export function deepClone<T extends object>(obj: T, cache = new WeakMap()): T {
   Object.keys(obj).forEach((key) => {
     clonedObj[key] = deepClone(
       (obj as Record<string, unknown>)[key] as T,
+      useStructuredClone,
       cache,
     );
   });
   return clonedObj as T;
 }
+
+/**
+ * 递归遍历对象，将所有Proxy对象转换为原始对象（统一优化版）
+ * @param value 需要处理的值（已确保为对象类型）
+ * @returns 处理后的结果，所有Proxy都被转换为原始对象
+ */
+export function deepToRaw<T>(value: T): T {
+  // 处理当前Proxy对象
+  const currentValue = isProxy(value) ? toRaw(value) : value;
+
+  // 处理数组
+  if (Array.isArray(currentValue)) {
+    let processedItem: any;
+    // 遍历数组查找需要处理的元素
+    for (let i = 0; i < currentValue.length; i++) {
+      const item = currentValue[i];
+      if (item !== null && typeof item === 'object') {
+        processedItem = deepToRaw(item);
+        // 发现需要修改的元素，才创建新数组
+        if (processedItem !== item) {
+          const newArray = currentValue.slice(0, i);
+          newArray.push(processedItem);
+
+          // 处理剩余元素
+          for (let j = i + 1; j < currentValue.length; j++) {
+            const remainingItem = currentValue[j];
+            newArray.push(
+              remainingItem !== null && typeof remainingItem === 'object'
+                ? deepToRaw(remainingItem)
+                : remainingItem,
+            );
+          }
+          return newArray as unknown as T;
+        }
+      }
+    }
+    // 无修改，返回原数组
+    return currentValue;
+  }
+
+  // 处理普通对象
+  let result: null | Record<string, any> = null;
+  const keys = Object.keys(currentValue as object);
+
+  for (const key of keys) {
+    const propValue = (currentValue as Record<string, unknown>)[key];
+    if (propValue !== null && typeof propValue === 'object') {
+      const processedValue = deepToRaw(propValue);
+      // 发现需要修改的属性，才创建新对象
+      if (processedValue !== propValue) {
+        // 延迟创建新对象，直到确定需要修改时
+        if (!result) {
+          result = { ...(currentValue as Record<string, any>) };
+        }
+        result[key] = processedValue;
+      }
+    }
+  }
+
+  // 有修改则返回新对象，否则返回原对象
+  return result ? (result as T) : currentValue;
+}
+
 /**
  * 生成新的schema数据
  * 深拷贝数据,防止重复引用

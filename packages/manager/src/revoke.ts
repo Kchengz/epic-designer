@@ -104,7 +104,6 @@ export function useRevoke(
    * @param isImportant - 是否为重要操作，重要操作会跳过防抖直接记录，默认为false
    */
   function push(type = '插入组件', isImportant = false): void {
-    console.log('push', type, isImportant);
     // 特殊处理：如果是加载数据操作且当前只有初始化记录
     if (type === '加载数据' && currentRecord.value?.type === '初始化') {
       currentRecord.value = createRecord(type);

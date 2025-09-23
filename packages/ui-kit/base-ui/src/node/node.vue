@@ -68,7 +68,9 @@ const ruleFieldPrefix = inject<any[] | null>('ruleFieldPrefix', null);
 const resetFormDataInject = inject<boolean>('resetFormData', false);
 
 // 内部schema数据
-const innerSchema = reactive<ComponentSchema>(deepClone(props.componentSchema));
+const innerSchema = reactive<ComponentSchema>(
+  deepClone(props.componentSchema, false),
+);
 
 // 双向绑定Value
 const innerValue = computed({
