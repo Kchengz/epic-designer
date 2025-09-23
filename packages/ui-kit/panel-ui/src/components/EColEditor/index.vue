@@ -3,11 +3,12 @@ import type { ComponentSchema } from '@epic-designer/types';
 
 import type { PropType } from 'vue';
 
-import { computed } from 'vue';
+import { VueDraggable } from 'vue-draggable-plus';
 
 import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 import { getUUID } from '@epic-designer/utils';
+import { useVModel } from '@vueuse/core';
 
 const props = defineProps({
   modelValue: {
@@ -16,15 +17,11 @@ const props = defineProps({
   },
 });
 const emit = defineEmits(['update:modelValue']);
+
+const Button = pluginManager.getComponent('button');
 const Number = pluginManager.getComponent('number');
-const colList = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(e) {
-    emit('update:modelValue', e);
-  },
-});
+
+const innerValue = useVModel(props, 'modelValue', emit);
 
 /**
  * 新增栅格Col
@@ -38,7 +35,7 @@ function handleAdd() {
     type: 'col',
     children: [],
   };
-  colList.value.push(colItem);
+  innerValue.value = [...innerValue.value, colItem];
 }
 
 /**
@@ -46,28 +43,46 @@ function handleAdd() {
  * @param index
  */
 function handleDelete(index: number) {
-  colList.value = colList.value.filter((item, i) => index !== i);
+  innerValue.value = innerValue.value.filter(
+    (item, itemIdx) => itemIdx !== index,
+  );
 }
 </script>
 <template>
   <div>
-    <div v-for="(item, index) in colList" :key="index" class="EColEditor-item">
-      <Number
-        v-model:value="item.componentProps.span"
-        v-model="item.componentProps.span"
-        style="width: 100%"
-        :min="1"
-        :max="24"
-      />
-      <div v-if="colList.length > 1" class="epic-del-btn">
-        <span @click="handleDelete(index)">
+    <VueDraggable
+      v-model="innerValue"
+      item-key="id"
+      :component-data="{
+        type: 'transition-group',
+      }"
+      class="edit-col-range"
+      :animation="200"
+      :gorup="{ name: 'edit-col-range' }"
+      handle=".handle"
+    >
+      <div
+        v-for="(item, index) in innerValue"
+        :key="item.id"
+        class="EColEditor-item text-16px text-$epic-text-secondary mb-2 grid grid-cols-[16px_auto_auto_16px] items-center gap-2"
+      >
+        <EpicIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
+        <Number
+          v-model:value="item.componentProps.span"
+          v-model="item.componentProps.span"
+          style="width: 100%"
+          :min="1"
+          :max="24"
+        />
+        <template v-if="innerValue.length > 1">
           <EpicIcon
             class="hover:text-red cursor-pointer"
             name="icon--epic--delete-outline-rounded"
+            @click="handleDelete(index)"
           />
-        </span>
+        </template>
       </div>
-    </div>
-    <div class="add-btn" @click="handleAdd">添加</div>
+    </VueDraggable>
+    <Button @click="handleAdd"> 添加列 </Button>
   </div>
 </template>
