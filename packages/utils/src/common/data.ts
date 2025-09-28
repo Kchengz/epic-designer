@@ -59,13 +59,27 @@ export function deepClone<T extends object>(
 }
 
 /**
- * 递归遍历对象，将所有Proxy对象转换为原始对象（统一优化版）
- * @param value 需要处理的值（已确保为对象类型）
+ * 递归遍历对象，将所有Proxy对象转换为原始对象
+ * @param value 需要处理的值
+ * @param cache 缓存已处理的对象，用于处理循环引用
  * @returns 处理后的结果，所有Proxy都被转换为原始对象
  */
-export function deepToRaw<T>(value: T): T {
+export function deepToRaw<T>(value: T, cache = new WeakMap()): T {
+  // 基本类型直接返回
+  if (value === null || typeof value !== 'object') {
+    return value;
+  }
+
+  // 检查是否已处理过该对象
+  if (cache.has(value as object)) {
+    return cache.get(value as object) as T;
+  }
+
   // 处理当前Proxy对象
   const currentValue = isProxy(value) ? toRaw(value) : value;
+
+  // 将当前值存入缓存，防止循环引用导致的无限递归
+  cache.set(value as object, currentValue);
 
   // 处理数组
   if (Array.isArray(currentValue)) {
@@ -74,7 +88,7 @@ export function deepToRaw<T>(value: T): T {
     for (let i = 0; i < currentValue.length; i++) {
       const item = currentValue[i];
       if (item !== null && typeof item === 'object') {
-        processedItem = deepToRaw(item);
+        processedItem = deepToRaw(item, cache);
         // 发现需要修改的元素，才创建新数组
         if (processedItem !== item) {
           const newArray = currentValue.slice(0, i);
@@ -85,7 +99,7 @@ export function deepToRaw<T>(value: T): T {
             const remainingItem = currentValue[j];
             newArray.push(
               remainingItem !== null && typeof remainingItem === 'object'
-                ? deepToRaw(remainingItem)
+                ? deepToRaw(remainingItem, cache)
                 : remainingItem,
             );
           }
@@ -104,7 +118,7 @@ export function deepToRaw<T>(value: T): T {
   for (const key of keys) {
     const propValue = (currentValue as Record<string, unknown>)[key];
     if (propValue !== null && typeof propValue === 'object') {
-      const processedValue = deepToRaw(propValue);
+      const processedValue = deepToRaw(propValue, cache);
       // 发现需要修改的属性，才创建新对象
       if (processedValue !== propValue) {
         // 延迟创建新对象，直到确定需要修改时
