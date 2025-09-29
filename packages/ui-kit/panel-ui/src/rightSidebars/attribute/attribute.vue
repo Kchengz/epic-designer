@@ -93,7 +93,6 @@ function handleSetValue(
       setValueByPath(editData!, field, value);
     });
   }
-  console.log(22, '属性编辑');
   // 将修改过的组件属性推入撤销操作的栈中
   revoke.push('属性编辑');
 }
