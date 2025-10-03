@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import type { PageManager } from '@epic-designer/manager';
-import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
+import type {
+  ComponentSchema,
+  DesignerProps,
+  FormDataModel,
+} from '@epic-designer/types';
 
 import { computed, inject, onMounted, PropType, provide, ref, Ref } from 'vue';
 
@@ -19,6 +23,7 @@ const props = defineProps({
   },
 });
 
+const designerProps = inject<DesignerProps>('designerProps');
 const pageManager = inject('pageManager', {}) as PageManager;
 const form = ref<FormInstance | null>(null);
 const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>;
@@ -99,7 +104,7 @@ defineExpose({
     ref="form"
     :model="formData"
     v-bind="componentProps"
-    style="height: 100%"
+    :class="{ 'epic-form-mode': designerProps?.formMode }"
   >
     <slot name="edit-node">
       <slot
