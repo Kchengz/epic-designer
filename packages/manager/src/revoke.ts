@@ -20,6 +20,8 @@ export interface RecordModel {
   pageSchema: string;
   /** 当前选中组件的ID，用于恢复选中状态 */
   selectedId?: string;
+  /** 记录创建时间戳 */
+  timestamp: number;
   /** 操作类型描述，如"添加组件"、"删除组件"等 */
   type: string;
 }
@@ -88,6 +90,7 @@ export function useRevoke(
   const createRecord = (type: string): RecordModel => ({
     pageSchema: JSON.stringify(pageSchema),
     selectedId: state.selectedNode?.id,
+    timestamp: Date.now(),
     type,
   });
 
@@ -209,10 +212,67 @@ export function useRevoke(
    */
   const getRedoCount = (): number => undoList.value.length;
 
+  /**
+   * 导出历史记录数据
+   * @description 将当前所有历史记录导出为可序列化的格式，用于存储到数据库
+   */
+  const exportHistory = (): {
+    currentRecord: null | RecordModel;
+    recordList: RecordModel[];
+    undoList: RecordModel[];
+  } => ({
+    currentRecord: currentRecord.value,
+    recordList: [...recordList.value],
+    undoList: [...undoList.value],
+  });
+
+  /**
+   * 导入历史记录数据
+   * @description 从数据库中恢复历史记录状态
+   */
+  const importHistory = (historyData: {
+    currentRecord: null | RecordModel;
+    recordList: RecordModel[];
+    undoList: RecordModel[];
+  }): void => {
+    recordList.value = [...historyData.recordList];
+    undoList.value = [...historyData.undoList];
+    currentRecord.value = historyData.currentRecord;
+
+    // 如果有当前记录，应用它以确保页面状态同步
+    if (historyData.currentRecord) {
+      applyRecord(historyData.currentRecord);
+    }
+  };
+
+  /**
+   * 预览历史记录
+   * @description 临时应用指定的历史记录，但不改变当前的历史记录栈
+   * @param record - 要预览的历史记录
+   * @returns 恢复函数，调用后可回到预览前的状态
+   */
+  const previewHistory = (record: RecordModel): (() => void) => {
+    // 保存当前状态，以便后续恢复
+    const tempCurrent = currentRecord.value;
+
+    // 应用要预览的记录
+    applyRecord(record);
+
+    // 返回一个函数，用于恢复到预览前的状态
+    return () => {
+      if (tempCurrent) {
+        applyRecord(tempCurrent);
+      }
+    };
+  };
+
   return {
     currentRecord,
+    exportHistory,
     getRedoCount,
     getUndoCount,
+    importHistory,
+    previewHistory,
     push,
     recordList,
     redo,

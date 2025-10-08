@@ -157,7 +157,9 @@ function handleWheel(event: WheelEvent) {
 }
 
 defineExpose({
+  exportHistory: revoke.exportHistory,
   getData,
+  importHistory: revoke.importHistory,
   preview: handlePreview,
   reset,
   revoke,
