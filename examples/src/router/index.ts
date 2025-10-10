@@ -38,6 +38,14 @@ export const frameworkRoutes = [
           title: '表单模式',
         },
       },
+      {
+        path: 'undoHistory',
+        name: 'undoHistory',
+        component: () => import('@/views/designer/undoHistory/index.vue'),
+        meta: {
+          title: '历史操作管理',
+        },
+      },
     ],
   },
   {
