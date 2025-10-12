@@ -337,7 +337,7 @@ defineExpose({
   <div
     v-show="showSelector && designer.state.selectedNode?.id !== 'root'"
     ref="selectorRef"
-    class="epic-checked-widget z-999 pointer-events-none absolute"
+    class="epic-selected-widget z-999 pointer-events-none absolute"
     :class="`${selectorPosition} ${selectorTransition ? 'transition-all' : ''}`"
   >
     <div ref="actionBoxRef" class="epic-widget-action-box">

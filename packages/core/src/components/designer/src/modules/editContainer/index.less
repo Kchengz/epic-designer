@@ -26,39 +26,19 @@
     box-sizing: border-box;
   }
 
-  .epic-checked-widget {
-    border: 1px var(--epic-primary-color) dashed;
+  .epic-selected-widget {
+    border: 2px var(--epic-primary-color) solid;
     background: var(--epic-widget-shade-color);
-
-    &::before {
-      content: '';
-      height: 5px;
-      background: var(--epic-primary-color);
-      position: absolute;
-      left: 0;
-      width: 100%;
-    }
-
-    &.top,
-    &.center {
-      &::before {
-        top: -5px;
-      }
-    }
-
-    &.bottom {
-      &::before {
-        bottom: -5px;
-      }
-    }
+    border-radius: 4px;
 
     .epic-widget-action-box {
       position: absolute;
       z-index: 999;
-      height: 30px;
+      height: 28px;
       background: var(--epic-primary-color);
       border-radius: 4px 4px 0px 0px;
       display: flex;
+      align-items: center;
       padding: 0 4px;
 
       .epic-widget-action-item {
@@ -73,6 +53,11 @@
           font-size: 16px;
         }
       }
+    }
+
+    .form-main {
+      padding: 6px;
+      border: 1px solid #f0f0f0;
     }
   }
 
