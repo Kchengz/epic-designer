@@ -83,6 +83,7 @@ export default defineConfig({
       ),
       '@epic-designer/core': path.resolve(__dirname, '../core/src/index'),
       '@epic-designer/hooks': path.resolve(__dirname, '../hooks/src/index'),
+      '@epic-designer/manager': path.resolve(__dirname, '../manager/src/index'),
       '@epic-designer/panel-ui': path.resolve(
         __dirname,
         '../ui-kit/panel-ui/src/index',
