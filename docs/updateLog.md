@@ -1,3 +1,26 @@
+## 1.0.3（2025-10-15）
+### ✨ Feat
+- MonacoEditor组件添加 allowFullscreen 属性控制全屏按钮显示
+- 在pluginManager中添加全局状态管理功能
+- 新增UI全局提示函数
+- EActionEditor 为所有组件添加修改属性动作
+- EColEditor 添加 Col 拖拽排序功能
+- 新增历史操作导出导入
+### ✨ Refactor
+- 汉化monaco-editor编辑器
+- 重构setFormData函数
+- 升级VueDraggable实现设计时组件节点减少div标签包裹优化
+- 将原本utils中的manager作为独立的子包管理
+- 优化画布尺寸变化监听逻辑
+- 优化revoke添加记录逻辑
+- 优化深拷贝和获取UUID的代码
+- 优化表单组件高度自适应能力
+### 🐛 Bug Fixes
+- 修复禁止拖拽元素渲染异常问题
+- EColEditor 删除图标 name 错误无法正常显示
+- 修复deepClone中structuredClone处理Proxy对象的兼容性问题
+- EActionEditor 解决无法绑定多个事件的问题
+
 ## 1.0.2（2025-07-03）
 ### ✨ Feat
 - 新增快捷键操作
