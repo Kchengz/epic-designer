@@ -14,23 +14,27 @@ export interface Global {
   [key: string]: any;
 }
 
-// 默认提示函数
-const defaultMessage = (text: string) => {
-  console.warn(`[Epic]全局提示函数未注册 提示信息：'${text}'`);
-};
+// 创建默认全局对象的函数，避免在模块加载时立即执行
+function createDefaultGlobal(): Global {
+  // 默认提示函数
+  const defaultMessage = (text: string) => {
+    console.warn(`[Epic]全局提示函数未注册 提示信息：'${text}'`);
+  };
+  return {
+    $message: {
+      error: defaultMessage,
+      info: defaultMessage,
+      success: defaultMessage,
+      warning: defaultMessage,
+    },
+  };
+}
 
-const defaultGlobal = {
-  $message: {
-    error: defaultMessage,
-    info: defaultMessage,
-    success: defaultMessage,
-    warning: defaultMessage,
-  },
-};
-
-export function useGlobal(initialGlobal: Global = defaultGlobal) {
+export function useGlobal(initialGlobal?: Global) {
+  // 如果没有提供初始值，则使用默认全局对象
+  const finalInitialGlobal = initialGlobal || createDefaultGlobal();
   // 全局状态对象
-  const global = reactive<Global>(initialGlobal);
+  const global = reactive<Global>(finalInitialGlobal);
 
   /**
    * 获取全局状态

@@ -69,7 +69,10 @@ export function useElementDrag(
     }
     startX = event.x;
     startY = event.y;
-    event.dataTransfer?.setDragImage(document.createElement('div'), 0, 0);
+    // 检查是否在浏览器环境中
+    if (typeof document !== 'undefined') {
+      event.dataTransfer?.setDragImage(document.createElement('div'), 0, 0);
+    }
   }
 
   /**

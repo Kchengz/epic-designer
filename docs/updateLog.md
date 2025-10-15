@@ -1,4 +1,4 @@
-## 1.0.3（2025-10-15）
+## 1.0.4（2025-10-15）
 ### ✨ Feat
 - MonacoEditor组件添加 allowFullscreen 属性控制全屏按钮显示
 - 在pluginManager中添加全局状态管理功能
@@ -20,6 +20,7 @@
 - EColEditor 删除图标 name 错误无法正常显示
 - 修复deepClone中structuredClone处理Proxy对象的兼容性问题
 - EActionEditor 解决无法绑定多个事件的问题
+- 修复Config拼写错误问题，将Confings修改为Configs
 
 ## 1.0.2（2025-07-03）
 ### ✨ Feat

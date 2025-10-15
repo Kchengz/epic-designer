@@ -23,10 +23,13 @@ export function useDark() {
   watch(
     () => isDark.value,
     () => {
-      if (isDark.value) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
+      // 检查是否在浏览器环境中
+      if (typeof document !== 'undefined') {
+        if (isDark.value) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
       }
     },
   );
@@ -40,6 +43,8 @@ export function useDark() {
  * @param isDark
  */
 export function getDarkState(isDark) {
+  // 检查是否在浏览器环境中
+  if (typeof document === 'undefined') return;
   const targetNode = document.documentElement;
   if (!targetNode) return;
   isDark.value = !!targetNode.classList.contains('dark');
@@ -50,6 +55,9 @@ export function getDarkState(isDark) {
  * @param isDark
  */
 function monitorHtml(isDark) {
+  // 检查是否在浏览器环境中
+  if (typeof document === 'undefined') return;
+
   // 选择需要监听的元素
   const targetNode = document.querySelector('html');
 
