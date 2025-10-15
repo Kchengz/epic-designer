@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import type {
-  ComponentSchema,
-  Designer,
-  PageSchema,
-} from '@epic-designer/types';
+import type { ComponentSchema, PageSchema } from '@epic-designer/types';
 
 import { computed, inject, provide, useAttrs } from 'vue';
 
@@ -25,27 +21,11 @@ const props = withDefaults(
   },
 );
 const attrs = useAttrs();
-const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema', {}) as PageSchema;
 
 provide('nodeAttrs', attrs);
 // 判断是否为叶子节点
 const isLeafNode = computed(() => !props.schema.children);
-function getParentSchema(target) {
-  let ctx = target?.__vnode?.ctx;
-  for (let i = 0; i < 10 && ctx; i++) {
-    if (ctx.exposed?.schema) {
-      return ctx.exposed.schema;
-    }
-    ctx = ctx.parent;
-  }
-  return null;
-}
-function setSelectedNode(event: Event) {
-  const schema = getParentSchema(event.target);
-  event.stopPropagation();
-  designer.setSelectedNode(schema);
-}
 
 function isDraggable() {
   const schema = props.schema;
@@ -66,6 +46,7 @@ function isDraggable() {
 <template>
   <EpicNode
     :component-schema="props.schema"
+    :data-epic-id="props.schema.id"
     class="edit-draggable-widget"
     :class="[isDraggable(), isLeafNode ? 'epic-node-leaf' : '']"
   >

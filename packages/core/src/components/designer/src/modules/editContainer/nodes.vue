@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Revoke } from '@epic-designer/manager';
+import type { PageManager, Revoke } from '@epic-designer/manager';
 import type { ComponentSchema, Designer } from '@epic-designer/types';
 
 import { computed, inject, ref } from 'vue';
@@ -16,6 +16,7 @@ const props = defineProps<{
 const emit = defineEmits(['update:schemas']);
 const designer = inject('designer') as Designer;
 const revoke = inject('revoke') as Revoke;
+const pageManager = inject('pageManager') as PageManager;
 
 const modelSchemas = computed({
   get: () => props.schemas,
@@ -26,37 +27,52 @@ const modelSchemas = computed({
 const isDragChange = ref(false);
 
 /**
- * 选中点击节点元素
- * @param index
+ * 获取节点的schema
+ * @param {Element} target 节点元素
+ * @returns {ComponentSchema | null} 节点的schema
  */
+function getNodeSchema(target) {
+  if (!target?.closest) return null;
 
-function getParentSchema(target) {
-  let ctx = target?.__vnode?.ctx;
-  for (let i = 0; i < 10 && ctx; i++) {
-    if (ctx.exposed?.schema) {
-      return ctx.exposed.schema;
-    }
-    ctx = ctx.parent;
+  // 优先检查当前元素
+  if (target.dataset?.epicId) {
+    return getSchemaByEpicId(target.dataset.epicId);
   }
+
+  // 检查直接子元素（只向下查询一级）
+  if (!target.classList.contains('epic-draggable-range')) {
+    const directChild = target.querySelector(':scope > [data-epic-id]');
+    if (directChild?.dataset?.epicId) {
+      return getSchemaByEpicId(directChild.dataset.epicId);
+    }
+  }
+
+  // 向父级查找
+  const parentElement = target.closest('[data-epic-id]');
+  if (parentElement?.dataset?.epicId) {
+    return getSchemaByEpicId(parentElement.dataset.epicId);
+  }
+
   return null;
 }
 
+/**
+ * 根据epicId获取schema的辅助函数
+ * @param {string} epicId
+ */
+function getSchemaByEpicId(epicId) {
+  const instance = pageManager.findInstance(epicId);
+  return instance?.exposed?.schema || null;
+}
+
 function setSelectedNode(event: any) {
-  const schema = getParentSchema(event.item);
+  const schema = getNodeSchema(event.item ?? event.target);
   event.stopPropagation();
   designer.setSelectedNode(schema);
 }
-function setSelectedNode1(event: Event) {
-  const schema = getParentSchema(event.target);
-
-  if (schema.id === 'root') {
-    event.stopPropagation();
-    designer.setSelectedNode(schema);
-  }
-}
 
 function setHoverNode(event: Event) {
-  const schema = getParentSchema(event.target);
+  const schema = getNodeSchema(event.target);
   event.stopPropagation();
   designer.setHoverNode(schema);
 }
@@ -101,11 +117,11 @@ function handleDragEnd() {
     group="edit-draggable"
     ghost-class="epic-moveing"
     @mouseover.stop="setHoverNode"
-    @choose="setSelectedNode"
-    @click.stop="setSelectedNode1"
     @change="handleDragChange"
     @add="handleDragAdd"
     @end="handleDragEnd"
+    @click.stop="setSelectedNode"
+    @choose="setSelectedNode"
   >
     <EpicNodeItem
       v-for="element in modelSchemas"

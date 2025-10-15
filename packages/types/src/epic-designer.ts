@@ -84,7 +84,7 @@ export interface Designer {
   save: () => void;
   setDisabledHover: (disabledHover?: boolean) => void;
   setHoverNode: (schema: ComponentSchema | null) => void;
-  setSelectedNode: (schema?: ComponentSchema) => void;
+  setSelectedNode: (schema: ComponentSchema | null) => void;
   state: DesignerState;
   // schemas: ComponentSchema[];
 }
