@@ -111,6 +111,7 @@ function handleSetValue(
         </div>
         <div class="epic-attr-input">
           <EpicNode
+            is-property
             :component-schema="{
               ...item,
               componentProps: {

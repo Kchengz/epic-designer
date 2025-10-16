@@ -35,17 +35,25 @@ import {
 
 import dynamicFormItem from './dynamicFormItem.vue';
 
-defineOptions({
-  name: 'EpicNode',
-});
-
-const props = defineProps<{
+interface EpicNodeProps {
   componentSchema: ComponentSchema;
+  isProperty?: boolean;
   modelValue?: any;
   name?: string;
   resetFormData?: boolean;
   ruleField?: string[];
-}>();
+}
+defineOptions({
+  name: 'EpicNode',
+});
+
+const props = withDefaults(defineProps<EpicNodeProps>(), {
+  isProperty: false,
+  modelValue: undefined,
+  name: '',
+  resetFormData: false,
+  ruleField: () => [],
+});
 
 // 定义组件的事件
 const emit = defineEmits(['update:modelValue', 'change']);
@@ -69,7 +77,7 @@ const resetFormDataInject = inject<boolean>('resetFormData', false);
 
 // 内部schema数据
 const innerSchema = reactive<ComponentSchema>(
-  deepClone(props.componentSchema, false),
+  deepClone(props.componentSchema, !props.isProperty),
 );
 
 // 双向绑定Value
@@ -90,7 +98,7 @@ watch(
     if (deepEqual(innerSchema, componentSchema, ['children'])) {
       return;
     }
-    deepCompareAndModify(innerSchema, deepClone(componentSchema));
+    deepCompareAndModify(innerSchema, deepClone(componentSchema, false));
     addDesignModeSuffix();
   },
   {

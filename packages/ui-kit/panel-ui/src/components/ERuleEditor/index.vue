@@ -155,6 +155,7 @@ function handleDelete(index: number) {
           </div>
           <div class="flex-1">
             <EpicNode
+              is-property
               v-model="requiredRule[componentSchema.model]"
               :component-schema="{ ...componentSchema, noFormItem: true }"
               @change="handleUpdate"

@@ -132,12 +132,6 @@ export default {
         type: 'number',
       },
       {
-        field: 'componentProps.pair',
-        label: '是否输入成对值',
-        show: ({ values }) => values.componentProps.type === 'text',
-        type: 'switch',
-      },
-      {
         componentProps: {
           placeholder: '请输入',
         },

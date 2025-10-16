@@ -125,6 +125,7 @@ function handleSetValue(
           :class="{ 'block!': item.layout === 'vertical' }"
         >
           <EpicNode
+            is-property
             :component-schema="{
               ...item,
               componentProps: {

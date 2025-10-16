@@ -146,6 +146,7 @@ function handleDelete() {
         </div>
         <div class="epic-attr-input">
           <EpicNode
+            is-property
             v-model="modelRule[componentSchema.model]"
             :component-schema="{ ...componentSchema, noFormItem: true }"
             @change="handleUpdate"
