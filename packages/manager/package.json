@@ -1,6 +1,6 @@
 {
   "name": "@epic-designer/manager",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Epic Designer 管理器模块，提供页面管理、插件管理、撤销重做等功能",
   "private": false,
   "author": "kchengz",

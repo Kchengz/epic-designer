@@ -1,3 +1,8 @@
+## 1.0.5（2025-10-17）
+### 🐛 Bug Fixes
+- 修复表单项输入数据后校验不通过的问题
+- 修复组件属性配置组件中存在函数时，使用deepClone函数深拷贝componentSchema数据异常报错问题
+
 ## 1.0.4（2025-10-15）
 ### ✨ Feat
 - MonacoEditor组件添加 allowFullscreen 属性控制全屏按钮显示
