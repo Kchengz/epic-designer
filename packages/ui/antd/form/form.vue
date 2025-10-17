@@ -20,6 +20,10 @@ interface FormInstance extends InstanceType<typeof Form> {
   validateFields: () => Promise<unknown>;
 }
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const props = withDefaults(
   defineProps<{
     componentSchema: ComponentSchema;

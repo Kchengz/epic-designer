@@ -15,6 +15,10 @@ interface FormInstance extends InstanceType<typeof ElForm> {
   setData?: (FormDataModel) => void;
 }
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const props = defineProps({
   componentSchema: {
     default: () => ({}),

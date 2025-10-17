@@ -1,8 +1,8 @@
-@import "./modules/rightSidebar/index.less";
-@import "./modules/header/index.less";
-@import "./modules/activityBar/index.less";
-@import "./modules/editContainer/index.less";
-@import "./modules/preview/index.less";
+@import './modules/rightSidebar/index.less';
+@import './modules/header/index.less';
+@import './modules/activityBar/index.less';
+@import './modules/editContainer/index.less';
+@import './modules/preview/index.less';
 
 .epic-loading-box {
   height: 100%;
@@ -61,10 +61,17 @@
     min-height: 100%;
     display: flex;
 
-    .epic-draggable-range{
+    .epic-draggable-range {
       flex: 1;
       height: auto;
     }
+  }
+}
+
+.epic-builder-main {
+  .epic-form-mode {
+    min-height: unset;
+    display: block;
   }
 }
 

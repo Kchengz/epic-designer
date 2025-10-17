@@ -19,6 +19,10 @@ interface FormInstance extends InstanceType<typeof NForm> {
   setData?: (data: FormDataModel) => void;
 }
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const props = defineProps({
   componentSchema: {
     default: () => ({}),

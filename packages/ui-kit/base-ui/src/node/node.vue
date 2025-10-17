@@ -176,7 +176,7 @@ const getFormItemProps = computed<ComponentSchema>(() => {
   // 获取校验字段
   let model: string | string[] | undefined = innerSchema.field;
 
-  if (props.ruleField) {
+  if (props.ruleField && props.ruleField.length > 0) {
     // 设置为父级传入的校验字段
     model = props.ruleField;
   } else if (ruleFieldPrefix && innerSchema.field) {
