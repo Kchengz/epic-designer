@@ -2,10 +2,11 @@
 import type {
   ComponentSchema,
   EpicNodeInstance,
+  FieldStateMap,
   FormDataModel,
 } from '@epic-designer/types';
 
-import type { AsyncComponentLoader, VNode } from 'vue';
+import type { AsyncComponentLoader, Ref } from 'vue';
 
 import {
   computed,
@@ -15,12 +16,14 @@ import {
   onBeforeUnmount,
   provide,
   reactive,
-  Ref,
+  ref,
   renderSlot,
   shallowRef,
   Slots,
   useAttrs,
+  VNode,
   watch,
+  watchEffect,
 } from 'vue';
 
 import { PageManager, pluginManager } from '@epic-designer/manager';
@@ -70,8 +73,13 @@ const pageManager = inject('pageManager', {}) as PageManager;
 const disabled = inject<Ref<boolean> | { value: false }>('disabled', {
   value: false,
 });
+
+// 字段状态规则
+const fieldStateMap = inject<FieldStateMap>('fieldStateMap', {});
+
 // 校验前缀字段
 const ruleFieldPrefix = inject<any[] | null>('ruleFieldPrefix', null);
+
 // 重置表单数据，不设置到表单formData数据
 const resetFormDataInject = inject<boolean>('resetFormData', false);
 
@@ -148,11 +156,43 @@ if (Object.keys(attrs).length > 0) {
 }
 
 // 定义组件及组件props字段
-const component = shallowRef<any>(null);
+const componentRef = shallowRef<any>(null);
+
+const fieldState = ref(null);
+const fieldRequired = ref(null);
+
+watchEffect(() => {
+  const fieldName = innerSchema?.field;
+  const currentFieldState = fieldName && fieldStateMap.value?.[fieldName];
+
+  if (!currentFieldState) {
+    fieldState.value = null;
+    fieldRequired.value = null;
+    return;
+  }
+
+  const { condition, required, state } = currentFieldState;
+  if (typeof condition === 'function') {
+    // watchEffect 会自动追踪 formData 的依赖
+    fieldState.value = condition(formData) ? state : null;
+    fieldRequired.value = condition(formData) ? required : null;
+  } else {
+    fieldState.value = state;
+    fieldRequired.value = required;
+  }
+});
 
 const show = computed(() => {
-  // hidden 属性优先级最高
-  if (innerSchema.componentProps?.hidden) {
+  // 设计模式全部显示
+  // if (pageManager.isDesignMode.value) return true;
+
+  // fieldState 属性优先级最高
+  if (fieldState.value === 'WRITE') {
+    return true;
+  } else if (
+    innerSchema.componentProps?.hidden ||
+    fieldState.value === 'HIDE'
+  ) {
     return false;
   }
 
@@ -166,12 +206,44 @@ const show = computed(() => {
 
 // 获取FormItemProps
 const getFormItemProps = computed<ComponentSchema>(() => {
-  const rules =
+  let rules =
     show.value &&
-    innerSchema.rules?.map((item) => ({
-      ...item,
-      validator: item.validator && pageManager.funcs.value[item.validator], // 自定义校验函数
-    }));
+    innerSchema.rules?.map((rule) => {
+      const processedRule = { ...rule };
+
+      if (processedRule.required !== undefined) {
+        // 必填项优先级：fieldState.required > componentProps.required > rules.required
+        processedRule.required =
+          fieldRequired.value ??
+          innerSchema.componentProps?.required ??
+          processedRule.required;
+      }
+
+      // 处理自定义验证器
+      if (rule.validator) {
+        processedRule.validator = pageManager.funcs.value[rule.validator];
+      }
+
+      return processedRule;
+    });
+
+  const needsRequired =
+    fieldRequired.value === true || innerSchema.componentProps?.required;
+  const hasRequiredRule = rules?.some((rule) => rule.required !== undefined);
+
+  if (needsRequired && !hasRequiredRule) {
+    const rule = {
+      message: '必填项',
+      required: true,
+      trigger: ['change', 'blur'],
+      type: 'string',
+    };
+    if (rules) {
+      rules.push(rule);
+    } else {
+      rules = [rule];
+    }
+  }
 
   // 获取校验字段
   let model: string | string[] | undefined = innerSchema.field;
@@ -223,7 +295,17 @@ const getComponentProps = computed(() => {
     ...attrs,
     ...innerSchema.componentProps,
     bindModel,
-    disabled: disabled?.value || innerSchema.componentProps?.disabled,
+    disabled:
+      fieldState.value !== 'WRITE' &&
+      (fieldState.value === 'DISABLED' ||
+        disabled?.value ||
+        innerSchema.componentProps?.disabled),
+    hidden:
+      fieldState.value !== 'WRITE' &&
+      (fieldState.value === 'HIDE' || innerSchema.componentProps?.hidden),
+    readonly:
+      fieldState.value !== 'WRITE' &&
+      (fieldState.value === 'READ' || innerSchema.componentProps?.readonly),
     ...onEvent,
   };
 });
@@ -296,7 +378,7 @@ async function initComponent() {
     const slotName = innerSchema.slotName;
     if (!slotName) return;
 
-    component.value = defineComponent({
+    componentRef.value = defineComponent({
       setup() {
         return () =>
           renderSlot(slots, slotName, {
@@ -320,10 +402,10 @@ async function initComponent() {
   // 如果数据项为函数，则判定为懒加载组件
   if (typeof cmp === 'function') {
     const res = await (cmp as AsyncComponentLoader)();
-    component.value = res.default ?? res;
+    componentRef.value = res.default ?? res;
   } else {
     // 否则为预加载组件
-    component.value = cmp;
+    componentRef.value = cmp;
   }
 }
 
@@ -371,14 +453,14 @@ onBeforeUnmount(handleVnodeUnmounted);
 </script>
 <template>
   <dynamicFormItem
-    v-if="component && show"
+    v-if="componentRef && show"
     :has-form-item="
       innerSchema.noFormItem !== true && getComponentConfig?.defaultSchema.input
     "
     :form-item-props="getFormItemProps"
   >
     <component
-      :is="component"
+      :is="componentRef"
       v-bind="{ ...getComponentProps }"
       v-model:[getComponentProps.bindModel]="innerValue"
       :model="formData"

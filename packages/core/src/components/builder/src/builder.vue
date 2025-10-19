@@ -23,7 +23,10 @@ import { deepCompareAndModify, findSchemas } from '@epic-designer/utils';
 import { useBuilder } from '../hooks/useBuilder';
 // 定义组件的 props 类型
 const props = defineProps<{
+  /** 禁用表单 */
   disabled?: boolean;
+  /** 字段状态规则 */
+  fieldStates?: FieldStates;
   formData?: FormDataModel;
   pageSchema: PageSchema;
 }>();
@@ -82,6 +85,17 @@ provide('pageSchema', pageManager.pageSchema);
 provide(
   'disabled',
   computed(() => props.disabled),
+);
+provide(
+  'fieldStateMap',
+  computed(() => {
+    //  将fieldStates转换对象类型
+    const fieldStateMap = {};
+    props.fieldStates?.forEach((fieldState) => {
+      fieldStateMap[fieldState.field] = fieldState;
+    });
+    return fieldStateMap;
+  }),
 );
 
 /**

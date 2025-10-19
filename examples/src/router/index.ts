@@ -96,6 +96,14 @@ export const frameworkRoutes = [
           title: '计算求和',
         },
       },
+      {
+        path: 'fieldStates',
+        name: 'fieldStates',
+        component: () => import('@/views/builder/fieldStates/index.vue'),
+        meta: {
+          title: '字段状态',
+        },
+      },
     ],
   },
 ];
