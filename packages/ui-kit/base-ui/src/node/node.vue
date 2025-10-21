@@ -184,7 +184,7 @@ watchEffect(() => {
 
 const show = computed(() => {
   // 设计模式全部显示
-  // if (pageManager.isDesignMode.value) return true;
+  if (pageManager.isDesignMode.value) return true;
 
   // fieldState 属性优先级最高
   if (fieldState.value === 'WRITE') {
@@ -300,9 +300,7 @@ const getComponentProps = computed(() => {
       (fieldState.value === 'DISABLED' ||
         disabled?.value ||
         innerSchema.componentProps?.disabled),
-    hidden:
-      fieldState.value !== 'WRITE' &&
-      (fieldState.value === 'HIDE' || innerSchema.componentProps?.hidden),
+    hidden: !show.value,
     readonly:
       fieldState.value !== 'WRITE' &&
       (fieldState.value === 'READ' || innerSchema.componentProps?.readonly),
@@ -464,6 +462,7 @@ onBeforeUnmount(handleVnodeUnmounted);
       v-bind="{ ...getComponentProps }"
       v-model:[getComponentProps.bindModel]="innerValue"
       :model="formData"
+      :class="{ 'epic-hidden': innerSchema.componentProps?.hidden }"
       @vue:mounted="handleAddComponentInstance"
     >
       <!-- 嵌套组件递归 start -->
