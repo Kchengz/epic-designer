@@ -2,6 +2,7 @@
 import type { PageManager } from '@epic-designer/manager';
 import type {
   EpicNodeInstance,
+  FieldStates,
   FormDataModel,
   PageSchema,
 } from '@epic-designer/types';

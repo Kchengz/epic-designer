@@ -221,7 +221,8 @@ const getFormItemProps = computed<ComponentSchema>(() => {
 
       // 处理自定义验证器
       if (rule.validator) {
-        processedRule.validator = pageManager.funcs.value[rule.validator];
+        processedRule.validator =
+          pageManager.funcs.value[rule.validator as string];
       }
 
       return processedRule;
@@ -229,7 +230,8 @@ const getFormItemProps = computed<ComponentSchema>(() => {
 
   const needsRequired =
     fieldRequired.value === true || innerSchema.componentProps?.required;
-  const hasRequiredRule = rules?.some((rule) => rule.required !== undefined);
+  const hasRequiredRule =
+    Array.isArray(rules) && rules.some((rule) => rule.required !== undefined);
 
   if (needsRequired && !hasRequiredRule) {
     const rule = {

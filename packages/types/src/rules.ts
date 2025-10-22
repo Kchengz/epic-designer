@@ -8,7 +8,7 @@ export interface RuleItem {
   pattern?: RegExp | string;
   required?: boolean;
   type?: string;
-  validator?: string;
+  validator?: Function | string;
   whitespace?: boolean;
 }
 export interface FormItemRule extends RuleItem {

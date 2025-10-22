@@ -139,14 +139,43 @@ export function deepToRaw<T>(value: T, cache = new WeakMap()): T {
  * 深拷贝数据,防止重复引用
  * 生成uuid
  * 生成field
- * @param schema
+ * @param schema 原始数据
+ * @param schemas 页面schemas数据,用于检查是否生成重复uuid
  */
-export function generateNewSchema(schema: ComponentSchema) {
+export function generateNewSchema(
+  schema: ComponentSchema,
+  schemas: ComponentSchema[] = [],
+) {
   const [newSchema] = mapSchemas([deepClone(schema)], (item) => {
+    let attemptCount = 0; // 初始化尝试次数
+    let newId = `${item.type}_${getUUID(4, 'number')}`;
+
+    // 循环检查是否冲突，直到没有冲突为止
+    while (
+      findSchemas(
+        schemas,
+        (currentNode) => {
+          if (currentNode.id === newId) {
+            return true; // 如果发现冲突，返回true
+          }
+          return false;
+        },
+        true,
+      )
+    ) {
+      attemptCount++; // 每次循环尝试次数增加
+      // 如果超过50次尝试，抛出错误
+      if (attemptCount >= 50) {
+        throw new Error(`ID冲突，已尝试 ${attemptCount} 次，无法生成唯一ID`);
+      }
+      // 如果冲突，重新生成ID并继续检查
+      newId = `${item.type}_${getUUID(4, 'number')}`;
+    }
+
     // 补充id字段
     const newVal = {
       ...item,
-      id: `${item.type}_${getUUID(8)}`,
+      id: newId,
     };
 
     // 存在字段名，则自动在字段名后补充id
