@@ -69,7 +69,7 @@ const eventList = computed(() => {
 
   // 获取当前选中组件的事件配置
   const selectedNodeType = designer.state.selectedNode?.type;
-  const events = componentConfigs[selectedNodeType ?? '']?.config.event ?? [];
+  const events = componentConfigs[selectedNodeType ?? '']?.config?.event ?? [];
 
   // 将组件事件添加到事件列表的开头
   eventList.unshift({

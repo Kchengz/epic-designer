@@ -50,7 +50,7 @@ const componentAttributes = computed(() => {
   }
 
   const baseAttributes =
-    componentConfigs[selectedNode.value.type]?.config.attribute ?? [];
+    componentConfigs[selectedNode.value.type]?.config?.attribute ?? [];
   const allAttributes = [...baseAttributes];
 
   if (selectedNode.value.id === pageSchema.schemas[0]?.id) {

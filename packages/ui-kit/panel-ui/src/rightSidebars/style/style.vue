@@ -66,7 +66,7 @@ const componentStyles = computed<ComponentSchema[]>(() => {
   if (!selectedNode.value || !selectedNode.value.type) {
     return [];
   }
-  const style = componentConfigs[selectedNode.value.type]?.config.style ?? [];
+  const style = componentConfigs[selectedNode.value.type]?.config?.style ?? [];
   return [...defaultStyle, ...style];
 });
 
