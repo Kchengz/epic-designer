@@ -1,5 +1,7 @@
 import type { PluginManager } from '@epic-designer/manager';
 
+import { watchEffect } from 'vue';
+
 // 注册element-plus ui
 import { pluginManager as pManager } from '@epic-designer/manager';
 import {
@@ -67,6 +69,14 @@ export function setupElementPlus(
     CollapseItem,
     Modal,
   ];
+
+  // 更新默认上传地址
+  watchEffect(() => {
+    UploadImage.defaultSchema.componentProps.action =
+      pluginManager.global.uploadImage;
+    UploadFile.defaultSchema.componentProps.action =
+      pluginManager.global.uploadFile;
+  });
 
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item);

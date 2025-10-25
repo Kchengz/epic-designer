@@ -1,5 +1,7 @@
 import type { PluginManager } from '@epic-designer/manager';
 
+import { watchEffect } from 'vue';
+
 // 注册ant-design-vue ui
 import { pluginManager as pManager } from '@epic-designer/manager';
 import { message, version } from 'ant-design-vue';
@@ -102,6 +104,14 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
     Col,
     Modal,
   ];
+
+  // 更新默认上传地址
+  watchEffect(() => {
+    UploadImage.defaultSchema.componentProps.action =
+      pluginManager.global.uploadImage;
+    UploadFile.defaultSchema.componentProps.action =
+      pluginManager.global.uploadFile;
+  });
 
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item);

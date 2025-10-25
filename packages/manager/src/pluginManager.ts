@@ -70,7 +70,12 @@ export function usePluginManager() {
   } = usePanel();
 
   // 全局状态管理
-  const { getGlobal, global, setGlobal } = useGlobal();
+  const { getGlobal, global, setGlobal } = useGlobal({
+    // 上传文件地址
+    uploadFile: 'https://examples.epicjs.cn/epic-mock/common/upload',
+    // 上传图片地址
+    uploadImage: 'https://examples.epicjs.cn/epic-mock/common/upload',
+  });
 
   /**
    * 添加基础组件类型

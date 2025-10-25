@@ -1,5 +1,7 @@
 import type { PluginManager } from '@epic-designer/manager';
 
+import { watchEffect } from 'vue';
+
 // 注册naive-ui
 import { pluginManager as pManager } from '@epic-designer/manager';
 import { createDiscreteApi, NTabPane } from 'naive-ui';
@@ -69,6 +71,14 @@ export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
     CollapseItem,
     Modal,
   ];
+
+  // 更新默认上传地址
+  watchEffect(() => {
+    UploadImage.defaultSchema.componentProps.action =
+      pluginManager.global.uploadImage;
+    UploadFile.defaultSchema.componentProps.action =
+      pluginManager.global.uploadFile;
+  });
 
   componentArray.forEach((item) => {
     pluginManager.registerComponent(item);
