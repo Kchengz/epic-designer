@@ -3,6 +3,7 @@ import type { OnError } from 'naive-ui/es/upload/src/interface';
 
 import { defineComponent, h, nextTick, ref, watch } from 'vue';
 
+import { pluginManager } from '@epic-designer/manager';
 import { getUUID } from '@epic-designer/utils';
 import { NUpload } from 'naive-ui';
 
@@ -82,6 +83,7 @@ export default defineComponent({
               {
                 ...attrs,
                 accept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                headers: pluginManager.global.axiosConfig?.headers,
                 onError: handleError,
                 onFinish: handleSuccess,
                 'file-list': fileList.value,

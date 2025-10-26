@@ -7,6 +7,7 @@ import type {
 
 import { computed, nextTick, ref, useAttrs, watch } from 'vue';
 
+import { pluginManager } from '@epic-designer/manager';
 import { getUUID } from '@epic-designer/utils';
 import { Form, Image, message, Upload } from 'ant-design-vue';
 
@@ -115,6 +116,7 @@ const beforeUpload = (): void => {
 const getUploadProps = computed<UploadProps>(() => ({
   ...attrs,
   accept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+  headers: pluginManager.global.axiosConfig?.headers,
   'onBefore-upload': beforeUpload,
   onChange: handleChange,
   onPreview: handlePreview,

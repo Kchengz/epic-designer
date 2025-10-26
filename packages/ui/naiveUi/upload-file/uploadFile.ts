@@ -3,6 +3,7 @@ import type { OnError } from 'naive-ui/es/upload/src/interface';
 
 import { defineComponent, h, nextTick, ref, watch } from 'vue';
 
+import { pluginManager } from '@epic-designer/manager';
 import { getFileNameByUrl, getUUID } from '@epic-designer/utils';
 import { NButton, NUpload } from 'naive-ui';
 
@@ -73,6 +74,7 @@ export default defineComponent({
             {
               ...attrs,
               'default-upload': true,
+              headers: pluginManager.global.axiosConfig?.headers,
               onError: handleError,
               onFinish: handleSuccess,
               'file-list': fileList.value,

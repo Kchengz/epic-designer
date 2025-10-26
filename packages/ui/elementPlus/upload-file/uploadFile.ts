@@ -2,6 +2,7 @@ import type { UploadProps, UploadUserFile } from 'element-plus';
 
 import { computed, defineComponent, h, ref, watch } from 'vue';
 
+import { pluginManager } from '@epic-designer/manager';
 import { getFileNameByUrl, getUUID } from '@epic-designer/utils';
 import { ElButton, ElMessage, ElUpload } from 'element-plus';
 
@@ -93,6 +94,7 @@ export default defineComponent({
     // @ts-expect-error
     const getUploadProps = computed<UploadProps>(() => ({
       ...attrs,
+      headers: pluginManager.global.axiosConfig?.headers,
       onBeforeUpload: beforeUpload,
       onError: handleError,
       onRemove: handleRemove,

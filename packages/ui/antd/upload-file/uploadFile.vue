@@ -7,6 +7,7 @@ import type {
 
 import { computed, nextTick, ref, useAttrs, watch } from 'vue';
 
+import { pluginManager } from '@epic-designer/manager';
 import { getUUID } from '@epic-designer/utils';
 import { Button, Form, message, Upload } from 'ant-design-vue';
 
@@ -108,6 +109,7 @@ const beforeUpload = (): void => {
 
 const getUploadProps = computed<UploadProps>(() => ({
   ...attrs,
+  headers: pluginManager.global.axiosConfig?.headers,
   'onBefore-upload': beforeUpload,
   onChange: handleChange,
   onPreview: handlePreview,

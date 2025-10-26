@@ -71,6 +71,10 @@ export function usePluginManager() {
 
   // 全局状态管理
   const { getGlobal, global, setGlobal } = useGlobal({
+    // 请求服务基础地址
+    axiosConfig: {
+      headers: {},
+    },
     // 上传文件地址
     uploadFile: 'https://examples.epicjs.cn/epic-mock/common/upload',
     // 上传图片地址
