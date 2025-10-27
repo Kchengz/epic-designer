@@ -19,6 +19,7 @@ const props = withDefaults(defineProps<DesignerProps>(), {
   formMode: false,
   hiddenHeader: false,
   lockDefaultSchemaEdit: false,
+  showHiddenItems: true,
   title: 'EpicDesigner默认项目',
 });
 const emit = defineEmits([

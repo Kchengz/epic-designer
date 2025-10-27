@@ -9,6 +9,7 @@ export interface DesignerProps {
   hiddenHeader?: boolean;
   hidePreviewConfirm?: boolean;
   lockDefaultSchemaEdit?: boolean;
+  showHiddenItems?: boolean;
   sourceCodeReadOnly?: boolean;
   title?: string;
 }

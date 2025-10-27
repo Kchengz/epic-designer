@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type {
   ComponentSchema,
+  DesignerProps,
   EpicNodeInstance,
   FieldStateMap,
   FormDataModel,
@@ -67,6 +68,8 @@ const nodeInstance = getCurrentInstance();
 let formData = inject('formData', reactive({})) as FormDataModel;
 
 const slots = inject('slots', {}) as Slots;
+
+const designerProps = inject<Ref<DesignerProps>>('designerProps');
 // 接收页面管理对象
 const pageManager = inject('pageManager', {}) as PageManager;
 // 上级组件注入的disabled状态
@@ -183,8 +186,9 @@ watchEffect(() => {
 });
 
 const show = computed(() => {
-  // 设计模式全部显示
-  if (pageManager.isDesignMode.value) return true;
+  // 设计模式且showHiddenItems为true时 显示隐藏组件，提供查看隐藏元素的能力
+  if (designerProps?.value.showHiddenItems && pageManager.isDesignMode.value)
+    return true;
 
   // fieldState 属性优先级最高
   if (fieldState.value === 'WRITE') {
