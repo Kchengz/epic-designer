@@ -333,7 +333,6 @@ export function usePageManager() {
     formData: Record<string, unknown>,
     formName: string = 'default',
   ) {
-    console.log('--------formData', formData, '--------formData');
     if (forms[formName]) {
       // 存在表单数据，合并到旧数据
       const reactiveFormData = forms[formName] as Record<string, unknown>;

@@ -3,7 +3,7 @@ import type { FormDataModel } from '@epic-designer/types';
 import { ref, watch } from 'vue';
 
 import { usePageManager } from '@epic-designer/manager';
-import { deepClone } from '@epic-designer/utils';
+import { deepClone, findSchemas } from '@epic-designer/utils';
 
 export function useBuilder() {
   const ready = ref<boolean>(false);
@@ -74,13 +74,18 @@ export function useBuilder() {
    * @param {string} formName 表单名称
    */
   function setData(data: FormDataModel, formName = 'default') {
-    // 获取所有表单的键
-    const formKeys = Object.keys(forms.value || {});
+    // 获取所有表单的Schema
+    const formSchemas = findSchemas(
+      pageManager.pageSchema.schemas,
+      (schema) => schema.type === 'form',
+    );
 
     // 如果只有一个表单，使用该表单的名称
-    const targetFormName = formKeys.length === 1 ? formKeys[0] : formName;
-    pageManager.setFormData(data, targetFormName);
-    const form = forms.value?.[targetFormName];
+    if (formSchemas && formSchemas.length === 1) {
+      formName = formSchemas[0].componentProps.name;
+    }
+    pageManager.setFormData(data, formName);
+    const form = forms.value?.[formName];
 
     // 清除表单验证
     form?.clearValidate?.() ?? form?.restoreValidation?.();
