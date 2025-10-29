@@ -12,6 +12,7 @@ import {
   getCurrentInstance,
   nextTick,
   provide,
+  ref,
   useSlots,
   watch,
 } from 'vue';
@@ -51,12 +52,16 @@ const {
   validateAll,
 } = useBuilder();
 
+const suspenseKey = ref(0);
+
 // 监听 pageSchema 的变化，并更新 pageManager.pageSchema
 watch(
   () => props.pageSchema,
   (newSchema) => {
     if (!newSchema) return;
     deepCompareAndModify(pageManager.pageSchema, newSchema);
+    suspenseKey.value++;
+    ready.value = false;
   },
   {
     deep: true,
@@ -100,7 +105,7 @@ provide(
 );
 
 /**
- * 组件加载完成后的处理函数
+ * 组件加载完成后的处理函数，注: pageSchema更新会触发组件重新加载
  * @returns {void}
  */
 function handleReady() {
@@ -152,7 +157,7 @@ defineExpose({
   >
     <EpicBaseLoader />
   </div>
-  <Suspense v-else @resolve="handleReady">
+  <Suspense v-else :key="suspenseKey" @resolve="handleReady">
     <template #default>
       <div class="epic-builder-main epic-scoped">
         <EpicNode
