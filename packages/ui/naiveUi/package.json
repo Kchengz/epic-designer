@@ -1,0 +1,37 @@
+{
+  "name": "@epic-designer/naive-ui",
+  "version": "1.0.5",
+  "description": "epic-designer base ui",
+  "author": "kchengz",
+  "type": "module",
+  "scripts": {
+    "build": "unbuild",
+    "stub": "tsx dev-stub.ts"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "peerDependencies": {
+    "epic-designer": ">=1.0.5",
+    "naive-ui": ">=2.34.3",
+    "vue": ">=3.1.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "naive-ui": "catalog:",
+    "tsx": "catalog:",
+    "unbuild": "catalog:"
+  }
+}

@@ -20,15 +20,17 @@
     "@vueuse/core": "catalog:"
   },
   "devDependencies": {
+    "@epic-designer/antd": "workspace:*",
     "@epic-designer/base-ui": "workspace:*",
     "@epic-designer/core": "workspace:*",
+    "@epic-designer/element-plus": "workspace:*",
     "@epic-designer/eslint-config": "workspace:*",
     "@epic-designer/hooks": "workspace:*",
     "@epic-designer/manager": "workspace:*",
+    "@epic-designer/naive-ui": "workspace:*",
     "@epic-designer/panel-ui": "workspace:*",
     "@epic-designer/scripts": "workspace:*",
     "@epic-designer/types": "workspace:*",
-    "@epic-designer/ui": "workspace:*",
     "@epic-designer/utils": "workspace:*",
     "@turbo/gen": "catalog:",
     "@vitejs/plugin-vue": "catalog:",

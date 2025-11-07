@@ -10,6 +10,18 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "stub": {
+      "cache": false
+    },
+    "epic-examples#dev": {
+      "dependsOn": [
+        "@epic-designer/antd#stub",
+        "@epic-designer/element-plus#stub",
+        "@epic-designer/naive-ui#stub"
+      ],
+      "cache": false,
+      "persistent": true
     }
   }
 }

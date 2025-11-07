@@ -1,6 +1,7 @@
 packages:
   - "packages/*"
   - "packages/ui-kit/*"
+  - "packages/ui/*"
   - "internal/*"
   - "scripts"
   - "docs"
@@ -20,7 +21,7 @@ catalog:
   'prettier-plugin-tailwindcss': ^0.6.11
   'turbo': ^2.3.3
   'typescript': ^5.7.3
-  'unbuild': ^3.3.0
+  'unbuild': ^3.6.1
   'unocss': ^0.65.3
   'vite': ^6.0.6
   'vite-plugin-dts': ^4.4.0
@@ -42,12 +43,14 @@ catalog:
   'vuedraggable': 4.1.0
   '@types/node': ^22.10.6
   '@unocss/preset-rem-to-px': ^0.65.3
+  '@rollup/plugin-alias': ^6.0.0
   'rollup-plugin-copy': ^3.5.0
   'rollup-plugin-node-externals': ^8.0.0
   'eslint-config-turbo': ^2.4.3
   'eslint-plugin-command': ^3.1.0
   'eslint-plugin-import-x': ^4.6.1
   'typescript-eslint': ^8.24.0
+  'tsx': ^4.20.6
   '@eslint/js': ^9.21.0
   '@types/eslint': ^9.6.1
   '@typescript-eslint/eslint-plugin': ^8.25.0

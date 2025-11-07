@@ -18,17 +18,10 @@ export default defineConfig({
     },
     lib: {
       entry: {
-        antd: path.resolve(__dirname, '../ui/antd/index.ts'),
-        elementPlus: path.resolve(__dirname, '../ui/elementPlus/index.ts'),
         index: path.resolve(__dirname, './index.ts'),
-        naiveUi: path.resolve(__dirname, '../ui/naiveUi/index.ts'),
       },
       fileName: (ModuleFormat, entryName) => {
         const extension = ModuleFormat === 'es' ? 'js' : ModuleFormat;
-        const uiLibraryNames = ['antd', 'elementPlus', 'naiveUi'];
-        if (uiLibraryNames.includes(entryName)) {
-          return `ui/${entryName}/index.${extension}`;
-        }
         return `${entryName}.${extension}`;
       },
       formats: ['es', 'cjs'],
@@ -70,7 +63,7 @@ export default defineConfig({
     UnoCSS() as PluginOption,
     dts({
       entryRoot: '../',
-      exclude: ['../**/__test__/**'],
+      exclude: ['../**/__test__/**', '../ui/**'],
       outDir: 'dist',
     }),
     nodeExternals(),
@@ -89,7 +82,7 @@ export default defineConfig({
         '../ui-kit/panel-ui/src/index',
       ),
       '@epic-designer/types': path.resolve(__dirname, '../types/src/index'),
-      '@epic-designer/ui': path.resolve(__dirname, '../ui/'),
+      // '@epic-designer/ui': path.resolve(__dirname, '../ui/'),
       '@epic-designer/utils': path.resolve(__dirname, '../utils/src/index'),
     },
   },

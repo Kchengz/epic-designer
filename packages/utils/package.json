@@ -5,9 +5,7 @@
   "private": false,
   "author": "kchengz",
   "type": "module",
-  "scripts": {
-    "build": "vite build"
-  },
+  "scripts": {},
   "files": [
     "dist"
   ],
