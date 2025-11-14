@@ -27,7 +27,7 @@ import { pluginManager } from "epic-designer";
 // 安装扩展
 export function setupDesignerExtensions(): void {
   // 添加右侧模块
-  pluginManager.registerRightSidebar({
+  pluginManager.panel.registerRightSidebar({
     id: "test_view",
     title: "扩展",
     component: async () => await import("./sidebar/index.vue"),

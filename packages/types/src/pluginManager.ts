@@ -22,7 +22,7 @@ export interface RightSidebarModel {
 }
 
 export interface ViewsContainersModel {
-  activitybars: ShallowRef<ActivitybarModel[]>;
+  activityBars: ShallowRef<ActivitybarModel[]>;
   rightSidebars: ShallowRef<RightSidebarModel[]>;
 }
 

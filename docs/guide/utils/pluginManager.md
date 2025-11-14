@@ -5,8 +5,15 @@
 
 :::
 
-## 注册组件
+## Methods
 
+#### registerComponent
+
+类型：`(componentConfig: ComponentConfigModel) => void`
+
+说明：注册组件到插件管理器中
+
+示例：
 ```ts
 import { pluginManager,type ComponentConfigModel } from 'epic-designer'
 
@@ -46,22 +53,21 @@ pluginManager.registerComponent(Test);
 ```
 
 
-
-## Methods
-
-#### registerComponent
-
-类型：`(componentConfig: ComponentConfigModel) => void`
-
-说明：注册组件到插件管理器中
-
-
-
 #### getComponentConfigs
 
 类型：`() => ComponentConfigModelRecords`
 
 说明：获取所有插件管理中的所有组件配置
+
+示例：
+
+```tsx
+import { pluginManager } from 'epic-designer'
+
+const componentConfigs = pluginManager.getComponentConfigs();
+```
+
+
 
 
 
@@ -71,6 +77,15 @@ pluginManager.registerComponent(Test);
 
 说明：通过type获取组件配置
 
+示例：
+
+```tsx
+import { pluginManager } from 'epic-designer'
+
+// 获取input组件的注册配置
+const componentConfig = pluginManager.getComponentConfigByType('input');
+```
+
 
 
 #### getComponents
@@ -78,6 +93,14 @@ pluginManager.registerComponent(Test);
 类型：`() => Components`
 
 说明：获取已注册的组件
+
+示例：
+
+```tsx
+import { pluginManager } from 'epic-designer'
+
+const components = pluginManager.getComponents();
+```
 
 
 
@@ -87,6 +110,14 @@ pluginManager.registerComponent(Test);
 
 说明：通过类型获取的组件
 
+示例：
+
+```tsx
+import { pluginManager } from 'epic-designer'
+
+const components = pluginManager.getComponent('input');
+```
+
 
 
 #### registerActivitybar
@@ -94,6 +125,25 @@ pluginManager.registerComponent(Test);
 类型：`(activitybar: ActivitybarModel) => void`
 
 说明：注册活动栏
+
+示例：
+
+```
+import { pluginManager } from 'epic-designer'
+
+ pluginManager.panel.registerActivitybar({
+ 	// 组件路径 ./index.vue 根据实际情况修改
+    component: () => import('./index.vue'),
+    // icon图标配置
+    icon: 'icon--epic--extension-outline',
+    // 活动栏ID 唯一值, 相同的ID 后面注册的配置会覆盖前面的数据
+    id: 'component_view',
+    // 排序,值越小越靠前
+    sort: 100,
+    // 标题
+    title: '组件',
+  });
+```
 
 
 
@@ -220,6 +270,14 @@ pluginManager.registerComponent(Test);
 类型：`(methodName: string) => void`
 
 说明：移除公共方法
+
+#### setGlobal
+
+类型：`(methodName: string) => void`
+
+说明：设置全局属性
+
+
 
 
 

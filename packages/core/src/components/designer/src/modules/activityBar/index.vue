@@ -9,8 +9,8 @@ import { pluginManager } from '@epic-designer/manager';
 defineOptions({
   name: 'EActivityBar',
 });
-const activitybars = computed(() => {
-  return pluginManager.getActivitybars.value
+const activityBars = computed(() => {
+  return pluginManager.panel.activityBars.value
     .filter((item) => item.visible)
     .sort((a, b) => {
       return a.sort! - b.sort!;
@@ -20,7 +20,7 @@ const activitybars = computed(() => {
 const activityBarCheckedIndex = ref<null | number>(0);
 
 const sidebarComponent = shallowRef<any>(null);
-sidebarComponent.value = activitybars.value[0].component;
+sidebarComponent.value = activityBars.value[0].component;
 
 function handleClick(item: ActivitybarModel, index: number) {
   if (activityBarCheckedIndex.value === index) {
@@ -36,7 +36,7 @@ function handleClick(item: ActivitybarModel, index: number) {
     <div class="epic-action-bar">
       <ul class="epic-actions-container">
         <li
-          v-for="(item, index) in activitybars"
+          v-for="(item, index) in activityBars"
           :key="index"
           class="epic-action-item"
           :title="item.title"

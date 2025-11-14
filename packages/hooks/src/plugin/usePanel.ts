@@ -15,22 +15,22 @@ export type Attr = 'id' | 'title';
 export function usePanel() {
   // 视图容器模型，包含活动栏和右侧边栏的配置
   const viewsContainers: ViewsContainersModel = {
-    activitybars: shallowRef([]), // 活动栏配置列表
+    activityBars: shallowRef([]), // 活动栏配置列表
     rightSidebars: shallowRef([]), // 右侧边栏配置列表
   };
 
-  const hiddenActivitybars = ref<string[]>([]); // 隐藏的活动栏配置列表
+  const hiddenActivityBars = ref<string[]>([]); // 隐藏的活动栏配置列表
   const hiddenRightSidebars = ref<string[]>([]); // 隐藏的右侧边栏配置列表
 
   // 获取未隐藏的活动栏
-  const getActivitybars = computed(() => {
-    return viewsContainers.activitybars.value.filter(
-      (item) => !hiddenActivitybars.value.includes(item.title),
+  const activityBars = computed(() => {
+    return viewsContainers.activityBars.value.filter(
+      (item) => !hiddenActivityBars.value.includes(item.title),
     );
   });
 
   // 获取未隐藏的右侧边栏
-  const getRightSidebars = computed(() => {
+  const rightSidebars = computed(() => {
     return viewsContainers.rightSidebars.value.filter(
       (item) => !hiddenRightSidebars.value.includes(item.title),
     );
@@ -60,16 +60,16 @@ export function usePanel() {
     }
 
     // 查找活动栏在列表中的索引
-    const index = viewsContainers.activitybars.value.findIndex(
+    const index = viewsContainers.activityBars.value.findIndex(
       (item) => item.id === activitybar.id,
     );
 
     // 如果找到相同 id 的活动栏，则更新该活动栏模型
     if (index === -1) {
       // 否则将新的活动栏模型添加到活动栏列表中
-      viewsContainers.activitybars.value.push(activitybar);
+      viewsContainers.activityBars.value.push(activitybar);
     } else {
-      viewsContainers.activitybars.value[index] = activitybar;
+      viewsContainers.activityBars.value[index] = activitybar;
     }
   }
 
@@ -109,7 +109,7 @@ export function usePanel() {
    * @param title 属性
    */
   function hideActivitybar(title: string) {
-    hiddenActivitybars.value.push(title);
+    hiddenActivityBars.value.push(title);
   }
 
   /**
@@ -125,9 +125,9 @@ export function usePanel() {
    * @param title 属性
    */
   function showActivitybar(title: string) {
-    const index = hiddenActivitybars.value.indexOf(title);
+    const index = hiddenActivityBars.value.indexOf(title);
     if (index !== -1) {
-      hiddenActivitybars.value.splice(index, 1);
+      hiddenActivityBars.value.splice(index, 1);
     }
   }
 
@@ -142,12 +142,12 @@ export function usePanel() {
     }
   }
   return {
-    getActivitybars,
-    getRightSidebars,
+    activityBars,
     hideActivitybar,
     hideRightSidebar,
     registerActivitybar,
     registerRightSidebar,
+    rightSidebars,
     showActivitybar,
     showRightSidebar,
     viewsContainers,

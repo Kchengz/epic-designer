@@ -6,12 +6,12 @@ import { ref } from 'vue';
 import { EDesigner } from '@epic-designer/core';
 import { pluginManager } from '@epic-designer/manager';
 
-pluginManager.hideActivitybar('源码');
-pluginManager.hideRightSidebar('样式');
+pluginManager.panel.hideActivitybar('源码');
+pluginManager.panel.hideRightSidebar('样式');
 
 setTimeout(() => {
-  pluginManager.showActivitybar('源码');
-  pluginManager.showRightSidebar('样式');
+  pluginManager.panel.showActivitybar('源码');
+  pluginManager.panel.showRightSidebar('样式');
 }, 8000);
 
 const designerRef = ref<InstanceType<typeof EDesigner>>();

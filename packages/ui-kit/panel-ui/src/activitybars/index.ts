@@ -7,7 +7,7 @@ import type { PluginManager } from '@epic-designer/manager';
  * @returns {void}
  */
 export function setupActivitybar(pluginManager: PluginManager): void {
-  pluginManager.registerActivitybar({
+  pluginManager.panel.registerActivitybar({
     component: async () => await import('./componentView/index.vue'),
     icon: 'icon--epic--extension-outline',
     id: 'component_view',
@@ -15,7 +15,7 @@ export function setupActivitybar(pluginManager: PluginManager): void {
     title: '组件',
   });
 
-  pluginManager.registerActivitybar({
+  pluginManager.panel.registerActivitybar({
     component: async () => await import('./sourceCode/index.vue'),
     icon: 'icon--epic--sdk-outline-rounded',
     id: 'sound_code_view',
@@ -23,7 +23,7 @@ export function setupActivitybar(pluginManager: PluginManager): void {
     title: '源码',
   });
 
-  pluginManager.registerActivitybar({
+  pluginManager.panel.registerActivitybar({
     component: async () => await import('./outline/outline.vue'),
     icon: 'icon--epic--account-tree-outline-rounded',
     id: 'outline_view',

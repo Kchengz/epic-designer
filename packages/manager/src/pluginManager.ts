@@ -58,12 +58,12 @@ export function usePluginManager() {
   let sortedGroups: string[] = ['表单', '布局'];
 
   const {
-    getActivitybars,
-    getRightSidebars,
+    activityBars,
     hideActivitybar,
     hideRightSidebar,
     registerActivitybar,
     registerRightSidebar,
+    rightSidebars,
     showActivitybar,
     showRightSidebar,
     viewsContainers,
@@ -460,7 +460,21 @@ export function usePluginManager() {
     computedComponentSchemaGroups();
   }
 
-  return {
+  const groupedReturn = {
+    panel: {
+      activityBars,
+      hideActivitybar,
+      hideRightSidebar,
+      registerActivitybar,
+      registerRightSidebar,
+      rightSidebars,
+      showActivitybar,
+      showRightSidebar,
+      viewsContainers,
+    },
+  };
+  const legacyReturn = {
+    activityBars,
     addBaseComponentTypes,
     addPublicMethod,
     baseComponentTypes,
@@ -472,7 +486,6 @@ export function usePluginManager() {
     components,
     componentSchemaGroups,
     formSchema,
-    getActivitybars,
     getComponent,
     getComponentConfigByType,
     getComponentConfigs,
@@ -481,13 +494,13 @@ export function usePluginManager() {
     getGlobal,
     getIcon,
     getLabel,
-    getRightSidebars,
     global,
     hiddenComponents,
     hideActivitybar,
     hideComponent,
     hideRightSidebar,
     initialized,
+
     publicMethods,
     registerActivitybar,
     registerComponent,
@@ -495,6 +508,7 @@ export function usePluginManager() {
     removeBaseComponents,
     removeComponent,
     removePublicMethod,
+    rightSidebars,
     setBaseComponentTypes,
     setComponentGroupNameMap,
     setFormSchema,
@@ -506,8 +520,49 @@ export function usePluginManager() {
     showComponent,
     showRightSidebar,
     sortedGroups,
+
     viewsContainers,
   };
+
+  return createProxyWithWarnings(groupedReturn, legacyReturn);
+}
+
+function createProxyWithWarnings(groupedReturn: any, legacyReturn: any) {
+  const propertyGroupMap = {
+    activityBars: 'panel',
+    hideActivitybar: 'panel',
+    hideRightSidebar: 'panel',
+    registerActivitybar: 'panel',
+    registerRightSidebar: 'panel',
+    rightSidebars: 'panel',
+    showActivitybar: 'panel',
+    showRightSidebar: 'panel',
+    viewsContainers: 'panel',
+  };
+
+  const mergedReturn = {
+    ...legacyReturn,
+    ...groupedReturn,
+  };
+
+  return new Proxy(mergedReturn, {
+    get(target, prop) {
+      if (prop in propertyGroupMap) {
+        // 检测到第一级属性访问
+        const group = propertyGroupMap[prop as keyof typeof propertyGroupMap];
+        console.warn(
+          `⚠️ Epic Designer: 检测到已过时的 API 使用方式\n` +
+            `❌ 旧写法: pluginManager.${String(prop)}\n` +
+            `✅ 新写法: pluginManager.${group}.${String(prop)}`,
+        );
+
+        // 堆栈跟踪，帮助定位使用位置
+        console.trace('调用位置:');
+      }
+
+      return target[prop];
+    },
+  });
 }
 
 export const pluginManager = usePluginManager();
