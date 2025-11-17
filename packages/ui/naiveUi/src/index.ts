@@ -30,20 +30,20 @@ import UploadImage from './upload-image';
 
 export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
   // 异步加载组件
-  pluginManager.component(
+  pluginManager.component.add(
     'FormItem',
     async () => (await import('naive-ui')).NFormItem,
   );
 
-  pluginManager.component('Tabs', async () => (await import('naive-ui')).NTabs);
+  pluginManager.component.add('Tabs', async () => (await import('naive-ui')).NTabs);
 
-  pluginManager.component('TabPane', NTabPane);
+  pluginManager.component.add('TabPane', NTabPane);
 
-  pluginManager.component(
+  pluginManager.component.add(
     'Collapse',
     async () => (await import('naive-ui')).NCollapse,
   );
-  pluginManager.component(
+  pluginManager.component.add(
     'CollapseItem',
     async () => (await import('naive-ui')).NCollapseItem,
   );

@@ -20,27 +20,27 @@ export function setupPage(pluginManager: PluginManager): void {
  * @returns {void}
  */
 export function setupComponent(pluginManager: PluginManager): void {
-  pluginManager.component(
+  pluginManager.component.add(
     'EInputSize',
     async () => await import('./EInputSize/index.vue'),
   );
-  pluginManager.component(
+  pluginManager.component.add(
     'EColEditor',
     async () => await import('./EColEditor/index.vue'),
   );
-  pluginManager.component(
+  pluginManager.component.add(
     'EActionEditor',
     async () => await import('./EActionEditor/index.vue'),
   );
-  pluginManager.component(
+  pluginManager.component.add(
     'ERuleEditor',
     async () => await import('./ERuleEditor/index.vue'),
   );
-  pluginManager.component(
+  pluginManager.component.add(
     'EOptionsEditor',
     async () => await import('./EOptionsEditor/index.vue'),
   );
-  pluginManager.component('EpicNode', EpicNode);
+  pluginManager.component.add('EpicNode', EpicNode);
 
   const componentArray = [MonacoEditor];
 

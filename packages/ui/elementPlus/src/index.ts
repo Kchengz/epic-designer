@@ -39,11 +39,11 @@ import UploadImage from './upload-image';
 export function setupElementPlus(
   pluginManager: PluginManager = pManager,
 ): void {
-  pluginManager.component('FormItem', ElFormItem);
-  pluginManager.component('Tabs', ElTabs);
-  pluginManager.component('TabPane', ElTabPane);
-  pluginManager.component('Collapse', ElCollapse);
-  pluginManager.component('CollapseItem', ElCollapseItem);
+  pluginManager.component.add('FormItem', ElFormItem);
+  pluginManager.component.add('Tabs', ElTabs);
+  pluginManager.component.add('TabPane', ElTabPane);
+  pluginManager.component.add('Collapse', ElCollapse);
+  pluginManager.component.add('CollapseItem', ElCollapseItem);
 
   const componentArray = [
     Form,

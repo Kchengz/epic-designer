@@ -280,7 +280,9 @@ const getFormItemProps = computed<ComponentSchema>(() => {
 
 // 获取组件原配置
 const getComponentConfig = computed(() => {
-  return pluginManager.getComponentConfigByType(innerSchema.type) ?? null;
+  return (
+    pluginManager.component.getComponentConfigByType(innerSchema.type) ?? null
+  );
 });
 
 // 获取组件props数据

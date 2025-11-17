@@ -27,7 +27,7 @@ import { pluginManager } from "epic-designer";
 // 安装扩展
 export function setupDesignerExtensions(): void {
   // 添加活动栏
-  pluginManager.registerActivitybar({
+  pluginManager.panel.registerActivitybar({
     id: "test",
     title: "扩展活动栏",
     component: async () => await import("./activityBar/index.vue"),

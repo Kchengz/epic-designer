@@ -40,29 +40,7 @@ export function useGlobal(initialGlobal?: InitialGlobal) {
   // 全局状态对象
   const global = reactive<Global>(finalInitialGlobal);
 
-  /**
-   * 获取全局状态
-   * @param key 状态键名，如果不传返回整个状态对象
-   */
-  function getGlobal(key?: string): any {
-    if (key) {
-      return global[key];
-    }
-    return global;
-  }
-
-  /**
-   * 设置全局状态
-   * @param key 状态键名
-   * @param value 状态值
-   */
-  function setGlobal(key: string, value: any): void {
-    global[key] = value;
-  }
-
   return {
-    getGlobal,
     global,
-    setGlobal,
   };
 }

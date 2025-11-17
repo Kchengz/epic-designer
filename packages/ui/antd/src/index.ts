@@ -63,19 +63,19 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
   }
 
   // 加载组件
-  pluginManager.component(
+  pluginManager.component.add(
     'Collapse',
     async () => (await import('ant-design-vue')).Collapse,
   );
-  pluginManager.component(
+  pluginManager.component.add(
     'CollapseItem',
     async () => (await import('ant-design-vue')).CollapsePanel,
   );
-  pluginManager.component(
+  pluginManager.component.add(
     'Tabs',
     async () => (await import('ant-design-vue')).Tabs,
   );
-  pluginManager.component(
+  pluginManager.component.add(
     'TabPane',
     async () => (await import('ant-design-vue')).TabPane,
   );
