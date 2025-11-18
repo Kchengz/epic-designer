@@ -17,8 +17,8 @@ const props = defineProps({
   },
 });
 const emit = defineEmits(['update:modelValue']);
-const Collapse = pluginManager.getComponent('Collapse');
-const CollapseItem = pluginManager.getComponent('CollapseItem');
+const Collapse = pluginManager.component.get('Collapse');
+const CollapseItem = pluginManager.component.get('CollapseItem');
 
 const EActionModalRef = ref<any>(null);
 let editIndex = 0;

@@ -11,7 +11,7 @@ import EpicBreadcrumb from './breadcrumb.vue';
 const hideRightMain = ref(false);
 
 const rightSidebars = computed(() => {
-  return pluginManager.panel.activityBars.value
+  return pluginManager.panel.rightSidebars.value
     .filter((item) => item.visible)
     .sort((a, b) => {
       return a.sort! - b.sort!;

@@ -6,8 +6,8 @@ import { inject, ref, watchEffect } from 'vue';
 import { pluginManager } from '@epic-designer/manager';
 import { useClipboard } from '@vueuse/core';
 
-const Modal = pluginManager.getComponent('modal');
-const MonacoEditor = pluginManager.getComponent('monacoEditor');
+const Modal = pluginManager.component.get('modal');
+const MonacoEditor = pluginManager.component.get('monacoEditor');
 const MonacoEditorConfig = {
   minimap: {
     enabled: false,

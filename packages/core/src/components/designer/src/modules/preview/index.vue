@@ -17,8 +17,8 @@ const props = withDefaults(
     width: '900px',
   },
 );
-const MonacoEditor = pluginManager.getComponent('monacoEditor');
-const Modal = pluginManager.getComponent('modal');
+const MonacoEditor = pluginManager.component.get('monacoEditor');
+const Modal = pluginManager.component.get('modal');
 const monacoEditorRef = ref<any>(null);
 
 const visible = ref(false);

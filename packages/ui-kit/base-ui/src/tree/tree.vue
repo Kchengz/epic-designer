@@ -25,7 +25,7 @@ const emits = defineEmits(['update:selectedKeys', 'nodeClick']);
 const slots = useSlots();
 provide('slots', slots);
 
-const Input = pluginManager.getComponent('input');
+const Input = pluginManager.component.get('input');
 
 const keyword = ref('');
 const expandedKeys = ref([]);

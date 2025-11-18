@@ -24,7 +24,7 @@ watchEffect(() => {
   }
 });
 
-const componentConfigs = pluginManager.getComponentConfigs();
+const componentConfigs = pluginManager.component.getComponentConfigs();
 const selectedNode = computed(() => {
   return designer.state.selectedNode;
 });
@@ -109,7 +109,9 @@ function handleSetValue(
       >
         <EpicIcon
           class="epic-component-icon translate-y-2px mr-1"
-          :name="pluginManager.getIcon(designer.state.selectedNode!.type)"
+          :name="
+            pluginManager.component.getIcon(designer.state.selectedNode!.type)
+          "
         />
         {{ designer.state.selectedNode?.id }}
       </div>

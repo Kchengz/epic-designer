@@ -9,9 +9,9 @@ import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 
 const designer = inject('designer') as Designer;
 const revoke = inject('revoke') as Revoke;
-const EActionEditor = pluginManager.getComponent('EActionEditor');
+const EActionEditor = pluginManager.component.get('EActionEditor');
 
-const componentConfigs = pluginManager.getComponentConfigs();
+const componentConfigs = pluginManager.component.getComponentConfigs();
 const selectedNode = computed(() => {
   return designer.state.selectedNode;
 });

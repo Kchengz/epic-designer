@@ -7,8 +7,8 @@ const props = defineProps<{
   modelValue?: number | string;
 }>();
 const emit = defineEmits(['update:modelValue']);
-const Input = pluginManager.getComponent('input');
-const Select = pluginManager.getComponent('select');
+const Input = pluginManager.component.get('input');
+const Select = pluginManager.component.get('select');
 const size = ref<null | string>(null);
 const unit = ref('px');
 const unitArray = [

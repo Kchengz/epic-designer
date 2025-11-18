@@ -42,7 +42,7 @@ function handleSelect(schema: ComponentSchema) {
         >
           {{
             item.label ??
-            pluginManager.getComponentConfigByType(item.type)?.defaultSchema
+            pluginManager.component.getConfigByType(item.type)?.defaultSchema
               .label
           }}
         </span>

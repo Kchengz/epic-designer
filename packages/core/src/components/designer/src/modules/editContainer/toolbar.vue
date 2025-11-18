@@ -12,7 +12,7 @@ import { convertKFormData, deepCompareAndModify } from '@epic-designer/utils';
 
 import EpicPreviewJson from './previewJson.vue';
 
-const Select = pluginManager.getComponent('select');
+const Select = pluginManager.component.get('select');
 
 const { canvasScale, disabledZoom } = useStore();
 const pageSchema = inject('pageSchema') as PageSchema;

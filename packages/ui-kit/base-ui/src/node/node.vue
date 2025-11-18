@@ -398,7 +398,7 @@ async function initComponent() {
   }
 
   // 内置组件
-  const cmp = pluginManager.getComponent(innerSchema.type);
+  const cmp = pluginManager.component.get(innerSchema.type);
   // 内部不存在组件
   if (!cmp) {
     console.error(`组件${innerSchema.type}未注册`);

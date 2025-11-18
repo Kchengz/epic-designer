@@ -17,7 +17,7 @@ const props = defineProps<{
   tree?: boolean;
 }>();
 const emit = defineEmits(['update:modelValue']);
-const Button = pluginManager.getComponent('button');
+const Button = pluginManager.component.get('button');
 const innerValue = useVModel(props, 'modelValue', emit);
 
 provide('tree', props.tree);

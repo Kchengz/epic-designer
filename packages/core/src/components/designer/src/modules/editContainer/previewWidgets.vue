@@ -65,7 +65,7 @@ const getComponentElement = (node: ComponentSchema) => {
     return null;
   }
   const componentConfig =
-    pluginManager.getComponentConfigByType(node.type!) ?? null;
+    pluginManager.component.getConfigByType(node.type!) ?? null;
   if (!id || !componentInstances?.[id]) {
     return null;
   }
@@ -344,7 +344,7 @@ defineExpose({
       <div class="epic-widget-action-item whitespace-nowrap">
         <!-- {{ designer.state.selectedNode?.type }} -->
         {{
-          pluginManager.getComponentConfigByType(
+          pluginManager.component.getConfigByType(
             designer.state.selectedNode?.type ?? '',
           )?.defaultSchema.label
         }}

@@ -5,7 +5,7 @@ import { inject, ref } from 'vue';
 
 import { pluginManager } from '@epic-designer/manager';
 
-const MonacoEditor = pluginManager.getComponent('monacoEditor');
+const MonacoEditor = pluginManager.component.get('monacoEditor');
 const MonacoEditorConfig = {
   minimap: {
     enabled: false,

@@ -12,7 +12,7 @@ const files: Record<string, { default: string }> = import.meta.glob(
   { eager: true, query: '?raw' },
 );
 // 从插件管理器获取 Monaco 编辑器组件
-const MonacoEditor = pluginManager.getComponent('monacoEditor');
+const MonacoEditor = pluginManager.component.get('monacoEditor');
 const route = useRoute();
 const monacoEditorRef = ref<any>(null);
 

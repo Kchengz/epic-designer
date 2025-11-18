@@ -18,8 +18,8 @@ const props = defineProps({
 });
 const emit = defineEmits(['update:modelValue']);
 
-const Button = pluginManager.getComponent('button');
-const Number = pluginManager.getComponent('number');
+const Button = pluginManager.component.get('button');
+const Number = pluginManager.component.get('number');
 
 const innerValue = useVModel(props, 'modelValue', emit);
 

@@ -37,7 +37,7 @@ export function useComponentManager() {
    * 添加基础组件类型
    * @param baseComponentType 基础组件类型
    */
-  function addBaseComponentTypes(baseComponentType: string) {
+  function addBaseComponentType(baseComponentType: string) {
     baseComponentTypes.push(baseComponentType);
   }
 
@@ -361,7 +361,7 @@ export function useComponentManager() {
   }
 
   return {
-    addBaseComponentTypes,
+    addBaseComponentType,
     addComponent,
     baseComponentTypes,
     clearComponentGroupNameMap,

@@ -28,7 +28,7 @@ const pageManager = usePageManager();
 import { pluginManager, usePluginManager } from '@epic-designer/manager';
 
 // 注册组件
-pluginManager.registerComponent({
+pluginManager.component.register({
   defaultSchema: {
     type: 'input',
     label: '输入框',

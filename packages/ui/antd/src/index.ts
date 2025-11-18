@@ -114,8 +114,8 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
   });
 
   componentArray.forEach((item) => {
-    pluginManager.registerComponent(item);
-    pluginManager.addBaseComponentTypes(item.defaultSchema.type);
+    pluginManager.component.register(item);
+    pluginManager.component.addBaseComponentType(item.defaultSchema.type);
   });
 
   // 注册全局提示函数

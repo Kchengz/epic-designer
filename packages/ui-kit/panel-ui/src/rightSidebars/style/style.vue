@@ -10,7 +10,7 @@ import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 
 const designer = inject('designer') as Designer;
 const revoke = inject('revoke') as Revoke;
-const componentConfigs = pluginManager.getComponentConfigs();
+const componentConfigs = pluginManager.component.getComponentConfigs();
 
 // const componentStyles: ComponentSchema[] =
 

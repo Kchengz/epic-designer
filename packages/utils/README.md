@@ -111,7 +111,7 @@ import { usePluginManager } from '@epic-designer/utils';
 const pluginManager = usePluginManager();
 
 // 注册组件
-pluginManager.registerComponent({
+pluginManager.component.register({
   type: 'MyComponent',
   component: MyComponent,
   groupName: 'custom',
@@ -120,7 +120,7 @@ pluginManager.registerComponent({
 });
 
 // 获取组件配置
-const config = pluginManager.getComponentConfig('MyComponent');
+const config = pluginManager.component.getConfig('MyComponent');
 ```
 
 #### 撤销重做管理器 (Revoke)

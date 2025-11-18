@@ -181,7 +181,7 @@ export function generateNewSchema(
     // 存在字段名，则自动在字段名后补充id
     if (
       (newVal.field || newVal.input) &&
-      !pluginManager.getComponentConfigByType(newVal.type)?.editConstraints
+      !pluginManager.component.getConfigByType(newVal.type)?.editConstraints
         ?.fixedField
     ) {
       newVal.field = newVal.id;

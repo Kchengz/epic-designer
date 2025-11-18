@@ -11,7 +11,7 @@ import Page from './Page';
  * @returns {void}
  */
 export function setupPage(pluginManager: PluginManager): void {
-  pluginManager.registerComponent(Page);
+  pluginManager.component.register(Page);
 }
 
 /**
@@ -47,6 +47,6 @@ export function setupComponent(pluginManager: PluginManager): void {
   setupPage(pluginManager);
 
   componentArray.forEach((item) => {
-    pluginManager.registerComponent(item);
+    pluginManager.component.register(item);
   });
 }

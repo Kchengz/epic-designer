@@ -24,7 +24,7 @@ const props = defineProps({
   },
 });
 const emit = defineEmits(['update:modelValue']);
-const Button = pluginManager.getComponent('button');
+const Button = pluginManager.component.get('button');
 const innerValue = useVModel(props, 'modelValue', emit);
 const requiredRule = ref<FormItemRule>({
   message: '必填项',

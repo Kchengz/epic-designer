@@ -19,7 +19,7 @@ const props = defineProps<{
 // 接收页面管理对象
 const pageManager = inject('pageManager', {}) as PageManager;
 // 获取插件管理器中的表单项组件
-const FormItem = pluginManager.getComponent('form-item');
+const FormItem = pluginManager.component.get('form-item');
 
 /**
  * 当 FormItem 组件挂载时，向父组件发送 formItemRef

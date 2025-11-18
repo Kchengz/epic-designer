@@ -16,8 +16,8 @@ import EArgsEditor from './EArgsEditor.vue';
 import EScriptEdit from './EScriptEdit.vue';
 
 const emit = defineEmits(['add', 'edit']);
-const Modal = pluginManager.getComponent('modal');
-const Button = pluginManager.getComponent('button');
+const Modal = pluginManager.component.get('modal');
+const Button = pluginManager.component.get('button');
 const isAdd = ref(true);
 const pageSchema = inject('pageSchema') as PageSchema;
 const pageManager = inject('pageManager', {}) as PageManager;
@@ -48,7 +48,7 @@ const actionTypeText = computed(() => {
   if (state.actionItem.type === 'component' && componentSchema.value) {
     const label =
       componentSchema.value.label ||
-      pluginManager.getComponentConfigByType(componentSchema.value.type)
+      pluginManager.component.getConfigByType(componentSchema.value.type)
         ?.defaultSchema.label ||
       '未命名组件';
     return `${label}`;
@@ -61,7 +61,7 @@ const methodOptions = computed(() => {
   // 组件动作列表
   if (state.actionItem.type === 'component') {
     if (componentSchema.value) {
-      const componentConfigs = pluginManager.getComponentConfigs();
+      const componentConfigs = pluginManager.component.getConfigs();
       return componentConfigs[componentSchema.value.type].config.action?.map(
         (item) => ({
           label: item.describe ?? item.description,
@@ -96,7 +96,7 @@ const methodOptions = computed(() => {
 const actionArgsConfigs = computed(() => {
   if (state.actionItem.type === 'component' && componentSchema.value) {
     const action =
-      pluginManager.getComponentConfigs()[componentSchema.value.type].config
+      pluginManager.component.getConfigs()[componentSchema.value.type].config
         .action;
     const actionItem = action?.find(
       (item) => item.type === state.actionItem.methodName,
@@ -165,7 +165,7 @@ function handleSave() {
   ) {
     // 获取当前选中组件的配置
     const componentConfig =
-      pluginManager.getComponentConfigs()[componentSchema.value.type].config;
+      pluginManager.component.getConfigs()[componentSchema.value.type].config;
     // 过滤出以 componentProps 开头的可被修改的属性
     const componentAttributes = (componentConfig.attribute || []).filter(
       ({ field }) => String(field).startsWith('componentProps'),
@@ -284,7 +284,7 @@ defineExpose({
                     />
                     {{
                       schema.label ??
-                      pluginManager.getComponentConfigByType(schema.type)
+                      pluginManager.component.getConfigByType(schema.type)
                         ?.defaultSchema.label
                     }}
                   </span>

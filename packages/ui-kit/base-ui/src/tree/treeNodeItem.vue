@@ -55,7 +55,7 @@ const TreeNodeText = defineComponent({
                   'span',
                   { class: 'max-w-full truncate' },
                   props.schema.label ??
-                    pluginManager.getComponentConfigByType(props.schema.type)
+                    pluginManager.component.getConfigByType(props.schema.type)
                       ?.defaultSchema.label,
                 ),
                 h(

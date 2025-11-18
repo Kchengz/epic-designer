@@ -20,7 +20,7 @@ const props = defineProps<{
   modelValue: Option[];
 }>();
 const emit = defineEmits(['update:modelValue']);
-const Input = pluginManager.getComponent('input');
+const Input = pluginManager.component.get('input');
 const tree = inject('tree', false);
 const innerValue = useVModel(props, 'modelValue', emit);
 

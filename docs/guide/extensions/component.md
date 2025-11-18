@@ -58,7 +58,7 @@ import Test from "./Test";
 export function setupDesignerExtensions(): void {
 
      // 注册组件
-     pluginManager.registerComponent(Test);
+     pluginManager.component.register(Test);
 }
 ```
 ## main.ts 添加执行扩展函数

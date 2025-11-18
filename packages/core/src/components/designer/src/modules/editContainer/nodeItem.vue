@@ -33,7 +33,7 @@ function isDraggable() {
   if (
     !props.draggable ||
     schema.id === pageSchema.schemas[0]?.id ||
-    pluginManager.getComponentConfigByType(schema.type)?.editConstraints
+    pluginManager.component.getConfigByType(schema.type)?.editConstraints
       ?.immovable
   ) {
     // 禁止拖拽
@@ -53,7 +53,7 @@ function isDraggable() {
     <!-- childImmovable不可拖拽设计 start -->
     <template
       v-if="
-        pluginManager.getComponentConfigByType(props.schema.type)
+        pluginManager.component.getConfigByType(props.schema.type)
           ?.editConstraints?.childImmovable
       "
       #edit-node

@@ -16,7 +16,7 @@ import {
 export function usePluginManager() {
   const { formSchema, setFormSchema } = useFormSchema();
   const {
-    addBaseComponentTypes,
+    addBaseComponentType,
     addComponent,
     baseComponentTypes,
     clearComponentGroupNameMap,
@@ -140,7 +140,7 @@ export function usePluginManager() {
   const groupedReturn = {
     component: {
       add: addComponent,
-      addBaseComponentTypes,
+      addBaseComponentType,
       baseComponentTypes,
       clearComponentGroupNameMap,
       clearSortedGroups,

@@ -15,12 +15,12 @@ import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager, Revoke } from '@epic-designer/manager';
 import { findSchemaInfoById, generateNewSchema } from '@epic-designer/utils';
 
-const Input = pluginManager.getComponent('input');
+const Input = pluginManager.component.get('input');
 const pageSchema = inject('pageSchema') as PageSchema;
 const designer = inject('designer') as Designer;
 const revoke = inject('revoke') as Revoke;
 const designerProps = inject('designerProps') as Ref<DesignerProps>;
-const sourceSchema = pluginManager.getComponentSchemaGroups();
+const sourceSchema = pluginManager.component.getComponentSchemaGroups();
 const keyword = ref('');
 const allSchema = {
   title: '全部',
@@ -77,7 +77,7 @@ function handleClick(schema: ComponentSchema) {
   // 如果选中元素存在children字段，则添加到children中
   if (
     checkedSchema.children &&
-    !pluginManager.getComponentConfigByType(checkedSchema.type)?.editConstraints
+    !pluginManager.component.getConfigByType(checkedSchema.type)?.editConstraints
       ?.childImmovable
   ) {
     list = checkedSchema.children;
@@ -146,7 +146,7 @@ function handleClick(schema: ComponentSchema) {
           >
             <EpicIcon
               :name="
-                pluginManager.getComponentConfigByType(item.type).icon ?? ''
+                pluginManager.component.getConfigByType(item.type).icon ?? ''
               "
             />
             <div class="epic-componet-label w-0 flex-1 truncate">

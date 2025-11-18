@@ -6,7 +6,7 @@ import { inject, ref, toRaw, watch } from 'vue';
 import { pluginManager } from '@epic-designer/manager';
 import { deepCompareAndModify, deepEqual } from '@epic-designer/utils';
 
-const MonacoEditor = pluginManager.getComponent('monacoEditor');
+const MonacoEditor = pluginManager.component.get('monacoEditor');
 const monacoEditorRef = ref<any>(null);
 const designer = inject('designer') as Designer;
 const designerProps = inject('designerProps') as DesignerProps;

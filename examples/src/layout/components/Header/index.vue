@@ -68,7 +68,7 @@ const selectValue = computed({
 
 // 切换选择ui
 function switchUI(ui: string) {
-  pluginManager.removeBaseComponents();
+  pluginManager.component.removeBaseComponents();
   pluginManager.initialized.value = false;
 
   switch (ui) {

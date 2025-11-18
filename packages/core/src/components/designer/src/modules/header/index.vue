@@ -9,7 +9,7 @@ import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 
 const emits = defineEmits(['save', 'reset', 'preview']);
-const Button = pluginManager.getComponent('button');
+const Button = pluginManager.component.get('button');
 const designerProps = inject('designerProps') as Ref<DesignerProps>;
 
 /**

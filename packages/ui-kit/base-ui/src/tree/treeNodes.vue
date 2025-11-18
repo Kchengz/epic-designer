@@ -51,7 +51,7 @@ function isDraggable(schema: ComponentSchema) {
   // 判断当前节点类型是否允许拖拽
   if (
     schema.id === pageSchema.schemas[0]?.id ||
-    pluginManager.getComponentConfigByType(schema.type)?.editConstraints
+    pluginManager.component.getConfigByType(schema.type)?.editConstraints
       ?.immovable
   ) {
     // 禁止拖拽
@@ -71,7 +71,7 @@ const getDisabled = computed(() => {
 <template>
   <draggable
     v-if="
-      !pluginManager.getComponentConfigByType(props.parentSchema?.type || '')
+      !pluginManager.component.getConfigByType(props.parentSchema?.type || '')
         ?.editConstraints?.childImmovable
     "
     v-model="modelSchemas"
