@@ -148,22 +148,29 @@ export function usePluginManager() {
       componentGroupNameMap,
       components,
       componentSchemaGroups,
+      get: getComponent,
       getComponent,
       getComponentConfigByType,
       getComponentConfigs,
       getComponents,
       getComponentSchemaGroups,
+      getConfigByType: getComponentConfigByType,
       getIcon,
       getLabel,
       hiddenComponents,
+      hide: hideComponent,
       hideComponent,
+      register: registerComponent,
       registerComponent,
+      remove: removeComponent,
       removeBaseComponents,
       removeComponent,
       setBaseComponentTypes,
       setComponentGroupNameMap,
+      setGroupNameMap: setComponentGroupNameMap,
       setHideComponents,
       setSortedGroups,
+      show: showComponent,
       showComponent,
       sortedGroups,
     },
@@ -180,49 +187,14 @@ export function usePluginManager() {
     },
   };
   const legacyReturn = {
-    activityBars,
-    addBaseComponentTypes,
     addPublicMethod,
-    baseComponentTypes,
-    clearComponentGroupNameMap,
-    clearSortedGroups,
-    componentConfigs,
-    componentGroupNameMap,
-    components,
-    componentSchemaGroups,
     formSchema,
-    getComponent,
-    getComponentConfigByType,
-    getComponentConfigs,
-    getComponents,
-    getComponentSchemaGroups,
-    getIcon,
-    getLabel,
     global,
-    hiddenComponents,
-    hideActivitybar,
-    hideComponent,
-    hideRightSidebar,
     initialized,
     publicMethods,
-    registerActivitybar,
-    registerComponent,
-    registerRightSidebar,
-    removeBaseComponents,
-    removeComponent,
     removePublicMethod,
-    rightSidebars,
-    setBaseComponentTypes,
-    setComponentGroupNameMap,
     setFormSchema,
-    setHideComponents,
     setInitialized,
-    setSortedGroups,
-    showActivitybar,
-    showComponent,
-    showRightSidebar,
-    sortedGroups,
-    viewsContainers,
   };
 
   return createProxyWithWarnings(
@@ -234,7 +206,14 @@ export function usePluginManager() {
 function createProxyWithWarnings(groupedReturn: any, legacyReturn: any) {
   const propertyGroupMap = createPropertyGroupMap(groupedReturn);
   const groupedReturnKeys = Object.keys(groupedReturn);
-
+  const simplifiedFunctionMap: Record<string, string> = {
+    getComponent: 'get',
+    getComponentConfigByType: 'getConfigByType',
+    hideComponent: 'hide',
+    registerComponent: 'register',
+    removeComponent: 'remove',
+    showComponent: 'show',
+  };
   return new Proxy(groupedReturn, {
     get(_target, prop) {
       // 检查是否是分组对象的直接访问（这是新API的正确用法）
@@ -245,13 +224,16 @@ function createProxyWithWarnings(groupedReturn: any, legacyReturn: any) {
       // 检查是否是旧API中存在的属性访问（需要警告）
       if (prop in propertyGroupMap) {
         const group = propertyGroupMap[prop as keyof typeof propertyGroupMap];
-        console.log(group, [prop]);
+        const oldProp = prop;
+        if (simplifiedFunctionMap[prop as string]) {
+          prop = simplifiedFunctionMap[prop as string];
+        }
         console.warn(
-          `⚠️ Epic Designer: 检测到已过时的 API 使用方式\n` +
-            `❌ 旧写法: pluginManager.${String(prop)}\n` +
+          `Epic Designer: 检测到已过时的 API 使用方式\n` +
+            `❌ 旧写法: pluginManager.${String(oldProp)}\n` +
             `✅ 新写法: pluginManager.${String(group)}.${String(prop)}`,
         );
-        console.log(groupedReturn[group][prop]);
+
         return groupedReturn[group][prop];
       }
 
