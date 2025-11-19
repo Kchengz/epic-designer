@@ -152,20 +152,20 @@ export function usePageManager() {
    * @param scriptStr
    */
   function setMethods(scriptStr: string, outputError: boolean = false): void {
-    // 判断是否支持eval,如果不支持则不执行（例如小程序环境不受支持）
-    // eslint-disable-next-line no-eval
-    if (typeof eval === 'undefined') return;
-
     // 初始化一个空对象来存储公共方法
     const publicMethods: Record<string, Function> = {};
 
     // 遍历 pluginManager.publicMethods 对象的属性
-    for (const key in pluginManager.publicMethods) {
+    for (const key in pluginManager.publicMethods.methodsMap) {
       if (
-        Object.prototype.hasOwnProperty.call(pluginManager.publicMethods, key)
+        Object.prototype.hasOwnProperty.call(
+          pluginManager.publicMethods.methodsMap,
+          key,
+        )
       ) {
         // 将每个属性的 handler 赋值给新对象的对应属性
-        publicMethods[key] = pluginManager.publicMethods[key].handler;
+        publicMethods[key] =
+          pluginManager.publicMethods.methodsMap[key].handler;
       }
     }
 
@@ -254,7 +254,9 @@ export function usePageManager() {
   function executePublicMethod(action: ActionsModel, args: unknown[]): void {
     try {
       // 尝试调用公共方法处理程序
-      pluginManager.publicMethods[action.methodName]?.handler(...args);
+      pluginManager.publicMethods.methodsMap[action.methodName]?.handler(
+        ...args,
+      );
     } catch (error) {
       // 如果调用失败，打印错误信息
       console.error(`[Epic：公共函数(${action.methodName})]执行异常:`, error);

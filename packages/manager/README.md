@@ -38,7 +38,7 @@ pluginManager.component.register({
 });
 
 // 添加公共方法
-pluginManager.addPublicMethod({
+pluginManager.publicMethods.add({
   name: 'test',
   description: '测试函数',
   handler: (data) => console.log(data),

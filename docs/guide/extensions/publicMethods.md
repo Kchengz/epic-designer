@@ -27,7 +27,7 @@ const methodItem: PublicMethodModel = {
 
 
 export function setupPublicMethod(): void {
-  pluginManager.addPublicMethod(methodItem)  
+  pluginManager.publicMethods.add(methodItem)  
 }
 ```
 

@@ -1,8 +1,3 @@
-import type {
-  PublicMethodModel,
-  PublicMethodsModel,
-} from '@epic-designer/types';
-
 import { ref } from 'vue';
 
 import {
@@ -10,6 +5,7 @@ import {
   useFormSchema,
   useGlobal,
   usePanel,
+  usePublicMethods,
 } from '@epic-designer/hooks';
 
 // 插件管理器类
@@ -48,19 +44,6 @@ export function usePluginManager() {
   // 已初始化基础UI
   const initialized = ref(false);
 
-  // 公共方法模型，存储插件的公共方法
-  const publicMethods: PublicMethodsModel = {
-    // 示例数据
-    // publicTest: {
-    //   description: '测试函数',
-    //   handler: (e) => {
-    //     console.log(e);
-    //     // alert("测试函数弹出");
-    //   },
-    //   name: 'test',
-    // },
-  };
-
   const {
     activityBars,
     hideActivitybar,
@@ -73,6 +56,9 @@ export function usePluginManager() {
     viewsContainers,
   } = usePanel();
 
+  const { addPublicMethod, methodsMap, removePublicMethod } =
+    usePublicMethods();
+
   // 全局状态管理
   const { global } = useGlobal({
     // 请求服务基础地址
@@ -84,49 +70,6 @@ export function usePluginManager() {
     // 上传图片地址
     uploadImage: 'https://examples.epicjs.cn/epic-mock/common/upload',
   });
-
-  /**
-   * 添加公共方法
-   * @param publicMethod
-   */
-  function addPublicMethod(publicMethod: PublicMethodModel): void {
-    if (publicMethod.methodName) {
-      console.warn(
-        `[Epic:公共函数]注册配置'methodName'属性已弃用,请使用'name'代替`,
-      );
-    }
-
-    if (publicMethod.method) {
-      console.warn(
-        `[Epic:公共函数]注册配置'method'属性已弃用,请使用'handler'代替`,
-      );
-    }
-
-    if (publicMethod.describe) {
-      console.warn(
-        `[Epic:公共函数]注册配置'describe'属性已弃用,请使用'description'代替`,
-      );
-    }
-
-    // 兼容旧公共函数注册，后期可能移除该判断
-    const name = publicMethod.methodName ?? publicMethod.name;
-    const handler = publicMethod.method ?? publicMethod.handler;
-    const description = publicMethod.describe ?? publicMethod.description;
-
-    publicMethods[name] = {
-      description,
-      handler,
-      name,
-    };
-  }
-
-  /**
-   * 移除公共方法
-   * @param methodName
-   */
-  function removePublicMethod(methodName: string): void {
-    delete publicMethods[methodName];
-  }
 
   /**
    * 设置initialized的状态。
@@ -185,14 +128,18 @@ export function usePluginManager() {
       showRightSidebar,
       viewsContainers,
     },
+    publicMethods: {
+      add: addPublicMethod,
+      addPublicMethod,
+      methodsMap,
+      remove: removePublicMethod,
+      removePublicMethod,
+    },
   };
   const legacyReturn = {
-    addPublicMethod,
     formSchema,
     global,
     initialized,
-    publicMethods,
-    removePublicMethod,
     setFormSchema,
     setInitialized,
   };
@@ -207,11 +154,13 @@ function createProxyWithWarnings(groupedReturn: any, legacyReturn: any) {
   const propertyGroupMap = createPropertyGroupMap(groupedReturn);
   const groupedReturnKeys = Object.keys(groupedReturn);
   const simplifiedFunctionMap: Record<string, string> = {
+    addPublicMethod: 'add',
     getComponent: 'get',
     getComponentConfigByType: 'getConfigByType',
     hideComponent: 'hide',
     registerComponent: 'register',
     removeComponent: 'remove',
+    removePublicMethod: 'remove',
     showComponent: 'show',
   };
   return new Proxy(groupedReturn, {
@@ -229,7 +178,7 @@ function createProxyWithWarnings(groupedReturn: any, legacyReturn: any) {
           prop = simplifiedFunctionMap[prop as string];
         }
         console.warn(
-          `Epic Designer: 检测到已过时的 API 使用方式\n` +
+          `Epic Designer: 检测到已过时的 API 使用方式, 请尽快迁移到新 API.\n` +
             `❌ 旧写法: pluginManager.${String(oldProp)}\n` +
             `✅ 新写法: pluginManager.${String(group)}.${String(prop)}`,
         );

@@ -61,13 +61,13 @@ const methodOptions = computed(() => {
   // 组件动作列表
   if (state.actionItem.type === 'component') {
     if (componentSchema.value) {
-      const componentConfigs = pluginManager.component.getConfigs();
-      return componentConfigs[componentSchema.value.type].config.action?.map(
-        (item) => ({
-          label: item.describe ?? item.description,
-          value: item.type,
-        }),
+      const componentConfig = pluginManager.component.getConfigByType(
+        componentSchema.value.type,
       );
+      return componentConfig.config.action?.map((item) => ({
+        label: item.describe ?? item.description,
+        value: item.type,
+      }));
     }
     return [];
   }
@@ -81,7 +81,7 @@ const methodOptions = computed(() => {
 
   // 公共函数列表
   if (state.actionItem.type === 'public') {
-    return Object.entries(pluginManager.publicMethods).map(
+    return Object.entries(pluginManager.publicMethods.methodsMap).map(
       ([label, publicMethod]) => ({
         ...publicMethod,
         label: publicMethod.description,
@@ -95,9 +95,9 @@ const methodOptions = computed(() => {
 
 const actionArgsConfigs = computed(() => {
   if (state.actionItem.type === 'component' && componentSchema.value) {
-    const action =
-      pluginManager.component.getConfigs()[componentSchema.value.type].config
-        .action;
+    const action = pluginManager.component.getConfigByType(
+      componentSchema.value.type,
+    ).config.action;
     const actionItem = action?.find(
       (item) => item.type === state.actionItem.methodName,
     );
@@ -164,8 +164,9 @@ function handleSave() {
     componentSchema.value
   ) {
     // 获取当前选中组件的配置
-    const componentConfig =
-      pluginManager.component.getConfigs()[componentSchema.value.type].config;
+    const componentConfig = pluginManager.component.getConfigByType(
+      componentSchema.value.type,
+    ).config;
     // 过滤出以 componentProps 开头的可被修改的属性
     const componentAttributes = (componentConfig.attribute || []).filter(
       ({ field }) => String(field).startsWith('componentProps'),
