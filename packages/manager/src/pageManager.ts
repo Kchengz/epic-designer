@@ -3,11 +3,7 @@ import type { ComponentSchema, EpicNodeInstance } from '@epic-designer/types';
 import { reactive, ref, watchEffect } from 'vue';
 
 import { usePageSchema } from '@epic-designer/hooks';
-import {
-  deepCompareAndModify,
-  findSchemas,
-  getValueByPath,
-} from '@epic-designer/utils';
+import { findSchemas, getValueByPath } from '@epic-designer/utils';
 
 import { pluginManager } from './pluginManager';
 
@@ -338,8 +334,11 @@ export function usePageManager() {
     if (forms[formName]) {
       // 存在表单数据，合并到旧数据
       const reactiveFormData = forms[formName] as Record<string, unknown>;
-      deepCompareAndModify(reactiveFormData, formData, false);
-      return forms[formName]; // 返回已存在的响应式数据
+
+      Object.keys(formData).forEach((key) => {
+        reactiveFormData[key] = formData[key];
+      });
+      return reactiveFormData; // 返回已存在的响应式数据
     }
     // 没有表单数据时，创建响应式数据
     const reactiveFormData = reactive(formData);

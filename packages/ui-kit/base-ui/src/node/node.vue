@@ -93,9 +93,7 @@ const innerSchema = reactive<ComponentSchema>(
 
 // 双向绑定Value
 const innerValue = computed({
-  get() {
-    return getBindValue();
-  },
+  get: getBindValue,
   set: handleUpdate,
 });
 // 设计模式模式下，添加字段后缀
@@ -466,6 +464,7 @@ onBeforeUnmount(handleVnodeUnmounted);
     :form-item-props="getFormItemProps"
   >
     <component
+      :key="typeof innerValue === 'object' ? innerValue : 1"
       :is="componentRef"
       v-bind="{ ...getComponentProps }"
       v-model:[getComponentProps.bindModel]="innerValue"
