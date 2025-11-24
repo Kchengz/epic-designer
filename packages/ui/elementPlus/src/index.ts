@@ -36,6 +36,9 @@ import Textarea from './textarea';
 import UploadFile from './upload-file';
 import UploadImage from './upload-image';
 
+// 引入样式
+import './index.less';
+
 export function setupElementPlus(
   pluginManager: PluginManager = pManager,
 ): void {

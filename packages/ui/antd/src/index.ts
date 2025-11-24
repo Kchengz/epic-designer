@@ -29,6 +29,9 @@ import TimePicker from './time-picker';
 import UploadFile from './upload-file';
 import UploadImage from './upload-image';
 
+// 引入样式
+import './index.less';
+
 export function setupAntd(pluginManager: PluginManager = pManager): void {
   // 版本兼容处理 start
   const versionArray = version.split('.');

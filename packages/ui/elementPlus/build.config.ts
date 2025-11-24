@@ -1,5 +1,6 @@
 import alias from '@rollup/plugin-alias';
 import vue from '@vitejs/plugin-vue';
+import postcss from 'rollup-plugin-postcss';
 import { defineBuildConfig } from 'unbuild';
 
 export default defineBuildConfig({
@@ -27,6 +28,11 @@ export default defineBuildConfig({
               // 模板编译选项
             },
           },
+        }),
+        postcss({
+          extensions: ['.css', '.less'],
+          inject: true,
+          use: ['less'],
         }),
         alias({
           entries: [

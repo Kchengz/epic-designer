@@ -28,6 +28,9 @@ import Switch from './switch';
 import UploadFile from './upload-file';
 import UploadImage from './upload-image';
 
+// 引入样式
+import './index.less';
+
 export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
   // 异步加载组件
   pluginManager.component.add(
@@ -35,7 +38,10 @@ export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
     async () => (await import('naive-ui')).NFormItem,
   );
 
-  pluginManager.component.add('Tabs', async () => (await import('naive-ui')).NTabs);
+  pluginManager.component.add(
+    'Tabs',
+    async () => (await import('naive-ui')).NTabs,
+  );
 
   pluginManager.component.add('TabPane', NTabPane);
 
