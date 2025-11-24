@@ -22,6 +22,15 @@
       ],
       "cache": false,
       "persistent": true
+    },
+    "epic-examples#build": {
+      "dependsOn": [
+        "@epic-designer/antd#build",
+        "@epic-designer/element-plus#build",
+        "@epic-designer/naive-ui#build"
+      ],
+      "cache": false,
+      "persistent": true
     }
   }
 }
