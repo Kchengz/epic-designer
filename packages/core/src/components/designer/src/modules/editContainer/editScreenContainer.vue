@@ -226,7 +226,7 @@ function computedScale() {
       class="epic-edit-screen-container flex-1 overflow-auto overflow-y-hidden"
       :class="{ 'cursor-grab': draggableComputed }"
       :draggable="draggableComputed"
-      @wheel="handleZoom"
+      @wheel.passive="handleZoom"
       @dragstart="handleElementDragStart($event, draggableComputed)"
       @drag="handleElementDrag($event, draggableComputed)"
       @dragend="handleElementDragEnd"

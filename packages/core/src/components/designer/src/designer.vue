@@ -1,7 +1,14 @@
 <script lang="ts" setup>
 import type { DesignerProps, PageSchema } from '@epic-designer/types';
 
-import { computed, nextTick, provide, ref, watchEffect } from 'vue';
+import {
+  computed,
+  nextTick,
+  onUnmounted,
+  provide,
+  ref,
+  watchEffect,
+} from 'vue';
 
 import { EpicBaseLoader } from '@epic-designer/base-ui';
 import { useStore } from '@epic-designer/hooks';
@@ -88,6 +95,7 @@ provide('designer', {
   state,
 });
 const designerRef = ref<HTMLElement | null>(null);
+
 /**
  * 组件（包含异步组件）加载完成后
  */
@@ -95,6 +103,10 @@ function handleReady() {
   nextTick(() => {
     ready.value = true;
     designerRef.value && setupHotkeys(designerRef.value);
+
+    designerRef.value?.addEventListener('wheel', handleWheel, {
+      passive: false,
+    });
     emit('ready', { pageManager });
   });
 }
@@ -157,6 +169,10 @@ function handleWheel(event: WheelEvent) {
   }
 }
 
+onUnmounted(() => {
+  designerRef.value?.removeEventListener('wheel', handleWheel);
+});
+
 defineExpose({
   exportHistory: revoke.exportHistory,
   getData,
@@ -176,7 +192,6 @@ defineExpose({
     <template #default>
       <div
         class="epic-designer-main epic-scoped"
-        @wheel="handleWheel"
         @mouseover="setHoverNode()"
         ref="designerRef"
         tabindex="0"

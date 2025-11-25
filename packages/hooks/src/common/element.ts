@@ -116,7 +116,6 @@ export function useElementZoom(draggableElRef: Ref<HTMLDivElement | null>) {
     if (!event.ctrlKey || disabledZoom.value) {
       return;
     }
-    event.preventDefault();
 
     let newScale = 0;
     newScale =
