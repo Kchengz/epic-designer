@@ -13,6 +13,16 @@
     cursor: pointer;
     background-color: var(--epic-edit-range-color);
 
+    & > :first-child {
+      min-height: 100%;
+      display: flex;
+
+      > .epic-draggable-range {
+        flex: 1;
+        height: auto;
+      }
+    }
+
     .epic-draggable-range {
       min-height: 60px;
       height: 100%;
@@ -20,7 +30,7 @@
       width: 100%;
     }
 
-    .epic-hidden{
+    .epic-hidden {
       position: relative;
       &::after {
         content: '<隐藏状态>';
@@ -35,13 +45,13 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background:  rgba(10,19,37,.05);
+        background: rgba(10, 19, 37, 0.05);
         border-radius: 4px;
         pointer-events: none;
       }
-      
+
       // 防止内部嵌套的隐藏元素重复显示
-      .epic-hidden::after{
+      .epic-hidden::after {
         display: none;
       }
     }

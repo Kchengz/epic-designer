@@ -12,7 +12,7 @@ const children = computed(() => {
 });
 </script>
 <template>
-  <div class="box-border h-full">
+  <div class="box-border">
     <slot name="edit-node">
       <slot
         v-for="item in children"

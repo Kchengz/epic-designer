@@ -19,6 +19,7 @@ export function usePageManager() {
   const funcs = ref<Record<string, Function>>({});
   // 当前模式 true 设计模式, false 渲染模式
   const isDesignMode = ref(false);
+
   const defaultComponentIds = ref<string[]>([]);
 
   const forms = reactive<Record<string, unknown>>({});
