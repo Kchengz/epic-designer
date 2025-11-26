@@ -20,7 +20,7 @@ epic-designer 目标是支持多 UI 兼容,目前支持以下 UI
 安装ui框架依赖
 
 ```bash
-npm i element-plus
+npm i element-plus @epic-designer/element-plus
 ```
 
 main.ts 或者 main.js 引入注册组件
@@ -32,7 +32,7 @@ import "epic-designer/dist/style.css";
 // 引入Element plus样式
 import "element-plus/dist/index.css";
 
-import { setupElementPlus } from "epic-designer/dist/ui/elementPlus";
+import { setupElementPlus } from "@epic-designer/element-plus";
 // 注册Element UI
 setupElementPlus();
 ```
@@ -42,7 +42,7 @@ setupElementPlus();
 安装ui框架依赖
 
 ```bash
-npm i ant-design-vue
+npm i ant-design-vue @epic-designer/antd
 ```
 
 main.ts 或者 main.js 引入注册组件
@@ -54,7 +54,7 @@ import "epic-designer/dist/style.css";
 // 引入antd UI 重置样式
 import "ant-design-vue/dist/reset.css";
 
-import { setupAntd } from "epic-designer/dist/ui/antd";
+import { setupAntd } from "@epic-designer/antd";
 // 使用Antd UI
 setupAntd();
 ```
@@ -70,7 +70,7 @@ import "epic-designer/dist/style.css";
 // 引入antd UI样式
 import "ant-design-vue/dist/antd.css";
 
-import { setupAntd } from "epic-designer/dist/ui/antd";
+import { setupAntd } from "@epic-designer/antd";
 // 使用Antd UI
 setupAntd();
 ```
@@ -80,7 +80,7 @@ setupAntd();
 安装ui框架依赖
 
 ```bash
-npm i -D naive-ui
+npm i -D naive-ui @epic-designer/naive-ui
 ```
 
 main.ts 或者 main.js 引入注册组件
@@ -89,7 +89,7 @@ main.ts 或者 main.js 引入注册组件
 // 引入epic-designer样式
 import "epic-designer/dist/style.css";
 
-import { setupNaiveUi } from "epic-designer/dist/ui/naiveUi";
+import { setupNaiveUi } from "@epic-designer/naive-ui";
 // 注册Naive Ui
 setupNaiveUi();
 ```

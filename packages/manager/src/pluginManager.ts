@@ -53,7 +53,6 @@ export function usePluginManager() {
     rightSidebars,
     showActivitybar,
     showRightSidebar,
-    viewsContainers,
   } = usePanel();
 
   const { addPublicMethod, methodsMap, removePublicMethod } =
@@ -86,6 +85,7 @@ export function usePluginManager() {
       addBaseComponentType,
       baseComponentTypes,
       clearComponentGroupNameMap,
+      clearGroupNameMap: clearComponentGroupNameMap,
       clearSortedGroups,
       componentConfigs,
       componentGroupNameMap,
@@ -103,6 +103,7 @@ export function usePluginManager() {
       hiddenComponents,
       hide: hideComponent,
       hideComponent,
+      hideComponents: setHideComponents,
       register: registerComponent,
       registerComponent,
       remove: removeComponent,
@@ -126,7 +127,6 @@ export function usePluginManager() {
       rightSidebars,
       showActivitybar,
       showRightSidebar,
-      viewsContainers,
     },
     publicMethods: {
       add: addPublicMethod,
@@ -136,6 +136,7 @@ export function usePluginManager() {
       removePublicMethod,
     },
   };
+
   const legacyReturn = {
     formSchema,
     global,
@@ -155,12 +156,15 @@ function createProxyWithWarnings(groupedReturn: any, legacyReturn: any) {
   const groupedReturnKeys = Object.keys(groupedReturn);
   const simplifiedFunctionMap: Record<string, string> = {
     addPublicMethod: 'add',
+    clearComponentGroupNameMap: 'clearGroupNameMap',
     getComponent: 'get',
     getComponentConfigByType: 'getConfigByType',
     hideComponent: 'hide',
     registerComponent: 'register',
     removeComponent: 'remove',
     removePublicMethod: 'remove',
+    setComponentGroupNameMap: 'setGroupNameMap',
+    setHideComponents: 'hideComponents',
     showComponent: 'show',
   };
   return new Proxy(groupedReturn, {

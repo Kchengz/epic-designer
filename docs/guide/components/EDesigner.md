@@ -56,7 +56,7 @@ function handleSubmit(e:PageSchema) {
 <script setup>
 import "epic-designer/dist/style.css";
 import { EDesigner, pluginManager } from "epic-designer";
-import { setupAntd } from "epic-designer/dist/ui/antd";
+import { setupAntd } from "@epic-designer/antd";
 import { ConfigProvider, theme } from 'ant-design-vue'
 import { useTheme } from '@epic-designer/hooks'
 const { isDark } = useTheme()

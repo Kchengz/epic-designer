@@ -297,7 +297,7 @@ import { EBuilder } from "epic-designer";
 import { ref,onMounted } from 'vue'
 import "epic-designer/dist/style.css";
 import { EDesigner, pluginManager } from "epic-designer";
-import { setupElementPlus } from "epic-designer/dist/ui/elementPlus";
+import { setupElementPlus } from "@epic-designer/element-plus";
 import 'element-plus/dist/index.css'
 setupElementPlus(pluginManager);
 const ebForm = ref(null)
@@ -529,6 +529,7 @@ onMounted(async () => {
 | pageSchema | EDesigner 设计器生成的 json 数据 | json    | -      | -     |
 | formData   | 表单数据，用于数据回显(仅用于name为default的表单)           | FormDataModel | -  | 0.9.15 |
 | disabled   | 禁用EBuilder所有输入项           | boolean | false  | 0.9.4 |
+| fieldStates | 控制表单字段状态 | FieldStates | - | 1.1.0 |
 
 ## 函数
 
@@ -544,3 +545,33 @@ onMounted(async () => {
 | 事件名称 | 说明             | 参数            | 版本 |
 | -------- | ---------------- | --------------- | ---- |
 | ready    | 页面渲染完时触发 | { pageManager } |      |
+
+
+## fieldStates 属性说明
+- fieldStates 用于控制表单字段状态，如禁用、必填等
+- 每个对象表示一个字段状态，包含以下属性
+  - field: 字段名称
+  - condition: 触发条件，为一个函数，接收当前表单数据作为参数，返回一个布尔值
+  - required: 是否必填
+  - state: 字段状态，可选值为 'DISABLED' | 'HIDE' | 'READ' | 'WRITE'
+
+  示例：
+  ```javascript
+
+  // 设置 name 字段禁用
+    const fieldStates = [
+    {
+      field: 'name',
+      state: 'DISABLED'
+    }
+  ]
+
+  // 当 name 字段的值为 '张三' 时，将 name 字段设为必填并禁用
+  const fieldStates = [
+    {
+      field: 'name',
+      condition: (data) => data.name === '张三',
+      state: 'DISABLED'
+    }
+  ]
+  ```

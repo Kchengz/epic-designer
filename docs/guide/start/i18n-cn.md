@@ -17,7 +17,7 @@
 
 ```tsx
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-import { provideGlobalConfig } from "epic-designer/dist/ui/elementPlus";
+import { provideGlobalConfig } from "@epic-designer/element-plus";
 provideGlobalConfig({ locale: zhCn });
 ```
 

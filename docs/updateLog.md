@@ -1,5 +1,40 @@
-## 1.0.5（2025-10-17）
+- ## 1.1.0（2025-11-27）
+【重要】为提供更灵活的按需引入能力，UI 组件包现已独立编译发布：
+```
+@epic-designer/antd
+@epic-designer/element-plus
+@epic-designer/naive-ui
+```
+>请参考[快速上手文档](/guide/start/quick-start.html#选择-ui-组件库)了解新的组件引入方式
+
+pluginManager 插件管理器已全面重构，功能模块更加清晰：
+```
+pluginManager.component.*      // 组件相关功能
+pluginManager.panel.*         // 面板相关功能  
+pluginManager.publicMethods.* // 公共方法集合
+```
+> 详细了解请参阅[pluginManager 插件管理器文档](/guide/utils/pluginManager.html#主要变更内容)
+
+### ✨ Feat
+- 支持通过pluginManager对象修改默认图片上传、文件上传组件的默认上传地址
+- 支持通过pluginManager对象传入请求的headers参数
+- 新增showHiddenItems属性控制设计区隐藏组件的显示状态
+
+### ✨ Refactor
+- 新增showHiddenItems属性控制设计区隐藏组件的显示状态
+- 重构 UI 组件包发布策略
+- 优化插件管理器，将相关功能分别被组织到 component、panel、publicMethods 对象中
+
 ### 🐛 Bug Fixes
+- 修复注册扩展组件缺少config配置时，导致设计器报错问题
+- 修复表单name值不等于default时回显数据异常问题
+- 修复在EpicNode、form组件使用designerProps变量导致的警告问题
+- 修复wheel事件监听导致的passive警告问题
+ 
+## 1.0.5（2025-10-17）
+
+### 🐛 Bug Fixes
+
 - 修复表单项输入数据后校验不通过的问题
 - 修复组件属性配置组件中存在函数时，使用deepClone函数深拷贝componentSchema数据异常报错问题
 

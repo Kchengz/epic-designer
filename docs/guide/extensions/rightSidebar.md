@@ -45,7 +45,7 @@ setupDesignerExtensions();
 
 
 
-## 如何修改覆盖原来的模块
+## xxxxxxxxxx import { setupDesignerExtensions } from "./designer-extensions";​// 执行扩展函数setupDesignerExtensions();ts
 
 在扩展组件时，需要传入的配置id是唯一的，如果id一样则后注册组件会替换原来的组件，所以我们可以通过设置id来覆盖原来右侧边栏模块
 
