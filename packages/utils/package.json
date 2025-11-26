@@ -1,6 +1,6 @@
 {
   "name": "@epic-designer/utils",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Epic Designer 核心工具库，提供通用工具函数和管理器类",
   "private": false,
   "author": "kchengz",
