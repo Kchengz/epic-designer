@@ -4,6 +4,7 @@ import type { FieldStates, PageSchema } from '@epic-designer/types';
 import { onMounted, ref } from 'vue';
 
 import { EBuilder } from '@epic-designer/core';
+import { Alert } from 'ant-design-vue';
 
 const ebRef = ref<InstanceType<typeof EBuilder>>();
 
@@ -222,5 +223,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <EBuilder ref="ebRef" :page-schema="pageSchema" :field-states="fieldStates" />
+  <div>
+    <div class="mt-4 pl-8">
+      <Alert message="试试将年龄修改为16岁或者性别设置为男" type="info" />
+    </div>
+    <EBuilder
+      ref="ebRef"
+      :page-schema="pageSchema"
+      :field-states="fieldStates"
+    />
+  </div>
 </template>

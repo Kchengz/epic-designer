@@ -124,6 +124,16 @@ import { pluginManager } from 'epic-designer';
 #### 属性数据
 - **`methodsMap`** - 公共方法映射字典
 
+### global - 全局上下文
+
+全局上下文模块提供应用级别的共享配置、服务、工具函数和状态管理，用于在组件间共享公共资源和配置信息。
+
+#### 配置
+- **`axiosConfig.headers`** - 请求头配置
+- **`uploadFile`** - 文件上传地址
+- **`uploadImage`** - 图片上传地址
+
+
 ## 组件管理示例
 
 ### 注册组件 register
@@ -618,4 +628,21 @@ import { pluginManager } from 'epic-designer'
 
 // 获取响应式的公共方法映射表
 const methodsMap = pluginManager.publicMethods.methodsMap;
+```
+
+## 全局上下文使用示例
+
+配置请求头
+```ts
+// 配置token
+pluginManager.global.axiosConfig.headers = {
+  Authorization: 'Bearer token'
+};
+```
+修改组件默认的上传地址
+```ts
+// 设置默认文件上传地址
+pluginManager.global.uploadFile = '/api/upload/file';
+// 设置默认图片上传地址
+pluginManager.global.uploadImage = '/api/upload/image';
 ```

@@ -21,7 +21,6 @@ pluginManager.publicMethods.* // 公共方法集合
 - 新增showHiddenItems属性控制设计区隐藏组件的显示状态
 
 ### ✨ Refactor
-- 新增showHiddenItems属性控制设计区隐藏组件的显示状态
 - 重构 UI 组件包发布策略
 - 优化插件管理器，将相关功能分别被组织到 component、panel、publicMethods 对象中
 

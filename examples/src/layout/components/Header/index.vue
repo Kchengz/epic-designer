@@ -73,17 +73,17 @@ function switchUI(ui: string) {
 
   switch (ui) {
     case 'ant-designe-vue': {
-      setupAntd();
+      setupAntd(pluginManager);
 
       break;
     }
     case 'element-plus': {
-      setupElementPlus();
+      setupElementPlus(pluginManager);
 
       break;
     }
     case 'naive-ui': {
-      setupNaiveUi();
+      setupNaiveUi(pluginManager);
 
       break;
     }
