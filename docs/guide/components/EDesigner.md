@@ -95,6 +95,7 @@ background: white;
 | formMode              | 单表单模式，开启后不可再拖入表单，根节点默认切换为表单组件 | boolean                            | false     | 0.9.19 |
 | sourceCodeReadOnly    | 设置`源码`面板为只读状态                                   | boolean                            | false     | 0.9.20 |
 | hidePreviewConfirm    | 隐藏预览页面`表单数据`按钮                                 | boolean                            | false     | 0.9.26 |
+| showHiddenItems | 控制设计区隐藏组件的是否保持显示状态 | boolean | true | 1.1.0 |
 
 ## 函数
 

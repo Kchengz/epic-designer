@@ -31,7 +31,6 @@
   "devDependencies": {
     "@rollup/plugin-alias": "catalog:",
     "@vitejs/plugin-vue": "catalog:",
-    "naive-ui": "catalog:",
     "rollup-plugin-postcss": "catalog:",
     "tsx": "catalog:",
     "unbuild": "catalog:"

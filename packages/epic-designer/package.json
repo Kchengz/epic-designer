@@ -41,11 +41,6 @@
   "dependencies": {
     "vuedraggable": "catalog:"
   },
-  "optionalDependencies": {
-    "ant-design-vue": ">=3.2.20",
-    "element-plus": ">=2.6.0",
-    "naive-ui": ">=2.30.0"
-  },
   "devDependencies": {
     "@types/node": "catalog:",
     "@unocss/preset-rem-to-px": "catalog:",
