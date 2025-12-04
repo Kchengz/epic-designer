@@ -1,6 +1,6 @@
 import type { ComponentSchema } from '@epic-designer/types';
 
-import { isProxy, toRaw } from 'vue';
+import { isProxy, isRef, toRaw } from 'vue';
 
 import { pluginManager } from '@epic-designer/manager';
 import { PageSchema } from '@epic-designer/types';
@@ -118,7 +118,9 @@ export function deepToRaw<T>(value: T, cache = new WeakMap()): T {
   for (const key of keys) {
     const propValue = (currentValue as Record<string, unknown>)[key];
     if (propValue !== null && typeof propValue === 'object') {
-      const processedValue = deepToRaw(propValue, cache);
+      const processedValue = isRef(propValue)
+        ? deepToRaw(propValue.value, cache)
+        : deepToRaw(propValue, cache);
       // 发现需要修改的属性，才创建新对象
       if (processedValue !== propValue) {
         // 延迟创建新对象，直到确定需要修改时
