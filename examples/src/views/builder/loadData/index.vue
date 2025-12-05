@@ -139,6 +139,7 @@ const pageSchema = ref<PageSchema>({
               field: 'checkbox_1l91io8k',
               input: true,
               componentProps: {
+                defaultValue: ['跳', '篮球', 'rap', '唱'],
                 options: [
                   {
                     label: '唱',
@@ -186,7 +187,7 @@ const pageSchema = ref<PageSchema>({
 
 onMounted(() => {
   ebRef.value?.setData({
-    checkbox_1l91io8k: ['唱', '跳', 'rap', '篮球'],
+    checkbox_1l91io8k: ['唱', '跳', '篮球'],
     input_2drzm924: '芷音',
     number_x4t431jb: 18,
     radio_shndnr9b: '女',
@@ -195,9 +196,10 @@ onMounted(() => {
 
   setTimeout(() => {
     ebRef.value?.setData({
+      checkbox_1l91io8k: ['跳', '篮球'],
       input_2drzm924: '妮泰梅',
     });
-  }, 3000);
+  }, 2000);
 });
 </script>
 

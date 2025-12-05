@@ -3,9 +3,11 @@ import { computed, onMounted, ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 
 import { pluginManager } from '@epic-designer/manager';
+import { setupPanel } from '@epic-designer/panel-ui';
 import { useClipboard } from '@vueuse/core';
 import { Button, message } from 'ant-design-vue';
 
+setupPanel(pluginManager);
 // 加载所有 builder 目录下的 Vue 文件，作为代码片段资源
 const files: Record<string, { default: string }> = import.meta.glob(
   '@/views/builder/**/*.vue',
