@@ -463,7 +463,6 @@ onBeforeUnmount(handleVnodeUnmounted);
     :form-item-props="getFormItemProps"
   >
     <component
-      :key="typeof innerValue === 'object' ? innerValue : 1"
       :is="componentRef"
       v-bind="{ ...getComponentProps }"
       v-model:[getComponentProps.bindModel]="innerValue"
