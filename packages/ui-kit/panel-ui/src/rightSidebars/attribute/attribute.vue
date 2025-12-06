@@ -1,21 +1,16 @@
 <script lang="ts" setup>
-import type { Revoke } from '@epic-designer/manager';
-import type {
-  ComponentSchema,
-  Designer,
-  PageSchema,
-} from '@epic-designer/types';
+import type { Designer, PageSchema } from '@epic-designer/types';
 
-import { computed, inject, nextTick, watchEffect } from 'vue';
+import { computed, inject, watchEffect } from 'vue';
 
-import { EpicIcon, EpicNode } from '@epic-designer/base-ui';
+import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
-import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 import { useClipboard } from '@vueuse/core';
+
+import EAttributeItem from './modules/attributeItem.vue';
 
 const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema') as PageSchema;
-const revoke = inject('revoke') as Revoke;
 
 const { copied, copy } = useClipboard();
 watchEffect(() => {
@@ -28,20 +23,6 @@ const componentConfigs = pluginManager.component.getComponentConfigs();
 const selectedNode = computed(() => {
   return designer.state.selectedNode;
 });
-
-function isShow(item: ComponentSchema) {
-  // show属性为boolean类型则直接返回
-  if (typeof item.show === 'boolean') {
-    return item.show;
-  }
-
-  // show属性为function类型则执行
-  if (typeof item.show === 'function') {
-    return item.show?.({ values: selectedNode.value! });
-  }
-
-  return true;
-}
 
 // 获取组件属性配置
 const componentAttributes = computed(() => {
@@ -72,30 +53,6 @@ const componentAttributes = computed(() => {
 
   return allAttributes;
 });
-
-/**
- * 设置属性值
- */
-function handleSetValue(
-  value: any,
-  field: string,
-  item: ComponentSchema,
-  editData: null | object = selectedNode.value,
-) {
-  if (typeof item.onChange === 'function') {
-    item.onChange({ componentAttributes, value, values: editData! });
-  }
-  // 判断是否同步修改属性值
-  if (item.changeSync) {
-    setValueByPath(editData!, field, value);
-  } else {
-    nextTick(() => {
-      setValueByPath(editData!, field, value);
-    });
-  }
-  // 将修改过的组件属性推入撤销操作的栈中
-  revoke.push('属性编辑');
-}
 </script>
 <template>
   <div :key="selectedNode?.id" class="epic-attribute-view">
@@ -118,39 +75,7 @@ function handleSetValue(
     </div>
     <!-- 组件id展示 end -->
     <div v-for="item in componentAttributes" :key="item.field">
-      <div v-if="isShow(item)" class="epic-attr-item" :class="item.layout">
-        <div v-if="item.label" class="epic-attr-label" :title="item.label">
-          {{ item.label }}
-        </div>
-        <div
-          class="epic-attr-input"
-          :class="{ 'block!': item.layout === 'vertical' }"
-        >
-          <EpicNode
-            is-property
-            :component-schema="{
-              ...item,
-              componentProps: {
-                ...item.componentProps,
-                ...(item.field === 'componentProps.defaultValue'
-                  ? selectedNode?.componentProps
-                  : {}),
-                input: false,
-                field: undefined,
-                hidden: false,
-              },
-              show: true,
-              noFormItem: true,
-            }"
-            :model-value="
-              getValueByPath(item.editData ?? selectedNode!, item.field!)
-            "
-            @update:model-value="
-              handleSetValue($event, item.field!, item, item.editData)
-            "
-          />
-        </div>
-      </div>
+      <EAttributeItem :schema="item" />
     </div>
   </div>
 </template>
