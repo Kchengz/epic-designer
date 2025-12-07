@@ -1,4 +1,10 @@
-- ## 1.1.0（2025-11-27）
+## 1.1.1（2025-12-07）
+### 🐛 Bug Fixes
+- 修复deepToRaw无法处理Ref对象类型问题
+- 修复组件绑定数据为对象类型时，更新数据导致组件重新渲染问题
+- 修复element-plus属性编辑器输入框光标异常跳转问题
+
+## 1.1.0（2025-11-27）
 【重要】为提供更灵活的按需引入能力，UI 组件包现已独立编译发布：
 ```
 @epic-designer/antd
@@ -29,7 +35,7 @@ pluginManager.publicMethods.* // 公共方法集合
 - 修复表单name值不等于default时回显数据异常问题
 - 修复在EpicNode、form组件使用designerProps变量导致的警告问题
 - 修复wheel事件监听导致的passive警告问题
- 
+
 ## 1.0.5（2025-10-17）
 
 ### 🐛 Bug Fixes
