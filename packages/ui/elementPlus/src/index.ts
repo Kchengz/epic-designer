@@ -95,7 +95,7 @@ export function setupElementPlus(
   };
 
   // ui初始化完成。
-  pluginManager.setInitialized(true);
+  pluginManager.designer.setInitialized(true);
 }
 
 /**

@@ -69,7 +69,7 @@ const selectValue = computed({
 // 切换选择ui
 function switchUI(ui: string) {
   pluginManager.component.removeBaseComponents();
-  pluginManager.initialized.value = false;
+  pluginManager.designer.initialized.value = false;
 
   switch (ui) {
     case 'ant-designe-vue': {

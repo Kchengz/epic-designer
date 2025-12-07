@@ -1,3 +1,5 @@
+import type { Ref } from 'vue';
+
 import { ref } from 'vue';
 
 import {
@@ -8,8 +10,44 @@ import {
   usePublicMethods,
 } from '@epic-designer/hooks';
 
+export interface PluginManager {
+  component: ReturnType<typeof useComponentManager> & {
+    add: ReturnType<typeof useComponentManager>['addComponent'];
+    clearGroupNameMap: ReturnType<
+      typeof useComponentManager
+    >['clearComponentGroupNameMap'];
+    get: ReturnType<typeof useComponentManager>['getComponent'];
+    getConfigByType: ReturnType<
+      typeof useComponentManager
+    >['getComponentConfigByType'];
+    hide: ReturnType<typeof useComponentManager>['hideComponent'];
+    hideComponents: ReturnType<typeof useComponentManager>['setHideComponents'];
+    register: ReturnType<typeof useComponentManager>['registerComponent'];
+    remove: ReturnType<typeof useComponentManager>['removeComponent'];
+    setComponentGroupNameMap: ReturnType<
+      typeof useComponentManager
+    >['setComponentGroupNameMap'];
+    setGroupNameMap: ReturnType<
+      typeof useComponentManager
+    >['setComponentGroupNameMap'];
+    show: ReturnType<typeof useComponentManager>['showComponent'];
+  };
+  designer: {
+    formSchema: ReturnType<typeof useFormSchema>['formSchema'];
+    initialized: Ref<boolean>;
+    setFormSchema: ReturnType<typeof useFormSchema>['setFormSchema'];
+    setInitialized: (value: boolean) => void;
+  };
+  global: ReturnType<typeof useGlobal>['global'];
+  panel: ReturnType<typeof usePanel>;
+  publicMethods: ReturnType<typeof usePublicMethods> & {
+    add: ReturnType<typeof usePublicMethods>['addPublicMethod'];
+    remove: ReturnType<typeof usePublicMethods>['removePublicMethod'];
+  };
+}
+
 // 插件管理器类
-export function usePluginManager() {
+export function usePluginManager(): PluginManager {
   const { formSchema, setFormSchema } = useFormSchema();
   const {
     addBaseComponentType,
@@ -118,6 +156,13 @@ export function usePluginManager() {
       showComponent,
       sortedGroups,
     },
+    designer: {
+      formSchema,
+      initialized,
+      setFormSchema,
+      setInitialized,
+    },
+    global,
     panel: {
       activityBars,
       hideActivitybar,
@@ -137,21 +182,10 @@ export function usePluginManager() {
     },
   };
 
-  const legacyReturn = {
-    formSchema,
-    global,
-    initialized,
-    setFormSchema,
-    setInitialized,
-  };
-
-  return createProxyWithWarnings(
-    groupedReturn,
-    legacyReturn,
-  ) as typeof groupedReturn & typeof legacyReturn;
+  return createProxyWithWarnings(groupedReturn) as PluginManager;
 }
 
-function createProxyWithWarnings(groupedReturn: any, legacyReturn: any) {
+function createProxyWithWarnings(groupedReturn: any) {
   const propertyGroupMap = createPropertyGroupMap(groupedReturn);
   const groupedReturnKeys = Object.keys(groupedReturn);
   const simplifiedFunctionMap: Record<string, string> = {
@@ -190,7 +224,7 @@ function createProxyWithWarnings(groupedReturn: any, legacyReturn: any) {
         return groupedReturn[group][prop];
       }
 
-      return legacyReturn[prop];
+      return groupedReturn[prop];
     },
   });
 }
@@ -215,5 +249,3 @@ function createPropertyGroupMap<T extends Record<string, Record<string, any>>>(
 }
 
 export const pluginManager = usePluginManager();
-
-export type PluginManager = ReturnType<typeof usePluginManager>;

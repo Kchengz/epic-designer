@@ -130,5 +130,5 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
   };
 
   // ui初始化完成。
-  pluginManager.setInitialized(true);
+  pluginManager.designer.setInitialized(true);
 }

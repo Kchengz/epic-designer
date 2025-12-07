@@ -185,7 +185,10 @@ defineExpose({
 });
 </script>
 <template>
-  <div v-if="!pluginManager.initialized.value" class="epic-loading-box">
+  <div
+    v-if="!pluginManager.designer.initialized.value"
+    class="epic-loading-box"
+  >
     <!-- <EpicBaseLoader /> -->
   </div>
   <Suspense v-else @resolve="handleReady">

@@ -101,5 +101,5 @@ export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
   };
 
   // ui初始化完成。
-  pluginManager.setInitialized(true);
+  pluginManager.designer.setInitialized(true);
 }

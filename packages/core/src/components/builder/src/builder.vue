@@ -150,7 +150,7 @@ defineExpose({
 <template>
   <div
     v-if="
-      !pluginManager.initialized.value ||
+      !pluginManager.designer.initialized.value ||
       pageManager.pageSchema.schemas.length === 0
     "
     class="epic-loading-box"

@@ -71,7 +71,6 @@ export function usePageSchema() {
   }
 
   return {
-    migrateCanvasMode, // 导出迁移函数供其他地方使用
     pageSchema,
     setPageSchema,
   };
