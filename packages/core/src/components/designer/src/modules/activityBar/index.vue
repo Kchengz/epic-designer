@@ -34,19 +34,19 @@ function handleClick(item: ActivitybarModel, index: number) {
 <template>
   <div class="relative flex">
     <div class="epic-action-bar">
-      <ul class="epic-actions-container">
+      <ul class="epic-actions-container flex-col flex-center gap-1">
         <li
           v-for="(item, index) in activityBars"
           :key="index"
-          class="epic-action-item"
+          class="epic-action-item text-[16px] w-9 h-9 flex-center"
           :title="item.title"
           :class="{ checked: activityBarCheckedIndex === index }"
           @click="handleClick(item, index)"
         >
-          <EpicIcon class="relative" :name="item.icon" />
-          <div class="text-14px">
+          <EpicIcon :name="item.icon" />
+          <!-- <div class="text-14px">
             {{ item.title }}
-          </div>
+          </div> -->
         </li>
       </ul>
     </div>
