@@ -5,6 +5,7 @@ import { computed, ref, shallowRef } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
+import { EpTooltip } from '@epic-designer/base-ui';
 
 defineOptions({
   name: 'EActivityBar',
@@ -35,11 +36,9 @@ function handleClick(item: ActivitybarModel, index: number) {
   <div class="relative flex">
     <div class="epic-action-bar">
       <ul class="epic-actions-container flex-col flex-center gap-1">
+        <EpTooltip placement="right" :content="item.title" v-for="(item, index) in activityBars" :key="index">
         <li
-          v-for="(item, index) in activityBars"
-          :key="index"
           class="epic-action-item text-[16px] w-9 h-9 flex-center"
-          :title="item.title"
           :class="{ checked: activityBarCheckedIndex === index }"
           @click="handleClick(item, index)"
         >
@@ -48,6 +47,7 @@ function handleClick(item: ActivitybarModel, index: number) {
             {{ item.title }}
           </div> -->
         </li>
+        </EpTooltip>
       </ul>
     </div>
     <div

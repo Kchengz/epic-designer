@@ -181,7 +181,6 @@ onUnmounted(() => {
   justify-content: space-between;
   padding: 12px 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
   user-select: none;
 }
 

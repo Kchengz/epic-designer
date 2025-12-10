@@ -1,0 +1,148 @@
+// 全局样式（不 scoped）
+@tooltip-zindex: 9999;
+@tooltip-max-width: 250px;
+@tooltip-bg: #262626;
+@tooltip-text-color: #fff;
+@tooltip-radius: 4px;
+@tooltip-shadow:
+  0 3px 6px -4px rgba(0, 0, 0, 0.12),
+  0 6px 16px 0 rgba(0, 0, 0, 0.08),
+  0 9px 28px 8px rgba(0, 0, 0, 0.05);
+@tooltip-arrow-size: 13px;
+
+.ep-tooltip-wrapper, .ep-tooltip-trigger {
+  display: contents;
+}
+
+.ep-tooltip {
+  position: fixed;
+  z-index: @tooltip-zindex;
+  max-width: @tooltip-max-width;
+  pointer-events: none;
+
+  .ep-tooltip-arrow .ep-tooltip-arrow-content,
+    .ep-tooltip-inner {
+      background-color: @tooltip-bg;
+    }
+
+  .ep-tooltip-content {
+    position: relative;
+  }
+
+  // 箭头
+  .ep-tooltip-arrow {
+    position: absolute;
+    width: @tooltip-arrow-size;
+    height: @tooltip-arrow-size;
+    overflow: hidden;
+    pointer-events: none;
+    .ep-tooltip-arrow-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      margin: auto;
+      background-color: @tooltip-bg;
+      transform: rotate(45deg);
+      border-radius: 1px;
+    }
+  }
+
+  // 内容
+  .ep-tooltip-inner {
+    min-width: 30px;
+    padding: 8px;
+    color: @tooltip-text-color;
+    text-align: left;
+    word-wrap: break-word;
+    background-color: @tooltip-bg;
+    border-radius: @tooltip-radius;
+    box-shadow: @tooltip-shadow;
+    font-size: 12px;
+  }
+
+  // 位置
+  &.ep-tooltip-placement-top,
+  &.ep-tooltip-placement-topLeft,
+  &.ep-tooltip-placement-topRight {
+    .ep-tooltip-arrow {
+      bottom: -@tooltip-arrow-size + 7;
+    }
+  }
+
+  &.ep-tooltip-placement-top {
+    .ep-tooltip-arrow {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &.ep-tooltip-placement-topLeft {
+    .ep-tooltip-arrow {
+      left: 16px;
+    }
+  }
+
+  &.ep-tooltip-placement-topRight {
+    .ep-tooltip-arrow {
+      right: 16px;
+    }
+  }
+
+  &.ep-tooltip-placement-bottom,
+  &.ep-tooltip-placement-bottomLeft,
+  &.ep-tooltip-placement-bottomRight {
+    .ep-tooltip-arrow {
+      top: -@tooltip-arrow-size + 7;
+    }
+  }
+
+  &.ep-tooltip-placement-bottom {
+    .ep-tooltip-arrow {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &.ep-tooltip-placement-bottomLeft {
+    .ep-tooltip-arrow {
+      left: 16px;
+    }
+  }
+
+  &.ep-tooltip-placement-bottomRight {
+    .ep-tooltip-arrow {
+      right: 16px;
+    }
+  }
+
+  &.ep-tooltip-placement-left {
+    .ep-tooltip-arrow {
+      right: -@tooltip-arrow-size + 7;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &.ep-tooltip-placement-right {
+    .ep-tooltip-arrow {
+      left: -@tooltip-arrow-size + 7;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+
+.ep-tooltip-fade-enter-from,
+.ep-tooltip-fade-leave-to {
+  opacity: 0;
+}
+
+.ep-tooltip-fade-enter-active,
+.ep-tooltip-fade-leave-active {
+  transition: all 0.2s ease;
+}

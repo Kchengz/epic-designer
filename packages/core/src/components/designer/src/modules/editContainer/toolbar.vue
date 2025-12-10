@@ -9,6 +9,7 @@ import { EpicIcon } from '@epic-designer/base-ui';
 import { useStore } from '@epic-designer/hooks';
 import { pluginManager, Revoke } from '@epic-designer/manager';
 import { convertKFormData, deepCompareAndModify } from '@epic-designer/utils';
+import { EpTooltip } from '@epic-designer/base-ui';
 
 import EpicPreviewJson from './previewJson.vue';
 
@@ -278,15 +279,16 @@ function handleSetCanvas(type: string) {
           v-if="action.divider && isShow(action.show)"
           class="epic-divider"
         ></div>
+        <EpTooltip :content="action.title">
         <div
           v-if="isShow(action.show)"
-          :title="action.title"
           class="epic-action-item h-90% px-10px flex cursor-pointer items-center text-base"
           :class="{ disabled: action.disabled }"
           @click="action.on"
         >
           <EpicIcon :name="action.icon" />
         </div>
+        </EpTooltip>
       </template>
     </div>
     <!-- 操作按钮 end  -->
