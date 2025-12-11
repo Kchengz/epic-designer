@@ -61,7 +61,7 @@ const componentAttributes = computed(() => {
       class="epic-attr-item mb-2 mt-2 flex h-8 cursor-pointer items-center px-4"
     >
       <div
-        class="bg-$epic-gray-3 rounded-1 h-full flex-1 px-2 leading-8"
+        class="bg-$ep-secondary rounded-1 h-full flex-1 px-2 leading-8"
         @click="copy(designer.state.selectedNode?.id ?? '')"
       >
         <EpicIcon

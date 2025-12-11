@@ -168,7 +168,7 @@ onUnmounted(() => {
 }
 
 .ep-collapse-panel--bordered {
-  border-bottom: 1px solid var(--epic-border-color);
+  border-bottom: 1px solid var(--ep-border);
 }
 
 .ep-collapse-panel--bordered:last-child {
@@ -194,7 +194,7 @@ onUnmounted(() => {
 .ep-collapse-panel__title {
   font-weight: 500;
   font-size: 14px;
-  color: var(--epic-text-main);
+  color: var(--ep-text-main);
 }
 
 .ep-collapse-panel__arrow {

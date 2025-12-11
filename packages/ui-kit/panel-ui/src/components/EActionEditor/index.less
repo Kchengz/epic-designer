@@ -1,13 +1,13 @@
 .epic-event-item {
   .epic-event-info {
     display: flex;
-    background-color: var(--epic-event-item-color);
+    background-color: var(--ep-canvas-container-background);
     padding: 0 12px;
     justify-content: space-between;
     align-items: center;
     height: 36px;
-    border: 1px solid var(--epic-border-color);
-    color: var(--epic-text-main);
+    border: 1px solid var(--ep-border);
+    color: var(--ep-text-main);
     margin: 0px -1px -1px 0px;
   }
 
@@ -18,8 +18,8 @@
   .epic-action-editor-main {
     .epic-editor-item {
       margin: 8px 0px;
-      border: 1px solid var(--epic-border-color);
-      color: var(--epic-text-main);
+      border: 1px solid var(--ep-border);
+      color: var(--ep-text-main);
       padding: 8px;
       display: flex;
       justify-content: space-between;
@@ -37,20 +37,20 @@
 
 .epic-modal-left-panel {
   width: 240px;
-  border: 1px solid var(--epic-border-color);
+  border: 1px solid var(--ep-border);
   overflow: auto;
   padding: 8px;
   box-sizing: border-box;
 
   .fun-btn {
-    border: 1px solid var(--epic-border-color);
+    border: 1px solid var(--ep-border);
     padding: 8px 12px;
     border-radius: 3px;
     cursor: pointer;
     margin-bottom: 6px;
 
     &.checked {
-      background-color: var(--epic-primary-hover-color);
+      background-color: var(--ep-primary-faded);
       border-color: var(--epic-primary-color);
       color: var(--epic-primary-color);
     }
@@ -60,7 +60,7 @@
 .epic-modal-right-panel {
   flex: 1;
   width: 0;
-  border: 1px solid var(--epic-border-color);
+  border: 1px solid var(--ep-border);
   margin-left: 8px;
   padding: 8px;
 
@@ -71,7 +71,7 @@
 }
 
 .epic-action-select {
-  border-top: 1px solid var(--epic-border-color);
+  border-top: 1px solid var(--ep-border);
   margin-top: 12px;
   padding: 8px;
   padding-right: 0;
@@ -86,12 +86,12 @@
     border: 1px solid transparent;
 
     &:hover {
-      background-color: var(--epic-primary-hover-color);
+      background-color: var(--ep-primary-faded);
       color: var(--epic-primary-color);
     }
 
     &.checked {
-      background-color: var(--epic-primary-hover-color);
+      background-color: var(--ep-primary-faded);
       border-color: var(--epic-primary-color);
       color: var(--epic-primary-color);
     }

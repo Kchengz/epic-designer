@@ -184,7 +184,7 @@ defineExpose({
   }
 
   &.bordered {
-    border: 1px solid var(--epic-border-color);
+    border: 1px solid var(--ep-border);
   }
 }
 </style>

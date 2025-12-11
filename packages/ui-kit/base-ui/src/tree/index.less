@@ -9,11 +9,11 @@
   }
 
   a {
-    color: var(--epic-text-main);
+    color: var(--ep-text-main);
     display: flex;
 
     &:hover {
-      color: var(--epic-text-main);
+      color: var(--ep-text-main);
     }
 
     .text {
@@ -21,21 +21,21 @@
       width: 100%;
 
       &.hover {
-        background-color: var(--epic-widget-hover-color);
+        background-color: var(--ep-muted);
       }
 
       &.checked {
-        background: var(--epic-primary-hover-color);
-        color: var(--epic-primary-color);
+        background: var(--ep-primary-faded);
+        color: var(--ep-primary);
       }
 
       .epic-text-padding {
         padding: 0 6px;
         white-space: nowrap;
-        color: var(--epic-text-main);
+        color: var(--ep-text-main);
 
         &.hidden {
-          color: var(--epic-text-helper);
+          color: var(--ep-text-helper);
         }
         &:hover .epic-copy-id-btn{
           opacity: 1;
@@ -45,8 +45,8 @@
   }
 
   .epic-node-type-text {
-    font-size: var(--epic-text-sm);
-    color: var(--epic-text-disabled);
+    font-size: var(--ep-text-sm);
+    color: var(--ep-disabled);
     margin-left: 6px;
   }
 
@@ -64,8 +64,8 @@
       position: absolute;
       left: 8px;
       transition: transform 0.3s;
-      color: var(--epic-border-color);
-      font-size: var(--epic-text-sm);
+      color: var(--ep-border);
+      font-size: var(--ep-text-sm);
 
       &.expanded {
         transform: rotate(90deg);
@@ -88,7 +88,7 @@
       &::before {
         content: "";
         position: absolute;
-        background: var(--epic-border-color);
+        background: var(--ep-border);
         z-index: 99;
       }
 

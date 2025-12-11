@@ -116,7 +116,7 @@ provide('collapseContext', {
 
 <style scoped>
 .ep-collapse {
-  border: 1px solid var(--epic-border-color);
+  border: 1px solid var(--ep-border);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -126,7 +126,7 @@ provide('collapseContext', {
 }
 
 .ep-collapse.bordered {
-  border: 1px solid var(--epic-border-color);
+  border: 1px solid var(--ep-border);
   border-radius: 4px;
 }
 

@@ -38,7 +38,7 @@ function handleClick(item: ActivitybarModel, index: number) {
       <ul class="epic-actions-container flex-col flex-center gap-1">
         <EpTooltip placement="right" :content="item.title" v-for="(item, index) in activityBars" :key="index">
         <li
-          class="epic-action-item text-[16px] w-9 h-9 flex-center"
+          class="epic-action-item text-[16px] w-8 h-8 flex-center"
           :class="{ checked: activityBarCheckedIndex === index }"
           @click="handleClick(item, index)"
         >

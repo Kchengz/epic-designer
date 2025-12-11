@@ -1,16 +1,16 @@
 // 活动视图切换器
 .epic-action-bar {
   width: 48px;
-  background-color: var(--epic-action-bar-color);
-  border-right: 1px solid var(--epic-border-color);
-  border-left: 1px solid var(--epic-border-color);
+  background-color: var(--ep-designer-background);
+  border-right: 1px solid var(--ep-border);
+  border-left: 1px solid var(--ep-border);
   padding: 8px 0;
 
   .epic-action-item {
     text-align: center;
     position: relative;
     cursor: pointer;
-    color: var(--epic-text-main);
+    color: var(--ep-text-main);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,7 +18,7 @@
     transition: all .3s;
 
     &:hover {
-      color: var(--epic-primary-color);
+      color: var(--ep-primary);
     }
 
     &::before {
@@ -30,7 +30,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: var(--epic-primary-color);
+      background-color: var(--ep-primary);
       opacity: 0;
       transition: all .3s;
     }
@@ -47,11 +47,11 @@
 // 左侧栏
 .epic-left-sidebar {
   width: 280px;
-  background-color: var(--epic-view-color);
+  background-color: var(--ep-designer-background);
   overflow-x: hidden;
   overflow-y: auto;
   transition: width 0.3s;
-  border-right: 1px solid var(--epic-border-color);
+  border-right: 1px solid var(--ep-border);
 
   .epic-sidebar-container {
     min-width: 280px;

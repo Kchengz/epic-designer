@@ -17,8 +17,8 @@ CSS 变量是一个非常有用的功能，几乎所有浏览器都支持。
 
 ```css
 :root {
-  --epic-primary-color: #98f;
-  --epic-primary-hover-color: #9988ff26;
+  --ep-primary: #98f;
+  --ep-primary-hover: #9988ff26;
   --epic-widget-shade-color: #9988ff18;
 }
 ```
@@ -52,22 +52,22 @@ import './styles/common-vars.css'
 
 ```
 // 主色
---epic-primary-color: #3e8bf2;
+--ep-primary: #3e8bf2;
 
 // hover颜色
---epic-primary-hover-color: rgba(62, 139, 242, 0.08);
+--ep-primary-hover: rgba(62, 139, 242, 0.08);
 
 // 设计器背景色
---epic-designer-color: #fafafc;
+--ep-primary-foreground: #fafafc;
 
 // 设计器点颜色
 --epic-designer-dot-color: #373739;
 
 // 画布背景
---epic-edit-range-color: #fff;
+--ep-background: #fff;
 
 // 属性视图背景色
---epic-view-color: #fff;
+--ep-background: #fff;
 
 // 拖拽区域背景色
 --epic-edit-color: #ccc;
@@ -94,32 +94,32 @@ import './styles/common-vars.css'
 --epic-shadow-color: #0000003d;
 
 // 主要文本颜色
---epic-text-main: #000000de;
+--ep-text-main: #000000de;
 
 /* 次级级文本颜色 */
---epic-text-medium: #000000ab;
+--ep-text-medium: #000000ab;
 
 // 二级文本颜色
---epic-text-secondary: #00000099;
+--ep-text-secondary: #00000099;
 
 // 辅助文本颜色（更浅）
---epic-text-helper: #00000066;
+--ep-text-helper: #00000066;
 
 // 禁用文本颜色
---epic-text-disabled: #00000042;
+--ep-disabled: #00000042;
 
 // 边框颜色
---epic-border-color: #d9d9d9;
+--ep-border: #d9d9d9;
 
 // 组件tabs颜色
 --epic-compoent-tabs-color: #f8f8f8;
 
 // 组件hover颜色
---epic-compoent-hover-color: rgba(62, 139, 242, 0.06);
+--ep-primary-hover: rgba(62, 139, 242, 0.06);
 
 // 字体大小
---epic-text-sm: 12px;
---epic-text-md: 14px;
---epic-text-lg: 16px;
+--ep-text-sm: 12px;
+--ep-text-md: 14px;
+--ep-text-lg: 16px;
 ```
 

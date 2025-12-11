@@ -48,7 +48,7 @@ function handleSubmit(e:PageSchema) {
 .epic-designer-container {
   width: 100%;
   height: 800px;
-  border: 1px solid var(--epic-border-color);
+  border: 1px solid var(--ep-border);
 }
 </style>
 ```
@@ -74,7 +74,7 @@ function handleSubmit (e) {
 .epic-designer-container{
 width:1200px;
 height:800px;
-border: 1px solid var(--epic-border-color);
+border: 1px solid var(--ep-border);
 position: relative;
 z-index: 20;
 background: white;
