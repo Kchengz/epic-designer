@@ -20,7 +20,6 @@ import {
   findSchemaInfoById,
   getMatchedById,
 } from '@epic-designer/utils';
-import { useMagicKeys } from '@vueuse/core';
 
 // 内部默认页面数据
 let innerDefaultSchema: PageSchema = {
@@ -63,10 +62,8 @@ export function useDesigner(props, emit) {
   const revoke = useRevoke(pageSchema, state, setSelectedNode);
 
   // 使用封装的clipboard hook
-  const { copy, cut, duplicate, paste } = useClipboard(
-    pageSchema,
-    setSelectedNode,
-    (message) => revoke.push(message),
+  const { duplicate } = useClipboard(pageSchema, setSelectedNode, (message) =>
+    revoke.push(message),
   );
 
   const canvasConfigs = {
@@ -88,7 +85,7 @@ export function useDesigner(props, emit) {
       innerDefaultSchema = props.defaultSchema;
     } else if (props.formMode) {
       // 切换表单模式默认schema数据
-      innerDefaultSchema.schemas = pluginManager.formSchema;
+      innerDefaultSchema.schemas = pluginManager.designer.formSchema;
     }
 
     const canvasMode = props.canvasMode ?? 'desktop';
@@ -111,13 +108,6 @@ export function useDesigner(props, emit) {
    */
   function handleDuplicate() {
     return duplicate(state.selectedNode?.id);
-  }
-
-  /**
-   * 剪切选中节点到剪贴板
-   */
-  function handleCut() {
-    return cut(state.selectedNode);
   }
 
   /**
@@ -213,92 +203,9 @@ export function useDesigner(props, emit) {
     revoke.push('初始化');
   }
 
-  /**
-   * 设置快捷键
-   * @param target 接收键盘事件的目标元素，默认为document
-   */
-  function setupHotkeys(target: Document | HTMLElement = document) {
-    const keys = useMagicKeys({ target });
-
-    // 添加事件监听器来阻止默认行为
-    target.addEventListener(
-      'keydown',
-      (e: KeyboardEvent) => {
-        // 阻止Ctrl+S的默认行为(保存)
-        if (e.ctrlKey && e.key === 's') {
-          e.preventDefault();
-        }
-
-        // 阻止Ctrl+D的默认行为(添加书签)
-        if (e.ctrlKey && e.key === 'd') {
-          e.preventDefault();
-        }
-      },
-      { capture: true },
-    );
-
-    // 通过watchEffect监听快捷键状态变化
-    watchEffect(() => {
-      // 忽略输入框中的快捷键
-      const activeElement = document.activeElement;
-      if (
-        activeElement instanceof HTMLInputElement ||
-        activeElement instanceof HTMLTextAreaElement
-      ) {
-        return;
-      }
-
-      // 删除元素 (Delete 或 Backspace)
-      if ((keys.Delete.value || keys.Backspace.value) && state.selectedNode) {
-        handleDelete();
-      }
-
-      // 复制元素到剪贴板 (Ctrl+C)
-      if (keys['ctrl+c'].value && state.selectedNode) {
-        copy(state.selectedNode);
-      }
-
-      // 粘贴元素 (Ctrl+V)
-      if (keys['ctrl+v'].value) {
-        return paste(state.selectedNode?.id);
-      }
-
-      // 复制并粘贴元素 (Ctrl+D)
-      if (keys['ctrl+d'].value && state.selectedNode) {
-        handleDuplicate();
-      }
-
-      // 剪切元素到剪贴板 (Ctrl+X)
-      if (keys['ctrl+x'].value && state.selectedNode) {
-        handleCut();
-      }
-
-      // 撤销 (Ctrl+Z)
-      if (keys['ctrl+z'].value && !keys.shift.value) {
-        revoke.undo();
-      }
-
-      // 重做 (Ctrl+Shift+Z 或 Ctrl+Y)
-      if (keys['ctrl+shift+z'].value || keys['ctrl+y'].value) {
-        revoke.redo();
-      }
-
-      // 保存 (Ctrl+S)
-      if (keys['ctrl+s'].value) {
-        emit('save', pageSchema);
-      }
-
-      // 取消选择 (Escape)
-      if (keys.Escape.value) {
-        setSelectedNode(pageSchema.schemas[0]);
-      }
-    });
-  }
-
   init();
 
   return {
-    handleCut,
     handleDelete,
     handleDuplicate,
     pageManager,
@@ -308,7 +215,6 @@ export function useDesigner(props, emit) {
     revoke,
     setHoverNode,
     setSelectedNode,
-    setupHotkeys,
     state,
   };
 }

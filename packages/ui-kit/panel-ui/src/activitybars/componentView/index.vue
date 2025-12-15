@@ -4,13 +4,14 @@ import type {
   Designer,
   PageSchema,
 } from '@epic-designer/types';
-import { useStorage } from '@vueuse/core'
-import { computed, inject, ref, watchEffect } from 'vue';
+
+import { computed, inject, ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 import { EpCollapse, EpCollapsePanel, EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager, Revoke } from '@epic-designer/manager';
 import { findSchemaInfoById, generateNewSchema } from '@epic-designer/utils';
+import { useStorage } from '@vueuse/core';
 
 const Input = pluginManager.component.get('input');
 const pageSchema = inject('pageSchema') as PageSchema;
@@ -86,11 +87,15 @@ function handleClick(schema: ComponentSchema) {
       <!-- 分类选项 start  -->
 
       <div class="box-border h-full flex-1 overflow-auto">
-        <EpCollapse :default-expand-all="!activeKeys.length" v-model="activeKeys">
+        <EpCollapse
+          :default-expand-all="!activeKeys.length"
+          v-model="activeKeys"
+        >
           <EpCollapsePanel
             v-for="group in getSchemaTypeList"
             :name="group.title"
             :title="group.title"
+            :key="group.title"
           >
             <VueDraggable
               v-model="group.list"
@@ -100,7 +105,7 @@ function handleClick(schema: ComponentSchema) {
               ghost-class="moving"
               :clone="generateNewSchema"
               item-key="id"
-              class="px-2 pb-2 pt-1 grid grid-cols-[auto_auto] gap-2"
+              class="grid grid-cols-[auto_auto] gap-2 px-2 pb-2 pt-1"
             >
               <div
                 v-for="item in group.list"

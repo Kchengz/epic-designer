@@ -17,6 +17,7 @@ import { setupPanel } from '@epic-designer/panel-ui';
 import { deepClone, loadAsyncComponent } from '@epic-designer/utils';
 
 import { useDesigner } from '../hooks/useDesigner';
+import { useHotkeys } from '../hooks/useHotkeys';
 import EpicPreview from './modules/preview/index.vue';
 
 const props = withDefaults(defineProps<DesignerProps>(), {
@@ -61,9 +62,17 @@ const {
   revoke,
   setHoverNode,
   setSelectedNode,
-  setupHotkeys,
   state,
 } = useDesigner(props, emit);
+
+const { setTarget } = useHotkeys({
+  emit,
+  handleDelete,
+  pageSchema,
+  revoke,
+  setSelectedNode,
+  state,
+});
 
 // 记录缩放状态 start
 const { disabledZoom } = useStore();
@@ -102,7 +111,7 @@ const designerRef = ref<HTMLElement | null>(null);
 function handleReady() {
   nextTick(() => {
     ready.value = true;
-    designerRef.value && setupHotkeys(designerRef.value);
+    designerRef.value && setTarget(designerRef.value);
 
     designerRef.value?.addEventListener('wheel', handleWheel, {
       passive: false,
