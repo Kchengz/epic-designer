@@ -134,7 +134,7 @@ function handleDelete() {
 </script>
 <template>
   <div
-    class="rule-item-main m-t-2 hover:border-primary relative rounded border border-solid border-gray-200 bg-white p-2 transition-all"
+    class="rule-item-main m-t-2 hover:border-primary relative rounded border border-solid p-2 transition-all"
   >
     <template v-for="(componentSchema, index) in ruleItemSchemas" :key="index">
       <div

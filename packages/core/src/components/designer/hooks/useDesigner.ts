@@ -86,8 +86,11 @@ export function useDesigner(props, emit) {
     } else if (props.formMode) {
       // 切换表单模式默认schema数据
       innerDefaultSchema.schemas = pluginManager.designer.formSchema;
+      pluginManager.component.hide('form');
     }
-
+    if (!props.formMode) {
+      pluginManager.component.show('form');
+    }
     const canvasMode = props.canvasMode ?? 'desktop';
     // 根据canvasMode设置对应的画布属性
     pageSchema.canvas = {
