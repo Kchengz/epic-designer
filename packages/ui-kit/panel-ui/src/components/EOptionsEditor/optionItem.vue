@@ -68,7 +68,7 @@ function handleRemove(index: number) {
               ? 'grid-cols-[16px_auto_auto_16px_16px]'
               : 'grid-cols-[16px_auto_auto_16px]'
           "
-          class="option-item text-16px text-$epic-text-secondary mb-2 grid items-center gap-2"
+          class="option-item text-16px text-$ep-text-secondary mb-2 grid items-center gap-2"
         >
           <EpicIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
           <Input

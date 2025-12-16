@@ -274,7 +274,7 @@ defineExpose({
             >
               <template #tree-node="{ schema }">
                 <div
-                  class="epic-text-padding hover:bg-$epic-widget-hover-color flex items-center"
+                  class="epic-text-padding hover:bg-$ep-muted flex items-center"
                   :class="{ hidden: schema.componentProps?.hidden }"
                 >
                   <span class="max-w-full truncate">
@@ -337,14 +337,14 @@ defineExpose({
             state.actionItem.methodName &&
             methodOptions?.length
           "
-          class="bg-$epic-widget-hover-color mb-4 rounded-lg border p-4 transition-colors"
+          class="bg-$ep-muted mb-4 rounded-lg border p-4 transition-colors"
         >
           <div class="flex flex-col gap-1">
             <div class="flex items-center">
               <EpicIcon name="icon--epic--info" class="mr-2" />
-              <span class="text-$epic-text-medium text-sm font-medium">
+              <span class="text-$ep-text-helper text-sm font-medium">
                 {{ componentSchema?.label }}
-                <span class="text-$epic-text-main">
+                <span class="text-$ep-text-secondary">
                   {{
                     methodOptions.find(
                       (item) => item.value === state.actionItem.methodName,

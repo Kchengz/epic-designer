@@ -98,7 +98,7 @@ function getNewEvents(type: string) {
         {{ item.describe ?? item.description }}
       </div>
       <div
-        class="epic-event-btn text-$epic-text-secondary flex items-center text-lg"
+        class="epic-event-btn text-$ep-text-secondary flex items-center text-lg"
       >
         <EpicIcon
           name="icon--epic--add-rounded"
@@ -121,7 +121,7 @@ function getNewEvents(type: string) {
           <div class="epic-editor-item rounded">
             <div class="w-36px flex items-center text-lg">
               <EpicIcon
-                class="handle text-$epic-text-medium mr-2 cursor-move text-lg"
+                class="handle text-$ep-text-helper mr-2 cursor-move text-lg"
                 name="icon--epic--drag"
               />
             </div>
@@ -133,7 +133,7 @@ function getNewEvents(type: string) {
               <div v-else-if="action.type === 'public'">公共函数</div>
               {{ action.methodName }}
             </div>
-            <div class="epic-action-box text-$epic-text-medium text-lg">
+            <div class="epic-action-box text-$ep-text-helper text-lg">
               <div
                 class="epic-edit-btn"
                 @click="handleEdit(index, item.type, action)"

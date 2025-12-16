@@ -64,7 +64,7 @@ function handleDelete(index: number) {
       <div
         v-for="(item, index) in innerValue"
         :key="item.id"
-        class="EColEditor-item text-16px text-$epic-text-secondary mb-2 grid grid-cols-[16px_auto_auto_16px] items-center gap-2"
+        class="EColEditor-item text-16px text-$ep-text-secondary mb-2 grid grid-cols-[16px_auto_auto_16px] items-center gap-2"
       >
         <EpicIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
         <Number

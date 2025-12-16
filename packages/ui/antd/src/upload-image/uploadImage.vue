@@ -149,7 +149,7 @@ function previewError(): void {
     <Upload v-bind="getUploadProps">
       <div v-if="(fileList?.length ?? 0) < props.maxCount">
         <span
-          class="icon--epic icon--epic--cloud-upload-outlined mr-2px text-$epic-text-main text-lg"
+          class="icon--epic icon--epic--cloud-upload-outlined mr-2px text-$ep-text-main text-lg"
         ></span>
         <div class="ant-upload-text">点击上传</div>
       </div>

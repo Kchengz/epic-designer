@@ -161,7 +161,7 @@ defineExpose({
     class="epic-code-editor relative"
   >
     <div
-      class="z-999 text-$epic-text-helper absolute right-4 top-2 cursor-pointer text-xl"
+      class="z-999 text-$ep-text-helper absolute right-4 top-2 cursor-pointer text-xl"
       @click="isFullScreen = !isFullScreen"
       v-if="props.allowFullscreen"
     >
