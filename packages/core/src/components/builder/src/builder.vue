@@ -18,11 +18,13 @@ import {
 } from 'vue';
 
 import { EpicBaseLoader, EpicNode } from '@epic-designer/base-ui';
+import { useEventBus } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { setupPage } from '@epic-designer/panel-ui';
 import { deepCompareAndModify, findSchemas } from '@epic-designer/utils';
 
 import { useBuilder } from '../hooks/useBuilder';
+
 // 定义组件的 props 类型
 const props = defineProps<{
   /** 禁用表单 */
@@ -83,7 +85,9 @@ watch(
   },
 );
 
+const eventBus = useEventBus();
 // 提供依赖注入的上下文
+provide('eventBus', eventBus);
 provide('slots', useSlots());
 provide('pageManager', pageManager);
 provide('forms', forms);

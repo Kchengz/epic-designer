@@ -160,7 +160,7 @@ if (Object.keys(attrs).length > 0) {
 const componentRef = shallowRef<any>(null);
 
 const fieldState = ref(null);
-const fieldRequired = ref(null);
+const fieldRequired = ref<boolean | null>(null);
 
 watchEffect(() => {
   const fieldName = innerSchema?.field;
@@ -174,7 +174,6 @@ watchEffect(() => {
 
   const { condition, required, state } = currentFieldState;
   if (typeof condition === 'function') {
-    // watchEffect 会自动追踪 formData 的依赖
     fieldState.value = condition(formData) ? state : null;
     fieldRequired.value = condition(formData) ? required : null;
   } else {
