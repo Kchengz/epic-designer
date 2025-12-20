@@ -17,7 +17,6 @@ import Form from './form';
 import FormItem from './form-item';
 import Input from './input';
 import InputNumber from './input-number';
-import InputPassword from './input-password';
 import Modal from './modal';
 import Radio from './radio';
 import Row from './row';
@@ -89,7 +88,6 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
     Input,
     Textarea,
     InputNumber,
-    InputPassword,
     Radio,
     Checkbox,
     Select,
