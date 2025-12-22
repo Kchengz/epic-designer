@@ -95,6 +95,7 @@ const getSelectComponentElement = computed<HTMLElement | null>(() => {
  */
 const getHoverComponentElement = computed<HTMLElement | null>(() => {
   if (!designer.state.hoverNode) return null;
+  if (designer.state.hoverNode.id === pageSchema.schemas[0].id) return null;
   return getComponentElement(designer.state.hoverNode);
 });
 
