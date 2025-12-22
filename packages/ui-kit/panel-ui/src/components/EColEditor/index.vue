@@ -76,7 +76,7 @@ function handleDelete(index: number) {
         />
         <template v-if="innerValue.length > 1">
           <EpicIcon
-            class="hover:text-red cursor-pointer"
+            class="hover:text-$ep-destructive cursor-pointer"
             name="icon--epic--delete-outline-rounded"
             @click="handleDelete(index)"
           />

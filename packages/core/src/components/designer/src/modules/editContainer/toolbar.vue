@@ -5,11 +5,10 @@ import type { Ref } from 'vue';
 
 import { computed, inject, ref } from 'vue';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpicIcon, EpTooltip } from '@epic-designer/base-ui';
 import { useStore } from '@epic-designer/hooks';
 import { pluginManager, Revoke } from '@epic-designer/manager';
 import { convertKFormData, deepCompareAndModify } from '@epic-designer/utils';
-import { EpTooltip } from '@epic-designer/base-ui';
 
 import EpicPreviewJson from './previewJson.vue';
 
@@ -280,14 +279,14 @@ function handleSetCanvas(type: string) {
           class="epic-divider"
         ></div>
         <EpTooltip :content="action.title">
-        <div
-          v-if="isShow(action.show)"
-          class="epic-action-item h-90% px-10px flex cursor-pointer items-center text-base"
-          :class="{ disabled: action.disabled }"
-          @click="action.on"
-        >
-          <EpicIcon :name="action.icon" />
-        </div>
+          <div
+            v-if="isShow(action.show)"
+            class="epic-action-item h-90% px-10px flex cursor-pointer items-center text-base"
+            :class="{ disabled: action.disabled }"
+            @click="action.on"
+          >
+            <EpicIcon :name="action.icon" />
+          </div>
         </EpTooltip>
       </template>
     </div>
@@ -321,7 +320,7 @@ function handleSetCanvas(type: string) {
         <template v-for="item in deviceOptions" :key="item.key">
           <div
             :title="item.title"
-            class="epic-device-item flex h-full cursor-pointer items-center rounded-sm px-1 text-base transition-colors"
+            class="epic-device-item rounded-$ep-radius flex h-full cursor-pointer items-center px-1 text-base transition-colors"
             :class="{ checked: item.key === selectedKey }"
             @click="handleSetCanvas(item.key)"
           >

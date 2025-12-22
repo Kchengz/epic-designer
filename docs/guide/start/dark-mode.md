@@ -44,8 +44,6 @@ toggleDark()
 html.dark {
   /* 自定义深色背景颜色 */
   --ep-primary: #98f;
-  --ep-primary-hover: #9988ff26;
-  --epic-widget-shade-color: #9988ff18;
 }
 ```
 
@@ -78,72 +76,27 @@ import './styles/dark-vars.css'
 ## css变量
 
 ```
-// 主色
---ep-primary: #3e8bf2;
-
-// hover颜色
---ep-primary-hover: rgba(62, 139, 242, 0.08);
-
-// 设计器背景色
---ep-primary-foreground: #fafafc;
-
-// 设计器点颜色
---epic-designer-dot-color: #373739;
-
-// 画布背景
---ep-background: #fff;
-
-// 属性视图背景色
---ep-background: #fff;
-
-// 拖拽区域背景色
---epic-edit-color: #ccc;
-
-// 活动视图切换器背景色
---epic-action-bar-color: #fff;
-
-// 顶部颜色
---epic-header-color: white;
-
-// 动作栏 hover
---epic-action-hover-color: #f8f8f8;
-
-// 窗口部件 hover
---epic-widget-hover-color: #f8f8f8;
-
-// 窗口部件遮罩颜色
---epic-widget-shade-color: rgba(62, 139, 242, 0.06);
-
-// 事件项背景色
---epic-event-item-color: #f8f8f8;
-
-// 阴影颜色
---epic-shadow-color: #0000003d;
-
-// 主要文本颜色
---ep-text-main: #000000de;
-
-// 二级文本颜色（介于主要文本和辅助文本之间）
---ep-text-secondary: #00000099;
-
-// 辅助文本颜色（更浅）
---ep-text-helper: #00000066;
-
-// 禁用文本颜色
---ep-disabled: #00000042;
-
-// 边框颜色
---ep-border: #d9d9d9;
-
-// 组件tabs颜色
---epic-compoent-tabs-color: #f8f8f8;
-
-// 组件hover颜色
---ep-primary-hover: rgba(62, 139, 242, 0.06);
-
-// 字体大小
---ep-text-sm: 12px;
---ep-text-md: 14px;
---ep-text-lg: 16px;
+  /* 背景色 */
+  --ep-background: oklch(0.141 0.005 285.823);
+  /* 前景色 */
+  --ep-foreground: oklch(0.985 0 0);
+  /* 主色调 */
+  --ep-primary: oklch(0.623 0.214 259.815);
+  /* 主色调前景 */
+  --ep-primary-foreground: oklch(0.97 0.014 254.604);
+  /* 辅助色调 */
+  --ep-secondary: oklch(0.274 0.006 286.033);
+  /* 辅助色调前景 */
+  --ep-secondary-foreground: oklch(0.985 0 0);
+  /* 柔和色调 */
+  --ep-muted: oklch(0.274 0.006 286.033);
+  /* 柔和色调前景 */
+  --ep-muted-foreground: oklch(0.705 0.015 286.067);
+  /* 警示色调 */
+  --ep-destructive: oklch(0.704 0.191 22.216);
+  /* 边框与分隔线 */
+  --ep-border: oklch(1 0 0 / 10%);
+  /* 侧边栏背景 */
+  --ep-sidebar: oklch(0.21 0.006 285.885);
 ```
 
