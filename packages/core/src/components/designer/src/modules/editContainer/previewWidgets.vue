@@ -211,6 +211,7 @@ function setSeletorStyle() {
  * 滚动进入可视区
  */
 function scrollIntoView(selectorTop: number, selectorLeft: number) {
+  if (pageSchema.schemas[0].id === designer.state.selectedNode?.id) return;
   // 自动滚动到元素可视区域 start
   const element = getSelectComponentElement.value;
   if (!epicEditRange || !element) return;
