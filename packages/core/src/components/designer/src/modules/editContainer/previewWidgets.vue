@@ -325,7 +325,10 @@ function handleInit(epicEditRangeRef) {
   });
 
   // 监听选中元素视窗变化
-  useResizeObserver(getSelectComponentElement, setSeletorStyle);
+  useResizeObserver(getSelectComponentElement, () => {
+    // 延迟执行，确保在动画帧后更新样式
+    setTimeout(setSeletorStyle, 150);
+  });
   // 监听悬停元素视窗变化
   useResizeObserver(getHoverComponentElement, setHoverStyle);
 }
