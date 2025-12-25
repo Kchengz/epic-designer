@@ -6,6 +6,7 @@ import {
   useComponentManager,
   useFormSchema,
   useGlobal,
+  useHookManager,
   usePanel,
   usePublicMethods,
 } from '@epic-designer/hooks';
@@ -108,6 +109,8 @@ export function usePluginManager(): PluginManager {
     uploadImage: 'https://examples.epicjs.cn/epic-mock/common/upload',
   });
 
+  const hook = useHookManager();
+
   /**
    * 设置initialized的状态。
    *
@@ -163,6 +166,7 @@ export function usePluginManager(): PluginManager {
       setInitialized,
     },
     global,
+    hook,
     panel: {
       activityBars,
       hideActivitybar,
