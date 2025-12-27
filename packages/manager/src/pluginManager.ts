@@ -40,6 +40,7 @@ export interface PluginManager {
     setInitialized: (value: boolean) => void;
   };
   global: ReturnType<typeof useGlobal>['global'];
+  hook: ReturnType<typeof useHookManager>;
   panel: ReturnType<typeof usePanel>;
   publicMethods: ReturnType<typeof usePublicMethods> & {
     add: ReturnType<typeof usePublicMethods>['addPublicMethod'];

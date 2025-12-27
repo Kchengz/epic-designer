@@ -66,21 +66,13 @@ export function useHookManager() {
     context: any,
   ): Promise<void> => {
     // 创建上下文的响应式副本，确保钩子之间的数据传递
-    const hookContext = { ...context };
 
     // 按注册顺序执行所有钩子
     for (const hook of hooks.value[hookName]) {
       try {
-        await hook(hookContext);
-
-        // 更新组件引用（因为钩子可能修改了组件）
-        if (hookName === 'nodeRender') {
-          context.component = { ...hookContext.component };
-        }
+        return await hook(context);
       } catch (error) {
         console.error(`执行钩子 ${hookName} 时出错:`, error);
-        // 可以选择是否继续执行后续钩子
-        // throw error; // 如果要中断执行
       }
     }
   };

@@ -375,6 +375,8 @@ async function initComponent() {
     handleUpdate(deepClone(defaultValue));
   }
 
+  await pluginManager.hook.execute('nodeRender', innerSchema);
+
   // 组件为slot类型时
   if (innerSchema.type === 'slot') {
     const slotName = innerSchema.slotName;
