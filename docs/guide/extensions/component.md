@@ -34,7 +34,7 @@ export default {
   defaultSchema: {
     label: '测试扩展组件',
     type: 'test',
-    componentProps: {
+    props: {
     }
   },
   config: {
@@ -112,7 +112,7 @@ const Test = {
   defaultSchema: {
     label: '测试扩展组件',
     type: 'test',
-    componentProps: {
+    props: {
       // 组件默认属性
     }
   },

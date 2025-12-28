@@ -15,7 +15,7 @@ async function handleGetData() {
 const pageSchema = ref<PageSchema>({
   schemas: [
     {
-      componentProps: {
+      props: {
         style: {
           padding: '16px',
         },
@@ -28,7 +28,7 @@ const pageSchema = ref<PageSchema>({
           label: '表单',
           type: 'form',
           icon: 'epic-icon-daibanshixiang',
-          componentProps: {
+          props: {
             hideRequiredMark: false,
             labelAlign: 'right',
             labelCol: {
@@ -50,7 +50,7 @@ const pageSchema = ref<PageSchema>({
               field: 'input_sb6jhfb8',
               icon: 'epic-icon-write',
               input: true,
-              componentProps: {
+              props: {
                 defaultValue: '',
                 disabled: false,
                 placeholder: '请输入',
@@ -65,7 +65,7 @@ const pageSchema = ref<PageSchema>({
               field: 'button_ks9jbmym',
               icon: 'epic-icon-button-remove',
               input: false,
-              componentProps: {
+              props: {
                 bordered: true,
                 size: 'medium',
                 type: 'default',

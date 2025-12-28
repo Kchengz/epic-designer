@@ -9,7 +9,7 @@ const ebRef = ref<InstanceType<typeof EBuilder>>();
 const pageSchema = ref<PageSchema>({
   schemas: [
     {
-      componentProps: {
+      props: {
         style: {
           padding: '16px',
         },
@@ -23,7 +23,7 @@ const pageSchema = ref<PageSchema>({
           type: 'form',
           icon: 'icon-daibanshixiang',
           name: 'default',
-          componentProps: {
+          props: {
             hideRequiredMark: false,
             labelCol: {
               span: 5,
@@ -47,7 +47,7 @@ const pageSchema = ref<PageSchema>({
               icon: 'icon-number',
               field: 'number_9m5zzib6',
               input: true,
-              componentProps: {
+              props: {
                 placeholder: '请输入',
                 style: {
                   width: '100%',
@@ -70,7 +70,7 @@ const pageSchema = ref<PageSchema>({
               icon: 'icon-number',
               field: 'number_szitefkr',
               input: true,
-              componentProps: {
+              props: {
                 placeholder: '请输入',
                 style: {
                   width: '100%',
@@ -93,7 +93,7 @@ const pageSchema = ref<PageSchema>({
               icon: 'icon-number',
               field: 'number_bs7n1wpv',
               input: true,
-              componentProps: {
+              props: {
                 placeholder: '请输入',
                 style: {
                   width: '100%',

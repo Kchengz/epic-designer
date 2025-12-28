@@ -9,7 +9,7 @@ const ebRef = ref<InstanceType<typeof EBuilder>>();
 const pageSchema = ref<PageSchema>({
   schemas: [
     {
-      componentProps: {
+      props: {
         style: {
           padding: '16px',
         },
@@ -22,7 +22,7 @@ const pageSchema = ref<PageSchema>({
           label: '表单',
           type: 'form',
           icon: 'icon-daibanshixiang',
-          componentProps: {
+          props: {
             hideRequiredMark: false,
             labelCol: {
               span: 5,
@@ -56,7 +56,7 @@ const pageSchema = ref<PageSchema>({
                       icon: 'icon-kaiguan3',
                       field: 'switch_vhzz40mc',
                       input: true,
-                      componentProps: {
+                      props: {
                         disabled: false,
                       },
                       id: 'switch_vhzz40mc',
@@ -71,7 +71,7 @@ const pageSchema = ref<PageSchema>({
                       },
                     },
                   ],
-                  componentProps: {
+                  props: {
                     span: 12,
                   },
                   id: 'col_fmqw6vre',
@@ -85,7 +85,7 @@ const pageSchema = ref<PageSchema>({
                       icon: 'icon-kaiguan3',
                       field: 'switch_k561x18z',
                       input: true,
-                      componentProps: {},
+                      props: {},
                       id: 'switch_k561x18z',
                       on: {
                         change: [
@@ -98,7 +98,7 @@ const pageSchema = ref<PageSchema>({
                       },
                     },
                   ],
-                  componentProps: {
+                  props: {
                     span: 12,
                   },
                   id: 'col_i5q4prg6',
@@ -112,7 +112,7 @@ const pageSchema = ref<PageSchema>({
               icon: 'icon-write',
               field: 'input_ho0tpt7i7tc00',
               input: true,
-              componentProps: {
+              props: {
                 defaultValue: '',
                 disabled: false,
                 hidden: false,

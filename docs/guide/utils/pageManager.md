@@ -33,7 +33,7 @@ const pageSchema = ref<PageSchema>({
           "type": "form",
           "icon": "epic-icon-daibanshixiang",
           "name": "default",
-          "componentProps": {
+          "props": {
             "labelWidth": 100,
             "labelCol": {
               "span": 5
@@ -53,7 +53,7 @@ const pageSchema = ref<PageSchema>({
               "icon": "epic-icon-upload",
               "field": "upload",
               "input": true,
-              "componentProps": {
+              "props": {
                 "action": "https://examples.epicjs.cn/epic-mock/common/upload",
                 "name": "file",
                 "showFileList": true
@@ -64,7 +64,7 @@ const pageSchema = ref<PageSchema>({
           "id": "form_uknia964"
         }
       ],
-      "componentProps": {
+      "props": {
         "style": {
           "padding": "16px"
         }

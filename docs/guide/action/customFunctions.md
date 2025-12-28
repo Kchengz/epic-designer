@@ -46,7 +46,7 @@ epic.json 数据
           "label": "表单",
           "type": "form",
           "icon": "epic-icon-daibanshixiang",
-          "componentProps": {
+          "props": {
             "size": "default",
             "labelWidth": 100,
             "labelCol": {
@@ -77,7 +77,7 @@ epic.json 数据
                       "icon": "epic-icon-kaiguan3",
                       "field": "switch_vhzz40mc",
                       "input": true,
-                      "componentProps": {
+                      "props": {
                         "disabled": false
                       },
                       "id": "switch_vhzz40mc",
@@ -92,7 +92,7 @@ epic.json 数据
                       }
                     }
                   ],
-                  "componentProps": {
+                  "props": {
                     "span": 12
                   },
                   "id": "col_fmqw6vre"
@@ -106,7 +106,7 @@ epic.json 数据
                       "icon": "epic-icon-kaiguan3",
                       "field": "switch_k561x18z",
                       "input": true,
-                      "componentProps": {},
+                      "props": {},
                       "id": "switch_k561x18z",
                       "on": {
                         "change": [
@@ -119,7 +119,7 @@ epic.json 数据
                       }
                     }
                   ],
-                  "componentProps": {
+                  "props": {
                     "span": 12
                   },
                   "id": "col_i5q4prg6"
@@ -133,7 +133,7 @@ epic.json 数据
               "icon": "epic-icon-write",
               "field": "input_ho0tpt7i7tc00",
               "input": true,
-              "componentProps": {
+              "props": {
                 "placeholder": "请输入",
                 "defaultValue": "",
                 "size": "default",
@@ -155,7 +155,7 @@ epic.json 数据
           ]
         }
       ],
-      "componentProps": {
+      "props": {
         "style": {
           "padding": "16px"
         }
@@ -183,7 +183,7 @@ epic.json 数据
           "type": "form",
           "icon": "epic-icon-daibanshixiang",
           "name": "default",
-          "componentProps": {
+          "props": {
             "labelWidth": 100,
             "labelCol": {
               "span": 5
@@ -205,7 +205,7 @@ epic.json 数据
               "icon": "epic-icon-number",
               "field": "number_9m5zzib6",
               "input": true,
-              "componentProps": {
+              "props": {
                 "style": {
                   "width": "100%"
                 },
@@ -228,7 +228,7 @@ epic.json 数据
               "icon": "epic-icon-number",
               "field": "number_szitefkr",
               "input": true,
-              "componentProps": {
+              "props": {
                 "style": {
                   "width": "100%"
                 },
@@ -251,7 +251,7 @@ epic.json 数据
               "icon": "epic-icon-number",
               "field": "number_bs7n1wpv",
               "input": true,
-              "componentProps": {
+              "props": {
                 "style": {
                   "width": "100%"
                 },
@@ -263,7 +263,7 @@ epic.json 数据
           "id": "3543akxhdum00"
         }
       ],
-      "componentProps": {
+      "props": {
         "style": {
           "padding": "16px"
         }
@@ -298,7 +298,7 @@ const pageSchema = {
           "label": "表单",
           "type": "form",
           "icon": "epic-icon-daibanshixiang",
-          "componentProps": {
+          "props": {
             "size": "default",
             "labelWidth": 100,
             "labelCol": {
@@ -330,7 +330,7 @@ const pageSchema = {
                       "icon": "epic-icon-kaiguan3",
                       "field": "switch_vhzz40mc",
                       "input": true,
-                      "componentProps": {
+                      "props": {
                         "disabled": false
                       },
                       "id": "switch_vhzz40mc",
@@ -345,7 +345,7 @@ const pageSchema = {
                       }
                     }
                   ],
-                  "componentProps": {
+                  "props": {
                     "span": 12
                   },
                   "id": "col_fmqw6vre"
@@ -359,7 +359,7 @@ const pageSchema = {
                       "icon": "epic-icon-kaiguan3",
                       "field": "switch_k561x18z",
                       "input": true,
-                      "componentProps": {},
+                      "props": {},
                       "id": "switch_k561x18z",
                       "on": {
                         "change": [
@@ -372,7 +372,7 @@ const pageSchema = {
                       }
                     }
                   ],
-                  "componentProps": {
+                  "props": {
                     "span": 12
                   },
                   "id": "col_i5q4prg6"
@@ -386,7 +386,7 @@ const pageSchema = {
               "icon": "epic-icon-write",
               "field": "input_ho0tpt7i7tc00",
               "input": true,
-              "componentProps": {
+              "props": {
                 "placeholder": "请输入",
                 "defaultValue": "",
                 "size": "default",
@@ -408,7 +408,7 @@ const pageSchema = {
           ]
         }
       ],
-      "componentProps": {
+      "props": {
         "style": {
           "padding": "16px"
         }
@@ -430,7 +430,7 @@ const pageSchema2 = {
           "type": "form",
           "icon": "epic-icon-daibanshixiang",
           "name": "default",
-          "componentProps": {
+          "props": {
             "labelWidth": 100,
             "labelCol": {
               "span": 5
@@ -450,7 +450,7 @@ const pageSchema2 = {
               "icon": "epic-icon-number",
               "field": "number_9m5zzib6",
               "input": true,
-              "componentProps": {
+              "props": {
                 "style": {
                   "width": "100%"
                 },
@@ -473,7 +473,7 @@ const pageSchema2 = {
               "icon": "epic-icon-number",
               "field": "number_szitefkr",
               "input": true,
-              "componentProps": {
+              "props": {
                 "style": {
                   "width": "100%"
                 },
@@ -496,7 +496,7 @@ const pageSchema2 = {
               "icon": "epic-icon-number",
               "field": "number_bs7n1wpv",
               "input": true,
-              "componentProps": {
+              "props": {
                 "style": {
                   "width": "100%"
                 },
@@ -508,7 +508,7 @@ const pageSchema2 = {
           "id": "3543akxhdum00"
         }
       ],
-      "componentProps": {
+      "props": {
         "style": {
           "padding": "16px"
         }

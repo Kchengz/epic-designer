@@ -33,7 +33,7 @@ const pageSchema = {
           field: "input",
           icon: "epic-icon-write",
           input: true,
-          componentProps: {
+          props: {
             defaultValue: "",
             placeholder: "请输入",
             size: "default",
@@ -42,7 +42,7 @@ const pageSchema = {
           id: "gbm1xhrrj5s00",
         },
       ],
-      componentProps: {
+      props: {
         style: {
           padding: "16px",
         },
@@ -87,7 +87,7 @@ const pageSchema = {
           type: "form",
           icon: "epic-icon-qiapian",
           name: "default",
-          componentProps: {
+          props: {
             labelWidth: 100,
             labelCol: {
               span: 5,
@@ -107,7 +107,7 @@ const pageSchema = {
               field: "input",
               icon: "epic-icon-write",
               input: true,
-              componentProps: {
+              props: {
                 defaultValue: "",
                 placeholder: "请输入",
                 size: "default",
@@ -121,7 +121,7 @@ const pageSchema = {
               icon: "epic-icon-number",
               field: "number",
               input: true,
-              componentProps: {
+              props: {
                 placeholder: "请输入",
                 size: "default",
                 controlsPosition: "default",
@@ -134,7 +134,7 @@ const pageSchema = {
               icon: "epic-icon-xiala",
               field: "select",
               input: true,
-              componentProps: {
+              props: {
                 options: [
                   {
                     label: "选项1",
@@ -158,7 +158,7 @@ const pageSchema = {
               icon: "epic-icon-danxuan-cuxiantiao",
               field: "radio",
               input: true,
-              componentProps: {
+              props: {
                 options: [
                   {
                     label: "选项1",
@@ -177,7 +177,7 @@ const pageSchema = {
           id: "eqf5rtg2ohc00",
         },
       ],
-      componentProps: {
+      props: {
         style: {
           padding: "16px",
         },
@@ -237,7 +237,7 @@ const pageSchema = ref<PageSchema>({
           label: "表单",
           type: "form",
           icon: "epic-icon-daibanshixiang",
-          componentProps: {
+          props: {
             name: "default",
             labelWidth: 100,
             labelCol: {
@@ -259,7 +259,7 @@ const pageSchema = ref<PageSchema>({
               field: "input_sb6jhfb8",
               icon: "epic-icon-write",
               input: true,
-              componentProps: {
+              props: {
                 defaultValue: "",
                 placeholder: "请输入",
                 type: "text",
@@ -272,7 +272,7 @@ const pageSchema = ref<PageSchema>({
           id: "form_18vemlk8",
         },
       ],
-      componentProps: {
+      props: {
         style: {
           padding: "16px",
         },
@@ -315,7 +315,7 @@ const pageSchema = {
           field: "input",
           icon: "epic-icon-write",
           input: true,
-          componentProps: {
+          props: {
             defaultValue: "",
             placeholder: "请输入",
             size: "default",
@@ -324,7 +324,7 @@ const pageSchema = {
           id: "gbm1xhrrj5s00",
         },
       ],
-      componentProps: {
+      props: {
         style: {
           padding: "16px",
         },
@@ -344,7 +344,7 @@ const pageSchemaForm = {
           type: "form",
           icon: "epic-icon-qiapian",
           name: "default",
-          componentProps: {
+          props: {
             labelWidth: 100,
             labelCol: {
               span: 5,
@@ -364,7 +364,7 @@ const pageSchemaForm = {
               field: "input",
               icon: "epic-icon-write",
               input: true,
-              componentProps: {
+              props: {
                 defaultValue: "",
                 placeholder: "请输入",
                 size: "default",
@@ -378,7 +378,7 @@ const pageSchemaForm = {
               icon: "epic-icon-number",
               field: "number",
               input: true,
-              componentProps: {
+              props: {
                 placeholder: "请输入",
                 size: "default",
                 controlsPosition: "default",
@@ -391,7 +391,7 @@ const pageSchemaForm = {
               icon: "epic-icon-xiala",
               field: "select",
               input: true,
-              componentProps: {
+              props: {
                 options: [
                   {
                     label: "选项1",
@@ -415,7 +415,7 @@ const pageSchemaForm = {
               icon: "epic-icon-danxuan-cuxiantiao",
               field: "radio",
               input: true,
-              componentProps: {
+              props: {
                 options: [
                   {
                     label: "选项1",
@@ -434,7 +434,7 @@ const pageSchemaForm = {
           id: "eqf5rtg2ohc00",
         },
       ],
-      componentProps: {
+      props: {
         style: {
           padding: "16px",
         },
@@ -466,7 +466,7 @@ const pageSchema2 = {
           "label": "表单",
           "type": "form",
           "icon": "epic-icon-daibanshixiang",
-          "componentProps": {
+          "props": {
             "name": "default",
             "labelWidth": 100,
             "labelCol": {
@@ -488,7 +488,7 @@ const pageSchema2 = {
               "field": "input_sb6jhfb8",
               "icon": "epic-icon-write",
               "input": true,
-              "componentProps": {
+              "props": {
                 "defaultValue": "",
                 "placeholder": "请输入",
                 "type": "text",
@@ -501,7 +501,7 @@ const pageSchema2 = {
           "id": "form_18vemlk8"
         }
       ],
-      "componentProps": {
+      "props": {
         "style": {
           "padding": "16px"
         }

@@ -30,7 +30,7 @@ const fieldStates = ref<FieldStates>([
 const pageSchema = ref<PageSchema>({
   schemas: [
     {
-      componentProps: {
+      props: {
         style: {
           padding: '16px',
         },
@@ -43,7 +43,7 @@ const pageSchema = ref<PageSchema>({
           label: '表单',
           type: 'form',
           icon: 'epic-icon-daibanshixiang',
-          componentProps: {
+          props: {
             colon: true,
             hideRequiredMark: false,
             labelAlign: 'right',
@@ -77,7 +77,7 @@ const pageSchema = ref<PageSchema>({
                       field: 'input_2drzm924',
                       icon: 'epic-icon-write',
                       input: true,
-                      componentProps: {
+                      props: {
                         bordered: true,
                         placeholder: '请输入',
                       },
@@ -92,7 +92,7 @@ const pageSchema = ref<PageSchema>({
                       ],
                     },
                   ],
-                  componentProps: {
+                  props: {
                     span: 12,
                   },
                   id: 'col_m17ttkgz',
@@ -106,7 +106,7 @@ const pageSchema = ref<PageSchema>({
                       icon: 'epic-icon-number',
                       field: 'number_x4t431jb',
                       input: true,
-                      componentProps: {
+                      props: {
                         placeholder: '请输入',
                         style: {
                           width: '100%',
@@ -123,7 +123,7 @@ const pageSchema = ref<PageSchema>({
                       ],
                     },
                   ],
-                  componentProps: {
+                  props: {
                     span: 12,
                   },
                   id: 'col_6uvxdrme',
@@ -137,7 +137,7 @@ const pageSchema = ref<PageSchema>({
               icon: 'epic-icon-danxuan-cuxiantiao',
               field: 'radio_shndnr9b',
               input: true,
-              componentProps: {
+              props: {
                 defaultValue: '男',
                 options: [
                   {
@@ -159,7 +159,7 @@ const pageSchema = ref<PageSchema>({
               icon: 'epic-icon-duoxuan1',
               field: 'checkbox_1l91io8k',
               input: true,
-              componentProps: {
+              props: {
                 options: [
                   {
                     label: '唱',
@@ -187,7 +187,7 @@ const pageSchema = ref<PageSchema>({
               field: 'textarea_1ihmowjl',
               icon: 'epic-icon-edit',
               input: true,
-              componentProps: {
+              props: {
                 autoSize: {
                   minRows: 4,
                 },

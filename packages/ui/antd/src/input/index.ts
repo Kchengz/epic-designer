@@ -157,12 +157,12 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
-      placeholder: '请输入',
-    },
     field: 'input',
     input: true,
     label: '输入框',
+    props: {
+      placeholder: '请输入',
+    },
     type: 'input',
   },
   groupName: '表单',
