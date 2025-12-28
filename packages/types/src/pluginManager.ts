@@ -50,6 +50,8 @@ export interface EditConstraintsModel {
   fixedField?: boolean;
   // 当前组件是否固定不可拖动，可选
   immovable?: boolean;
+  // 组件锁定，不可编辑，不可选中，不可复制删除
+  locked?: boolean;
 }
 
 export interface ComponentConfigModel {

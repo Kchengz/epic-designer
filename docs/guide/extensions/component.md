@@ -206,6 +206,8 @@ export interface EditConstraintsModel {
    childImmovable?: boolean;
    // 表单字段是否固定 不添加随机UUID
    fixedField?: boolean;
+   // 组件锁定，不可编辑，不可选中，不可复制删除
+   locked?: boolean;
 }
   
 export interface ComponentConfigModel {

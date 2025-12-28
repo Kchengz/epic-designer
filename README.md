@@ -203,7 +203,7 @@ const pageSchema = {
           field: "input",
           icon: "epic-icon-write",
           input: true,
-          componentProps: {
+          props: {
             defaultValue: "",
             placeholder: "请输入",
             size: "default",
@@ -212,7 +212,7 @@ const pageSchema = {
           id: "gbm1xhrrj5s00",
         },
       ],
-      componentProps: {
+      props: {
         style: {
           padding: "16px",
         },

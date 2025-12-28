@@ -200,6 +200,15 @@ export function useComponentManager() {
   }
 
   /**
+   * 获取锁定状态
+   * @param type
+   * @returns locked
+   */
+  function getLocked(type: string) {
+    return getComponentConfigByType(type)?.editConstraints?.locked;
+  }
+
+  /**
    * 通过type获取ComponentConfig
    */
   function getComponentConfigByType(type: string): ComponentConfigModel {
@@ -385,6 +394,7 @@ export function useComponentManager() {
     getComponentSchemaGroups,
     getIcon,
     getLabel,
+    getLocked,
     hiddenComponents,
 
     // 组件显示控制

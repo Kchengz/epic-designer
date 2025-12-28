@@ -191,8 +191,8 @@ function setSeletorStyle() {
   // 判断actionBoxRef位置是否应该置于底部 距离顶部45px 高度100px
   if (selectorTop < 45 && selectorRefHeight < 100) {
     actionBoxRef.value.style.top = '';
-    actionBoxRef.value.style.bottom = '-30px';
-    actionBoxRef.value.style['border-radius'] = '0px 0px 4px 4px';
+    actionBoxRef.value.style.bottom = '-32px';
+    actionBoxRef.value.style['border-radius'] = '4px';
     selectorPosition.value = 'bottom';
   } else if (selectorTop < 45) {
     // 判断actionBoxRef位置置于中间
@@ -201,8 +201,8 @@ function setSeletorStyle() {
     selectorPosition.value = 'center';
   } else {
     // actionBoxRef位置置于顶部
-    actionBoxRef.value.style.top = '-30px';
-    actionBoxRef.value.style['border-radius'] = '4px 4px 0px 0px';
+    actionBoxRef.value.style.top = '-32px';
+    actionBoxRef.value.style['border-radius'] = '4px';
     selectorPosition.value = 'top';
   }
   // 调整操作调位置 end

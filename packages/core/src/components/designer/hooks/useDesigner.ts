@@ -25,13 +25,13 @@ import {
 let innerDefaultSchema: PageSchema = {
   schemas: [
     {
+      id: 'root',
+      label: '页面',
       props: {
         style: {
           padding: '16px',
         },
       },
-      id: 'root',
-      label: '页面',
       type: 'page',
       children: [],
     },
@@ -143,17 +143,46 @@ export function useDesigner(props, emit) {
    * 选中节点
    * @param schema 要选中的组件
    */
-  function setSelectedNode(
-    schema: ComponentSchema | null = state.selectedNode,
-  ) {
+  function setSelectedNode(schema: ComponentSchema = pageSchema.schemas[0]) {
+    // 如果选中的节点是锁定的，则不执行选中操作
+    if (isComponentLocked(schema)) {
+      const matched = getMatchedById(
+        pageManager.pageSchema.schemas,
+        schema?.id || '',
+      );
+      // 排除最后一个节点
+      const lastIndex = matched.length - 2;
+
+      // 倒序查找符合条件的节点，排除最后一个节点
+      for (let i = lastIndex; i >= 0; i--) {
+        if (!isComponentLocked(matched[i])) {
+          schema = matched[i];
+          break;
+        }
+      }
+    }
+
     // 通过ID查找该组件在页面结构中是否存在
-    const selectedSchema = findSchemaById(pageSchema.schemas, schema?.id ?? '');
-    const finalSchema = selectedSchema || pageSchema.schemas[0];
+    const selectedSchema = findSchemaById(pageSchema.schemas, schema?.id || '');
 
     // 获取从根节点到当前节点的路径匹配数组
-    state.matched = getMatchedById(pageSchema.schemas, finalSchema.id ?? '');
+    state.matched = getMatchedById(
+      pageSchema.schemas,
+      selectedSchema?.id || '',
+    );
     // 更新选中节点状态
-    state.selectedNode = finalSchema;
+    state.selectedNode = selectedSchema;
+  }
+
+  /**
+   * 检查组件是否锁定
+   * @param schema
+   */
+  function isComponentLocked(schema: ComponentSchema) {
+    // 判断组件是否锁定
+    return (
+      schema.status?.lock || pluginManager.component.getLocked(schema.type)
+    );
   }
 
   /**
@@ -164,6 +193,24 @@ export function useDesigner(props, emit) {
     if (!schema || state.disabledHover) {
       state.hoverNode = null;
       return false;
+    }
+
+    // 如果选中的节点是锁定的，则不执行选中操作
+    if (isComponentLocked(schema)) {
+      const matched = getMatchedById(
+        pageManager.pageSchema.schemas,
+        schema?.id || '',
+      );
+      // 排除最后一个节点
+      const lastIndex = matched.length - 2;
+
+      // 倒序查找符合条件的节点，排除最后一个节点
+      for (let i = lastIndex; i >= 0; i--) {
+        if (!isComponentLocked(matched[i])) {
+          schema = matched[i];
+          break;
+        }
+      }
     }
 
     if (schema?.id === state.hoverNode?.id) {

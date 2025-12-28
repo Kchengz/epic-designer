@@ -16,7 +16,7 @@ import {
  */
 export function useClipboard(
   pageSchema: any,
-  setSelectedNode: (schema: ComponentSchema | null) => void,
+  setSelectedNode: (schema?: ComponentSchema) => void,
   revokePush: (message: string) => void,
 ) {
   // 剪贴板节点
@@ -93,9 +93,9 @@ export function useClipboard(
 
     // 如果删除的是列表中最后一个元素，选中前一个元素
     if (index === list.length) {
-      setSelectedNode(list[index - 1] || null);
+      setSelectedNode(list[index - 1]);
     } else {
-      setSelectedNode(list[index] || null);
+      setSelectedNode(list[index]);
     }
 
     revokePush('剪切组件');
