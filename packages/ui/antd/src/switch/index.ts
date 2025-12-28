@@ -16,15 +16,15 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.checkedValue',
+        field: 'props.checkedValue',
         label: 'ON状态值',
         onChange(e) {
           setTimeout(() => setDefaultValue(e));
@@ -32,10 +32,10 @@ export default {
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.unCheckedValue',
+        field: 'props.unCheckedValue',
         label: 'OFF状态值',
         onChange(e) {
           setTimeout(() => setDefaultValue(e));
@@ -43,23 +43,23 @@ export default {
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.checkedChildren',
+        field: 'props.checkedChildren',
         label: 'ON状态描述',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.unCheckedChildren',
+        field: 'props.unCheckedChildren',
         label: 'OFF状态描述',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -73,22 +73,22 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           ruleType: 'boolean',
         },
         description: '校验规则需要配合表单使用',
@@ -106,7 +106,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       defaultValue: false,
     },
     field: 'switch',
@@ -120,23 +120,23 @@ export default {
 } as ComponentConfigModel;
 
 function setDefaultValue(e) {
-  const defaultValue = e.values.componentProps?.unCheckedValue || false;
+  const defaultValue = e.values.props?.unCheckedValue || false;
   // 如果unCheckedValue === ''，则在下一个事件循环中删除 unCheckedValue 属性
-  if (e.values.componentProps.unCheckedValue === '') {
-    delete e.values.componentProps.unCheckedValue;
+  if (e.values.props.unCheckedValue === '') {
+    delete e.values.props.unCheckedValue;
   }
 
   // 如果checkedValue === ''，则在下一个事件循环中删除 checkedValue 属性
-  if (e.values.componentProps.checkedValue === '') {
-    delete e.values.componentProps.checkedValue;
+  if (e.values.props.checkedValue === '') {
+    delete e.values.props.checkedValue;
   }
 
-  // 检查是否已经有了 componentProps 对象，如果有，将默认值赋给 defaultValue 属性
-  if (e.values.componentProps) {
-    e.values.componentProps.defaultValue = defaultValue;
+  // 检查是否已经有了 props 对象，如果有，将默认值赋给 defaultValue 属性
+  if (e.values.props) {
+    e.values.props.defaultValue = defaultValue;
   } else {
-    // 如果没有 componentProps 对象，则创建一个新对象并添加 defaultValue 属性
-    e.values.componentProps = {
+    // 如果没有 props 对象，则创建一个新对象并添加 defaultValue 属性
+    e.values.props = {
       defaultValue,
     };
   }

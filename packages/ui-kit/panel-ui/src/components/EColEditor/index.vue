@@ -28,7 +28,7 @@ const innerValue = useVModel(props, 'modelValue', emit);
  */
 function handleAdd() {
   const colItem = {
-    componentProps: {
+    props: {
       span: 12,
     },
     id: getUUID(),
@@ -68,8 +68,8 @@ function handleDelete(index: number) {
       >
         <EpicIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
         <Number
-          v-model:value="item.componentProps.span"
-          v-model="item.componentProps.span"
+          v-model:value="item.props.span"
+          v-model="item.props.span"
           style="width: 100%"
           :min="1"
           :max="24"

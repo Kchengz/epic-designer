@@ -32,7 +32,7 @@ const form = ref<FormInstance | null>(null);
 const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>;
 const formData = pageManager.setFormData(
   {},
-  props.componentSchema?.componentProps?.name,
+  props.componentSchema?.props?.name,
 );
 provide('formData', formData);
 /**
@@ -68,7 +68,7 @@ function clearValidate() {
 onMounted(async (): Promise<void> => {
   if (props.componentSchema?.type === 'form' && forms.value && form.value) {
     const name =
-      props.componentSchema?.componentProps?.name ??
+      props.componentSchema?.props?.name ??
       props.componentSchema?.name ??
       ('default' as string);
 
@@ -78,8 +78,8 @@ onMounted(async (): Promise<void> => {
   }
 });
 
-const componentProps = computed(() => {
-  const recordProps = props.componentSchema!.componentProps;
+const formProps = computed(() => {
+  const recordProps = props.componentSchema!.props;
   return recordProps;
 });
 
@@ -96,7 +96,7 @@ defineExpose({
 });
 </script>
 <template>
-  <NForm ref="form" :model="formData" v-bind="componentProps">
+  <NForm ref="form" :model="formData" v-bind="formProps">
     <slot name="edit-node">
       <slot
         v-for="item in children"

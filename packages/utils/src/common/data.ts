@@ -1,9 +1,8 @@
-import type { ComponentSchema } from '@epic-designer/types';
+import type { ComponentSchema, PageSchema } from '@epic-designer/types';
 
 import { isProxy, isRef, toRaw } from 'vue';
 
 import { pluginManager } from '@epic-designer/manager';
-import { PageSchema } from '@epic-designer/types';
 
 import { getUUID } from './string';
 
@@ -451,7 +450,7 @@ export function getFormSchemas(
     (currentNode) => {
       return (
         currentNode.type === 'form' &&
-        (currentNode.componentProps?.name ?? currentNode.name === formName)
+        (currentNode.props?.name ?? currentNode.name === formName)
       );
     },
     true,
@@ -655,13 +654,13 @@ export function convertKFormData(data: any) {
   const convertedData: PageSchema = {
     schemas: [
       {
-        componentProps: {
+        id: 'root',
+        label: '页面',
+        props: {
           style: {
             padding: '16px',
           },
         },
-        id: 'root',
-        label: '页面',
         type: 'page',
         children: [
           {
@@ -670,7 +669,7 @@ export function convertKFormData(data: any) {
             icon: 'epic-icon-daibanshixiang',
             labelWidth: data.config.labelWidth || 100,
             name: 'default',
-            componentProps: {
+            props: {
               colon: data.config.colon || true,
               hideRequiredMark: data.config.hideRequiredMark || false,
               labelAlign: data.config.labelAlign || 'right',
@@ -732,13 +731,13 @@ export function recursionConvertedNode(
 ): ComponentSchema[] {
   return children.map((item) => {
     let type = item.type ?? '';
-    const componentProps = item.options ?? ({} as Record<string, unknown>);
+    const props = item.options ?? ({} as Record<string, unknown>);
 
     const handleUploadComponent = (uploadType: string, replacement: string) => {
       if (type === uploadType) {
         type = replacement;
-        if (typeof componentProps.defaultValue === 'string') {
-          componentProps.defaultValue = JSON.parse(componentProps.defaultValue);
+        if (typeof props.defaultValue === 'string') {
+          props.defaultValue = JSON.parse(props.defaultValue);
         }
       }
     };
@@ -746,29 +745,29 @@ export function recursionConvertedNode(
     handleUploadComponent('uploadImg', 'upload-image');
     handleUploadComponent('uploadFile', 'upload-file');
 
-    if (type === 'date' && componentProps.range) {
-      componentProps.type = 'daterange';
-      delete componentProps.range;
+    if (type === 'date' && props.range) {
+      props.type = 'daterange';
+      delete props.range;
     }
 
     if (type === 'date' || type === 'time') {
-      componentProps.valueFormat = componentProps.format;
+      props.valueFormat = props.format;
     }
 
     if (type === 'textarea') {
-      const { maxRows, minRows } = componentProps;
-      componentProps.autoSize = { maxRows, minRows };
-      delete componentProps.minRows;
-      delete componentProps.maxRows;
+      const { maxRows, minRows } = props;
+      props.autoSize = { maxRows, minRows };
+      delete props.minRows;
+      delete props.maxRows;
     }
 
-    if (type === 'number' && !componentProps.precision) {
-      delete componentProps.precision;
+    if (type === 'number' && !props.precision) {
+      delete props.precision;
     }
 
-    if (componentProps.width) {
-      componentProps.style = { width: componentProps.width };
-      delete componentProps.width;
+    if (props.width) {
+      props.style = { width: props.width };
+      delete props.width;
     }
 
     if (type === 'grid') {
@@ -778,31 +777,31 @@ export function recursionConvertedNode(
 
     if (parent && parent.type === 'grid') {
       type = 'col';
-      componentProps.span = item.span;
+      props.span = item.span;
       item.key = getUUID();
     }
 
     // 创建新的节点数据
     const newItem: ComponentSchema = {
-      componentProps,
       field: item.model,
       icon: item.icon || '',
       id: item.key,
       label: item.label,
+      props,
       type,
     };
 
     // 隐藏label 和 无FormItem 数据
-    if (componentProps.noFormItem || !componentProps.showLabel) {
+    if (props.noFormItem || !props.showLabel) {
       newItem.noFormItem = true;
-      delete componentProps.noFormItem;
-      delete componentProps.showLabel;
+      delete props.noFormItem;
+      delete props.showLabel;
     }
 
     // 清空属性字段
-    if (componentProps.clearable) {
-      componentProps.allowClear = true;
-      delete componentProps.clearable;
+    if (props.clearable) {
+      props.allowClear = true;
+      delete props.clearable;
     }
 
     // 输入组件
@@ -849,4 +848,32 @@ export function recursionConvertedNode(
 
     return newItem;
   });
+}
+
+/**
+ * 迁移 componentProps 到 props
+ * @param pageSchema 页面Schema
+ * @param shouldWarn 是否打印警告
+ */
+export function migrateComponentProps(
+  pageSchema: PageSchema,
+  shouldWarn = false,
+) {
+  // 判断是否存在旧的属性警告提示
+  let hasWarned = false;
+  findSchemas(pageSchema.schemas, (schema) => {
+    // 兼容旧版本的 componentProps
+    if (schema.componentProps) {
+      schema.props = schema.componentProps;
+      delete schema.componentProps;
+      hasWarned = true;
+    }
+    return false;
+  });
+  if (hasWarned && shouldWarn) {
+    console.warn(
+      '[Epic] PageSchema中的componentProps属性已迁移到props，请使用新版本设计器更新数据',
+    );
+  }
+  return pageSchema;
 }

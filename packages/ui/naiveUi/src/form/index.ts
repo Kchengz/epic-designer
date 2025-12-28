@@ -19,17 +19,17 @@ export default {
     ],
     attribute: [
       {
-        field: 'componentProps.name',
+        field: 'props.name',
         label: 'name',
         type: 'input',
       },
       {
-        field: 'componentProps.labelWidth',
+        field: 'props.labelWidth',
         label: '标签宽度',
         type: 'EInputSize',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -43,12 +43,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.labelPlacement',
+        field: 'props.labelPlacement',
         label: '标签位置',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -62,12 +62,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.labelAlign',
+        field: 'props.labelAlign',
         label: '标签对齐方式',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -81,12 +81,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.requireMarkPlacement',
+        field: 'props.requireMarkPlacement',
         label: '必填星号位置',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -104,29 +104,29 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '表单尺寸',
         type: 'select',
       },
       {
-        field: 'componentProps.inline',
+        field: 'props.inline',
         label: '行内模式',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       hideRequiredMark: false,
       labelCol: {
         span: 5,

@@ -16,12 +16,12 @@ export default {
       },
 
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'slider',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -39,102 +39,102 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.min',
+        field: 'props.min',
         label: '最小值',
         onChange: ({ componentAttributes, value, values }) => {
           const componentIndex = componentAttributes.value.findIndex(
-            (item) => item.field === 'componentProps.max',
+            (item) => item.field === 'props.max',
           );
           const componentConfig = componentAttributes.value[componentIndex];
-          componentConfig.componentProps = {
+          componentConfig.props = {
             min: value,
           };
-          if ((values.componentProps.max ?? 0) < value) {
-            values.componentProps.max = value;
+          if ((values.props.max ?? 0) < value) {
+            values.props.max = value;
           }
         },
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.max',
+        field: 'props.max',
         label: '最大值',
         onChange: ({ componentAttributes, value, values }) => {
           const componentIndex = componentAttributes.value.findIndex(
-            (item) => item.field === 'componentProps.min',
+            (item) => item.field === 'props.min',
           );
           const componentConfig = componentAttributes.value[componentIndex];
-          componentConfig.componentProps = {
+          componentConfig.props = {
             max: value,
           };
-          if ((values.componentProps.min ?? 0) > value) {
-            values.componentProps.min = value;
+          if ((values.props.min ?? 0) > value) {
+            values.props.min = value;
           }
         },
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.step',
+        field: 'props.step',
         label: '步长',
         type: 'number',
       },
       {
-        field: 'componentProps.showStops',
+        field: 'props.showStops',
         label: '显示间断点',
         type: 'switch',
       },
       {
-        field: 'componentProps.showTooltip',
+        field: 'props.showTooltip',
         label: '提示信息',
         type: 'switch',
       },
       {
-        field: 'componentProps.range',
+        field: 'props.range',
         label: '开启选择范围',
         type: 'switch',
       },
       {
-        field: 'componentProps.vertical',
+        field: 'props.vertical',
         label: '垂直模式',
         type: 'switch',
       },
       {
-        field: 'componentProps.height',
+        field: 'props.height',
         label: '高度',
         show: ({ values }) => {
-          return values.componentProps.vertical;
+          return values.props.vertical;
         },
         type: 'EInputSize',
       },
       {
-        field: 'componentProps.showInput',
+        field: 'props.showInput',
         label: '显示数字框',
         onChange: ({ value, values }) => {
-          value ? (values.componentProps.showInputControls = true) : null;
+          value ? (values.props.showInputControls = true) : null;
         },
         type: 'switch',
       },
       {
-        field: 'componentProps.showInputControls',
+        field: 'props.showInputControls',
         label: '控制按钮',
-        show: ({ values }) => values.componentProps.showInput,
+        show: ({ values }) => values.props.showInput,
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           options: [
             {
               label: 'top',
@@ -187,22 +187,22 @@ export default {
           ],
         },
         defaultValue: 'bottom-start',
-        field: 'componentProps.placement',
+        field: 'props.placement',
         label: '提示框位置',
         type: 'select',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           ruleType: 'number',
         },
         description: '校验规则需要配合表单使用',
@@ -224,7 +224,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       placement: 'top-start',
       showTooltip: true,
     },

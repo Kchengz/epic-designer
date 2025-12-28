@@ -5,14 +5,14 @@ export default {
   config: {
     attribute: [
       {
-        field: 'componentProps.span',
+        field: 'props.span',
         label: '占位格数',
         type: 'number',
       },
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       span: 6,
     },
     label: '栅格布局-列',

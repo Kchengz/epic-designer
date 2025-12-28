@@ -10,7 +10,7 @@ export default {
         type: 'EColEditor',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
@@ -23,7 +23,7 @@ export default {
       {
         type: 'collapse-item',
         children: [],
-        componentProps: {
+        props: {
           span: 12,
         },
         id: 'g062zikd2jk001',
@@ -31,7 +31,7 @@ export default {
       {
         type: 'collapse-item',
         children: [],
-        componentProps: {
+        props: {
           span: 12,
         },
         id: 'gy5z9jtfb3s001',

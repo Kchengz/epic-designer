@@ -13,7 +13,7 @@ const props = defineProps({
 });
 </script>
 <template>
-  <Button v-bind="props.componentSchema?.componentProps">
+  <Button v-bind="props.componentSchema?.props">
     <slot>{{ props.componentSchema?.label }}</slot>
   </Button>
 </template>

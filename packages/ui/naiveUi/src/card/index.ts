@@ -10,7 +10,7 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },

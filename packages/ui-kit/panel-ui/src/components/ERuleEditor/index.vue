@@ -40,7 +40,7 @@ const requiredRuleSchemas = [
     type: 'switch',
   },
   {
-    componentProps: {
+    props: {
       mode: 'multiple',
       multiple: true,
       options: triggerOptions,
@@ -54,7 +54,7 @@ const requiredRuleSchemas = [
     type: 'select',
   },
   {
-    componentProps: { options: typeOptions, placeholder: '类型' },
+    props: { options: typeOptions, placeholder: '类型' },
     label: '类型',
     model: 'type',
     show() {
@@ -63,7 +63,7 @@ const requiredRuleSchemas = [
     type: 'select',
   },
   {
-    componentProps: { placeholder: '校验信息' },
+    props: { placeholder: '校验信息' },
     label: '校验信息',
     model: 'message',
     show() {

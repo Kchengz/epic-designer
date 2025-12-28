@@ -5,7 +5,7 @@ import { getMatchedById } from '../../';
 // 示例数据
 const schemas = [
   {
-    componentProps: {
+    props: {
       style: {
         padding: '16px',
       },
@@ -17,7 +17,7 @@ const schemas = [
       {
         label: '表单',
         type: 'form',
-        componentProps: {
+        props: {
           labelCol: {
             span: 5,
           },
@@ -34,7 +34,7 @@ const schemas = [
             type: 'input',
             field: 'input_ttuyobv9',
             input: true,
-            componentProps: {
+            props: {
               placeholder: '请输入',
             },
             id: 'input_ttuyobv9',
@@ -44,7 +44,7 @@ const schemas = [
             type: 'number',
             field: 'number_m7ogpi26',
             input: true,
-            componentProps: {
+            props: {
               placeholder: '请输入',
               style: {
                 width: '100%',

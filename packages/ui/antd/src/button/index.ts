@@ -10,7 +10,7 @@ export default {
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -40,12 +40,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.type',
+        field: 'props.type',
         label: '类型',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -63,21 +63,21 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.htmlType',
+        field: 'props.htmlType',
         label: '操作类型',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           placeholder: '请输入',
         },
-        field: 'componentProps.href',
+        field: 'props.href',
         label: '链接',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -99,13 +99,13 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.target',
+        field: 'props.target',
         label: '链接打开方式',
-        show: ({ values }) => values.componentProps?.href,
+        show: ({ values }) => values.props?.href,
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -123,12 +123,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -146,37 +146,37 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.shape',
+        field: 'props.shape',
         label: '形状',
         type: 'select',
       },
       {
-        field: 'componentProps.ghost',
+        field: 'props.ghost',
         label: '幽灵按钮',
         type: 'switch',
       },
       {
-        field: 'componentProps.loading',
+        field: 'props.loading',
         label: '加载状态',
         type: 'switch',
       },
       {
-        field: 'componentProps.block',
+        field: 'props.block',
         label: '宽度自适应',
         type: 'switch',
       },
       {
-        field: 'componentProps.danger',
+        field: 'props.danger',
         label: '危险按钮',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },

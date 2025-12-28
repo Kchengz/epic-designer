@@ -5,17 +5,17 @@ export default {
   config: {
     attribute: [
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.name',
+        field: 'props.name',
         label: '页面名称',
         type: 'input',
       },
     ],
   },
   defaultSchema: {
-    componentProps: {},
+    props: {},
     label: '页面',
     type: 'page',
     children: [],

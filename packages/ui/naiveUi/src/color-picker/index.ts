@@ -17,12 +17,12 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'color-picker',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -41,12 +41,12 @@ export default {
           placeholder: '请选择',
         },
         defaultValue: 'default',
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -100,12 +100,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.placement',
+        field: 'props.placement',
         label: '菜单弹出的位置',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           max: 1,
           options: [
             {
@@ -126,27 +126,27 @@ export default {
             },
           ],
         },
-        field: 'componentProps.modes',
+        field: 'props.modes',
         label: '格式',
         type: 'checkbox',
       },
       {
-        field: 'componentProps.showPreview',
+        field: 'props.showPreview',
         label: '展示预览块',
         type: 'switch',
       },
       {
-        field: 'componentProps.showAlpha',
+        field: 'props.showAlpha',
         label: '可调节透明度',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
@@ -166,7 +166,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       modes: ['hex'],
       showAlpha: true,
       type: 'color',

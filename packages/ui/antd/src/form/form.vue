@@ -36,7 +36,7 @@ const form = ref<FormInstance | null>(null);
 const forms = inject<{ [name: string]: any }>('forms', {});
 const formData = pageManager.setFormData(
   {},
-  props.componentSchema?.componentProps?.name,
+  props.componentSchema?.props?.name,
 );
 provide('formData', formData);
 
@@ -76,7 +76,7 @@ const mountedForm = (vNode: VNode) => {
 
   if (props.componentSchema?.type === 'form' && forms.value && form.value) {
     const name =
-      props.componentSchema?.componentProps?.name ??
+      props.componentSchema?.props?.name ??
       props.componentSchema?.name ??
       ('default' as string);
 
@@ -88,8 +88,8 @@ const mountedForm = (vNode: VNode) => {
   }
 };
 
-const componentProps = computed(() => {
-  const recordProps = props.componentSchema!.componentProps;
+const formProps = computed(() => {
+  const recordProps = props.componentSchema!.props;
   let labelCol = recordProps.labelCol;
   let wrapperCol = recordProps.wrapperCol;
   if (recordProps.layout === 'vertical') {
@@ -132,7 +132,7 @@ defineExpose({
 <template>
   <Form
     :model="formData"
-    v-bind="componentProps"
+    v-bind="formProps"
     @finish="onFinish"
     @vue:mounted="mountedForm"
   >

@@ -15,17 +15,17 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'select',
       },
       {
-        field: 'componentProps.placeholder',
+        field: 'props.placeholder',
         label: '占位内容',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -43,46 +43,46 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        field: 'componentProps.multiple',
+        field: 'props.multiple',
         label: '可多选',
         onChange: ({ value, values }) => {
-          values.componentProps.defaultValue = value ? [] : null;
+          values.props.defaultValue = value ? [] : null;
         },
         type: 'switch',
       },
       {
-        field: 'componentProps.collapseTags',
+        field: 'props.collapseTags',
         label: '多选隐藏',
         show: ({ values }) => {
-          return values.componentProps.multiple;
+          return values.props.multiple;
         },
         type: 'switch',
       },
       {
-        field: 'componentProps.collapseTagsTooltip',
+        field: 'props.collapseTagsTooltip',
         label: '隐藏提示',
         show: ({ values }) => {
           return (
-            values.componentProps.multiple && values.componentProps.collapseTags
+            values.props.multiple && values.props.collapseTags
           );
         },
         type: 'switch',
       },
       {
-        field: 'componentProps.reserveKeyword',
+        field: 'props.reserveKeyword',
         label: '保留搜索关键字',
         show: ({ values }) => {
-          return values.componentProps.multiple;
+          return values.props.multiple;
         },
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           options: [
             {
               label: 'success',
@@ -103,23 +103,23 @@ export default {
           ],
         },
         defaultValue: 'info',
-        field: 'componentProps.tagType',
+        field: 'props.tagType',
         label: '标签类型',
         show: ({ values }) => {
-          return values.componentProps.multiple;
+          return values.props.multiple;
         },
         type: 'select',
       },
       {
-        field: 'componentProps.multipleLimit',
+        field: 'props.multipleLimit',
         label: '多选限制',
         show: ({ values }) => {
-          return values.componentProps.multiple;
+          return values.props.multiple;
         },
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           options: [
             {
               label: 'light',
@@ -131,22 +131,22 @@ export default {
             },
           ],
         },
-        field: 'componentProps.effect',
+        field: 'props.effect',
         label: '提示主题',
         type: 'select',
       },
       {
-        field: 'componentProps.filterable',
+        field: 'props.filterable',
         label: '可筛选',
         type: 'switch',
       },
       {
-        field: 'componentProps.allowCreate',
+        field: 'props.allowCreate',
         label: '允许创建条目',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           options: [
             {
               label: 'top',
@@ -199,41 +199,41 @@ export default {
           ],
         },
         defaultValue: 'bottom-start',
-        field: 'componentProps.placement',
+        field: 'props.placement',
         label: '下拉框位置',
         type: 'select',
       },
       {
-        field: 'componentProps.fitInputWidth',
+        field: 'props.fitInputWidth',
         label: '下拉框宽度与输入框相同',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.noDataText',
+        field: 'props.noDataText',
         label: '无数据时文本',
         type: 'input',
       },
       {
-        field: 'componentProps.clearable',
+        field: 'props.clearable',
         label: '可清空',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
         description: '配置选项',
-        field: 'componentProps.options',
+        field: 'props.options',
         label: '选项管理',
         layout: 'vertical',
         type: 'EOptionsEditor',
@@ -254,7 +254,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       effect: 'light',
       options: [
         {

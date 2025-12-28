@@ -6,7 +6,7 @@ export function useFormSchema() {
   // 表单模式默认schema数据
   const formSchema: ComponentSchema[] = [
     {
-      componentProps: {
+      props: {
         colon: true,
         labelAlign: 'right',
         labelCol: {

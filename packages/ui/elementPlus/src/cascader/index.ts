@@ -25,17 +25,17 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'cascader',
       },
       {
-        field: 'componentProps.placeholder',
+        field: 'props.placeholder',
         label: '占位内容',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -53,20 +53,20 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.separator',
+        field: 'props.separator',
         label: '分割符',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -80,88 +80,88 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.props.expandTrigger',
+        field: 'props.props.expandTrigger',
         label: '次级菜单展开方式',
         type: 'select',
       },
       {
-        field: 'componentProps.filterable',
+        field: 'props.filterable',
         label: '可搜索',
         type: 'switch',
       },
       {
-        field: 'componentProps.props.multiple',
+        field: 'props.props.multiple',
         label: '可多选',
         onChange: ({ value, values }) => {
-          values.componentProps.defaultValue = value ? [] : null;
+          values.props.defaultValue = value ? [] : null;
         },
         type: 'switch',
       },
       {
-        field: 'componentProps.collapseTags',
+        field: 'props.collapseTags',
         label: '折叠Tag',
-        show: ({ values }) => values.componentProps.props.multiple,
+        show: ({ values }) => values.props.props.multiple,
         type: 'switch',
       },
       {
-        field: 'componentProps.collapseTagsTooltip',
+        field: 'props.collapseTagsTooltip',
         label: '显示被折叠标签',
         show: ({ values }) =>
-          values.componentProps.props.multiple &&
-          values.componentProps.collapseTags,
+          values.props.props.multiple &&
+          values.props.collapseTags,
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           activeValue: false,
           inactiveValue: true,
         },
-        field: 'componentProps.showAllLevels',
+        field: 'props.showAllLevels',
         label: '不显示路径',
         type: 'switch',
       },
       {
         description: '父子节点不互相关联',
-        field: 'componentProps.props.checkStrictly',
+        field: 'props.props.checkStrictly',
         label: '父级可选',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           activeValue: false,
           inactiveValue: true,
         },
-        field: 'componentProps.props.emitPath',
+        field: 'props.props.emitPath',
         label: '只获取选中节点',
         type: 'switch',
       },
       {
-        field: 'componentProps.clearable',
+        field: 'props.clearable',
         label: '可清空',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           tree: true,
         },
         description: '配置选项',
-        field: 'componentProps.options',
+        field: 'props.options',
         label: '选项管理',
         layout: 'vertical',
         type: 'EOptionsEditor',
       },
       {
-        componentProps: {
+        props: {
           ruleType: 'array',
         },
         description: '校验规则需要配合表单使用',
@@ -187,7 +187,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       options: [
         {
           label: '选项1',

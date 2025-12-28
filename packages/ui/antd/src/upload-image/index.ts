@@ -16,36 +16,36 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.action',
+        field: 'props.action',
         label: '请求地址',
         type: 'input',
       },
       {
-        field: 'componentProps.multiple',
+        field: 'props.multiple',
         label: '多选',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           min: 0,
           placeholder: '请输入',
         },
-        field: 'componentProps.maxCount',
+        field: 'props.maxCount',
         label: '允许上传最大数量',
         type: 'number',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           ruleType: 'string',
         },
         description: '校验规则需要配合表单使用',
@@ -57,7 +57,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       action: 'https://examples.epicjs.cn/epic-mock/common/upload',
     },
     field: 'uploadImage',

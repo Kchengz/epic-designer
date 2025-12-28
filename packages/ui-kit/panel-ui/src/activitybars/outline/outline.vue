@@ -32,13 +32,13 @@ function handleNodeClick(e: any) {
       <template #tree-node="{ schema }">
         <div
           class="epic-text-padding flex"
-          :class="{ hidden: schema.componentProps?.hidden }"
+          :class="{ hidden: schema.props?.hidden }"
           @mouseenter.stop="designer.setHoverNode(schema)"
           @mouseleave.stop="designer.setHoverNode(null)"
         >
           <span class="max-w-full truncate">
             <EpicIcon
-              v-if="schema.componentProps?.hidden"
+              v-if="schema.props?.hidden"
               name="icon--epic--visibility-off-outline-rounded"
               class="translate-y-2px"
             />

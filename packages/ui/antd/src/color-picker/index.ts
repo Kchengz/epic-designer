@@ -17,12 +17,12 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -40,31 +40,31 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'componentProps.bordered',
+        field: 'props.bordered',
         label: '无边框',
         type: 'switch',
       },
       {
-        field: 'componentProps.allowClear',
+        field: 'props.allowClear',
         label: '可清空',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
@@ -92,7 +92,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       style: {
         width: '80px',
       },

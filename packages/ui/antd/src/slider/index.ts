@@ -16,17 +16,17 @@ export default {
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           style: {
             width: '100%',
           },
         },
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'slider',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -44,75 +44,75 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
         changeSync: true,
-        field: 'componentProps.range',
+        field: 'props.range',
         label: '范围选择',
         onChange: ({ value, values }) => {
-          values.componentProps.defaultValue = value ? [0, 100] : 0;
+          values.props.defaultValue = value ? [0, 100] : 0;
         },
         type: 'switch',
       },
       {
-        field: 'componentProps.reverse',
+        field: 'props.reverse',
         label: '倒转轨道',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.step',
+        field: 'props.step',
         label: '步长',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.min',
+        field: 'props.min',
         label: '最小值',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.max',
+        field: 'props.max',
         label: '最大值',
         type: 'number',
       },
       {
-        field: 'componentProps.vertical',
+        field: 'props.vertical',
         label: '垂直模式',
         type: 'switch',
       },
       {
-        field: 'componentProps.dots',
+        field: 'props.dots',
         label: '显示刻度',
         type: 'switch',
       },
       // {
       //   label: "持续显示提示",
       //   type: "switch",
-      //   field: "componentProps.tooltipOpen",
+      //   field: "props.tooltipOpen",
       // },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           ruleType: 'number',
         },
         description: '校验规则需要配合表单使用',

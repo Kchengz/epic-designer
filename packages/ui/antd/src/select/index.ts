@@ -30,20 +30,20 @@ export default {
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.placeholder',
+        field: 'props.placeholder',
         label: '占位内容',
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -61,21 +61,21 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
 
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.listHeight',
+        field: 'props.listHeight',
         label: '弹窗高度',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -93,36 +93,36 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.mode',
+        field: 'props.mode',
         label: '模式',
         type: 'select',
       },
       {
-        field: 'componentProps.showSearch',
+        field: 'props.showSearch',
         label: '可搜索',
         type: 'switch',
       },
       {
-        field: 'componentProps.autoClearSearchValue',
+        field: 'props.autoClearSearchValue',
         label: '选中选项后清空搜索框',
         show: ({ values }) =>
-          values.componentProps.mode && values.componentProps.showSearch,
+          values.props.mode && values.props.showSearch,
         type: 'switch',
       },
       {
-        field: 'componentProps.maxTagTextLength',
+        field: 'props.maxTagTextLength',
         label: '最大tag文本长度',
-        show: ({ values }) => values.componentProps.mode,
+        show: ({ values }) => values.props.mode,
         type: 'number',
       },
       {
-        field: 'componentProps.maxTagCount',
+        field: 'props.maxTagCount',
         label: '最大tag显示数',
-        show: ({ values }) => values.componentProps.mode,
+        show: ({ values }) => values.props.mode,
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -144,41 +144,41 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.placement',
+        field: 'props.placement',
         label: '弹出框位置',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'componentProps.bordered',
+        field: 'props.bordered',
         label: '无边框',
         type: 'switch',
       },
       {
-        field: 'componentProps.allowClear',
+        field: 'props.allowClear',
         label: '可清空',
         type: 'switch',
       },
       {
-        field: 'componentProps.labelInValue',
+        field: 'props.labelInValue',
         label: 'labelInValue',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        field: 'componentProps.options',
+        field: 'props.options',
         label: '选项管理',
         layout: 'vertical',
         type: 'EOptionsEditor',
@@ -207,7 +207,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       options: [
         {
           label: '选项1',

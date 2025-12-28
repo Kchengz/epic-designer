@@ -31,7 +31,7 @@ const methodOptions = computed(() => {
 
 const ruleItemSchemas = [
   {
-    componentProps: {
+    props: {
       mode: 'multiple',
       multiple: true,
       options: triggerOptions,
@@ -47,7 +47,7 @@ const ruleItemSchemas = [
     type: 'switch',
   },
   {
-    componentProps: { options: methodOptions.value, placeholder: '校验函数' },
+    props: { options: methodOptions.value, placeholder: '校验函数' },
     label: '校验函数',
     model: 'validator',
     show() {
@@ -56,7 +56,7 @@ const ruleItemSchemas = [
     type: 'select',
   },
   {
-    componentProps: { options: typeOptions, placeholder: '类型' },
+    props: { options: typeOptions, placeholder: '类型' },
     label: '类型',
     model: 'type',
     show() {
@@ -65,7 +65,7 @@ const ruleItemSchemas = [
     type: 'select',
   },
   {
-    componentProps: { placeholder: '正则校验' },
+    props: { placeholder: '正则校验' },
     label: '正则校验',
     model: 'pattern',
     show() {
@@ -74,7 +74,7 @@ const ruleItemSchemas = [
     type: 'input',
   },
   {
-    componentProps: { min: 0, placeholder: '字段长度' },
+    props: { min: 0, placeholder: '字段长度' },
     label: '字段长度',
     model: 'len',
     show() {
@@ -83,7 +83,7 @@ const ruleItemSchemas = [
     type: 'number',
   },
   {
-    componentProps: { min: 0, placeholder: '最小长度' },
+    props: { min: 0, placeholder: '最小长度' },
     label: '最小长度',
     model: 'min',
     show() {
@@ -92,7 +92,7 @@ const ruleItemSchemas = [
     type: 'number',
   },
   {
-    componentProps: { min: 0, placeholder: '最大长度' },
+    props: { min: 0, placeholder: '最大长度' },
     label: '最大长度',
     model: 'max',
     show() {
@@ -101,7 +101,7 @@ const ruleItemSchemas = [
     type: 'number',
   },
   {
-    componentProps: { placeholder: '校验信息' },
+    props: { placeholder: '校验信息' },
     label: '校验信息',
     model: 'message',
     type: 'input',

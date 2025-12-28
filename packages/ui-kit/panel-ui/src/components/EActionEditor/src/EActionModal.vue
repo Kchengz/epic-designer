@@ -167,15 +167,15 @@ function handleSave() {
     const componentConfig = pluginManager.component.getConfigByType(
       componentSchema.value.type,
     ).config;
-    // 过滤出以 componentProps 开头的可被修改的属性
+    // 过滤出以 props 开头的可被修改的属性
     const componentAttributes = (componentConfig.attribute || []).filter(
-      ({ field }) => String(field).startsWith('componentProps'),
+      ({ field }) => String(field).startsWith('props'),
     );
     // 解析当前动作的参数
     const args = JSON.parse(state.actionItem.args || '[]');
     // 查找参数对应的属性索引
     const attributeIndex = componentAttributes.findIndex(
-      ({ field }) => field === `componentProps.${args[0]}`,
+      ({ field }) => field === `props.${args[0]}`,
     );
     if (attributeIndex !== -1) {
       // 重新构造参数，确保只包含属性名和属性值
@@ -275,11 +275,11 @@ defineExpose({
               <template #tree-node="{ schema }">
                 <div
                   class="epic-text-padding hover:bg-$ep-muted flex items-center"
-                  :class="{ hidden: schema.componentProps?.hidden }"
+                  :class="{ hidden: schema.props?.hidden }"
                 >
                   <span class="max-w-full truncate">
                     <EpicIcon
-                      v-if="schema.componentProps?.hidden"
+                      v-if="schema.props?.hidden"
                       name="icon--epic--visibility-off-outline-rounded"
                       class="translate-y-2px"
                     />

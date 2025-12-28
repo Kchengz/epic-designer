@@ -19,12 +19,12 @@ export default {
     ],
     attribute: [
       {
-        field: 'componentProps.name',
+        field: 'props.name',
         label: 'Name',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           'option-type': 'button',
           options: [
@@ -43,12 +43,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.layout',
+        field: 'props.layout',
         label: '表单布局',
         type: 'radio',
       },
       {
-        componentProps: {
+        props: {
           'option-type': 'button',
           options: [
             {
@@ -61,42 +61,42 @@ export default {
             },
           ],
         },
-        field: 'componentProps.labelLayout',
+        field: 'props.labelLayout',
         label: '标签布局',
         type: 'radio',
       },
       {
-        field: 'componentProps.labelWidth',
+        field: 'props.labelWidth',
         label: '标签宽度',
         show: ({ values }) => {
-          return values.componentProps?.labelLayout === 'fixed';
+          return values.props?.labelLayout === 'fixed';
         },
         type: 'EInputSize',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.labelCol.span',
+        field: 'props.labelCol.span',
         label: '标签占比',
         show: ({ values }) => {
-          return values.componentProps?.labelLayout === 'flex';
+          return values.props?.labelLayout === 'flex';
         },
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.wrapperCol.span',
+        field: 'props.wrapperCol.span',
         label: '控件占比',
         show: ({ values }) => {
-          return values.componentProps?.labelLayout === 'flex';
+          return values.props?.labelLayout === 'flex';
         },
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           'option-type': 'button',
           options: [
             {
@@ -109,12 +109,12 @@ export default {
             },
           ],
         },
-        field: 'componentProps.labelAlign',
+        field: 'props.labelAlign',
         label: '标签对齐',
         type: 'radio',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -133,49 +133,49 @@ export default {
           placeholder: '请选择',
         },
         defaultValue: 'default',
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'componentProps.colon',
+        field: 'props.colon',
         label: '隐藏冒号',
         type: 'switch',
       },
       {
-        field: 'componentProps.hideRequiredMark',
+        field: 'props.hideRequiredMark',
         label: '隐藏必须标志',
         type: 'switch',
       },
 
       {
-        field: 'componentProps.labelWrap',
+        field: 'props.labelWrap',
         label: '标签文本换行',
         type: 'switch',
       },
       {
-        field: 'componentProps.scrollToFirstError',
+        field: 'props.scrollToFirstError',
         label: '滚动校验错误处',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       labelCol: {
         span: 5,
       },

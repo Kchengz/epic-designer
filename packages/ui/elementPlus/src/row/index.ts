@@ -5,7 +5,7 @@ export default {
   config: {
     attribute: [
       {
-        componentProps: {
+        props: {
           options: [
             {
               label: 'top',
@@ -23,12 +23,12 @@ export default {
           placeholder: '请选择',
           style: { width: '100%' },
         },
-        field: 'componentProps.align',
+        field: 'props.align',
         label: '垂直对齐方式',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           options: [
             {
               label: 'start',
@@ -54,15 +54,15 @@ export default {
           placeholder: '请选择',
           style: { width: '100%' },
         },
-        field: 'componentProps.justify',
+        field: 'props.justify',
         label: '水平排列方式',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.gutter',
+        field: 'props.gutter',
         label: '栅格间距',
         type: 'number',
       },
@@ -72,7 +72,7 @@ export default {
         type: 'EColEditor',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
@@ -85,14 +85,14 @@ export default {
       {
         type: 'col',
         children: [],
-        componentProps: {
+        props: {
           span: 12,
         },
       },
       {
         type: 'col',
         children: [],
-        componentProps: {
+        props: {
           span: 12,
         },
       },

@@ -10,7 +10,7 @@ export default {
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -36,12 +36,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.type',
+        field: 'props.type',
         label: '类型',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -59,50 +59,50 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.native-type',
+        field: 'props.native-type',
         label: '操作类型',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           type: 'color',
         },
-        field: 'componentProps.color',
+        field: 'props.color',
         label: '自定义颜色',
         type: 'color-picker',
       },
       {
-        field: 'componentProps.plain',
+        field: 'props.plain',
         label: '朴素按钮',
         type: 'switch',
       },
       {
-        field: 'componentProps.round',
+        field: 'props.round',
         label: '圆角按钮',
         type: 'switch',
       },
       {
-        field: 'componentProps.circle',
+        field: 'props.circle',
         label: '圆形按钮',
         type: 'switch',
       },
       {
-        field: 'componentProps.text',
+        field: 'props.text',
         label: '文字按钮',
         type: 'switch',
       },
       {
-        field: 'componentProps.loading',
+        field: 'props.loading',
         label: '加载状态',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },

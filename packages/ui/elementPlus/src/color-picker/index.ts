@@ -16,12 +16,12 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'color-picker',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -39,12 +39,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -66,22 +66,22 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.colorFormat',
+        field: 'props.colorFormat',
         label: '格式',
         type: 'select',
       },
       {
-        field: 'componentProps.showAlpha',
+        field: 'props.showAlpha',
         label: '透明度选择',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },

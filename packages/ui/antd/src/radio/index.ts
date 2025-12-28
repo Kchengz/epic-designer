@@ -16,12 +16,12 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'radio',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -39,31 +39,31 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           checkedValue: 'button',
           unCheckedValue: 'default',
         },
-        field: 'componentProps.optionType',
+        field: 'props.optionType',
         label: '按钮样式',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        field: 'componentProps.options',
+        field: 'props.options',
         label: '选项管理',
         layout: 'vertical',
         type: 'EOptionsEditor',
@@ -84,7 +84,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       options: [
         {
           label: '选项1',

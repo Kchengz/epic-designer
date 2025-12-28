@@ -16,65 +16,65 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'slider',
       },
       {
-        field: 'componentProps.keyboard',
+        field: 'props.keyboard',
         label: '键盘可控',
         type: 'switch',
       },
       {
         changeSync: true,
-        field: 'componentProps.range',
+        field: 'props.range',
         label: '范围选择',
         onChange: ({ value, values }) => {
-          values.componentProps.defaultValue = value ? [0, 100] : 0;
+          values.props.defaultValue = value ? [0, 100] : 0;
         },
         type: 'switch',
       },
       {
-        field: 'componentProps.reverse',
+        field: 'props.reverse',
         label: '倒转轨道',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.step',
+        field: 'props.step',
         label: '步长',
         type: 'number',
       },
       {
-        field: 'componentProps.showTooltip',
+        field: 'props.showTooltip',
         label: '一直显示提示',
         type: 'switch',
       },
       {
-        field: 'componentProps.vertical',
+        field: 'props.vertical',
         label: '垂直模式',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.max',
+        field: 'props.max',
         label: '最大值',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.min',
+        field: 'props.min',
         label: '最小值',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -128,22 +128,22 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.placement',
+        field: 'props.placement',
         label: '弹出位置',
         type: 'select',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           ruleType: 'number',
         },
         description: '校验规则需要配合表单使用',
@@ -165,7 +165,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       placement: 'top-start',
     },
     field: 'slider',

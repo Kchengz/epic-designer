@@ -34,17 +34,17 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'input',
       },
       {
-        field: 'componentProps.placeholder',
+        field: 'props.placeholder',
         label: '占位内容',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -66,12 +66,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -90,23 +90,23 @@ export default {
           placeholder: '请选择',
         },
         defaultValue: 'text',
-        field: 'componentProps.type',
+        field: 'props.type',
         label: '输入类型',
         onChange: ({ value, values }) => {
-          if (value !== 'text') values.componentProps.pair = false;
+          if (value !== 'text') values.props.pair = false;
         },
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.maxlength',
+        field: 'props.maxlength',
         label: '最大输入长度',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -120,55 +120,55 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.showPasswordOn',
+        field: 'props.showPasswordOn',
         label: '显示密码的时机',
-        show: ({ values }) => values.componentProps.type === 'password',
+        show: ({ values }) => values.props.type === 'password',
         type: 'select',
       },
       {
-        field: 'componentProps.rows',
+        field: 'props.rows',
         label: '行数',
-        show: ({ values }) => values.componentProps.type === 'textarea',
+        show: ({ values }) => values.props.type === 'textarea',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.separator',
+        field: 'props.separator',
         label: '分割符',
         show: ({ values }) =>
-          values.componentProps.type === 'text' && values.componentProps.pair,
+          values.props.type === 'text' && values.props.pair,
         type: 'input',
       },
       {
-        field: 'componentProps.round',
+        field: 'props.round',
         label: '是否圆角',
         type: 'switch',
       },
       {
-        field: 'componentProps.showCount',
+        field: 'props.showCount',
         label: '是否统计字数',
         type: 'switch',
       },
       {
-        field: 'componentProps.autosize',
+        field: 'props.autosize',
         label: '自适应内容高度',
-        show: ({ values }) => values.componentProps.type === 'textarea',
+        show: ({ values }) => values.props.type === 'textarea',
         type: 'switch',
       },
       {
-        field: 'componentProps.clearable',
+        field: 'props.clearable',
         label: '可清空',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
@@ -200,7 +200,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       defaultValue: '',
       placeholder: '请输入',
       type: 'text',

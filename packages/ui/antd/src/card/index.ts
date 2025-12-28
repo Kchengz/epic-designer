@@ -10,7 +10,7 @@ export default {
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -24,31 +24,31 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'componentProps.bordered',
+        field: 'props.bordered',
         label: '无边框',
         type: 'switch',
       },
       {
-        field: 'componentProps.hoverable',
+        field: 'props.hoverable',
         label: '鼠标悬停阴影',
         type: 'switch',
       },
       {
-        field: 'componentProps.loading',
+        field: 'props.loading',
         label: '加载状态',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },

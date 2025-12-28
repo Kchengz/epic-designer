@@ -53,8 +53,8 @@ function handleSetValue(value: any, field: string) {
             is-property
             :component-schema="{
               ...item,
-              componentProps: {
-                ...item.componentProps,
+              props: {
+                ...item.props,
                 input: false,
                 field: undefined,
                 hidden: false,

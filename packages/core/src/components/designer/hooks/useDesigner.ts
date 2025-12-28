@@ -25,7 +25,7 @@ import {
 let innerDefaultSchema: PageSchema = {
   schemas: [
     {
-      componentProps: {
+      props: {
         style: {
           padding: '16px',
         },

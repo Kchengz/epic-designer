@@ -22,17 +22,17 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'cascader',
       },
       {
-        field: 'componentProps.placeholder',
+        field: 'props.placeholder',
         label: '占位内容',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -54,38 +54,38 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        field: 'componentProps.multiple',
+        field: 'props.multiple',
         label: '多选',
         type: 'switch',
       },
       {
-        field: 'componentProps.cascade',
+        field: 'props.cascade',
         label: '多选时关联选项',
-        show: ({ values }) => values.componentProps.multiple,
+        show: ({ values }) => values.props.multiple,
         type: 'switch',
       },
       {
-        field: 'componentProps.separator',
+        field: 'props.separator',
         label: '分割符',
         type: 'switch',
       },
       {
-        field: 'componentProps.showPath',
+        field: 'props.showPath',
         label: '显示选项路径',
         type: 'switch',
       },
       {
-        field: 'componentProps.filterable',
+        field: 'props.filterable',
         label: '可搜索',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -139,43 +139,43 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.placement',
+        field: 'props.placement',
         label: '菜单弹出的位置',
         type: 'select',
       },
       {
-        field: 'componentProps.maxTagCount',
+        field: 'props.maxTagCount',
         label: '最大tag显示数',
-        show: ({ values }) => values.componentProps.multiple,
+        show: ({ values }) => values.props.multiple,
         type: 'number',
       },
       {
-        field: 'componentProps.clearable',
+        field: 'props.clearable',
         label: '可清空',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           tree: true,
         },
         description: '配置选项',
-        field: 'componentProps.options',
+        field: 'props.options',
         label: '选项管理',
         layout: 'vertical',
         type: 'EOptionsEditor',
       },
       {
-        componentProps: {
+        props: {
           ruleType: 'array',
         },
         description: '校验规则需要配合表单使用',
@@ -197,7 +197,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       cascade: false,
       options: [
         {

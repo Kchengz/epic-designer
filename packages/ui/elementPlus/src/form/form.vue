@@ -28,7 +28,7 @@ const form = ref<FormInstance | null>(null);
 const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>;
 const formData = pageManager.setFormData(
   {},
-  props.componentSchema?.componentProps?.name,
+  props.componentSchema?.props?.name,
 );
 provide('formData', formData);
 
@@ -58,7 +58,7 @@ function validate() {
 onMounted(async () => {
   if (props.componentSchema?.type === 'form' && forms.value && form.value) {
     const name =
-      props.componentSchema?.componentProps?.name ??
+      props.componentSchema?.props?.name ??
       props.componentSchema?.name ??
       ('default' as string);
 
@@ -69,8 +69,8 @@ onMounted(async () => {
   }
 });
 
-const componentProps = computed(() => {
-  const recordProps = props.componentSchema!.componentProps;
+const formProps = computed(() => {
+  const recordProps = props.componentSchema!.props;
   let labelCol = recordProps.labelCol;
   let wrapperCol = recordProps.wrapperCol;
   if (recordProps.labelLayout === 'fixed') {
@@ -99,7 +99,7 @@ defineExpose({
 </script>
 
 <template>
-  <ElForm ref="form" :model="formData" v-bind="componentProps">
+  <ElForm ref="form" :model="formData" v-bind="formProps">
     <slot name="edit-node">
       <slot
         v-for="item in children"

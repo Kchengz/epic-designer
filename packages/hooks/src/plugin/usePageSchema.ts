@@ -34,7 +34,7 @@ function migrateCanvasMode(schema: PageSchema): PageSchema {
 const innerDefaultSchema: PageSchema = {
   schemas: [
     {
-      componentProps: {
+      props: {
         style: {
           padding: '16px',
         },

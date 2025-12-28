@@ -30,20 +30,22 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.placeholder',
+        field: 'props.placeholder',
         label: '占位内容',
         type: 'input',
       },
       {
-        componentProps: {
+        field: 'props.defaultValue',
+        label: '默认值',
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.defaultValue',
-        label: '默认值',
         type: 'input',
       },
       {
-        componentProps: {
+        field: 'props.type',
+        label: '输入类型',
+        props: {
           allowClear: true,
           options: [
             {
@@ -61,12 +63,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.type',
-        label: '输入类型',
         type: 'select',
       },
       {
-        componentProps: {
+        field: 'props.size',
+        label: '尺寸',
+        props: {
           allowClear: true,
           options: [
             {
@@ -84,44 +86,42 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
-        label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        field: 'props.bordered',
+        label: '无边框',
+        props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'componentProps.bordered',
-        label: '无边框',
         type: 'switch',
       },
       {
-        componentProps: {
+        field: 'props.maxlength',
+        label: '最大输入长度',
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.maxlength',
-        label: '最大输入长度',
         type: 'number',
       },
       {
-        field: 'componentProps.showCount',
+        field: 'props.showCount',
         label: '展示字数',
         type: 'switch',
       },
       {
-        field: 'componentProps.allowClear',
+        field: 'props.allowClear',
         label: '可清空',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },

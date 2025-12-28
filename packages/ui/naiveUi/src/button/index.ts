@@ -10,7 +10,7 @@ export default {
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           options: [
             {
               label: 'default',
@@ -43,12 +43,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.type',
+        field: 'props.type',
         label: '类型',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -71,52 +71,52 @@ export default {
           placeholder: '请选择',
         },
         defaultValue: 'default',
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        field: 'componentProps.block',
+        field: 'props.block',
         label: '是否块级',
         type: 'switch',
       },
       {
-        field: 'componentProps.bordered',
+        field: 'props.bordered',
         label: '显示边框',
         type: 'switch',
       },
       {
-        field: 'componentProps.dashed',
+        field: 'props.dashed',
         label: '虚线框',
         type: 'switch',
       },
       {
-        field: 'componentProps.round',
+        field: 'props.round',
         label: '圆角按钮',
         type: 'switch',
       },
       {
-        field: 'componentProps.circle',
+        field: 'props.circle',
         label: '圆形按钮',
         type: 'switch',
       },
       {
-        field: 'componentProps.color',
+        field: 'props.color',
         label: '按钮颜色',
         type: 'color-picker',
       },
       {
-        field: 'componentProps.ghost',
+        field: 'props.ghost',
         label: '是否透明',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
@@ -133,7 +133,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       bordered: true,
       size: 'medium',
       type: 'default',

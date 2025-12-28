@@ -16,12 +16,12 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'date',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -39,17 +39,17 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        field: 'componentProps.placeholder',
+        field: 'props.placeholder',
         label: '占位内容',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           options: [
             {
               label: '日期',
@@ -90,93 +90,93 @@ export default {
             },
           ],
         },
-        field: 'componentProps.type',
+        field: 'props.type',
         label: '日期类型',
         onChange({ value, values }) {
-          values.componentProps.defaultValue = null;
+          values.props.defaultValue = null;
           if (['date', 'daterange', 'dates'].includes(value)) {
-            values.componentProps.format = 'yyyy-MM-dd';
-            values.componentProps.valueFormat = 'yyyy-MM-dd';
+            values.props.format = 'yyyy-MM-dd';
+            values.props.valueFormat = 'yyyy-MM-dd';
           } else if (['week'].includes(value)) {
-            values.componentProps.format = null;
-            values.componentProps.valueFormat = 'yyyy-MM-dd';
+            values.props.format = null;
+            values.props.valueFormat = 'yyyy-MM-dd';
           } else if (['quarter'].includes(value)) {
-            values.componentProps.format = null;
-            values.componentProps.valueFormat = 'yyyy-MM-dd';
+            values.props.format = null;
+            values.props.valueFormat = 'yyyy-MM-dd';
           } else if (['month', 'monthrange'].includes(value)) {
-            values.componentProps.format = 'yyyy-MM';
-            values.componentProps.valueFormat = 'yyyy-MM';
+            values.props.format = 'yyyy-MM';
+            values.props.valueFormat = 'yyyy-MM';
           } else if (['datetime', 'datetimerange'].includes(value)) {
-            values.componentProps.format = 'yyyy-MM-dd HH:mm:ss';
-            values.componentProps.valueFormat = 'yyyy-MM-dd HH:mm:ss';
+            values.props.format = 'yyyy-MM-dd HH:mm:ss';
+            values.props.valueFormat = 'yyyy-MM-dd HH:mm:ss';
           } else if (['year'].includes(value)) {
-            values.componentProps.format = 'yyyy';
-            values.componentProps.valueFormat = 'yyyy';
+            values.props.format = 'yyyy';
+            values.props.valueFormat = 'yyyy';
           }
         },
         type: 'select',
       },
       {
-        field: 'componentProps.format',
+        field: 'props.format',
         label: '显示格式',
         type: 'input',
       },
       {
-        field: 'componentProps.valueFormat',
+        field: 'props.valueFormat',
         label: '数据格式',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           placeholder: '请输入',
         },
-        field: 'componentProps.separator',
+        field: 'props.separator',
         label: '分割符',
         show: ({ values }) =>
           ['daterange', 'datetimerange', 'monthrange'].includes(
-            values.componentProps.type,
+            values.props.type,
           ),
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           placeholder: '请输入',
         },
-        field: 'componentProps.startPlaceholder',
+        field: 'props.startPlaceholder',
         label: 'start框占位符',
         show: ({ values }) =>
           ['daterange', 'datetimerange', 'monthrange'].includes(
-            values.componentProps.type,
+            values.props.type,
           ),
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           placeholder: '请输入',
         },
-        field: 'componentProps.endPlaceholder',
+        field: 'props.endPlaceholder',
         label: 'end框占位符',
         show: ({ values }) =>
           ['daterange', 'datetimerange', 'monthrange'].includes(
-            values.componentProps.type,
+            values.props.type,
           ),
         type: 'input',
       },
       {
-        field: 'componentProps.clearable',
+        field: 'props.clearable',
         label: '可清空',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
@@ -196,7 +196,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       format: 'yyyy-MM-dd',
       placeholder: '请选择',
       type: 'date',

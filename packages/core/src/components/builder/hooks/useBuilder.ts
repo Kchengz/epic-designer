@@ -82,7 +82,7 @@ export function useBuilder() {
 
     // 如果只有一个表单，使用该表单的名称
     if (formSchemas && formSchemas.length === 1) {
-      formName = formSchemas[0].componentProps.name;
+      formName = formSchemas[0].props.name;
     }
     pageManager.setFormData(data, formName);
     const form = forms.value?.[formName];

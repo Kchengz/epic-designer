@@ -30,36 +30,36 @@ export default {
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'textarea',
       },
       {
-        field: 'componentProps.placeholder',
+        field: 'props.placeholder',
         label: '占位内容',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.autoSize.minRows',
+        field: 'props.autoSize.minRows',
         label: '最小行数',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.autoSize.maxRows',
+        field: 'props.autoSize.maxRows',
         label: '最大行数',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -77,44 +77,44 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.maxLength',
+        field: 'props.maxLength',
         label: '最大输入长度',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'componentProps.bordered',
+        field: 'props.bordered',
         label: '无边框',
         type: 'switch',
       },
       {
-        field: 'componentProps.showCount',
+        field: 'props.showCount',
         label: '统计字数',
         type: 'switch',
       },
       {
-        field: 'componentProps.allowClear',
+        field: 'props.allowClear',
         label: '可清除',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
@@ -150,7 +150,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       placeholder: '请输入',
     },
     field: 'textarea',

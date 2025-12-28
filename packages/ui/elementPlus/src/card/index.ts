@@ -10,7 +10,7 @@ export default {
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -28,19 +28,19 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.shadow',
+        field: 'props.shadow',
         label: '阴影时机',
         type: 'select',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
     ],
   },
   defaultSchema: {
-    componentProps: {},
+    props: {},
     label: '卡片布局',
     type: 'card',
     children: [],

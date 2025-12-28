@@ -15,42 +15,42 @@ const selectedNode = computed(() => {
 
 const defaultStyle = [
   {
-    field: 'componentProps.style.width',
+    field: 'props.style.width',
     label: '宽度',
     type: 'EInputSize',
   },
   {
-    field: 'componentProps.style.height',
+    field: 'props.style.height',
     label: '高度',
     type: 'EInputSize',
   },
   {
-    field: 'componentProps.style.padding',
+    field: 'props.style.padding',
     label: '内边距',
     type: 'EInputSize',
   },
   {
-    field: 'componentProps.style.margin',
+    field: 'props.style.margin',
     label: '外边距',
     type: 'EInputSize',
   },
   {
-    componentProps: {
+    props: {
       style: {
         // width: '60px'
       },
       type: 'color',
     },
-    field: 'componentProps.style.backgroundColor',
+    field: 'props.style.backgroundColor',
     label: '背景色',
     type: 'color-picker',
   },
   {
-    componentProps: {
+    props: {
       style: {},
       type: 'color',
     },
-    field: 'componentProps.style.color',
+    field: 'props.style.color',
     label: '字体颜色',
     type: 'color-picker',
   },

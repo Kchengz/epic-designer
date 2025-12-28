@@ -11,12 +11,8 @@ export interface ComponentSchema {
   [fieldName: string]: any;
   // 子节点列表，可选
   children?: ComponentSchema[];
-  // 组件属性，可选
-  componentProps?: any;
-  /**
-   * @deprecated 此属性用于兼容旧版，后期可能会移除，请使用description属性代替。
-   */
-  describe?: string;
+  // 组件功能描述
+  description?: string;
   // 编辑组件数据，可选（属性编辑另外绑定编辑的数据，默认则为当前选中组件数据）
   editData?: object;
   // 节点字段，可选
@@ -33,6 +29,8 @@ export interface ComponentSchema {
   on?: {
     [eventName: string]: ActionsModel[];
   };
+  // 组件属性，可选
+  props?: any;
   // 表单验证规则，可选
   rules?: FormItemRule[];
   // 是否显示（属性编辑组件可以添加函数动态显示隐藏），可选

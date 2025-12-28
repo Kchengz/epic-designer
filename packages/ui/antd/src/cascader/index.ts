@@ -16,17 +16,17 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'cascader',
       },
       {
-        field: 'componentProps.placeholder',
+        field: 'props.placeholder',
         label: '占位内容',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -44,12 +44,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -71,50 +71,50 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.placement',
+        field: 'props.placement',
         label: '弹出框位置',
         type: 'select',
       },
       {
-        field: 'componentProps.showSearch',
+        field: 'props.showSearch',
         label: '可搜索',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'componentProps.bordered',
+        field: 'props.bordered',
         label: '无边框',
         type: 'switch',
       },
       {
-        field: 'componentProps.multiple',
+        field: 'props.multiple',
         label: '多选',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.maxTagTextLength',
+        field: 'props.maxTagTextLength',
         label: '标签最大长度',
-        show: ({ values }) => values.componentProps.multiple,
+        show: ({ values }) => values.props.multiple,
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.maxTagCount',
+        field: 'props.maxTagCount',
         label: '标签显示数量',
-        show: ({ values }) => values.componentProps.multiple,
+        show: ({ values }) => values.props.multiple,
         type: 'number',
       },
 
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -128,38 +128,38 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.showCheckedStrategy',
+        field: 'props.showCheckedStrategy',
         label: '回填方式',
-        show: ({ values }) => values.componentProps.multiple,
+        show: ({ values }) => values.props.multiple,
         type: 'select',
       },
 
       {
-        field: 'componentProps.allowClear',
+        field: 'props.allowClear',
         label: '可清空',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           tree: true,
         },
-        field: 'componentProps.options',
+        field: 'props.options',
         label: '选项管理',
         layout: 'vertical',
         type: 'EOptionsEditor',
       },
       {
-        componentProps: {
+        props: {
           ruleType: 'array',
         },
         description: '校验规则需要配合表单使用',
@@ -177,7 +177,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       options: [
         {
           label: '选项1',

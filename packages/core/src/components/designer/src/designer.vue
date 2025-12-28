@@ -14,7 +14,11 @@ import { EpicBaseLoader } from '@epic-designer/base-ui';
 import { useStore } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { setupPanel } from '@epic-designer/panel-ui';
-import { deepClone, loadAsyncComponent } from '@epic-designer/utils';
+import {
+  deepClone,
+  loadAsyncComponent,
+  migrateComponentProps,
+} from '@epic-designer/utils';
 
 import { useDesigner } from '../hooks/useDesigner';
 import { useHotkeys } from '../hooks/useHotkeys';
@@ -132,6 +136,8 @@ async function setDisabledHover(disabledHover = false) {
  * 接受一个PageSchema对象作为参数。根据传入的schemas和script属性，更新页面对应的数据
  */
 function setData(schema: PageSchema) {
+  // 迁移 componentProps 到 props
+  migrateComponentProps(schema);
   pageManager.setPageSchema(schema);
   setSelectedNode();
   revoke.push('加载数据');

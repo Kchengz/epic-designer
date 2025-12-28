@@ -21,7 +21,11 @@ import { EpicBaseLoader, EpicNode } from '@epic-designer/base-ui';
 import { useEventBus } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { setupPage } from '@epic-designer/panel-ui';
-import { deepCompareAndModify, findSchemas } from '@epic-designer/utils';
+import {
+  deepCompareAndModify,
+  findSchemas,
+  migrateComponentProps,
+} from '@epic-designer/utils';
 
 import { useBuilder } from '../hooks/useBuilder';
 
@@ -60,7 +64,8 @@ const suspenseKey = ref(0);
 watch(
   () => props.pageSchema,
   (newSchema) => {
-    if (!newSchema) return;
+    if (!newSchema?.schemas?.length) return;
+    migrateComponentProps(newSchema, true);
     deepCompareAndModify(pageManager.pageSchema, newSchema);
     suspenseKey.value++;
     ready.value = false;

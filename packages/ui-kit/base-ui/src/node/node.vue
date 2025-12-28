@@ -190,7 +190,7 @@ const show = computed(() => {
   if (fieldState.value === 'WRITE') {
     return true;
   } else if (
-    innerSchema.componentProps?.hidden ||
+    innerSchema.props?.hidden ||
     fieldState.value === 'HIDE'
   ) {
     return false;
@@ -212,10 +212,10 @@ const getFormItemProps = computed<ComponentSchema>(() => {
       const processedRule = { ...rule };
 
       if (processedRule.required !== undefined) {
-        // 必填项优先级：fieldState.required > componentProps.required > rules.required
+        // 必填项优先级：fieldState.required > props.required > rules.required
         processedRule.required =
           fieldRequired.value ??
-          innerSchema.componentProps?.required ??
+          innerSchema.props?.required ??
           processedRule.required;
       }
 
@@ -229,7 +229,7 @@ const getFormItemProps = computed<ComponentSchema>(() => {
     });
 
   const needsRequired =
-    fieldRequired.value === true || innerSchema.componentProps?.required;
+    fieldRequired.value === true || innerSchema.props?.required;
   const hasRequiredRule =
     Array.isArray(rules) && rules.some((rule) => rule.required !== undefined);
 
@@ -282,7 +282,7 @@ const getComponentConfig = computed(() => {
 });
 
 // 获取组件props数据
-const getComponentProps = computed(() => {
+const getprops = computed(() => {
   const bindModel = getComponentConfig.value?.bindModel ?? 'modelValue';
   const onEvent: { [type: string]: Function } = {};
   if (!pageManager.isDesignMode.value) {
@@ -297,17 +297,17 @@ const getComponentProps = computed(() => {
   return {
     ...props,
     ...attrs,
-    ...innerSchema.componentProps,
+    ...innerSchema.props,
     bindModel,
     disabled:
       fieldState.value !== 'WRITE' &&
       (fieldState.value === 'DISABLED' ||
         disabled?.value ||
-        innerSchema.componentProps?.disabled),
+        innerSchema.props?.disabled),
     hidden: !show.value,
     readonly:
       fieldState.value !== 'WRITE' &&
-      (fieldState.value === 'READ' || innerSchema.componentProps?.readonly),
+      (fieldState.value === 'READ' || innerSchema.props?.readonly),
     ...onEvent,
   };
 });
@@ -332,14 +332,14 @@ function handleAddComponentInstance(vNode?: VNode) {
 
   // 添加属性设置方法
   instance.exposed.setAttr = (key: string, value: any) => {
-    // 确保 componentProps 属性对象存在
-    innerSchema.componentProps ??= {};
-    return (innerSchema.componentProps[key] = value);
+    // 确保 props 属性对象存在
+    innerSchema.props ??= {};
+    return (innerSchema.props[key] = value);
   };
 
   // 添加获取设置方法
   instance.exposed.getAttr = (key: string) => {
-    return innerSchema.componentProps?.[key];
+    return innerSchema.props?.[key];
   };
 
   pageManager.addComponentInstance(innerSchema.id, instance);
@@ -366,11 +366,11 @@ function handleVnodeUnmounted() {
  */
 async function initComponent() {
   // 如果存在默认值，则会在初始化之后赋值
-  if (innerSchema.componentProps?.defaultValue !== undefined) {
+  if (innerSchema.props?.defaultValue !== undefined) {
     const defaultValue = pageManager.isDesignMode.value
-      ? innerSchema.componentProps?.defaultValue
+      ? innerSchema.props?.defaultValue
       : (formData[innerSchema.field!] ??
-        innerSchema.componentProps?.defaultValue);
+        innerSchema.props?.defaultValue);
 
     handleUpdate(deepClone(defaultValue));
   }
@@ -465,10 +465,10 @@ onBeforeUnmount(handleVnodeUnmounted);
   >
     <component
       :is="componentRef"
-      v-bind="{ ...getComponentProps }"
-      v-model:[getComponentProps.bindModel]="innerValue"
+      v-bind="{ ...getprops }"
+      v-model:[getprops.bindModel]="innerValue"
       :model="formData"
-      :class="{ 'epic-hidden': innerSchema.componentProps?.hidden }"
+      :class="{ 'epic-hidden': innerSchema.props?.hidden }"
       @vue:mounted="handleAddComponentInstance"
     >
       <!-- 嵌套组件递归 start -->

@@ -16,33 +16,33 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'time',
       },
       {
-        field: 'componentProps.placeholder',
+        field: 'props.placeholder',
         label: '占位内容',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.format',
+        field: 'props.format',
         label: '显示格式',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.valueFormat',
+        field: 'props.valueFormat',
         label: '数据格式',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -60,36 +60,36 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.hourStep',
+        field: 'props.hourStep',
         label: '小时选项间隔',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.minuteStep',
+        field: 'props.minuteStep',
         label: '分钟选项间隔',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.secondStep',
+        field: 'props.secondStep',
         label: '秒选项间隔',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           allowClear: true,
           options: [
             {
@@ -111,52 +111,52 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.placement',
+        field: 'props.placement',
         label: '弹出框位置',
         type: 'select',
       },
       {
         changeSync: true,
-        field: 'componentProps.use12Hours',
+        field: 'props.use12Hours',
         label: '12小时制',
         onChange({ value, values }) {
-          values.componentProps.defaultValue = null;
+          values.props.defaultValue = null;
           if (value) {
-            values.componentProps.format = 'h:mm:ss a';
-            values.componentProps.valueFormat = 'h:mm:ss a';
+            values.props.format = 'h:mm:ss a';
+            values.props.valueFormat = 'h:mm:ss a';
           } else {
-            values.componentProps.format = 'HH:mm:ss';
-            values.componentProps.valueFormat = 'HH:mm:ss';
+            values.props.format = 'HH:mm:ss';
+            values.props.valueFormat = 'HH:mm:ss';
           }
         },
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'componentProps.bordered',
+        field: 'props.bordered',
         label: '无边框',
         type: 'switch',
       },
       {
-        field: 'componentProps.inputReadOnly',
+        field: 'props.inputReadOnly',
         label: '禁止键盘输入',
         type: 'switch',
       },
       {
-        field: 'componentProps.allowClear',
+        field: 'props.allowClear',
         label: '可清空',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
@@ -176,7 +176,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       format: 'HH:mm:ss',
       placeholder: '请输入',
       valueFormat: 'HH:mm:ss',

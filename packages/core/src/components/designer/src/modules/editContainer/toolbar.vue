@@ -8,7 +8,11 @@ import { computed, inject, ref } from 'vue';
 import { EpicIcon, EpTooltip } from '@epic-designer/base-ui';
 import { useStore } from '@epic-designer/hooks';
 import { pluginManager, Revoke } from '@epic-designer/manager';
-import { convertKFormData, deepCompareAndModify } from '@epic-designer/utils';
+import {
+  convertKFormData,
+  deepCompareAndModify,
+  migrateComponentProps,
+} from '@epic-designer/utils';
 
 import EpicPreviewJson from './previewJson.vue';
 
@@ -248,6 +252,8 @@ function handleImportData(content?: string) {
     }
 
     // 调用 deepCompareAndModify 函数比较 pageSchema 和传入的 schema，进行修改
+    // 迁移旧的 componentProps 数据
+    migrateComponentProps(schema);
     deepCompareAndModify(pageSchema, schema);
 
     designer.handleImported(schema);

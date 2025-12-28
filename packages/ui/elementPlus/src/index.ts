@@ -75,10 +75,8 @@ export function setupElementPlus(
 
   // 更新默认上传地址
   watchEffect(() => {
-    UploadImage.defaultSchema.componentProps.action =
-      pluginManager.global.uploadImage;
-    UploadFile.defaultSchema.componentProps.action =
-      pluginManager.global.uploadFile;
+    UploadImage.defaultSchema.props.action = pluginManager.global.uploadImage;
+    UploadFile.defaultSchema.props.action = pluginManager.global.uploadFile;
   });
 
   componentArray.forEach((item) => {

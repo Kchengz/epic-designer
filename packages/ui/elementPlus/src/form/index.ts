@@ -19,12 +19,12 @@ export default {
     ],
     attribute: [
       {
-        field: 'componentProps.name',
+        field: 'props.name',
         label: 'Name',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -42,26 +42,26 @@ export default {
           ],
           radioButton: true,
         },
-        field: 'componentProps.label-position',
+        field: 'props.label-position',
         label: '标签位置',
         type: 'radio',
       },
       {
-        field: 'componentProps.labelWidth',
+        field: 'props.labelWidth',
         label: '标签宽度',
         type: 'EInputSize',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.labelSuffix',
+        field: 'props.labelSuffix',
         label: '标签后缀',
         type: 'input',
       },
 
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -79,12 +79,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '表单尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -98,44 +98,44 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.require-asterisk-position',
+        field: 'props.require-asterisk-position',
         label: '星号位置',
         type: 'select',
       },
       {
-        field: 'componentProps.inline-message',
+        field: 'props.inline-message',
         label: '行内展示校验信息',
         type: 'switch',
       },
       {
-        field: 'componentProps.status-icon',
+        field: 'props.status-icon',
         label: '校验反馈图标',
         type: 'switch',
       },
       {
-        field: 'componentProps.scroll-to-error',
+        field: 'props.scroll-to-error',
         label: '滚动校验错误处',
         type: 'switch',
       },
       {
-        field: 'componentProps.inline',
+        field: 'props.inline',
         label: '行内模式',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       'label-position': 'left',
       labelWidth: '100px',
       name: 'default',

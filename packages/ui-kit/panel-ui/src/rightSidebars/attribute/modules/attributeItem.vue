@@ -122,15 +122,15 @@ watchEffect(() => {
         is-property
         :component-schema="{
           ...props.schema,
-          componentProps: {
-            ...props.schema.componentProps,
-            ...(props.schema.field === 'componentProps.defaultValue'
-              ? selectedNode?.componentProps
+          props: {
+            ...props.schema.props,
+            ...(props.schema.field === 'props.defaultValue'
+              ? selectedNode?.props
               : {}),
             input: false,
             field: undefined,
             hidden: false,
-            placeholder: props.schema.componentProps?.placeholder ?? '请输入',
+            placeholder: props.schema.props?.placeholder ?? '请输入',
           },
           show: true,
           noFormItem: true,

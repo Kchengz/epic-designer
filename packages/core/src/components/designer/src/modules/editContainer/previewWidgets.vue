@@ -61,7 +61,7 @@ const getComponentElement = (node: ComponentSchema) => {
   const id = node.id;
 
   // 组件隐藏状态
-  if (node.componentProps?.hidden) {
+  if (node.props?.hidden) {
     return null;
   }
   const componentConfig =

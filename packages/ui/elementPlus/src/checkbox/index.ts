@@ -15,12 +15,12 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'checkbox',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -38,70 +38,70 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
 
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.max',
+        field: 'props.max',
         label: '最大选中数',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.min',
+        field: 'props.min',
         label: '最小选中数',
         type: 'number',
       },
       {
-        field: 'componentProps.radioButton',
+        field: 'props.radioButton',
         label: '按钮模式',
         type: 'switch',
       },
       {
         description: '按钮模式下生效',
-        field: 'componentProps.textColor',
+        field: 'props.textColor',
         label: '选项文本颜色',
         layout: 'horizontal',
         show: ({ values }) => {
-          return values.componentProps.radioButton;
+          return values.props.radioButton;
         },
         type: 'color-picker',
       },
       {
         description: '按钮模式下生效',
-        field: 'componentProps.fill',
+        field: 'props.fill',
         label: '选项按钮颜色',
         layout: 'horizontal',
         show: ({ values }) => {
-          return values.componentProps.radioButton;
+          return values.props.radioButton;
         },
         type: 'color-picker',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        field: 'componentProps.options',
+        field: 'props.options',
         label: '选项管理',
         layout: 'vertical',
         type: 'EOptionsEditor',
       },
       {
-        componentProps: {
+        props: {
           ruleType: 'array',
         },
         description: '校验规则需要配合表单使用',
@@ -119,7 +119,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       options: [
         {
           label: '选项1',

@@ -5,7 +5,7 @@ import { findSchemaById } from '../../';
 describe('findSchemaById 函数测试', () => {
   const schemas = [
     {
-      componentProps: {
+      props: {
         style: {
           padding: '16px',
         },
@@ -17,7 +17,7 @@ describe('findSchemaById 函数测试', () => {
         {
           label: '表单',
           type: 'form',
-          componentProps: {
+          props: {
             labelCol: {
               span: 5,
             },
@@ -34,7 +34,7 @@ describe('findSchemaById 函数测试', () => {
               type: 'input',
               field: 'input_ttuyobv9',
               input: true,
-              componentProps: {
+              props: {
                 placeholder: '请输入',
               },
               id: 'input_ttuyobv9',
@@ -44,7 +44,7 @@ describe('findSchemaById 函数测试', () => {
               type: 'number',
               field: 'number_m7ogpi26',
               input: true,
-              componentProps: {
+              props: {
                 placeholder: '请输入',
                 style: {
                   width: '100%',
@@ -62,7 +62,7 @@ describe('findSchemaById 函数测试', () => {
   it('应该返回正确的节点', () => {
     const result = findSchemaById(schemas, 'input_ttuyobv9');
     expect(result).toEqual({
-      componentProps: {
+      props: {
         placeholder: '请输入',
       },
       field: 'input_ttuyobv9',

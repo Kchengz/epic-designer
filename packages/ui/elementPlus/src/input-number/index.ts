@@ -15,17 +15,17 @@ export default {
         type: 'input',
       },
       {
-        field: 'componentProps.defaultValue',
+        field: 'props.defaultValue',
         label: '默认值',
         type: 'number',
       },
       {
-        field: 'componentProps.placeholder',
+        field: 'props.placeholder',
         label: '占位内容',
         type: 'input',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -43,36 +43,36 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'componentProps.size',
+        field: 'props.size',
         label: '尺寸',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.max',
+        field: 'props.max',
         label: '最大值',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.min',
+        field: 'props.min',
         label: '最小值',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.step',
+        field: 'props.step',
         label: '步长',
         type: 'number',
       },
       {
-        componentProps: {
+        props: {
           clearable: true,
           options: [
             {
@@ -87,35 +87,35 @@ export default {
           placeholder: '请选择',
         },
         defaultValue: '',
-        field: 'componentProps.controlsPosition',
+        field: 'props.controlsPosition',
         label: '控制按钮位置',
         type: 'select',
       },
       {
-        componentProps: {
+        props: {
           placeholder: '请输入',
         },
-        field: 'componentProps.precision',
+        field: 'props.precision',
         label: '精度',
         type: 'number',
       },
       {
-        field: 'componentProps.stepStrictly',
+        field: 'props.stepStrictly',
         label: '输入控制为步长的倍数',
         type: 'switch',
       },
       {
-        field: 'componentProps.disabled',
+        field: 'props.disabled',
         label: '禁用',
         type: 'switch',
       },
       {
-        field: 'componentProps.hidden',
+        field: 'props.hidden',
         label: '隐藏',
         type: 'switch',
       },
       {
-        componentProps: {
+        props: {
           ruleType: 'number',
         },
         description: '校验规则需要配合表单使用',
@@ -133,7 +133,7 @@ export default {
     ],
   },
   defaultSchema: {
-    componentProps: {
+    props: {
       placeholder: '请输入',
     },
     field: 'number',
