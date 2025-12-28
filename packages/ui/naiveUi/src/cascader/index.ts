@@ -32,6 +32,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -54,8 +56,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
@@ -85,6 +85,8 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.placement',
+        label: '菜单弹出的位置',
         props: {
           clearable: true,
           options: [
@@ -139,8 +141,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.placement',
-        label: '菜单弹出的位置',
         type: 'select',
       },
       {
@@ -165,23 +165,23 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          tree: true,
-        },
         description: '配置选项',
         field: 'props.options',
         label: '选项管理',
         layout: 'vertical',
+        props: {
+          tree: true,
+        },
         type: 'EOptionsEditor',
       },
       {
-        props: {
-          ruleType: 'array',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'array',
+        },
         type: 'ERuleEditor',
       },
     ],
@@ -197,6 +197,9 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'cascader',
+    input: true,
+    label: '级联选择器',
     props: {
       cascade: false,
       options: [
@@ -212,9 +215,6 @@ export default {
       placeholder: '请选择',
       showPath: true,
     },
-    field: 'cascader',
-    input: true,
-    label: '级联选择器',
     type: 'cascader',
   },
   groupName: '表单',

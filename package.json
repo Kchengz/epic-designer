@@ -13,7 +13,7 @@
     "docs:serve": "vitepress serve docs",
     "examples:build": "pnpm run build --filter epic-examples",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "lint": "eslint . --fix",
+    "lint": "eslint packages/ --fix",
     "postinstall": "pnpm -r run stub --if-present"
   },
   "dependencies": {

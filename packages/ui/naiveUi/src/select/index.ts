@@ -26,6 +26,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -48,11 +50,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.placement',
+        label: '菜单弹出的位置',
         props: {
           clearable: true,
           options: [
@@ -107,8 +109,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.placement',
-        label: '菜单弹出的位置',
         type: 'select',
       },
       {
@@ -128,11 +128,11 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.maxTagCount',
+        label: '最大tag数',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.maxTagCount',
-        label: '最大tag数',
         show: ({ values }) => values.props.multiple,
         type: 'number',
       },
@@ -174,6 +174,9 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'select',
+    input: true,
+    label: '选择框',
     props: {
       options: [
         {
@@ -187,9 +190,6 @@ export default {
       ],
       placeholder: '请选择',
     },
-    field: 'select',
-    input: true,
-    label: '选择框',
     type: 'select',
   },
   groupName: '表单',

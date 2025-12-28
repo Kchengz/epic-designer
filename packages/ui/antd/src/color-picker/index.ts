@@ -22,6 +22,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -40,17 +42,15 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.bordered',
+        label: '无边框',
         props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'props.bordered',
-        label: '无边框',
         type: 'switch',
       },
       {
@@ -92,15 +92,15 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'color-picker',
+    input: true,
+    label: '颜色选择器',
     props: {
       style: {
         width: '80px',
       },
       type: 'color',
     },
-    field: 'color-picker',
-    input: true,
-    label: '颜色选择器',
     type: 'color-picker',
   },
   groupName: '表单',

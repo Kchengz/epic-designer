@@ -12,10 +12,10 @@ export default {
     ],
   },
   defaultSchema: {
+    label: '栅格布局-列',
     props: {
       span: 6,
     },
-    label: '栅格布局-列',
     type: 'col',
     children: [],
   },

@@ -58,6 +58,7 @@ async function defineConfig(config: FlatConfig[] = []) {
         'unicorn/no-await-expression-member': 'off',
         'unicorn/no-nested-ternary': 'off',
         'unicorn/prefer-blob-reading-methods': 'off',
+        'unicorn/prefer-spread': 'off',
         'vue/no-mutating-props': 'off',
         'vue/no-reserved-props': 'off',
       },

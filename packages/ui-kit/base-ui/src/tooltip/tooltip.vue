@@ -1,55 +1,49 @@
 <script lang="ts" setup>
-import {
-  ref,
-  computed,
-  onMounted,
-  onUnmounted,
-  watch,
-  nextTick,
-  type CSSProperties,
-} from 'vue';
+import type { CSSProperties } from 'vue';
 
-type TriggerType = 'hover' | 'click' | 'focus' | 'manual';
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+
+type TriggerType = 'click' | 'focus' | 'hover' | 'manual';
 type PlacementType =
-  | 'top'
-  | 'topLeft'
-  | 'topRight'
   | 'bottom'
   | 'bottomLeft'
   | 'bottomRight'
   | 'left'
-  | 'right';
-type ColorType = 'default' | 'primary' | 'success' | 'warning' | 'error';
+  | 'right'
+  | 'top'
+  | 'topLeft'
+  | 'topRight';
+type ColorType = 'default' | 'error' | 'primary' | 'success' | 'warning';
 
 interface Props {
-  content?: string;
-  trigger?: TriggerType;
-  placement?: PlacementType;
+  arrow?: boolean;
   color?: ColorType;
-  open?: boolean;
+  content?: string;
   mouseEnterDelay?: number;
   mouseLeaveDelay?: number;
-  arrow?: boolean;
+  open?: boolean;
   overlayClassName?: string;
   overlayStyle?: CSSProperties;
+  placement?: PlacementType;
+  trigger?: TriggerType;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  content: '',
-  trigger: 'hover',
-  placement: 'top',
+  arrow: true,
   color: 'default',
-  open: undefined,
+  content: '',
   mouseEnterDelay: 600,
   mouseLeaveDelay: 100,
-  arrow: true,
+  open: undefined,
   overlayClassName: '',
   overlayStyle: () => ({}),
+  placement: 'top',
+  trigger: 'hover',
 });
 
 const emit = defineEmits<{
-  'update:open': [value: boolean];
   openChange: [value: boolean];
+  'update:open': [value: boolean];
   visibleChange: [value: boolean];
 }>();
 
@@ -61,9 +55,9 @@ const wrapperRef = ref<HTMLElement | null>(null);
 const hasClicked = ref(false); // 新增：记录是否点击过
 
 // 定时器
-let enterTimer: number | null = null;
-let leaveTimer: number | null = null;
-let leaveDelayTimer: number | null = null;
+let enterTimer: null | number = null;
+let leaveTimer: null | number = null;
+let leaveDelayTimer: null | number = null;
 // 清除定时器
 const clearTimers = () => {
   if (enterTimer) {
@@ -169,12 +163,14 @@ const handleClick = () => {
 };
 
 // 更新位置
-const updatePosition = () => {
+function updatePosition() {
   if (!triggerRef.value || !tooltipRef.value) return;
-  console.log()
+  console.log();
   const nodes = Array.from(triggerRef.value.childNodes);
- const target = nodes.find(node=>node.nodeType===Node.ELEMENT_NODE)
-  const triggerRect = target ? (target as Element).getBoundingClientRect() : { top: 0, left: 0, right: 0, bottom: 0, width: 0, height: 0 };
+  const target = nodes.find((node) => node.nodeType === Node.ELEMENT_NODE);
+  const triggerRect = target
+    ? (target as Element).getBoundingClientRect()
+    : { bottom: 0, height: 0, left: 0, right: 0, top: 0, width: 0 };
   const tooltipRect = tooltipRef.value!.getBoundingClientRect();
   const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
   const scrollY = window.pageYOffset || document.documentElement.scrollTop;
@@ -184,22 +180,9 @@ const updatePosition = () => {
   const offset = 8;
 
   switch (props.placement) {
-    case 'top':
-    case 'topLeft':
-    case 'topRight':
-      top = triggerRect.top + scrollY - tooltipRect.height - offset;
-      left =
-        triggerRect.left +
-        scrollX +
-        (triggerRect.width - tooltipRect.width) / 2;
-      if (props.placement === 'topLeft') left = triggerRect.left + scrollX;
-      if (props.placement === 'topRight')
-        left = triggerRect.right + scrollX - tooltipRect.width;
-      break;
-
     case 'bottom':
     case 'bottomLeft':
-    case 'bottomRight':
+    case 'bottomRight': {
       top = triggerRect.bottom + scrollY + offset;
       left =
         triggerRect.left +
@@ -209,22 +192,34 @@ const updatePosition = () => {
       if (props.placement === 'bottomRight')
         left = triggerRect.right + scrollX - tooltipRect.width;
       break;
+    }
 
-    case 'left':
+    case 'left': {
       top =
         triggerRect.top +
         scrollY +
         (triggerRect.height - tooltipRect.height) / 2;
       left = triggerRect.left + scrollX - tooltipRect.width - offset;
       break;
-
-    case 'right':
+    }
+    case 'right': {
       top =
         triggerRect.top +
         scrollY +
         (triggerRect.height - tooltipRect.height) / 2;
       left = triggerRect.right + scrollX + offset;
       break;
+    }
+    case 'topRight': {
+      top = triggerRect.top + scrollY - tooltipRect.height - offset;
+      left =
+        triggerRect.left +
+        scrollX +
+        (triggerRect.width - tooltipRect.width) / 2;
+      if (props.placement === 'topRight')
+        left = triggerRect.right + scrollX - tooltipRect.width;
+      break;
+    }
   }
 
   // 边界检查
@@ -242,7 +237,7 @@ const updatePosition = () => {
 
   tooltipRef.value.style.top = `${top}px`;
   tooltipRef.value.style.left = `${left}px`;
-};
+}
 
 // 点击外部关闭
 const handleClickOutside = (event: MouseEvent) => {
@@ -315,7 +310,7 @@ watch(
       @click="handleClick"
       :tabindex="trigger === 'focus' ? 0 : undefined"
     >
-      <slot />
+      <slot></slot>
     </span>
     <!-- Tooltip 内容 -->
     <teleport to="body">
@@ -324,10 +319,7 @@ watch(
           v-if="visible"
           ref="tooltipRef"
           class="ep-tooltip"
-          :class="[
-            `ep-tooltip-placement-${placement}`,
-            `ep-tooltip-${color}`
-          ]"
+          :class="[`ep-tooltip-placement-${placement}`, `ep-tooltip-${color}`]"
           :style="tooltipStyle"
           role="tooltip"
         >

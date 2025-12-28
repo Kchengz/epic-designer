@@ -24,6 +24,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.label-position',
+        label: '标签位置',
         props: {
           clearable: true,
           options: [
@@ -42,8 +44,6 @@ export default {
           ],
           radioButton: true,
         },
-        field: 'props.label-position',
-        label: '标签位置',
         type: 'radio',
       },
       {
@@ -52,15 +52,17 @@ export default {
         type: 'EInputSize',
       },
       {
+        field: 'props.labelSuffix',
+        label: '标签后缀',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.labelSuffix',
-        label: '标签后缀',
         type: 'input',
       },
 
       {
+        field: 'props.size',
+        label: '表单尺寸',
         props: {
           clearable: true,
           options: [
@@ -79,11 +81,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '表单尺寸',
         type: 'select',
       },
       {
+        field: 'props.require-asterisk-position',
+        label: '星号位置',
         props: {
           clearable: true,
           options: [
@@ -98,8 +100,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.require-asterisk-position',
-        label: '星号位置',
         type: 'select',
       },
       {
@@ -135,12 +135,12 @@ export default {
     ],
   },
   defaultSchema: {
+    label: '表单',
     props: {
       'label-position': 'left',
       labelWidth: '100px',
       name: 'default',
     },
-    label: '表单',
     type: 'form',
     children: [],
   },

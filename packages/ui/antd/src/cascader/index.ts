@@ -26,6 +26,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -44,11 +46,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.placement',
+        label: '弹出框位置',
         props: {
           allowClear: true,
           options: [
@@ -71,8 +73,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.placement',
-        label: '弹出框位置',
         type: 'select',
       },
       {
@@ -81,12 +81,12 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.bordered',
+        label: '无边框',
         props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'props.bordered',
-        label: '无边框',
         type: 'switch',
       },
       {
@@ -95,25 +95,27 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.maxTagTextLength',
+        label: '标签最大长度',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.maxTagTextLength',
-        label: '标签最大长度',
         show: ({ values }) => values.props.multiple,
         type: 'number',
       },
       {
+        field: 'props.maxTagCount',
+        label: '标签显示数量',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.maxTagCount',
-        label: '标签显示数量',
         show: ({ values }) => values.props.multiple,
         type: 'number',
       },
 
       {
+        field: 'props.showCheckedStrategy',
+        label: '回填方式',
         props: {
           clearable: true,
           options: [
@@ -128,8 +130,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.showCheckedStrategy',
-        label: '回填方式',
         show: ({ values }) => values.props.multiple,
         type: 'select',
       },
@@ -150,22 +150,22 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          tree: true,
-        },
         field: 'props.options',
         label: '选项管理',
         layout: 'vertical',
+        props: {
+          tree: true,
+        },
         type: 'EOptionsEditor',
       },
       {
-        props: {
-          ruleType: 'array',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'array',
+        },
         type: 'ERuleEditor',
       },
     ],
@@ -177,6 +177,9 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'cascader',
+    input: true,
+    label: '级联选择器',
     props: {
       options: [
         {
@@ -190,9 +193,6 @@ export default {
       ],
       placeholder: '请选择',
     },
-    field: 'cascader',
-    input: true,
-    label: '级联选择器',
     type: 'cascader',
   },
   groupName: '表单',

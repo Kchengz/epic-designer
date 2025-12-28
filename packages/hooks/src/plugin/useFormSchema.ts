@@ -6,6 +6,8 @@ export function useFormSchema() {
   // 表单模式默认schema数据
   const formSchema: ComponentSchema[] = [
     {
+      id: 'root',
+      label: '表单',
       props: {
         colon: true,
         labelAlign: 'right',
@@ -24,8 +26,6 @@ export function useFormSchema() {
           span: 19,
         },
       },
-      id: 'root',
-      label: '表单',
       type: 'form',
       children: [],
     },

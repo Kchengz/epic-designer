@@ -21,6 +21,8 @@ export default {
         type: 'date',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -39,8 +41,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
@@ -49,6 +49,30 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.type',
+        label: '日期类型',
+        onChange({ value, values }) {
+          values.props.defaultValue = null;
+          if (['date', 'daterange', 'dates'].includes(value)) {
+            values.props.format = 'yyyy-MM-dd';
+            values.props.valueFormat = 'yyyy-MM-dd';
+          } else if (['week'].includes(value)) {
+            values.props.format = null;
+            values.props.valueFormat = 'yyyy-MM-dd';
+          } else if (['quarter'].includes(value)) {
+            values.props.format = null;
+            values.props.valueFormat = 'yyyy-MM-dd';
+          } else if (['month', 'monthrange'].includes(value)) {
+            values.props.format = 'yyyy-MM';
+            values.props.valueFormat = 'yyyy-MM';
+          } else if (['datetime', 'datetimerange'].includes(value)) {
+            values.props.format = 'yyyy-MM-dd HH:mm:ss';
+            values.props.valueFormat = 'yyyy-MM-dd HH:mm:ss';
+          } else if (['year'].includes(value)) {
+            values.props.format = 'yyyy';
+            values.props.valueFormat = 'yyyy';
+          }
+        },
         props: {
           options: [
             {
@@ -90,30 +114,6 @@ export default {
             },
           ],
         },
-        field: 'props.type',
-        label: '日期类型',
-        onChange({ value, values }) {
-          values.props.defaultValue = null;
-          if (['date', 'daterange', 'dates'].includes(value)) {
-            values.props.format = 'yyyy-MM-dd';
-            values.props.valueFormat = 'yyyy-MM-dd';
-          } else if (['week'].includes(value)) {
-            values.props.format = null;
-            values.props.valueFormat = 'yyyy-MM-dd';
-          } else if (['quarter'].includes(value)) {
-            values.props.format = null;
-            values.props.valueFormat = 'yyyy-MM-dd';
-          } else if (['month', 'monthrange'].includes(value)) {
-            values.props.format = 'yyyy-MM';
-            values.props.valueFormat = 'yyyy-MM';
-          } else if (['datetime', 'datetimerange'].includes(value)) {
-            values.props.format = 'yyyy-MM-dd HH:mm:ss';
-            values.props.valueFormat = 'yyyy-MM-dd HH:mm:ss';
-          } else if (['year'].includes(value)) {
-            values.props.format = 'yyyy';
-            values.props.valueFormat = 'yyyy';
-          }
-        },
         type: 'select',
       },
       {
@@ -127,12 +127,12 @@ export default {
         type: 'input',
       },
       {
-        props: {
-          clearable: true,
-          placeholder: '请输入',
-        },
         field: 'props.separator',
         label: '分割符',
+        props: {
+          clearable: true,
+          placeholder: '请输入',
+        },
         show: ({ values }) =>
           ['daterange', 'datetimerange', 'monthrange'].includes(
             values.props.type,
@@ -140,12 +140,12 @@ export default {
         type: 'input',
       },
       {
-        props: {
-          clearable: true,
-          placeholder: '请输入',
-        },
         field: 'props.startPlaceholder',
         label: 'start框占位符',
+        props: {
+          clearable: true,
+          placeholder: '请输入',
+        },
         show: ({ values }) =>
           ['daterange', 'datetimerange', 'monthrange'].includes(
             values.props.type,
@@ -153,12 +153,12 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.endPlaceholder',
+        label: 'end框占位符',
         props: {
           clearable: true,
           placeholder: '请输入',
         },
-        field: 'props.endPlaceholder',
-        label: 'end框占位符',
         show: ({ values }) =>
           ['daterange', 'datetimerange', 'monthrange'].includes(
             values.props.type,
@@ -196,15 +196,15 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'date',
+    input: true,
+    label: '日期选择器',
     props: {
       format: 'yyyy-MM-dd',
       placeholder: '请选择',
       type: 'date',
       valueFormat: 'yyyy-MM-dd',
     },
-    field: 'date',
-    input: true,
-    label: '日期选择器',
     type: 'date',
   },
   groupName: '表单',

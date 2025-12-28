@@ -34,13 +34,13 @@ function migrateCanvasMode(schema: PageSchema): PageSchema {
 const innerDefaultSchema: PageSchema = {
   schemas: [
     {
+      id: 'root',
+      label: '页面',
       props: {
         style: {
           padding: '16px',
         },
       },
-      id: 'root',
-      label: '页面',
       type: 'page',
       children: [],
     },

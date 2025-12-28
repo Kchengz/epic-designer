@@ -59,11 +59,11 @@ export default {
       //   field: "props.justify",
       // },
       {
+        field: 'props.gutter',
+        label: '栅格间距',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.gutter',
-        label: '栅格间距',
         type: 'number',
       },
       {

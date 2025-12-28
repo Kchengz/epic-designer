@@ -10,6 +10,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.type',
+        label: '类型',
         props: {
           clearable: true,
           options: [
@@ -36,11 +38,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.type',
-        label: '类型',
         type: 'select',
       },
       {
+        field: 'props.native-type',
+        label: '操作类型',
         props: {
           clearable: true,
           options: [
@@ -59,16 +61,14 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.native-type',
-        label: '操作类型',
         type: 'select',
       },
       {
+        field: 'props.color',
+        label: '自定义颜色',
         props: {
           type: 'color',
         },
-        field: 'props.color',
-        label: '自定义颜色',
         type: 'color-picker',
       },
       {

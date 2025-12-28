@@ -16,16 +16,18 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.defaultValue',
+        label: '默认值',
         props: {
           style: {
             width: '100%',
           },
         },
-        field: 'props.defaultValue',
-        label: '默认值',
         type: 'slider',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -44,8 +46,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
@@ -63,27 +63,27 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          placeholder: '请输入',
-        },
         field: 'props.step',
         label: '步长',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
+        type: 'number',
+      },
+      {
         field: 'props.min',
         label: '最小值',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
+        type: 'number',
+      },
+      {
         field: 'props.max',
         label: '最大值',
+        props: {
+          placeholder: '请输入',
+        },
         type: 'number',
       },
       {
@@ -112,13 +112,13 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          ruleType: 'number',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'number',
+        },
         type: 'ERuleEditor',
       },
     ],

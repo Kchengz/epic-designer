@@ -31,14 +31,14 @@ const methodOptions = computed(() => {
 
 const ruleItemSchemas = [
   {
+    label: '校验时机',
+    model: 'trigger',
     props: {
       mode: 'multiple',
       multiple: true,
       options: triggerOptions,
       placeholder: '校验时机',
     },
-    label: '校验时机',
-    model: 'trigger',
     type: 'select',
   },
   {
@@ -47,63 +47,63 @@ const ruleItemSchemas = [
     type: 'switch',
   },
   {
-    props: { options: methodOptions.value, placeholder: '校验函数' },
     label: '校验函数',
     model: 'validator',
+    props: { options: methodOptions.value, placeholder: '校验函数' },
     show() {
       return Boolean(modelRule.value.isValidator);
     },
     type: 'select',
   },
   {
-    props: { options: typeOptions, placeholder: '类型' },
     label: '类型',
     model: 'type',
+    props: { options: typeOptions, placeholder: '类型' },
     show() {
       return !modelRule.value.isValidator;
     },
     type: 'select',
   },
   {
-    props: { placeholder: '正则校验' },
     label: '正则校验',
     model: 'pattern',
+    props: { placeholder: '正则校验' },
     show() {
       return !modelRule.value.isValidator;
     },
     type: 'input',
   },
   {
-    props: { min: 0, placeholder: '字段长度' },
     label: '字段长度',
     model: 'len',
+    props: { min: 0, placeholder: '字段长度' },
     show() {
       return lenTypeOptions.includes(modelRule.value.type ?? '');
     },
     type: 'number',
   },
   {
-    props: { min: 0, placeholder: '最小长度' },
     label: '最小长度',
     model: 'min',
+    props: { min: 0, placeholder: '最小长度' },
     show() {
       return lenTypeOptions.includes(modelRule.value.type ?? '');
     },
     type: 'number',
   },
   {
-    props: { min: 0, placeholder: '最大长度' },
     label: '最大长度',
     model: 'max',
+    props: { min: 0, placeholder: '最大长度' },
     show() {
       return lenTypeOptions.includes(modelRule.value.type ?? '');
     },
     type: 'number',
   },
   {
-    props: { placeholder: '校验信息' },
     label: '校验信息',
     model: 'message',
+    props: { placeholder: '校验信息' },
     type: 'input',
   },
 ];

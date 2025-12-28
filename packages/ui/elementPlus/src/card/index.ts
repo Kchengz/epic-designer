@@ -10,6 +10,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.shadow',
+        label: '阴影时机',
         props: {
           clearable: true,
           options: [
@@ -28,8 +30,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.shadow',
-        label: '阴影时机',
         type: 'select',
       },
       {
@@ -40,8 +40,8 @@ export default {
     ],
   },
   defaultSchema: {
-    props: {},
     label: '卡片布局',
+    props: {},
     type: 'card',
     children: [],
   },

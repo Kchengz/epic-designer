@@ -10,6 +10,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -24,17 +26,15 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.bordered',
+        label: '无边框',
         props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'props.bordered',
-        label: '无边框',
         type: 'switch',
       },
       {

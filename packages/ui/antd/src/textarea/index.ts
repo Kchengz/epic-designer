@@ -30,11 +30,11 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.defaultValue',
+        label: '默认值',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.defaultValue',
-        label: '默认值',
         type: 'textarea',
       },
       {
@@ -43,22 +43,24 @@ export default {
         type: 'input',
       },
       {
-        props: {
-          placeholder: '请输入',
-        },
         field: 'props.autoSize.minRows',
         label: '最小行数',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
-        field: 'props.autoSize.maxRows',
-        label: '最大行数',
         type: 'number',
       },
       {
+        field: 'props.autoSize.maxRows',
+        label: '最大行数',
+        props: {
+          placeholder: '请输入',
+        },
+        type: 'number',
+      },
+      {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -77,25 +79,23 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.maxLength',
+        label: '最大输入长度',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.maxLength',
-        label: '最大输入长度',
         type: 'number',
       },
       {
+        field: 'props.bordered',
+        label: '无边框',
         props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'props.bordered',
-        label: '无边框',
         type: 'switch',
       },
       {
@@ -150,12 +150,12 @@ export default {
     ],
   },
   defaultSchema: {
-    props: {
-      placeholder: '请输入',
-    },
     field: 'textarea',
     input: true,
     label: '文本域',
+    props: {
+      placeholder: '请输入',
+    },
     type: 'textarea',
   },
   groupName: '表单',

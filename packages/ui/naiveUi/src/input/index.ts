@@ -44,6 +44,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -66,11 +68,15 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        defaultValue: 'text',
+        field: 'props.type',
+        label: '输入类型',
+        onChange: ({ value, values }) => {
+          if (value !== 'text') values.props.pair = false;
+        },
         props: {
           clearable: true,
           options: [
@@ -89,23 +95,19 @@ export default {
           ],
           placeholder: '请选择',
         },
-        defaultValue: 'text',
-        field: 'props.type',
-        label: '输入类型',
-        onChange: ({ value, values }) => {
-          if (value !== 'text') values.props.pair = false;
-        },
         type: 'select',
       },
       {
+        field: 'props.maxlength',
+        label: '最大输入长度',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.maxlength',
-        label: '最大输入长度',
         type: 'number',
       },
       {
+        field: 'props.showPasswordOn',
+        label: '显示密码的时机',
         props: {
           clearable: true,
           options: [
@@ -120,8 +122,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.showPasswordOn',
-        label: '显示密码的时机',
         show: ({ values }) => values.props.type === 'password',
         type: 'select',
       },
@@ -132,13 +132,12 @@ export default {
         type: 'number',
       },
       {
+        field: 'props.separator',
+        label: '分割符',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.separator',
-        label: '分割符',
-        show: ({ values }) =>
-          values.props.type === 'text' && values.props.pair,
+        show: ({ values }) => values.props.type === 'text' && values.props.pair,
         type: 'input',
       },
       {
@@ -200,14 +199,14 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'input',
+    input: true,
+    label: '输入框',
     props: {
       defaultValue: '',
       placeholder: '请输入',
       type: 'text',
     },
-    field: 'input',
-    input: true,
-    label: '输入框',
     type: 'input',
   },
   groupName: '表单',

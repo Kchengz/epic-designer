@@ -35,6 +35,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -53,19 +55,19 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.separator',
+        label: '分割符',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.separator',
-        label: '分割符',
         type: 'input',
       },
       {
+        field: 'props.props.expandTrigger',
+        label: '次级菜单展开方式',
         props: {
           clearable: true,
           options: [
@@ -80,8 +82,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.props.expandTrigger',
-        label: '次级菜单展开方式',
         type: 'select',
       },
       {
@@ -107,17 +107,16 @@ export default {
         field: 'props.collapseTagsTooltip',
         label: '显示被折叠标签',
         show: ({ values }) =>
-          values.props.props.multiple &&
-          values.props.collapseTags,
+          values.props.props.multiple && values.props.collapseTags,
         type: 'switch',
       },
       {
+        field: 'props.showAllLevels',
+        label: '不显示路径',
         props: {
           activeValue: false,
           inactiveValue: true,
         },
-        field: 'props.showAllLevels',
-        label: '不显示路径',
         type: 'switch',
       },
       {
@@ -127,12 +126,12 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.props.emitPath',
+        label: '只获取选中节点',
         props: {
           activeValue: false,
           inactiveValue: true,
         },
-        field: 'props.props.emitPath',
-        label: '只获取选中节点',
         type: 'switch',
       },
       {
@@ -151,23 +150,23 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          tree: true,
-        },
         description: '配置选项',
         field: 'props.options',
         label: '选项管理',
         layout: 'vertical',
+        props: {
+          tree: true,
+        },
         type: 'EOptionsEditor',
       },
       {
-        props: {
-          ruleType: 'array',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'array',
+        },
         type: 'ERuleEditor',
       },
     ],
@@ -187,6 +186,9 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'cascader',
+    input: true,
+    label: '级联选择器',
     props: {
       options: [
         {
@@ -203,9 +205,6 @@ export default {
         expandTrigger: 'click',
       },
     },
-    field: 'cascader',
-    input: true,
-    label: '级联选择器',
     type: 'cascader',
   },
   groupName: '表单',

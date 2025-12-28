@@ -35,23 +35,23 @@ const defaultStyle = [
     type: 'EInputSize',
   },
   {
+    field: 'props.style.backgroundColor',
+    label: '背景色',
     props: {
       style: {
         // width: '60px'
       },
       type: 'color',
     },
-    field: 'props.style.backgroundColor',
-    label: '背景色',
     type: 'color-picker',
   },
   {
+    field: 'props.style.color',
+    label: '字体颜色',
     props: {
       style: {},
       type: 'color',
     },
-    field: 'props.style.color',
-    label: '字体颜色',
     type: 'color-picker',
   },
 ];

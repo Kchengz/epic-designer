@@ -143,7 +143,10 @@ export function useDesigner(props, emit) {
    * 选中节点
    * @param schema 要选中的组件
    */
-  function setSelectedNode(schema: ComponentSchema = pageSchema.schemas[0]) {
+  function setSelectedNode(schema?: ComponentSchema) {
+    if (!schema) {
+      schema = pageSchema.schemas[0];
+    }
     // 如果选中的节点是锁定的，则不执行选中操作
     if (isComponentLocked(schema)) {
       const matched = getMatchedById(
@@ -194,7 +197,6 @@ export function useDesigner(props, emit) {
       state.hoverNode = null;
       return false;
     }
-
     // 如果选中的节点是锁定的，则不执行选中操作
     if (isComponentLocked(schema)) {
       const matched = getMatchedById(

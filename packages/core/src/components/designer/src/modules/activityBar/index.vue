@@ -3,9 +3,8 @@ import type { ActivitybarModel } from '@epic-designer/types';
 
 import { computed, ref, shallowRef } from 'vue';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpicIcon, EpTooltip } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
-import { EpTooltip } from '@epic-designer/base-ui';
 
 defineOptions({
   name: 'EActivityBar',
@@ -35,18 +34,23 @@ function handleClick(item: ActivitybarModel, index: number) {
 <template>
   <div class="relative flex">
     <div class="epic-action-bar">
-      <ul class="epic-actions-container flex-col flex-center gap-1">
-        <EpTooltip placement="right" :content="item.title" v-for="(item, index) in activityBars" :key="index">
-        <li
-          class="epic-action-item text-[16px] w-8 h-8 flex-center"
-          :class="{ checked: activityBarCheckedIndex === index }"
-          @click="handleClick(item, index)"
+      <ul class="epic-actions-container flex-center flex-col gap-1">
+        <EpTooltip
+          placement="right"
+          :content="item.title"
+          v-for="(item, index) in activityBars"
+          :key="index"
         >
-          <EpicIcon :name="item.icon" />
-          <!-- <div class="text-14px">
+          <li
+            class="epic-action-item flex-center h-8 w-8 text-[16px]"
+            :class="{ checked: activityBarCheckedIndex === index }"
+            @click="handleClick(item, index)"
+          >
+            <EpicIcon :name="item.icon" />
+            <!-- <div class="text-14px">
             {{ item.title }}
           </div> -->
-        </li>
+          </li>
         </EpTooltip>
       </ul>
     </div>

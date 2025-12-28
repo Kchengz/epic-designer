@@ -20,6 +20,8 @@ export default {
         type: 'radio',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -38,8 +40,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
@@ -99,6 +99,9 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'radio',
+    input: true,
+    label: '单选框',
     props: {
       options: [
         {
@@ -112,9 +115,6 @@ export default {
       ],
       size: 'default',
     },
-    field: 'radio',
-    input: true,
-    label: '单选框',
     type: 'radio',
   },
   groupName: '表单',

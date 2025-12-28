@@ -21,6 +21,8 @@ export default {
         type: 'color-picker',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -39,11 +41,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.colorFormat',
+        label: '格式',
         props: {
           clearable: true,
           options: [
@@ -66,8 +68,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.colorFormat',
-        label: '格式',
         type: 'select',
       },
       {

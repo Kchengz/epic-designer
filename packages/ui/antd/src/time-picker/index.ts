@@ -26,22 +26,24 @@ export default {
         type: 'input',
       },
       {
-        props: {
-          placeholder: '请输入',
-        },
         field: 'props.format',
         label: '显示格式',
-        type: 'input',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
-        field: 'props.valueFormat',
-        label: '数据格式',
         type: 'input',
       },
       {
+        field: 'props.valueFormat',
+        label: '数据格式',
+        props: {
+          placeholder: '请输入',
+        },
+        type: 'input',
+      },
+      {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -60,35 +62,35 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
-        props: {
-          placeholder: '请输入',
-        },
         field: 'props.hourStep',
         label: '小时选项间隔',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
+        type: 'number',
+      },
+      {
         field: 'props.minuteStep',
         label: '分钟选项间隔',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
-        field: 'props.secondStep',
-        label: '秒选项间隔',
         type: 'number',
       },
       {
+        field: 'props.secondStep',
+        label: '秒选项间隔',
+        props: {
+          placeholder: '请输入',
+        },
+        type: 'number',
+      },
+      {
+        field: 'props.placement',
+        label: '弹出框位置',
         props: {
           allowClear: true,
           options: [
@@ -111,8 +113,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.placement',
-        label: '弹出框位置',
         type: 'select',
       },
       {
@@ -132,12 +132,12 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.bordered',
+        label: '无边框',
         props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'props.bordered',
-        label: '无边框',
         type: 'switch',
       },
       {
@@ -176,14 +176,14 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'time',
+    input: true,
+    label: '时间选择器',
     props: {
       format: 'HH:mm:ss',
       placeholder: '请输入',
       valueFormat: 'HH:mm:ss',
     },
-    field: 'time',
-    input: true,
-    label: '时间选择器',
     type: 'time',
   },
   groupName: '表单',

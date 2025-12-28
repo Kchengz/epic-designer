@@ -41,12 +41,12 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.limit',
+        label: '允许上传最大数量',
         props: {
           min: 0,
           placeholder: '请输入',
         },
-        field: 'props.limit',
-        label: '允许上传最大数量',
         type: 'number',
       },
       {
@@ -60,26 +60,26 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          ruleType: 'string',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'string',
+        },
         type: 'ERuleEditor',
       },
     ],
   },
   defaultSchema: {
+    field: 'uploadImage',
+    input: true,
+    label: '上传图片',
     props: {
       action: 'https://examples.epicjs.cn/epic-mock/common/upload',
       name: 'file',
       showFileList: true,
     },
-    field: 'uploadImage',
-    input: true,
-    label: '上传图片',
     type: 'upload-image',
   },
   groupName: '表单',

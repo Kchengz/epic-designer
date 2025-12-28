@@ -25,6 +25,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -43,8 +45,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
@@ -67,9 +67,7 @@ export default {
         field: 'props.collapseTagsTooltip',
         label: '隐藏提示',
         show: ({ values }) => {
-          return (
-            values.props.multiple && values.props.collapseTags
-          );
+          return values.props.multiple && values.props.collapseTags;
         },
         type: 'switch',
       },
@@ -82,6 +80,9 @@ export default {
         type: 'switch',
       },
       {
+        defaultValue: 'info',
+        field: 'props.tagType',
+        label: '标签类型',
         props: {
           options: [
             {
@@ -102,9 +103,6 @@ export default {
             },
           ],
         },
-        defaultValue: 'info',
-        field: 'props.tagType',
-        label: '标签类型',
         show: ({ values }) => {
           return values.props.multiple;
         },
@@ -119,6 +117,8 @@ export default {
         type: 'number',
       },
       {
+        field: 'props.effect',
+        label: '提示主题',
         props: {
           options: [
             {
@@ -131,8 +131,6 @@ export default {
             },
           ],
         },
-        field: 'props.effect',
-        label: '提示主题',
         type: 'select',
       },
       {
@@ -146,6 +144,9 @@ export default {
         type: 'switch',
       },
       {
+        defaultValue: 'bottom-start',
+        field: 'props.placement',
+        label: '下拉框位置',
         props: {
           options: [
             {
@@ -198,9 +199,6 @@ export default {
             },
           ],
         },
-        defaultValue: 'bottom-start',
-        field: 'props.placement',
-        label: '下拉框位置',
         type: 'select',
       },
       {
@@ -209,11 +207,11 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.noDataText',
+        label: '无数据时文本',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.noDataText',
-        label: '无数据时文本',
         type: 'input',
       },
       {
@@ -254,6 +252,9 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'select',
+    input: true,
+    label: '选择框',
     props: {
       effect: 'light',
       options: [
@@ -270,9 +271,6 @@ export default {
       placement: 'bottom-start',
       size: 'default',
     },
-    field: 'select',
-    input: true,
-    label: '选择框',
     type: 'select',
   },
   groupName: '表单',

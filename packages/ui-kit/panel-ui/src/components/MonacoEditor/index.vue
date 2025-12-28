@@ -15,7 +15,7 @@ const props = withDefaults(
     config?: editor.IStandaloneEditorConstructionOptions;
     language?: string;
     lineNumbers?: 'off' | 'on';
-    modelValue?: any;
+    modelValue?: string;
     readOnly?: boolean;
     theme?: 'hc-black' | 'vs-dark' | 'vs-light';
     valueFormat?: string;
@@ -30,6 +30,7 @@ const props = withDefaults(
     }),
     language: 'json',
     lineNumbers: 'on',
+    modelValue: '',
     readOnly: false,
     theme: 'vs-light',
     valueFormat: 'string',

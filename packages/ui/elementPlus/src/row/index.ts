@@ -5,6 +5,8 @@ export default {
   config: {
     attribute: [
       {
+        field: 'props.align',
+        label: '垂直对齐方式',
         props: {
           options: [
             {
@@ -23,11 +25,11 @@ export default {
           placeholder: '请选择',
           style: { width: '100%' },
         },
-        field: 'props.align',
-        label: '垂直对齐方式',
         type: 'select',
       },
       {
+        field: 'props.justify',
+        label: '水平排列方式',
         props: {
           options: [
             {
@@ -54,16 +56,14 @@ export default {
           placeholder: '请选择',
           style: { width: '100%' },
         },
-        field: 'props.justify',
-        label: '水平排列方式',
         type: 'select',
       },
       {
+        field: 'props.gutter',
+        label: '栅格间距',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.gutter',
-        label: '栅格间距',
         type: 'number',
       },
       {
@@ -80,6 +80,9 @@ export default {
   },
   defaultSchema: {
     label: '栅格布局',
+    props: {
+      gutter: 12,
+    },
     type: 'row',
     children: [
       {

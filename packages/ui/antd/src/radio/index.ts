@@ -21,6 +21,8 @@ export default {
         type: 'radio',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -39,17 +41,15 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.optionType',
+        label: '按钮样式',
         props: {
           checkedValue: 'button',
           unCheckedValue: 'default',
         },
-        field: 'props.optionType',
-        label: '按钮样式',
         type: 'switch',
       },
       {
@@ -84,6 +84,9 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'radio',
+    input: true,
+    label: '单选框',
     props: {
       options: [
         {
@@ -96,9 +99,6 @@ export default {
         },
       ],
     },
-    field: 'radio',
-    input: true,
-    label: '单选框',
     type: 'radio',
   },
   groupName: '表单',

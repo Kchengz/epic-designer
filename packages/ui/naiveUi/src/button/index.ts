@@ -10,6 +10,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.type',
+        label: '类型',
         props: {
           options: [
             {
@@ -43,11 +45,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.type',
-        label: '类型',
         type: 'select',
       },
       {
+        defaultValue: 'default',
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -70,9 +73,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        defaultValue: 'default',
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
@@ -133,14 +133,14 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'input',
+    input: false,
+    label: '按钮',
     props: {
       bordered: true,
       size: 'medium',
       type: 'default',
     },
-    field: 'input',
-    input: false,
-    label: '按钮',
     type: 'button',
   },
   groupName: '表单',

@@ -21,44 +21,46 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          placeholder: '请输入',
-        },
         field: 'props.checkedValue',
         label: 'ON状态值',
         onChange(e) {
           setTimeout(() => setDefaultValue(e));
         },
-        type: 'input',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
+        type: 'input',
+      },
+      {
         field: 'props.unCheckedValue',
         label: 'OFF状态值',
         onChange(e) {
           setTimeout(() => setDefaultValue(e));
         },
-        type: 'input',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
+        type: 'input',
+      },
+      {
         field: 'props.checkedChildren',
         label: 'ON状态描述',
-        type: 'input',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
-        field: 'props.unCheckedChildren',
-        label: 'OFF状态描述',
         type: 'input',
       },
       {
+        field: 'props.unCheckedChildren',
+        label: 'OFF状态描述',
+        props: {
+          placeholder: '请输入',
+        },
+        type: 'input',
+      },
+      {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -73,8 +75,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
@@ -88,13 +88,13 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          ruleType: 'boolean',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'boolean',
+        },
         type: 'ERuleEditor',
       },
     ],
@@ -106,12 +106,12 @@ export default {
     ],
   },
   defaultSchema: {
-    props: {
-      defaultValue: false,
-    },
     field: 'switch',
     input: true,
     label: '开关',
+    props: {
+      defaultValue: false,
+    },
     type: 'switch',
   },
   groupName: '表单',

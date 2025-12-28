@@ -189,10 +189,7 @@ const show = computed(() => {
   // fieldState 属性优先级最高
   if (fieldState.value === 'WRITE') {
     return true;
-  } else if (
-    innerSchema.props?.hidden ||
-    fieldState.value === 'HIDE'
-  ) {
+  } else if (innerSchema.props?.hidden || fieldState.value === 'HIDE') {
     return false;
   }
 
@@ -369,8 +366,7 @@ async function initComponent() {
   if (innerSchema.props?.defaultValue !== undefined) {
     const defaultValue = pageManager.isDesignMode.value
       ? innerSchema.props?.defaultValue
-      : (formData[innerSchema.field!] ??
-        innerSchema.props?.defaultValue);
+      : (formData[innerSchema.field!] ?? innerSchema.props?.defaultValue);
 
     handleUpdate(deepClone(defaultValue));
   }

@@ -24,6 +24,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.layout',
+        label: '表单布局',
         props: {
           allowClear: true,
           'option-type': 'button',
@@ -43,11 +45,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.layout',
-        label: '表单布局',
         type: 'radio',
       },
       {
+        field: 'props.labelLayout',
+        label: '标签布局',
         props: {
           'option-type': 'button',
           options: [
@@ -61,8 +63,6 @@ export default {
             },
           ],
         },
-        field: 'props.labelLayout',
-        label: '标签布局',
         type: 'radio',
       },
       {
@@ -74,28 +74,30 @@ export default {
         type: 'EInputSize',
       },
       {
-        props: {
-          placeholder: '请输入',
-        },
         field: 'props.labelCol.span',
         label: '标签占比',
-        show: ({ values }) => {
-          return values.props?.labelLayout === 'flex';
-        },
-        type: 'input',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
-        field: 'props.wrapperCol.span',
-        label: '控件占比',
         show: ({ values }) => {
           return values.props?.labelLayout === 'flex';
         },
         type: 'input',
       },
       {
+        field: 'props.wrapperCol.span',
+        label: '控件占比',
+        props: {
+          placeholder: '请输入',
+        },
+        show: ({ values }) => {
+          return values.props?.labelLayout === 'flex';
+        },
+        type: 'input',
+      },
+      {
+        field: 'props.labelAlign',
+        label: '标签对齐',
         props: {
           'option-type': 'button',
           options: [
@@ -109,11 +111,12 @@ export default {
             },
           ],
         },
-        field: 'props.labelAlign',
-        label: '标签对齐',
         type: 'radio',
       },
       {
+        defaultValue: 'default',
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -132,18 +135,15 @@ export default {
           ],
           placeholder: '请选择',
         },
-        defaultValue: 'default',
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.colon',
+        label: '隐藏冒号',
         props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'props.colon',
-        label: '隐藏冒号',
         type: 'switch',
       },
       {
@@ -175,6 +175,7 @@ export default {
     ],
   },
   defaultSchema: {
+    label: '表单',
     props: {
       labelCol: {
         span: 5,
@@ -186,7 +187,6 @@ export default {
         span: 19,
       },
     },
-    label: '表单',
     type: 'form',
     children: [],
   },

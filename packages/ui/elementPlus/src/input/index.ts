@@ -43,6 +43,9 @@ export default {
         type: 'input',
       },
       {
+        defaultValue: 'default',
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -61,18 +64,15 @@ export default {
           ],
           placeholder: '请选择',
         },
-        defaultValue: 'default',
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.maxlength',
+        label: '最大输入长度',
         props: {
           min: 0,
           placeholder: '请输入',
         },
-        field: 'props.maxlength',
-        label: '最大输入长度',
         type: 'number',
       },
       {
@@ -84,6 +84,9 @@ export default {
         type: 'switch',
       },
       {
+        defaultValue: 'text',
+        field: 'props.type',
+        label: '输入类型',
         props: {
           clearable: true,
           options: [
@@ -102,9 +105,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        defaultValue: 'text',
-        field: 'props.type',
-        label: '输入类型',
         type: 'select',
       },
       {
@@ -167,12 +167,12 @@ export default {
     ],
   },
   defaultSchema: {
-    props: {
-      placeholder: '请输入',
-    },
     field: 'input',
     input: true,
     label: '输入框',
+    props: {
+      placeholder: '请输入',
+    },
     type: 'input',
   },
   groupName: '表单',

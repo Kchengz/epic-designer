@@ -30,11 +30,11 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.placeholder',
+        label: '占位内容',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.placeholder',
-        label: '占位内容',
         type: 'input',
       },
       {
@@ -43,6 +43,8 @@ export default {
         type: 'select',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -61,20 +63,20 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
 
       {
+        field: 'props.listHeight',
+        label: '弹窗高度',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.listHeight',
-        label: '弹窗高度',
         type: 'number',
       },
       {
+        field: 'props.mode',
+        label: '模式',
         props: {
           allowClear: true,
           options: [
@@ -93,8 +95,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.mode',
-        label: '模式',
         type: 'select',
       },
       {
@@ -105,8 +105,7 @@ export default {
       {
         field: 'props.autoClearSearchValue',
         label: '选中选项后清空搜索框',
-        show: ({ values }) =>
-          values.props.mode && values.props.showSearch,
+        show: ({ values }) => values.props.mode && values.props.showSearch,
         type: 'switch',
       },
       {
@@ -122,6 +121,8 @@ export default {
         type: 'number',
       },
       {
+        field: 'props.placement',
+        label: '弹出框位置',
         props: {
           allowClear: true,
           options: [
@@ -144,17 +145,15 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.placement',
-        label: '弹出框位置',
         type: 'select',
       },
       {
+        field: 'props.bordered',
+        label: '无边框',
         props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'props.bordered',
-        label: '无边框',
         type: 'switch',
       },
       {
@@ -207,6 +206,9 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'select',
+    input: true,
+    label: '选择框',
     props: {
       options: [
         {
@@ -220,9 +222,6 @@ export default {
       ],
       placeholder: '请选择',
     },
-    field: 'select',
-    input: true,
-    label: '选择框',
     type: 'select',
   },
   groupName: '表单',

@@ -30,12 +30,12 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.defaultValue',
+        label: '默认值',
         props: {
           placeholder: '请输入',
           size: 'middle',
         },
-        field: 'props.defaultValue',
-        label: '默认值',
         type: 'number',
       },
       {
@@ -44,6 +44,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -62,8 +64,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
@@ -72,35 +72,35 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          placeholder: '请输入',
-        },
         field: 'props.max',
         label: '最大值',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
+        type: 'number',
+      },
+      {
         field: 'props.min',
         label: '最小值',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
+        type: 'number',
+      },
+      {
         field: 'props.precision',
         label: '精度',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
+        type: 'number',
+      },
+      {
         field: 'props.step',
         label: '步长',
+        props: {
+          placeholder: '请输入',
+        },
         type: 'number',
       },
       {
@@ -109,12 +109,12 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.bordered',
+        label: '无边框',
         props: {
           checkedValue: false,
           unCheckedValue: true,
         },
-        field: 'props.bordered',
-        label: '无边框',
         type: 'switch',
       },
       {
@@ -133,13 +133,13 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          ruleType: 'number',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'number',
+        },
         type: 'ERuleEditor',
       },
     ],
@@ -167,13 +167,13 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'number',
+    input: true,
+    label: '数字输入框',
     props: {
       placeholder: '请输入',
       style: { width: '100%' },
     },
-    field: 'number',
-    input: true,
-    label: '数字输入框',
     type: 'number',
   },
   groupName: '表单',

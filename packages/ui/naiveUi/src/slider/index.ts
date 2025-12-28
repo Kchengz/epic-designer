@@ -40,11 +40,11 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.step',
+        label: '步长',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.step',
-        label: '步长',
         type: 'number',
       },
       {
@@ -58,22 +58,24 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          placeholder: '请输入',
-        },
         field: 'props.max',
         label: '最大值',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
-        field: 'props.min',
-        label: '最小值',
         type: 'number',
       },
       {
+        field: 'props.min',
+        label: '最小值',
+        props: {
+          placeholder: '请输入',
+        },
+        type: 'number',
+      },
+      {
+        field: 'props.placement',
+        label: '弹出位置',
         props: {
           clearable: true,
           options: [
@@ -128,8 +130,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.placement',
-        label: '弹出位置',
         type: 'select',
       },
       {
@@ -143,13 +143,13 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          ruleType: 'number',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'number',
+        },
         type: 'ERuleEditor',
       },
     ],
@@ -165,12 +165,12 @@ export default {
     ],
   },
   defaultSchema: {
-    props: {
-      placement: 'top-start',
-    },
     field: 'slider',
     input: true,
     label: '滑块',
+    props: {
+      placement: 'top-start',
+    },
     type: 'slider',
   },
   groupName: '表单',

@@ -22,6 +22,9 @@ export default {
         type: 'color-picker',
       },
       {
+        defaultValue: 'default',
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -40,12 +43,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        defaultValue: 'default',
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.placement',
+        label: '菜单弹出的位置',
         props: {
           clearable: true,
           options: [
@@ -100,11 +102,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.placement',
-        label: '菜单弹出的位置',
         type: 'select',
       },
       {
+        field: 'props.modes',
+        label: '格式',
         props: {
           max: 1,
           options: [
@@ -126,8 +128,6 @@ export default {
             },
           ],
         },
-        field: 'props.modes',
-        label: '格式',
         type: 'checkbox',
       },
       {
@@ -166,14 +166,14 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'color-picker',
+    input: true,
+    label: '颜色选择器',
     props: {
       modes: ['hex'],
       showAlpha: true,
       type: 'color',
     },
-    field: 'color-picker',
-    input: true,
-    label: '颜色选择器',
     type: 'color-picker',
   },
   groupName: '表单',

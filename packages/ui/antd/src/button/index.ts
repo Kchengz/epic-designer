@@ -10,6 +10,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.type',
+        label: '类型',
         props: {
           clearable: true,
           options: [
@@ -40,11 +42,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.type',
-        label: '类型',
         type: 'select',
       },
       {
+        field: 'props.htmlType',
+        label: '操作类型',
         props: {
           clearable: true,
           options: [
@@ -63,20 +65,20 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.htmlType',
-        label: '操作类型',
         type: 'select',
       },
       {
+        field: 'props.href',
+        label: '链接',
         props: {
           allowClear: true,
           placeholder: '请输入',
         },
-        field: 'props.href',
-        label: '链接',
         type: 'input',
       },
       {
+        field: 'props.target',
+        label: '链接打开方式',
         props: {
           clearable: true,
           options: [
@@ -99,12 +101,12 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.target',
-        label: '链接打开方式',
         show: ({ values }) => values.props?.href,
         type: 'select',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -123,11 +125,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.shape',
+        label: '形状',
         props: {
           clearable: true,
           options: [
@@ -146,8 +148,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.shape',
-        label: '形状',
         type: 'select',
       },
       {

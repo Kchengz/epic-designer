@@ -25,8 +25,6 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: () => [],
 });
 
-const modelValue = defineModel('modelValue');
-
 const emit = defineEmits<{
   change: [value: PanelName | PanelName[]];
   'update:modelValue': [value: PanelName | PanelName[]];

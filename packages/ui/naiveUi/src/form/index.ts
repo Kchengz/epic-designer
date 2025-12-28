@@ -29,6 +29,8 @@ export default {
         type: 'EInputSize',
       },
       {
+        field: 'props.labelPlacement',
+        label: '标签位置',
         props: {
           clearable: true,
           options: [
@@ -43,30 +45,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.labelPlacement',
-        label: '标签位置',
         type: 'select',
       },
       {
-        props: {
-          clearable: true,
-          options: [
-            {
-              label: '左边',
-              value: 'left',
-            },
-            {
-              label: '右边',
-              value: 'right',
-            },
-          ],
-          placeholder: '请选择',
-        },
         field: 'props.labelAlign',
         label: '标签对齐方式',
-        type: 'select',
-      },
-      {
         props: {
           clearable: true,
           options: [
@@ -81,11 +64,30 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.requireMarkPlacement',
-        label: '必填星号位置',
         type: 'select',
       },
       {
+        field: 'props.requireMarkPlacement',
+        label: '必填星号位置',
+        props: {
+          clearable: true,
+          options: [
+            {
+              label: '左边',
+              value: 'left',
+            },
+            {
+              label: '右边',
+              value: 'right',
+            },
+          ],
+          placeholder: '请选择',
+        },
+        type: 'select',
+      },
+      {
+        field: 'props.size',
+        label: '表单尺寸',
         props: {
           clearable: true,
           options: [
@@ -104,8 +106,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '表单尺寸',
         type: 'select',
       },
       {
@@ -126,6 +126,7 @@ export default {
     ],
   },
   defaultSchema: {
+    label: '表单',
     props: {
       hideRequiredMark: false,
       labelCol: {
@@ -137,7 +138,6 @@ export default {
         span: 19,
       },
     },
-    label: '表单',
     type: 'form',
     children: [],
   },

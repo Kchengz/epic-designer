@@ -40,32 +40,32 @@ const requiredRuleSchemas = [
     type: 'switch',
   },
   {
+    label: '校验时机',
+    model: 'trigger',
     props: {
       mode: 'multiple',
       multiple: true,
       options: triggerOptions,
       placeholder: '校验时机',
     },
-    label: '校验时机',
-    model: 'trigger',
     show() {
       return Boolean(requiredRule.value.required);
     },
     type: 'select',
   },
   {
-    props: { options: typeOptions, placeholder: '类型' },
     label: '类型',
     model: 'type',
+    props: { options: typeOptions, placeholder: '类型' },
     show() {
       return Boolean(requiredRule.value.required);
     },
     type: 'select',
   },
   {
-    props: { placeholder: '校验信息' },
     label: '校验信息',
     model: 'message',
+    props: { placeholder: '校验信息' },
     show() {
       return Boolean(requiredRule.value.required);
     },

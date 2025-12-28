@@ -20,22 +20,24 @@ export default {
         type: 'checkbox',
       },
       {
-        props: {
-          placeholder: '请输入',
-        },
         field: 'props.max',
         label: '最大勾选数',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
-        field: 'props.min',
-        label: '最小勾选数',
         type: 'number',
       },
       {
+        field: 'props.min',
+        label: '最小勾选数',
+        props: {
+          placeholder: '请输入',
+        },
+        type: 'number',
+      },
+      {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -54,8 +56,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
@@ -76,13 +76,13 @@ export default {
         type: 'EOptionsEditor',
       },
       {
-        props: {
-          ruleType: 'array',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'array',
+        },
         type: 'ERuleEditor',
       },
     ],
@@ -94,6 +94,9 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'checkbox',
+    input: true,
+    label: '复选框',
     props: {
       // defaultValue: [],
       options: [
@@ -107,9 +110,6 @@ export default {
         },
       ],
     },
-    field: 'checkbox',
-    input: true,
-    label: '复选框',
     type: 'checkbox',
   },
   groupName: '表单',

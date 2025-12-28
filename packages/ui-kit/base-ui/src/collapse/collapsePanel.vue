@@ -2,7 +2,7 @@
 import type { Ref } from 'vue';
 
 import type { PanelName } from './collapse.vue';
-import { EpicIcon } from '../icon';
+
 import {
   computed,
   defineProps,
@@ -12,6 +12,8 @@ import {
   ref,
   withDefaults,
 } from 'vue';
+
+import { EpicIcon } from '../icon';
 
 interface Props {
   // 是否显示边框
@@ -139,9 +141,7 @@ onUnmounted(() => {
         :class="{ 'ep-collapse-panel__arrow--active': isActive }"
       >
         <slot name="arrow">
-          <EpicIcon
-          name="icon--epic--arrow-forward-ios-rounded"
-        />
+          <EpicIcon name="icon--epic--arrow-forward-ios-rounded" />
         </slot>
       </div>
     </div>

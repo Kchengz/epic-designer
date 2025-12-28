@@ -16,11 +16,11 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     return () => {
-      const props: Record<string, any> = {
+      const componentProps: Record<string, any> = {
         ...props.componentSchema?.props,
       };
 
-      return h(NButton, props, {
+      return h(NButton, componentProps, {
         default: () =>
           renderSlot(slots, 'default', {}, () => [
             props.componentSchema?.label,

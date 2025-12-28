@@ -21,6 +21,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.listType',
+        label: '列表样式',
         props: {
           allowClear: true,
           options: [
@@ -35,8 +37,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.listType',
-        label: '列表样式',
         type: 'select',
       },
       {
@@ -45,12 +45,12 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.maxCount',
+        label: '允许上传最大数量',
         props: {
           min: 0,
           placeholder: '请输入',
         },
-        field: 'props.maxCount',
-        label: '允许上传最大数量',
         type: 'number',
       },
       {
@@ -64,24 +64,24 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          ruleType: 'string',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'string',
+        },
         type: 'ERuleEditor',
       },
     ],
   },
   defaultSchema: {
-    props: {
-      action: 'https://examples.epicjs.cn/epic-mock/common/upload',
-    },
     field: 'uploadFile',
     input: true,
     label: '上传文件',
+    props: {
+      action: 'https://examples.epicjs.cn/epic-mock/common/upload',
+    },
     type: 'upload-file',
   },
   groupName: '表单',

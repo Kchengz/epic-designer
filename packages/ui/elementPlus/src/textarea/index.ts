@@ -43,6 +43,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -61,17 +63,15 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.maxlength',
+        label: '最大输入长度',
         props: {
           min: 0,
           placeholder: '请输入',
         },
-        field: 'props.maxlength',
-        label: '最大输入长度',
         type: 'number',
       },
       {
@@ -83,19 +83,19 @@ export default {
         type: 'switch',
       },
       {
+        field: 'props.autosize.minRows',
+        label: '最小行数',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.autosize.minRows',
-        label: '最小行数',
         type: 'number',
       },
       {
+        field: 'props.autosize.maxRows',
+        label: '最大行数',
         props: {
           placeholder: '请输入',
         },
-        field: 'props.autosize.maxRows',
-        label: '最大行数',
         type: 'number',
       },
       {
@@ -141,13 +141,13 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'textarea',
+    input: true,
+    label: '文本域',
     props: {
       placeholder: '请输入',
       type: 'textarea',
     },
-    field: 'textarea',
-    input: true,
-    label: '文本域',
     type: 'textarea',
   },
   groupName: '表单',

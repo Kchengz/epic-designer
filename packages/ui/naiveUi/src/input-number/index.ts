@@ -26,6 +26,8 @@ export default {
         type: 'input',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           clearable: true,
           options: [
@@ -48,11 +50,11 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
+        field: 'props.buttonPlacement',
+        label: '控制按钮位置',
         props: {
           clearable: true,
           options: [
@@ -67,40 +69,38 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.buttonPlacement',
-        label: '控制按钮位置',
         type: 'select',
       },
       {
-        props: {
-          placeholder: '请输入',
-        },
         field: 'props.max',
         label: '最大值',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
+        type: 'number',
+      },
+      {
         field: 'props.min',
         label: '最小值',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
+        type: 'number',
+      },
+      {
         field: 'props.step',
         label: '步长',
-        type: 'number',
-      },
-      {
         props: {
           placeholder: '请输入',
         },
+        type: 'number',
+      },
+      {
         field: 'props.precision',
         label: '精度',
+        props: {
+          placeholder: '请输入',
+        },
         type: 'number',
       },
       {
@@ -119,24 +119,24 @@ export default {
         type: 'switch',
       },
       {
-        props: {
-          ruleType: 'number',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'number',
+        },
         type: 'ERuleEditor',
       },
     ],
   },
   defaultSchema: {
-    props: {
-      placeholder: '请输入',
-    },
     field: 'number',
     input: true,
     label: '数字输入框',
+    props: {
+      placeholder: '请输入',
+    },
     type: 'number',
   },
   groupName: '表单',

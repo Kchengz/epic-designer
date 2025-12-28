@@ -28,10 +28,10 @@ const innerValue = useVModel(props, 'modelValue', emit);
  */
 function handleAdd() {
   const colItem = {
+    id: getUUID(),
     props: {
       span: 12,
     },
-    id: getUUID(),
     type: 'col',
     children: [],
   };

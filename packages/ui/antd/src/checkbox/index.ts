@@ -21,6 +21,8 @@ export default {
         type: 'checkbox',
       },
       {
+        field: 'props.size',
+        label: '尺寸',
         props: {
           allowClear: true,
           options: [
@@ -39,8 +41,6 @@ export default {
           ],
           placeholder: '请选择',
         },
-        field: 'props.size',
-        label: '尺寸',
         type: 'select',
       },
       {
@@ -60,13 +60,13 @@ export default {
         type: 'EOptionsEditor',
       },
       {
-        props: {
-          ruleType: 'array',
-        },
         description: '校验规则需要配合表单使用',
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
+        props: {
+          ruleType: 'array',
+        },
         type: 'ERuleEditor',
       },
     ],
@@ -78,6 +78,9 @@ export default {
     ],
   },
   defaultSchema: {
+    field: 'checkbox',
+    input: true,
+    label: '多选框',
     props: {
       options: [
         {
@@ -90,9 +93,6 @@ export default {
         },
       ],
     },
-    field: 'checkbox',
-    input: true,
-    label: '多选框',
     type: 'checkbox',
   },
   groupName: '表单',
