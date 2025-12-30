@@ -4,7 +4,7 @@ import { watchEffect } from 'vue';
 
 // 注册naive-ui
 import { pluginManager as pManager } from '@epic-designer/manager';
-import { createDiscreteApi, NTabPane } from 'naive-ui';
+import { createDiscreteApi } from 'naive-ui';
 
 import Button from './button';
 import Card from './card';
@@ -25,6 +25,8 @@ import Row from './row';
 import Select from './select';
 import Slider from './slider';
 import Switch from './switch';
+import TabsPane from './tab-pane';
+import Tabs from './tabs';
 import UploadFile from './upload-file';
 import UploadImage from './upload-image';
 
@@ -37,13 +39,6 @@ export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
     'FormItem',
     async () => (await import('naive-ui')).NFormItem,
   );
-
-  pluginManager.component.add(
-    'Tabs',
-    async () => (await import('naive-ui')).NTabs,
-  );
-
-  pluginManager.component.add('TabPane', NTabPane);
 
   pluginManager.component.add(
     'Collapse',
@@ -76,6 +71,8 @@ export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
     Collapse,
     CollapseItem,
     Modal,
+    Tabs,
+    TabsPane,
   ];
 
   // 更新默认上传地址

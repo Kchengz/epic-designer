@@ -24,7 +24,7 @@
     }
   },
   "peerDependencies": {
-    "element-plus": ">=2.9.1",
+    "element-plus": ">=2.11.9",
     "epic-designer": ">=1.0.5",
     "vue": ">=3.1.0"
   },

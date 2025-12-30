@@ -58,8 +58,8 @@ catalogs:
       specifier: ^1.11.13
       version: 1.11.19
     element-plus:
-      specifier: ^2.9.1
-      version: 2.11.7
+      specifier: ^2.13.0
+      version: 2.13.0
     eslint:
       specifier: ^9.20.0
       version: 9.39.1
@@ -320,7 +320,7 @@ importers:
         version: 1.11.19
       element-plus:
         specifier: 'catalog:'
-        version: 2.11.7(vue@3.5.22(typescript@5.9.3))
+        version: 2.13.0(vue@3.5.22(typescript@5.9.3))
       monaco-editor:
         specifier: 'catalog:'
         version: 0.52.2
@@ -345,7 +345,7 @@ importers:
         version: 1.11.19
       element-plus:
         specifier: 'catalog:'
-        version: 2.11.7(vue@3.5.22(typescript@5.9.3))
+        version: 2.13.0(vue@3.5.22(typescript@5.9.3))
       magic-string:
         specifier: 'catalog:'
         version: 0.30.21
@@ -499,13 +499,13 @@ importers:
     optionalDependencies:
       '@epic-designer/antd':
         specifier: '>=1.1.0'
-        version: 1.1.0(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+        version: 1.1.0(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       '@epic-designer/element-plus':
         specifier: '>=1.1.0'
-        version: 1.1.0(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+        version: 1.1.0(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       '@epic-designer/naive-ui':
         specifier: '>=1.1.0'
-        version: 1.1.0(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+        version: 1.1.0(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
     devDependencies:
       '@types/node':
         specifier: 'catalog:'
@@ -2280,6 +2280,9 @@ packages:
   '@vue/test-utils@2.4.6':
     resolution: {integrity: sha512-FMxEjOpYNYiFe0GkaHsnJPXFHxQ6m4t8vI/ElPGpMWxZKpmRvQ33OIrvRXemy6yha03RxhOlQuy+gZMC3CQSow==}
 
+  '@vueuse/core@10.11.1':
+    resolution: {integrity: sha512-guoy26JQktXPcz+0n3GukWIy/JDNKti9v6VEMu6kV2sYBsWuGiTU8OWdg+ADfUbHg3/3DlqySDe7JmdHrktiww==}
+
   '@vueuse/core@11.3.0':
     resolution: {integrity: sha512-7OC4Rl1f9G8IT6rUfi9JrKiXy4bfmHhZ5x2Ceojy0jnd3mHNEvV4JaRygH362ror6/NZ+Nl+n13LPzGiPN8cKA==}
 
@@ -2330,6 +2333,9 @@ packages:
       universal-cookie:
         optional: true
 
+  '@vueuse/metadata@10.11.1':
+    resolution: {integrity: sha512-IGa5FXd003Ug1qAZmyE8wF3sJ81xGLSqTqtQ6jaVfkeZ4i5kS2mwQF61yhVqojRnenVew5PldLyRgvdl4YYuSw==}
+
   '@vueuse/metadata@11.3.0':
     resolution: {integrity: sha512-pwDnDspTqtTo2HwfLw4Rp6yywuuBdYnPYDq+mO38ZYKGebCUQC/nVj/PXSiK9HX5otxLz8Fn7ECPbjiRz2CC3g==}
 
@@ -2338,6 +2344,9 @@ packages:
 
   '@vueuse/metadata@9.13.0':
     resolution: {integrity: sha512-gdU7TKNAUVlXXLbaF+ZCfte8BjRJQWPCa2J55+7/h+yDtzw3vOoGQDRXzI6pyKyo6bXFT5/QoPE4hAknExjRLQ==}
+
+  '@vueuse/shared@10.11.1':
+    resolution: {integrity: sha512-LHpC8711VFZlDaYUXEBbFBCQ7GS3dVU9mjOhhMhXP6txTV4EhYQg/KGnQuvt/sPAtoUKq7VVUnL6mVtFoL42sA==}
 
   '@vueuse/shared@11.3.0':
     resolution: {integrity: sha512-P8gSSWQeucH5821ek2mn/ciCk+MS/zoRKqdQIM3bHq6p7GXDAJLmnRRKmF5F65sAVJIfzQlwR3aDzwCn10s8hA==}
@@ -2979,6 +2988,11 @@ packages:
     resolution: {integrity: sha512-Bh47wuzsqaNBNDkbtlOlZER1cGcOB8GsXp/+C9b95MOrk0wvoHUV4NKKK7xMkfYNFYdYysQ752oMhnExgAL6+g==}
     peerDependencies:
       vue: ^3.2.0
+
+  element-plus@2.13.0:
+    resolution: {integrity: sha512-qjxS+SBChvqCl6lU6ShiliLMN6WqFHiXQENYbAY3GKNflG+FS3jqn8JmQq0CBZq4koFqsi95NT1M6SL4whZfrA==}
+    peerDependencies:
+      vue: ^3.3.0
 
   emoji-regex-xs@1.0.0:
     resolution: {integrity: sha512-LRlerrMYoIDrT6jgpeZ2YYl/L8EulRTt5hQcYjy5AInh7HWXKimpqx68aknBFpGL2+/IcogTcaydJEgaTmOpDg==}
@@ -6350,23 +6364,23 @@ snapshots:
 
   '@emotion/unitless@0.8.1': {}
 
-  '@epic-designer/antd@1.1.0(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
+  '@epic-designer/antd@1.1.0(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
     dependencies:
       ant-design-vue: 4.2.6(vue@3.5.22(typescript@5.9.3))
-      epic-designer: 1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      epic-designer: 1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       vue: 3.5.22(typescript@5.9.3)
     optional: true
 
-  '@epic-designer/element-plus@1.1.0(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
+  '@epic-designer/element-plus@1.1.0(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
     dependencies:
-      element-plus: 2.11.7(vue@3.5.22(typescript@5.9.3))
-      epic-designer: 1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      element-plus: 2.13.0(vue@3.5.22(typescript@5.9.3))
+      epic-designer: 1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       vue: 3.5.22(typescript@5.9.3)
     optional: true
 
-  '@epic-designer/naive-ui@1.1.0(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
+  '@epic-designer/naive-ui@1.1.0(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
     dependencies:
-      epic-designer: 1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      epic-designer: 1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       naive-ui: 2.43.1(vue@3.5.22(typescript@5.9.3))
       vue: 3.5.22(typescript@5.9.3)
     optional: true
@@ -7725,6 +7739,16 @@ snapshots:
       js-beautify: 1.15.4
       vue-component-type-helpers: 2.2.12
 
+  '@vueuse/core@10.11.1(vue@3.5.22(typescript@5.9.3))':
+    dependencies:
+      '@types/web-bluetooth': 0.0.20
+      '@vueuse/metadata': 10.11.1
+      '@vueuse/shared': 10.11.1(vue@3.5.22(typescript@5.9.3))
+      vue-demi: 0.14.10(vue@3.5.22(typescript@5.9.3))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
   '@vueuse/core@11.3.0(vue@3.5.22(typescript@5.9.3))':
     dependencies:
       '@types/web-bluetooth': 0.0.20
@@ -7767,11 +7791,20 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
+  '@vueuse/metadata@10.11.1': {}
+
   '@vueuse/metadata@11.3.0': {}
 
   '@vueuse/metadata@12.8.2': {}
 
   '@vueuse/metadata@9.13.0': {}
+
+  '@vueuse/shared@10.11.1(vue@3.5.22(typescript@5.9.3))':
+    dependencies:
+      vue-demi: 0.14.10(vue@3.5.22(typescript@5.9.3))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
 
   '@vueuse/shared@11.3.0(vue@3.5.22(typescript@5.9.3))':
     dependencies:
@@ -8502,6 +8535,26 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
 
+  element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)):
+    dependencies:
+      '@ctrl/tinycolor': 3.6.1
+      '@element-plus/icons-vue': 2.3.2(vue@3.5.22(typescript@5.9.3))
+      '@floating-ui/dom': 1.7.4
+      '@popperjs/core': '@sxzz/popperjs-es@2.11.7'
+      '@types/lodash': 4.17.20
+      '@types/lodash-es': 4.17.12
+      '@vueuse/core': 10.11.1(vue@3.5.22(typescript@5.9.3))
+      async-validator: 4.2.5
+      dayjs: 1.11.19
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      lodash-unified: 1.0.3(@types/lodash-es@4.17.12)(lodash-es@4.17.21)(lodash@4.17.21)
+      memoize-one: 6.0.0
+      normalize-wheel-es: 1.2.0
+      vue: 3.5.22(typescript@5.9.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+
   emoji-regex-xs@1.0.0: {}
 
   emoji-regex@8.0.0: {}
@@ -8531,15 +8584,15 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
 
-  epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)):
+  epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)):
     dependencies:
       monaco-editor: 0.52.2
       vue: 3.5.22(typescript@5.9.3)
       vuedraggable: 4.1.0(vue@3.5.22(typescript@5.9.3))
     optionalDependencies:
-      '@epic-designer/antd': 1.1.0(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
-      '@epic-designer/element-plus': 1.1.0(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
-      '@epic-designer/naive-ui': 1.1.0(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.11.7(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      '@epic-designer/antd': 1.1.0(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      '@epic-designer/element-plus': 1.1.0(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      '@epic-designer/naive-ui': 1.1.0(epic-designer@1.1.1(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
     transitivePeerDependencies:
       - ant-design-vue
       - element-plus

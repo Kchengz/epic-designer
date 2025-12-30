@@ -37,6 +37,10 @@ export function setupComponent(pluginManager: PluginManager): void {
     async () => await import('./ERuleEditor/index.vue'),
   );
   pluginManager.component.add(
+    'ETabPaneEditor',
+    async () => await import('./ETabPaneEditor/index.vue'),
+  );
+  pluginManager.component.add(
     'EOptionsEditor',
     async () => await import('./EOptionsEditor/index.vue'),
   );

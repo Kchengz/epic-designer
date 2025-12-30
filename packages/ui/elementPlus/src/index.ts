@@ -9,8 +9,6 @@ import {
   ElCollapseItem,
   ElFormItem,
   ElMessage,
-  ElTabPane,
-  ElTabs,
 } from 'element-plus';
 
 import Button from './button';
@@ -32,6 +30,8 @@ import Row from './row';
 import Select from './select';
 import Slider from './slider';
 import Switch from './switch';
+import TabsPane from './tab-pane';
+import Tabs from './tabs';
 import Textarea from './textarea';
 import UploadFile from './upload-file';
 import UploadImage from './upload-image';
@@ -43,8 +43,6 @@ export function setupElementPlus(
   pluginManager: PluginManager = pManager,
 ): void {
   pluginManager.component.add('FormItem', ElFormItem);
-  pluginManager.component.add('Tabs', ElTabs);
-  pluginManager.component.add('TabPane', ElTabPane);
   pluginManager.component.add('Collapse', ElCollapse);
   pluginManager.component.add('CollapseItem', ElCollapseItem);
 
@@ -71,6 +69,8 @@ export function setupElementPlus(
     Collapse,
     CollapseItem,
     Modal,
+    Tabs,
+    TabsPane,
   ];
 
   // 更新默认上传地址

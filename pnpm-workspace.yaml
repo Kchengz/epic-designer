@@ -30,7 +30,7 @@ catalog:
   'vue-tsc': ^2.2.0
   'ant-design-vue': ^4.2.6
   'dayjs': ^1.11.13
-  'element-plus': ^2.9.1
+  'element-plus': ^2.13.0
   'monaco-editor': ^0.52.2
   'vite-plugin-monaco-editor': ^1.1.0
   '@ant-design/icons-vue': ^7.0.1

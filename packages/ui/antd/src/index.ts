@@ -23,6 +23,8 @@ import Row from './row';
 import Select from './select';
 import Slider from './slider';
 import Switch from './switch';
+import TabsPane from './tab-pane';
+import Tabs from './tabs';
 import Textarea from './textarea';
 import TimePicker from './time-picker';
 import UploadFile from './upload-file';
@@ -73,14 +75,6 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
     'CollapseItem',
     async () => (await import('ant-design-vue')).CollapsePanel,
   );
-  pluginManager.component.add(
-    'Tabs',
-    async () => (await import('ant-design-vue')).Tabs,
-  );
-  pluginManager.component.add(
-    'TabPane',
-    async () => (await import('ant-design-vue')).TabPane,
-  );
 
   const componentArray = [
     Form,
@@ -104,6 +98,8 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
     Row,
     Col,
     Modal,
+    Tabs,
+    TabsPane,
   ];
 
   // 更新默认上传地址
