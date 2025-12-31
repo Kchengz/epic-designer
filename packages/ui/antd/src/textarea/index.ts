@@ -21,8 +21,8 @@ export default {
     attribute: [
       {
         field: 'field',
-        label: '字段名',
-        type: 'input',
+        label: '数据字段',
+        type: 'EpField',
       },
       {
         field: 'label',
