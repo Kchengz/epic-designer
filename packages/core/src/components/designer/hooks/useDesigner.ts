@@ -18,6 +18,7 @@ import {
   deepEqual,
   findSchemaById,
   findSchemaInfoById,
+  findSchemas,
   getMatchedById,
 } from '@epic-designer/utils';
 
@@ -98,13 +99,34 @@ export function useDesigner(props, emit) {
       ...canvasConfigs[canvasMode],
       ...innerDefaultSchema.canvas,
     };
-
+    updateFormName();
     // 记录默认组件id
     pageManager.setDefaultComponentIds(innerDefaultSchema.schemas);
   });
 
   // 设计模式
   pageManager.setDesignMode();
+
+  /**
+   * 表单模式下通过数据表更新表单name
+   */
+  function updateFormName() {
+    if (!props.formMode || !props.tableJson) return;
+
+    const dataTable = props.tableJson.find(
+      (item) => item.tableType === 'parent',
+    );
+    if (!dataTable) return;
+
+    const formSchemas = findSchemas(
+      pageSchema.schemas,
+      (schema) => schema.type === 'form',
+    ) as ComponentSchema[];
+
+    if (formSchemas.length === 1) {
+      formSchemas[0].props.name = dataTable.tableName;
+    }
+  }
 
   /**
    * 复制并立即粘贴节点（复制当前节点）

@@ -39,6 +39,14 @@ export const frameworkRoutes = [
         },
       },
       {
+        path: 'dataTable',
+        name: 'dataTable',
+        component: () => import('@/views/designer/dataTable/index.vue'),
+        meta: {
+          title: '数据表',
+        },
+      },
+      {
         path: 'undoHistory',
         name: 'undoHistory',
         component: () => import('@/views/designer/undoHistory/index.vue'),

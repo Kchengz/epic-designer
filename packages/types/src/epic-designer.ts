@@ -1,8 +1,10 @@
 import type { ActionsModel } from '@epic-designer/manager';
 
+import type { TableJson } from './designer';
 import type { FormItemRule } from './rules';
 
 export interface RenderCallbackParams {
+  tableJson?: TableJson;
   values: Record<string, any>;
 }
 

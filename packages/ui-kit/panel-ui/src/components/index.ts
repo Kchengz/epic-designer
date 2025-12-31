@@ -2,6 +2,7 @@ import type { PluginManager } from '@epic-designer/manager';
 
 import { EpicNode } from '@epic-designer/base-ui';
 
+import EpField from './EpField';
 import MonacoEditor from './MonacoEditor';
 import Page from './Page';
 
@@ -46,7 +47,7 @@ export function setupComponent(pluginManager: PluginManager): void {
   );
   pluginManager.component.add('EpicNode', EpicNode);
 
-  const componentArray = [MonacoEditor];
+  const componentArray = [MonacoEditor, EpField];
 
   setupPage(pluginManager);
 

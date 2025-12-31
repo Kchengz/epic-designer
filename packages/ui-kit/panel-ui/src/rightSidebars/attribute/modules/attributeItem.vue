@@ -4,7 +4,10 @@ import type {
   ComponentSchema,
   Designer,
   PageSchema,
+  TableJson,
 } from '@epic-designer/types';
+
+import type { Ref } from 'vue';
 
 import { computed, inject, nextTick, ref, watchEffect } from 'vue';
 
@@ -15,6 +18,7 @@ import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 const props = defineProps<{
   schema: ComponentSchema;
 }>();
+const tableJson = inject<Ref<TableJson>>('dataTable');
 const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema') as PageSchema;
 const revoke = inject('revoke') as Revoke;
@@ -31,7 +35,10 @@ function isShow(item: ComponentSchema) {
 
   // show属性为function类型则执行
   if (typeof item.show === 'function') {
-    return item.show?.({ values: selectedNode.value! });
+    return item.show?.({
+      tableJson: tableJson?.value,
+      values: selectedNode.value!,
+    });
   }
 
   return true;
@@ -78,7 +85,12 @@ function handleSetValue(
   editData: null | object = selectedNode.value,
 ) {
   if (typeof item.onChange === 'function') {
-    item.onChange({ componentAttributes, value, values: editData! });
+    item.onChange({
+      componentAttributes,
+      tableJson: tableJson?.value,
+      value,
+      values: editData!,
+    });
   }
   // 判断是否同步修改属性值
   if (item.changeSync) {
