@@ -26,6 +26,8 @@ export function useComponentManager() {
   // 组件对象字典，key 为组件type，value 为组件
   const components: Components = {};
 
+  const priorities = new Map<string, number>();
+
   // 组件模式分组，使用 Vue Composition API 的 ref 进行响应式处理
   const componentSchemaGroups = ref<ComponentSchemaGroups>([]);
   // 隐藏的组件列表，存储需要隐藏的组件名称
@@ -86,8 +88,21 @@ export function useComponentManager() {
    * 添加组件到插件管理器中
    * @param componentType 组件类型
    * @param component 组件
+   * @param priority 组件优先级, 数字越大, 优先级越高
    */
-  function addComponent(componentType: string, component: ComponentType): void {
+  function addComponent(
+    componentType: string,
+    component: ComponentType,
+    priority = 99,
+  ): void {
+    const oldPriority = priorities.get(componentType) ?? 99;
+
+    // 如果旧优先级大于新优先级，则直接返回
+    if (oldPriority > priority) {
+      return;
+    }
+    priorities.set(componentType, priority);
+
     if (typeof component === 'function') {
       component = loadAsyncComponent(component as AsyncComponentLoader);
     }
@@ -254,7 +269,11 @@ export function useComponentManager() {
    */
   function registerComponent(componentConfig: ComponentConfigModel): void {
     // 添加组件
-    addComponent(componentConfig.defaultSchema.type, componentConfig.component);
+    addComponent(
+      componentConfig.defaultSchema.type,
+      componentConfig.component,
+      componentConfig.priority,
+    );
 
     if (!componentConfig.config.action) {
       componentConfig.config.action = [];

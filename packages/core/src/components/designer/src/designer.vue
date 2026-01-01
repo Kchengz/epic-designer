@@ -214,13 +214,9 @@ defineExpose({
         ref="designerRef"
         tabindex="0"
       >
-        <div class="epic-header-container">
+        <div class="epic-header-container" v-if="!props.hiddenHeader">
           <slot name="header">
-            <EHeader
-              v-if="!props.hiddenHeader"
-              @preview="handlePreview"
-              @save="handleSave"
-            >
+            <EHeader @preview="handlePreview" @save="handleSave">
               <template #header>
                 <slot name="header-prefix"></slot>
               </template>

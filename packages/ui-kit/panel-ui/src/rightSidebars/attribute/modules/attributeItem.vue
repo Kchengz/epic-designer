@@ -18,7 +18,7 @@ import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 const props = defineProps<{
   schema: ComponentSchema;
 }>();
-const tableJson = inject<Ref<TableJson>>('dataTable');
+const tableJson = inject<null | Ref<TableJson>>('dataTable', null);
 const designer = inject('designer') as Designer;
 const pageSchema = inject('pageSchema') as PageSchema;
 const revoke = inject('revoke') as Revoke;

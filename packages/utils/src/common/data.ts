@@ -365,6 +365,9 @@ export function getValueByPath(
   path: string,
   defaultValue?: unknown,
 ) {
+  if (!path) {
+    return defaultValue;
+  }
   // 将路径字符串拆分为数组
   const pathArray = path.split('.');
 

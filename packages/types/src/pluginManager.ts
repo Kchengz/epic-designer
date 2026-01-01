@@ -78,6 +78,8 @@ export interface ComponentConfigModel {
   groupName?: string;
   // 组件图标
   icon?: string;
+  // 组件优先级, 默认值99,数字越大, 优先级越高, 优先使用高优先级组件
+  priority?: number;
   // 用于组件排序，可选 默认值1000, 值越小，组件越靠前
   sort?: number;
 }

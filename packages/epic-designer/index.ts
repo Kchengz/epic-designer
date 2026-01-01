@@ -1,5 +1,7 @@
 import 'virtual:uno.css';
 
+export * from '@epic-designer/base-ui';
+
 export * from '@epic-designer/core';
 
 export * from '@epic-designer/hooks';
