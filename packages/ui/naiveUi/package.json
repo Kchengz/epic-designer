@@ -1,6 +1,6 @@
 {
   "name": "@epic-designer/naive-ui",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "epic-designer base ui",
   "private": false,
   "author": "kchengz",
@@ -24,7 +24,7 @@
     }
   },
   "peerDependencies": {
-    "epic-designer": ">=1.0.5",
+    "epic-designer": ">=1.1.2",
     "naive-ui": ">=2.34.3",
     "vue": ">=3.1.0"
   },

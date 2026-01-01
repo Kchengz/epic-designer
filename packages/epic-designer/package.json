@@ -1,6 +1,6 @@
 {
   "name": "epic-designer",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "基于vue3的设计器,可视化开发页面表单",
   "private": false,
   "keywords": [
@@ -42,9 +42,9 @@
     "vuedraggable": "catalog:"
   },
   "optionalDependencies": {
-    "@epic-designer/antd": ">=1.1.0",
-    "@epic-designer/element-plus": ">=1.1.0",
-    "@epic-designer/naive-ui": ">=1.1.0"
+    "@epic-designer/antd": ">=1.1.2",
+    "@epic-designer/element-plus": ">=1.1.2",
+    "@epic-designer/naive-ui": ">=1.1.2"
   },
   "devDependencies": {
     "@types/node": "catalog:",

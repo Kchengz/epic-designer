@@ -1,6 +1,6 @@
 {
   "name": "@epic-designer/antd",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "epic-designer base antd ui",
   "private": false,
   "author": "kchengz",
@@ -25,7 +25,7 @@
   },
   "peerDependencies": {
     "ant-design-vue": ">=3.2.20",
-    "epic-designer": ">=1.0.5",
+    "epic-designer": ">=1.1.2",
     "vue": ">=3.1.0"
   },
   "devDependencies": {
