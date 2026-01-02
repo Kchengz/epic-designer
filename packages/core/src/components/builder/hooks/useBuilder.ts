@@ -147,6 +147,18 @@ export function useBuilder() {
     });
   }
 
+  /**
+   * 重置所有表单数据
+   */
+  function resetData() {
+    for (const formName in forms.value) {
+      const form = forms.value[formName];
+      if (form) {
+        form.resetData();
+      }
+    }
+  }
+
   return {
     forms,
     getData,
@@ -154,6 +166,7 @@ export function useBuilder() {
     getForms,
     pageManager,
     ready,
+    resetData,
     setData,
     setForms,
     validate,

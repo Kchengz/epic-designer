@@ -4,172 +4,131 @@ import type { PageSchema } from '@epic-designer/types';
 import { ref } from 'vue';
 
 import { EBuilder } from '@epic-designer/core';
+import { pluginManager } from '@epic-designer/manager';
 
 const ebRef = ref<InstanceType<typeof EBuilder>>();
+const Button = pluginManager.component.get('button');
 
 const pageSchema = ref<PageSchema>({
+  canvas: {
+    mode: 'desktop',
+  },
   schemas: [
     {
+      id: 'root',
+      label: '表单',
       props: {
+        colon: true,
+        labelAlign: 'right',
+        labelCol: {
+          span: 5,
+        },
+        labelLayout: 'fixed',
+        labelPlacement: 'left',
+        labelWidth: 100,
+        layout: 'horizontal',
+        name: 'default',
         style: {
           padding: '16px',
         },
+        wrapperCol: {
+          span: 19,
+        },
       },
-      id: 'root',
-      label: '页面',
-      type: 'page',
+      type: 'form',
       children: [
         {
-          label: '表单',
-          type: 'form',
-          icon: 'epic-icon-daibanshixiang',
+          field: 'input_9583',
+          input: true,
+          label: '输入框',
           props: {
-            colon: true,
-            hideRequiredMark: false,
-            labelAlign: 'right',
-            labelCol: {
-              span: 5,
-            },
-            labelLayout: 'fixed',
-            labelWidth: 100,
-            layout: 'horizontal',
-            name: 'default',
-            size: 'middle',
-            style: {
-              width: '600px',
-            },
-            wrapperCol: {
-              span: 19,
-            },
+            defaultValue: 'ttt',
+            placeholder: '请输入',
+            type: 'text',
           },
-          children: [
+          type: 'input',
+          id: 'input_9583',
+        },
+        {
+          field: 'number_8587',
+          input: true,
+          label: '数字输入框',
+          props: {
+            defaultValue: 8,
+            placeholder: '请输入',
+          },
+          type: 'number',
+          id: 'number_8587',
+          rules: [
             {
-              label: '栅格布局',
-              type: 'row',
-              icon: 'epic-icon-zhage',
-              children: [
-                {
-                  type: 'col',
-                  children: [
-                    {
-                      label: '姓名',
-                      type: 'input',
-                      field: 'input_2drzm924',
-                      icon: 'epic-icon-write',
-                      input: true,
-                      props: {
-                        bordered: true,
-                        placeholder: '请输入',
-                      },
-                      id: 'input_2drzm924',
-                    },
-                  ],
-                  props: {
-                    span: 12,
-                  },
-                  id: 'col_m17ttkgz',
-                },
-                {
-                  type: 'col',
-                  children: [
-                    {
-                      label: '年龄',
-                      type: 'number',
-                      icon: 'epic-icon-number',
-                      field: 'number_x4t431jb',
-                      input: true,
-                      props: {
-                        placeholder: '请输入',
-                        style: {
-                          width: '100%',
-                        },
-                      },
-                      id: 'number_x4t431jb',
-                    },
-                  ],
-                  props: {
-                    span: 12,
-                  },
-                  id: 'col_6uvxdrme',
-                },
-              ],
-              id: 'row_fpuoo21a',
-            },
-            {
-              label: '性别',
-              type: 'radio',
-              icon: 'epic-icon-danxuan-cuxiantiao',
-              field: 'radio_shndnr9b',
-              input: true,
-              props: {
-                defaultValue: '男',
-                options: [
-                  {
-                    label: '男',
-                    value: '男',
-                  },
-                  {
-                    label: '女',
-                    value: '女',
-                  },
-                ],
-                optionType: 'default',
-              },
-              id: 'radio_shndnr9b',
-            },
-            {
-              label: '兴趣',
-              type: 'checkbox',
-              icon: 'epic-icon-duoxuan1',
-              field: 'checkbox_1l91io8k',
-              input: true,
-              props: {
-                options: [
-                  {
-                    label: '唱',
-                    value: '唱',
-                  },
-                  {
-                    label: '跳',
-                    value: '跳',
-                  },
-                  {
-                    label: 'rap',
-                    value: 'rap',
-                  },
-                  {
-                    label: '篮球',
-                    value: '篮球',
-                  },
-                ],
-              },
-              id: 'checkbox_1l91io8k',
-            },
-            {
-              label: '个人简介',
-              type: 'textarea',
-              field: 'textarea_1ihmowjl',
-              icon: 'epic-icon-edit',
-              input: true,
-              props: {
-                autoSize: {
-                  minRows: 4,
-                },
-                placeholder: '请输入',
-              },
-              id: 'textarea_1ihmowjl',
+              message: '必填项',
+              required: true,
+              trigger: ['change'],
+              type: 'number',
             },
           ],
-          id: 'form_eifo73no',
+        },
+        {
+          field: 'date_2908',
+          input: true,
+          label: '日期选择器',
+          props: {
+            format: 'yyyy-MM-dd',
+            placeholder: '请选择',
+            type: 'date',
+            valueFormat: 'yyyy-MM-dd',
+          },
+          type: 'date',
+          id: 'date_2908',
+          rules: [
+            {
+              message: '必填项',
+              required: true,
+              trigger: ['change'],
+              type: 'string',
+            },
+          ],
+        },
+        {
+          field: 'input_4142',
+          input: true,
+          label: '输入框',
+          props: {
+            defaultValue: '43434',
+            placeholder: '请输入',
+            type: 'text',
+          },
+          type: 'input',
+          id: 'input_4142',
+          rules: [
+            {
+              message: '必填项',
+              required: true,
+              trigger: ['change'],
+              type: 'string',
+            },
+          ],
         },
       ],
     },
   ],
   script:
-    "const { defineExpose, find } = epic;\n\nfunction test (){\n    console.log('test')\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})",
+    "const { defineExpose, find } = epic;\n  \n  function test (){\n      console.log('test')\n  }\n  \n  // 通过defineExpose暴露的函数或者属性\n  defineExpose({\n   test\n  })",
 });
+
+const onValidate = () => {
+  ebRef.value?.validate();
+};
+
+const onReset = () => {
+  ebRef.value?.resetData();
+};
 </script>
 
 <template>
-  <EBuilder ref="ebRef" :page-schema="pageSchema" />
+  <div>
+    <Button @click="onValidate">校验</Button>
+    <Button @click="onReset">重置表单</Button>
+    <EBuilder ref="ebRef" :page-schema="pageSchema" />
+  </div>
 </template>

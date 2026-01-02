@@ -10,6 +10,8 @@ import { Form } from 'ant-design-vue';
 
 interface FormInstance extends InstanceType<typeof Form> {
   getData?: () => FormDataModel;
+  resetData: () => void;
+  resetFields: () => void;
   scrollToField: (name: string) => void;
   setData?: (data: FormDataModel) => void;
   validate: () => Promise<unknown>;
@@ -70,6 +72,13 @@ function setData(data: FormDataModel) {
   Object.assign(formData, data);
 }
 
+/**
+ * 重置表单数据
+ */
+function resetData() {
+  form.value?.resetFields();
+}
+
 // form组件需要特殊处理
 const mountedForm = (vNode: VNode) => {
   form.value = vNode.component?.exposed as FormInstance;
@@ -84,6 +93,7 @@ const mountedForm = (vNode: VNode) => {
     forms.value[name] = form.value;
     form.value.getData = getData;
     form.value.setData = setData;
+    form.value.resetData = resetData;
     return false;
   }
 };
@@ -125,6 +135,7 @@ const children = computed(() => {
 defineExpose({
   form,
   getData,
+  resetData,
   setData,
   validate,
 });

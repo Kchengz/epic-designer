@@ -7,11 +7,13 @@ import type { PropType, Ref } from 'vue';
 
 import { computed, inject, onMounted, provide, ref } from 'vue';
 
+import { findSchemas } from '@epic-designer/utils';
 import { NForm } from 'naive-ui/lib/form';
 
 interface FormInstance extends InstanceType<typeof NForm> {
   clearValidate?: () => void;
   getData?: () => FormDataModel;
+  resetData: () => void;
   setData?: (data: FormDataModel) => void;
 }
 
@@ -51,6 +53,30 @@ function setData(data: FormDataModel) {
 }
 
 /**
+ * 重置表单数据
+ */
+function resetData() {
+  form.value?.restoreValidation();
+
+  const inputSchemas = findSchemas(props.componentSchema.children!, (schema) =>
+    Boolean(schema.input),
+  );
+
+  if (Array.isArray(inputSchemas)) {
+    inputSchemas.forEach((schema) => {
+      const defaultValue = schema.props?.defaultValue;
+      if (defaultValue === undefined) {
+        formData[schema.field!] = null;
+      } else {
+        formData[schema.field!] = defaultValue;
+      }
+    });
+  }
+
+  console.log(inputSchemas);
+}
+
+/**
  * 校验表单数据
  */
 function validate(): ReturnType<FormInst['validate']> | undefined {
@@ -75,6 +101,7 @@ onMounted(async (): Promise<void> => {
     forms.value[name] = form.value as any;
     form.value.getData = getData;
     form.value.setData = setData;
+    form.value.resetData = resetData;
   }
 });
 
@@ -91,6 +118,7 @@ defineExpose({
   clearValidate,
   form,
   getData,
+  resetData,
   setData,
   validate,
 });

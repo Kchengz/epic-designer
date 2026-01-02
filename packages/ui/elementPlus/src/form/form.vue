@@ -8,6 +8,7 @@ import { ElForm } from 'element-plus';
 
 interface FormInstance extends InstanceType<typeof ElForm> {
   getData?: () => FormDataModel;
+  resetData: () => void;
   setData?: (FormDataModel) => void;
 }
 
@@ -48,6 +49,13 @@ function setData(data: FormDataModel) {
 }
 
 /**
+ * 重置表单数据
+ */
+function resetData() {
+  form.value?.resetFields();
+}
+
+/**
  * 校验表单数据
  */
 function validate() {
@@ -65,6 +73,7 @@ onMounted(async () => {
     forms.value[name] = form.value as any;
     form.value.getData = getData;
     form.value.setData = setData;
+    form.value.resetData = resetData;
     return false;
   }
 });
@@ -93,6 +102,7 @@ const children = computed(() => {
 defineExpose({
   form,
   getData,
+  resetData,
   setData,
   validate,
 });
