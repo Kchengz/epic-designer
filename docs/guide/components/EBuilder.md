@@ -539,6 +539,7 @@ onMounted(async () => {
 | getData         | 跳过验证直接获取表单数据   | -             | Promise<br /><Object \| false>   | 0.0.36 |
 | validate        | 验证表单并获取表单数据     | -             | Promise<br /><Object \| false>   | 0.0.36 |
 | getFormInstance | 获取表单实例               |               | Promise<br /><Form \| false> | 0.9.4 |
+| resetData | 重置所有表单项，将其值重置为初始值，并移除校验结果 | |  | 1.1.3 |
 
 ## 事件
 
@@ -557,7 +558,7 @@ onMounted(async () => {
 
   示例：
   ```javascript
-
+  
   // 设置 name 字段禁用
     const fieldStates = [
     {
@@ -565,7 +566,7 @@ onMounted(async () => {
       state: 'DISABLED'
     }
   ]
-
+  
   // 当 name 字段的值为 '张三' 时，将 name 字段设为必填并禁用
   const fieldStates = [
     {
