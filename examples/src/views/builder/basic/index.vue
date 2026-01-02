@@ -38,48 +38,91 @@ const pageSchema = ref<PageSchema>({
       type: 'form',
       children: [
         {
-          field: 'input_9583',
-          input: true,
-          label: '输入框',
-          props: {
-            defaultValue: 'ttt',
-            placeholder: '请输入',
-            type: 'text',
-          },
-          type: 'input',
-          id: 'input_9583',
-        },
-        {
-          field: 'number_8587',
-          input: true,
-          label: '数字输入框',
-          props: {
-            defaultValue: 8,
-            placeholder: '请输入',
-          },
-          type: 'number',
-          id: 'number_8587',
-          rules: [
+          label: '栅格布局',
+          type: 'row',
+          children: [
             {
-              message: '必填项',
-              required: true,
-              trigger: ['change'],
-              type: 'number',
+              type: 'col',
+              children: [
+                {
+                  field: 'name',
+                  input: true,
+                  label: '姓名',
+                  props: {
+                    defaultValue: '',
+                    placeholder: '请输入',
+                    type: 'text',
+                  },
+                  type: 'input',
+                  id: 'input_9620',
+                  rules: [
+                    {
+                      message: '必填项',
+                      required: true,
+                      trigger: ['change'],
+                      type: 'string',
+                    },
+                  ],
+                },
+              ],
+              props: {
+                span: 12,
+              },
+              id: 'col_3000',
+            },
+            {
+              type: 'col',
+              children: [
+                {
+                  field: 'age',
+                  input: true,
+                  label: '年龄',
+                  props: {
+                    defaultValue: null,
+                    placeholder: '请输入',
+                    style: {
+                      width: '100%',
+                    },
+                  },
+                  type: 'number',
+                  id: 'number_9353',
+                  rules: [
+                    {
+                      message: '必填项',
+                      required: true,
+                      trigger: ['change'],
+                      type: 'number',
+                    },
+                  ],
+                },
+              ],
+              props: {
+                span: 12,
+              },
+              id: 'col_9258',
             },
           ],
+          id: 'row_5000',
         },
         {
-          field: 'date_2908',
+          field: 'gender',
           input: true,
-          label: '日期选择器',
+          label: '性别',
           props: {
-            format: 'yyyy-MM-dd',
-            placeholder: '请选择',
-            type: 'date',
-            valueFormat: 'yyyy-MM-dd',
+            defaultValue: '男',
+            options: [
+              {
+                label: '男',
+                value: '男',
+              },
+              {
+                label: '女',
+                value: '女',
+              },
+            ],
           },
-          type: 'date',
-          id: 'date_2908',
+          type: 'radio',
+          id: 'radio_5723',
           rules: [
             {
               message: '必填项',
@@ -90,30 +133,57 @@ const pageSchema = ref<PageSchema>({
           ],
         },
         {
-          field: 'input_4142',
+          field: 'interests',
           input: true,
-          label: '输入框',
+          label: '兴趣',
           props: {
-            defaultValue: '43434',
-            placeholder: '请输入',
-            type: 'text',
+            defaultValue: ['跳', '唱'],
+            options: [
+              {
+                label: '唱',
+                value: '唱',
+              },
+              {
+                label: '跳',
+                value: '跳',
+              },
+              {
+                label: 'rap',
+                value: 'rap',
+              },
+              {
+                label: '篮球',
+                value: '篮球',
+              },
+            ],
           },
-          type: 'input',
-          id: 'input_4142',
+          type: 'checkbox',
+          id: 'checkbox_8622',
           rules: [
             {
               message: '必填项',
               required: true,
               trigger: ['change'],
-              type: 'string',
+              type: 'array',
             },
           ],
+        },
+        {
+          field: 'about',
+          input: true,
+          label: '个人简介',
+          props: {
+            defaultValue: '',
+            placeholder: '请输入',
+          },
+          type: 'textarea',
+          id: 'textarea_6128',
         },
       ],
     },
   ],
   script:
-    "const { defineExpose, find } = epic;\n  \n  function test (){\n      console.log('test')\n  }\n  \n  // 通过defineExpose暴露的函数或者属性\n  defineExpose({\n   test\n  })",
+    "const { defineExpose, find } = epic;\n\nfunction test (){\n    console.log('test')\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test\n})",
 });
 
 const onValidate = () => {

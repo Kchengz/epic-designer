@@ -2,8 +2,26 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'value',
-  component: async () => (await import('naive-ui')).NInputNumber,
+  component: () => import('./textarea.vue'),
   config: {
+    action: [
+      {
+        description: '使 input 获取焦点',
+        type: 'focus',
+      },
+      {
+        description: '使 input 失去焦点',
+        type: 'blur',
+      },
+      {
+        description: '清除 input 值',
+        type: 'clear',
+      },
+      {
+        description: '选中 input 中的文字',
+        type: 'select',
+      },
+    ],
     attribute: [
       {
         field: 'field',
@@ -18,7 +36,7 @@ export default {
       {
         field: 'props.defaultValue',
         label: '默认值',
-        type: 'number',
+        type: 'textarea',
       },
       {
         field: 'props.placeholder',
@@ -53,55 +71,32 @@ export default {
         type: 'select',
       },
       {
-        field: 'props.buttonPlacement',
-        label: '控制按钮位置',
-        props: {
-          clearable: true,
-          options: [
-            {
-              label: 'both',
-              value: 'both',
-            },
-            {
-              label: 'right',
-              value: 'right',
-            },
-          ],
-          placeholder: '请选择',
-        },
-        type: 'select',
-      },
-      {
-        field: 'props.max',
-        label: '最大值',
+        field: 'props.maxlength',
+        label: '最大输入长度',
         props: {
           placeholder: '请输入',
         },
         type: 'number',
       },
       {
-        field: 'props.min',
-        label: '最小值',
-        props: {
-          placeholder: '请输入',
-        },
+        field: 'props.rows',
+        label: '行数',
         type: 'number',
       },
       {
-        field: 'props.step',
-        label: '步长',
-        props: {
-          placeholder: '请输入',
-        },
-        type: 'number',
+        field: 'props.round',
+        label: '是否圆角',
+        type: 'switch',
       },
       {
-        field: 'props.precision',
-        label: '精度',
-        props: {
-          placeholder: '请输入',
-        },
-        type: 'number',
+        field: 'props.showCount',
+        label: '是否统计字数',
+        type: 'switch',
+      },
+      {
+        field: 'props.autosize',
+        label: '自适应内容高度',
+        type: 'switch',
       },
       {
         field: 'props.clearable',
@@ -123,29 +118,39 @@ export default {
         field: 'rules',
         label: '表单校验',
         layout: 'vertical',
-        props: {
-          ruleType: 'number',
-        },
         type: 'ERuleEditor',
       },
     ],
     event: [
       {
-        description: '值改变时触发',
+        description: '输入值',
+        type: 'input',
+      },
+      {
+        description: '值修改',
         type: 'change',
+      },
+      {
+        description: '获取焦点',
+        type: 'focus',
+      },
+      {
+        description: '失去焦点',
+        type: 'blur',
       },
     ],
   },
   defaultSchema: {
-    field: 'number',
+    field: 'textarea',
     input: true,
-    label: '数字输入框',
+    label: '文本域',
     props: {
+      defaultValue: '',
       placeholder: '请输入',
     },
-    type: 'number',
+    type: 'textarea',
   },
   groupName: '表单',
-  icon: 'icon--epic--123-rounded',
-  sort: 710,
+  icon: 'icon--epic--edit-square-outline-rounded',
+  sort: 705,
 } as ComponentConfigModel;

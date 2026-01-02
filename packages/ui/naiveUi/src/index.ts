@@ -27,6 +27,7 @@ import Slider from './slider';
 import Switch from './switch';
 import TabsPane from './tab-pane';
 import Tabs from './tabs';
+import Textarea from './textarea';
 import UploadFile from './upload-file';
 import UploadImage from './upload-image';
 
@@ -73,6 +74,7 @@ export function setupNaiveUi(pluginManager: PluginManager = pManager): void {
     Modal,
     Tabs,
     TabsPane,
+    Textarea,
   ];
 
   // 更新默认上传地址

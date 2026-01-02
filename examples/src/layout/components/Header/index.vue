@@ -44,10 +44,10 @@ const selectOptions = [
     label: 'elementPlus',
     value: 'element-plus',
   },
-  // {
-  //     label: 'naiveUi',
-  //     value: 'naive-ui',
-  // },
+  {
+    label: 'naiveUi',
+    value: 'naive-ui',
+  },
 ];
 const router = useRouter();
 const route = useRoute();

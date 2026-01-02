@@ -8,162 +8,180 @@ import { EDesigner } from '@epic-designer/core';
 const designerRef = ref<InstanceType<typeof EDesigner>>();
 
 const pageSchema = {
+  canvas: {
+    mode: 'desktop',
+  },
   schemas: [
     {
+      id: 'root',
+      label: '表单',
       props: {
+        colon: true,
+        labelAlign: 'right',
+        labelCol: {
+          span: 5,
+        },
+        labelLayout: 'fixed',
+        labelPlacement: 'left',
+        labelWidth: 100,
+        layout: 'horizontal',
+        name: 'default',
         style: {
           padding: '16px',
         },
+        wrapperCol: {
+          span: 19,
+        },
       },
-      id: 'root',
-      label: '页面',
-      type: 'page',
+      type: 'form',
       children: [
         {
-          label: '表单',
-          type: 'form',
-          icon: 'epic-icon-daibanshixiang',
-          props: {
-            colon: true,
-            hideRequiredMark: false,
-            labelAlign: 'right',
-            labelCol: {
-              span: 5,
-            },
-            labelLayout: 'fixed',
-            labelWidth: 100,
-            layout: 'horizontal',
-            name: 'default',
-            size: 'middle',
-            wrapperCol: {
-              span: 19,
-            },
-          },
+          label: '栅格布局',
+          type: 'row',
           children: [
             {
-              label: '栅格布局',
-              type: 'row',
-              icon: 'epic-icon-zhage',
+              type: 'col',
               children: [
                 {
-                  type: 'col',
-                  children: [
+                  field: 'name',
+                  input: true,
+                  label: '姓名',
+                  props: {
+                    defaultValue: '',
+                    placeholder: '请输入',
+                    type: 'text',
+                  },
+                  type: 'input',
+                  id: 'input_9620',
+                  rules: [
                     {
-                      label: '姓名',
-                      type: 'input',
-                      field: 'input_2drzm924',
-                      icon: 'epic-icon-write',
-                      input: true,
-                      props: {
-                        bordered: true,
-                        placeholder: '请输入',
-                      },
-                      id: 'input_2drzm924',
+                      message: '必填项',
+                      required: true,
+                      trigger: ['change'],
+                      type: 'string',
                     },
                   ],
-                  props: {
-                    span: 12,
-                  },
-                  id: 'col_m17ttkgz',
-                },
-                {
-                  type: 'col',
-                  children: [
-                    {
-                      label: '年龄',
-                      type: 'number',
-                      icon: 'epic-icon-number',
-                      field: 'number_x4t431jb',
-                      input: true,
-                      props: {
-                        placeholder: '请输入',
-                        style: {
-                          width: '100%',
-                        },
-                      },
-                      id: 'number_x4t431jb',
-                    },
-                  ],
-                  props: {
-                    span: 12,
-                  },
-                  id: 'col_6uvxdrme',
                 },
               ],
-              id: 'row_fpuoo21a',
-            },
-            {
-              label: '性别',
-              type: 'radio',
-              icon: 'epic-icon-danxuan-cuxiantiao',
-              field: 'radio_shndnr9b',
-              input: true,
               props: {
-                defaultValue: '男',
-                options: [
-                  {
-                    label: '男',
-                    value: '男',
-                  },
-                  {
-                    label: '女',
-                    value: '女',
-                  },
-                ],
-                optionType: 'default',
+                span: 12,
               },
-              id: 'radio_shndnr9b',
+              id: 'col_3000',
             },
             {
-              label: '兴趣',
-              type: 'checkbox',
-              icon: 'epic-icon-duoxuan1',
-              field: 'checkbox_1l91io8k',
-              input: true,
-              props: {
-                options: [
-                  {
-                    label: '唱',
-                    value: '唱',
+              type: 'col',
+              children: [
+                {
+                  field: 'age',
+                  input: true,
+                  label: '年龄',
+                  props: {
+                    defaultValue: null,
+                    placeholder: '请输入',
+                    style: {
+                      width: '100%',
+                    },
                   },
-                  {
-                    label: '跳',
-                    value: '跳',
-                  },
-                  {
-                    label: 'rap',
-                    value: 'rap',
-                  },
-                  {
-                    label: '篮球',
-                    value: '篮球',
-                  },
-                ],
-              },
-              id: 'checkbox_1l91io8k',
-            },
-            {
-              label: '个人简介',
-              type: 'textarea',
-              field: 'textarea_1ihmowjl',
-              icon: 'epic-icon-edit',
-              input: true,
-              props: {
-                autoSize: {
-                  minRows: 4,
+                  type: 'number',
+                  id: 'number_9353',
+                  rules: [
+                    {
+                      message: '必填项',
+                      required: true,
+                      trigger: ['change'],
+                      type: 'number',
+                    },
+                  ],
                 },
-                placeholder: '请输入',
+              ],
+              props: {
+                span: 12,
               },
-              id: 'textarea_1ihmowjl',
+              id: 'col_9258',
             },
           ],
-          id: 'form_eifo73no',
+          id: 'row_5000',
+        },
+        {
+          field: 'gender',
+          input: true,
+          label: '性别',
+          props: {
+            defaultValue: '男',
+            options: [
+              {
+                label: '男',
+                value: '男',
+              },
+              {
+                label: '女',
+                value: '女',
+              },
+            ],
+          },
+          type: 'radio',
+          id: 'radio_5723',
+          rules: [
+            {
+              message: '必填项',
+              required: true,
+              trigger: ['change'],
+              type: 'string',
+            },
+          ],
+        },
+        {
+          field: 'interests',
+          input: true,
+          label: '兴趣',
+          props: {
+            defaultValue: ['跳', '唱'],
+            options: [
+              {
+                label: '唱',
+                value: '唱',
+              },
+              {
+                label: '跳',
+                value: '跳',
+              },
+              {
+                label: 'rap',
+                value: 'rap',
+              },
+              {
+                label: '篮球',
+                value: '篮球',
+              },
+            ],
+          },
+          type: 'checkbox',
+          id: 'checkbox_8622',
+          rules: [
+            {
+              message: '必填项',
+              required: true,
+              trigger: ['change'],
+              type: 'array',
+            },
+          ],
+        },
+        {
+          field: 'about',
+          input: true,
+          label: '个人简介',
+          props: {
+            defaultValue: '',
+            placeholder: '请输入',
+          },
+          type: 'textarea',
+          id: 'textarea_6128',
         },
       ],
     },
   ],
   script:
-    "const { defineExpose, find } = epic;\n\nfunction test (){\n    console.log('test')\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})",
+    "const { defineExpose, find } = epic;\n\nfunction test (){\n    console.log('test')\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test\n})",
 };
 
 onMounted(() => {
