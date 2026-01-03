@@ -34,5 +34,10 @@
 } */
 
 .epic-designer-main a {
-  text-decoration: none;
+  text-decoration: none !important;
+}
+
+
+.epic-right-sidebar .epic-actions-container .epic-action-item{
+  margin: 0;
 }
