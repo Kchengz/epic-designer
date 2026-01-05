@@ -4,15 +4,7 @@ import type { CSSProperties } from 'vue';
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 
 type TriggerType = 'click' | 'focus' | 'hover' | 'manual';
-type PlacementType =
-  | 'bottom'
-  | 'bottomLeft'
-  | 'bottomRight'
-  | 'left'
-  | 'right'
-  | 'top'
-  | 'topLeft'
-  | 'topRight';
+type PlacementType = 'bottom' | 'left' | 'right' | 'top';
 type ColorType = 'default' | 'error' | 'primary' | 'success' | 'warning';
 
 interface Props {
@@ -165,7 +157,6 @@ const handleClick = () => {
 // 更新位置
 function updatePosition() {
   if (!triggerRef.value || !tooltipRef.value) return;
-  console.log();
   const nodes = Array.from(triggerRef.value.childNodes);
   const target = nodes.find((node) => node.nodeType === Node.ELEMENT_NODE);
   const triggerRect = target
@@ -180,17 +171,12 @@ function updatePosition() {
   const offset = 8;
 
   switch (props.placement) {
-    case 'bottom':
-    case 'bottomLeft':
-    case 'bottomRight': {
+    case 'bottom': {
       top = triggerRect.bottom + scrollY + offset;
       left =
         triggerRect.left +
         scrollX +
         (triggerRect.width - tooltipRect.width) / 2;
-      if (props.placement === 'bottomLeft') left = triggerRect.left + scrollX;
-      if (props.placement === 'bottomRight')
-        left = triggerRect.right + scrollX - tooltipRect.width;
       break;
     }
 
@@ -210,14 +196,12 @@ function updatePosition() {
       left = triggerRect.right + scrollX + offset;
       break;
     }
-    case 'topRight': {
+    case 'top': {
       top = triggerRect.top + scrollY - tooltipRect.height - offset;
       left =
         triggerRect.left +
         scrollX +
         (triggerRect.width - tooltipRect.width) / 2;
-      if (props.placement === 'topRight')
-        left = triggerRect.right + scrollX - tooltipRect.width;
       break;
     }
   }
