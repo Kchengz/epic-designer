@@ -50,23 +50,21 @@ function handleClick(item: RightSidebarModel, index: number) {
     <!-- 折叠按钮 end -->
 
     <div class="epic-right-sidebar w-308px" :class="{ hide: hideRightMain }">
-      <div class="w-308px">
-        <EpicBreadcrumb />
-        <ul class="epic-actions-container">
-          <li
-            v-for="(item, index) in rightSidebars"
-            :key="index"
-            class="epic-action-item"
-            :title="item.title"
-            :class="{ checked: activityBarCheckedIndex === index }"
-            @click="handleClick(item, index)"
-          >
-            {{ item.title }}
-          </li>
-        </ul>
-        <div class="epic-sidebar-content">
-          <component :is="sidebarComponent" />
-        </div>
+      <EpicBreadcrumb />
+      <ul class="epic-actions-container">
+        <li
+          v-for="(item, index) in rightSidebars"
+          :key="index"
+          class="epic-action-item"
+          :title="item.title"
+          :class="{ checked: activityBarCheckedIndex === index }"
+          @click="handleClick(item, index)"
+        >
+          {{ item.title }}
+        </li>
+      </ul>
+      <div class="epic-sidebar-content">
+        <component :is="sidebarComponent" />
       </div>
     </div>
   </div>
