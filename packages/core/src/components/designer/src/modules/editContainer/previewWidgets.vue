@@ -188,8 +188,8 @@ function setSeletorStyle() {
     return;
   }
 
-  // 判断actionBoxRef位置是否应该置于底部 距离顶部45px 高度100px
-  if (selectorTop < 45 && selectorRefHeight < 100) {
+  // 判断actionBoxRef位置是否应该置于底部 距离顶部45px 高度800px
+  if (selectorTop < 45 && selectorRefHeight < 800) {
     actionBoxRef.value.style.top = '';
     actionBoxRef.value.style.bottom = '-32px';
     actionBoxRef.value.style['border-radius'] = '4px';
