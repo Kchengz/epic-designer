@@ -82,7 +82,8 @@ function setHoverNode(event: Event) {
  *
  * - tips: 拖入也会导致 change 被触发，Add 应该设置 isDrageChange 标识为 false
  */
-function handleDragAdd() {
+function handleDragAdd(event: any) {
+  designer.setSelectedNode(event.clonedData);
   revoke.push('插入组件', true);
   isDragChange.value = false;
 }
