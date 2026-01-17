@@ -7,7 +7,7 @@ const emits = defineEmits<{
   'update:modelValue': any;
 }>();
 const attrs = useAttrs();
-const getprops = computed(() => ({
+const getProps = computed(() => ({
   ...attrs,
   'onUpdate:value': handleUpdate,
   showCheckedStrategy:
@@ -20,5 +20,5 @@ function handleUpdate(e = null): void {
 }
 </script>
 <template>
-  <Cascader v-bind="getprops" />
+  <Cascader v-bind="getProps" />
 </template>

@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'value',
-  component: async () => (await import('ant-design-vue')).Input,
+  component: () => import('./input.vue'),
   config: {
     action: [
       {

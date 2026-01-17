@@ -44,6 +44,8 @@ const emit = defineEmits<{
 }>();
 
 setupPage(pluginManager);
+
+const extensionRender = pluginManager.component.get('extension-render');
 // 使用 hooks 获取表单相关方法和状态
 const {
   forms,
@@ -176,6 +178,7 @@ defineExpose({
           :key="index"
           :component-schema="item"
         />
+        <component v-if="extensionRender" :is="extensionRender" />
       </div>
     </template>
     <template #fallback>

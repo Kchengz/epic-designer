@@ -42,7 +42,7 @@ const bodyStyle = {
   padding: 0,
 };
 
-const getprops = computed<Record<string, any>>(() => ({
+const getProps = computed<Record<string, any>>(() => ({
   ...props.componentSchema,
   ...attrs,
   bodyStyle,
@@ -74,7 +74,7 @@ function handleClose() {
 </script>
 
 <template>
-  <Modal v-bind="getprops">
+  <Modal v-bind="getProps">
     <div class="epic-modal-main epic-scoped">
       <slot>
         <slot name="edit-node">

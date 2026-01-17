@@ -24,7 +24,7 @@ const props = withDefaults(
 const emits = defineEmits(['ok', 'close', 'update:modelValue']);
 const attrs = useAttrs();
 // 计算属性
-const getprops = computed<Record<string, any>>(() => ({
+const getProps = computed<Record<string, any>>(() => ({
   ...props.componentSchema,
   ...attrs,
   class: 'epic-modal-el epic-modal-main',
@@ -49,8 +49,8 @@ function handleClose() {
 
 <template>
   <ElDialog
-    v-bind="getprops"
-    :title="getprops.label ?? ''"
+    v-bind="getProps"
+    :title="getProps.label ?? ''"
     class="epic-modal-el epic-modal-main epic-scoped"
     destroy-on-close
     @update:model-value="updateModelValue"

@@ -28,7 +28,7 @@ const emit = defineEmits(['ok', 'close', 'update:modelValue']);
 const attrs = useAttrs();
 
 // 计算属性
-const getprops = computed<Record<string, any>>(() => ({
+const getProps = computed<Record<string, any>>(() => ({
   ...props.componentSchema,
   class: 'epic-modal-n',
   preset: 'card',
@@ -54,8 +54,8 @@ function handleClose() {
 
 <template>
   <NModal
-    v-bind="getprops"
-    :title="getprops.label ?? ''"
+    v-bind="getProps"
+    :title="getProps.label ?? ''"
     class="epic-modal-n epic-scoped"
     preset="card"
     :style="{ width }"

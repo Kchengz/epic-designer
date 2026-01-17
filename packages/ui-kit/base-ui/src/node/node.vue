@@ -279,7 +279,7 @@ const getComponentConfig = computed(() => {
 });
 
 // 获取组件props数据
-const getprops = computed(() => {
+const getProps = computed(() => {
   const bindModel = getComponentConfig.value?.bindModel ?? 'modelValue';
   const onEvent: { [type: string]: Function } = {};
   if (!pageManager.isDesignMode.value) {
@@ -461,8 +461,8 @@ onBeforeUnmount(handleVnodeUnmounted);
   >
     <component
       :is="componentRef"
-      v-bind="{ ...getprops }"
-      v-model:[getprops.bindModel]="innerValue"
+      v-bind="{ ...getProps }"
+      v-model:[getProps.bindModel]="innerValue"
       :model="formData"
       :class="{ 'epic-hidden': innerSchema.props?.hidden }"
       @vue:mounted="handleAddComponentInstance"
