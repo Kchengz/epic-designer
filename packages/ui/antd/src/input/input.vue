@@ -3,34 +3,47 @@ import type { ComponentSchema } from '@epic-designer/types';
 
 import { inject } from 'vue';
 
-import { EpicIcon } from '@epic-designer/base-ui';
 import { EventBus } from '@epic-designer/hooks';
 import { Input } from 'ant-design-vue';
 
 const props = withDefaults(
   defineProps<{
-    componentSchema: ComponentSchema;
-    remoteSelector: boolean;
+    componentSchema?: ComponentSchema;
+    options?: any[];
+    remoteSelector?: boolean;
   }>(),
   {
-    remoteSelector: true,
+    componentSchema: () => ({
+      field: '',
+      type: 'input',
+    }),
+    options: () => [],
+    remoteSelector: false,
   },
 );
 
-const eventBus = inject<EventBus>('eventBus');
+const formData = inject<Record<string, any>>('formData', {});
+const eventBus = inject<EventBus | null>('eventBus', null);
 
 const handleRemoteSelector = () => {
-  eventBus?.emit('openRemoteSelector', props.componentSchema);
+  eventBus?.emit('openRemoteSelector', props.componentSchema, props.options);
 };
+
+eventBus?.on('setRemoteSelectorData', (data) => {
+  if (data.nodeId !== props.componentSchema.id) {
+    return;
+  }
+
+  formData[props.componentSchema.field!] = data.record.value;
+});
 </script>
 <template>
   <Input>
     <template #suffix v-if="props.remoteSelector">
-      <EpicIcon
+      <span
         @click="handleRemoteSelector"
-        name="icon--epic--search-rounded"
-        class="cursor-pointer"
-      />
+        class="iconfont icon--epic icon--epic--search-rounded"
+      ></span>
     </template>
   </Input>
 </template>

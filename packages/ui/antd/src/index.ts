@@ -76,6 +76,11 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
     async () => (await import('ant-design-vue')).CollapsePanel,
   );
 
+  pluginManager.component.add(
+    'epTable',
+    async () => (await import('ant-design-vue')).Table,
+  );
+
   const componentArray = [
     Form,
     FormItem,
