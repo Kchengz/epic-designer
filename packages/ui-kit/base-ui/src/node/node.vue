@@ -421,6 +421,12 @@ function handleUpdate(value: any) {
   }
   if (innerSchema.field) {
     setValueByPath(formData, innerSchema.field, value);
+    // 触发formChange钩子
+    pageManager.hook.execute('formChange', {
+      field: innerSchema.field,
+      formData,
+      value,
+    });
   }
   emit('update:modelValue', value);
   emit('change', value);

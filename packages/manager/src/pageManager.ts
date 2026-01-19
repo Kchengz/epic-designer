@@ -2,7 +2,7 @@ import type { ComponentSchema, EpicNodeInstance } from '@epic-designer/types';
 
 import { reactive, ref, watchEffect } from 'vue';
 
-import { usePageSchema } from '@epic-designer/hooks';
+import { useHookManager, usePageSchema } from '@epic-designer/hooks';
 import { findSchemas, getValueByPath } from '@epic-designer/utils';
 
 import { pluginManager } from './pluginManager';
@@ -26,6 +26,7 @@ export function usePageManager() {
 
   // 初始化
   const { pageSchema, setPageSchema } = usePageSchema();
+  const hook = useHookManager();
 
   /**
    * 查找组件的exposed属性
@@ -368,6 +369,7 @@ export function usePageManager() {
     funcs,
     // 兼容处理, 后续版本可能会移除
     getComponentInstance: find,
+    hook,
     isDesignMode,
     pageSchema,
     removeComponentInstance,

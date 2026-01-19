@@ -40,6 +40,13 @@ const props = defineProps<{
 }>();
 // 定义事件
 const emit = defineEmits<{
+  change: [
+    context: {
+      field: string;
+      formData: FormDataModel;
+      value: any;
+    },
+  ];
   ready: [pageManager: PageManager];
 }>();
 
@@ -144,6 +151,10 @@ function handleReady() {
 const instance = getCurrentInstance() as EpicNodeInstance;
 // 注入组件实例到 pageManager
 pageManager.addComponentInstance('builder', instance);
+
+pageManager.hook.register('formChange', (context) => {
+  emit('change', context);
+});
 
 // 暴露组件的方法和状态
 defineExpose({

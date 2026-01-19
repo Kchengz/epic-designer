@@ -5,6 +5,7 @@ import { ref } from 'vue';
 export type HookCallback = (context: any) => Promise<void> | void;
 
 export interface Hooks {
+  formChange: HookCallback[];
   nodeRender: HookCallback[];
 }
 
@@ -25,11 +26,13 @@ export interface HookManager {
 export function useHookManager() {
   // 使用 ref 来存储钩子，使其响应式
   const hooks: Ref<Hooks> = ref({
+    formChange: [],
     nodeRender: [],
   });
 
   // 钩子统计（可选，用于监控）
   const hookCounts = ref({
+    formChange: 0,
     nodeRender: 0,
   });
 
