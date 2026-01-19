@@ -77,10 +77,7 @@ function handleClose() {
 
 <template>
   <Modal v-bind="getProps">
-    <div
-      class="epic-modal-main epic-scoped"
-      :style="{ borderWidth: props.fixedHeight ? '1px' : '0px' }"
-    >
+    <div class="epic-modal-main epic-scoped">
       <slot>
         <slot name="edit-node">
           <slot

@@ -27,7 +27,7 @@ const attrs = useAttrs();
 const getProps = computed<Record<string, any>>(() => ({
   ...props.componentSchema,
   ...attrs,
-  class: 'epic-modal-el epic-modal-main',
+  class: 'ep-el-modal epic-scoped',
   'destroy-on-close': true,
   title: props.componentSchema?.label ?? '',
 }));
@@ -51,7 +51,6 @@ function handleClose() {
   <ElDialog
     v-bind="getProps"
     :title="getProps.label ?? ''"
-    class="epic-modal-el epic-modal-main epic-scoped"
     destroy-on-close
     @update:model-value="updateModelValue"
   >
@@ -66,11 +65,13 @@ function handleClose() {
         </template>
       </slot>
     </slot>
-    <div class="epic-modal-footer">
-      <ElButton @click="handleClose"> {{ props.cancelText }} </ElButton>
-      <ElButton v-if="!props.hideConfirm" type="primary" @click="handleOk">
-        {{ props.okText }}
-      </ElButton>
-    </div>
+    <template #footer>
+      <div class="ep-el-modal-footer">
+        <ElButton @click="handleClose"> {{ props.cancelText }} </ElButton>
+        <ElButton v-if="!props.hideConfirm" type="primary" @click="handleOk">
+          {{ props.okText }}
+        </ElButton>
+      </div>
+    </template>
   </ElDialog>
 </template>
