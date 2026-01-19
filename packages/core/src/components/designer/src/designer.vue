@@ -11,7 +11,7 @@ import {
 } from 'vue';
 
 import { EpicBaseLoader } from '@epic-designer/base-ui';
-import { useStore } from '@epic-designer/hooks';
+import { useEventBus, useStore } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { setupPanel } from '@epic-designer/panel-ui';
 import {
@@ -53,6 +53,7 @@ const EEditContainer = loadAsyncComponent(
 const ERightSidebar = loadAsyncComponent(
   () => import('./modules/rightSidebar/index.vue'),
 );
+const epBuilderSlot = pluginManager.component.get('epBuilderSlot');
 
 const previewRef = ref<InstanceType<typeof EpicPreview> | null>(null);
 
@@ -84,8 +85,10 @@ watchEffect(() => {
   disabledZoom.value = props.disabledZoom;
 });
 // 记录缩放状态 end
+const eventBus = useEventBus();
 
 // 提供依赖注入的上下文
+provide('eventBus', eventBus);
 provide('pageSchema', pageSchema);
 provide('revoke', revoke);
 provide('pageManager', pageManager);
@@ -220,7 +223,6 @@ defineExpose({
               <template #header>
                 <slot name="header-prefix"></slot>
               </template>
-
               <template #prefix>
                 <slot name="header-prefix"></slot>
               </template>
@@ -251,6 +253,7 @@ defineExpose({
           ref="previewRef"
           :hide-confirm="props.hidePreviewConfirm"
         />
+        <component v-if="epBuilderSlot" :is="epBuilderSlot" />
       </div>
     </template>
     <template #fallback>

@@ -9,39 +9,42 @@ import { Input } from 'ant-design-vue';
 const props = withDefaults(
   defineProps<{
     componentSchema?: ComponentSchema;
+    dataSelector?: boolean;
     options?: any[];
-    remoteSelector?: boolean;
   }>(),
   {
     componentSchema: () => ({
       field: '',
       type: 'input',
     }),
+    dataSelector: false,
     options: () => [],
-    remoteSelector: false,
   },
 );
 
 const formData = inject<Record<string, any>>('formData', {});
 const eventBus = inject<EventBus | null>('eventBus', null);
 
-const handleRemoteSelector = () => {
-  eventBus?.emit('openRemoteSelector', props.componentSchema, props.options);
+const handleDataSelector = () => {
+  eventBus?.emit('openDataSelector', props.componentSchema, props.options);
 };
 
-eventBus?.on('setRemoteSelectorData', (data) => {
+eventBus?.on('dataSelector:selected', (data) => {
   if (data.nodeId !== props.componentSchema.id) {
     return;
   }
 
-  formData[props.componentSchema.field!] = data.record.value;
+  const dataFieldMap = props.componentSchema.props?.dataFieldMap ?? [];
+  dataFieldMap.forEach((item) => {
+    formData[item.formField] = data.record[item.dataField];
+  });
 });
 </script>
 <template>
   <Input>
-    <template #suffix v-if="props.remoteSelector">
+    <template #suffix v-if="props.dataSelector">
       <span
-        @click="handleRemoteSelector"
+        @click="handleDataSelector"
         class="iconfont icon--epic icon--epic--search-rounded"
       ></span>
     </template>

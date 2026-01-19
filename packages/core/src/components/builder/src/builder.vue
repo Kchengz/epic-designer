@@ -52,7 +52,7 @@ const emit = defineEmits<{
 
 setupPage(pluginManager);
 
-const extensionRender = pluginManager.component.get('extension-render');
+const epBuilderSlot = pluginManager.component.get('epBuilderSlot');
 // 使用 hooks 获取表单相关方法和状态
 const {
   forms,
@@ -189,7 +189,7 @@ defineExpose({
           :key="index"
           :component-schema="item"
         />
-        <component v-if="extensionRender" :is="extensionRender" />
+        <component v-if="epBuilderSlot" :is="epBuilderSlot" />
       </div>
     </template>
     <template #fallback>
