@@ -29,11 +29,23 @@ export function useHotkeys(deps: DesignerHotkeysDeps) {
   // 判断是否在可编辑元素中
   const isInInput = () => {
     const activeElement = document.activeElement;
-    return (
+    // 检查标准输入元素
+    const isStandardInput =
       activeElement instanceof HTMLInputElement ||
       activeElement instanceof HTMLTextAreaElement ||
-      (activeElement instanceof HTMLElement && activeElement.isContentEditable)
-    );
+      (activeElement instanceof HTMLElement && activeElement.isContentEditable);
+
+    if (isStandardInput) {
+      return true;
+    }
+
+    // 检查焦点是否在 Monaco 编辑器的容器内
+    const monacoElement = activeElement?.closest('.monaco-editor');
+    if (monacoElement) {
+      return true;
+    }
+
+    return false;
   };
 
   // 防抖处理
