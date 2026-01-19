@@ -368,7 +368,7 @@ async function initComponent() {
       ? innerSchema.props?.defaultValue
       : (formData[innerSchema.field!] ?? innerSchema.props?.defaultValue);
 
-    handleUpdate(deepClone(defaultValue));
+    handleUpdate(deepClone(defaultValue), true);
   }
 
   await pluginManager.hook.execute('nodeRender', innerSchema);
@@ -412,8 +412,9 @@ async function initComponent() {
 /**
  * 通过函数更新值
  * @param value value值
+ * @param isInit 是否初始化
  */
-function handleUpdate(value: any) {
+function handleUpdate(value: any, isInit?: boolean) {
   const oldValue = getBindValue();
   // 值相同时,无需重复更新数据
   if (value === oldValue) {
@@ -422,11 +423,13 @@ function handleUpdate(value: any) {
   if (innerSchema.field) {
     setValueByPath(formData, innerSchema.field, value);
     // 触发formChange钩子
-    pageManager.hook.execute('formChange', {
-      field: innerSchema.field,
-      formData,
-      value,
-    });
+    if (!isInit) {
+      pageManager.hook.execute('formChange', {
+        field: innerSchema.field,
+        formData,
+        value,
+      });
+    }
   }
   emit('update:modelValue', value);
   emit('change', value);
