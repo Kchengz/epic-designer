@@ -293,7 +293,7 @@ defineExpose({
                     {{ schema.id }}
                   </span>
                   <Button
-                    class="epic-copy-id-btn opacity-0"
+                    class="epic-copy-id-btn"
                     size="small"
                     @click.stop="copy(schema.id)"
                   >
