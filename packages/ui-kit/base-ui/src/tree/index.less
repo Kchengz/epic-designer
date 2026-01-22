@@ -54,14 +54,28 @@
   }
 
   .epic-tree-node {
-    &.level-1 {
-      padding-left: 10px;
-    }
-
     padding-left: 16px;
     min-height: 30px;
     line-height: 30px;
     cursor: pointer;
+
+    &.level-1 {
+      padding-left: 10px;
+    }
+
+    .is-locked>a>span,
+    .is-locked>a>span>div {
+
+      >.epic-text-padding {
+        color: var(--ep-disabled);
+        cursor: not-allowed;
+      }
+
+      .epic-tree-action {
+        display: none !important;
+      }
+
+    }
 
     .icon-expanded {
       position: absolute;

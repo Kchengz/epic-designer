@@ -97,6 +97,7 @@ init();
     class="epic-tree-node"
     :class="{
       expanded: props.schema.children?.length,
+      'is-locked': pluginManager.component.getLocked(props.schema.type),
       'level-1': props.schema.id === pageSchema.schemas[0]?.id,
     }"
   >

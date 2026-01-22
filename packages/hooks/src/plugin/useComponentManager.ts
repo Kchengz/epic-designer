@@ -202,7 +202,7 @@ export function useComponentManager() {
    * @returns label
    */
   function getLabel(type: string) {
-    return getComponentConfigByType(type)?.defaultSchema.label ?? '';
+    return componentConfigs[type]?.defaultSchema.label ?? '';
   }
 
   /**
@@ -211,7 +211,7 @@ export function useComponentManager() {
    * @returns icon
    */
   function getIcon(type: string) {
-    return getComponentConfigByType(type)?.icon ?? 'icon--epic--component';
+    return componentConfigs[type]?.icon ?? 'icon--epic--component';
   }
 
   /**
@@ -220,7 +220,7 @@ export function useComponentManager() {
    * @returns locked
    */
   function getLocked(type: string) {
-    return getComponentConfigByType(type)?.editConstraints?.locked;
+    return componentConfigs[type]?.editConstraints?.locked;
   }
 
   /**
