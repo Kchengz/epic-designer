@@ -218,18 +218,24 @@ function scrollIntoView(selectorTop: number, selectorLeft: number) {
   if (!epicEditRange || !element) return;
   // 获取两个元素的边界框信息
   const rect2 = epicEditRange.getBoundingClientRect();
-  const { width } = element.getBoundingClientRect();
+  const { height, width } = element.getBoundingClientRect();
 
   const scale = disabledZoom.value ? 1 : canvasScale.value;
 
   // 使selectComponentElement位于可见区域内
+  // 计算新的滚动位置：将选中元素的顶部位置(selectorTop)转换为缩放后的坐标，
+  // 然后减去容器顶部位置(rect2.top)，确保元素在容器可视区域内居中显示
   const newScrollTop = selectorTop / scale - rect2.top;
+  // 计算水平滚动位置：将选中元素的左侧位置(selectorLeft)转换为缩放后的坐标，
+  // 减去容器左侧位置(rect2.left)，再加上元素宽度(width)的缩放值，确保元素水平居中
   let newScrollLeft = selectorLeft / scale - rect2.left + width / scale;
+  // 边界检查：如果计算出的左侧滚动位置小于容器宽度，则将其置为0，防止元素滚出可视区域
   newScrollLeft < rect2.width && (newScrollLeft = 0);
-  const yMin = epicEditRange.scrollTop - rect2.height / 3 + 60;
-  const yMax = epicEditRange.scrollTop + (rect2.height / 3) * 2;
-  const xMin = epicEditRange.scrollLeft - rect2.width + 200;
-  const xMax = epicEditRange.scrollLeft + rect2.width - 200;
+
+  // 计算组件底部位置：组件顶部位置加上组件高度，用于判断组件底部是否在可视区域内
+  const selectorBottom = selectorTop + height;
+  // 计算组件右侧位置：组件左侧位置加上组件宽度，用于判断组件右侧是否在可视区域内
+  const selectorRight = selectorLeft + width;
 
   // 判断定位误差是否小于10px，小于则不处理
   if (
@@ -239,13 +245,28 @@ function scrollIntoView(selectorTop: number, selectorLeft: number) {
     return;
   oldScrollTop = newScrollTop;
   oldScrollLeft = newScrollLeft;
-  if (
-    newScrollTop > yMin &&
-    newScrollTop < yMax &&
-    newScrollLeft > xMin &&
-    newScrollLeft < xMax
-  )
-    return;
+  // 计算容器可视区域的绝对边界（相对于当前滚动位置）
+  const containerTop = epicEditRange.scrollTop;
+  const containerBottom = epicEditRange.scrollTop + rect2.height;
+  const containerLeft = epicEditRange.scrollLeft;
+  const containerRight = epicEditRange.scrollLeft + rect2.width;
+
+  // 计算组件在容器坐标系中的实际位置（考虑缩放）
+  const elementTop = selectorTop / scale;
+  const elementBottom = selectorBottom / scale;
+  const elementLeft = selectorLeft / scale;
+  const elementRight = selectorRight / scale;
+  console.log(selectorTop, elementTop, scale);
+
+  // 判断组件是否在可视区域内
+  // 如果组件已经在可视区域内，则不需要滚动，避免高组件频繁滚动到顶部
+  const isVisible =
+    elementBottom > containerTop && // 组件底部在容器顶部之下
+    elementTop < containerBottom && // 组件顶部在容器底部之上
+    elementRight > containerLeft && // 组件右侧在容器左侧之右
+    elementLeft < containerRight; // 组件左侧在容器右侧之左
+
+  if (isVisible) return;
 
   epicEditRange.scrollTop = newScrollTop;
   epicEditRange.scrollLeft = newScrollLeft;
