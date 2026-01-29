@@ -10,3 +10,44 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+.ep-button {
+  color: var(--ep-text-main);
+  border: 1px solid var(--ep-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  cursor: pointer;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: var(--ep-primary);
+    background-color: var(--ep-primary-foreground);
+    border: 1px solid var(--ep-primary);
+  }
+
+  &.small {
+    height: 24px;
+    padding: 0 8px;
+    border-radius: 4px;
+  }
+
+  &.primary {
+    color: white;
+    background-color: var(--ep-primary);
+    border: 1px solid var(--ep-primary);
+    box-shadow: 0 2px 0 #0591ff1a;
+  }
+
+  &.ghost {
+    color: var(--ep-primary);
+    background-color: transparent;
+    box-shadow: none;
+  }
+}

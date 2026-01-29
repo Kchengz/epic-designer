@@ -87,7 +87,5 @@ function handleDelete(index: number) {
     </draggable>
   </div>
 
-  <div class="epic-button ghost primary epic-option-add-btn" @click="handleAdd">
-    添加
-  </div>
+  <div class="ep-button ghost primary" @click="handleAdd">添加</div>
 </template>
