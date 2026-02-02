@@ -251,12 +251,11 @@ function scrollIntoView(selectorTop: number, selectorLeft: number) {
   const containerLeft = epicEditRange.scrollLeft;
   const containerRight = epicEditRange.scrollLeft + rect2.width;
 
-  // 计算组件在容器坐标系中的实际位置（考虑缩放）
+  // 计算组件在容器坐标系中的实际位置
   const elementTop = selectorTop / scale;
   const elementBottom = selectorBottom / scale;
   const elementLeft = selectorLeft / scale;
   const elementRight = selectorRight / scale;
-  console.log(selectorTop, elementTop, scale);
 
   // 判断组件是否在可视区域内
   // 如果组件已经在可视区域内，则不需要滚动，避免高组件频繁滚动到顶部

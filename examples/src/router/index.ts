@@ -46,6 +46,14 @@ export const frameworkRoutes = [
           title: '历史操作管理',
         },
       },
+      {
+        path: 'publicMethod',
+        name: 'publicMethod',
+        component: () => import('@/views/designer/publicMethod/index.vue'),
+        meta: {
+          title: '公共方法',
+        },
+      },
     ],
   },
   {
