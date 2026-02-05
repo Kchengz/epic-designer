@@ -10,7 +10,7 @@ import {
   watchEffect,
 } from 'vue';
 
-import { EpicBaseLoader } from '@epic-designer/base-ui';
+import { EpDesignerLoader } from '@epic-designer/base-ui';
 import { useEventBus, useStore } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { setupPanel } from '@epic-designer/panel-ui';
@@ -207,7 +207,7 @@ defineExpose({
     v-if="!pluginManager.designer.initialized.value"
     class="epic-loading-box"
   >
-    <!-- <EpicBaseLoader /> -->
+    <EpDesignerLoader />
   </div>
   <Suspense v-else @resolve="handleReady">
     <template #default>
@@ -258,7 +258,7 @@ defineExpose({
     </template>
     <template #fallback>
       <div class="epic-loading-box">
-        <EpicBaseLoader />
+        <EpDesignerLoader />
       </div>
     </template>
   </Suspense>

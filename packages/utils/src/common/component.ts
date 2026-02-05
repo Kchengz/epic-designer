@@ -2,7 +2,7 @@ import type { AsyncComponentLoader, Component } from 'vue';
 
 import { defineAsyncComponent } from 'vue';
 
-import { EpicBaseLoader } from '@epic-designer/base-ui';
+import { EpBaseLoader } from '@epic-designer/base-ui';
 
 /**
  * 异步加载组件
@@ -10,7 +10,7 @@ import { EpicBaseLoader } from '@epic-designer/base-ui';
  */
 export const loadAsyncComponent = (
   loader: AsyncComponentLoader,
-  loadingComponent: Component = EpicBaseLoader,
+  loadingComponent: Component = EpBaseLoader,
 ) =>
   defineAsyncComponent({
     delay: 80,
