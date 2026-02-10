@@ -3,7 +3,6 @@ import type {
   ComponentSchema,
   EpicNodeInstance,
   FieldStateMap,
-  FormDataModel,
 } from '@epic-designer/types';
 
 import type { AsyncComponentLoader, Ref } from 'vue';
@@ -26,6 +25,7 @@ import {
   watchEffect,
 } from 'vue';
 
+import { useFormItem } from '@epic-designer/hooks';
 import { PageManager, pluginManager } from '@epic-designer/manager';
 import {
   capitalizeFirstLetter,
@@ -66,7 +66,7 @@ const emit = defineEmits(['update:modelValue', 'change']);
 const nodeInstance = getCurrentInstance();
 
 // 表单formData数据
-let formData = inject('formData', reactive({})) as FormDataModel;
+let { formData } = useFormItem();
 
 const slots = inject('slots', {}) as Slots;
 
