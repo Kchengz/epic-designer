@@ -42,11 +42,13 @@ eventBus?.on('dataSelector:selected', (data) => {
 </script>
 <template>
   <Input>
-    <template #suffix v-if="props.dataSelector">
+    <template #suffix>
       <span
+        v-if="props.dataSelector"
         @click="handleDataSelector"
         class="iconfont icon--epic icon--epic--search-rounded"
       ></span>
+      <slot name="suffix"></slot>
     </template>
   </Input>
 </template>
