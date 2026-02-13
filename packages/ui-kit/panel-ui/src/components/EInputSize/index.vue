@@ -63,7 +63,7 @@ function handleUpdate() {
   <Input
     v-model="size"
     v-model:value="size"
-    class="epic-input-size"
+    class="ep-input-size"
     type="number"
     min="0"
     placeholder="请输入"
@@ -72,7 +72,7 @@ function handleUpdate() {
       <Select
         v-model:value="unit"
         v-model="unit"
-        style="width: 68px"
+        style="width: 60px"
         :options="unitArray"
       />
     </template>
