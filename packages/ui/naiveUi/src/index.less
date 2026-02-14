@@ -9,10 +9,23 @@
   }
 }
 
-// 适配k-input-size样式
-.epic-input-size > .n-input-wrapper {
-  padding-right: 0;
+// 适配k-input-size样式 start
+.ep-input-size {
+  > .n-input-wrapper {
+    padding-right: 0;
+  }
+  .n-base-selection-input {
+    padding: 0 4px !important;
+  }
+
+  .n-base-selection__state-border,
+  .n-base-selection__border {
+    border: 0 !important;
+    box-shadow: none !important;
+  }
 }
+
+// 适配k-input-size样式 end
 
 .epic-modal-n {
   margin: 0 auto 0 !important;

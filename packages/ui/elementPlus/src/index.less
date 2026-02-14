@@ -5,7 +5,7 @@
 
   // 表单样式
   .el-form--inline {
-    [name="epic-draggable-range"] {
+    [name='epic-draggable-range'] {
       display: flex;
       flex-wrap: wrap;
     }
@@ -43,27 +43,28 @@
 }
 
 // 适配k-input-size样式
-.epic-input-size {
+.ep-input-size {
   > .el-input__wrapper {
     padding-right: 1px;
   }
   .el-input__suffix {
-    div {
-      border-radius: 0;
+    margin-left: 0px;
+    .el-select__wrapper {
+      height: 32px;
+      line-height: 30px;
+      padding: 0 8px 0 4px;
       border: 0;
+      box-shadow: none !important;
       border-left: 1;
       position: relative;
       line-height: auto;
     }
+  }
 
-    .el-input__wrapper {
-      border: 0;
-    }
-
-    .el-select__wrapper {
-      height: 32px;
-      line-height: 30px;
-    }
+  .el-select-selector {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 4px !important;
   }
 }
 
