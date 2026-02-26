@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { PageManager } from '@epic-designer/manager';
 import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
 
 import type { VNode } from 'vue';
 
-import { computed, inject, provide, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
 
+import { useForm } from '@epic-designer/hooks';
 import { Form } from 'ant-design-vue';
 
 interface FormInstance extends InstanceType<typeof Form> {
@@ -33,14 +33,9 @@ const props = withDefaults(
   },
 );
 
-const pageManager = inject<PageManager>('pageManager', {} as PageManager);
 const form = ref<FormInstance | null>(null);
 const forms = inject<{ [name: string]: any }>('forms', {});
-const formData = pageManager.setFormData(
-  {},
-  props.componentSchema?.props?.name,
-);
-provide('formData', formData);
+const { formData } = useForm(props.componentSchema?.props?.name ?? 'default');
 
 /**
  * 获取表单数据

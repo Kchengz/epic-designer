@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { PageManager } from '@epic-designer/manager';
 import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
 
-import { computed, inject, onMounted, PropType, provide, ref, Ref } from 'vue';
+import { computed, inject, onMounted, PropType, ref, Ref } from 'vue';
 
+import { useForm } from '@epic-designer/hooks';
 import { ElForm } from 'element-plus';
 
 interface FormInstance extends InstanceType<typeof ElForm> {
@@ -24,14 +24,9 @@ const props = defineProps({
   },
 });
 
-const pageManager = inject('pageManager', {}) as PageManager;
 const form = ref<FormInstance | null>(null);
 const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>;
-const formData = pageManager.setFormData(
-  {},
-  props.componentSchema?.props?.name,
-);
-provide('formData', formData);
+const { formData } = useForm(props.componentSchema?.props?.name ?? 'default');
 
 /**
  * 获取表单数据
