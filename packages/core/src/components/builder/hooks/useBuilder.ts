@@ -2,12 +2,12 @@ import type { FormDataModel } from '@epic-designer/types';
 
 import { ref, watch } from 'vue';
 
-import { usePageManager } from '@epic-designer/manager';
+import { createPageManager } from '@epic-designer/manager';
 import { deepClone, findSchemas } from '@epic-designer/utils';
 
 export function useBuilder() {
   const ready = ref<boolean>(false);
-  const pageManager = usePageManager();
+  const pageManager = createPageManager();
   const forms = ref<any>({});
 
   /**

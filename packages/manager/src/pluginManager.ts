@@ -49,7 +49,7 @@ export interface PluginManager {
 }
 
 // 插件管理器类
-export function usePluginManager(): PluginManager {
+export function createPluginManager(): PluginManager {
   const { formSchema, setFormSchema } = useFormSchema();
   const {
     addBaseComponentType,
@@ -255,4 +255,4 @@ function createPropertyGroupMap<T extends Record<string, Record<string, any>>>(
   return propertyGroupMap;
 }
 
-export const pluginManager = usePluginManager();
+export const pluginManager = createPluginManager();

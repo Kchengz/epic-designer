@@ -20,7 +20,6 @@ import {
   deepClone, 
   getUUID, 
   usePageManager, 
-  usePluginManager,
   useRevoke 
 } from '@epic-designer/utils';
 ```
@@ -106,9 +105,7 @@ pageManager.setFormData('formId', { name: 'value' });
 用于管理组件插件的注册、配置和生命周期。
 
 ```typescript
-import { usePluginManager } from '@epic-designer/utils';
-
-const pluginManager = usePluginManager();
+import { pluginManager } from '@epic-designer/utils';
 
 // 注册组件
 pluginManager.component.register({

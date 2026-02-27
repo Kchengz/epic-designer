@@ -8,8 +8,8 @@ import { reactive, ref, watchEffect } from 'vue';
 
 import { useClipboard } from '@epic-designer/hooks';
 import {
+  createPageManager,
   pluginManager,
-  usePageManager,
   useRevoke,
 } from '@epic-designer/manager';
 import {
@@ -51,7 +51,7 @@ defineExpose({
 
 export function useDesigner(props, emit) {
   const ready = ref<boolean>(false);
-  const pageManager = usePageManager();
+  const pageManager = createPageManager();
   const pageSchema = pageManager.pageSchema;
 
   const state = reactive<DesignerState>({

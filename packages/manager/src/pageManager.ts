@@ -14,7 +14,7 @@ export interface ActionsModel {
   type: 'component' | 'custom' | 'public';
 }
 
-export function usePageManager() {
+export function createPageManager() {
   const componentInstances = ref<Record<string, EpicNodeInstance>>({});
   const funcs = ref<Record<string, Function>>({});
   // 当前模式 true 设计模式, false 渲染模式
@@ -381,4 +381,4 @@ export function usePageManager() {
   };
 }
 
-export type PageManager = ReturnType<typeof usePageManager>;
+export type PageManager = ReturnType<typeof createPageManager>;

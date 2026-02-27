@@ -25,7 +25,7 @@ const pageManager = usePageManager();
 ### 插件管理器 (PluginManager)
 
 ```typescript
-import { pluginManager, usePluginManager } from '@epic-designer/manager';
+import { pluginManager } from '@epic-designer/manager';
 
 // 注册组件
 pluginManager.component.register({

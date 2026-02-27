@@ -18,7 +18,7 @@ import {
 } from 'vue';
 
 import { EpBaseLoader, EpicNode } from '@epic-designer/base-ui';
-import { useEventBus } from '@epic-designer/hooks';
+import { PAGE_MANAGER_KEY, useEventBus } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { setupPage } from '@epic-designer/panel-ui';
 import {
@@ -104,7 +104,7 @@ const eventBus = useEventBus();
 // 提供依赖注入的上下文
 provide('eventBus', eventBus);
 provide('slots', useSlots());
-provide('pageManager', pageManager);
+provide(PAGE_MANAGER_KEY, pageManager);
 provide('forms', forms);
 provide('pageSchema', pageManager.pageSchema);
 provide(
