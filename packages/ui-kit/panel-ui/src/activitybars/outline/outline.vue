@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-import type { Designer, PageSchema } from '@epic-designer/types';
-
-import { computed, inject } from 'vue';
+import { computed } from 'vue';
 
 import { EpicIcon, EpicTree } from '@epic-designer/base-ui';
+import { useDesigner } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
-const pageSchema = inject('pageSchema') as PageSchema;
-const designer = inject('designer') as Designer;
+const designer = useDesigner();
+const pageSchema = designer.pageSchema;
 
 // 计算选中节点值
 const selectedKeys = computed(() => {

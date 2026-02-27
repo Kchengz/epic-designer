@@ -1,11 +1,6 @@
 <script lang="ts" setup>
-import type { DesignerProps, PageSchema } from '@epic-designer/types';
-
-import type { Ref } from 'vue';
-
 import {
   computed,
-  inject,
   nextTick,
   onMounted,
   ref,
@@ -14,14 +9,18 @@ import {
   watchEffect,
 } from 'vue';
 
-import { useElementDrag, useElementZoom, useStore } from '@epic-designer/hooks';
+import {
+  useDesigner,
+  useElementDrag,
+  useElementZoom,
+  useStore,
+} from '@epic-designer/hooks';
 import { debounce } from '@epic-designer/utils';
 import { useElementSize, useResizeObserver, watchOnce } from '@vueuse/core';
 
 import Toolbar from './toolbar.vue';
 
-const designerProps = inject('designerProps') as Ref<DesignerProps>;
-const pageSchema = inject('pageSchema') as PageSchema;
+const { pageSchema, props } = useDesigner();
 
 const editScreenContainerRef = ref<HTMLDivElement | null>(null);
 const draggableElRef = ref<HTMLDivElement | null>(null);
@@ -34,7 +33,7 @@ const { height, width } = useElementSize(editScreenContainerRef);
 const { canvasScale, handleZoom } = useElementZoom(draggableElRef);
 
 const draggableComputed = computed(() => {
-  return pressSpace.value && designerProps.value.draggable;
+  return pressSpace.value && props.draggable;
 });
 
 let contentRectWidth = 0;
@@ -117,7 +116,7 @@ function updateScrollBoxStyle() {
   const canvasHeight = getCanvasAttribute.value.height || contentRectHeight;
 
   // 更新滚动容器的样式，画布的尺寸和额外的宽度/高度
-  scrollBoxStyle.value = designerProps.value.draggable
+  scrollBoxStyle.value = props.draggable
     ? {
         height: `${height.value + canvasHeight}px`, // 滚动容器高度
         width: `${width.value + canvasWidth}px`, // 滚动容器宽度

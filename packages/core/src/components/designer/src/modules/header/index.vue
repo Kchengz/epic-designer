@@ -1,16 +1,11 @@
 <script lang="ts" setup>
-import type { DesignerProps } from '@epic-designer/types';
-
-import type { Ref } from 'vue';
-
-import { inject } from 'vue';
-
 import { EpicIcon } from '@epic-designer/base-ui';
+import { useDesigner } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
 const emits = defineEmits(['save', 'reset', 'preview']);
 const Button = pluginManager.component.get('button');
-const designerProps = inject('designerProps') as Ref<DesignerProps>;
+const designerProps = useDesigner().props;
 
 /**
  * 预览

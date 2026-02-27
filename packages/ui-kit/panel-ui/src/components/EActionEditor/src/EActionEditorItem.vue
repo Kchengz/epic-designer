@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-import type { PageSchema } from '@epic-designer/types';
-
 import type { PropType } from 'vue';
 
-import { inject } from 'vue';
-
 import { EpicIcon } from '@epic-designer/base-ui';
+import { useDesigner } from '@epic-designer/hooks';
 import { findSchemaById } from '@epic-designer/utils';
 import draggable from 'vuedraggable';
 
@@ -29,7 +26,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['add', 'edit', 'update:modelValue']);
 
-const pageSchema = inject('pageSchema') as PageSchema;
+const { pageSchema } = useDesigner();
 
 /**
  * 打开动作配置窗口

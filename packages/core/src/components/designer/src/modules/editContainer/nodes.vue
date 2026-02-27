@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import type { PageManager, Revoke } from '@epic-designer/manager';
-import type { ComponentSchema, Designer } from '@epic-designer/types';
+import type { ComponentSchema } from '@epic-designer/types';
 
-import { computed, inject, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
+
+import { useDesigner, usePageManager } from '@epic-designer/hooks';
 
 import EpicNodeItem from './nodeItem.vue';
 
@@ -14,9 +15,9 @@ const props = defineProps<{
   schemas: ComponentSchema[];
 }>();
 const emit = defineEmits(['update:schemas']);
-const designer = inject('designer') as Designer;
-const revoke = inject('revoke') as Revoke;
-const pageManager = inject('pageManager') as PageManager;
+const designer = useDesigner();
+const revoke = designer.revoke;
+const pageManager = usePageManager();
 
 const modelSchemas = computed({
   get: () => props.schemas,

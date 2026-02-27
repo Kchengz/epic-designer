@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import type { ComponentSchema, Designer } from '@epic-designer/types';
-
-import { inject } from 'vue';
+import type { ComponentSchema } from '@epic-designer/types';
 
 import { EpicIcon } from '@epic-designer/base-ui';
+import { useDesigner } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
-const designer = inject('designer') as Designer;
+const designer = useDesigner();
 /**
  * 选中点击节点元素
  * @param schema

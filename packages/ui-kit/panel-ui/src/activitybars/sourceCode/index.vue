@@ -1,15 +1,14 @@
 <script lang="ts" setup>
-import type { Designer, DesignerProps } from '@epic-designer/types';
+import { ref, toRaw, watch } from 'vue';
 
-import { inject, ref, toRaw, watch } from 'vue';
-
+import { useDesigner } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { deepCompareAndModify, deepEqual } from '@epic-designer/utils';
 
 const MonacoEditor = pluginManager.component.get('monacoEditor');
 const monacoEditorRef = ref<any>(null);
-const designer = inject('designer') as Designer;
-const designerProps = inject('designerProps') as DesignerProps;
+const designer = useDesigner();
+const designerProps = designer.props;
 
 let oldVal: any = {};
 watch(

@@ -1,13 +1,9 @@
 <script lang="ts" setup>
-import type { Designer, DesignerProps, PageSchema } from '@epic-designer/types';
-
-import type { Ref } from 'vue';
-
-import { computed, inject, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { EpicIcon, EpTooltip } from '@epic-designer/base-ui';
-import { useStore } from '@epic-designer/hooks';
-import { pluginManager, Revoke } from '@epic-designer/manager';
+import { useDesigner, useStore } from '@epic-designer/hooks';
+import { pluginManager } from '@epic-designer/manager';
 import {
   convertKFormData,
   deepCompareAndModify,
@@ -19,10 +15,9 @@ import EpicPreviewJson from './previewJson.vue';
 const Select = pluginManager.component.get('select');
 
 const { canvasScale, disabledZoom } = useStore();
-const pageSchema = inject('pageSchema') as PageSchema;
-const designer = inject('designer') as Designer;
-const revoke = inject('revoke') as Revoke;
-const designerProps = inject('designerProps') as Ref<DesignerProps>;
+const designer = useDesigner();
+const pageSchema = designer.pageSchema;
+const revoke = designer.revoke;
 const previewJson = ref<InstanceType<typeof EpicPreviewJson> | null>(null);
 
 const deviceOptions = [
@@ -77,13 +72,13 @@ const actionOptions = computed(() => {
       divider: true,
       icon: 'icon--epic--eye',
       on: designer.preview,
-      show: () => designerProps.value.hiddenHeader,
+      show: () => designer.props.hiddenHeader,
       title: '预览',
     },
     {
       icon: 'icon--epic--save-outline-rounded',
       on: designer.save,
-      show: () => designerProps.value.hiddenHeader,
+      show: () => designer.props.hiddenHeader,
       title: '保存',
     },
   ];

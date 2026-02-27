@@ -1,22 +1,19 @@
 <script lang="ts" setup>
-import type {
-  ComponentSchema,
-  Designer,
-  PageSchema,
-} from '@epic-designer/types';
+import type { ComponentSchema } from '@epic-designer/types';
 
-import { computed, inject, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 import { EpCollapse, EpCollapsePanel, EpicIcon } from '@epic-designer/base-ui';
-import { pluginManager, Revoke } from '@epic-designer/manager';
+import { useDesigner } from '@epic-designer/hooks';
+import { pluginManager } from '@epic-designer/manager';
 import { findSchemaInfoById, generateNewSchema } from '@epic-designer/utils';
 import { useStorage } from '@vueuse/core';
 
 const Input = pluginManager.component.get('input');
-const pageSchema = inject('pageSchema') as PageSchema;
-const designer = inject('designer') as Designer;
-const revoke = inject('revoke') as Revoke;
+const designer = useDesigner();
+const revoke = designer.revoke;
+const pageSchema = designer.pageSchema;
 const groups = pluginManager.component.getComponentSchemaGroups();
 const keyword = ref('');
 const activeKeys = useStorage('epic-component-view-keys', []);

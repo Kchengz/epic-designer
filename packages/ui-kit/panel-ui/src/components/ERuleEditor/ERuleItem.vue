@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { PageManager } from '@epic-designer/manager';
 import type { FormItemRule } from '@epic-designer/types';
 
-import { computed, inject } from 'vue';
+import { computed } from 'vue';
 
 import { EpicIcon, EpicNode } from '@epic-designer/base-ui';
+import { usePageManager } from '@epic-designer/hooks';
 
 import { lenTypeOptions, triggerOptions, typeOptions } from './data';
 
@@ -21,7 +21,7 @@ const modelRule = computed({
   },
 });
 
-const pageManager = inject('pageManager', {}) as PageManager;
+const pageManager = usePageManager();
 
 const methodOptions = computed(() => {
   return Object.entries(pageManager.funcs.value)

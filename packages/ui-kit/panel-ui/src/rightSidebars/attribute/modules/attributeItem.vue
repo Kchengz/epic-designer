@@ -1,17 +1,12 @@
 <script lang="ts" setup>
-import type { Revoke } from '@epic-designer/manager';
-import type {
-  ComponentSchema,
-  Designer,
-  PageSchema,
-  TableJson,
-} from '@epic-designer/types';
+import type { ComponentSchema, TableJson } from '@epic-designer/types';
 
 import type { Ref } from 'vue';
 
 import { computed, inject, nextTick, ref, watchEffect } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
+import { useDesigner } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 
@@ -19,9 +14,9 @@ const props = defineProps<{
   schema: ComponentSchema;
 }>();
 const tableJson = inject<null | Ref<TableJson>>('dataTable', null);
-const designer = inject('designer') as Designer;
-const pageSchema = inject('pageSchema') as PageSchema;
-const revoke = inject('revoke') as Revoke;
+const designer = useDesigner();
+const pageSchema = designer.pageSchema;
+const revoke = designer.revoke;
 
 const selectedNode = computed(() => {
   return designer.state.selectedNode;

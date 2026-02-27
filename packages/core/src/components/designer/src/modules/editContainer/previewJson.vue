@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import type { PageSchema } from '@epic-designer/types';
+import { ref, watchEffect } from 'vue';
 
-import { inject, ref, watchEffect } from 'vue';
-
+import { useDesigner } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { useClipboard } from '@vueuse/core';
 
@@ -18,7 +17,7 @@ const MonacoEditorConfig = {
 };
 const monacoEditorRef = ref<any>(null);
 const visible = ref(false);
-const pageSchema = inject('pageSchema') as PageSchema;
+const { pageSchema } = useDesigner();
 const { copied, copy } = useClipboard();
 watchEffect(() => {
   if (copied.value) {

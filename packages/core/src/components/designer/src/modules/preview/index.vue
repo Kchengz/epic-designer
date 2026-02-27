@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import type { ComponentSchema, PageSchema } from '@epic-designer/types';
+import type { ComponentSchema } from '@epic-designer/types';
 
-import { computed, inject, nextTick, ref } from 'vue';
+import { computed, nextTick, ref } from 'vue';
 
+import { useDesigner } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { findSchemas } from '@epic-designer/utils';
 
@@ -25,7 +26,7 @@ const visible = ref(false);
 const dataVisible = ref(false);
 const formValues = ref({});
 
-const pageSchema = inject('pageSchema') as PageSchema;
+const { pageSchema } = useDesigner();
 const kb = ref<any>(null);
 
 const getFormNames = computed(() => {

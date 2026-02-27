@@ -25,8 +25,8 @@ import {
   watchEffect,
 } from 'vue';
 
-import { useFormItem } from '@epic-designer/hooks';
-import { PageManager, pluginManager } from '@epic-designer/manager';
+import { useFormItem, usePageManager } from '@epic-designer/hooks';
+import { pluginManager } from '@epic-designer/manager';
 import {
   capitalizeFirstLetter,
   deepClone,
@@ -71,7 +71,7 @@ let { formData } = useFormItem();
 const slots = inject('slots', {}) as Slots;
 
 // 接收页面管理对象
-const pageManager = inject('pageManager', {}) as PageManager;
+const pageManager = usePageManager();
 // 上级组件注入的disabled状态
 const disabled = inject<Ref<boolean> | { value: false }>('disabled', {
   value: false,

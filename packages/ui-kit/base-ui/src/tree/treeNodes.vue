@@ -1,14 +1,11 @@
 <script lang="ts" setup>
-import type {
-  ComponentSchema,
-  Designer,
-  PageSchema,
-} from '@epic-designer/types';
+import type { ComponentSchema } from '@epic-designer/types';
 
 import type { TreeProps } from './types';
 
 import { computed, inject } from 'vue';
 
+import { useDesigner } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import draggable from 'vuedraggable';
 
@@ -24,8 +21,8 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(['update:schemas']);
-const designer = inject('designer') as Designer;
-const pageSchema = inject('pageSchema') as PageSchema;
+const designer = useDesigner();
+const pageSchema = designer.pageSchema;
 const treeProps = inject('treeProps') as TreeProps;
 
 const modelSchemas = computed({

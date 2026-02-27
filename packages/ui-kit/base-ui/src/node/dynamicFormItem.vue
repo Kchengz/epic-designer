@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-import type { PageManager } from '@epic-designer/manager';
 import type { ComponentSchema, EpicNodeInstance } from '@epic-designer/types';
 
 import type { VNode } from 'vue';
 
-import { inject } from 'vue';
-
+import { usePageManager } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
 defineOptions({
@@ -17,7 +15,7 @@ const props = defineProps<{
 }>();
 
 // 接收页面管理对象
-const pageManager = inject('pageManager', {}) as PageManager;
+const pageManager = usePageManager();
 // 获取插件管理器中的表单项组件
 const FormItem = pluginManager.component.get('form-item');
 

@@ -1,15 +1,10 @@
 <script lang="ts" setup>
-import type {
-  ComponentSchema,
-  DesignerProps,
-  PageSchema,
-} from '@epic-designer/types';
+import type { ComponentSchema } from '@epic-designer/types';
 
-import type { Ref } from 'vue';
-
-import { computed, inject, provide, useAttrs } from 'vue';
+import { computed, provide, useAttrs } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
+import { useDesigner } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
 import EpicNodes from './nodes.vue';
@@ -27,8 +22,7 @@ const props = withDefaults(
   },
 );
 const attrs = useAttrs();
-const pageSchema = inject('pageSchema', {}) as PageSchema;
-const designerProps = inject<Ref<DesignerProps>>('designerProps');
+const { pageSchema, props: designerProps } = useDesigner();
 provide('nodeAttrs', attrs);
 // 判断是否为叶子节点
 const isLeafNode = computed(() => !props.schema.children);

@@ -1,17 +1,15 @@
 <script lang="ts" setup>
 import type { DesignerProps, PageSchema } from '@epic-designer/types';
 
-import {
-  computed,
-  nextTick,
-  onUnmounted,
-  provide,
-  ref,
-  watchEffect,
-} from 'vue';
+import { nextTick, onUnmounted, provide, ref, watchEffect } from 'vue';
 
 import { EpDesignerLoader } from '@epic-designer/base-ui';
-import { useEventBus, useStore } from '@epic-designer/hooks';
+import {
+  DESIGNER_KEY,
+  PAGE_MANAGER_KEY,
+  useEventBus,
+  useStore,
+} from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { setupPanel } from '@epic-designer/panel-ui';
 import {
@@ -89,27 +87,31 @@ const eventBus = useEventBus();
 
 // 提供依赖注入的上下文
 provide('eventBus', eventBus);
-provide('pageSchema', pageSchema);
-provide('revoke', revoke);
-provide('pageManager', pageManager);
-provide(
-  'designerProps',
-  computed(() => props),
-);
+// provide('pageSchema', pageSchema);
+// provide('revoke', revoke);
+// provide('pageManager', pageManager);
+// provide(
+//   'designerProps',
+//   computed(() => props),
+// );
 
-provide('designer', {
+provide(DESIGNER_KEY, {
   handleDelete,
   handleDuplicate,
   handleImported,
   handleToggleDeviceMode,
+  pageSchema,
   preview: handlePreview,
+  props,
   reset,
+  revoke,
   save: handleSave,
   setDisabledHover,
   setHoverNode,
   setSelectedNode,
   state,
 });
+provide(PAGE_MANAGER_KEY, pageManager);
 const designerRef = ref<HTMLElement | null>(null);
 
 /**

@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import type { PageSchema } from '@epic-designer/types';
+import { ref } from 'vue';
 
-import { inject, ref } from 'vue';
-
+import { useDesigner } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
 const MonacoEditor = pluginManager.component.get('monacoEditor');
@@ -14,7 +13,7 @@ const MonacoEditorConfig = {
   theme: 'vs-light',
 };
 const monacoEditorRef = ref<any>(null);
-const pageSchema = inject('pageSchema') as PageSchema;
+const { pageSchema } = useDesigner();
 </script>
 <template>
   <div class="flex h-full flex-col">

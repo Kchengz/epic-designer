@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { computed, inject, onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
-import { PageSchema } from '@epic-designer/types';
+import { useDesigner } from '@epic-designer/hooks';
 
 import EpicEditScreenContainer from './editScreenContainer.vue';
 import EpicNodeItem from './nodeItem.vue';
@@ -10,7 +10,7 @@ import EpicPreviewWidgets from './previewWidgets.vue';
 const epicEditRangeRef = ref<HTMLDivElement | null>(null);
 const epicPreviewWidgetsRef = ref<null | typeof EpicPreviewWidgets>(null);
 
-const pageSchema = inject('pageSchema') as PageSchema;
+const { pageSchema } = useDesigner();
 const rootSchema = computed(() => {
   return pageSchema.schemas[0];
 });

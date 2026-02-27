@@ -1,27 +1,23 @@
 <script lang="ts" setup>
-import type { PageManager } from '@epic-designer/manager';
-import type {
-  ComponentSchema,
-  Designer,
-  DesignerProps,
-  PageSchema,
-} from '@epic-designer/types';
+import type { ComponentSchema } from '@epic-designer/types';
 
-import type { Ref } from 'vue';
-
-import { computed, inject, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { useStore, useTimedQuery } from '@epic-designer/hooks';
+import {
+  useDesigner,
+  usePageManager,
+  useStore,
+  useTimedQuery,
+} from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { findSchemaInfoById } from '@epic-designer/utils';
 import { useResizeObserver } from '@vueuse/core';
 
-const pageManager = inject('pageManager', {}) as PageManager;
-const pageSchema = inject('pageSchema') as PageSchema;
-const designer = inject('designer') as Designer;
-const designerProps = inject('designerProps') as Ref<DesignerProps>;
-
+const pageManager = usePageManager();
+const designer = useDesigner();
+const designerProps = designer.props;
+const pageSchema = designer.pageSchema;
 const selectorRef = ref<HTMLDivElement | null>(null);
 const hoverWidgetRef = ref<HTMLDivElement | null>(null);
 const actionBoxRef = ref<HTMLDivElement | null>(null);
@@ -44,7 +40,7 @@ const isRemovableAndDraggable = computed(() => {
   if (!schemas?.id) return false;
   // 判断当前节点类型是否允许拖拽删除
   if (
-    designerProps.value.lockDefaultSchemaEdit &&
+    designerProps.lockDefaultSchemaEdit &&
     pageManager.defaultComponentIds.value.includes(schemas?.id)
   ) {
     // 禁止拖拽删除
