@@ -5,7 +5,7 @@ import type { TreeProps } from './types';
 
 import { computed, inject } from 'vue';
 
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import draggable from 'vuedraggable';
 
@@ -21,7 +21,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(['update:schemas']);
-const designer = useDesigner();
+const designer = useDesignerContext();
 const pageSchema = designer.pageSchema;
 const treeProps = inject('treeProps') as TreeProps;
 

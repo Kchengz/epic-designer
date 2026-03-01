@@ -4,7 +4,7 @@ import type { ComponentSchema } from '@epic-designer/types';
 import { computed, defineComponent, h, inject, Ref, Slots } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
 import ETreeNodes from './treeNodes.vue';
@@ -18,7 +18,7 @@ const props = defineProps<{
 }>();
 
 const slots = inject('slots', {}) as Slots;
-const { pageSchema } = useDesigner();
+const { pageSchema } = useDesignerContext();
 
 const expandedKeys = inject('expandedKeys') as Ref<string[]>;
 const treeProps = inject('treeProps') as any;

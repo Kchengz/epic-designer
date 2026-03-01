@@ -4,7 +4,7 @@ import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
 import { computed, nextTick, reactive, ref, toRaw } from 'vue';
 
 import { EpicIcon, EpicTree } from '@epic-designer/base-ui';
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { deepClone, findSchemaById, getUUID } from '@epic-designer/utils';
 import { useClipboard } from '@vueuse/core';
@@ -16,7 +16,7 @@ const emit = defineEmits(['add', 'edit']);
 const Modal = pluginManager.component.get('modal');
 const Button = pluginManager.component.get('button');
 const isAdd = ref(true);
-const { pageManager, pageSchema } = useDesigner();
+const { pageManager, pageSchema } = useDesignerContext();
 const visible = ref(false);
 const selectedKeys = ref<string[]>([]);
 const componentSchema = ref<ComponentSchema | null>(null);

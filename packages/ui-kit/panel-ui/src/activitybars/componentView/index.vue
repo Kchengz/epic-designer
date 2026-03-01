@@ -5,13 +5,13 @@ import { computed, ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 import { EpCollapse, EpCollapsePanel, EpicIcon } from '@epic-designer/base-ui';
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { findSchemaInfoById, generateNewSchema } from '@epic-designer/utils';
 import { useStorage } from '@vueuse/core';
 
 const Input = pluginManager.component.get('input');
-const designer = useDesigner();
+const designer = useDesignerContext();
 const revoke = designer.revoke;
 const pageSchema = designer.pageSchema;
 const groups = pluginManager.component.getComponentSchemaGroups();

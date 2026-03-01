@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { ComponentSchema } from '@epic-designer/types';
 
 import EAttributeItem from '../attribute/modules/attributeItem.vue';
 
-const designer = useDesigner();
+const designer = useDesignerContext();
 const componentConfigs = pluginManager.component.getComponentConfigs();
 
 const selectedNode = computed(() => {

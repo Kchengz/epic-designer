@@ -2,10 +2,10 @@
 import type {
   ComponentSchema,
   EpicNodeInstance,
-  FieldStateMap,
+  FieldStateType,
 } from '@epic-designer/types';
 
-import type { AsyncComponentLoader, Ref } from 'vue';
+import type { AsyncComponentLoader } from 'vue';
 
 import {
   computed,
@@ -18,14 +18,17 @@ import {
   ref,
   renderSlot,
   shallowRef,
-  Slots,
   useAttrs,
   VNode,
   watch,
   watchEffect,
 } from 'vue';
 
-import { useFormItem, usePageManager } from '@epic-designer/hooks';
+import {
+  useBuilderContext,
+  useFormItem,
+  usePageManager,
+} from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import {
   capitalizeFirstLetter,
@@ -68,17 +71,10 @@ const nodeInstance = getCurrentInstance();
 // 表单formData数据
 let { formData } = useFormItem();
 
-const slots = inject('slots', {}) as Slots;
+const { disabled, fieldStateMap, slots } = useBuilderContext();
 
 // 接收页面管理对象
 const pageManager = usePageManager();
-// 上级组件注入的disabled状态
-const disabled = inject<Ref<boolean> | { value: false }>('disabled', {
-  value: false,
-});
-
-// 字段状态规则
-const fieldStateMap = inject<FieldStateMap>('fieldStateMap', {});
 
 // 校验前缀字段
 const ruleFieldPrefix = inject<any[] | null>('ruleFieldPrefix', null);
@@ -159,25 +155,25 @@ if (Object.keys(attrs).length > 0) {
 // 定义组件及组件props字段
 const componentRef = shallowRef<any>(null);
 
-const fieldState = ref(null);
-const fieldRequired = ref<boolean | null>(null);
+const fieldStateType = ref<FieldStateType | null>(null);
+const fieldRequired = ref<boolean | null | undefined>(null);
 
 watchEffect(() => {
   const fieldName = innerSchema?.field;
   const currentFieldState = fieldName && fieldStateMap.value?.[fieldName];
 
   if (!currentFieldState) {
-    fieldState.value = null;
+    fieldStateType.value = null;
     fieldRequired.value = null;
     return;
   }
 
   const { condition, required, state } = currentFieldState;
   if (typeof condition === 'function') {
-    fieldState.value = condition(formData) ? state : null;
+    fieldStateType.value = condition(formData) ? state : null;
     fieldRequired.value = condition(formData) ? required : null;
   } else {
-    fieldState.value = state;
+    fieldStateType.value = state;
     fieldRequired.value = required;
   }
 });
@@ -186,10 +182,10 @@ const show = computed(() => {
   // 设计模式且showHiddenItems为true时 显示隐藏组件，提供查看隐藏元素的能力
   if (props.showHiddenItems && pageManager.isDesignMode.value) return true;
 
-  // fieldState 属性优先级最高
-  if (fieldState.value === 'WRITE') {
+  // fieldStateType 属性优先级最高
+  if (fieldStateType.value === 'WRITE') {
     return true;
-  } else if (innerSchema.props?.hidden || fieldState.value === 'HIDE') {
+  } else if (innerSchema.props?.hidden || fieldStateType.value === 'HIDE') {
     return false;
   }
 
@@ -297,14 +293,14 @@ const getProps = computed(() => {
     ...innerSchema.props,
     bindModel,
     disabled:
-      fieldState.value !== 'WRITE' &&
-      (fieldState.value === 'DISABLED' ||
-        disabled?.value ||
+      fieldStateType.value !== 'WRITE' &&
+      (fieldStateType.value === 'DISABLED' ||
+        disabled.value ||
         innerSchema.props?.disabled),
     hidden: !show.value,
     readonly:
-      fieldState.value !== 'WRITE' &&
-      (fieldState.value === 'READ' || innerSchema.props?.readonly),
+      fieldStateType.value !== 'WRITE' &&
+      (fieldStateType.value === 'READ' || innerSchema.props?.readonly),
     ...onEvent,
   };
 });

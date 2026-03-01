@@ -2,10 +2,10 @@
 import { computed } from 'vue';
 
 import { EpicIcon, EpicTree } from '@epic-designer/base-ui';
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
-const designer = useDesigner();
+const designer = useDesignerContext();
 const pageSchema = designer.pageSchema;
 
 // 计算选中节点值

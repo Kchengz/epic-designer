@@ -6,7 +6,7 @@ import type { Ref } from 'vue';
 import { computed, inject, nextTick, ref, watchEffect } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 
@@ -14,7 +14,7 @@ const props = defineProps<{
   schema: ComponentSchema;
 }>();
 const tableJson = inject<null | Ref<TableJson>>('dataTable', null);
-const designer = useDesigner();
+const designer = useDesignerContext();
 const pageSchema = designer.pageSchema;
 const revoke = designer.revoke;
 

@@ -4,13 +4,13 @@ import type { TableJson } from '@epic-designer/types';
 import { computed, provide, watchEffect } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { useClipboard } from '@vueuse/core';
 
 import EAttributeItem from './modules/attributeItem.vue';
 
-const designer = useDesigner();
+const designer = useDesignerContext();
 const pageSchema = designer.pageSchema;
 const designerProps = designer.props;
 

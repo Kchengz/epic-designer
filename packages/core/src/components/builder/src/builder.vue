@@ -18,7 +18,11 @@ import {
 } from 'vue';
 
 import { EpBaseLoader, EpicNode } from '@epic-designer/base-ui';
-import { PAGE_MANAGER_KEY, useEventBus } from '@epic-designer/hooks';
+import {
+  BUILDER_KEY,
+  PAGE_MANAGER_KEY,
+  useEventBus,
+} from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { setupPage } from '@epic-designer/panel-ui';
 import {
@@ -103,17 +107,10 @@ watch(
 const eventBus = useEventBus();
 // 提供依赖注入的上下文
 provide('eventBus', eventBus);
-provide('slots', useSlots());
-provide(PAGE_MANAGER_KEY, pageManager);
-provide('forms', forms);
-provide('pageSchema', pageManager.pageSchema);
-provide(
-  'disabled',
-  computed(() => props.disabled),
-);
-provide(
-  'fieldStateMap',
-  computed(() => {
+provide(BUILDER_KEY, {
+  disabled: computed(() => props.disabled),
+  eventBus,
+  fieldStateMap: computed(() => {
     //  将fieldStates转换对象类型
     const fieldStateMap = {};
     props.fieldStates?.forEach((fieldState) => {
@@ -121,7 +118,10 @@ provide(
     });
     return fieldStateMap;
   }),
-);
+  slots: useSlots(),
+});
+provide(PAGE_MANAGER_KEY, pageManager);
+provide('forms', forms);
 
 /**
  * 组件加载完成后的处理函数，注: pageSchema更新会触发组件重新加载

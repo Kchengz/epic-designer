@@ -10,7 +10,7 @@ import {
 } from 'vue';
 
 import {
-  useDesigner,
+  useDesignerContext,
   useElementDrag,
   useElementZoom,
   useStore,
@@ -20,7 +20,7 @@ import { useElementSize, useResizeObserver, watchOnce } from '@vueuse/core';
 
 import Toolbar from './toolbar.vue';
 
-const { pageSchema, props } = useDesigner();
+const { pageSchema, props } = useDesignerContext();
 
 const editScreenContainerRef = ref<HTMLDivElement | null>(null);
 const draggableElRef = ref<HTMLDivElement | null>(null);

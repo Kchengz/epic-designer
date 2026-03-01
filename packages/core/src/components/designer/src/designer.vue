@@ -5,7 +5,7 @@ import { nextTick, onUnmounted, provide, ref, watchEffect } from 'vue';
 
 import { EpDesignerLoader } from '@epic-designer/base-ui';
 import {
-  DESIGNER_KEY,
+  DESIGNER_CONTEXT_KEY,
   PAGE_MANAGER_KEY,
   useEventBus,
   useStore,
@@ -87,15 +87,8 @@ const eventBus = useEventBus();
 
 // 提供依赖注入的上下文
 provide('eventBus', eventBus);
-// provide('pageSchema', pageSchema);
-// provide('revoke', revoke);
-// provide('pageManager', pageManager);
-// provide(
-//   'designerProps',
-//   computed(() => props),
-// );
 
-provide(DESIGNER_KEY, {
+provide(DESIGNER_CONTEXT_KEY, {
   handleDelete,
   handleDuplicate,
   handleImported,

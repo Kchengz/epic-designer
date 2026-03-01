@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue';
 
 import { EpicIcon, EpTooltip } from '@epic-designer/base-ui';
-import { useDesigner, useStore } from '@epic-designer/hooks';
+import { useDesignerContext, useStore } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import {
   convertKFormData,
@@ -15,7 +15,7 @@ import EpicPreviewJson from './previewJson.vue';
 const Select = pluginManager.component.get('select');
 
 const { canvasScale, disabledZoom } = useStore();
-const designer = useDesigner();
+const designer = useDesignerContext();
 const pageSchema = designer.pageSchema;
 const revoke = designer.revoke;
 const previewJson = ref<InstanceType<typeof EpicPreviewJson> | null>(null);

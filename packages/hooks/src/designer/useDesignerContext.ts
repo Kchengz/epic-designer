@@ -27,14 +27,16 @@ export interface DesignerContext {
   };
 }
 
-export const DESIGNER_KEY: InjectionKey<DesignerContext> =
+export const DESIGNER_CONTEXT_KEY: InjectionKey<DesignerContext> =
   Symbol('designerContext');
 
-export function useDesigner() {
-  const designer = inject<DesignerContext>(DESIGNER_KEY);
+export function useDesignerContext() {
+  const designerContext = inject<DesignerContext>(DESIGNER_CONTEXT_KEY);
 
-  if (!designer) {
-    throw new Error('useDesigner must be used within a Designer component');
+  if (!designerContext) {
+    throw new Error(
+      'useDesignerContext must be used within a Designer component',
+    );
   }
-  return designer;
+  return designerContext;
 }

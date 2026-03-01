@@ -1,8 +1,8 @@
 // 字段状态类型
-type FieldStateType = 'DISABLED' | 'HIDE' | 'READ' | 'WRITE';
+export type FieldStateType = 'DISABLED' | 'HIDE' | 'READ' | 'WRITE';
 
 // 单个字段状态规则
-interface FieldState {
+export interface FieldState {
   /** 其他扩展属性（如权限标识、作用域等） */
   [key: string]: any;
 

@@ -3,11 +3,11 @@ import type { EventModel } from '@epic-designer/types';
 
 import { computed } from 'vue';
 
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 
-const designer = useDesigner();
+const designer = useDesignerContext();
 const revoke = designer.revoke;
 const EActionEditor = pluginManager.component.get('EActionEditor');
 

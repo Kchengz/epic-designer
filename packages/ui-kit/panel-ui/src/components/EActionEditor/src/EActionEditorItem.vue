@@ -2,7 +2,7 @@
 import type { PropType } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { findSchemaById } from '@epic-designer/utils';
 import draggable from 'vuedraggable';
 
@@ -26,7 +26,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['add', 'edit', 'update:modelValue']);
 
-const { pageSchema } = useDesigner();
+const { pageSchema } = useDesignerContext();
 
 /**
  * 打开动作配置窗口

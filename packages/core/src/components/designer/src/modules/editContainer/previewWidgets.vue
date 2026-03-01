@@ -5,7 +5,7 @@ import { computed, ref, watch } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
 import {
-  useDesigner,
+  useDesignerContext,
   usePageManager,
   useStore,
   useTimedQuery,
@@ -15,7 +15,7 @@ import { findSchemaInfoById } from '@epic-designer/utils';
 import { useResizeObserver } from '@vueuse/core';
 
 const pageManager = usePageManager();
-const designer = useDesigner();
+const designer = useDesignerContext();
 const designerProps = designer.props;
 const pageSchema = designer.pageSchema;
 const selectorRef = ref<HTMLDivElement | null>(null);

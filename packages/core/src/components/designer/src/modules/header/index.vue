@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { EpicIcon } from '@epic-designer/base-ui';
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
 const emits = defineEmits(['save', 'reset', 'preview']);
 const Button = pluginManager.component.get('button');
-const designerProps = useDesigner().props;
+const designerProps = useDesignerContext().props;
 
 /**
  * 预览

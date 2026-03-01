@@ -2,10 +2,10 @@
 import type { ComponentSchema } from '@epic-designer/types';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { useDesigner } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
-const designer = useDesigner();
+const designer = useDesignerContext();
 /**
  * 选中点击节点元素
  * @param schema
