@@ -30,7 +30,7 @@ export default defineConfig({
   variants: [
     (matcher) => ({
       matcher,
-      selector: (s) => `.epic-scoped ${s}`,
+      selector: (s) => `.ep-scoped ${s}`,
     }),
   ],
 });

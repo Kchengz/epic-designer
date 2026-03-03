@@ -27,7 +27,7 @@ const attrs = useAttrs();
 const getProps = computed<Record<string, any>>(() => ({
   ...props.componentSchema,
   ...attrs,
-  class: 'ep-el-modal epic-scoped',
+  class: 'ep-el-modal ep-scoped',
   'destroy-on-close': true,
   title: props.componentSchema?.label ?? '',
 }));

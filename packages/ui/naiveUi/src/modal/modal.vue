@@ -56,7 +56,7 @@ function handleClose() {
   <NModal
     v-bind="getProps"
     :title="getProps.label ?? ''"
-    class="epic-modal-n epic-scoped"
+    class="epic-modal-n ep-scoped"
     preset="card"
     :style="{ width }"
     @update:show="updateModelValue"

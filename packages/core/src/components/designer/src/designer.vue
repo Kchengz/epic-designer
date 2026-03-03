@@ -207,7 +207,7 @@ defineExpose({
   <Suspense v-else @resolve="handleReady">
     <template #default>
       <div
-        class="epic-designer-main epic-scoped"
+        class="epic-designer-main ep-scoped"
         @mouseover="setHoverNode()"
         ref="designerRef"
         tabindex="0"

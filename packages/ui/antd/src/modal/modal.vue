@@ -77,7 +77,7 @@ function handleClose() {
 
 <template>
   <Modal v-bind="getProps">
-    <div class="epic-modal-main epic-scoped">
+    <div class="epic-modal-main ep-scoped">
       <slot>
         <slot name="edit-node">
           <slot

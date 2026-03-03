@@ -20,7 +20,7 @@ const { isDark } = useTheme();
       algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
     }"
   >
-    <Layout class="maximize epic-scoped">
+    <Layout class="maximize ep-scoped">
       <EHeader />
       <Layout>
         <LayoutSider>

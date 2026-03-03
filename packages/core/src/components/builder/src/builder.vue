@@ -183,7 +183,7 @@ defineExpose({
   </div>
   <Suspense v-else :key="suspenseKey" @resolve="handleReady">
     <template #default>
-      <div class="epic-builder-main epic-scoped">
+      <div class="epic-builder-main ep-scoped">
         <EpicNode
           v-for="(item, index) in pageManager.pageSchema.schemas"
           :key="index"
