@@ -2,11 +2,11 @@ import { defineComponent } from 'vue';
 
 import { describe, expect, it } from 'vitest';
 
-import { usePageManager } from '../../';
+import { createPageManager } from '../../';
 
-describe('usePageManager 函数测试', () => {
+describe('createPageManager 函数测试', () => {
   it('应该正确创建 PageManager 实例', () => {
-    const pageManager = usePageManager();
+    const pageManager = createPageManager();
     expect(pageManager).toBeDefined();
     expect(pageManager.componentInstances).toBeInstanceOf(Object);
     expect(pageManager.funcs).toBeInstanceOf(Object);
@@ -16,7 +16,7 @@ describe('usePageManager 函数测试', () => {
   });
 
   it('应该正确添加和移除组件实例', () => {
-    const pageManager = usePageManager();
+    const pageManager = createPageManager();
     const mockInstance = defineComponent({
       name: 'Cmp',
     }) as any; // 模拟 Vue 组件实例
@@ -29,7 +29,7 @@ describe('usePageManager 函数测试', () => {
   });
 
   it('应该正确设置和获取方法', () => {
-    const pageManager = usePageManager();
+    const pageManager = createPageManager();
     const mockScript = `const { defineExpose, find } = epic;
 
             function test (){
@@ -47,7 +47,7 @@ describe('usePageManager 函数测试', () => {
   });
 
   it('应该正确设置设计模式', () => {
-    const pageManager = usePageManager();
+    const pageManager = createPageManager();
 
     pageManager.setDesignMode(true);
     expect(pageManager.isDesignMode.value).toBe(true);
@@ -57,7 +57,7 @@ describe('usePageManager 函数测试', () => {
   });
 
   it('应该正确设置表单数据', () => {
-    const pageManager = usePageManager();
+    const pageManager = createPageManager();
     const formData = { field1: 'value1' };
 
     pageManager.setFormData(formData, 'form1');
@@ -65,7 +65,7 @@ describe('usePageManager 函数测试', () => {
   });
 
   it('应该正确设置默认组件 IDs', () => {
-    const pageManager = usePageManager();
+    const pageManager = createPageManager();
     const schemas = [
       { id: 'component1', type: 'component' },
       { id: 'component2', type: 'component' },
