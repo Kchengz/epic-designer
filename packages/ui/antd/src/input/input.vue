@@ -3,7 +3,7 @@ import type { ComponentSchema } from '@epic-designer/types';
 
 import { inject } from 'vue';
 
-import { EventBus } from '@epic-designer/hooks';
+import { useEventBus } from '@epic-designer/hooks';
 import { Input } from 'ant-design-vue';
 
 const props = withDefaults(
@@ -23,7 +23,7 @@ const props = withDefaults(
 );
 
 const formData = inject<Record<string, any>>('formData', {});
-const eventBus = inject<EventBus | null>('eventBus', null);
+const eventBus = useEventBus();
 
 const handleDataSelector = () => {
   eventBus?.emit('openDataSelector', props.componentSchema, props.options);

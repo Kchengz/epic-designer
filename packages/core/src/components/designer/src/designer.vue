@@ -5,9 +5,10 @@ import { nextTick, onUnmounted, provide, ref, watchEffect } from 'vue';
 
 import { EpDesignerLoader } from '@epic-designer/base-ui';
 import {
+  createEventBus,
   DESIGNER_CONTEXT_KEY,
+  EVENT_BUS_KEY,
   PAGE_MANAGER_KEY,
-  useEventBus,
   useStore,
 } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
@@ -83,10 +84,10 @@ watchEffect(() => {
   disabledZoom.value = props.disabledZoom;
 });
 // 记录缩放状态 end
-const eventBus = useEventBus();
+const eventBus = createEventBus();
 
 // 提供依赖注入的上下文
-provide('eventBus', eventBus);
+provide(EVENT_BUS_KEY, eventBus);
 
 provide(DESIGNER_CONTEXT_KEY, {
   handleDelete,

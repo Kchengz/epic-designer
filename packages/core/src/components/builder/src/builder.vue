@@ -20,8 +20,9 @@ import {
 import { EpBaseLoader, EpicNode } from '@epic-designer/base-ui';
 import {
   BUILDER_KEY,
+  createEventBus,
+  EVENT_BUS_KEY,
   PAGE_MANAGER_KEY,
-  useEventBus,
 } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { setupPage } from '@epic-designer/panel-ui';
@@ -104,12 +105,11 @@ watch(
   },
 );
 
-const eventBus = useEventBus();
+const eventBus = createEventBus();
 // 提供依赖注入的上下文
-provide('eventBus', eventBus);
+provide(EVENT_BUS_KEY, eventBus);
 provide(BUILDER_KEY, {
   disabled: computed(() => props.disabled),
-  eventBus,
   fieldStateMap: computed(() => {
     //  将fieldStates转换对象类型
     const fieldStateMap = {};
