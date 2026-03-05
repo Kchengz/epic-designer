@@ -1,10 +1,8 @@
 <script lang="ts" setup>
-import type { TableJson } from '@epic-designer/types';
-
-import { computed, provide, watchEffect } from 'vue';
+import { computed, watchEffect } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { useDesignerContext } from '@epic-designer/hooks';
+import { useDataTable, useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { useClipboard } from '@vueuse/core';
 
@@ -12,7 +10,6 @@ import EAttributeItem from './modules/attributeItem.vue';
 
 const designer = useDesignerContext();
 const pageSchema = designer.pageSchema;
-const designerProps = designer.props;
 
 const { copied, copy } = useClipboard();
 watchEffect(() => {
@@ -26,27 +23,7 @@ const selectedNode = computed(() => {
   return designer.state.selectedNode;
 });
 
-const dataTable = computed<TableJson | undefined>(() => {
-  let dataTable = designerProps.tableJson?.find(
-    (item) => item.tableType === 'parent',
-  );
-
-  // 倒序遍历 designer.state.matched，找到第一个 type = subform 数据
-  const subformNode = [...designer.state.matched]
-    .slice(0, -1) // 移除最后一个节点
-    .reverse()
-    .find((node) => node.type === 'subform');
-
-  // 根据是否存在子表单节点来查找对应的数据表
-  dataTable = subformNode
-    ? designerProps.tableJson?.find(
-        (item) => item?.tableName === subformNode.field,
-      )
-    : designerProps.tableJson?.find((item) => item.tableType === 'parent');
-
-  return dataTable;
-});
-provide('dataTable', dataTable);
+const dataTable = useDataTable();
 
 // 获取组件属性配置
 const componentAttributes = computed(() => {

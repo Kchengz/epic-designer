@@ -1,19 +1,16 @@
 <script lang="ts" setup>
-import type { ComponentSchema, TableJson } from '@epic-designer/types';
+import type { ComponentSchema } from '@epic-designer/types';
 
-import type { Ref } from 'vue';
-
-import { computed, inject, nextTick, ref, watchEffect } from 'vue';
+import { computed, nextTick, ref, watchEffect } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
-import { useDesignerContext } from '@epic-designer/hooks';
+import { useDataTable, useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 
 const props = defineProps<{
   schema: ComponentSchema;
 }>();
-const tableJson = inject<null | Ref<TableJson>>('dataTable', null);
 const designer = useDesignerContext();
 const pageSchema = designer.pageSchema;
 const revoke = designer.revoke;
@@ -21,6 +18,7 @@ const revoke = designer.revoke;
 const selectedNode = computed(() => {
   return designer.state.selectedNode;
 });
+const tableJson = useDataTable();
 
 function isShow(item: ComponentSchema) {
   // show属性为boolean类型则直接返回
@@ -31,7 +29,7 @@ function isShow(item: ComponentSchema) {
   // show属性为function类型则执行
   if (typeof item.show === 'function') {
     return item.show?.({
-      tableJson: tableJson?.value,
+      tableJson: tableJson.value,
       values: selectedNode.value!,
     });
   }
