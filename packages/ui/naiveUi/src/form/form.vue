@@ -2,9 +2,9 @@
 import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
 import type { FormInst } from 'naive-ui';
 
-import type { PropType, Ref } from 'vue';
+import type { PropType } from 'vue';
 
-import { computed, inject, onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 import { useForm } from '@epic-designer/hooks';
 import { findSchemas } from '@epic-designer/utils';
@@ -30,8 +30,9 @@ const props = defineProps({
 });
 
 const form = ref<FormInstance | null>(null);
-const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>;
-const { formData } = useForm(props.componentSchema?.props?.name ?? 'default');
+const { formData, formInstances } = useForm(
+  props.componentSchema?.props?.name ?? 'default',
+);
 /**
  * 获取表单数据
  */
@@ -87,13 +88,17 @@ function clearValidate() {
 
 // form组件需要特殊处理
 onMounted(async (): Promise<void> => {
-  if (props.componentSchema?.type === 'form' && forms.value && form.value) {
+  if (
+    props.componentSchema?.type === 'form' &&
+    formInstances.value &&
+    form.value
+  ) {
     const name =
       props.componentSchema?.props?.name ??
       props.componentSchema?.name ??
       ('default' as string);
 
-    forms.value[name] = form.value as any;
+    formInstances.value[name] = form.value as any;
     form.value.getData = getData;
     form.value.setData = setData;
     form.value.resetData = resetData;

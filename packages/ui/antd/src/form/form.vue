@@ -3,7 +3,7 @@ import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
 
 import type { VNode } from 'vue';
 
-import { computed, inject, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { useForm } from '@epic-designer/hooks';
 import { Form } from 'ant-design-vue';
@@ -34,8 +34,9 @@ const props = withDefaults(
 );
 
 const form = ref<FormInstance | null>(null);
-const forms = inject<{ [name: string]: any }>('forms', {});
-const { formData } = useForm(props.componentSchema?.props?.name ?? 'default');
+const { formData, formInstances } = useForm(
+  props.componentSchema?.props?.name ?? 'default',
+);
 
 /**
  * 获取表单数据
@@ -78,14 +79,18 @@ function resetData() {
 const mountedForm = (vNode: VNode) => {
   form.value = vNode.component?.exposed as FormInstance;
 
-  if (props.componentSchema?.type === 'form' && forms.value && form.value) {
+  if (
+    props.componentSchema?.type === 'form' &&
+    formInstances.value &&
+    form.value
+  ) {
     const name =
       props.componentSchema?.props?.name ??
       props.componentSchema?.name ??
       ('default' as string);
 
     form.value.validate = validate;
-    forms.value[name] = form.value;
+    formInstances.value[name] = form.value;
     form.value.getData = getData;
     form.value.setData = setData;
     form.value.resetData = resetData;

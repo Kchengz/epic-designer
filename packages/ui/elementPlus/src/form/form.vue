@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
 
-import { computed, inject, onMounted, PropType, ref, Ref } from 'vue';
+import { computed, onMounted, PropType, ref } from 'vue';
 
 import { useForm } from '@epic-designer/hooks';
 import { ElForm } from 'element-plus';
@@ -25,8 +25,9 @@ const props = defineProps({
 });
 
 const form = ref<FormInstance | null>(null);
-const forms = inject('forms', {}) as Ref<{ [name: string]: FormInstance }>;
-const { formData } = useForm(props.componentSchema?.props?.name ?? 'default');
+const { formData, formInstances } = useForm(
+  props.componentSchema?.props?.name ?? 'default',
+);
 
 /**
  * 获取表单数据
@@ -59,13 +60,17 @@ function validate() {
 
 // form组件需要特殊处理
 onMounted(async () => {
-  if (props.componentSchema?.type === 'form' && forms.value && form.value) {
+  if (
+    props.componentSchema?.type === 'form' &&
+    formInstances.value &&
+    form.value
+  ) {
     const name =
       props.componentSchema?.props?.name ??
       props.componentSchema?.name ??
       ('default' as string);
 
-    forms.value[name] = form.value as any;
+    formInstances.value[name] = form.value as any;
     form.value.getData = getData;
     form.value.setData = setData;
     form.value.resetData = resetData;

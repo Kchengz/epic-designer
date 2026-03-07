@@ -8,7 +8,7 @@ import { deepClone, findSchemas } from '@epic-designer/utils';
 export function useBuilder() {
   const ready = ref<boolean>(false);
   const pageManager = createPageManager();
-  const forms = ref<any>({});
+  const formInstances = ref<any>({});
 
   /**
    * 等待组件初始化
@@ -34,15 +34,15 @@ export function useBuilder() {
     await waitReady();
 
     // 获取所有表单的键
-    const formKeys = Object.keys(forms.value || {});
+    const formKeys = Object.keys(formInstances.value || {});
 
     // 如果只有一个表单，直接返回该表单
     if (formKeys.length === 1) {
-      return forms.value[formKeys[0]];
+      return formInstances.value[formKeys[0]];
     }
 
     // 多个表单时按formName获取
-    const form = forms.value?.[formName];
+    const form = formInstances.value?.[formName];
     if (!form) throw new Error(`表单 [name=${formName}] 不存在`);
     return form;
   }
@@ -85,7 +85,7 @@ export function useBuilder() {
       formName = formSchemas[0].props.name;
     }
     pageManager.setFormData(data, formName);
-    const form = forms.value?.[formName];
+    const form = formInstances.value?.[formName];
 
     // 清除表单验证
     form?.clearValidate?.() ?? form?.restoreValidation?.();
@@ -111,8 +111,8 @@ export function useBuilder() {
   ) {
     await waitReady();
     const data: Record<string, FormDataModel> = {};
-    for (const formName in forms.value) {
-      const form = forms.value[formName];
+    for (const formName in formInstances.value) {
+      const form = formInstances.value[formName];
       if (form) {
         data[formName] = deepClone(await action(form));
       }
@@ -151,8 +151,8 @@ export function useBuilder() {
    * 重置所有表单数据
    */
   function resetData() {
-    for (const formName in forms.value) {
-      const form = forms.value[formName];
+    for (const formName in formInstances.value) {
+      const form = formInstances.value[formName];
       if (form) {
         form.resetData();
       }
@@ -160,7 +160,7 @@ export function useBuilder() {
   }
 
   return {
-    forms,
+    formInstances,
     getData,
     getFormInstance,
     getForms,

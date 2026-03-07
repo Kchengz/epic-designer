@@ -22,6 +22,7 @@ import {
   BUILDER_KEY,
   createEventBus,
   EVENT_BUS_KEY,
+  FORM_INSTANCES_KEY,
   PAGE_MANAGER_KEY,
 } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
@@ -60,7 +61,7 @@ setupPage(pluginManager);
 const epBuilderSlot = pluginManager.component.get('epBuilderSlot');
 // 使用 hooks 获取表单相关方法和状态
 const {
-  forms,
+  formInstances,
   getData,
   getFormInstance,
   getForms,
@@ -121,7 +122,8 @@ provide(BUILDER_KEY, {
   slots: useSlots(),
 });
 provide(PAGE_MANAGER_KEY, pageManager);
-provide('forms', forms);
+
+provide(FORM_INSTANCES_KEY, formInstances);
 
 /**
  * 组件加载完成后的处理函数，注: pageSchema更新会触发组件重新加载
