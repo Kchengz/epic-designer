@@ -1,15 +1,14 @@
 <script lang="ts" setup>
 import type { ComponentSchema } from '@epic-designer/types';
 
-import type { TreeProps } from './types';
-
-import { computed, inject } from 'vue';
+import { computed } from 'vue';
 
 import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import draggable from 'vuedraggable';
 
 import ETreeNodeItem from './treeNodeItem.vue';
+import { useTreeContext } from './useTreeContext';
 
 defineOptions({
   name: 'ETreeNodes',
@@ -23,7 +22,8 @@ const props = defineProps<{
 const emit = defineEmits(['update:schemas']);
 const designer = useDesignerContext();
 const pageSchema = designer.pageSchema;
-const treeProps = inject('treeProps') as TreeProps;
+const treeContext = useTreeContext();
+const treeProps = treeContext!.treeProps;
 
 const modelSchemas = computed({
   get() {

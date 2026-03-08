@@ -5,6 +5,7 @@ import { pluginManager } from '@epic-designer/manager';
 import { useVModel } from '@vueuse/core';
 
 import EOptionItem from './optionItem.vue';
+import { OPTIONS_EDITOR_TREE_KEY } from './optionsEditorContext';
 
 interface Option {
   children?: Option[];
@@ -20,7 +21,7 @@ const emit = defineEmits(['update:modelValue']);
 const Button = pluginManager.component.get('button');
 const innerValue = useVModel(props, 'modelValue', emit);
 
-provide('tree', props.tree);
+provide(OPTIONS_EDITOR_TREE_KEY, props.tree);
 
 /**
  *  添加选项

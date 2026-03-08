@@ -9,6 +9,7 @@ import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 
 import ETreeNodes from './treeNodes.vue';
+import { TREE_CONTEXT_KEY } from './useTreeContext';
 
 defineOptions({
   name: 'ETree',
@@ -23,7 +24,6 @@ const props = withDefaults(defineProps<TreeProps>(), {
 
 const emits = defineEmits(['update:selectedKeys', 'nodeClick']);
 const slots = useSlots();
-provide('slots', slots);
 
 const Input = pluginManager.component.get('input');
 
@@ -77,10 +77,13 @@ function handleSelect(id: string, componentSchema: ComponentSchema) {
   emits('nodeClick', { componentSchema, id });
 }
 
-provide('expandedKeys', expandedKeys);
-provide('selectedKeys', selectedKeysComputed);
-provide('treeProps', props);
-provide('handleSelect', handleSelect);
+provide(TREE_CONTEXT_KEY, {
+  expandedKeys,
+  handleSelect,
+  selectedKeys: selectedKeysComputed,
+  slots,
+  treeProps: props,
+});
 </script>
 <template>
   <div class="epic-tree flex h-full flex-col">

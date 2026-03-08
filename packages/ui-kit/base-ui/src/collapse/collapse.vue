@@ -1,6 +1,10 @@
 <!-- Collapse.vue -->
 <script setup lang="ts">
+import type { PanelName } from './collapseContext';
+
 import { defineEmits, defineProps, provide, ref, watch } from 'vue';
+
+import { COLLAPSE_CONTEXT_KEY } from './collapseContext';
 
 interface Props {
   // 是否开启手风琴模式
@@ -14,8 +18,6 @@ interface Props {
   // 当前激活的面板（支持数组或字符串）
   modelValue?: string | string[];
 }
-
-export type PanelName = number | string | symbol;
 
 const props = withDefaults(defineProps<Props>(), {
   accordion: false,
@@ -91,7 +93,7 @@ const unregisterPanel = (name: PanelName) => {
   }
 };
 // 提供 API 给子组件
-provide('collapseContext', {
+provide(COLLAPSE_CONTEXT_KEY, {
   accordion: props.accordion,
   activeKeys,
   bordered: props.bordered,

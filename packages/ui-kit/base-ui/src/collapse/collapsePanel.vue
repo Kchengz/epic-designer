@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type { Ref } from 'vue';
-
-import type { PanelName } from './collapse.vue';
+import type { PanelName } from './collapseContext';
 
 import {
   computed,
@@ -14,6 +12,7 @@ import {
 } from 'vue';
 
 import { EpicIcon } from '../icon';
+import { COLLAPSE_CONTEXT_KEY } from './collapseContext';
 
 interface Props {
   // 是否显示边框
@@ -40,16 +39,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 // 获取 collapse 上下文
-const collapseContext = inject<{
-  accordion: boolean;
-  activeKeys: Ref<PanelName[]>;
-  bordered: boolean;
-  defaultExpandAll: boolean;
-  isPanelActive: (name: PanelName) => boolean;
-  registerPanel: (name: PanelName) => void;
-  togglePanel: (name: PanelName) => void;
-  unregisterPanel: (name: PanelName) => void;
-}>('collapseContext');
+const collapseContext = inject(COLLAPSE_CONTEXT_KEY);
 
 // 生成唯一 name
 const panelKey = ref<PanelName>(props.name || Symbol('collapse-panel'));

@@ -6,6 +6,8 @@ import { pluginManager } from '@epic-designer/manager';
 import { useVModel } from '@vueuse/core';
 import draggable from 'vuedraggable';
 
+import { OPTIONS_EDITOR_TREE_KEY } from './optionsEditorContext';
+
 interface Option {
   children?: Option[];
   label: string;
@@ -21,7 +23,7 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(['update:modelValue']);
 const Input = pluginManager.component.get('input');
-const tree = inject('tree', false);
+const tree = inject(OPTIONS_EDITOR_TREE_KEY, false);
 const innerValue = useVModel(props, 'modelValue', emit);
 
 /**

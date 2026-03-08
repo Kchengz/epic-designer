@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import type { ComponentSchema } from '@epic-designer/types';
 
-import { computed, defineComponent, h, inject, Ref, Slots } from 'vue';
+import { computed, defineComponent, h } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
 import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
 import ETreeNodes from './treeNodes.vue';
+import { useTreeContext } from './useTreeContext';
 
 defineOptions({
   name: 'ETreeNodeItem',
@@ -17,20 +18,11 @@ const props = defineProps<{
   schema: ComponentSchema;
 }>();
 
-const slots = inject('slots', {}) as Slots;
+const treeContext = useTreeContext();
 const { pageSchema } = useDesignerContext();
 
-const expandedKeys = inject('expandedKeys') as Ref<string[]>;
-const treeProps = inject('treeProps') as any;
-const selectedKeys = inject('selectedKeys') as Ref<string[]>;
-
-const handleSelect = inject('handleSelect') as (
-  id: string,
-  componentSchema: ComponentSchema,
-) => {};
-
 const expanded = computed(() => {
-  return expandedKeys.value.includes(props.schema.id ?? '');
+  return treeContext!.expandedKeys.value.includes(props.schema.id ?? '');
 });
 
 const TreeNodeText = defineComponent({
@@ -40,13 +32,14 @@ const TreeNodeText = defineComponent({
         'span',
         {
           class: {
-            checked: selectedKeys.value.includes(props.schema.id!),
-            hover: treeProps.hoverKey === props.schema.id,
+            checked: treeContext!.selectedKeys.value.includes(props.schema.id!),
+            hover: treeContext!.treeProps.hoverKey === props.schema.id,
             text: true,
           },
-          onClick: () => handleSelect(props.schema.id!, props.schema),
+          onClick: () =>
+            treeContext!.handleSelect(props.schema.id!, props.schema),
         },
-        slots['tree-node']?.(props) ??
+        treeContext!.slots['tree-node']?.(props) ??
           h(
             'span',
             { class: 'epic-text-padding flex' },
@@ -77,10 +70,12 @@ function handleExpanded() {
     return false;
   }
 
-  if (expandedKeys.value.includes(id)) {
-    expandedKeys.value = expandedKeys.value.filter((item) => item !== id);
+  if (treeContext!.expandedKeys.value.includes(id)) {
+    treeContext!.expandedKeys.value = treeContext!.expandedKeys.value.filter(
+      (item) => item !== id,
+    );
   } else {
-    expandedKeys.value.push(id);
+    treeContext!.expandedKeys.value.push(id);
   }
 }
 
@@ -89,7 +84,7 @@ function init() {
   if (!id || !props.schema.children?.length) {
     return false;
   }
-  expandedKeys.value.push(id);
+  treeContext!.expandedKeys.value.push(id);
 }
 init();
 </script>
