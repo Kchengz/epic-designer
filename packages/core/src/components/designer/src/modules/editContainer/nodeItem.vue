@@ -4,7 +4,7 @@ import type { ComponentSchema } from '@epic-designer/types';
 import { computed, provide, useAttrs } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
-import { useDesignerContext } from '@epic-designer/hooks';
+import { NODE_ATTRS_KEY, useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
 import EpicNodes from './nodes.vue';
@@ -23,7 +23,7 @@ const props = withDefaults(
 );
 const attrs = useAttrs();
 const { pageSchema, props: designerProps } = useDesignerContext();
-provide('nodeAttrs', attrs);
+provide(NODE_ATTRS_KEY, attrs);
 // 判断是否为叶子节点
 const isLeafNode = computed(() => !props.schema.children);
 

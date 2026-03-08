@@ -25,6 +25,7 @@ import {
 } from 'vue';
 
 import {
+  NODE_ATTRS_KEY,
   useBuilderContext,
   useFormItem,
   usePageManager,
@@ -149,7 +150,7 @@ if (props.resetFormData || resetFormDataInject) {
 // 传递额外的attrs
 const attrs = useAttrs();
 if (Object.keys(attrs).length > 0) {
-  provide('nodeAttrs', attrs);
+  provide(NODE_ATTRS_KEY, attrs);
 }
 
 // 定义组件及组件props字段

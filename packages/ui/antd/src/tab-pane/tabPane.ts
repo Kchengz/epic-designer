@@ -2,8 +2,9 @@ import type { ComponentSchema } from '@epic-designer/types';
 
 import type { PropType } from 'vue';
 
-import { defineComponent, h, inject, renderSlot } from 'vue';
+import { defineComponent, h, renderSlot } from 'vue';
 
+import { useNodeAttrs } from '@epic-designer/hooks';
 import { TabPane } from 'ant-design-vue';
 
 export default defineComponent({
@@ -15,7 +16,7 @@ export default defineComponent({
     },
   },
   setup(props, { slots }) {
-    const nodeAttrs = inject('nodeAttrs', {});
+    const nodeAttrs = useNodeAttrs();
 
     return () => {
       const componentSchema = {
