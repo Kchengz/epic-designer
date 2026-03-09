@@ -53,7 +53,6 @@ const isRemovableAndDraggable = computed(() => {
  * 获取组件DOM元素的通用函数
  */
 const getComponentElement = (node: ComponentSchema) => {
-  const componentInstances = pageManager.componentInstances.value;
   const id = node.id;
 
   // 组件隐藏状态
@@ -62,15 +61,15 @@ const getComponentElement = (node: ComponentSchema) => {
   }
   const componentConfig =
     pluginManager.component.getConfigByType(node.type!) ?? null;
-  if (!id || !componentInstances?.[id]) {
+  if (!id || !pageManager.findInstance(id)) {
     return null;
   }
 
   if (componentConfig?.defaultSchema.input && node?.noFormItem !== true) {
-    return componentInstances[`${id}_formItem`]?.vnode.el as HTMLElement;
+    return pageManager.findInstance(`${id}_formItem`)?.vnode.el as HTMLElement;
   }
 
-  const componentInstance = componentInstances[id];
+  const componentInstance = pageManager.findInstance(id);
   const dom = componentInstance?.vnode.el;
   if (!dom || !dom.getBoundingClientRect) {
     return null;

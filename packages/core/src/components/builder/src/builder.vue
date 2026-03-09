@@ -23,7 +23,7 @@ import {
   createEventBus,
   EVENT_BUS_KEY,
   FORM_INSTANCES_KEY,
-  PAGE_MANAGER_KEY,
+  providePageManager,
 } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { setupPage } from '@epic-designer/panel-ui';
@@ -121,7 +121,7 @@ provide(BUILDER_KEY, {
   }),
   slots: useSlots(),
 });
-provide(PAGE_MANAGER_KEY, pageManager);
+providePageManager(pageManager);
 
 provide(FORM_INSTANCES_KEY, formInstances);
 

@@ -8,7 +8,7 @@ import {
   createEventBus,
   DESIGNER_CONTEXT_KEY,
   EVENT_BUS_KEY,
-  PAGE_MANAGER_KEY,
+  providePageManager,
   useStore,
 } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
@@ -105,7 +105,7 @@ provide(DESIGNER_CONTEXT_KEY, {
   setSelectedNode,
   state,
 });
-provide(PAGE_MANAGER_KEY, pageManager);
+providePageManager(pageManager);
 const designerRef = ref<HTMLElement | null>(null);
 
 /**

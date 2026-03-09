@@ -13,9 +13,14 @@ export interface ActionsModel {
   methodName: string;
   type: 'component' | 'custom' | 'public';
 }
+export type ComponentInstances = Record<
+  string,
+  Record<string, EpicNodeInstance>
+>;
+export const DEFAULT_SCOPE = 'default';
 
 export function createPageManager() {
-  const componentInstances = ref<Record<string, EpicNodeInstance>>({});
+  const componentInstances = ref<ComponentInstances>({});
   const funcs = ref<Record<string, Function>>({});
   // 当前模式 true 设计模式, false 渲染模式
   const isDesignMode = ref(false);
@@ -37,8 +42,9 @@ export function createPageManager() {
   function find(
     queryValue: string,
     queryField = 'id',
+    scope = DEFAULT_SCOPE,
   ): EpicNodeInstance['exposed'] | null {
-    const instance = findInstance(queryValue, queryField);
+    const instance = findInstance(queryValue, queryField, scope);
     // 返回组件实例的 exposed 属性
     return instance?.exposed ?? null;
   }
@@ -52,8 +58,9 @@ export function createPageManager() {
   function findAll(
     queryValue: string,
     queryField = 'id',
+    scope = DEFAULT_SCOPE,
   ): EpicNodeInstance['exposed'][] {
-    const instances = findInstanceAll(queryValue, queryField);
+    const instances = findInstanceAll(queryValue, queryField, scope);
     // 返回组件实例的 exposed 属性数组
     return instances.map((instance) => instance.exposed);
   }
@@ -67,10 +74,11 @@ export function createPageManager() {
   function findInstance(
     queryValue: string,
     queryField = 'id',
+    scope = DEFAULT_SCOPE,
   ): EpicNodeInstance | null {
     // 如果查询字段是 id，直接在组件实例映射中查找
     if (queryField === 'id') {
-      return componentInstances.value[queryValue] ?? null;
+      return componentInstances.value[queryValue]?.[scope] ?? null;
     }
 
     // 通过递归查询所有组件 schema，找到第一个与指定字段和值匹配的 schema
@@ -86,7 +94,7 @@ export function createPageManager() {
     }
 
     // 返回组件实例
-    return componentInstances.value[matchingSchema.id] ?? null;
+    return componentInstances.value[matchingSchema.id]?.[scope] ?? null;
   }
 
   /**
@@ -98,10 +106,12 @@ export function createPageManager() {
   function findInstanceAll(
     queryValue: string,
     queryField = 'id',
+    scope = DEFAULT_SCOPE,
   ): EpicNodeInstance[] {
     // 如果查询字段是 id，直接返回对应的组件实例数组
     if (queryField === 'id') {
-      const instance = componentInstances.value[queryValue];
+      const instance = componentInstances.value[queryValue]?.[scope];
+
       return instance ? [instance] : [];
     }
 
@@ -113,7 +123,7 @@ export function createPageManager() {
 
     // 从匹配的 schema 中获取组件实例
     return matchingSchemas
-      .map((schema) => componentInstances.value[schema.id ?? ''])
+      .map((schema) => componentInstances.value[schema.id ?? '']?.[scope])
       .filter(Boolean); // 过滤掉 undefined 或 null 的实例
   }
 
@@ -134,15 +144,25 @@ export function createPageManager() {
    * @param id
    * @param instance
    */
-  function addComponentInstance(id: string, instance: EpicNodeInstance) {
-    componentInstances.value[id] = instance;
+  function addComponentInstance(
+    id: string,
+    instance: EpicNodeInstance,
+    scope = DEFAULT_SCOPE,
+  ) {
+    // 如果第一层 id 不存在，先创建一个空对象
+    if (!componentInstances.value[id]) {
+      componentInstances.value[id] = {};
+    }
+
+    // 现在可以安全地存入特定 scope 的实例了
+    componentInstances.value[id][scope] = instance;
   }
   /**
    * 移除组件实例
    * @param id
    */
-  function removeComponentInstance(id: string): void {
-    delete componentInstances.value[id];
+  function removeComponentInstance(id: string, scope = DEFAULT_SCOPE): void {
+    delete componentInstances.value[id][scope];
   }
 
   /**
