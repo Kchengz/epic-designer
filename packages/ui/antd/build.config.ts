@@ -49,6 +49,10 @@ export default defineBuildConfig({
               find: '@epic-designer/utils',
               replacement: 'epic-designer',
             },
+            {
+              find: '@epic-designer/hooks',
+              replacement: 'epic-designer',
+            },
           ],
         }),
       );
