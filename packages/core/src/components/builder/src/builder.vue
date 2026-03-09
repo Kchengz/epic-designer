@@ -21,7 +21,6 @@ import { EpBaseLoader, EpicNode } from '@epic-designer/base-ui';
 import {
   BUILDER_KEY,
   createEventBus,
-  EVENT_BUS_KEY,
   FORM_INSTANCES_KEY,
   providePageManager,
 } from '@epic-designer/hooks';
@@ -106,9 +105,8 @@ watch(
   },
 );
 
-const eventBus = createEventBus();
+createEventBus();
 // 提供依赖注入的上下文
-provide(EVENT_BUS_KEY, eventBus);
 provide(BUILDER_KEY, {
   disabled: computed(() => props.disabled),
   fieldStateMap: computed(() => {

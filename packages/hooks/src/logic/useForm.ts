@@ -6,8 +6,11 @@ import { inject, provide, ref } from 'vue';
 
 import { usePageManager } from '../designer/usePageManager';
 
+// 表单上下文，key 为表单名称，value 为表单数据
 export const FORM_CONTEXT_KEY: InjectionKey<FormDataModel> =
   Symbol('FormContext');
+
+// 表单实例，key 为表单名称，value 为表单实例
 export const FORM_INSTANCES_KEY: InjectionKey<{ [name: string]: any }> =
   Symbol('FormInstances');
 

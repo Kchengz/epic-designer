@@ -1,4 +1,6 @@
-import { onUnmounted } from 'vue';
+import { onUnmounted, provide } from 'vue';
+
+import { EVENT_BUS_KEY } from '../logic/useEventBus';
 
 // 创建全局的通道管理器
 const channelMap = new Map();
@@ -152,7 +154,7 @@ export function createEventBus(channelId = 'root') {
     return unsubscribe;
   };
 
-  return {
+  const eventBus = {
     clear,
     emit,
     emitRoot,
@@ -161,6 +163,9 @@ export function createEventBus(channelId = 'root') {
     on: useAutoCleanupListener,
     onRoot,
   };
+
+  provide(EVENT_BUS_KEY, eventBus);
+  return eventBus;
 }
 
 export type EventBus = ReturnType<typeof createEventBus>;

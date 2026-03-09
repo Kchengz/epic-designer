@@ -7,7 +7,6 @@ import { EpDesignerLoader } from '@epic-designer/base-ui';
 import {
   createEventBus,
   DESIGNER_CONTEXT_KEY,
-  EVENT_BUS_KEY,
   providePageManager,
   useStore,
 } from '@epic-designer/hooks';
@@ -84,10 +83,8 @@ watchEffect(() => {
   disabledZoom.value = props.disabledZoom;
 });
 // 记录缩放状态 end
-const eventBus = createEventBus();
 
-// 提供依赖注入的上下文
-provide(EVENT_BUS_KEY, eventBus);
+createEventBus();
 
 provide(DESIGNER_CONTEXT_KEY, {
   handleDelete,
