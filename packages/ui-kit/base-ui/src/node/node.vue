@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type {
   ComponentSchema,
-  EpicNodeInstance,
+  EpNodeInstance,
   FieldStateType,
 } from '@epic-designer/types';
 
@@ -11,7 +11,6 @@ import {
   computed,
   defineComponent,
   getCurrentInstance,
-  inject,
   onBeforeUnmount,
   provide,
   reactive,
@@ -27,6 +26,7 @@ import {
 import {
   NODE_ATTRS_KEY,
   useBuilderContext,
+  useFieldPathPrefix,
   useFormItem,
   usePageManager,
 } from '@epic-designer/hooks';
@@ -76,7 +76,13 @@ const { disabled, fieldStateMap, slots } = useBuilderContext();
 const pageManager = usePageManager();
 
 // 校验前缀字段
-const ruleFieldPrefix = inject<any[] | null>('ruleFieldPrefix', null);
+const fieldPathPrefix = useFieldPathPrefix();
+const scopeName = computed(() => {
+  if (fieldPathPrefix) {
+    return fieldPathPrefix.join('.');
+  }
+  return 'default';
+});
 
 // 内部schema数据
 const innerSchema = reactive<ComponentSchema>(
@@ -237,9 +243,9 @@ const getFormItemProps = computed<ComponentSchema>(() => {
   if (props.ruleField && props.ruleField.length > 0) {
     // 设置为父级传入的校验字段
     model = props.ruleField;
-  } else if (ruleFieldPrefix && innerSchema.field) {
+  } else if (fieldPathPrefix && innerSchema.field) {
     // 添加校验字段前缀
-    model = deepClone(ruleFieldPrefix) as [];
+    model = deepClone(fieldPathPrefix) as [];
     model.push(innerSchema.field);
   }
 
@@ -274,7 +280,11 @@ const getProps = computed(() => {
     innerSchema.on &&
       Object.keys(innerSchema.on).forEach((item) => {
         onEvent[`on${capitalizeFirstLetter(item)}`] = (...args) =>
-          pageManager.doActions(innerSchema.on![item], ...args);
+          pageManager.doActions(
+            innerSchema.on![item],
+            scopeName.value,
+            ...args,
+          );
       });
   }
 
@@ -298,7 +308,7 @@ const getProps = computed(() => {
 
 // 添加组件实例
 function handleAddComponentInstance(vNode?: VNode) {
-  const instance = (vNode?.component ?? nodeInstance) as EpicNodeInstance;
+  const instance = (vNode?.component ?? nodeInstance) as EpNodeInstance;
   if (!innerSchema.id || !instance) {
     return;
   }
@@ -326,7 +336,7 @@ function handleAddComponentInstance(vNode?: VNode) {
     return innerSchema.props?.[key];
   };
 
-  pageManager.addComponentInstance(innerSchema.id, instance);
+  pageManager.addComponentInstance(innerSchema.id, instance, scopeName.value);
 }
 
 /**
@@ -466,7 +476,7 @@ onBeforeUnmount(handleVnodeUnmounted);
       <!-- 嵌套组件递归 start -->
       <!-- 渲染子组件 start -->
       <template #node="data">
-        <EpicNode v-bind="data" />
+        <EpNode v-bind="data" />
       </template>
       <!-- 渲染子组件 end -->
       <!-- 渲染布局设计子组件列表 start -->

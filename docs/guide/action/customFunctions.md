@@ -546,25 +546,25 @@ background: white;
 
 ### find
 
-类型：`(queryValue: string, queryField?: string) => EpicNodeInstance['exposed'] | null`
+类型：`(queryValue: string, queryField?: string) => EpNodeInstance['exposed'] | null`
 
 说明：根据指定字段查找组件实例并返回其暴露的属性和方法
 
 ### findAll
 
-类型：`(queryValue: string, queryField?: string) => EpicNodeInstance['exposed'][]`
+类型：`(queryValue: string, queryField?: string) => EpNodeInstance['exposed'][]`
 
 说明：根据指定字段查找所有匹配的组件实例并返回其暴露的属性和方法数组
 
 ### findInstance
 
-类型：`(queryValue: string, queryField?: string) => EpicNodeInstance | null`
+类型：`(queryValue: string, queryField?: string) => EpNodeInstance | null`
 
 说明：根据指定字段查找组件实例并返回完整的组件实例对象
 
 ### findInstanceAll
 
-类型：`(queryValue: string, queryField?: string) => EpicNodeInstance[]`
+类型：`(queryValue: string, queryField?: string) => EpNodeInstance[]`
 
 说明：根据指定字段查找所有匹配的组件实例并返回完整的组件实例对象数组
 

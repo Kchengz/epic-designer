@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { PageManager } from '@epic-designer/manager';
 import type {
-  EpicNodeInstance,
+  EpNodeInstance,
   FieldStates,
   FormDataModel,
   PageSchema,
@@ -148,7 +148,7 @@ function handleReady() {
 }
 
 // 获取当前实例，并提取 proxy
-const instance = getCurrentInstance() as EpicNodeInstance;
+const instance = getCurrentInstance() as EpNodeInstance;
 // 注入组件实例到 pageManager
 pageManager.addComponentInstance('builder', instance);
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ComponentSchema, EpicNodeInstance } from '@epic-designer/types';
+import type { ComponentSchema, EpNodeInstance } from '@epic-designer/types';
 
 import type { VNode } from 'vue';
 
@@ -26,7 +26,7 @@ const addFormItemInstance = (vNode: VNode) => {
   if (vNode.component) {
     pageManager.addComponentInstance(
       `${props.formItemProps.id}_formItem`,
-      vNode.component as EpicNodeInstance,
+      vNode.component as EpNodeInstance,
     );
   }
 };

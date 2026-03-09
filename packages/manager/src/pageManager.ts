@@ -1,4 +1,4 @@
-import type { ComponentSchema, EpicNodeInstance } from '@epic-designer/types';
+import type { ComponentSchema, EpNodeInstance } from '@epic-designer/types';
 
 import { reactive, ref, watchEffect } from 'vue';
 
@@ -13,10 +13,7 @@ export interface ActionsModel {
   methodName: string;
   type: 'component' | 'custom' | 'public';
 }
-export type ComponentInstances = Record<
-  string,
-  Record<string, EpicNodeInstance>
->;
+export type ComponentInstances = Record<string, Record<string, EpNodeInstance>>;
 export const DEFAULT_SCOPE = 'default';
 
 export function createPageManager() {
@@ -42,9 +39,9 @@ export function createPageManager() {
   function find(
     queryValue: string,
     queryField = 'id',
-    scope = DEFAULT_SCOPE,
-  ): EpicNodeInstance['exposed'] | null {
-    const instance = findInstance(queryValue, queryField, scope);
+    scopeName = DEFAULT_SCOPE,
+  ): EpNodeInstance['exposed'] | null {
+    const instance = findInstance(queryValue, queryField, scopeName);
     // 返回组件实例的 exposed 属性
     return instance?.exposed ?? null;
   }
@@ -58,9 +55,9 @@ export function createPageManager() {
   function findAll(
     queryValue: string,
     queryField = 'id',
-    scope = DEFAULT_SCOPE,
-  ): EpicNodeInstance['exposed'][] {
-    const instances = findInstanceAll(queryValue, queryField, scope);
+    scopeName = DEFAULT_SCOPE,
+  ): EpNodeInstance['exposed'][] {
+    const instances = findInstanceAll(queryValue, queryField, scopeName);
     // 返回组件实例的 exposed 属性数组
     return instances.map((instance) => instance.exposed);
   }
@@ -74,11 +71,11 @@ export function createPageManager() {
   function findInstance(
     queryValue: string,
     queryField = 'id',
-    scope = DEFAULT_SCOPE,
-  ): EpicNodeInstance | null {
+    scopeName = DEFAULT_SCOPE,
+  ): EpNodeInstance | null {
     // 如果查询字段是 id，直接在组件实例映射中查找
     if (queryField === 'id') {
-      return componentInstances.value[queryValue]?.[scope] ?? null;
+      return componentInstances.value[queryValue]?.[scopeName] ?? null;
     }
 
     // 通过递归查询所有组件 schema，找到第一个与指定字段和值匹配的 schema
@@ -94,7 +91,7 @@ export function createPageManager() {
     }
 
     // 返回组件实例
-    return componentInstances.value[matchingSchema.id]?.[scope] ?? null;
+    return componentInstances.value[matchingSchema.id]?.[scopeName] ?? null;
   }
 
   /**
@@ -106,11 +103,11 @@ export function createPageManager() {
   function findInstanceAll(
     queryValue: string,
     queryField = 'id',
-    scope = DEFAULT_SCOPE,
-  ): EpicNodeInstance[] {
+    scopeName = DEFAULT_SCOPE,
+  ): EpNodeInstance[] {
     // 如果查询字段是 id，直接返回对应的组件实例数组
     if (queryField === 'id') {
-      const instance = componentInstances.value[queryValue]?.[scope];
+      const instance = componentInstances.value[queryValue]?.[scopeName];
 
       return instance ? [instance] : [];
     }
@@ -123,7 +120,7 @@ export function createPageManager() {
 
     // 从匹配的 schema 中获取组件实例
     return matchingSchemas
-      .map((schema) => componentInstances.value[schema.id ?? '']?.[scope])
+      .map((schema) => componentInstances.value[schema.id ?? '']?.[scopeName])
       .filter(Boolean); // 过滤掉 undefined 或 null 的实例
   }
 
@@ -146,23 +143,26 @@ export function createPageManager() {
    */
   function addComponentInstance(
     id: string,
-    instance: EpicNodeInstance,
-    scope = DEFAULT_SCOPE,
+    instance: EpNodeInstance,
+    scopeName = DEFAULT_SCOPE,
   ) {
     // 如果第一层 id 不存在，先创建一个空对象
     if (!componentInstances.value[id]) {
       componentInstances.value[id] = {};
     }
 
-    // 现在可以安全地存入特定 scope 的实例了
-    componentInstances.value[id][scope] = instance;
+    // 现在可以安全地存入特定 scopeName 的实例了
+    componentInstances.value[id][scopeName] = instance;
   }
   /**
    * 移除组件实例
    * @param id
    */
-  function removeComponentInstance(id: string, scope = DEFAULT_SCOPE): void {
-    delete componentInstances.value[id][scope];
+  function removeComponentInstance(
+    id: string,
+    scopeName = DEFAULT_SCOPE,
+  ): void {
+    delete componentInstances.value[id][scopeName];
   }
 
   /**
@@ -224,7 +224,11 @@ export function createPageManager() {
    * @param actions 操作数组
    * @param args 其他参数
    */
-  function doActions(actions: ActionsModel[], ...args: unknown[]): void {
+  function doActions(
+    actions: ActionsModel[],
+    scopeName = DEFAULT_SCOPE,
+    ...args: unknown[]
+  ): void {
     // 检查是否提供了操作数组，如果没有提供，则发出警告并返回
     if (!actions || actions.length === 0) {
       console.warn('未提供任何动作');
@@ -239,7 +243,7 @@ export function createPageManager() {
       switch (action.type) {
         case 'component': {
           // 执行组件方法
-          executeComponentMethod(action, methodArgs);
+          executeComponentMethod(action, scopeName, methodArgs);
           break;
         }
 
@@ -301,9 +305,14 @@ export function createPageManager() {
    * @param action 操作
    * @param args 参数
    */
-  function executeComponentMethod(action: ActionsModel, args: unknown[]): void {
+  function executeComponentMethod(
+    action: ActionsModel,
+    scopeName = DEFAULT_SCOPE,
+    args: unknown[],
+  ): void {
     // 获取组件实例
-    const component = action.componentId && find(action.componentId);
+    const component =
+      action.componentId && find(action.componentId, 'id', scopeName);
 
     // 如果未找到组件实例，发出警告并返回
     if (!component) {
