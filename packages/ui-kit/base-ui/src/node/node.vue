@@ -42,24 +42,22 @@ import {
 
 import dynamicFormItem from './dynamicFormItem.vue';
 
-interface EpicNodeProps {
+interface EpNodeProps {
   componentSchema: ComponentSchema;
   isProperty?: boolean;
   modelValue?: any;
   name?: string;
-  resetFormData?: boolean;
   ruleField?: string[];
   showHiddenItems?: boolean;
 }
 defineOptions({
-  name: 'EpicNode',
+  name: 'EpNode',
 });
 
-const props = withDefaults(defineProps<EpicNodeProps>(), {
+const props = withDefaults(defineProps<EpNodeProps>(), {
   isProperty: false,
   modelValue: undefined,
   name: '',
-  resetFormData: false,
   ruleField: () => [],
   showHiddenItems: false,
 });
@@ -70,7 +68,7 @@ const emit = defineEmits(['update:modelValue', 'change']);
 const nodeInstance = getCurrentInstance();
 
 // 表单formData数据
-let { formData } = useFormItem();
+const { formData } = useFormItem();
 
 const { disabled, fieldStateMap, slots } = useBuilderContext();
 
@@ -79,9 +77,6 @@ const pageManager = usePageManager();
 
 // 校验前缀字段
 const ruleFieldPrefix = inject<any[] | null>('ruleFieldPrefix', null);
-
-// 重置表单数据，不设置到表单formData数据
-const resetFormDataInject = inject<boolean>('resetFormData', false);
 
 // 内部schema数据
 const innerSchema = reactive<ComponentSchema>(
@@ -140,11 +135,6 @@ function addDesignModeSuffix() {
     // 给 innerSchema.field 添加后缀 '-design-mode'
     innerSchema.field += '-design-mode';
   }
-}
-
-// 重置表单数据，移除表单数据引用
-if (props.resetFormData || resetFormDataInject) {
-  formData = {};
 }
 
 // 传递额外的attrs
