@@ -57,7 +57,6 @@ export class FormulaEngine {
 
     try {
       const ast = jsep(expression);
-      console.log(ast);
       return this._execute(ast, mergedContext);
     } catch (error) {
       console.error('[Epic: 公式解析错误]', error);
@@ -137,12 +136,12 @@ export class FormulaEngine {
         return 0;
       }
 
-      // 1. 常量: 123, "abc"
+      // 常量: 123, "abc"
       case 'Literal': {
         return (node as jsep.Literal).value;
       }
 
-      // 6. 逻辑表达式: &&, ||
+      // 逻辑表达式: &&, ||
       case 'LogicalExpression': {
         const logNode = node;
         const left = this._execute(logNode.left, ctx);
@@ -150,13 +149,10 @@ export class FormulaEngine {
         return logNode.operator === '&&' ? left && right : left || right;
       }
 
-      // 2. 带前缀的变量: $formData.qty
+      // 带前缀的变量: $formData.qty 或 $formData.user.address.city
       case 'MemberExpression': {
         const memberNode = node as jsep.MemberExpression;
-        const objectNode = memberNode.object as jsep.Identifier;
         const propertyNode = memberNode.property as jsep.Identifier;
-
-        const objectName = objectNode.name; // 如 "$formData"
         const propertyName = propertyNode.name || (propertyNode as any).value;
 
         const sourceMap: Record<string, any> = {
@@ -165,9 +161,40 @@ export class FormulaEngine {
           $vars: ctx.vars || {},
         };
 
-        const source = sourceMap[objectName] || {};
-        const value = source[propertyName];
-        return value === undefined ? 0 : value;
+        // 递归解析 object 部分，获取根对象名和属性路径
+        let currentNode = memberNode.object;
+        const propertyPath: string[] = [propertyName];
+        let rootObjectName = '';
+
+        while (currentNode) {
+          if (currentNode.type === 'Identifier') {
+            rootObjectName = (currentNode as jsep.Identifier).name;
+            break;
+          } else if (currentNode.type === 'MemberExpression') {
+            const nestedMember = currentNode as jsep.MemberExpression;
+            const nestedProperty = nestedMember.property as jsep.Identifier;
+            const nestedPropertyName =
+              nestedProperty.name || (nestedProperty as any).value;
+            propertyPath.unshift(nestedPropertyName);
+            currentNode = nestedMember.object;
+          } else {
+            break;
+          }
+        }
+
+        const source = sourceMap[rootObjectName] || {};
+
+        // 沿着属性路径逐层获取值
+        let value = source;
+        for (const prop of propertyPath) {
+          if (value === null) {
+            value = 0;
+            break;
+          }
+          value = value[prop];
+        }
+
+        return value;
       }
 
       // 5. 一元运算符: -5, !true
