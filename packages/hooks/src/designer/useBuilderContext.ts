@@ -5,7 +5,6 @@ import type { ComputedRef, InjectionKey, Slots } from 'vue';
 import { computed, inject } from 'vue';
 
 export interface BuilderContext {
-  disabled: ComputedRef<boolean>;
   fieldStateMap: ComputedRef<FieldStateMap>;
   slots: Slots;
 }
@@ -15,7 +14,6 @@ export const BUILDER_KEY: InjectionKey<BuilderContext> =
 
 export function useBuilderContext() {
   const builderContext = inject<BuilderContext>(BUILDER_KEY, {
-    disabled: computed(() => false),
     fieldStateMap: computed(() => ({})),
     slots: {},
   });

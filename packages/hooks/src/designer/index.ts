@@ -1,3 +1,4 @@
+export * from './useBuiderDisabled';
 export * from './useBuilderContext';
 export * from './useDataTable';
 export * from './useDesignerContext';

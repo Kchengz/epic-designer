@@ -24,6 +24,7 @@ import {
 } from 'vue';
 
 import {
+  injectBuilderDisabled,
   NODE_ATTRS_KEY,
   useBuilderContext,
   useFieldPathPrefix,
@@ -70,8 +71,8 @@ const nodeInstance = getCurrentInstance();
 // 表单formData数据
 const { formData } = useFormItem();
 
-const { disabled, fieldStateMap, slots } = useBuilderContext();
-
+const { fieldStateMap, slots } = useBuilderContext();
+const disabled = injectBuilderDisabled();
 // 接收页面管理对象
 const pageManager = usePageManager();
 

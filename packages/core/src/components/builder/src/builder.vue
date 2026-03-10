@@ -22,6 +22,7 @@ import {
   BUILDER_KEY,
   createEventBus,
   FORM_INSTANCES_KEY,
+  provideBuilderDisabled,
   providePageManager,
 } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
@@ -107,8 +108,8 @@ watch(
 
 createEventBus();
 // 提供依赖注入的上下文
+provideBuilderDisabled(computed(() => props.disabled));
 provide(BUILDER_KEY, {
-  disabled: computed(() => props.disabled),
   fieldStateMap: computed(() => {
     //  将fieldStates转换对象类型
     const fieldStateMap = {};
