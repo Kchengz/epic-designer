@@ -9,8 +9,8 @@ import { pluginManager } from '@epic-designer/manager';
 import { deepClone, findSchemaById, getUUID } from '@epic-designer/utils';
 import { useClipboard } from '@vueuse/core';
 
-import EArgsEditor from './EArgsEditor.vue';
-import EScriptEdit from './EScriptEdit.vue';
+import epArgsEditor from './epArgsEditor.vue';
+import epScriptEdit from './epScriptEdit.vue';
 
 const emit = defineEmits(['add', 'edit']);
 const Modal = pluginManager.component.get('modal');
@@ -328,7 +328,7 @@ defineExpose({
       </div>
       <!-- 动作配置 start -->
       <div class="epic-modal-right-panel">
-        <EScriptEdit v-if="state.actionItem.type === 'custom'" />
+        <epScriptEdit v-if="state.actionItem.type === 'custom'" />
         <div
           v-if="
             state.actionItem.type !== 'custom' &&
@@ -360,7 +360,7 @@ defineExpose({
         >
           暂无配置
         </div>
-        <EArgsEditor
+        <epArgsEditor
           v-else
           :key="argsEditorKey"
           v-model="state.actionItem.args"

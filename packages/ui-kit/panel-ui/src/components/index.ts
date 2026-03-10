@@ -34,6 +34,10 @@ export function setupComponent(pluginManager: PluginManager): void {
     async () => await import('./EActionEditor/index.vue'),
   );
   pluginManager.component.add(
+    'epActionModal',
+    async () => await import('./epActionModal/index.vue'),
+  );
+  pluginManager.component.add(
     'ERuleEditor',
     async () => await import('./ERuleEditor/index.vue'),
   );
@@ -45,6 +49,7 @@ export function setupComponent(pluginManager: PluginManager): void {
     'EOptionsEditor',
     async () => await import('./EOptionsEditor/index.vue'),
   );
+
   pluginManager.component.add('EpicNode', EpicNode);
 
   const componentArray = [MonacoEditor, EpField];

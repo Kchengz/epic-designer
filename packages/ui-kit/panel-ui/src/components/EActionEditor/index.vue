@@ -4,7 +4,6 @@ import { computed, PropType, ref, toRaw, watch } from 'vue';
 import { pluginManager } from '@epic-designer/manager';
 
 import EActionEditorItem from './src/EActionEditorItem.vue';
-import EActionModal from './src/EActionModal.vue';
 
 const props = defineProps({
   eventList: {
@@ -16,11 +15,15 @@ const props = defineProps({
     type: Object as PropType<any>,
   },
 });
+
 const emit = defineEmits(['update:modelValue']);
+
+const epActionModal = pluginManager.component.get('epActionModal');
+
 const Collapse = pluginManager.component.get('Collapse');
 const CollapseItem = pluginManager.component.get('CollapseItem');
 
-const EActionModalRef = ref<any>(null);
+const epActionModalRef = ref<any>(null);
 let editIndex = 0;
 const modelValueComputed = computed({
   get() {
@@ -97,7 +100,7 @@ let currentType: string = '';
  * @param type
  */
 function handleOpen(type: string) {
-  EActionModalRef.value?.handleOpen();
+  epActionModalRef.value?.handleOpen();
   currentType = type;
 }
 
@@ -108,8 +111,8 @@ function handleOpen(type: string) {
  * @param {any} action - 要执行的动作
  */
 function handleOpenEdit(index: number, type: string, action) {
-  // 如果 EActionModalRef.value 不为 null 或 undefined，则调用其 handleOpenEdit 方法
-  EActionModalRef.value?.handleOpenEdit(action);
+  // 如果 epActionModalRef.value 不为 null 或 undefined，则调用其 handleOpenEdit 方法
+  epActionModalRef.value?.handleOpenEdit(action);
 
   // 将要编辑的事件的索引赋值给 editIndex
   editIndex = index;
@@ -167,5 +170,5 @@ function handleAdd(action: any) {
       />
     </CollapseItem>
   </Collapse>
-  <EActionModal ref="EActionModalRef" @add="handleAdd" @edit="handleEdit" />
+  <epActionModal ref="epActionModalRef" @add="handleAdd" @edit="handleEdit" />
 </template>
