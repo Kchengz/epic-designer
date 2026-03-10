@@ -346,7 +346,7 @@ function handleAddComponentInstance(vNode?: VNode) {
 function handleVnodeUnmounted() {
   if (innerSchema.id) {
     // 移除实例 及 formItem实例
-    pageManager.removeComponentInstance(innerSchema.id);
+    pageManager.removeComponentInstance(innerSchema.id, scopeName.value);
     if (
       getComponentConfig.value?.defaultSchema.input &&
       innerSchema.noFormItem !== true

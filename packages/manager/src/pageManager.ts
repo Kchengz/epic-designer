@@ -162,7 +162,7 @@ export function createPageManager() {
     id: string,
     scopeName = DEFAULT_SCOPE,
   ): void {
-    delete componentInstances.value[id][scopeName];
+    delete componentInstances.value[id]?.[scopeName];
   }
 
   /**
