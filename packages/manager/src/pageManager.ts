@@ -3,7 +3,11 @@ import type { ComponentSchema, EpNodeInstance } from '@epic-designer/types';
 import { reactive, ref, watchEffect } from 'vue';
 
 import { useHookManager, usePageSchema } from '@epic-designer/hooks';
-import { findSchemas, getValueByPath } from '@epic-designer/utils';
+import {
+  findSchemas,
+  FormulaEngine,
+  getValueByPath,
+} from '@epic-designer/utils';
 
 import { pluginManager } from './pluginManager';
 
@@ -17,6 +21,7 @@ export type ComponentInstances = Record<string, Record<string, EpNodeInstance>>;
 export const DEFAULT_SCOPE = 'default';
 
 export function createPageManager() {
+  const formulaEngine = new FormulaEngine();
   const componentInstances = ref<ComponentInstances>({});
   const funcs = ref<Record<string, Function>>({});
   // 当前模式 true 设计模式, false 渲染模式
@@ -222,6 +227,7 @@ export function createPageManager() {
    * 执行一组操作
    *
    * @param actions 操作数组
+   * @param scopeName 作用域名称，默认值为 DEFAULT_SCOPE
    * @param args 其他参数
    */
   function doActions(
@@ -238,7 +244,21 @@ export function createPageManager() {
     // 遍历每个操作
     actions.forEach((action) => {
       // 尝试解析操作参数，如果没有提供，则使用传入的参数
-      const methodArgs = action.args ? JSON.parse(action.args) : args;
+      let methodArgs = action.args ? JSON.parse(action.args) : args;
+
+      // 处理数据参数
+      const context = {
+        event: args,
+      };
+      methodArgs = methodArgs.map((arg: any) => {
+        // 1. 如果是对象且标记为表达式，调用 jsep 计算
+        if (typeof arg === 'object' && arg.__isExpression__) {
+          return formulaEngine.calculate(arg.content, context);
+        }
+
+        // 2. 否则（字符串、数字等），直接返回原值（兼容旧数据）
+        return arg;
+      });
       // 根据操作的类型，调用不同的执行函数
       switch (action.type) {
         case 'component': {
