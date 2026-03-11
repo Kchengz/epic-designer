@@ -396,6 +396,11 @@ export function getValueByPath(
  * @returns 修改后的对象
  */
 export function setValueByPath(object: object, path: string, value: unknown) {
+  // 如果路径为空，直接返回对象
+  if (!path) {
+    return object;
+  }
+
   // 将路径字符串拆分为数组
   const pathArray = path
     .replaceAll(/\[(\d+)\]/g, '.$1')
