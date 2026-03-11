@@ -75,7 +75,6 @@ const { fieldStateMap, slots } = useBuilderContext();
 const disabled = injectBuilderDisabled();
 // 接收页面管理对象
 const pageManager = usePageManager();
-
 // 校验前缀字段
 const fieldPathPrefix = useFieldPathPrefix();
 const scopeName = computed(() => {
@@ -309,6 +308,9 @@ const getProps = computed(() => {
 
 // 添加组件实例
 function handleAddComponentInstance(vNode?: VNode) {
+  // 组件实例不存在时，标记成待加载项，存在时，移除待加载项
+  vNode ? pageManager.mountMonitor.pop() : pageManager.mountMonitor.push();
+
   const instance = (vNode?.component ?? nodeInstance) as EpNodeInstance;
   if (!innerSchema.id || !instance) {
     return;

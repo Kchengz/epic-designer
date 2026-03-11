@@ -2,7 +2,11 @@ import type { ComponentSchema, EpNodeInstance } from '@epic-designer/types';
 
 import { reactive, ref, watchEffect } from 'vue';
 
-import { useHookManager, usePageSchema } from '@epic-designer/hooks';
+import {
+  useHookManager,
+  useMountMonitor,
+  usePageSchema,
+} from '@epic-designer/hooks';
 import {
   findSchemas,
   FormulaEngine,
@@ -30,6 +34,7 @@ export function createPageManager() {
   const defaultComponentIds = ref<string[]>([]);
 
   const forms = reactive<Record<string, unknown>>({});
+  const mountMonitor = useMountMonitor();
 
   // 初始化
   const { pageSchema, setPageSchema } = usePageSchema();
@@ -251,12 +256,12 @@ export function createPageManager() {
         event: args,
       };
       methodArgs = methodArgs.map((arg: any) => {
-        // 1. 如果是对象且标记为表达式，调用 jsep 计算
-        if (typeof arg === 'object' && arg.__isExpression__) {
+        // 如果是对象且标记为表达式，调用 jsep 计算
+        if (arg && typeof arg === 'object' && arg.__isExpression__) {
           return formulaEngine.calculate(arg.content, context);
         }
 
-        // 2. 否则（字符串、数字等），直接返回原值（兼容旧数据）
+        // 否则（字符串、数字等），直接返回原值（兼容旧数据）
         return arg;
       });
       // 根据操作的类型，调用不同的执行函数
@@ -420,6 +425,7 @@ export function createPageManager() {
     getComponentInstance: find,
     hook,
     isDesignMode,
+    mountMonitor,
     pageSchema,
     removeComponentInstance,
     setDefaultComponentIds,

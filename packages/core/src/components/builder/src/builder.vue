@@ -10,7 +10,6 @@ import type {
 import {
   computed,
   getCurrentInstance,
-  nextTick,
   provide,
   ref,
   useSlots,
@@ -129,22 +128,28 @@ provide(FORM_INSTANCES_KEY, formInstances);
  * @returns {void}
  */
 function handleReady() {
-  nextTick(() => {
-    ready.value = true;
-    emit('ready', pageManager);
-
-    // 执行绑定的ready事件
-    findSchemas(pageManager.pageSchema.schemas, (schema) => {
-      if (
-        schema.on &&
-        Object.prototype.hasOwnProperty.call(schema.on, 'epicReady')
-      ) {
-        pageManager.doActions(schema.on.epicReady);
+  const unwatch = watch(
+    () => pageManager.mountMonitor.isAllMounted.value,
+    (finished) => {
+      if (finished) {
+        if (unwatch) unwatch();
+        triggerEpicReady();
       }
-      return false;
-    });
+    },
+    { immediate: true },
+  );
+}
 
-    // ;
+function triggerEpicReady() {
+  ready.value = true;
+  emit('ready', pageManager);
+
+  // 执行绑定的ready事件
+  findSchemas(pageManager.pageSchema.schemas, (schema) => {
+    if (schema.on?.epicReady) {
+      pageManager.doActions(schema.on.epicReady);
+    }
+    return false;
   });
 }
 
