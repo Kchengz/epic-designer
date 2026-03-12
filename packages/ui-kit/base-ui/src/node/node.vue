@@ -47,7 +47,6 @@ interface EpNodeProps {
   componentSchema: ComponentSchema;
   isProperty?: boolean;
   modelValue?: any;
-  name?: string;
   ruleField?: string[];
   showHiddenItems?: boolean;
 }
@@ -58,7 +57,6 @@ defineOptions({
 const props = withDefaults(defineProps<EpNodeProps>(), {
   isProperty: false,
   modelValue: undefined,
-  name: '',
   ruleField: () => [],
   showHiddenItems: false,
 });
