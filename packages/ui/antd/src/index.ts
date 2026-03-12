@@ -1,4 +1,5 @@
 import type { PluginManager } from '@epic-designer/manager';
+import type { SetupConfig } from '@epic-designer/types';
 
 import { watchEffect } from 'vue';
 
@@ -33,7 +34,10 @@ import UploadImage from './upload-image';
 // 引入样式
 import './index.less';
 
-export function setupAntd(pluginManager: PluginManager = pManager): void {
+export function setupAntd(
+  pluginManager: PluginManager = pManager,
+  config: SetupConfig = {},
+): void {
   // 版本兼容处理 start
   const versionArray = version.split('.');
   // 获取版本号第一个数字
@@ -107,10 +111,26 @@ export function setupAntd(pluginManager: PluginManager = pManager): void {
     TabsPane,
   ];
 
-  // 更新默认上传地址
+  const { uploadFile, uploadImage } = config;
+  // 若配置了图片上传地址，则覆盖上传组件的默认接口地址
+  if (uploadImage) UploadImage.defaultSchema.props.action = uploadImage;
+  // 若配置了文件上传地址，则覆盖上传组件的默认接口地址
+  if (uploadFile) UploadFile.defaultSchema.props.action = uploadFile;
+
+  // 更新默认上传地址相关配置
   watchEffect(() => {
-    UploadImage.defaultSchema.props.action = pluginManager.global.uploadImage;
-    UploadFile.defaultSchema.props.action = pluginManager.global.uploadFile;
+    // 当全局配置图片上传地址时，过滤该属性配置，默认使用全局配置
+    if (pluginManager.global.uploadImage) {
+      UploadImage.config.attribute = UploadImage.config.attribute?.filter(
+        (item) => item.field !== 'props.action',
+      );
+    }
+    // 当全局配置文件上传地址时，过滤该属性配置，默认使用全局配置
+    if (pluginManager.global.uploadFile) {
+      UploadFile.config.attribute = UploadFile.config.attribute?.filter(
+        (item) => item.field !== 'props.action',
+      );
+    }
   });
 
   componentArray.forEach((item) => {

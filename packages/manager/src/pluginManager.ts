@@ -106,9 +106,9 @@ export function createPluginManager(): PluginManager {
       headers: {},
     },
     // 上传文件地址
-    uploadFile: 'https://examples.epicjs.cn/epic-mock/common/upload',
+    uploadFile: null,
     // 上传图片地址
-    uploadImage: 'https://examples.epicjs.cn/epic-mock/common/upload',
+    uploadImage: null,
   });
 
   const hook = useHookManager();
