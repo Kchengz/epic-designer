@@ -3,7 +3,7 @@
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "epic-examples#build"],
       "outputs": [".next/**", "!.next/cache/**"],
       "cache": false
     },
@@ -24,13 +24,7 @@
       "persistent": true
     },
     "epic-examples#build": {
-      "dependsOn": [
-        "@epic-designer/antd#build",
-        "@epic-designer/element-plus#build",
-        "@epic-designer/naive-ui#build"
-      ],
-      "cache": false,
-      "persistent": true
+      "cache": false
     }
   }
 }

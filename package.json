@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "turbo run build",
+    "build": "pnpm i && turbo run build",
     "dev": "turbo run dev",
     "lib": "vitest run && pnpm run build -F epic-designer",
     "test": "vitest",
