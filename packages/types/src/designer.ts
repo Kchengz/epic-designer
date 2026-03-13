@@ -4,7 +4,7 @@ export interface TableColumn {
   columnName: string;
   columnRemark: string;
 }
-export interface TableJson {
+export interface TableMeta {
   primaryKey: string;
   tableColumn: TableColumn[];
   tableName: string;
@@ -22,6 +22,6 @@ export interface DesignerProps {
   lockDefaultSchemaEdit?: boolean;
   showHiddenItems?: boolean;
   sourceCodeReadOnly?: boolean;
-  tableJson?: TableJson[];
+  tableJson?: TableMeta[];
   title?: string;
 }

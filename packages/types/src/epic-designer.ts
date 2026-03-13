@@ -1,10 +1,10 @@
 import type { ActionsModel } from '@epic-designer/manager';
 
-import type { TableJson } from './designer';
+import type { TableMeta } from './designer';
 import type { FormItemRule } from './rules';
 
 export interface RenderCallbackParams {
-  tableJson?: TableJson;
+  tableMeta?: TableMeta;
   values: Record<string, any>;
 }
 

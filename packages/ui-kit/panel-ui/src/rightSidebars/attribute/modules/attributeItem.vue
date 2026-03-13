@@ -4,7 +4,7 @@ import type { ComponentSchema } from '@epic-designer/types';
 import { computed, nextTick, ref, watchEffect } from 'vue';
 
 import { EpicNode } from '@epic-designer/base-ui';
-import { useDataTable, useDesignerContext } from '@epic-designer/hooks';
+import { useDesignerContext, useTableMeta } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { getValueByPath, setValueByPath } from '@epic-designer/utils';
 
@@ -18,7 +18,7 @@ const revoke = designer.revoke;
 const selectedNode = computed(() => {
   return designer.state.selectedNode;
 });
-const tableJson = useDataTable();
+const tableMeta = useTableMeta();
 
 function isShow(item: ComponentSchema) {
   // show属性为boolean类型则直接返回
@@ -29,7 +29,7 @@ function isShow(item: ComponentSchema) {
   // show属性为function类型则执行
   if (typeof item.show === 'function') {
     return item.show?.({
-      tableJson: tableJson.value,
+      tableMeta: tableMeta.value,
       values: selectedNode.value!,
     });
   }
@@ -80,7 +80,7 @@ function handleSetValue(
   if (typeof item.onChange === 'function') {
     item.onChange({
       componentAttributes,
-      tableJson: tableJson?.value,
+      tableMeta: tableMeta?.value,
       value,
       values: editData!,
     });

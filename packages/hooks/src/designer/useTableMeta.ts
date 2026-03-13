@@ -1,13 +1,13 @@
 import { computed } from 'vue';
 
-import { ComponentSchema, TableJson } from '@epic-designer/types';
+import { ComponentSchema, TableMeta } from '@epic-designer/types';
 
 import { useDesignerContext } from './useDesignerContext';
 
-export function useDataTable() {
+export function useTableMeta() {
   const { props, state } = useDesignerContext();
-  const dataTable = computed<TableJson | undefined>(() => {
-    let dataTable = props.tableJson?.find(
+  const tableMeta = computed<TableMeta | undefined>(() => {
+    let tableMeta = props.tableJson?.find(
       (item) => item.tableType === 'parent',
     );
 
@@ -18,11 +18,11 @@ export function useDataTable() {
       .find((node: ComponentSchema) => node.isSubTable);
 
     // 根据是否存在子表单节点来查找对应的数据表
-    dataTable = subTableNode
+    tableMeta = subTableNode
       ? props.tableJson?.find((item) => item?.tableName === subTableNode.field)
       : props.tableJson?.find((item) => item.tableType === 'parent');
 
-    return dataTable;
+    return tableMeta;
   });
-  return dataTable;
+  return tableMeta;
 }

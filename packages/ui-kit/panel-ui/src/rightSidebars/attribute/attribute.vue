@@ -2,7 +2,7 @@
 import { computed, watchEffect } from 'vue';
 
 import { EpicIcon } from '@epic-designer/base-ui';
-import { useDataTable, useDesignerContext } from '@epic-designer/hooks';
+import { useDesignerContext, useTableMeta } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { useClipboard } from '@vueuse/core';
 
@@ -23,7 +23,7 @@ const selectedNode = computed(() => {
   return designer.state.selectedNode;
 });
 
-const dataTable = useDataTable();
+const tableMeta = useTableMeta();
 
 // 获取组件属性配置
 const componentAttributes = computed(() => {
@@ -77,12 +77,12 @@ const componentAttributes = computed(() => {
     <!-- 组件id展示 end -->
     <!-- 数据表 start -->
     <div
-      v-if="dataTable?.tableRemark && designer.state.selectedNode?.input"
+      v-if="tableMeta?.tableRemark && designer.state.selectedNode?.input"
       class="epic-attr-item mb-2 flex h-8 cursor-pointer items-center px-4"
     >
       <div class="epic-attr-label">数据表</div>
       <div class="bg-$ep-secondary rounded-1 h-full flex-1 px-2 leading-8">
-        {{ dataTable.tableRemark }}
+        {{ tableMeta.tableRemark }}
       </div>
     </div>
     <!-- 数据表 end -->
