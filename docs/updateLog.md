@@ -1,4 +1,5 @@
 ## 1.1.6（2026-03-13）
+【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
 ### ✨ Feat
 - 优化异步组件挂载追踪机制，确保 epicReady 事件触发时机准确
 - 组件动作参数添加公式解析功能
