@@ -23,7 +23,7 @@ const selectedNode = computed(() => {
   return designer.state.selectedNode;
 });
 
-const tableMeta = useTableMeta();
+const tableMeta = useTableMeta(pluginManager);
 
 // 获取组件属性配置
 const componentAttributes = computed(() => {

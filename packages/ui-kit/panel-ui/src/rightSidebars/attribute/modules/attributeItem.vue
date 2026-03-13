@@ -18,7 +18,7 @@ const revoke = designer.revoke;
 const selectedNode = computed(() => {
   return designer.state.selectedNode;
 });
-const tableMeta = useTableMeta();
+const tableMeta = useTableMeta(pluginManager);
 
 function isShow(item: ComponentSchema) {
   // show属性为boolean类型则直接返回

@@ -1,11 +1,12 @@
+import type { PluginManager } from '@epic-designer/manager';
+
 import { computed } from 'vue';
 
-import { pluginManager } from '@epic-designer/manager';
 import { ComponentSchema, TableMeta } from '@epic-designer/types';
 
 import { useDesignerContext } from './useDesignerContext';
 
-export function useTableMeta() {
+export function useTableMeta(pluginManager: PluginManager) {
   const { props, state } = useDesignerContext();
   const tableMeta = computed<TableMeta | undefined>(() => {
     let tableMeta = props.tableJson?.find(
