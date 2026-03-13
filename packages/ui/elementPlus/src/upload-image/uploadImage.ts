@@ -108,6 +108,7 @@ export default defineComponent({
     const getUploadProps = computed<UploadProps>(() => ({
       ...attrs,
       accept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+      action: pluginManager.global.uploadImage ?? attrs.action,
       headers: pluginManager.global.axiosConfig?.headers,
       onBeforeUpload: beforeUpload,
       onError: handleError,

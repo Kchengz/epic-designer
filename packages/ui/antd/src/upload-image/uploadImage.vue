@@ -116,6 +116,7 @@ const beforeUpload = (): void => {
 const getUploadProps = computed<UploadProps>(() => ({
   ...attrs,
   accept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+  action: pluginManager.global.uploadImage ?? attrs.action,
   headers: pluginManager.global.axiosConfig?.headers,
   'onBefore-upload': beforeUpload,
   onChange: handleChange,

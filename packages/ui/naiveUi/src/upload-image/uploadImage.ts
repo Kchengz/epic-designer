@@ -83,6 +83,7 @@ export default defineComponent({
               {
                 ...attrs,
                 accept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                action: pluginManager.global.uploadImage ?? attrs.action,
                 headers: pluginManager.global.axiosConfig?.headers,
                 onError: handleError,
                 onFinish: handleSuccess,

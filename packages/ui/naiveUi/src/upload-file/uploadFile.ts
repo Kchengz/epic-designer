@@ -73,6 +73,7 @@ export default defineComponent({
             NUpload,
             {
               ...attrs,
+              action: pluginManager.global.uploadFile ?? attrs.action,
               'default-upload': true,
               headers: pluginManager.global.axiosConfig?.headers,
               onError: handleError,

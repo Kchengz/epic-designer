@@ -94,6 +94,7 @@ export default defineComponent({
     // @ts-expect-error
     const getUploadProps = computed<UploadProps>(() => ({
       ...attrs,
+      action: pluginManager.global.uploadFile ?? attrs.action,
       headers: pluginManager.global.axiosConfig?.headers,
       onBeforeUpload: beforeUpload,
       onError: handleError,

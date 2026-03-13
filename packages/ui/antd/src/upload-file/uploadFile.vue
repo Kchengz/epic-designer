@@ -109,6 +109,7 @@ const beforeUpload = (): void => {
 
 const getUploadProps = computed<UploadProps>(() => ({
   ...attrs,
+  action: pluginManager.global.uploadFile ?? attrs.action,
   headers: pluginManager.global.axiosConfig?.headers,
   'onBefore-upload': beforeUpload,
   onChange: handleChange,
