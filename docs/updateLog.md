@@ -1,3 +1,24 @@
+## 1.1.5（2026-03-13）
+### ✨ Feat
+- 优化异步组件挂载追踪机制，确保 epicReady 事件触发时机准确
+- 组件动作参数添加公式解析功能
+- 新增 useEventBus hook 函数，使用 Symbol 替换字符串注入键
+- 新增 useBuilderContext hook 函数
+- 新增 useDesignerContext、usePageManager hook 函数
+- 新增 useForm hook 函数
+- 新增 useFormItem hook 函数
+### ✨ Refactor
+- 支持 setupUI 配置上传组件默认上传地址，通过 pluginManager 可以统一管理上传组件地址
+- 重构 Loader，优化设计器启动加载体验
+- 重构选中组件滚动到对应位置逻辑
+- 移除未使用的 resetFormData 相关代码
+- 增加组件实例作用域支持
+- 将 tree、collapse 组件使用依赖注入统一修改为 Symbol 类型 key
+### 🐛 Bug Fixes
+- 修复文件上传组件无文件参数名导致上传失败问题
+- 修复 setValueByPath 路径字段传入空值导致异常问题
+- 修复 antd UI 时 inputSize 组件不显示单位选择器问题
+
 ## 1.1.4（2026-01-20）
 ### ✨ Feat
 - 新增change事件以监听表单输入变化

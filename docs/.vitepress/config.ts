@@ -144,7 +144,7 @@ export default defineConfig({
           ],
         },
         {
-          text: '更多',
+          text: '管理器',
           items: [
             {
               link: '/guide/utils/pluginManager',
@@ -153,6 +153,19 @@ export default defineConfig({
             {
               link: '/guide/utils/pageManager',
               text: 'pageManager 页面管理器',
+            },
+          ],
+        },
+        {
+          text: '组合式 API',
+          items: [
+            {
+              link: '/guide/compositionApi/useFormItem',
+              text: 'useFormItem',
+            },
+            {
+              link: '/guide/compositionApi/useEventBus',
+              text: 'useEventBus',
             },
           ],
         },
