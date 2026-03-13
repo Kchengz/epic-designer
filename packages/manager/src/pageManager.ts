@@ -328,6 +328,7 @@ export function createPageManager() {
   /**
    * 执行组件方法
    * @param action 操作
+   * @param scopeName 作用域名称，默认值为 DEFAULT_SCOPE
    * @param args 参数
    */
   function executeComponentMethod(
