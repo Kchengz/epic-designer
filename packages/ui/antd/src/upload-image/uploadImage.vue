@@ -84,8 +84,9 @@ const handleChange = (info: UploadChangeParam): void => {
 
   if (info.file.status === 'done') {
     // Get this url from response in real world.
-    const url: string | undefined = info.file.response?.data?.url;
-    if (!info.file.url && !url) {
+    const url: string | undefined =
+      info.file.response?.data?.url ?? info.file.response?.data;
+    if (!info.file.url && !url && typeof url !== 'string') {
       info.file.status = 'error';
       message.error('上传失败');
       return;

@@ -83,7 +83,7 @@ export default defineComponent({
     ) => {
       fileList.value = uploadFiles.map((file: any) => ({
         ...file,
-        url: file.response.data?.url,
+        url: file.response.data?.url ?? file.response.data,
       }));
     };
     const handleError: UploadProps['onError'] = (error) => {

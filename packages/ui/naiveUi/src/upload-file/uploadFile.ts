@@ -63,7 +63,7 @@ export default defineComponent({
     const handleSuccess: UploadOnFinish = ({ event, file }) => {
       const resInfo = event?.target as XMLHttpRequest;
       const resData = JSON.parse(resInfo?.response ?? '{}');
-      file.url = resData.data?.url;
+      file.url = resData.data?.url ?? resData.data;
     };
 
     return () => {
