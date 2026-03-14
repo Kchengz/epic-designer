@@ -306,8 +306,10 @@ const getProps = computed(() => {
 
 // 添加组件实例
 function handleAddComponentInstance(vNode?: VNode) {
-  // 组件实例不存在时，标记成待加载项，存在时，移除待加载项
-  vNode ? pageManager.mountMonitor.pop() : pageManager.mountMonitor.push();
+  if (show.value) {
+    // 组件实例不存在时，标记成待加载项，存在时，移除待加载项
+    vNode ? pageManager.mountMonitor.pop() : pageManager.mountMonitor.push();
+  }
 
   const instance = (vNode?.component ?? nodeInstance) as EpNodeInstance;
   if (!innerSchema.id || !instance) {
