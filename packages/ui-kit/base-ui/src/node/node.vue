@@ -308,7 +308,9 @@ const getProps = computed(() => {
 function handleAddComponentInstance(vNode?: VNode) {
   if (show.value) {
     // 组件实例不存在时，标记成待加载项，存在时，移除待加载项
-    vNode ? pageManager.mountMonitor.pop() : pageManager.mountMonitor.push();
+    (vNode ? pageManager.mountMonitor.pop : pageManager.mountMonitor.push)(
+      innerSchema.id as string,
+    );
   }
 
   const instance = (vNode?.component ?? nodeInstance) as EpNodeInstance;
@@ -396,6 +398,7 @@ async function initComponent() {
   // 内部不存在组件
   if (!cmp) {
     console.error(`组件${innerSchema.type}未注册`);
+    pageManager.mountMonitor.pop(innerSchema.id as string);
     return;
   }
 

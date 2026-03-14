@@ -1,32 +1,39 @@
 import { computed, ref } from 'vue';
 
 export function useMountMonitor() {
-  const pendingCount = ref(0);
+  // 存储待加载项的id列表
+  const pendingIds = ref<string[]>([]);
 
   // 使用 computed 确保状态是响应式的
-  const isAllMounted = computed(() => pendingCount.value === 0);
+  const isAllMounted = computed(() => pendingIds.value.length === 0);
 
   /**
    * 注册待加载项
    */
-  function push() {
-    pendingCount.value++;
+  function push(id: string) {
+    pendingIds.value.push(id);
   }
 
   /**
-   * 标记加载完成
+   * 移除待加载项
    */
-  function pop() {
-    if (pendingCount.value > 0) {
-      pendingCount.value--;
-    }
+  function pop(id: string) {
+    pendingIds.value = pendingIds.value.filter((item) => item !== id);
+  }
+
+  /**
+   * 重置待加载项
+   */
+  function reset() {
+    pendingIds.value = [];
   }
 
   return {
     isAllMounted,
-    pendingCount,
+    pendingIds,
     pop,
     push,
+    reset,
   };
 }
 

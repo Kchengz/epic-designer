@@ -124,7 +124,6 @@ const getUploadProps = computed<UploadProps>(() => ({
  * @param {*} e
  */
 function handlePreview(e: UploadFile): void {
-  console.log(e);
   if (!e.url) return;
   window.open(e.url, '_blank');
 }

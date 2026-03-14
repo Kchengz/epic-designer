@@ -41,7 +41,7 @@ const props = defineProps<{
   /** 字段状态规则 */
   fieldStates?: FieldStates;
   formData?: FormDataModel;
-  pageSchema: PageSchema;
+  pageSchema: null | PageSchema;
 }>();
 // 定义事件
 const emit = defineEmits<{
@@ -82,6 +82,7 @@ watch(
     if (!newSchema?.schemas?.length) return;
     migrateComponentProps(newSchema, true);
     deepCompareAndModify(pageManager.pageSchema, newSchema);
+    pageManager.mountMonitor.reset();
     suspenseKey.value++;
     ready.value = false;
   },
@@ -136,7 +137,6 @@ function handleReady() {
         triggerEpicReady();
       }
     },
-    { immediate: true },
   );
 }
 

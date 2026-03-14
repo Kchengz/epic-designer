@@ -68,8 +68,6 @@ function resetData() {
       }
     });
   }
-
-  console.log(inputSchemas);
 }
 
 /**

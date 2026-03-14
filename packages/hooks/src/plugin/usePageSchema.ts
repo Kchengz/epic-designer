@@ -32,19 +32,7 @@ function migrateCanvasMode(schema: PageSchema): PageSchema {
 
 // 内部默认页面数据
 const innerDefaultSchema: PageSchema = {
-  schemas: [
-    {
-      id: 'root',
-      label: '页面',
-      props: {
-        style: {
-          padding: '16px',
-        },
-      },
-      type: 'page',
-      children: [],
-    },
-  ],
+  schemas: [],
   script: `const { defineExpose, find } = epic;
   
   function test (){
