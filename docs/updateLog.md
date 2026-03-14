@@ -1,3 +1,8 @@
+## 1.1.7（2026-03-14）
+【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
+### 🐛 Bug Fixes
+- 修复隐藏组件没有mounted事件，导致builder组件一直处于未就绪状态问题
+
 ## 1.1.6（2026-03-13）
 【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
 ### ✨ Feat
