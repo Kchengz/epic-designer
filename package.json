@@ -4,14 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm i && turbo run build",
+    "build": "pnpm i && turbo run build -F epic-examples && turbo run build",
     "dev": "turbo run dev",
-    "lib": "vitest run && pnpm run build -F epic-designer",
+    "lib": "vitest run && turbo run build -F epic-designer",
     "test": "vitest",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "examples:build": "pnpm run build --filter epic-examples",
+    "examples:build": "pnpm run build -F epic-examples",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "eslint packages/ --fix",
     "postinstall": "pnpm -r run stub --if-present"

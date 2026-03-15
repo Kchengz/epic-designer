@@ -3,7 +3,7 @@
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "build": {
-      "dependsOn": ["^build", "epic-examples#build"],
+      "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"],
       "cache": false
     },
@@ -24,7 +24,7 @@
       "persistent": true
     },
     "epic-examples#build": {
-      "cache": false
+      "cache": true
     }
   }
 }
