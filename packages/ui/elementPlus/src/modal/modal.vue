@@ -52,6 +52,7 @@ function handleClose() {
     v-bind="getProps"
     :title="getProps.label ?? ''"
     destroy-on-close
+    append-to-body
     @update:model-value="updateModelValue"
   >
     <slot>
