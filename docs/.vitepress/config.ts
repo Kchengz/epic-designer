@@ -46,7 +46,6 @@ export default defineConfig({
         link: '/guide/about/about',
         text: '关于 | 赞助',
       },
-      // { text: "个人博客", link: "https://www.kcz66.com" },
       {
         text: '相关链接',
         items: [
