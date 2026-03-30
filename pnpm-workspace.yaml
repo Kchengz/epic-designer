@@ -40,7 +40,6 @@ catalog:
   'vue-draggable-plus': ^0.6.0
   'vue-router': ^4.5.0
   'vite-plugin-vue-devtools': 7.6.8
-  'vuedraggable': 4.1.0
   '@types/node': ^22.10.6
   '@unocss/preset-rem-to-px': ^0.65.3
   '@rollup/plugin-alias': ^6.0.0

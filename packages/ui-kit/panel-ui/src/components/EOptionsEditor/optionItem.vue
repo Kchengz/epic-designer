@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { inject } from 'vue';
+import { VueDraggable } from 'vue-draggable-plus';
 
 import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 import { useVModel } from '@vueuse/core';
-import draggable from 'vuedraggable';
 
 import { OPTIONS_EDITOR_TREE_KEY } from './optionsEditorContext';
 
@@ -52,7 +52,7 @@ function handleRemove(index: number) {
 </script>
 
 <template>
-  <draggable
+  <VueDraggable
     v-model="innerValue"
     item-key="id"
     :component-data="{
@@ -62,43 +62,41 @@ function handleRemove(index: number) {
     handle=".handle"
     :animation="200"
   >
-    <template #item="{ element: option, index }">
-      <div>
-        <div
-          :class="
-            tree
-              ? 'grid-cols-[16px_auto_auto_16px_16px]'
-              : 'grid-cols-[16px_auto_auto_16px]'
-          "
-          class="option-item text-16px text-$ep-text-secondary mb-2 grid items-center gap-2"
-        >
-          <EpicIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
-          <Input
-            v-model="option.label"
-            v-model:value="option.label"
-            placeholder="label"
-          />
-          <Input
-            v-model="option.value"
-            v-model:value="option.value"
-            placeholder="value"
-          />
-          <EpicIcon
-            v-if="tree"
-            class="text-lg! cursor-pointer"
-            name="icon--epic--add-rounded"
-            @click="handleAddChildren(option)"
-          />
-          <EpicIcon
-            class="hover:text-red cursor-pointer"
-            name="icon--epic--delete-outline-rounded"
-            @click="handleRemove(index)"
-          />
-        </div>
-        <div v-if="option.children" class="pl-4">
-          <EOptionItem v-model="option.children" />
-        </div>
+    <div v-for="(option, index) in innerValue" :key="index">
+      <div
+        :class="
+          tree
+            ? 'grid-cols-[16px_auto_auto_16px_16px]'
+            : 'grid-cols-[16px_auto_auto_16px]'
+        "
+        class="option-item text-16px text-$ep-text-secondary mb-2 grid items-center gap-2"
+      >
+        <EpicIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
+        <Input
+          v-model="option.label"
+          v-model:value="option.label"
+          placeholder="label"
+        />
+        <Input
+          v-model="option.value"
+          v-model:value="option.value"
+          placeholder="value"
+        />
+        <EpicIcon
+          v-if="tree"
+          class="text-lg! cursor-pointer"
+          name="icon--epic--add-rounded"
+          @click="handleAddChildren(option)"
+        />
+        <EpicIcon
+          class="hover:text-red cursor-pointer"
+          name="icon--epic--delete-outline-rounded"
+          @click="handleRemove(index)"
+        />
       </div>
-    </template>
-  </draggable>
+      <div v-if="option.children" class="pl-4">
+        <EOptionItem v-model="option.children" />
+      </div>
+    </div>
+  </VueDraggable>
 </template>

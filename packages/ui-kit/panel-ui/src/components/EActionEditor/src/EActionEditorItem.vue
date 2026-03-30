@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue';
 
+import { VueDraggable } from 'vue-draggable-plus';
+
 import { EpicIcon } from '@epic-designer/base-ui';
 import { useDesignerContext } from '@epic-designer/hooks';
 import { findSchemaById } from '@epic-designer/utils';
-import draggable from 'vuedraggable';
 
 const props = defineProps({
   allEvents: {
@@ -49,7 +50,7 @@ function getLabel(id: string) {
  * 删除
  * @param index
  */
-function handleDelete(index: number, type: string) {
+function handleDelete(index: number | string, type: string) {
   const newEvents = getNewEvents(type);
   newEvents[type] = props.events[type].filter(
     (_item: any, i: number) => index !== i,
@@ -66,7 +67,7 @@ function handleDelete(index: number, type: string) {
  * @param type
  * @param action
  */
-function handleEdit(index: number, type: string, action: any) {
+function handleEdit(index: number | string, type: string, action: any) {
   emit('edit', index, type, action);
 }
 
@@ -104,7 +105,7 @@ function getNewEvents(type: string) {
       </div>
     </div>
     <div class="epic-action-editor-main">
-      <draggable
+      <VueDraggable
         v-model="props.events[item.type]"
         item-key="id"
         :component-data="{
@@ -114,36 +115,38 @@ function getNewEvents(type: string) {
         handle=".handle"
         :animation="200"
       >
-        <template #item="{ element: action, index }">
-          <div class="epic-editor-item rounded">
-            <div class="w-36px flex items-center text-lg">
-              <EpicIcon
-                class="handle text-$ep-text-helper mr-2 cursor-move text-lg"
-                name="icon--epic--drag"
-              />
+        <div
+          v-for="(action, index) in props.events[item.type]"
+          class="epic-editor-item rounded"
+          :key="action.id"
+        >
+          <div class="w-36px flex items-center text-lg">
+            <EpicIcon
+              class="handle text-$ep-text-helper mr-2 cursor-move text-lg"
+              name="icon--epic--drag"
+            />
+          </div>
+          <div class="flex-1">
+            <div v-if="action.type === 'component'">
+              {{ getLabel(action.componentId) }}
             </div>
-            <div class="flex-1">
-              <div v-if="action.type === 'component'">
-                {{ getLabel(action.componentId) }}
-              </div>
-              <div v-else-if="action.type === 'custom'">自定义函数</div>
-              <div v-else-if="action.type === 'public'">公共函数</div>
-              {{ action.methodName }}
+            <div v-else-if="action.type === 'custom'">自定义函数</div>
+            <div v-else-if="action.type === 'public'">公共函数</div>
+            {{ action.methodName }}
+          </div>
+          <div class="epic-action-box text-$ep-text-helper text-lg">
+            <div
+              class="epic-edit-btn"
+              @click="handleEdit(index, item.type, action)"
+            >
+              <EpicIcon name="icon--epic--page-info-outline-rounded" />
             </div>
-            <div class="epic-action-box text-$ep-text-helper text-lg">
-              <div
-                class="epic-edit-btn"
-                @click="handleEdit(index, item.type, action)"
-              >
-                <EpicIcon name="icon--epic--page-info-outline-rounded" />
-              </div>
-              <div class="epic-del-btn" @click="handleDelete(index, item.type)">
-                <EpicIcon name="icon--epic--delete-outline-rounded" />
-              </div>
+            <div class="epic-del-btn" @click="handleDelete(index, item.type)">
+              <EpicIcon name="icon--epic--delete-outline-rounded" />
             </div>
           </div>
-        </template>
-      </draggable>
+        </div>
+      </VueDraggable>
     </div>
   </div>
 </template>

@@ -204,9 +204,6 @@ catalogs:
     vue-tsc:
       specifier: ^2.2.0
       version: 2.2.12
-    vuedraggable:
-      specifier: 4.1.0
-      version: 4.1.0
 
 importers:
 
@@ -474,13 +471,10 @@ importers:
       vue-draggable-plus:
         specifier: 'catalog:'
         version: 0.6.0(@types/sortablejs@1.15.9)
-      vuedraggable:
-        specifier: 'catalog:'
-        version: 4.1.0(vue@3.5.22(typescript@5.9.3))
     devDependencies:
       unocss:
         specifier: 'catalog:'
-        version: 0.65.4(postcss@8.5.6)(rollup@4.52.5)(vite@6.4.1(@types/node@24.10.0)(jiti@2.6.1)(less@4.4.2)(tsx@4.20.6))(vue@3.5.22(typescript@5.9.3))
+        version: 0.65.4(postcss@8.5.6)(rollup@4.52.5)(vite@5.4.21(@types/node@24.10.0)(less@4.4.2))(vue@3.5.22(typescript@5.9.3))
       vitest:
         specifier: 'catalog:'
         version: 2.1.9(@types/node@24.10.0)(jsdom@26.1.0)(less@4.4.2)
@@ -493,19 +487,19 @@ importers:
       vue:
         specifier: '>=3.1.0'
         version: 3.5.22(typescript@5.9.3)
-      vuedraggable:
+      vue-draggable-plus:
         specifier: 'catalog:'
-        version: 4.1.0(vue@3.5.22(typescript@5.9.3))
+        version: 0.6.0(@types/sortablejs@1.15.9)
     optionalDependencies:
       '@epic-designer/antd':
         specifier: '>=1.1.2'
-        version: 1.1.2(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+        version: 1.1.2(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       '@epic-designer/element-plus':
         specifier: '>=1.1.2'
-        version: 1.1.2(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+        version: 1.1.2(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       '@epic-designer/naive-ui':
         specifier: '>=1.1.2'
-        version: 1.1.2(epic-designer@1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+        version: 1.1.2(epic-designer@1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
     devDependencies:
       '@types/node':
         specifier: 'catalog:'
@@ -554,23 +548,20 @@ importers:
   packages/ui-kit/base-ui:
     dependencies:
       monaco-editor:
-        specifier: ^0.52.2
+        specifier: 'catalog:'
         version: 0.52.2
-      vuedraggable:
-        specifier: 4.1.0
-        version: 4.1.0(vue@3.5.22(typescript@5.9.3))
+      vue-draggable-plus:
+        specifier: 'catalog:'
+        version: 0.6.0(@types/sortablejs@1.15.9)
 
   packages/ui-kit/panel-ui:
     dependencies:
       vue-draggable-plus:
-        specifier: ^0.6.0
+        specifier: 'catalog:'
         version: 0.6.0(@types/sortablejs@1.15.9)
-      vuedraggable:
-        specifier: 4.1.0
-        version: 4.1.0(vue@3.5.22(typescript@5.9.3))
     devDependencies:
       monaco-editor:
-        specifier: ^0.52.2
+        specifier: 'catalog:'
         version: 0.52.2
 
   packages/ui/antd:
@@ -3011,8 +3002,8 @@ packages:
       monaco-editor: '>=0.48.0'
       vue: '>=3.1.0'
 
-  epic-designer@1.1.5-beta.3:
-    resolution: {integrity: sha512-bQK/GaUYyY7mUjeDzEG2xaSGHE7QbpKaIlw7uslHihPvT42mLYPzPAQgWOrMP8MoafDQmTZx7ln1xZs6J0l09g==}
+  epic-designer@1.1.8:
+    resolution: {integrity: sha512-TBiQIBbQ7oZp7sjmxw8walC92hzQIoVu5Fy2rqBqneIIm9alqKtcg3spox7t3x6tiZNdt97abv1EoXX1COQfSg==}
     peerDependencies:
       monaco-editor: '>=0.48.0'
       vue: '>=3.1.0'
@@ -6364,10 +6355,10 @@ snapshots:
       vue: 3.5.22(typescript@5.9.3)
     optional: true
 
-  '@epic-designer/antd@1.1.2(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
+  '@epic-designer/antd@1.1.2(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
     dependencies:
       ant-design-vue: 4.2.6(vue@3.5.22(typescript@5.9.3))
-      epic-designer: 1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      epic-designer: 1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       vue: 3.5.22(typescript@5.9.3)
     optional: true
 
@@ -6378,10 +6369,10 @@ snapshots:
       vue: 3.5.22(typescript@5.9.3)
     optional: true
 
-  '@epic-designer/element-plus@1.1.2(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
+  '@epic-designer/element-plus@1.1.2(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
     dependencies:
       element-plus: 2.13.0(vue@3.5.22(typescript@5.9.3))
-      epic-designer: 1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      epic-designer: 1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       vue: 3.5.22(typescript@5.9.3)
     optional: true
 
@@ -6392,9 +6383,9 @@ snapshots:
       vue: 3.5.22(typescript@5.9.3)
     optional: true
 
-  '@epic-designer/naive-ui@1.1.2(epic-designer@1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
+  '@epic-designer/naive-ui@1.1.2(epic-designer@1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))':
     dependencies:
-      epic-designer: 1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      epic-designer: 1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       naive-ui: 2.43.1(vue@3.5.22(typescript@5.9.3))
       vue: 3.5.22(typescript@5.9.3)
     optional: true
@@ -7247,6 +7238,18 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
+  '@unocss/astro@0.65.4(rollup@4.52.5)(vite@5.4.21(@types/node@24.10.0)(less@4.4.2))(vue@3.5.22(typescript@5.9.3))':
+    dependencies:
+      '@unocss/core': 0.65.4
+      '@unocss/reset': 0.65.4
+      '@unocss/vite': 0.65.4(rollup@4.52.5)(vite@5.4.21(@types/node@24.10.0)(less@4.4.2))(vue@3.5.22(typescript@5.9.3))
+    optionalDependencies:
+      vite: 5.4.21(@types/node@24.10.0)(less@4.4.2)
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+      - vue
+
   '@unocss/astro@0.65.4(rollup@4.52.5)(vite@6.4.1(@types/node@22.19.0)(jiti@2.6.1)(less@4.4.2)(tsx@4.20.6))(vue@3.5.22(typescript@5.9.3))':
     dependencies:
       '@unocss/core': 0.65.4
@@ -7398,6 +7401,22 @@ snapshots:
   '@unocss/transformer-variant-group@0.65.4':
     dependencies:
       '@unocss/core': 0.65.4
+
+  '@unocss/vite@0.65.4(rollup@4.52.5)(vite@5.4.21(@types/node@24.10.0)(less@4.4.2))(vue@3.5.22(typescript@5.9.3))':
+    dependencies:
+      '@ampproject/remapping': 2.3.0
+      '@rollup/pluginutils': 5.3.0(rollup@4.52.5)
+      '@unocss/config': 0.65.4
+      '@unocss/core': 0.65.4
+      '@unocss/inspector': 0.65.4(vue@3.5.22(typescript@5.9.3))
+      chokidar: 3.6.0
+      magic-string: 0.30.21
+      tinyglobby: 0.2.15
+      vite: 5.4.21(@types/node@24.10.0)(less@4.4.2)
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+      - vue
 
   '@unocss/vite@0.65.4(rollup@4.52.5)(vite@6.4.1(@types/node@22.19.0)(jiti@2.6.1)(less@4.4.2)(tsx@4.20.6))(vue@3.5.22(typescript@5.9.3))':
     dependencies:
@@ -8531,15 +8550,15 @@ snapshots:
       - element-plus
       - naive-ui
 
-  epic-designer@1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)):
+  epic-designer@1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)):
     dependencies:
       monaco-editor: 0.52.2
       vue: 3.5.22(typescript@5.9.3)
       vuedraggable: 4.1.0(vue@3.5.22(typescript@5.9.3))
     optionalDependencies:
-      '@epic-designer/antd': 1.1.2(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
-      '@epic-designer/element-plus': 1.1.2(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
-      '@epic-designer/naive-ui': 1.1.2(epic-designer@1.1.5-beta.3(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      '@epic-designer/antd': 1.1.2(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      '@epic-designer/element-plus': 1.1.2(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(epic-designer@1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
+      '@epic-designer/naive-ui': 1.1.2(epic-designer@1.1.8(ant-design-vue@4.2.6(vue@3.5.22(typescript@5.9.3)))(element-plus@2.13.0(vue@3.5.22(typescript@5.9.3)))(monaco-editor@0.52.2)(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3)))(naive-ui@2.43.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
     transitivePeerDependencies:
       - ant-design-vue
       - element-plus
@@ -11151,6 +11170,33 @@ snapshots:
   universalify@0.1.2: {}
 
   universalify@2.0.1: {}
+
+  unocss@0.65.4(postcss@8.5.6)(rollup@4.52.5)(vite@5.4.21(@types/node@24.10.0)(less@4.4.2))(vue@3.5.22(typescript@5.9.3)):
+    dependencies:
+      '@unocss/astro': 0.65.4(rollup@4.52.5)(vite@5.4.21(@types/node@24.10.0)(less@4.4.2))(vue@3.5.22(typescript@5.9.3))
+      '@unocss/cli': 0.65.4(rollup@4.52.5)
+      '@unocss/core': 0.65.4
+      '@unocss/postcss': 0.65.4(postcss@8.5.6)
+      '@unocss/preset-attributify': 0.65.4
+      '@unocss/preset-icons': 0.65.4
+      '@unocss/preset-mini': 0.65.4
+      '@unocss/preset-tagify': 0.65.4
+      '@unocss/preset-typography': 0.65.4
+      '@unocss/preset-uno': 0.65.4
+      '@unocss/preset-web-fonts': 0.65.4
+      '@unocss/preset-wind': 0.65.4
+      '@unocss/transformer-attributify-jsx': 0.65.4
+      '@unocss/transformer-compile-class': 0.65.4
+      '@unocss/transformer-directives': 0.65.4
+      '@unocss/transformer-variant-group': 0.65.4
+      '@unocss/vite': 0.65.4(rollup@4.52.5)(vite@5.4.21(@types/node@24.10.0)(less@4.4.2))(vue@3.5.22(typescript@5.9.3))
+    optionalDependencies:
+      vite: 5.4.21(@types/node@24.10.0)(less@4.4.2)
+    transitivePeerDependencies:
+      - postcss
+      - rollup
+      - supports-color
+      - vue
 
   unocss@0.65.4(postcss@8.5.6)(rollup@4.52.5)(vite@6.4.1(@types/node@22.19.0)(jiti@2.6.1)(less@4.4.2)(tsx@4.20.6))(vue@3.5.22(typescript@5.9.3)):
     dependencies:

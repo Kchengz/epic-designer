@@ -2,11 +2,11 @@
 import type { ComponentSchema } from '@epic-designer/types';
 
 import { computed, PropType } from 'vue';
+import { VueDraggable } from 'vue-draggable-plus';
 
 import { EpicIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 import { getUUID } from '@epic-designer/utils';
-import draggable from 'vuedraggable';
 
 defineOptions({
   inheritAttrs: false,
@@ -52,7 +52,7 @@ function handleDelete(index: number) {
 </script>
 <template>
   <div class="epic-propedit-item p-2">
-    <draggable
+    <VueDraggable
       v-model="tabList"
       item-key="id"
       :component-data="{
@@ -62,29 +62,25 @@ function handleDelete(index: number) {
       handle=".handle"
       :animation="200"
     >
-      <template #item="{ element: item, index }">
+      <div
+        v-for="(item, index) in tabList"
+        :key="index"
+        class="epic-tab-pane-editor-item my-2 grid grid-cols-[auto_auto_16px] items-center gap-2"
+      >
+        <EpicIcon class="handle cursor-move text-lg" name="icon--epic--drag" />
+        <Input v-model:value="item.label" v-model="item.label" />
         <div
-          :key="index"
-          class="epic-tab-pane-editor-item my-2 grid grid-cols-[auto_auto_16px] items-center gap-2"
+          v-if="tabList.length > 1"
+          class="epic-option-del-btn flex items-center"
         >
           <EpicIcon
-            class="handle cursor-move text-lg"
-            name="icon--epic--drag"
+            class="hover:text-red cursor-pointer text-lg"
+            name="icon--epic--delete-outline-rounded"
+            @click="handleDelete(index)"
           />
-          <Input v-model:value="item.label" v-model="item.label" />
-          <div
-            v-if="tabList.length > 1"
-            class="epic-option-del-btn flex items-center"
-          >
-            <EpicIcon
-              class="hover:text-red cursor-pointer text-lg"
-              name="icon--epic--delete-outline-rounded"
-              @click="handleDelete(index)"
-            />
-          </div>
         </div>
-      </template>
-    </draggable>
+      </div>
+    </VueDraggable>
   </div>
 
   <div class="ep-button ghost primary" @click="handleAdd">添加</div>

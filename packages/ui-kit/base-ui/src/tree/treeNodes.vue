@@ -2,10 +2,10 @@
 import type { ComponentSchema } from '@epic-designer/types';
 
 import { computed } from 'vue';
+import { VueDraggable } from 'vue-draggable-plus';
 
 import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
-import draggable from 'vuedraggable';
 
 import ETreeNodeItem from './treeNodeItem.vue';
 import { useTreeContext } from './useTreeContext';
@@ -39,7 +39,10 @@ const modelSchemas = computed({
  * 选中点击节点元素
  * @param index
  */
-function handleSelect(index: number) {
+function handleSelect(index: number | undefined) {
+  if (index === undefined) {
+    return;
+  }
   designer.setDisabledHover(true);
   designer.setSelectedNode(modelSchemas.value![index]);
 }
@@ -66,7 +69,7 @@ const getDisabled = computed(() => {
 });
 </script>
 <template>
-  <draggable
+  <VueDraggable
     v-if="
       !pluginManager.component.getConfigByType(props.parentSchema?.type || '')
         ?.editConstraints?.childImmovable
@@ -85,14 +88,13 @@ const getDisabled = computed(() => {
     }"
     @start="handleSelect($event.oldIndex)"
   >
-    <template #item="{ element }">
-      <ETreeNodeItem
-        :key="element.id"
-        :class="isDraggable(element)"
-        :schema="element"
-      />
-    </template>
-  </draggable>
+    <ETreeNodeItem
+      v-for="element in modelSchemas"
+      :key="element.id"
+      :class="isDraggable(element)"
+      :schema="element"
+    />
+  </VueDraggable>
 
   <ul v-else>
     <ETreeNodeItem

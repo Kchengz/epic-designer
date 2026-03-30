@@ -6,10 +6,9 @@
   "type": "module",
   "main": "./src/index.ts",
   "dependencies": {
-    "vue-draggable-plus": "^0.6.0",
-    "vuedraggable": "4.1.0"
+    "vue-draggable-plus": "catalog:"
   },
   "devDependencies": {
-    "monaco-editor": "^0.52.2"
+    "monaco-editor": "catalog:"
   }
 }

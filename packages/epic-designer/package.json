@@ -39,7 +39,7 @@
     "vue": ">=3.1.0"
   },
   "dependencies": {
-    "vuedraggable": "catalog:"
+    "vue-draggable-plus": "catalog:"
   },
   "optionalDependencies": {
     "@epic-designer/antd": ">=1.1.2",

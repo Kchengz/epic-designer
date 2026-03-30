@@ -28,8 +28,7 @@
   "main": "src/index.ts",
   "dependencies": {
     "monaco-editor": "catalog:",
-    "vue-draggable-plus": "catalog:",
-    "vuedraggable": "catalog:"
+    "vue-draggable-plus": "catalog:"
   },
   "devDependencies": {
     "unocss": "catalog:",
