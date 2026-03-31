@@ -126,7 +126,7 @@ export default defineConfig({
             },
             {
               link: '/guide/extensions/component',
-              text: '自定义组件',
+              text: '组件扩展',
             },
             {
               link: '/guide/extensions/activityBar',
