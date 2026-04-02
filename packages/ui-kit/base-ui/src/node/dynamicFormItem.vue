@@ -6,10 +6,16 @@ import type { VNode } from 'vue';
 import { usePageManager } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
+type FormItemCheckPayload = {
+  message?: string;
+  result?: boolean;
+};
+
 defineOptions({
   inheritAttrs: false,
 });
 const props = defineProps<{
+  checkPayload?: FormItemCheckPayload | null;
   formItemProps: ComponentSchema;
   hasFormItem?: boolean;
 }>();
@@ -36,6 +42,7 @@ const addFormItemInstance = (vNode: VNode) => {
   <!-- 如果有 FormItem，则包裹 slot，否则直接渲染 slot -->
   <FormItem
     v-if="props.hasFormItem"
+    :check-payload="props.checkPayload"
     v-bind="props.formItemProps"
     :class="{ 'epic-hidden': props.formItemProps.props?.hidden }"
     @vue:mounted="addFormItemInstance"
