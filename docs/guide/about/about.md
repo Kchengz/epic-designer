@@ -1,23 +1,12 @@
-## 作者信息
-
-橙子/男
-
-对于编程和开发世界的热爱驱使着我不断探索，希望用有趣的代码创造出有趣的事物。
-
-Github主页：https://github.com/Kchengz
-
-Gitee主页：[https://gitee.com/kcz66](https://gitee.com/kcz66)
-
-开源项目：
-
-- EpicDesigner低代码设计器：[epic-designer](https://gitee.com/kcz66/epic-designer) <img src="https://gitee.com/kcz66/epic-designer/badge/star.svg" style="display: inline; top: 6px; border-radius: 0px;transform: translateY(5px);" />
-
-- KFormDesign表单设计器：[k-form-design](https://gitee.com/kcz66/k-form-design) <img src="https://gitee.com/kcz66/k-form-design/badge/star.svg" style="display: inline; top: 6px; border-radius: 0px;transform: translateY(5px);" />
-
-
-
 ## 赞助
-如果你觉得EpicDesigner对你有帮助，欢迎给我捐赠
+
+如果您正在使用这个项目并感觉良好，或者是想支持我们继续开发，您可以通过如下`任意`方式支持我们：
+
+1. Star 并向您的朋友推荐或分享 [Gitee](https://gitee.com/kcz66/epic-designer) [Github](https://github.com/Kchengz/epic-designer) 🚀
+2. 通过以下二维码进行一次性捐款，请我们喝一杯咖啡 ☕️
+3. 提交 Issue 或 PR，帮助完善项目功能或修复 bug 🌟
+
+非常感谢！
 
 ![](https://examples.epicjs.cn/static/donation.png)
 
@@ -67,14 +56,6 @@ Gitee主页：[https://gitee.com/kcz66](https://gitee.com/kcz66)
 | 茶凉恶霸  | 100      |                                                          |
 | 前行      | 88       |                                                          |
 
-## 其他支持方式
+## 致谢
 
-如果您不方便捐赠，也可以通过以下方式支持项目：
-
-- ⭐ 给项目点个 Star
-- 📢 推荐给更多的朋友
-- 🐛 提交 Issue 或 PR
-- 💬 参与社区讨论
-- 📝 帮助完善文档
-
-再次感谢您的支持！
+感谢给予支持的朋友，您的支持是我们前进的动力 🎉
