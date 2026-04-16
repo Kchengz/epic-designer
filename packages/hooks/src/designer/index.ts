@@ -1,4 +1,5 @@
 export * from './useBuiderDisabled';
+export * from './useBuiderReadonly';
 export * from './useBuilderContext';
 export * from './useDesignerContext';
 export * from './useFieldPathPrefix';
