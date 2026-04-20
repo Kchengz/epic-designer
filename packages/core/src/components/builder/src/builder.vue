@@ -22,6 +22,7 @@ import {
   createEventBus,
   FORM_INSTANCES_KEY,
   provideBuilderDisabled,
+  provideBuilderReadonly,
   providePageManager,
 } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
@@ -40,8 +41,13 @@ const props = defineProps<{
   disabled?: boolean;
   /** 字段状态规则 */
   fieldStates?: FieldStates;
+  /** 表单数据 */
   formData?: FormDataModel;
+  /** 页面 schema */
   pageSchema: null | PageSchema;
+  /** 只读表单 */
+  readonly?: boolean;
+  tableView?: boolean;
 }>();
 // 定义事件
 const emit = defineEmits<{
@@ -109,6 +115,7 @@ watch(
 createEventBus();
 // 提供依赖注入的上下文
 provideBuilderDisabled(computed(() => props.disabled));
+provideBuilderReadonly(computed(() => props.readonly));
 provide(BUILDER_KEY, {
   fieldStateMap: computed(() => {
     //  将fieldStates转换对象类型
@@ -189,7 +196,13 @@ defineExpose({
   </div>
   <Suspense v-else :key="suspenseKey" @resolve="handleReady">
     <template #default>
-      <div class="epic-builder-main ep-scoped">
+      <div
+        class="ep-builder-main ep-scoped"
+        :class="{
+          'ep-readonly': props.readonly,
+          'ep-table-view': props.tableView,
+        }"
+      >
         <EpicNode
           v-for="(item, index) in pageManager.pageSchema.schemas"
           :key="index"

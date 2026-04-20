@@ -27,9 +27,34 @@
     padding-bottom: 0;
   }
 
-  .ant-select-selector{
+  .ant-select-selector {
     border: none !important;
     box-shadow: none !important;
     padding: 0 4px !important;
+  }
+}
+
+// 适配ep-readonly样式
+.ep-readonly {
+  .ant-form-item-control-input {
+    pointer-events: none;
+  }
+
+  .ant-upload {
+    display: none !important;
+  }
+
+  .ant-form-item-label {
+    pointer-events: none;
+  }
+
+  /* 上传组件样式 */
+  .ant-upload-list {
+    pointer-events: auto;
+    margin-bottom: 8px;
+
+    [title='Remove file'] {
+      display: none !important;
+    }
   }
 }

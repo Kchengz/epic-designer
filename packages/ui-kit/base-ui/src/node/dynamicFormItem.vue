@@ -44,7 +44,7 @@ const addFormItemInstance = (vNode: VNode) => {
     v-if="props.hasFormItem"
     :check-payload="props.checkPayload"
     v-bind="props.formItemProps"
-    :class="{ 'epic-hidden': props.formItemProps.props?.hidden }"
+    :class="{ 'ep-hidden': props.formItemProps.props?.hidden }"
     @vue:mounted="addFormItemInstance"
   >
     <slot></slot>

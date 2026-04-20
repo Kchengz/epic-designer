@@ -48,9 +48,9 @@
 
 | 图标                                                                      | 名称       | 版本  |
 | ------------------------------------------------------------------------- | ---------- | ----- |
-| [![](https://skillicons.dev/icons?i=vue)](https://cn.vuejs.org/)          | Vue        | 3.2.x |
-| [![](https://skillicons.dev/icons?i=ts)](https://www.typescriptlang.org/) | Typescript | 5.0.x |
-| [![](https://skillicons.dev/icons?i=vite)](https://cn.vitejs.dev/)        | Vite       | 3.2.x |
+| [![](https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/vuejs/vuejs-original.svg)](https://cn.vuejs.org/)          | Vue        | 3.2.x |
+| [![](https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/typescript/typescript-original.svg)](https://www.typescriptlang.org/) | Typescript | 5.0.x |
+| [![](https://cdn.jsdelivr.net/npm/devicon@2.17.0/icons/vitejs/vitejs-original.svg)](https://cn.vitejs.dev/)       | Vite       | 3.2.x |
 
 更多请查看 **package.json**
 

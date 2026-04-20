@@ -1,15 +1,7 @@
 <script setup lang="ts">
 import type { PanelName } from './collapseContext';
 
-import {
-  computed,
-  defineProps,
-  inject,
-  onMounted,
-  onUnmounted,
-  ref,
-  withDefaults,
-} from 'vue';
+import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
 
 import { EpicIcon } from '../icon';
 import { COLLAPSE_CONTEXT_KEY } from './collapseContext';

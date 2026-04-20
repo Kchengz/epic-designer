@@ -44,7 +44,7 @@ export default defineConfig({
       {
         activeMatch: '/about',
         link: '/guide/about/about',
-        text: '关于 | 赞助',
+        text: '赞助 | 支持',
       },
       {
         text: '相关链接',

@@ -25,6 +25,7 @@ import {
 
 import {
   injectBuilderDisabled,
+  injectBuilderReadonly,
   NODE_ATTRS_KEY,
   useBuilderContext,
   useFieldPathPrefix,
@@ -71,6 +72,7 @@ const { formData } = useFormItem();
 
 const { fieldStateMap, slots } = useBuilderContext();
 const disabled = injectBuilderDisabled();
+const readonly = injectBuilderReadonly();
 // 接收页面管理对象
 const pageManager = usePageManager();
 // 校验前缀字段
@@ -300,7 +302,9 @@ const getProps = computed(() => {
     hidden: !show.value,
     readonly:
       fieldStateType.value !== 'WRITE' &&
-      (fieldStateType.value === 'READ' || innerSchema.props?.readonly),
+      (fieldStateType.value === 'READ' ||
+        readonly.value ||
+        innerSchema.props?.readonly),
     ...onEvent,
   };
 });
@@ -482,8 +486,11 @@ onBeforeUnmount(handleVnodeUnmounted);
       v-bind="{ ...getProps }"
       v-model:[getProps.bindModel]="innerValue"
       :model="formData"
-      :class="{ 'epic-hidden': innerSchema.props?.hidden }"
       @check="handleCheck"
+      :class="{
+        'ep-hidden': innerSchema.props?.hidden,
+        'ep-readonly': getProps.readonly,
+      }"
       @vue:mounted="handleAddComponentInstance"
     >
       <!-- 嵌套组件递归 start -->

@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import type { PanelName } from './collapseContext';
 
-import { defineEmits, defineProps, provide, ref, watch } from 'vue';
+import { provide, ref, watch } from 'vue';
 
 import { COLLAPSE_CONTEXT_KEY } from './collapseContext';
 

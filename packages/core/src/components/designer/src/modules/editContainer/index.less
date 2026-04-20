@@ -30,7 +30,7 @@
       width: 100%;
     }
 
-    .epic-hidden {
+    .ep-hidden {
       position: relative;
       &::after {
         content: '<隐藏状态>';
@@ -51,7 +51,7 @@
       }
 
       // 防止内部嵌套的隐藏元素重复显示
-      .epic-hidden::after {
+      .ep-hidden::after {
         display: none;
       }
     }
