@@ -54,6 +54,14 @@ export const frameworkRoutes = [
           title: '公共方法',
         },
       },
+      {
+        path: 'customValidate',
+        name: 'customValidate',
+        component: () => import('@/views/designer/customValidate/index.vue'),
+        meta: {
+          title: '自定义校验组件',
+        },
+      },
     ],
   },
   {

@@ -1,9 +1,32 @@
 <script lang="ts" setup>
-import { ref, useAttrs } from 'vue';
+import { computed, ref, useAttrs } from 'vue';
 
 import { NFormItem } from 'naive-ui/lib/form';
 
-const attrs = useAttrs() as any;
+type FormItemCheckPayload = {
+  message?: string;
+  result?: boolean;
+};
+
+const props = defineProps<{
+  checkPayload?: FormItemCheckPayload | null;
+}>();
+
+const rawAttrs = useAttrs();
+const attrs = computed<any>(() => {
+  if (!props.checkPayload) {
+    return rawAttrs;
+  }
+
+  return {
+    ...rawAttrs,
+    feedback:
+      props.checkPayload.message ??
+      (props.checkPayload.result ? '校验通过' : '校验失败'),
+    showFeedback: true,
+    validationStatus: props.checkPayload.result ? 'success' : 'error',
+  };
+});
 const form = ref<any>(null);
 </script>
 <template>

@@ -151,6 +151,7 @@ if (Object.keys(attrs).length > 0) {
 
 // 定义组件及组件props字段
 const componentRef = shallowRef<any>(null);
+const checkPayload = ref<null | { message?: string; result?: boolean }>(null);
 
 const fieldStateType = ref<FieldStateType | null>(null);
 const fieldRequired = ref<boolean | null | undefined>(null);
@@ -307,6 +308,10 @@ const getProps = computed(() => {
     ...onEvent,
   };
 });
+
+function handleCheck(payload: { message?: string; result?: boolean }) {
+  checkPayload.value = payload;
+}
 
 // 添加组件实例
 function handleAddComponentInstance(vNode?: VNode) {
@@ -470,6 +475,7 @@ onBeforeUnmount(handleVnodeUnmounted);
 <template>
   <dynamicFormItem
     v-if="componentRef && show"
+    :check-payload="checkPayload"
     :has-form-item="
       innerSchema.noFormItem !== true && getComponentConfig?.defaultSchema.input
     "
@@ -480,6 +486,7 @@ onBeforeUnmount(handleVnodeUnmounted);
       v-bind="{ ...getProps }"
       v-model:[getProps.bindModel]="innerValue"
       :model="formData"
+      @check="handleCheck"
       :class="{
         'ep-hidden': innerSchema.props?.hidden,
         'ep-readonly': getProps.readonly,
