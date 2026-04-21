@@ -2,6 +2,36 @@
     overflow: auto;
     height: 100%;
     box-sizing: border-box;
+
+    .ep-tree-action {
+    display: none;
+    align-items: center;
+
+    &.active {
+      display: flex;
+    }
+
+    .iconfont {
+      color: #999;
+      display: none;
+
+      &.active {
+        color: var(--epic-primary-color);
+        display: inline-block;
+      }
+    }
+
+  }
+
+   .ep-outline-item:hover {
+    .ep-tree-action {
+      display: flex;
+    }
+
+    .ep-tree-action .iconfont {
+      display: inline-block;
+    }
+  }
   }
   
   

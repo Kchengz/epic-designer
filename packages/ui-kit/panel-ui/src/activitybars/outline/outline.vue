@@ -76,7 +76,7 @@ function handleDelete(schema) {
     >
       <template #tree-node="{ schema }">
         <div
-          class="epic-text-padding flex"
+          class="ep-outline-item epic-text-padding flex"
           :class="{ hidden: schema.props?.hidden }"
           @mouseenter.stop="designer.setHoverNode(schema)"
           @mouseleave.stop="designer.setHoverNode(null)"
@@ -98,7 +98,7 @@ function handleDelete(schema) {
               !pluginManager.component.getLocked(schema) &&
               schema.id !== designer.pageSchema.schemas[0].id
             "
-            class="epic-tree-action"
+            class="ep-tree-action"
             :class="{
               active: schema.props?.hidden || schema.status?.lock,
             }"
