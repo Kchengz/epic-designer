@@ -25,14 +25,22 @@ export function usePanel() {
   // 获取未隐藏的活动栏
   const activityBars = computed(() => {
     return viewsContainers.activityBars.value.filter(
-      (item) => !hiddenActivityBars.value.includes(item.title),
+      (item) =>
+        !(
+          hiddenActivityBars.value.includes(item.title) ||
+          hiddenActivityBars.value.includes(item.id)
+        ),
     );
   });
 
   // 获取未隐藏的右侧边栏
   const rightSidebars = computed(() => {
     return viewsContainers.rightSidebars.value.filter(
-      (item) => !hiddenRightSidebars.value.includes(item.title),
+      (item) =>
+        !(
+          hiddenRightSidebars.value.includes(item.title) ||
+          hiddenRightSidebars.value.includes(item.id)
+        ),
     );
   });
 
@@ -106,15 +114,15 @@ export function usePanel() {
 
   /**
    * 隐藏活动栏
-   * @param title 属性
+   * @param value 活动栏的title或id
    */
-  function hideActivitybar(title: string) {
-    hiddenActivityBars.value.push(title);
+  function hideActivitybar(value: string) {
+    hiddenActivityBars.value.push(value);
   }
 
   /**
    * 隐藏右侧边栏
-   * @param value 属性
+   * @param value 右侧边栏的id 或 title
    */
   function hideRightSidebar(value: string) {
     hiddenRightSidebars.value.push(value);
@@ -122,10 +130,10 @@ export function usePanel() {
 
   /**
    * 显示活动栏
-   * @param title 属性
+   * @param value 活动栏的title或id
    */
-  function showActivitybar(title: string) {
-    const index = hiddenActivityBars.value.indexOf(title);
+  function showActivitybar(value: string) {
+    const index = hiddenActivityBars.value.indexOf(value);
     if (index !== -1) {
       hiddenActivityBars.value.splice(index, 1);
     }
@@ -133,10 +141,10 @@ export function usePanel() {
 
   /**
    * 显示右侧边栏
-   * @param title 属性
+   * @param value 右侧边栏的id 或 title
    */
-  function showRightSidebar(title: string) {
-    const index = hiddenRightSidebars.value.indexOf(title);
+  function showRightSidebar(value: string) {
+    const index = hiddenRightSidebars.value.indexOf(value);
     if (index !== -1) {
       hiddenRightSidebars.value.splice(index, 1);
     }

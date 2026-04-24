@@ -385,7 +385,7 @@ pluginManager.panel.registerActivitybar({
 > 以上仅是简单的注册示例，详情请参考[自定义活动栏文档](/guide/extensions/activityBar.html)
 ### 隐藏活动栏 hideActivitybar
 
-类型：`(value: string, attr?: string) => void`
+类型：`(value: string) => void`
 
 说明：隐藏指定的活动栏面板
 
@@ -399,7 +399,7 @@ pluginManager.panel.hideActivitybar('component_view');
 
 ### 显示活动栏 showActivitybar
 
-类型：`(value: string, attr?: string) => void`
+类型：`(value: string) => void`
 
 说明：显示活动栏
 
@@ -438,7 +438,7 @@ pluginManager.panel.registerRightSidebar({
 > 以上仅是简单的注册示例，详情请参考[自定义右侧栏文档](/guide/extensions/rightSidebar.html)
 ### 隐藏右侧栏 hideRightSidebar
 
-类型：`(value: string, attr?: string) => void`
+类型：`(value: string) => void`
 
 说明：隐藏右侧栏
 
@@ -452,7 +452,7 @@ pluginManager.panel.hideRightSidebar('event_view');
 
 ### 显示右侧栏 showRightSidebar
 
-类型：`(value: string, attr?: string) => void`
+类型：`(value: string) => void`
 
 说明：显示右侧栏
 
