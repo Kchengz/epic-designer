@@ -64,7 +64,7 @@ export default {
         props: {
           placeholder: '请输入',
         },
-        type: 'input',
+        type: 'number',
       },
       {
         field: 'children',
