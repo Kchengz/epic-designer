@@ -329,43 +329,41 @@ defineExpose({
       <!-- 动作配置 start -->
       <div class="epic-modal-right-panel">
         <epScriptEdit v-if="state.actionItem.type === 'custom'" />
-        <div
-          v-if="
-            state.actionItem.type !== 'custom' &&
-            state.actionItem.methodName &&
-            methodOptions?.length
-          "
-          class="bg-$ep-muted mb-4 rounded-lg border p-4 transition-colors"
-        >
-          <div class="flex flex-col gap-1">
-            <div class="flex items-center">
-              <EpicIcon name="icon--epic--info" class="mr-2" />
-              <span class="text-$ep-text-helper text-sm font-medium">
-                {{ componentSchema?.label }}
-                <span class="text-$ep-text-secondary">
-                  {{
-                    methodOptions.find(
-                      (item) => item.value === state.actionItem.methodName,
-                    )?.label || '未知'
-                  }}
+        <div v-if="state.actionItem.type !== 'custom'">
+          <div
+            v-if="state.actionItem.methodName && methodOptions?.length"
+            class="bg-$ep-muted mb-4 rounded-lg border p-4 transition-colors"
+          >
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center">
+                <EpicIcon name="icon--epic--info" class="mr-2" />
+                <span class="text-$ep-text-helper text-sm font-medium">
+                  {{ componentSchema?.label }}
+                  <span class="text-$ep-text-secondary">
+                    {{
+                      methodOptions.find(
+                        (item) => item.value === state.actionItem.methodName,
+                      )?.label || '未知'
+                    }}
+                  </span>
+                  动作配置
                 </span>
-                动作配置
-              </span>
+              </div>
             </div>
           </div>
+          <div
+            v-if="actionArgsConfigs.length === 0"
+            class="pt-42px text-center text-gray-400"
+          >
+            暂无配置
+          </div>
+          <epArgsEditor
+            v-else
+            :key="argsEditorKey"
+            v-model="state.actionItem.args"
+            :action-args-configs="actionArgsConfigs"
+          />
         </div>
-        <div
-          v-if="actionArgsConfigs.length === 0"
-          class="pt-42px text-center text-gray-400"
-        >
-          暂无配置
-        </div>
-        <epArgsEditor
-          v-else
-          :key="argsEditorKey"
-          v-model="state.actionItem.args"
-          :action-args-configs="actionArgsConfigs"
-        />
       </div>
       <!-- 动作配置 end -->
     </div>
