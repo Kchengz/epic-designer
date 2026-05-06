@@ -1,3 +1,16 @@
+## 1.1.9（2026-05-06）
+【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
+### ✨ Feat
+- 大纲面板新增组件显示/隐藏、锁定/解锁、复制、删除操作
+- 新增表单readonly只读模式
+- 表单项自定义校验（checkPayload）
+### ✨ Refactor
+- 替换拖拽依赖，将 vuedraggable 全面迁移为 vue-draggable-plus
+### 🐛 Bug Fixes
+- 修复elementPlus对话框嵌套渲染异常问题
+- 修复活动栏与右侧边栏通过id隐藏显示无效问题 
+- 修复antdv栅格布局设置栅格间距值为string类型导致警告问题
+- 修复动作配置面板错误显示暂无配置的问题
 ## 1.1.8（2026-03-14）
 【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
 ### 🐛 Bug Fixes

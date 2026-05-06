@@ -529,6 +529,7 @@ onMounted(async () => {
 | pageSchema | EDesigner 设计器生成的 json 数据 | json    | -      | -     |
 | formData   | 表单数据，用于数据回显(仅用于name为default的表单)           | FormDataModel | -  | 0.9.15 |
 | disabled   | 禁用EBuilder所有输入项           | boolean | false  | 0.9.4 |
+| readonly | 设置表单为只读 | boolean | false | 1.1.9 |
 | fieldStates | 控制表单字段状态 | FieldStates | - | 1.1.0 |
 
 ## 函数
