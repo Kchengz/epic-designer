@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed, PropType, ref, toRaw, watch } from 'vue';
 
+import { EpCollapse, EpCollapsePanel } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 
 import EActionEditorItem from './src/EActionEditorItem.vue';
@@ -19,9 +20,6 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 const epActionModal = pluginManager.component.get('epActionModal');
-
-const Collapse = pluginManager.component.get('Collapse');
-const CollapseItem = pluginManager.component.get('CollapseItem');
 
 const epActionModalRef = ref<any>(null);
 let editIndex = 0;
@@ -148,27 +146,24 @@ function handleAdd(action: any) {
 </script>
 
 <template>
-  <Collapse
-    v-model="activeNames"
-    v-model:active-key="activeNames"
-    v-model:expanded-names="activeNames"
-  >
-    <CollapseItem
+  <EpCollapse v-model="activeNames">
+    <EpCollapsePanel
       v-for="item in filterEventList"
       :key="item.title"
       :title="item.title"
-      :header="item.title"
       :name="item.title"
     >
-      <EActionEditorItem
-        v-model="modelValueComputed"
-        :item-events="item.events"
-        :all-events="allEvents"
-        :events="events"
-        @add="handleOpen"
-        @edit="handleOpenEdit"
-      />
-    </CollapseItem>
-  </Collapse>
+      <div class="p-2 pt-0">
+        <EActionEditorItem
+          v-model="modelValueComputed"
+          :item-events="item.events"
+          :all-events="allEvents"
+          :events="events"
+          @add="handleOpen"
+          @edit="handleOpenEdit"
+        />
+      </div>
+    </EpCollapsePanel>
+  </EpCollapse>
   <epActionModal ref="epActionModalRef" @add="handleAdd" @edit="handleEdit" />
 </template>
