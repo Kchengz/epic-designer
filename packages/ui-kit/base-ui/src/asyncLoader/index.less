@@ -33,10 +33,10 @@
 .ep-skeleton-button {
     width: 80px;
     height: 24px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, color-mix(in oklch, var(--ep-border), var(--ep-background) 60%) 25%, color-mix(in oklch, var(--ep-border), var(--ep-background) 40%) 50%, color-mix(in oklch, var(--ep-border), var(--ep-background) 60%) 75%);
     background-size: 200% 100%;
-    animation: skeleton-loading 1.5s infinite;
-    border-radius: 4px;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: calc(var(--ep-radius) - 2px);
 }
 
 .ep-skeleton-body {
@@ -62,10 +62,10 @@
 .ep-skeleton-activity-item {
     width: 32px;
     height: 32px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, color-mix(in oklch, var(--ep-border), var(--ep-background) 60%) 25%, color-mix(in oklch, var(--ep-border), var(--ep-background) 40%) 50%, color-mix(in oklch, var(--ep-border), var(--ep-background) 60%) 75%);
     background-size: 200% 100%;
-    animation: skeleton-loading 1.5s infinite;
-    border-radius: 4px;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: calc(var(--ep-radius) - 2px);
 }
 
 .ep-skeleton-sidebar {
@@ -90,10 +90,10 @@
     display: block;
     width: 100%;
     height: 24px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, color-mix(in oklch, var(--ep-border), var(--ep-background) 60%) 25%, color-mix(in oklch, var(--ep-border), var(--ep-background) 40%) 50%, color-mix(in oklch, var(--ep-border), var(--ep-background) 60%) 75%);
     background-size: 200% 100%;
-    animation: skeleton-loading 1.5s infinite;
-    border-radius: 4px;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: calc(var(--ep-radius) - 2px);
 }
 
 
