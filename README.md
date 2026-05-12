@@ -229,8 +229,3 @@ const pageSchema = {
 
 - [【epic-designer 交流群：747609683】](https://jq.qq.com/?_wv=1027&k=CtrM9ce2)
 
-## 捐赠
-如果你觉得epic-designer对你有帮助，欢迎给我捐赠
-
-![](https://examples.epicjs.cn/static/donation.png)
-
