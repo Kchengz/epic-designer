@@ -28,9 +28,11 @@ import {
 import { pluginManager } from '@epic-designer/manager';
 import { setupPage } from '@epic-designer/panel-ui';
 import {
+  deepClone,
   deepCompareAndModify,
   findSchemas,
   migrateComponentProps,
+  reorganizeSchemasForTableView,
 } from '@epic-designer/utils';
 
 import { useBuilder } from '../hooks/useBuilder';
@@ -83,10 +85,17 @@ const suspenseKey = ref(0);
 
 // 监听 pageSchema 的变化，并更新 pageManager.pageSchema
 watch(
-  () => props.pageSchema,
-  (newSchema) => {
-    if (!newSchema?.schemas?.length) return;
+  [() => props.pageSchema, () => props.tableView],
+  () => {
+    if (!props.pageSchema?.schemas?.length) return;
+    const newSchema = deepClone(props.pageSchema);
+
     migrateComponentProps(newSchema, true);
+
+    if (props.tableView) {
+      reorganizeSchemasForTableView(newSchema);
+    }
+
     deepCompareAndModify(pageManager.pageSchema, newSchema);
     pageManager.mountMonitor.reset();
     suspenseKey.value++;

@@ -885,3 +885,49 @@ export function migrateComponentProps(
   }
   return pageSchema;
 }
+
+/**
+ * 重新组织页面 schema 结构以适配 tableView 模式
+ * @param pageSchema 页面Schema
+ * @param fullWidthTypes - 需要添加全宽样式的组件类型数组
+ */
+export function reorganizeSchemasForTableView(
+  pageSchema: PageSchema,
+  fullWidthTypes: string[] = [],
+) {
+  const schemas = findSchemas(
+    pageSchema.schemas,
+    (item) => item.type === 'form',
+  ) as ComponentSchema[];
+
+  const subTables: ComponentSchema[] = [];
+
+  schemas.forEach((formItem) => {
+    if (!formItem.children?.length) return;
+
+    const inputSchemas = findSchemas(
+      formItem.children,
+      (child) => {
+        const config = pluginManager.component.getConfigByType(child.type);
+        const isInput = Boolean(child.input && config && !config.isSubTable);
+        if (isInput && fullWidthTypes.includes(child.type)) {
+          child.class = 'ep-full-width';
+        }
+        return isInput;
+      },
+      false,
+      (item) => {
+        const config = pluginManager.component.getConfigByType(item.type);
+        if (config?.isSubTable) {
+          subTables.push(item);
+          return false;
+        }
+        return true;
+      },
+    ) as ComponentSchema[];
+    formItem.children = inputSchemas.reverse();
+  });
+
+  pageSchema.schemas.push(...subTables);
+  return pageSchema;
+}
