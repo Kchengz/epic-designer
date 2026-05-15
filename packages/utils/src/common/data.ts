@@ -895,18 +895,17 @@ export function reorganizeSchemasForTableView(
   pageSchema: PageSchema,
   fullWidthTypes: string[] = [],
 ) {
-  const schemas = findSchemas(
+  const formSchemas = findSchemas(
     pageSchema.schemas,
     (item) => item.type === 'form',
   ) as ComponentSchema[];
 
-  const subTables: ComponentSchema[] = [];
-
-  schemas.forEach((formItem) => {
-    if (!formItem.children?.length) return;
+  formSchemas.forEach((form) => {
+    if (!form.children?.length) return;
+    const subTables: ComponentSchema[] = [];
 
     const inputSchemas = findSchemas(
-      formItem.children,
+      form.children,
       (child) => {
         const config = pluginManager.component.getConfigByType(child.type);
         const isInput = Boolean(child.input && config && !config.isSubTable);
@@ -919,15 +918,16 @@ export function reorganizeSchemasForTableView(
       (item) => {
         const config = pluginManager.component.getConfigByType(item.type);
         if (config?.isSubTable) {
+          item.class = 'ep-sub-table ep-full-width';
           subTables.push(item);
           return false;
         }
         return true;
       },
     ) as ComponentSchema[];
-    formItem.children = inputSchemas.reverse();
+    form.children = inputSchemas.reverse();
+    form.children.push(...subTables);
   });
 
-  pageSchema.schemas.push(...subTables);
   return pageSchema;
 }
