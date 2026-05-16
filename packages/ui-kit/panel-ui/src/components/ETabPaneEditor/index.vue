@@ -51,7 +51,7 @@ function handleDelete(index: number) {
 }
 </script>
 <template>
-  <div class="epic-propedit-item p-2">
+  <div class="ep-tabs-editor">
     <VueDraggable
       v-model="tabList"
       item-key="id"
@@ -81,7 +81,10 @@ function handleDelete(index: number) {
         </div>
       </div>
     </VueDraggable>
-  </div>
 
-  <div class="ep-button ghost primary" @click="handleAdd">添加</div>
+    <div class="ep-button ghost primary" @click="handleAdd">添加</div>
+  </div>
 </template>
+<style scoped lang="less">
+@import './index.less';
+</style>
