@@ -260,48 +260,154 @@ export function deepCompareAndModify(
  * @param obj1
  * @param obj2
  * @param ignoreKeys 可选参数，指定要忽略比较的属性名数组
+ * @param visitedObjs 内部参数，用于检测循环引用
  */
 export function deepEqual(
-  obj1: object,
-  obj2: object,
+  obj1: unknown,
+  obj2: unknown,
   ignoreKeys: string[] = [],
-  visitedObjs = new WeakMap(),
+  visitedObjs = new WeakMap<object, object>(),
 ): boolean {
-  const normalize = (obj: unknown): unknown => {
-    // 如果是数组类型，则递归调用 normalize 函数对每个元素进行标准化处理
-    if (Array.isArray(obj)) {
-      return obj.map(normalize);
+  // 严格相等直接返回 true
+  if (Object.is(obj1, obj2)) {
+    return true;
+  }
+
+  // 只要有一个不是对象，或者为 null，直接返回 false
+  if (
+    typeof obj1 !== 'object' ||
+    obj1 === null ||
+    typeof obj2 !== 'object' ||
+    obj2 === null
+  ) {
+    return false;
+  }
+
+  // 循环引用检测
+  if (visitedObjs.has(obj1)) {
+    // obj1 已经访问过，检查是否和之前配对的是同一个 obj2
+    return visitedObjs.get(obj1) === obj2;
+  }
+  if (visitedObjs.has(obj2)) {
+    // obj2 已经访问过，检查是否和之前配对的是同一个 obj1
+    return visitedObjs.get(obj2) === obj1;
+  }
+
+  visitedObjs.set(obj1, obj2);
+  visitedObjs.set(obj2, obj1);
+
+  let result = false;
+
+  try {
+    // 处理特殊类型：Date
+    if (obj1 instanceof Date && obj2 instanceof Date) {
+      result = obj1.getTime() === obj2.getTime();
+      return result;
     }
 
-    // 如果是对象类型，则将所有属性名按照字母顺序排序，并递归调用 normalize 函数对每个属性值进行标准化处理
-    else if (typeof obj === 'object' && obj !== null) {
-      // 在访问过该对象时，直接返回一个占位符
-      if (visitedObjs.has(obj)) {
-        return '[Circular]';
+    // 处理特殊类型：RegExp
+    if (obj1 instanceof RegExp && obj2 instanceof RegExp) {
+      result = obj1.source === obj2.source && obj1.flags === obj2.flags;
+      return result;
+    }
+
+    // 处理特殊类型：Map
+    if (obj1 instanceof Map && obj2 instanceof Map) {
+      if (obj1.size !== obj2.size) {
+        result = false;
+        return result;
       }
-      visitedObjs.set(obj, true);
-
-      const keys = Object.keys(obj).sort();
-      const normalizedObj: Record<string, unknown> = {};
-      keys.forEach((key) => {
-        if (!ignoreKeys.includes(key)) {
-          // 如果该属性不在忽略列表中
-          normalizedObj[key] = normalize((obj as Record<string, unknown>)[key]);
+      for (const [key, val] of obj1) {
+        if (
+          !obj2.has(key) ||
+          !deepEqual(val, obj2.get(key), ignoreKeys, visitedObjs)
+        ) {
+          result = false;
+          return result;
         }
-      });
-
-      // 递归调用 normalize 函数时，需要将 visitedObjs 参数传递下去
-      visitedObjs.delete(obj);
-      return normalizedObj;
+      }
+      result = true;
+      return result;
     }
-    // 其它类型直接返回即可
-    else {
-      return obj;
-    }
-  };
 
-  // 对两个对象进行标准化处理后，再进行比较
-  return JSON.stringify(normalize(obj1)) === JSON.stringify(normalize(obj2));
+    // 处理特殊类型：Set
+    if (obj1 instanceof Set && obj2 instanceof Set) {
+      if (obj1.size !== obj2.size) {
+        result = false;
+        return result;
+      }
+      const arr2 = Array.from(obj2);
+      for (const item1 of obj1) {
+        const foundIndex = arr2.findIndex((item2) =>
+          deepEqual(item1, item2, ignoreKeys, visitedObjs),
+        );
+        if (foundIndex === -1) {
+          result = false;
+          return result;
+        }
+        arr2.splice(foundIndex, 1);
+      }
+      result = true;
+      return result;
+    }
+
+    // 处理普通对象和数组
+    const isArray1 = Array.isArray(obj1);
+    const isArray2 = Array.isArray(obj2);
+
+    if (isArray1 !== isArray2) {
+      result = false;
+      return result;
+    }
+
+    if (isArray1 && isArray2) {
+      if (obj1.length !== obj2.length) {
+        result = false;
+        return result;
+      }
+      for (const [i, element] of obj1.entries()) {
+        if (!deepEqual(element, obj2[i], ignoreKeys, visitedObjs)) {
+          result = false;
+          return result;
+        }
+      }
+      result = true;
+      return result;
+    }
+
+    // 纯对象比较
+    const objA = obj1 as Record<string, unknown>;
+    const objB = obj2 as Record<string, unknown>;
+
+    const filterKeys = (obj: Record<string, unknown>) =>
+      Object.keys(obj).filter((key) => !ignoreKeys.includes(key));
+
+    const keys1 = filterKeys(objA);
+    const keys2 = filterKeys(objB);
+
+    if (keys1.length !== keys2.length) {
+      result = false;
+      return result;
+    }
+
+    for (const key of keys1) {
+      if (!Object.prototype.hasOwnProperty.call(objB, key)) {
+        result = false;
+        return result;
+      }
+      if (!deepEqual(objA[key], objB[key], ignoreKeys, visitedObjs)) {
+        result = false;
+        return result;
+      }
+    }
+
+    result = true;
+    return result;
+  } finally {
+    // 比较完成后清理映射，避免内存泄漏和状态污染
+    visitedObjs.delete(obj1);
+    visitedObjs.delete(obj2);
+  }
 }
 
 /**
