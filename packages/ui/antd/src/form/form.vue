@@ -5,7 +5,7 @@ import type { VNode } from 'vue';
 
 import { computed, ref } from 'vue';
 
-import { useForm } from '@epic-designer/hooks';
+import { provideBuilderDisabled, useForm } from '@epic-designer/hooks';
 import { Form } from 'ant-design-vue';
 
 interface FormInstance extends InstanceType<typeof Form> {
@@ -25,13 +25,17 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     componentSchema: ComponentSchema;
+    disabled?: boolean;
     scrollToFirstError?: boolean;
   }>(),
   {
     componentSchema: () => ({ type: '' }),
+    disabled: false,
     scrollToFirstError: false,
   },
 );
+
+provideBuilderDisabled(computed(() => props.disabled));
 
 const form = ref<FormInstance | null>(null);
 const { formData, formInstances } = useForm(

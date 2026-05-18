@@ -2,11 +2,9 @@
 import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
 import type { FormInst } from 'naive-ui';
 
-import type { PropType } from 'vue';
-
 import { computed, onMounted, ref } from 'vue';
 
-import { useForm } from '@epic-designer/hooks';
+import { provideBuilderDisabled, useForm } from '@epic-designer/hooks';
 import { findSchemas } from '@epic-designer/utils';
 import { NForm } from 'naive-ui/lib/form';
 
@@ -21,13 +19,18 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = defineProps({
-  componentSchema: {
-    default: () => ({}),
-    require: true,
-    type: Object as PropType<ComponentSchema>,
+const props = withDefaults(
+  defineProps<{
+    componentSchema: ComponentSchema;
+    disabled?: boolean;
+  }>(),
+  {
+    componentSchema: () => ({ type: '' }),
+    disabled: false,
   },
-});
+);
+
+provideBuilderDisabled(computed(() => props.disabled));
 
 const form = ref<FormInstance | null>(null);
 const { formData, formInstances } = useForm(
