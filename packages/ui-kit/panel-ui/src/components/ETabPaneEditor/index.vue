@@ -65,13 +65,13 @@ function handleDelete(index: number) {
       <div
         v-for="(item, index) in tabList"
         :key="index"
-        class="epic-tab-pane-editor-item my-2 grid grid-cols-[auto_auto_16px] items-center gap-2"
+        class="ep-tab-pane-editor-item my-2 grid grid-cols-[auto_auto_16px] items-center gap-2"
       >
         <EpicIcon class="handle cursor-move text-lg" name="icon--epic--drag" />
         <Input v-model:value="item.label" v-model="item.label" />
         <div
           v-if="tabList.length > 1"
-          class="epic-option-del-btn flex items-center"
+          class="ep-option-del-btn flex items-center"
         >
           <EpicIcon
             class="hover:text-red cursor-pointer text-lg"

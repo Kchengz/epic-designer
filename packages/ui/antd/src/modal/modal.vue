@@ -56,7 +56,7 @@ const getProps = computed<Record<string, any>>(() => ({
   style: props.fixedHeight ? 'top:20px' : '',
   title: props.componentSchema?.label ?? '',
   visible: firstNumber > 3 ? undefined : attrs.modelValue,
-  wrapClassName: 'epic-modal-ant',
+  wrapClassName: 'ep-modal-ant',
   children: null,
 }));
 
@@ -77,7 +77,7 @@ function handleClose() {
 
 <template>
   <Modal v-bind="getProps">
-    <div class="epic-modal-main ep-scoped">
+    <div class="ep-modal-main ep-scoped">
       <slot>
         <slot name="edit-node">
           <slot
@@ -88,7 +88,7 @@ function handleClose() {
         </slot>
       </slot>
     </div>
-    <div v-if="props.footer" class="epic-modal-footer">
+    <div v-if="props.footer" class="ep-modal-footer">
       <Space align="end">
         <Button @click="handleClose"> {{ props.cancelText }} </Button>
         <Button v-if="!props.hideConfirm" type="primary" @click="handleOk">

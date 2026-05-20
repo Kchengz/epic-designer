@@ -16,8 +16,8 @@ import {
 import { pluginManager } from './pluginManager';
 
 export interface ActionsModel {
-  args: string;
-  componentId?: string;
+  args?: string;
+  componentId?: null | string;
   methodName: string;
   type: 'component' | 'custom' | 'public';
 }

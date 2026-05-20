@@ -150,7 +150,7 @@ function handleDelete(index: number) {
           v-if="componentSchema.show ? componentSchema.show() : true"
           class="m-t-2 flex first:m-0"
         >
-          <div class="epic-attr-label">
+          <div class="ep-attr-label">
             {{ componentSchema.label }}
           </div>
           <div class="flex-1">

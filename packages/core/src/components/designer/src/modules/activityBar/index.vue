@@ -33,8 +33,8 @@ function handleClick(item: ActivitybarModel, index: number) {
 </script>
 <template>
   <div class="relative flex">
-    <div class="epic-action-bar">
-      <ul class="epic-actions-container flex-center flex-col gap-1">
+    <div class="ep-action-bar">
+      <ul class="ep-actions-container flex-center flex-col gap-1">
         <EpTooltip
           placement="right"
           :content="item.title"
@@ -42,7 +42,7 @@ function handleClick(item: ActivitybarModel, index: number) {
           :key="index"
         >
           <li
-            class="epic-action-item flex-center h-8 w-8 text-[16px]"
+            class="ep-action-item flex-center h-8 w-8 text-[16px]"
             :class="{ checked: activityBarCheckedIndex === index }"
             @click="handleClick(item, index)"
           >
@@ -55,10 +55,10 @@ function handleClick(item: ActivitybarModel, index: number) {
       </ul>
     </div>
     <div
-      class="epic-left-sidebar"
+      class="ep-left-sidebar"
       :class="{ hide: activityBarCheckedIndex === null }"
     >
-      <div class="epic-sidebar-container">
+      <div class="ep-sidebar-container">
         <component :is="sidebarComponent" />
       </div>
     </div>

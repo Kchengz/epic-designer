@@ -198,19 +198,19 @@ defineExpose({
 <template>
   <div
     v-if="!pluginManager.designer.initialized.value"
-    class="epic-loading-box"
+    class="ep-loading-box"
   >
     <EpDesignerLoader />
   </div>
   <Suspense v-else @resolve="handleReady">
     <template #default>
       <div
-        class="epic-designer-main ep-scoped"
+        class="ep-designer-main ep-scoped"
         @mouseover="setHoverNode()"
         ref="designerRef"
         tabindex="0"
       >
-        <div class="epic-header-container" v-if="!props.hiddenHeader">
+        <div class="ep-header-container" v-if="!props.hiddenHeader">
           <slot name="header">
             <EHeader @preview="handlePreview" @save="handleSave">
               <template #header>
@@ -235,7 +235,7 @@ defineExpose({
           </slot>
         </div>
         <div
-          class="epic-split-view-container"
+          class="ep-split-view-container"
           :class="{ 'hidden-header': hiddenHeader }"
         >
           <EActivityBar />
@@ -250,7 +250,7 @@ defineExpose({
       </div>
     </template>
     <template #fallback>
-      <div class="epic-loading-box">
+      <div class="ep-loading-box">
         <EpDesignerLoader />
       </div>
     </template>

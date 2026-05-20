@@ -357,11 +357,11 @@ defineExpose({
   <div
     v-show="showSelector && designer.state.selectedNode?.id !== 'root'"
     ref="selectorRef"
-    class="epic-selected-widget z-999 pointer-events-none absolute"
+    class="ep-selected-widget z-999 pointer-events-none absolute"
     :class="`${selectorPosition} ${selectorTransition ? 'transition-all' : ''}`"
   >
-    <div ref="actionBoxRef" class="epic-widget-action-box">
-      <div class="epic-widget-action-item whitespace-nowrap">
+    <div ref="actionBoxRef" class="ep-widget-action-box">
+      <div class="ep-widget-action-item whitespace-nowrap">
         <!-- {{ designer.state.selectedNode?.type }} -->
         {{
           pluginManager.component.getConfigByType(
@@ -373,21 +373,21 @@ defineExpose({
       <div v-if="isRemovableAndDraggable" class="flex items-center">
         <div
           title="选择父节点"
-          class="epic-widget-action-item pointer-events-auto"
+          class="ep-widget-action-item pointer-events-auto"
           @click="handleSelectParentNode"
         >
           <EpicIcon name="icon--epic--upward" />
         </div>
         <div
           title="复制"
-          class="epic-widget-action-item pointer-events-auto"
+          class="ep-widget-action-item pointer-events-auto"
           @click="designer.handleDuplicate"
         >
           <EpicIcon name="icon--epic--copy-all-outline-rounded" />
         </div>
         <div
           title="删除"
-          class="epic-widget-action-item pointer-events-auto"
+          class="ep-widget-action-item pointer-events-auto"
           @click="designer.handleDelete"
         >
           <EpicIcon name="icon--epic--delete-outline-rounded" />
@@ -404,7 +404,7 @@ defineExpose({
       designer.state.selectedNode?.id !== designer.state.hoverNode?.id
     "
     ref="hoverWidgetRef"
-    class="epic-hover-widget z-998 pointer-events-none absolute"
+    class="ep-hover-widget z-998 pointer-events-none absolute"
   ></div>
   <!-- 悬停效果 end  -->
 </template>

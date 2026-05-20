@@ -15,7 +15,7 @@ import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'ant-design-vue/dist/reset.css';
 
 const { isDark } = useTheme();
-const epicDarkMode = useStorage<boolean>('epic-dark-mode', false);
+const epicDarkMode = useStorage<boolean>('ep-dark-mode', false);
 isDark.value = epicDarkMode.value;
 watch(
   () => isDark.value,
@@ -94,7 +94,7 @@ function switchUI(ui: string) {
 switchUI(selectValue.value);
 </script>
 <template>
-  <div class="epic-demo-header h-64px flex items-center justify-between px-6">
+  <div class="ep-demo-header h-64px flex items-center justify-between px-6">
     <a
       class="decoration-none flex items-center"
       href="https://docs.epicjs.cn"
@@ -104,7 +104,7 @@ switchUI(selectValue.value);
       <span class="text-16px ml-4 font-bold">EpicDesigner低代码设计器</span>
     </a>
 
-    <div class="epic-demo-header-right flex items-center">
+    <div class="ep-demo-header-right flex items-center">
       <a
         v-for="(item, index) in links"
         :key="index"

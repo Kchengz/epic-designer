@@ -33,11 +33,11 @@
   z-index: 88;
 } */
 
-.epic-designer-main a {
+.ep-designer-main a {
   text-decoration: none !important;
 }
 
 
-.epic-right-sidebar .epic-actions-container .epic-action-item{
+.ep-right-sidebar .ep-actions-container .ep-action-item{
   margin: 0;
 }

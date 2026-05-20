@@ -35,10 +35,10 @@ function handleClick(item: RightSidebarModel, index: number) {
 }
 </script>
 <template>
-  <div v-if="sidebarComponent" class="epic-right-sidebar-container relative">
+  <div v-if="sidebarComponent" class="ep-right-sidebar-container relative">
     <!-- 折叠按钮 start -->
     <div
-      class="epic-right-sidebar-hide-btn z-9 absolute flex cursor-pointer items-center justify-center"
+      class="ep-right-sidebar-hide-btn z-9 absolute flex cursor-pointer items-center justify-center"
       @click="handleHideRight"
     >
       <EpicIcon
@@ -49,13 +49,13 @@ function handleClick(item: RightSidebarModel, index: number) {
     </div>
     <!-- 折叠按钮 end -->
 
-    <div class="epic-right-sidebar w-308px" :class="{ hide: hideRightMain }">
+    <div class="ep-right-sidebar w-308px" :class="{ hide: hideRightMain }">
       <EpicBreadcrumb />
-      <ul class="epic-actions-container">
+      <ul class="ep-actions-container">
         <li
           v-for="(item, index) in rightSidebars"
           :key="index"
-          class="epic-action-item"
+          class="ep-action-item"
           :title="item.title"
           :class="{ checked: activityBarCheckedIndex === index }"
           @click="handleClick(item, index)"
@@ -63,7 +63,7 @@ function handleClick(item: RightSidebarModel, index: number) {
           {{ item.title }}
         </li>
       </ul>
-      <div class="epic-sidebar-content">
+      <div class="ep-sidebar-content">
         <component :is="sidebarComponent" />
       </div>
     </div>

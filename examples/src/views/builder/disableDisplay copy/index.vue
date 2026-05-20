@@ -102,7 +102,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="epic-page-main p-2">
+  <div class="ep-page-main p-2">
     <EBuilder ref="ebRef" :page-schema="pageSchema" @ready="handleReady" />
     <div @click="handleGetData">获取数据</div>
     {{ data }}

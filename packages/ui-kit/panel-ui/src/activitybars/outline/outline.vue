@@ -66,7 +66,7 @@ function handleDelete(schema) {
 }
 </script>
 <template>
-  <div class="epic-outline">
+  <div class="ep-outline">
     <EpicTree
       :options="pageSchema.schemas"
       draggable
@@ -76,19 +76,19 @@ function handleDelete(schema) {
     >
       <template #tree-node="{ schema }">
         <div
-          class="ep-outline-item epic-text-padding flex"
+          class="ep-outline-item ep-text-padding flex"
           :class="{ hidden: schema.props?.hidden }"
           @mouseenter.stop="designer.setHoverNode(schema)"
           @mouseleave.stop="designer.setHoverNode(null)"
         >
           <span class="max-w-full truncate">
             <EpicIcon
-              class="epic-component-icon translate-y-2px"
+              class="ep-component-icon translate-y-2px"
               :name="pluginManager.component.getIcon(schema.type)"
             />
             {{ schema.label ?? pluginManager.component.getLabel(schema.type) }}
           </span>
-          <span class="epic-node-type-text w-0 flex-1 truncate">
+          <span class="ep-node-type-text w-0 flex-1 truncate">
             {{ schema.id }}
           </span>
 

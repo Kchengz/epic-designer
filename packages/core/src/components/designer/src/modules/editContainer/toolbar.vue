@@ -271,18 +271,18 @@ function handleSetCanvas(type: string) {
 </script>
 <template>
   <!-- 工具条 start  -->
-  <div class="epic-edit-toolbar flex items-center justify-between px-2">
+  <div class="ep-edit-toolbar flex items-center justify-between px-2">
     <!-- 操作按钮 start  -->
     <div class="flex h-full flex-1 items-center">
       <template v-for="(action, index) in actionOptions" :key="index">
         <div
           v-if="action.divider && isShow(action.show)"
-          class="epic-divider"
+          class="ep-divider"
         ></div>
         <EpTooltip :content="action.title">
           <div
             v-if="isShow(action.show)"
-            class="epic-action-item h-90% px-10px flex cursor-pointer items-center text-base"
+            class="ep-action-item h-90% px-10px flex cursor-pointer items-center text-base"
             :class="{ disabled: action.disabled }"
             @click="action.on"
           >
@@ -316,12 +316,12 @@ function handleSetCanvas(type: string) {
       <!-- 缩放操作 end  -->
       <!-- 画布类型切换 start -->
       <div
-        class="epic-device h-28px p-2px flex items-center gap-1 rounded-md border"
+        class="ep-device h-28px p-2px flex items-center gap-1 rounded-md border"
       >
         <template v-for="item in deviceOptions" :key="item.key">
           <div
             :title="item.title"
-            class="epic-device-item rounded-$ep-radius flex h-full cursor-pointer items-center px-1 text-base transition-colors"
+            class="ep-device-item rounded-$ep-radius flex h-full cursor-pointer items-center px-1 text-base transition-colors"
             :class="{ checked: item.key === selectedKey }"
             @click="handleSetCanvas(item.key)"
           >

@@ -15,7 +15,7 @@ function handleSelect(schema: ComponentSchema) {
 }
 </script>
 <template>
-  <div class="epic-breadcrumb h-40px flex items-center truncate py-2 pl-4">
+  <div class="ep-breadcrumb h-40px flex items-center truncate py-2 pl-4">
     <span v-for="(item, index) in designer.state.matched" :key="index">
       <span
         v-if="index > designer.state.matched.length - 4"

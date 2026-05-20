@@ -90,13 +90,13 @@ function getNewEvents(type: string) {
 }
 </script>
 <template>
-  <div v-for="item in itemEvents" :key="item.type" class="epic-event-item">
-    <div class="epic-event-info">
+  <div v-for="item in itemEvents" :key="item.type" class="ep-event-item">
+    <div class="ep-event-info">
       <div class="epic-event-label" :title="item.describe ?? item.description">
         {{ item.describe ?? item.description }}
       </div>
       <div
-        class="epic-event-btn text-$ep-text-secondary flex items-center text-lg"
+        class="ep-event-btn text-$ep-text-secondary flex items-center text-lg"
       >
         <EpicIcon
           name="icon--epic--add-rounded"
@@ -104,7 +104,7 @@ function getNewEvents(type: string) {
         />
       </div>
     </div>
-    <div class="epic-action-editor-main">
+    <div class="ep-action-editor-main">
       <VueDraggable
         v-model="props.events[item.type]"
         item-key="id"
@@ -117,7 +117,7 @@ function getNewEvents(type: string) {
       >
         <div
           v-for="(action, index) in props.events[item.type]"
-          class="epic-editor-item rounded"
+          class="ep-editor-item rounded"
           :key="action.id"
         >
           <div class="w-36px flex items-center text-lg">
@@ -134,14 +134,14 @@ function getNewEvents(type: string) {
             <div v-else-if="action.type === 'public'">公共函数</div>
             {{ action.methodName }}
           </div>
-          <div class="epic-action-box text-$ep-text-helper text-lg">
+          <div class="ep-action-box text-$ep-text-helper text-lg">
             <div
-              class="epic-edit-btn"
+              class="ep-edit-btn"
               @click="handleEdit(index, item.type, action)"
             >
               <EpicIcon name="icon--epic--page-info-outline-rounded" />
             </div>
-            <div class="epic-del-btn" @click="handleDelete(index, item.type)">
+            <div class="ep-del-btn" @click="handleDelete(index, item.type)">
               <EpicIcon name="icon--epic--delete-outline-rounded" />
             </div>
           </div>

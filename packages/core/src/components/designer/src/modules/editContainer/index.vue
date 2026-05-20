@@ -27,11 +27,11 @@ onMounted(() => {
 });
 </script>
 <template>
-  <section class="epic-edit-canvas">
+  <section class="ep-edit-canvas">
     <EpicEditScreenContainer>
       <div
         ref="epicEditRangeRef"
-        class="epic-edit-range relative overflow-auto rounded-md"
+        class="ep-edit-range relative overflow-auto rounded-md"
         :style="getEditRangestyle"
       >
         <EpicNodeItem :schema="rootSchema" />

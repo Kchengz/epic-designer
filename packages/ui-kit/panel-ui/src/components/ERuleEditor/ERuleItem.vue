@@ -141,10 +141,10 @@ function handleDelete() {
         v-if="componentSchema.show ? componentSchema.show() : true"
         class="m-t-2 flex first:m-0"
       >
-        <div class="epic-attr-label" title="校验时机">
+        <div class="ep-attr-label" title="校验时机">
           {{ componentSchema.label }}
         </div>
-        <div class="epic-attr-input">
+        <div class="ep-attr-input">
           <EpicNode
             is-property
             v-model="modelRule[componentSchema.model]"

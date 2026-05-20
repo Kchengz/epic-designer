@@ -109,18 +109,18 @@ watchEffect(() => {
 <template>
   <div
     v-if="isShow(props.schema)"
-    class="epic-attr-item"
+    class="ep-attr-item"
     :class="props.schema.layout"
   >
     <div
       v-if="props.schema.label"
-      class="epic-attr-label"
+      class="ep-attr-label"
       :title="props.schema.label"
     >
       {{ props.schema.label }}
     </div>
     <div
-      class="epic-attr-input"
+      class="ep-attr-input"
       :class="{ 'block!': props.schema.layout === 'vertical' }"
     >
       <EpicNode

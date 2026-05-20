@@ -22,7 +22,7 @@ const { pageSchema } = useDesignerContext();
       ref="monacoEditorRef"
       v-model="pageSchema.script"
       auto-toggle-theme
-      class="epic-editor flex-1"
+      class="ep-editor flex-1"
       :config="MonacoEditorConfig"
       language="javascript"
     />

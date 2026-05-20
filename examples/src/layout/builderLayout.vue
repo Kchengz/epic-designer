@@ -45,7 +45,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="epic-page-main flex h-full">
+  <div class="ep-page-main flex h-full">
     <div class="flex-1 p-2">
       <h2 class="text-24px block pl-8 pt-4">
         {{ route.meta.title }}

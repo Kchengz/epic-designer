@@ -245,8 +245,8 @@ defineExpose({
     @close="handleClose"
     @ok="handleSave"
   >
-    <div class="epic-modal-action-main rounded">
-      <div class="epic-modal-left-panel flex h-full flex-col">
+    <div class="ep-modal-action-main rounded">
+      <div class="ep-modal-left-panel flex h-full flex-col">
         <!-- 动作所属对象 start -->
         <div class="flex h-0 flex-1 flex-col">
           <div
@@ -272,7 +272,7 @@ defineExpose({
             >
               <template #tree-node="{ schema }">
                 <div
-                  class="epic-text-padding hover:bg-$ep-muted flex items-center"
+                  class="ep-text-padding hover:bg-$ep-muted flex items-center"
                   :class="{ hidden: schema.props?.hidden }"
                 >
                   <span class="max-w-full truncate">
@@ -287,11 +287,11 @@ defineExpose({
                         ?.defaultSchema.label
                     }}
                   </span>
-                  <span class="epic-node-type-text w-0 flex-1 truncate">
+                  <span class="ep-node-type-text w-0 flex-1 truncate">
                     {{ schema.id }}
                   </span>
                   <Button
-                    class="epic-copy-id-btn"
+                    class="ep-copy-id-btn"
                     size="small"
                     @click.stop="copy(schema.id)"
                   >
@@ -303,14 +303,14 @@ defineExpose({
           </div>
         </div>
         <!-- 动作选择 start -->
-        <div class="epic-action-select h-30/100 flex flex-col">
+        <div class="ep-action-select h-30/100 flex flex-col">
           <div class="mb-2">动作选择（{{ actionTypeText }}）</div>
           <div class="pr-8px flex-1 overflow-auto">
             <div
               v-for="item in methodOptions"
               :key="item.value"
               :class="{ checked: item.value === state.actionItem.methodName }"
-              class="epic-action-item"
+              class="ep-action-item"
               @click="handleCheckedMethod(item.value)"
             >
               <span :title="item.value">{{ item.label }}</span>
@@ -327,7 +327,7 @@ defineExpose({
         <!-- 动作选择 end -->
       </div>
       <!-- 动作配置 start -->
-      <div class="epic-modal-right-panel">
+      <div class="ep-modal-right-panel">
         <epScriptEdit v-if="state.actionItem.type === 'custom'" />
         <div v-if="state.actionItem.type !== 'custom'">
           <div

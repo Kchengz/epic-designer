@@ -159,7 +159,7 @@ defineExpose({
     ref="editContainer"
     :class="{ bordered: props.bordered }"
     :style="isFullScreen ? fullScreenStyle : ''"
-    class="epic-code-editor relative"
+    class="ep-code-editor relative"
   >
     <div
       class="z-999 text-$ep-text-helper absolute right-4 top-2 cursor-pointer text-xl"
@@ -177,7 +177,7 @@ defineExpose({
   </div>
 </template>
 <style lang="less" scoped>
-.epic-code-editor {
+.ep-code-editor {
   width: 100%;
   min-height: 150px;
   :deep(.monaco-editor) {

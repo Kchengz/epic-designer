@@ -22,14 +22,14 @@
 ## 基础用法
 
 <ConfigProvider :theme="{ algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm }">
-  <div class="epic-designer-container">
+  <div class="ep-designer-container">
     <EDesigner  @save="handleSubmit"  />
   </div>
 </ConfigProvider>
 
 ```vue
 <template>
-  <div class="epic-designer-container">
+  <div class="ep-designer-container">
     <EDesigner @save="handleSubmit" />
   </div>
 </template>
@@ -45,7 +45,7 @@ function handleSubmit(e:PageSchema) {
 }
 </script>
 <style>
-.epic-designer-container {
+.ep-designer-container {
   width: 100%;
   height: 800px;
   border: 1px solid var(--ep-border);
@@ -71,7 +71,7 @@ function handleSubmit (e) {
 </script>
 
 <style>
-.epic-designer-container{
+.ep-designer-container{
 width:1200px;
 height:800px;
 border: 1px solid var(--ep-border);

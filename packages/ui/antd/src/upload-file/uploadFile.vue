@@ -130,7 +130,7 @@ function handlePreview(e: UploadFile): void {
 </script>
 
 <template>
-  <div class="epic-upload-file">
+  <div class="ep-upload-file">
     <Upload v-bind="getUploadProps">
       <Button
         class="flex items-center"

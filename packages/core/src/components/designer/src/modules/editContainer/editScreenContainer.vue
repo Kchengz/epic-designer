@@ -222,7 +222,7 @@ function computedScale() {
 
     <div
       ref="editScreenContainerRef"
-      class="epic-edit-screen-container flex-1 overflow-auto overflow-y-hidden"
+      class="ep-edit-screen-container flex-1 overflow-auto overflow-y-hidden"
       :class="{ 'cursor-grab': draggableComputed }"
       :draggable="draggableComputed"
       @wheel.passive="handleZoom"

@@ -42,7 +42,7 @@ const TreeNodeText = defineComponent({
         treeContext!.slots['tree-node']?.(props) ??
           h(
             'span',
-            { class: 'epic-text-padding flex' },
+            { class: 'ep-text-padding flex' },
             {
               default: () => [
                 h(
@@ -54,7 +54,7 @@ const TreeNodeText = defineComponent({
                 ),
                 h(
                   'span',
-                  { class: 'epic-node-type-text flex-1 w-0 truncate' },
+                  { class: 'ep-node-type-text flex-1 w-0 truncate' },
                   props.schema.id,
                 ),
               ],
@@ -90,7 +90,7 @@ init();
 </script>
 <template>
   <li
-    class="epic-tree-node"
+    class="ep-tree-node"
     :class="{
       expanded: props.schema.children?.length,
       'is-locked': pluginManager.component.getLocked(props.schema.type),
@@ -114,7 +114,7 @@ init();
     <ETreeNodes
       v-if="props.schema.children?.length"
       v-model:schemas="props.schema.children"
-      class="epic-tree-sublist"
+      class="ep-tree-sublist"
       :class="{ expanded }"
       :parent-schema="props.schema"
     />

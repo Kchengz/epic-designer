@@ -22,8 +22,8 @@ function handleSave() {
 }
 </script>
 <template>
-  <header class="epic-header relative">
-    <div class="epic-header-item flex flex-1 items-center">
+  <header class="ep-header relative">
+    <div class="ep-header-item flex flex-1 items-center">
       <slot name="prefix">
         <a
           class="decoration-none flex items-center"
@@ -41,12 +41,12 @@ function handleSave() {
       </slot>
     </div>
 
-    <div class="epic-header-item text-12px flex flex-1 justify-center">
+    <div class="ep-header-item text-12px flex flex-1 justify-center">
       <slot name="title">
         {{ designerProps.title }}
       </slot>
     </div>
-    <div class="epic-header-item flex flex-1 items-center justify-end">
+    <div class="ep-header-item flex flex-1 items-center justify-end">
       <slot name="right-prefix"></slot>
       <slot name="right-action">
         <div>

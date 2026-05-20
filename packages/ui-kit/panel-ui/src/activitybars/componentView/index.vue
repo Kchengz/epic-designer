@@ -16,7 +16,7 @@ const revoke = designer.revoke;
 const pageSchema = designer.pageSchema;
 const groups = pluginManager.component.getComponentSchemaGroups();
 const keyword = ref('');
-const activeKeys = useStorage('epic-component-view-keys', []);
+const activeKeys = useStorage('ep-component-view-keys', []);
 
 /**
  * 计算组件分类列表
@@ -61,9 +61,9 @@ function handleClick(schema: ComponentSchema) {
 }
 </script>
 <template>
-  <div class="epic-component-view flex flex-col">
+  <div class="ep-component-view flex flex-col">
     <!-- 搜素框 start -->
-    <div class="epic-search-box px-10px py-2">
+    <div class="ep-search-box px-10px py-2">
       <Input
         v-model="keyword"
         v-model:value="keyword"
@@ -107,7 +107,7 @@ function handleClick(schema: ComponentSchema) {
               <div
                 v-for="item in group.list"
                 :key="item.type"
-                class="epic-componet-item flex items-center truncate"
+                class="ep-component-item flex items-center truncate"
                 @click="handleClick(item)"
               >
                 <EpicIcon
@@ -116,7 +116,7 @@ function handleClick(schema: ComponentSchema) {
                     ''
                   "
                 />
-                <div class="epic-componet-label w-0 flex-1 truncate">
+                <div class="ep-component-label w-0 flex-1 truncate">
                   {{ item.label }}
                 </div>
               </div>

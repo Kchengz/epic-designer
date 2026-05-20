@@ -86,9 +86,9 @@ provide(TREE_CONTEXT_KEY, {
 });
 </script>
 <template>
-  <div class="epic-tree flex h-full flex-col">
+  <div class="ep-tree flex h-full flex-col">
     <!-- 搜素框 start -->
-    <div class="epic-search-box px-10px py-6px">
+    <div class="ep-search-box px-10px py-6px">
       <Input
         v-model="keyword"
         v-model:value="keyword"
@@ -102,7 +102,7 @@ provide(TREE_CONTEXT_KEY, {
       </Input>
     </div>
     <!-- 搜素框 end -->
-    <div class="epic-tree-main h-0 flex-1 overflow-auto">
+    <div class="ep-tree-main h-0 flex-1 overflow-auto">
       <ETreeNodes v-model:schemas="getTreeData" />
       <div
         v-show="getTreeData.length === 0"

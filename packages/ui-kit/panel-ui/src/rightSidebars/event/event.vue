@@ -90,7 +90,7 @@ function handleSetValue(value: any, field: string) {
 }
 </script>
 <template>
-  <div class="epic-event-view">
+  <div class="ep-event-view">
     <div v-if="selectedNode">
       <EActionEditor
         :key="selectedNode.id"

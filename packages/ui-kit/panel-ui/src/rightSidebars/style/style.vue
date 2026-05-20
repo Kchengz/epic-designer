@@ -67,7 +67,7 @@ const componentStyles = computed<ComponentSchema[]>(() => {
 });
 </script>
 <template>
-  <div :key="selectedNode?.id" class="epic-style-view">
+  <div :key="selectedNode?.id" class="ep-style-view">
     <div v-for="item in componentStyles" :key="item.field">
       <EAttributeItem :schema="item" />
     </div>

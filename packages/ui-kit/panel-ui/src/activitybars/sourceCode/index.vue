@@ -38,11 +38,11 @@ function setSchemas(e: string) {
 }
 </script>
 <template>
-  <div class="epic-sound-code">
+  <div class="ep-source-code">
     <MonacoEditor
       ref="monacoEditorRef"
       auto-toggle-theme
-      class="epic-editor"
+      class="ep-editor"
       :read-only="designerProps.sourceCodeReadOnly"
       :model-value="initModelValue"
       line-numbers="off"

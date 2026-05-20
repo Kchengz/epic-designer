@@ -1,11 +1,11 @@
 // 编辑画布
-.epic-edit-canvas {
+.ep-edit-canvas {
   flex: 1;
 
   background-size: 15px 15px;
   overflow: hidden;
 
-  .epic-edit-range {
+  .ep-edit-range {
     box-shadow:
       rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
       rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
@@ -16,14 +16,14 @@
       min-height: 100%;
       display: flex;
 
-      > .epic-draggable-range {
+      > .ep-draggable-range {
         flex: 1;
         height: auto;
         border: 0;
       }
     }
 
-    .epic-draggable-range {
+    .ep-draggable-range {
       min-height: 60px;
       height: 100%;
       border: 1px var(--ep-border) dashed;
@@ -57,17 +57,17 @@
     }
   }
 
-  .epic-hover-widget {
+  .ep-hover-widget {
     border: 1px var(--ep-primary) dashed;
     box-sizing: border-box;
   }
 
-  .epic-selected-widget {
+  .ep-selected-widget {
     border: 2px var(--ep-primary) solid;
     background: var(--ep-primary-faded);
     border-radius: 4px;
 
-    .epic-widget-action-box {
+    .ep-widget-action-box {
       position: absolute;
       z-index: 999;
       height: 28px;
@@ -77,7 +77,7 @@
       align-items: center;
       padding: 0 4px;
 
-      .epic-widget-action-item {
+      .ep-widget-action-item {
         height: 30px;
         padding: 0 4px;
         cursor: pointer;
@@ -98,7 +98,7 @@
   }
 
   // 隐藏设计区域滚动条
-  .epic-edit-screen-container {
+  .ep-edit-screen-container {
     &::-webkit-scrollbar {
       // display: none;
       width: 6px;
@@ -106,20 +106,20 @@
     }
   }
 
-  .epic-edit-toolbar {
+  .ep-edit-toolbar {
     height: 40px;
     background: var(--ep-designer-background);
     box-sizing: border-box;
     border-bottom: 1px solid var(--ep-border);
 
-    .epic-divider {
+    .ep-divider {
       width: 1px;
       height: 20px;
       background-color: var(--ep-border);
       margin: 0 4px;
     }
 
-    .epic-action-item {
+    .ep-action-item {
       color: var(--ep-text-secondary);
       height: 32px;
       border-radius: 4px;
@@ -134,10 +134,10 @@
       }
     }
 
-    .epic-device {
+    .ep-device {
       border: 1px solid var(--ep-border);
 
-      .epic-device-item {
+      .ep-device-item {
         &.checked {
           color: var(--ep-primary-foreground);
           background: var(--ep-primary);
@@ -159,7 +159,7 @@
     linear-gradient(90deg, transparent 14px, var(--ep-container-dot-color) 0);
 }
 
-.epic-node-leaf {
+.ep-node-leaf {
   position: relative;
   &::before {
     content: '';
@@ -171,7 +171,7 @@
     z-index: 999;
   }
 
-  .epic-node-leaf::before {
+  .ep-node-leaf::before {
     content: none;
   }
 }

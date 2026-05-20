@@ -24,7 +24,7 @@ const { isDark } = useTheme();
       <EHeader />
       <Layout>
         <LayoutSider>
-          <div class="epic-demo-menu h-full">
+          <div class="ep-demo-menu h-full">
             <EMenu />
           </div>
         </LayoutSider>

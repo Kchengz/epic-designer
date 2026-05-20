@@ -49,7 +49,7 @@ function isDraggable() {
     :data-epic-id="props.schema.id"
     class="edit-draggable-widget"
     :show-hidden-items="designerProps?.showHiddenItems"
-    :class="[isDraggable(), isLeafNode ? 'epic-node-leaf' : '']"
+    :class="[isDraggable(), isLeafNode ? 'ep-node-leaf' : '']"
   >
     <!-- childImmovable不可拖拽设计 start -->
     <template

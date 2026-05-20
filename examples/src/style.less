@@ -3,42 +3,42 @@ body {
   margin: 0;
 }
 
-.epic-page-container {
+.ep-page-container {
   height: calc(100vh - 64px);
   padding: 8px;
   position: relative;
 }
 
-.epic-page-main {
+.ep-page-main {
   background-color: var(--ep-designer-background);
 }
 
-.epic-demo-header {
-  --epic-demo-header-bg: #fff;
-  --epic-demo-header-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03),
+.ep-demo-header {
+  --ep-demo-header-bg: #fff;
+  --ep-demo-header-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03),
     0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
-  background: var(--epic-demo-header-bg);
-  box-shadow: var(--epic-demo-header-shadow);
+  background: var(--ep-demo-header-bg);
+  box-shadow: var(--ep-demo-header-shadow);
   z-index: 6;
 
   > a,
-  .epic-demo-header-right > a {
+  .ep-demo-header-right > a {
     color: var(--ep-text-main);
   }
 }
 
-.dark .epic-demo-header {
-  --epic-demo-header-bg: #141414;
-  --epic-demo-header-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.8),
+.dark .ep-demo-header {
+  --ep-demo-header-bg: #141414;
+  --ep-demo-header-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.8),
     0 1px 6px -1px rgba(0, 0, 0, 0.7), 0 2px 4px 0 rgba(0, 0, 0, 0.7);
 }
 
 /* 当前页面最大化 css */
-.main-maximize .epic-demo-header,
+.main-maximize .ep-demo-header,
 .main-maximize .ant-layout-sider {
   display: none !important;
 }
 
-.main-maximize .epic-page-container {
+.main-maximize .ep-page-container {
   height: 100vh;
 }

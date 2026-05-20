@@ -41,7 +41,7 @@ function getNodeSchema(target) {
   }
 
   // 检查直接子元素（只向下查询一级）
-  if (!target.classList.contains('epic-draggable-range')) {
+  if (!target.classList.contains('ep-draggable-range')) {
     const directChild = target.querySelector(':scope > [data-epic-id]');
     if (directChild?.dataset?.epicId) {
       return getSchemaByEpicId(directChild.dataset.epicId);
@@ -114,10 +114,10 @@ function handleDragEnd() {
     :component-data="{
       type: 'transition-group',
     }"
-    class="epic-draggable-range"
+    class="ep-draggable-range"
     :animation="200"
     group="edit-draggable"
-    ghost-class="epic-moveing"
+    ghost-class="ep-moveing"
     @mouseover.stop="setHoverNode"
     @change="handleDragChange"
     @add="handleDragAdd"

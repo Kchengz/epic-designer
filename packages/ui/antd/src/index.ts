@@ -50,13 +50,13 @@ export function setupAntd(
   if (firstNumber > 3) {
     // 定义 CSS 样式
     const css = `
-.epic-modal-ant .epic-modal-main {
+.ep-modal-ant .ep-modal-main {
   padding: 4px 12px 12px;
 }
-.epic-modal-ant .ant-modal-title {
+.ep-modal-ant .ant-modal-title {
   padding: 16px 16px 0px;
 }
-.epic-modal-ant .ant-modal-content {
+.ep-modal-ant .ant-modal-content {
   padding: 0px;
 }`;
     style.append(document.createTextNode(css));

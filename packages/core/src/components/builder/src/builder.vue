@@ -199,7 +199,7 @@ defineExpose({
       !pluginManager.designer.initialized.value ||
       pageManager.pageSchema.schemas.length === 0
     "
-    class="epic-loading-box"
+    class="ep-loading-box"
   >
     <EpBaseLoader />
   </div>
@@ -221,7 +221,7 @@ defineExpose({
       </div>
     </template>
     <template #fallback>
-      <div class="epic-loading-box">
+      <div class="ep-loading-box">
         <EpBaseLoader />
       </div>
     </template>

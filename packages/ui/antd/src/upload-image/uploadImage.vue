@@ -147,7 +147,7 @@ function previewError(): void {
 </script>
 
 <template>
-  <div class="epic-upload-image">
+  <div class="ep-upload-image">
     <Upload v-bind="getUploadProps">
       <div v-if="(fileList?.length ?? 0) < props.maxCount">
         <span

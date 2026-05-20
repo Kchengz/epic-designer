@@ -26,7 +26,7 @@ defineExpose({
 
 ## 显示,禁用交互示例-设计组件
 
-<div class="epic-designer-container">
+<div class="ep-designer-container">
 	<EDesigner ref="edRef"  @save="handleSubmit"  />
 </div>
 
@@ -527,7 +527,7 @@ function handleSubmit (e) {
 </script>
 
 <style>
-.epic-designer-container{
+.ep-designer-container{
 width:1200px;
 height:800px;
 border: 1px solid var(--ep-border);
