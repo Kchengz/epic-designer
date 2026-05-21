@@ -15,6 +15,16 @@ const selectedKeys = computed(() => {
   return id ? [id] : [];
 });
 
+// 判断组件是否有绑定事件
+function hasBoundEvents(schema: any): boolean {
+  if (!schema.on) return false;
+  const eventKeys = Object.keys(schema.on);
+  return eventKeys.some((key) => {
+    const events = schema.on[key];
+    return Array.isArray(events) && events.length > 0;
+  });
+}
+
 // 设置选中节点
 function handleNodeClick(e: any) {
   designer.setSelectedNode(e.componentSchema);
@@ -86,6 +96,13 @@ function handleDelete(schema) {
               class="ep-component-icon translate-y-2px"
               :name="pluginManager.component.getIcon(schema.type)"
             />
+            <span
+              v-if="hasBoundEvents(schema)"
+              class="ep-event-badge ml-0.5"
+              title="已绑定事件"
+            >
+              事件
+            </span>
             {{ schema.label ?? pluginManager.component.getLabel(schema.type) }}
           </span>
           <span class="ep-node-type-text w-0 flex-1 truncate">
