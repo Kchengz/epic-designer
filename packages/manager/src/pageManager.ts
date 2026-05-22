@@ -30,6 +30,8 @@ export function createPageManager() {
   const funcs = ref<Record<string, Function>>({});
   // 当前模式 true 设计模式, false 渲染模式
   const isDesignMode = ref(false);
+  // script 错误状态
+  const scriptError = ref<Error | null>(null);
 
   const defaultComponentIds = ref<string[]>([]);
 
@@ -211,9 +213,12 @@ export function createPageManager() {
         publicMethods,
         state: pluginManager.global,
       })();
+      scriptError.value = null;
     } catch (error) {
+      const err = error instanceof Error ? error : new Error(String(error));
+      scriptError.value = err;
       if (outputError) {
-        console.error('[Epic：自定义函数]异常：', error);
+        console.error('[Epic：自定义函数]异常：', err);
       }
     }
   }
@@ -429,6 +434,7 @@ export function createPageManager() {
     mountMonitor,
     pageSchema,
     removeComponentInstance,
+    scriptError,
     setDefaultComponentIds,
     setDesignMode,
     setFormData,
