@@ -150,6 +150,7 @@ defineExpose({
     v-bind="formProps"
     @finish="onFinish"
     @vue:mounted="mountedForm"
+    :data-epic-id="props.componentSchema?.id"
   >
     <slot name="edit-node">
       <slot
