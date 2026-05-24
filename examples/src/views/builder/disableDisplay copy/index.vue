@@ -15,13 +15,9 @@ async function handleGetData() {
 const pageSchema = ref<PageSchema>({
   schemas: [
     {
-      props: {
-        style: {
-          padding: '16px',
-        },
-      },
       id: 'root',
       label: '页面',
+      props: {},
       type: 'page',
       children: [
         {

@@ -46,9 +46,7 @@ const pageSchema = ref<PageSchema>({
         labelWidth: 100,
         layout: 'horizontal',
         name: 'default',
-        style: {
-          padding: '16px',
-        },
+
         wrapperCol: {
           span: 19,
         },
@@ -223,7 +221,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <div class="mt-4 pl-8">
+    <div class="my-4 pl-8">
       <Alert message="试试将年龄修改为16岁或者性别设置为男" type="info" />
     </div>
     <EBuilder

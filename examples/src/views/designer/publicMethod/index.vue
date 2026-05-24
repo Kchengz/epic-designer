@@ -35,11 +35,7 @@ const pageSchema = {
     {
       id: 'root',
       label: '页面',
-      props: {
-        style: {
-          padding: '16px',
-        },
-      },
+      props: {},
       type: 'page',
       children: [
         {

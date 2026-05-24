@@ -211,12 +211,7 @@ const pageSchema = {
           },
           id: "gbm1xhrrj5s00",
         },
-      ],
-      props: {
-        style: {
-          padding: "16px",
-        },
-      },
+      ]
     },
   ],
 };

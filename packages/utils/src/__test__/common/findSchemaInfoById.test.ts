@@ -6,9 +6,7 @@ describe('findSchemaInfoById 函数测试', () => {
   const schemas = [
     {
       props: {
-        style: {
-          padding: '16px',
-        },
+        
       },
       id: 'root',
       label: '页面',

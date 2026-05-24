@@ -63,12 +63,7 @@ const pageSchema = ref<PageSchema>({
           ],
           "id": "form_uknia964"
         }
-      ],
-      "props": {
-        "style": {
-          "padding": "16px"
-        }
-      }
+      ]
     }
   ],
   "script": "const { defineExpose, getComponent } = this;\n\nfunction test (){\n    console.log('test')\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})"

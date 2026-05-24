@@ -6,9 +6,7 @@ describe('getFormSchemas 函数测试', () => {
   const schemas = [
     {
       props: {
-        style: {
-          padding: '16px',
-        },
+        
       },
       id: 'root',
       label: '页面',
@@ -84,11 +82,6 @@ describe('getFormSchemas 函数测试', () => {
   it('应该返回空数组当表单没有输入字段', () => {
     const emptySchemas = [
       {
-        props: {
-          style: {
-            padding: '16px',
-          },
-        },
         id: 'root',
         label: '页面',
         type: 'page',

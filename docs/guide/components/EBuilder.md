@@ -41,12 +41,7 @@ const pageSchema = {
           },
           id: "gbm1xhrrj5s00",
         },
-      ],
-      props: {
-        style: {
-          padding: "16px",
-        },
-      },
+      ]
     },
   ],
 };
@@ -176,12 +171,7 @@ const pageSchema = {
           ],
           id: "eqf5rtg2ohc00",
         },
-      ],
-      props: {
-        style: {
-          padding: "16px",
-        },
-      },
+      ]
     },
   ],
 };
@@ -271,12 +261,7 @@ const pageSchema = ref<PageSchema>({
           ],
           id: "form_18vemlk8",
         },
-      ],
-      props: {
-        style: {
-          padding: "16px",
-        },
-      },
+      ]
     },
   ],
 });
@@ -323,12 +308,7 @@ const pageSchema = {
           },
           id: "gbm1xhrrj5s00",
         },
-      ],
-      props: {
-        style: {
-          padding: "16px",
-        },
-      },
+      ]
     },
   ],
 };
@@ -433,12 +413,7 @@ const pageSchemaForm = {
           ],
           id: "eqf5rtg2ohc00",
         },
-      ],
-      props: {
-        style: {
-          padding: "16px",
-        },
-      },
+      ]
     },
   ]
 };
@@ -500,12 +475,7 @@ const pageSchema2 = {
           ],
           "id": "form_18vemlk8"
         }
-      ],
-      "props": {
-        "style": {
-          "padding": "16px"
-        }
-      }
+      ]
     }
   ]
 }

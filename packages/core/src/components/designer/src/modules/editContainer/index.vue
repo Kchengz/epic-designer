@@ -10,14 +10,19 @@ import EpicPreviewWidgets from './previewWidgets.vue';
 const epicEditRangeRef = ref<HTMLDivElement | null>(null);
 const epicPreviewWidgetsRef = ref<null | typeof EpicPreviewWidgets>(null);
 
-const { pageSchema } = useDesignerContext();
+const { pageSchema, props } = useDesignerContext();
 const rootSchema = computed(() => {
   return pageSchema.schemas[0];
 });
 
 const getEditRangestyle = computed(() => {
+  const padding =
+    typeof props.canvasPadding === 'number'
+      ? `${props.canvasPadding}px`
+      : props.canvasPadding;
   return {
     height: '100%',
+    padding,
     width: '100%',
   };
 });

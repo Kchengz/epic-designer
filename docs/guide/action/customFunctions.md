@@ -154,12 +154,7 @@ epic.json 数据
             }
           ]
         }
-      ],
-      "props": {
-        "style": {
-          "padding": "16px"
-        }
-      }
+      ]
     }
   ],
   "script": "const { defineExpose, getComponent } = this;\n\nfunction test (e){\n    getComponent('ho0tpt7i7tc00').setAttr('hidden',e)\n}\n\nfunction setDisabled (e){\n    getComponent('ho0tpt7i7tc00').setAttr('disabled',e)\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test,\n setDisabled\n})"
@@ -262,12 +257,7 @@ epic.json 数据
           ],
           "id": "3543akxhdum00"
         }
-      ],
-      "props": {
-        "style": {
-          "padding": "16px"
-        }
-      }
+      ]
     }
   ],
   "script": "const { defineExpose, getComponent } = this;\n\nfunction test (e){\n    const sum = (getComponent('1').getValue()??0)+ (getComponent('2').getValue()??0)\n    getComponent('3').setValue(sum)\n    \n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})"
@@ -407,12 +397,7 @@ const pageSchema = {
             }
           ]
         }
-      ],
-      "props": {
-        "style": {
-          "padding": "16px"
-        }
-      }
+      ]
     }
   ],
   "script": "const { defineExpose, getComponent } = this;\n\nfunction test (e){\n    getComponent('ho0tpt7i7tc00').setAttr('hidden',e)\n}\n\nfunction setDisabled (e){\n    getComponent('ho0tpt7i7tc00').setAttr('disabled',e)\n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test,\n setDisabled\n})"
@@ -507,12 +492,7 @@ const pageSchema2 = {
           ],
           "id": "3543akxhdum00"
         }
-      ],
-      "props": {
-        "style": {
-          "padding": "16px"
-        }
-      }
+      ]
     }
   ],
   "script": "const { defineExpose, getComponent } = this;\n\nfunction test (e){\n    const sum = (getComponent('1').getValue()??0)+ (getComponent('2').getValue()??0)\n    getComponent('3').setValue(sum)\n    \n}\n\n// 通过defineExpose暴露的函数或者属性\ndefineExpose({\n test \n})"

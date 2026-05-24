@@ -13,6 +13,7 @@ export interface TableMeta {
 }
 export interface DesignerProps {
   canvasMode?: 'desktop' | 'mobile' | 'tablet';
+  canvasPadding?: number | string;
   defaultSchema?: PageSchema;
   disabledZoom?: boolean;
   draggable?: boolean;

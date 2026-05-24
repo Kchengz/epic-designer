@@ -770,11 +770,6 @@ export function convertKFormData(data: any) {
       {
         id: 'root',
         label: '页面',
-        props: {
-          style: {
-            padding: '16px',
-          },
-        },
         type: 'page',
         children: [
           {
@@ -989,6 +984,13 @@ export function migrateComponentProps(
       '[Epic] PageSchema中的componentProps属性已迁移到props，请使用新版本设计器更新数据',
     );
   }
+
+  // 当 padding 属性 === 16px 时，删除该属性，适配新的画布边距模式
+  const style = pageSchema.schemas[0]?.props?.style;
+  if (style?.padding === '16px') {
+    delete style.padding;
+  }
+
   return pageSchema;
 }
 

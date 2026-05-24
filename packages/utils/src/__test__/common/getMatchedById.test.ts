@@ -5,11 +5,6 @@ import { getMatchedById } from '../../';
 // 示例数据
 const schemas = [
   {
-    props: {
-      style: {
-        padding: '16px',
-      },
-    },
     id: 'root',
     label: '页面',
     type: 'page',

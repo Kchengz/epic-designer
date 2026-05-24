@@ -26,7 +26,7 @@ const visible = ref(false);
 const dataVisible = ref(false);
 const formValues = ref({});
 
-const { pageSchema } = useDesignerContext();
+const { pageSchema, props: designerProps } = useDesignerContext();
 const kb = ref<any>(null);
 
 const getFormNames = computed(() => {
@@ -95,6 +95,12 @@ async function handleOk() {
   }
 }
 
+const getCanvasPadding = computed(() => {
+  return typeof designerProps.canvasPadding === 'number'
+    ? `${designerProps.canvasPadding}px`
+    : designerProps.canvasPadding;
+});
+
 defineExpose({
   handleOpen,
 });
@@ -109,7 +115,10 @@ defineExpose({
     @close="handleClose"
     @ok="handleOk"
   >
-    <div class="min-w-750px translate-y-0px h-full rounded">
+    <div
+      class="min-w-750px translate-y-0px h-full rounded"
+      :style="{ padding: getCanvasPadding }"
+    >
       <EBuilder v-if="visible" ref="kb" :page-schema="pageSchema" />
       <!-- 表单数据 start -->
       <Modal

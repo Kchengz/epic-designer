@@ -24,6 +24,7 @@ import EpicPreview from './modules/preview/index.vue';
 
 const props = withDefaults(defineProps<DesignerProps>(), {
   canvasMode: 'desktop',
+  canvasPadding: 16,
   disabledZoom: false,
   draggable: true,
   formMode: false,
@@ -196,10 +197,7 @@ defineExpose({
 });
 </script>
 <template>
-  <div
-    v-if="!pluginManager.designer.initialized.value"
-    class="ep-loading-box"
-  >
+  <div v-if="!pluginManager.designer.initialized.value" class="ep-loading-box">
     <EpDesignerLoader />
   </div>
   <Suspense v-else @resolve="handleReady">
