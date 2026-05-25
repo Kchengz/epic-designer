@@ -117,7 +117,7 @@ function handleReady() {
     designerRef.value?.addEventListener('wheel', handleWheel, {
       passive: false,
     });
-    emit('ready', { pageManager });
+    emit('ready', pageManager);
   });
 }
 
