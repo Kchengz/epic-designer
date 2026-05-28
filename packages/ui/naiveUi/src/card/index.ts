@@ -23,5 +23,5 @@ export default {
   },
   groupName: '布局',
   icon: 'icon--epic--wysiwyg-rounded',
-  sort: 900,
+  sort: 700,
 } as ComponentConfigModel;
