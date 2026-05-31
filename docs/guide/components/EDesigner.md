@@ -96,16 +96,19 @@ background: white;
 | sourceCodeReadOnly    | 设置`源码`面板为只读状态                                   | boolean                            | false     | 0.9.20 |
 | hidePreviewConfirm    | 隐藏预览页面`表单数据`按钮                                 | boolean                            | false     | 0.9.26 |
 | showHiddenItems | 控制设计区隐藏组件的是否保持显示状态 | boolean | true | 1.1.0 |
+| canvasPadding | 画布内边距 | number \| string | 16 | 1.1.10 |
+
+
 
 ## 函数
 
-| 函数名称 | 说明                                           | 参数 | 回调参数 | 版本   |
-| -------- | ---------------------------------------------- | ---- | -------- | ------ |
-| setData  | 导入 json 数据，继续编辑                       | json | Boolean  | 0.0.36 |
-| getData  | 获取 json 数据                                 | -    | Object   | 0.0.36 |
-| reset    | 清除表单                                       | -    | Boolean  | 0.0.36 |
-| preview  | 预览组件，与点击设计器头部预览按钮效果一致     | -    | -        | 0.9.15 |
-| save     | 触发保存事件，与点击设计器头部保存按钮效果一致 | -    | -        | 0.9.29 |
+| 函数名称 | 说明                                           | 参数 | 回调参数                                                     | 版本   |
+| -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ | ------ |
+| setData  | 导入 json 数据，继续编辑                       | json | Boolean                                                      | 0.0.36 |
+| getData  | 获取 json 数据                                 | -    | Object                                                       | 0.0.36 |
+| reset    | 清除表单                                       | -    | Boolean                                                      | 0.0.36 |
+| preview  | 预览组件，与点击设计器头部预览按钮效果一致     | -    | x ​// 设置 name 字段禁用  const fieldStates = [  {    field: 'name',    state: 'DISABLED'  }]​// 当 name 字段的值为 '张三' 时，将 name 字段设为必填并禁用const fieldStates = [  {    field: 'name',    condition: (data) => data.name === '张三',    state: 'DISABLED'  }]javascript | 0.9.15 |
+| save     | 触发保存事件，与点击设计器头部保存按钮效果一致 | -    | -                                                            | 0.9.29 |
 
 ## 事件
 

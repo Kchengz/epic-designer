@@ -1,4 +1,23 @@
+## 1.1.10（2026-05-31）
+
+【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
+
+### ✨ Feat
+- 表单组件 disabled 支持向下传递
+- 为大纲树添加事件绑定状态的提示
+- 新增自定义函数编辑时的异常提醒
+- 修复表单组件无法在设计面板选中问题
+- 设计器新增画布内边距canvasPadding属性配置
+
+### ✨ Refactor
+- 统一颜色与样式规范
+- 优化面板编辑器组件样式与布局
+- 重构 deepEqual，支持特殊类型
+- 统一CSS类名前缀 epic- → ep-
+- 调整designer组件ready事件参数为直接传递 pageManager
+
 ## 1.1.9（2026-05-06）
+
 【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
 ### ✨ Feat
 - 大纲面板新增组件显示/隐藏、锁定/解锁、复制、删除操作
