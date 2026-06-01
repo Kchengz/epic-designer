@@ -37,7 +37,7 @@ catalog:
   '@shikijs/monaco': ^1.24.4
   'magic-string': ^0.30.17
   'shiki': ^1.24.4
-  'vue-draggable-plus': ^0.6.0
+  'vue-draggable-plus': ^0.6.1
   'vue-router': ^4.5.0
   'vite-plugin-vue-devtools': 7.6.8
   '@types/node': ^22.10.6

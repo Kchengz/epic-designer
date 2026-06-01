@@ -90,7 +90,7 @@ const getDisabled = computed(() => {
   >
     <ETreeNodeItem
       v-for="element in modelSchemas"
-      :key="element.id"
+      :key="element?.id"
       :class="isDraggable(element)"
       :schema="element"
     />
@@ -99,7 +99,7 @@ const getDisabled = computed(() => {
   <ul v-else>
     <ETreeNodeItem
       v-for="element in modelSchemas"
-      :key="element.id"
+      :key="element?.id"
       :schema="element"
     />
   </ul>

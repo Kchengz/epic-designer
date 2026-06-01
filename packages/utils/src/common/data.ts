@@ -679,7 +679,7 @@ export function findSchemaById(
   const schema = findSchemas(
     schemas,
     (currentNode) => {
-      return currentNode.id === id;
+      return currentNode?.id === id;
     },
     true,
   ) as ComponentSchema & { children: ComponentSchema };
