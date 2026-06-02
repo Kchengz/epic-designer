@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ComponentSchema } from '@epic-designer/types';
 
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 import { useDesignerContext, usePageManager } from '@epic-designer/hooks';
@@ -11,17 +11,13 @@ import EpicNodeItem from './nodeItem.vue';
 defineOptions({
   name: 'EditNodeItem',
 });
-const props = defineProps<{
-  schemas: ComponentSchema[];
-}>();
-const emit = defineEmits(['update:schemas']);
+
 const designer = useDesignerContext();
 const revoke = designer.revoke;
 const pageManager = usePageManager();
 
-const modelSchemas = computed({
-  get: () => props.schemas,
-  set: (e) => emit('update:schemas', e),
+const modelSchemas = defineModel<ComponentSchema[]>('schemas', {
+  default: () => [],
 });
 
 // isDrageChange
@@ -110,7 +106,6 @@ function handleDragEnd() {
 <template>
   <VueDraggable
     v-model="modelSchemas"
-    item-key="id"
     :component-data="{
       type: 'transition-group',
     }"

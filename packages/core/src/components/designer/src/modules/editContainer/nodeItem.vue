@@ -71,7 +71,6 @@ function isDraggable() {
       <EpicNodes
         v-if="props.schema.children"
         v-model:schemas="props.schema.children"
-        :key="props.schema.children.length"
       />
     </template>
   </EpicNode>
