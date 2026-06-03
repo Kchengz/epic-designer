@@ -5,7 +5,7 @@ import { computed, ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 import { useDesignerContext, usePageManager } from '@epic-designer/hooks';
-import { findSchemas, getMatchedById } from '@epic-designer/utils';
+import { findSchemas } from '@epic-designer/utils';
 
 import EpicNodeItem from './nodeItem.vue';
 
@@ -105,44 +105,36 @@ function handleDragEnd(e) {
   }
   isDragChange.value = false;
 
-  setTimeout(() => {
-    const targetId = e.data.id;
-    const schemas = findSchemas(
+  const targetId = e.data.id;
+  const schemas = findSchemas(
+    pageManager.pageSchema.schemas,
+    (schema) => schema.id === targetId,
+  ) as ComponentSchema[];
+
+  // 只有存在重复 ID 时才处理
+  if (schemas.length > 1) {
+    findSchemas(
       pageManager.pageSchema.schemas,
-      (schema) => schema.id === targetId,
-    ) as ComponentSchema[];
-
-    // 只有存在重复 ID 时才处理
-    if (schemas.length > 1) {
-      const matchedPath = getMatchedById(
-        pageManager.pageSchema.schemas,
-        targetId,
-      );
-
-      // 确保路径长度至少为 2（即存在父节点）
-      if (matchedPath && matchedPath.length >= 2) {
-        const parentNode = matchedPath[matchedPath.length - 2];
-        if (parentNode && parentNode.children) {
-          const index = parentNode.children.findIndex(
-            (item) => item.id === targetId,
-          );
-          if (index !== -1) {
-            // 优雅的一行流，不污染原数组，直接赋新值触发更新
-            parentNode.children = parentNode.children.toSpliced(index, 1);
+      (schema) => {
+        if (!schema.children) return false;
+        for (const item of schema.children) {
+          // console.log(item);
+          if (item === e.data) {
+            schema.children.splice(schema.children.indexOf(item), 1);
+            return true;
           }
         }
-      }
-    }
-  }, 0);
+        return false;
+      },
+      true,
+    );
+  }
 }
 </script>
 
 <template>
   <VueDraggable
     v-model="modelSchemas"
-    :component-data="{
-      type: 'transition-group',
-    }"
     class="ep-draggable-range"
     :animation="200"
     group="edit-draggable"
