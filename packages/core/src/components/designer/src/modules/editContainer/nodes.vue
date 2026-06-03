@@ -1,26 +1,30 @@
 <script lang="ts" setup>
 import type { ComponentSchema } from '@epic-designer/types';
 
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 import { useDesignerContext, usePageManager } from '@epic-designer/hooks';
+import { findSchemas, getMatchedById } from '@epic-designer/utils';
 
 import EpicNodeItem from './nodeItem.vue';
 
 defineOptions({
   name: 'EditNodeItem',
 });
-
+const props = defineProps<{
+  schemas: ComponentSchema[];
+}>();
+const emit = defineEmits(['update:schemas']);
 const designer = useDesignerContext();
 const revoke = designer.revoke;
 const pageManager = usePageManager();
 
-const modelSchemas = defineModel<ComponentSchema[]>('schemas', {
-  default: () => [],
+const modelSchemas = computed({
+  get: () => props.schemas,
+  set: (val) => emit('update:schemas', val.filter(Boolean)),
 });
 
-// isDrageChange
 const isDragChange = ref(false);
 
 /**
@@ -95,11 +99,41 @@ function handleDragChange() {
 /**
  * 编辑区域内的拖拽结束事件，需判断是否 change，有可能拖拽并未修改顺序
  */
-function handleDragEnd() {
+function handleDragEnd(e) {
   if (isDragChange.value) {
     revoke.push('拖拽组件', true);
   }
   isDragChange.value = false;
+
+  setTimeout(() => {
+    const targetId = e.data.id;
+    const schemas = findSchemas(
+      pageManager.pageSchema.schemas,
+      (schema) => schema.id === targetId,
+    ) as ComponentSchema[];
+
+    // 只有存在重复 ID 时才处理
+    if (schemas.length > 1) {
+      const matchedPath = getMatchedById(
+        pageManager.pageSchema.schemas,
+        targetId,
+      );
+
+      // 确保路径长度至少为 2（即存在父节点）
+      if (matchedPath && matchedPath.length >= 2) {
+        const parentNode = matchedPath[matchedPath.length - 2];
+        if (parentNode && parentNode.children) {
+          const index = parentNode.children.findIndex(
+            (item) => item.id === targetId,
+          );
+          if (index !== -1) {
+            // 优雅的一行流，不污染原数组，直接赋新值触发更新
+            parentNode.children = parentNode.children.toSpliced(index, 1);
+          }
+        }
+      }
+    }
+  }, 0);
 }
 </script>
 
