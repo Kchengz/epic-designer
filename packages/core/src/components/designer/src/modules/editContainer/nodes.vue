@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ComponentSchema } from '@epic-designer/types';
 
-import { computed, ref } from 'vue';
+import { computed, nextTick, ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 import { useDesignerContext, usePageManager } from '@epic-designer/hooks';
@@ -85,8 +85,36 @@ function setHoverNode(event: Event) {
  */
 function handleDragAdd(event: any) {
   designer.setSelectedNode(event.clonedData);
-  revoke.push('插入组件', true);
   isDragChange.value = false;
+
+  nextTick(() => {
+    const targetId = event.data.id;
+    const schemas = findSchemas(
+      pageManager.pageSchema.schemas,
+      (schema) => schema.id === targetId,
+    ) as ComponentSchema[];
+
+    // 只有存在重复 ID 时才处理
+    if (schemas.length > 1) {
+      findSchemas(
+        pageManager.pageSchema.schemas,
+        (schema) => {
+          if (!schema.children) return false;
+          for (const item of schema.children) {
+            // console.log(item);
+            if (item === event.data) {
+              schema.children.splice(schema.children.indexOf(item), 1);
+              return true;
+            }
+          }
+          return false;
+        },
+        true,
+      );
+    }
+
+    revoke.push('插入组件', true);
+  });
 }
 
 /**
@@ -99,36 +127,11 @@ function handleDragChange() {
 /**
  * 编辑区域内的拖拽结束事件，需判断是否 change，有可能拖拽并未修改顺序
  */
-function handleDragEnd(e) {
+function handleDragEnd() {
   if (isDragChange.value) {
     revoke.push('拖拽组件', true);
   }
   isDragChange.value = false;
-
-  const targetId = e.data.id;
-  const schemas = findSchemas(
-    pageManager.pageSchema.schemas,
-    (schema) => schema.id === targetId,
-  ) as ComponentSchema[];
-
-  // 只有存在重复 ID 时才处理
-  if (schemas.length > 1) {
-    findSchemas(
-      pageManager.pageSchema.schemas,
-      (schema) => {
-        if (!schema.children) return false;
-        for (const item of schema.children) {
-          // console.log(item);
-          if (item === e.data) {
-            schema.children.splice(schema.children.indexOf(item), 1);
-            return true;
-          }
-        }
-        return false;
-      },
-      true,
-    );
-  }
 }
 </script>
 
