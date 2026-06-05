@@ -366,9 +366,6 @@ function handleVnodeUnmounted() {
     ) {
       pageManager.removeComponentInstance(`${innerSchema.id}_formItem`);
     }
-
-    // 当组件被销毁时，可能残留dom元素，需要手动移除
-    nodeInstance?.vnode.el?.nextElementSibling?.remove();
   }
 }
 

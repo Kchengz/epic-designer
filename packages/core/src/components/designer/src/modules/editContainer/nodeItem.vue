@@ -44,34 +44,35 @@ function isDraggable() {
 }
 </script>
 <template>
-  <EpicNode
-    :component-schema="props.schema"
-    :data-epic-id="props.schema.id"
-    class="edit-draggable-widget"
-    :show-hidden-items="designerProps?.showHiddenItems"
-    :class="[isDraggable(), isLeafNode ? 'ep-node-leaf' : '']"
-  >
-    <!-- childImmovable不可拖拽设计 start -->
-    <template
-      v-if="
-        pluginManager.component.getConfigByType(props.schema.type)
-          ?.editConstraints?.childImmovable
-      "
-      #edit-node
+  <div class="ep-node-item" :data-epic-id="props.schema.id">
+    <EpicNode
+      :component-schema="props.schema"
+      class="edit-draggable-widget"
+      :show-hidden-items="designerProps?.showHiddenItems"
+      :class="[isDraggable(), isLeafNode ? 'ep-node-leaf' : '']"
     >
-      <EpicNodeItem
-        v-for="node in props.schema.children"
-        :key="node.id"
-        :schema="node"
-        :draggable="false"
-      />
-    </template>
-    <!-- childImmovable不可拖拽设计 end -->
-    <template v-else #edit-node>
-      <EpicNodes
-        v-if="props.schema.children"
-        v-model:schemas="props.schema.children"
-      />
-    </template>
-  </EpicNode>
+      <!-- childImmovable不可拖拽设计 start -->
+      <template
+        v-if="
+          pluginManager.component.getConfigByType(props.schema.type)
+            ?.editConstraints?.childImmovable
+        "
+        #edit-node
+      >
+        <EpicNodeItem
+          v-for="node in props.schema.children"
+          :key="node.id"
+          :schema="node"
+          :draggable="false"
+        />
+      </template>
+      <!-- childImmovable不可拖拽设计 end -->
+      <template v-else #edit-node>
+        <EpicNodes
+          v-if="props.schema.children"
+          v-model:schemas="props.schema.children"
+        />
+      </template>
+    </EpicNode>
+  </div>
 </template>
