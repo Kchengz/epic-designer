@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 import type { ComponentSchema } from '@epic-designer/types';
 
-import { computed, nextTick, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 import { useDesignerContext, usePageManager } from '@epic-designer/hooks';
-import { findSchemas } from '@epic-designer/utils';
 
 import EpicNodeItem from './nodeItem.vue';
 
@@ -86,35 +85,6 @@ function setHoverNode(event: Event) {
 function handleDragAdd(event: any) {
   designer.setSelectedNode(event.clonedData);
   isDragChange.value = false;
-
-  nextTick(() => {
-    const targetId = event.data.id;
-    const schemas = findSchemas(
-      pageManager.pageSchema.schemas,
-      (schema) => schema.id === targetId,
-    ) as ComponentSchema[];
-
-    // 只有存在重复 ID 时才处理
-    if (schemas.length > 1) {
-      findSchemas(
-        pageManager.pageSchema.schemas,
-        (schema) => {
-          if (!schema.children) return false;
-          for (const item of schema.children) {
-            // console.log(item);
-            if (item === event.data) {
-              schema.children.splice(schema.children.indexOf(item), 1);
-              return true;
-            }
-          }
-          return false;
-        },
-        true,
-      );
-    }
-
-    revoke.push('插入组件', true);
-  });
 }
 
 /**
@@ -149,10 +119,13 @@ function handleDragEnd() {
     @click.stop="setSelectedNode"
     @choose="setSelectedNode"
   >
-    <EpicNodeItem
+    <div
+      class="ep-node-item"
       v-for="element in modelSchemas"
       :key="element.id"
-      :schema="element"
-    />
+      :data-epic-id="element.id"
+    >
+      <EpicNodeItem :schema="element" />
+    </div>
   </VueDraggable>
 </template>

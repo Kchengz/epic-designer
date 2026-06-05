@@ -12,18 +12,14 @@
     cursor: pointer;
     background-color: var(--ep-designer-background);
 
-    & > .ep-node-item {
-      height: 100%;
+    & > :first-child {
+      min-height: 100%;
+      display: flex;
 
-      > :first-child {
-        min-height: 100%;
-        display: flex;
-
-        > .ep-draggable-range {
-          flex: 1;
-          height: auto;
-          border: 0;
-        }
+      > .ep-draggable-range {
+        flex: 1;
+        height: auto;
+        border: 0;
       }
     }
 
