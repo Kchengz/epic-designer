@@ -34,6 +34,15 @@
   }
 }
 
+// 适配设计组件表单内联模式
+.ant-form-inline {
+  & > .ep-draggable-range {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+}
+
 // 适配ep-readonly样式
 .ep-readonly {
   .ant-form-item-control-input {

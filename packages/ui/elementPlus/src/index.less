@@ -83,3 +83,12 @@
   display: flex;
   justify-content: flex-end;
 }
+
+// 适配设计组件表单内联模式
+.el-form--inline {
+  & > .ep-draggable-range {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+}
