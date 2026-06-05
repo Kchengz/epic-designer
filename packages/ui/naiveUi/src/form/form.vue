@@ -125,12 +125,7 @@ defineExpose({
 });
 </script>
 <template>
-  <NForm
-    ref="form"
-    :model="formData"
-    v-bind="formProps"
-    :data-epic-id="props.componentSchema?.id"
-  >
+  <NForm ref="form" :model="formData" v-bind="formProps">
     <slot name="edit-node">
       <slot
         v-for="item in children"

@@ -124,6 +124,9 @@ export default {
     label: '按钮',
     type: 'button',
   },
+  editConstraints: {
+    inline: true,
+  },
   groupName: '表单',
   icon: 'icon--epic--fit-screen-rounded',
   sort: 1200,

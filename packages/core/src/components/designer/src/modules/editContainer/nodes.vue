@@ -5,6 +5,7 @@ import { computed, ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 import { useDesignerContext, usePageManager } from '@epic-designer/hooks';
+import { pluginManager } from '@epic-designer/manager';
 
 import EpicNodeItem from './nodeItem.vue';
 
@@ -103,6 +104,11 @@ function handleDragEnd() {
   }
   isDragChange.value = false;
 }
+
+function isInline(schema: ComponentSchema) {
+  const config = pluginManager.component.getComponentConfigByType(schema.type);
+  return config?.editConstraints?.inline || false;
+}
 </script>
 
 <template>
@@ -118,9 +124,12 @@ function handleDragEnd() {
     @end="handleDragEnd"
     @click.stop="setSelectedNode"
     @choose="setSelectedNode"
+    :force-fallback="true"
+    :fallback-on-body="true"
   >
     <div
       class="ep-node-item"
+      :class="{ 'ep-inline': isInline(element) }"
       v-for="element in modelSchemas"
       :key="element.id"
       :data-epic-id="element.id"

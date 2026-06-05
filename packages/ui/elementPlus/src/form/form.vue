@@ -114,12 +114,7 @@ defineExpose({
 </script>
 
 <template>
-  <ElForm
-    ref="form"
-    :model="formData"
-    v-bind="formProps"
-    :data-epic-id="props.componentSchema?.id"
-  >
+  <ElForm ref="form" :model="formData" v-bind="formProps">
     <slot name="edit-node">
       <slot
         v-for="item in children"
