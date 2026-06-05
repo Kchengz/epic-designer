@@ -256,6 +256,7 @@ const getFormItemProps = computed<ComponentSchema>(() => {
     field: model,
     rule: rules,
     rules,
+    style: innerSchema.props?.style,
   } as ComponentSchema;
 
   // 移除元素只读属性 children
@@ -269,6 +270,13 @@ const getFormItemProps = computed<ComponentSchema>(() => {
 const getComponentConfig = computed(() => {
   return (
     pluginManager.component.getComponentConfigByType(innerSchema.type) ?? null
+  );
+});
+
+const hasFormItem = computed(() => {
+  return (
+    innerSchema.noFormItem !== true &&
+    getComponentConfig.value?.defaultSchema.input
   );
 });
 
@@ -305,6 +313,7 @@ const getProps = computed(() => {
       (fieldStateType.value === 'READ' ||
         readonly.value ||
         innerSchema.props?.readonly),
+    style: hasFormItem.value ? {} : innerSchema.props?.style,
     ...onEvent,
   };
 });
@@ -476,9 +485,7 @@ onBeforeUnmount(handleVnodeUnmounted);
   <dynamicFormItem
     v-if="componentRef && show"
     :check-payload="checkPayload"
-    :has-form-item="
-      innerSchema.noFormItem !== true && getComponentConfig?.defaultSchema.input
-    "
+    :has-form-item="hasFormItem"
     :form-item-props="getFormItemProps"
   >
     <component
