@@ -1,3 +1,22 @@
+## 1.1.12（2026-06-05）
+
+【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
+
+### ✨ Feat
+
+- 组件注册配置新增内联元素inline属性
+- 输入组件样式默认附加到formItem组件上
+
+### ✨ Refactor
+
+- 调整背景色为默认白色
+
+### 🐛 Bug Fixes
+- 修复嵌套组件拖拽后出现多个相同元素
+- 修复组件节点出现null或重复节点问题
+- 修复重复节点处理异常删除节点问题
+- 修复布局组件渲染异常问题
+
 ## 1.1.10（2026-05-31）
 
 【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
