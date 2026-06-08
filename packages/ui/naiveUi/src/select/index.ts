@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'value',
-  component: async () => (await import('naive-ui')).NSelect,
+  component: () => import('./select.vue'),
   config: {
     attribute: [
       {

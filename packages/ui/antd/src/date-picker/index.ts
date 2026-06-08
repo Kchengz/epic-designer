@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'modelValue',
-  component: () => import('./datePicker'),
+  component: () => import('./date-picker'),
   config: {
     attribute: [
       {

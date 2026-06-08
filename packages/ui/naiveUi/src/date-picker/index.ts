@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'formatted-value',
-  component: async () => (await import('naive-ui')).NDatePicker,
+  component: () => import('./date-picker.vue'),
   config: {
     attribute: [
       {

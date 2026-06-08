@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'value',
-  component: async () => (await import('ant-design-vue')).Textarea,
+  component: () => import('./textarea.vue'),
   config: {
     action: [
       {

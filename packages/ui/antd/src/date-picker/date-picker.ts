@@ -10,6 +10,10 @@ export default defineComponent({
       default: null,
       type: [String, Object, Array],
     },
+    placeholder: {
+      default: '请选择',
+      type: String,
+    },
     type: {
       default: 'date',
       type: String,
@@ -34,9 +38,13 @@ export default defineComponent({
       const compProps: Record<string, any> = {
         'onUpdate:value': handleUpdate,
         picker: props.type.replace(/range$/, ''),
+        placeholder: props.placeholder,
         showTime: props.type.includes('time'),
         value: props.modelValue,
       };
+      if (props.placeholder) {
+        compProps.placeholder = props.placeholder;
+      }
 
       // 判断日期类型，渲染相应组件
       if (props.type.includes('range')) {

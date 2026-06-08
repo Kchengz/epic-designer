@@ -17,6 +17,7 @@ export default defineComponent({
         ...attrs,
         key: String(attrs.multiple),
         'onUpdate:modelValue': handleUpdate,
+        placeholder: attrs.placeholder ?? '请选择',
       };
 
       // watch

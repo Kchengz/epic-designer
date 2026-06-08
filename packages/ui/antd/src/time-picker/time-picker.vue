@@ -1,5 +1,5 @@
-<script lang="ts" setup>
-import { NInput } from 'naive-ui';
+<script setup lang="ts">
+import { TimePicker } from 'ant-design-vue';
 
 const props = withDefaults(
   defineProps<{
@@ -12,5 +12,5 @@ const props = withDefaults(
 </script>
 
 <template>
-  <NInput type="textarea" :placeholder="props.placeholder" />
+  <TimePicker :placeholder="props.placeholder" />
 </template>

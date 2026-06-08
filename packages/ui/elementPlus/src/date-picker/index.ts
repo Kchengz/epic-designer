@@ -1,7 +1,7 @@
 import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
-  component: async () => (await import('element-plus')).ElDatePicker,
+  component: () => import('./date-picker.vue'),
   config: {
     attribute: [
       {

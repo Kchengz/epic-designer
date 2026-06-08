@@ -1,7 +1,7 @@
 import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
-  component: async () => (await import('element-plus')).ElInput,
+  component: () => import('./textarea.vue'),
   config: {
     action: [
       {
@@ -146,7 +146,6 @@ export default {
     label: '文本域',
     props: {
       placeholder: '请输入',
-      type: 'textarea',
     },
     type: 'textarea',
   },

@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'value',
-  component: async () => (await import('ant-design-vue')).TimePicker,
+  component: () => import('./time-picker.vue'),
   config: {
     attribute: [
       {
@@ -181,7 +181,7 @@ export default {
     label: '时间选择器',
     props: {
       format: 'HH:mm:ss',
-      placeholder: '请输入',
+      placeholder: '请选择',
       valueFormat: 'HH:mm:ss',
     },
     type: 'time',

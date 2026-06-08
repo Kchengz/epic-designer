@@ -10,6 +10,7 @@ const attrs = useAttrs();
 const getProps = computed(() => ({
   ...attrs,
   'onUpdate:value': handleUpdate,
+  placeholder: attrs.placeholder ?? '请选择',
   showCheckedStrategy:
     Cascader[(attrs.showCheckedStrategy as string) ?? 'SHOW_PARENT'],
   value: attrs.modelValue,
