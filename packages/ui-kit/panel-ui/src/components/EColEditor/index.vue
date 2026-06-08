@@ -3,6 +3,7 @@ import type { ComponentSchema } from '@epic-designer/types';
 
 import type { PropType } from 'vue';
 
+import { ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 import { EpicIcon } from '@epic-designer/base-ui';
@@ -18,9 +19,49 @@ const props = defineProps({
 });
 const emit = defineEmits(['update:modelValue']);
 
-const Button = pluginManager.component.get('button');
+const Radio = pluginManager.component.get('radio');
 const Number = pluginManager.component.get('number');
 
+const attrOptions = [
+  {
+    label: 'span',
+    value: 'span',
+  },
+  {
+    label: 'xs',
+    value: 'xs',
+  },
+  {
+    label: 'sm',
+    value: 'sm',
+  },
+  {
+    label: 'md',
+    value: 'md',
+  },
+  {
+    label: 'lg',
+    value: 'lg',
+  },
+  {
+    label: 'xl',
+    value: 'xl',
+  },
+  {
+    label: 'offset',
+    value: 'offset',
+  },
+  {
+    label: 'push',
+    value: 'push',
+  },
+  {
+    label: 'pull',
+    value: 'pull',
+  },
+];
+
+const selectedAttr = ref('span');
 const innerValue = useVModel(props, 'modelValue', emit);
 
 /**
@@ -50,6 +91,14 @@ function handleDelete(index: number) {
 </script>
 <template>
   <div class="ep-col-editor">
+    <div class="ep-col-editor-radio">
+      <div class="text-$ep-text-helper text-sm">选择需要配置的属性：</div>
+      <Radio
+        v-model="selectedAttr"
+        v-model:value="selectedAttr"
+        :options="attrOptions"
+      />
+    </div>
     <VueDraggable
       v-model="innerValue"
       item-key="id"
@@ -68,8 +117,9 @@ function handleDelete(index: number) {
       >
         <EpicIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
         <Number
-          v-model:value="item.props.span"
-          v-model="item.props.span"
+          :key="selectedAttr"
+          v-model:value="item.props[selectedAttr]"
+          v-model="item.props[selectedAttr]"
           style="width: 100%"
           :min="1"
           :max="24"
@@ -83,7 +133,7 @@ function handleDelete(index: number) {
         </template>
       </div>
     </VueDraggable>
-    <Button @click="handleAdd"> 添加列 </Button>
+    <div class="ep-button ghost primary" @click="handleAdd">添加列</div>
   </div>
 </template>
 <style scoped lang="less">

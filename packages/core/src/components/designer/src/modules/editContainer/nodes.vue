@@ -80,8 +80,7 @@ function setHoverNode(event: Event) {
 
 /**
  * 从侧边栏拖入编辑区域，直接记录
- *
- * - tips: 拖入也会导致 change 被触发，Add 应该设置 isDrageChange 标识为 false
+ * 拖入也会导致 change 被触发，Add 应该设置 isDrageChange 标识为 false
  */
 function handleDragAdd(event: any) {
   designer.setSelectedNode(event.clonedData);
