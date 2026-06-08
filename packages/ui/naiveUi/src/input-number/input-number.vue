@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { InputNumber } from 'ant-design-vue';
+import { NInputNumber } from 'naive-ui';
 
 const props = withDefaults(
   defineProps<{
@@ -12,5 +12,5 @@ const props = withDefaults(
 </script>
 
 <template>
-  <InputNumber :placeholder="props.placeholder" />
+  <NInputNumber :placeholder="props.placeholder" />
 </template>

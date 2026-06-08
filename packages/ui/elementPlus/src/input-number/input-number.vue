@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { InputNumber } from 'ant-design-vue';
+import { ElInputNumber } from 'element-plus';
 
 const props = withDefaults(
   defineProps<{
@@ -12,5 +12,5 @@ const props = withDefaults(
 </script>
 
 <template>
-  <InputNumber :placeholder="props.placeholder" />
+  <ElInputNumber :placeholder="props.placeholder" />
 </template>

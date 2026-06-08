@@ -11,6 +11,7 @@ const props = withDefaults(
     componentSchema?: ComponentSchema;
     dataSelector?: boolean;
     options?: any[];
+    placeholder?: string;
   }>(),
   {
     componentSchema: () => ({
@@ -19,6 +20,7 @@ const props = withDefaults(
     }),
     dataSelector: false,
     options: () => [],
+    placeholder: '请输入',
   },
 );
 
@@ -41,7 +43,7 @@ eventBus?.on('dataSelector:selected', (data) => {
 });
 </script>
 <template>
-  <Input>
+  <Input :placeholder="props.placeholder">
     <template #suffix>
       <span
         v-if="props.dataSelector"
