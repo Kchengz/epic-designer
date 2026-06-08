@@ -28,17 +28,11 @@ export default {
       {
         field: 'props.format',
         label: '显示格式',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
       {
         field: 'props.valueFormat',
         label: '数据格式',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
       {
@@ -60,32 +54,22 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
       {
         field: 'props.hourStep',
         label: '小时选项间隔',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.minuteStep',
         label: '分钟选项间隔',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.secondStep',
         label: '秒选项间隔',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
@@ -111,7 +95,6 @@ export default {
               value: 'topRight',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },

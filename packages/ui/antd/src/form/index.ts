@@ -43,7 +43,6 @@ export default {
               value: 'inline',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'radio',
       },
@@ -76,9 +75,6 @@ export default {
       {
         field: 'props.labelCol.span',
         label: '标签占比',
-        props: {
-          placeholder: '请输入',
-        },
         show: ({ values }) => {
           return values.props?.labelLayout === 'flex';
         },
@@ -87,9 +83,6 @@ export default {
       {
         field: 'props.wrapperCol.span',
         label: '控件占比',
-        props: {
-          placeholder: '请输入',
-        },
         show: ({ values }) => {
           return values.props?.labelLayout === 'flex';
         },
@@ -133,7 +126,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },

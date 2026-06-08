@@ -54,9 +54,6 @@ export default {
       {
         field: 'props.labelSuffix',
         label: '标签后缀',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
 
@@ -79,7 +76,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -98,7 +94,6 @@ export default {
               value: 'right',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },

@@ -43,32 +43,22 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
       {
         field: 'props.max',
         label: '最大值',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.min',
         label: '最小值',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.step',
         label: '步长',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
@@ -87,16 +77,12 @@ export default {
               value: 'right',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
       {
         field: 'props.precision',
         label: '精度',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
@@ -136,9 +122,6 @@ export default {
     field: 'number',
     input: true,
     label: '数字输入框',
-    props: {
-      placeholder: '请输入',
-    },
     type: 'number',
   },
   groupName: '表单',

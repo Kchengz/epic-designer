@@ -61,7 +61,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -70,7 +69,6 @@ export default {
         label: '最大输入长度',
         props: {
           min: 0,
-          placeholder: '请输入',
         },
         type: 'number',
       },
@@ -85,17 +83,11 @@ export default {
       {
         field: 'props.autosize.minRows',
         label: '最小行数',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.autosize.maxRows',
         label: '最大行数',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {

@@ -6,7 +6,7 @@ const props = withDefaults(
     placeholder?: string;
   }>(),
   {
-    placeholder: '请输入',
+    placeholder: '请选择',
   },
 );
 </script>

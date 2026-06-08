@@ -133,7 +133,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -155,9 +154,6 @@ export default {
       {
         field: 'props.rangeSeparator',
         label: '分割符',
-        props: {
-          placeholder: '请输入',
-        },
         show({ values }) {
           return ['daterange', 'datetimerange', 'monthrange'].includes(
             values.props.type,

@@ -7,9 +7,6 @@ export default {
       {
         field: 'props.name',
         label: '页面名称',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
     ],

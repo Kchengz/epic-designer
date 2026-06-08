@@ -4,66 +4,9 @@ export default {
   component: () => import('./row'),
   config: {
     attribute: [
-      // {
-      //   label: "垂直对齐方式",
-      //   type: "select",
-      //   props: {
-      //     style: { width: "100%" },
-      //     options: [
-      //       {
-      //         label: "top",
-      //         value: "top",
-      //       },
-      //       {
-      //         label: "middle",
-      //         value: "middle",
-      //       },
-      //       {
-      //         label: "bottom",
-      //         value: "bottom",
-      //       },
-      //     ],
-      //     placeholder: "请选择",
-      //   },
-      //   field: "props.align",
-      // },
-      // {
-      //   label: "水平排列方式",
-      //   type: "select",
-      //   props: {
-      //     style: { width: "100%" },
-      //     options: [
-      //       {
-      //         label: "start",
-      //         value: "start",
-      //       },
-      //       {
-      //         label: "end",
-      //         value: "end",
-      //       },
-      //       {
-      //         label: "center",
-      //         value: "center",
-      //       },
-      //       {
-      //         label: "space-around",
-      //         value: "space-around",
-      //       },
-      //       {
-      //         label: "space-between",
-      //         value: "space-between",
-      //       },
-      //     ],
-      //     placeholder: "请选择",
-      //   },
-      //   field: "props.justify",
-      // },
       {
         field: 'props.gutter',
         label: '栅格间距',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {

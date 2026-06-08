@@ -48,7 +48,6 @@ export default {
               value: 'large',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -107,7 +106,6 @@ export default {
               value: 'left-end',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -130,9 +128,6 @@ export default {
       {
         field: 'props.maxTagCount',
         label: '最大tag数',
-        props: {
-          placeholder: '请输入',
-        },
         show: ({ values }) => values.props.multiple,
         type: 'number',
       },

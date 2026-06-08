@@ -53,16 +53,12 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
       {
         field: 'props.separator',
         label: '分割符',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
       {
@@ -80,7 +76,6 @@ export default {
               value: 'hover',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },

@@ -66,16 +66,12 @@ export default {
               value: 'large',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
       {
         field: 'props.maxlength',
         label: '最大输入长度',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {

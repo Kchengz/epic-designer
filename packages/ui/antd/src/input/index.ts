@@ -37,9 +37,6 @@ export default {
       {
         field: 'props.defaultValue',
         label: '默认值',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
       {
@@ -61,7 +58,6 @@ export default {
               value: 'password',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -84,7 +80,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -100,9 +95,6 @@ export default {
       {
         field: 'props.maxlength',
         label: '最大输入长度',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {

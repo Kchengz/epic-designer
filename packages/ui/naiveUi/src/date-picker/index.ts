@@ -39,7 +39,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -131,7 +130,6 @@ export default {
         label: '分割符',
         props: {
           clearable: true,
-          placeholder: '请输入',
         },
         show: ({ values }) =>
           ['daterange', 'datetimerange', 'monthrange'].includes(
@@ -144,7 +142,6 @@ export default {
         label: 'start框占位符',
         props: {
           clearable: true,
-          placeholder: '请输入',
         },
         show: ({ values }) =>
           ['daterange', 'datetimerange', 'monthrange'].includes(
@@ -157,7 +154,6 @@ export default {
         label: 'end框占位符',
         props: {
           clearable: true,
-          placeholder: '请输入',
         },
         show: ({ values }) =>
           ['daterange', 'datetimerange', 'monthrange'].includes(

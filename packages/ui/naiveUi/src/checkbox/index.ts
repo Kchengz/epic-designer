@@ -22,17 +22,11 @@ export default {
       {
         field: 'props.max',
         label: '最大勾选数',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.min',
         label: '最小勾选数',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
@@ -54,7 +48,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },

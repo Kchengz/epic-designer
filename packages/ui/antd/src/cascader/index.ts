@@ -44,7 +44,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -71,7 +70,6 @@ export default {
               value: 'topRight',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -97,18 +95,12 @@ export default {
       {
         field: 'props.maxTagTextLength',
         label: '标签最大长度',
-        props: {
-          placeholder: '请输入',
-        },
         show: ({ values }) => values.props.multiple,
         type: 'number',
       },
       {
         field: 'props.maxTagCount',
         label: '标签显示数量',
-        props: {
-          placeholder: '请输入',
-        },
         show: ({ values }) => values.props.multiple,
         type: 'number',
       },
@@ -128,7 +120,6 @@ export default {
               value: 'SHOW_CHILD',
             },
           ],
-          placeholder: '请选择',
         },
         show: ({ values }) => values.props.multiple,
         type: 'select',

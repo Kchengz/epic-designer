@@ -48,7 +48,6 @@ export default {
               value: 'large',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -67,40 +66,27 @@ export default {
               value: 'right',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
       {
         field: 'props.max',
         label: '最大值',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.min',
         label: '最小值',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.step',
         label: '步长',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.precision',
         label: '精度',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {

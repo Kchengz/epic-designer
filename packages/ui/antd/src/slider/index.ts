@@ -44,7 +44,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -65,25 +64,16 @@ export default {
       {
         field: 'props.step',
         label: '步长',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.min',
         label: '最小值',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.max',
         label: '最大值',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {

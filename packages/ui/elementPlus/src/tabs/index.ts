@@ -28,7 +28,6 @@ export default {
               value: 'left',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },

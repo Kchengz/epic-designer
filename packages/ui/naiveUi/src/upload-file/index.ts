@@ -23,9 +23,6 @@ export default {
       {
         field: 'props.name',
         label: '上传文件字段',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
       {
@@ -33,7 +30,6 @@ export default {
         label: '允许上传最大数量',
         props: {
           min: 0,
-          placeholder: '请输入',
         },
         type: 'number',
       },

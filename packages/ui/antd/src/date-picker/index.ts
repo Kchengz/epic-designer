@@ -13,9 +13,6 @@ export default {
       {
         field: 'label',
         label: '标题',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
       {
@@ -122,9 +119,6 @@ export default {
       {
         field: 'props.placeholder',
         label: '占位内容',
-        props: {
-          placeholder: '请输入',
-        },
         show: ({ values }) =>
           ![
             'daterange',
@@ -138,9 +132,6 @@ export default {
       {
         field: 'props.placeholder.0',
         label: '开始占位符',
-        props: {
-          placeholder: '请输入',
-        },
         show: ({ values }) =>
           [
             'daterange',
@@ -155,9 +146,6 @@ export default {
       {
         field: 'props.placeholder.1',
         label: '结束占位符',
-        props: {
-          placeholder: '请输入',
-        },
         show: ({ values }) =>
           [
             'daterange',
@@ -171,17 +159,11 @@ export default {
       {
         field: 'props.format',
         label: '显示格式',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
       {
         field: 'props.valueFormat',
         label: '数据格式',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
       {
@@ -203,7 +185,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -231,7 +212,6 @@ export default {
               value: 'topRight',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },

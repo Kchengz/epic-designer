@@ -43,7 +43,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -209,9 +208,6 @@ export default {
       {
         field: 'props.noDataText',
         label: '无数据时文本',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
       {

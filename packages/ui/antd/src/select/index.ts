@@ -32,9 +32,6 @@ export default {
       {
         field: 'props.placeholder',
         label: '占位内容',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
       {
@@ -61,7 +58,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -69,9 +65,6 @@ export default {
       {
         field: 'props.listHeight',
         label: '弹窗高度',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
@@ -93,7 +86,6 @@ export default {
               value: 'combobox',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -143,7 +135,6 @@ export default {
               value: 'topRight',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },

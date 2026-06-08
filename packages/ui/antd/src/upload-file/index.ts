@@ -35,7 +35,6 @@ export default {
               value: 'picture',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -49,7 +48,6 @@ export default {
         label: '允许上传最大数量',
         props: {
           min: 0,
-          placeholder: '请输入',
         },
         type: 'number',
       },

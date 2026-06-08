@@ -26,9 +26,6 @@ export default {
         onChange(e) {
           setTimeout(() => setDefaultValue(e));
         },
-        props: {
-          placeholder: '请输入',
-        },
         type: 'input',
       },
       {
@@ -36,9 +33,6 @@ export default {
         label: 'OFF状态值',
         onChange(e) {
           setTimeout(() => setDefaultValue(e));
-        },
-        props: {
-          placeholder: '请输入',
         },
         type: 'input',
       },
@@ -61,7 +55,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },

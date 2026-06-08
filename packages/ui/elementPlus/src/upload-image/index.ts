@@ -45,7 +45,6 @@ export default {
         label: '允许上传最大数量',
         props: {
           min: 0,
-          placeholder: '请输入',
         },
         type: 'number',
       },

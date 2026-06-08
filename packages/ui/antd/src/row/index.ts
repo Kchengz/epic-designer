@@ -22,7 +22,6 @@ export default {
               value: 'bottom',
             },
           ],
-          placeholder: '请选择',
           style: { width: '100%' },
         },
         type: 'select',
@@ -53,7 +52,6 @@ export default {
               value: 'space-between',
             },
           ],
-          placeholder: '请选择',
           style: { width: '100%' },
         },
         type: 'select',
@@ -61,9 +59,6 @@ export default {
       {
         field: 'props.gutter',
         label: '栅格间距',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {

@@ -32,9 +32,6 @@ export default {
       {
         field: 'props.defaultValue',
         label: '默认值',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'textarea',
       },
       {
@@ -45,17 +42,11 @@ export default {
       {
         field: 'props.autoSize.minRows',
         label: '最小行数',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
         field: 'props.autoSize.maxRows',
         label: '最大行数',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
@@ -77,16 +68,12 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
       {
         field: 'props.maxLength',
         label: '最大输入长度',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {

@@ -27,7 +27,6 @@ export default {
               value: 'left',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
@@ -39,9 +38,6 @@ export default {
       {
         field: 'props.tabBarGutter',
         label: '标签间隙',
-        props: {
-          placeholder: '请输入',
-        },
         type: 'number',
       },
       {
@@ -69,7 +65,6 @@ export default {
               value: 'small',
             },
           ],
-          placeholder: '请选择',
         },
         type: 'select',
       },
