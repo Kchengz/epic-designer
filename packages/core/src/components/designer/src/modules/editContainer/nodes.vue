@@ -124,8 +124,6 @@ function isInline(schema: ComponentSchema) {
     @end="handleDragEnd"
     @click.stop="setSelectedNode"
     @choose="setSelectedNode"
-    :force-fallback="true"
-    :fallback-on-body="true"
   >
     <div
       class="ep-node-item"
