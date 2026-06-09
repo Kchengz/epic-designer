@@ -250,13 +250,17 @@ const getFormItemProps = computed<ComponentSchema>(() => {
     model.push(innerSchema.field);
   }
 
+  const style = innerSchema.props?.style ?? {};
   const formItemProps = {
     ...innerSchema,
     ...attrs,
     field: model,
     rule: rules,
     rules,
-    style: innerSchema.props?.style,
+    style: {
+      ...style,
+      width: undefined,
+    },
   } as ComponentSchema;
 
   // 移除元素只读属性 children
@@ -297,6 +301,14 @@ const getProps = computed(() => {
       });
   }
 
+  const style = innerSchema.props?.style ?? {};
+  const finalStyle = hasFormItem.value
+    ? Object.fromEntries(
+        (['height', 'width'] as const)
+          .filter((k) => style[k] !== undefined && style[k] !== null)
+          .map((k) => [k, style[k]]),
+      )
+    : style;
   return {
     ...props,
     ...attrs,
@@ -313,7 +325,7 @@ const getProps = computed(() => {
       (fieldStateType.value === 'READ' ||
         readonly.value ||
         innerSchema.props?.readonly),
-    style: hasFormItem.value ? {} : innerSchema.props?.style,
+    style: finalStyle,
     ...onEvent,
   };
 });
