@@ -502,7 +502,7 @@ onBeforeUnmount(handleVnodeUnmounted);
   >
     <component
       :is="componentRef"
-      v-bind="{ ...getProps }"
+      v-bind="getProps"
       v-model:[getProps.bindModel]="innerValue"
       :model="formData"
       @check="handleCheck"

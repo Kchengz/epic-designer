@@ -135,7 +135,7 @@ watchEffect(() => {
             input: false,
             field: undefined,
             hidden: false,
-            placeholder: props.schema.props?.placeholder ?? '请输入',
+            placeholder: props.schema.props?.placeholder,
           },
           show: true,
           noFormItem: true,
