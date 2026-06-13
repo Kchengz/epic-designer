@@ -2,7 +2,7 @@ import type { ComponentConfigModel } from '@epic-designer/types';
 
 export default {
   bindModel: 'value',
-  component: async () => (await import('ant-design-vue')).Cascader,
+  component: () => import('./cascader.vue'),
   config: {
     attribute: [
       {
@@ -107,16 +107,16 @@ export default {
 
       {
         field: 'props.showCheckedStrategy',
-        label: '回填方式',
+        label: '回显方式',
         props: {
           clearable: true,
           options: [
             {
-              label: 'SHOW_PARENT',
+              label: '展示父级',
               value: 'SHOW_PARENT',
             },
             {
-              label: 'SHOW_CHILD',
+              label: '展示子级',
               value: 'SHOW_CHILD',
             },
           ],
