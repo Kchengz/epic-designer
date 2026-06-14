@@ -40,7 +40,6 @@ export default {
               value: 'small',
             },
           ],
-          
         },
         type: 'select',
       },
