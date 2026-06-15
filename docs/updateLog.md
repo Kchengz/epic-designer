@@ -1,16 +1,21 @@
-## 1.1.12（2026-06-05）
-
+## 1.1.13（2026-06-14）
 【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
-
 ### ✨ Feat
+- 栅格布局列编辑支持更多属性
+- 补充各类组件默认占位提示文本
+### ✨ Refactor
+- 优化表单项与内部组件的样式处理逻辑
+- 移除 attributeItem placeholder 默认值
+- 重构antd级联选择器组件
+### 🐛 Bug Fixes
+- 修复组件库面板拖拽第二个组件无法放入画布问题
 
+## 1.1.12（2026-06-05）
+### ✨ Feat
 - 组件注册配置新增内联元素inline属性
 - 输入组件样式默认附加到formItem组件上
-
 ### ✨ Refactor
-
 - 调整背景色为默认白色
-
 ### 🐛 Bug Fixes
 - 修复嵌套组件拖拽后出现多个相同元素
 - 修复组件节点出现null或重复节点问题
@@ -18,16 +23,12 @@
 - 修复布局组件渲染异常问题
 
 ## 1.1.10（2026-05-31）
-
-【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
-
 ### ✨ Feat
 - 表单组件 disabled 支持向下传递
 - 为大纲树添加事件绑定状态的提示
 - 新增自定义函数编辑时的异常提醒
 - 修复表单组件无法在设计面板选中问题
 - 设计器新增画布内边距canvasPadding属性配置
-
 ### ✨ Refactor
 - 统一颜色与样式规范
 - 优化面板编辑器组件样式与布局
@@ -36,8 +37,6 @@
 - 调整designer组件ready事件参数为直接传递 pageManager
 
 ## 1.1.9（2026-05-06）
-
-【注意】更新版本请同步更新@epic-designer/element-plus、@epic-designer/antd、@epic-designer/naive-ui依赖
 ### ✨ Feat
 - 大纲面板新增组件显示/隐藏、锁定/解锁、复制、删除操作
 - 新增表单readonly只读模式
