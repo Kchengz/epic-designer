@@ -41,7 +41,7 @@ export default {
         type: 'switch',
       },
       {
-        field: 'props.limit',
+        field: 'props.maxCount',
         label: '允许上传最大数量',
         props: {
           min: 0,

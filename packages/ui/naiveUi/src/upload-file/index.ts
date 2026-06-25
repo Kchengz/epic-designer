@@ -26,7 +26,7 @@ export default {
         type: 'input',
       },
       {
-        field: 'props.max',
+        field: 'props.maxCount',
         label: '允许上传最大数量',
         props: {
           min: 0,

@@ -76,6 +76,7 @@ export default defineComponent({
               action: pluginManager.global.uploadFile ?? attrs.action,
               'default-upload': true,
               headers: pluginManager.global.axiosConfig?.headers,
+              max: (attrs.maxCount ?? attrs.max) as number,
               onError: handleError,
               onFinish: handleSuccess,
               'file-list': fileList.value,

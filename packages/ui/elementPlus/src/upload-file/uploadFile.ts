@@ -96,6 +96,7 @@ export default defineComponent({
       ...attrs,
       action: pluginManager.global.uploadFile ?? attrs.action,
       headers: pluginManager.global.axiosConfig?.headers,
+      limit: attrs.maxCount ?? attrs.limit,
       onBeforeUpload: beforeUpload,
       onError: handleError,
       onRemove: handleRemove,

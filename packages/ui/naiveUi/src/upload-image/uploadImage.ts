@@ -85,6 +85,7 @@ export default defineComponent({
                 accept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
                 action: pluginManager.global.uploadImage ?? attrs.action,
                 headers: pluginManager.global.axiosConfig?.headers,
+                max: (attrs.maxCount ?? attrs.max) as number,
                 onError: handleError,
                 onFinish: handleSuccess,
                 'file-list': fileList.value,
