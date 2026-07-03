@@ -46,15 +46,6 @@ const defaultStyle = [
     },
     type: 'color-picker',
   },
-  {
-    field: 'props.style.color',
-    label: '字体颜色',
-    props: {
-      style: {},
-      type: 'color',
-    },
-    type: 'color-picker',
-  },
 ];
 
 // 获取组件样式配置
