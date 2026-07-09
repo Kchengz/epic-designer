@@ -15,6 +15,7 @@ import {
   useElementZoom,
   useStore,
 } from '@epic-designer/hooks';
+import { pluginManager } from '@epic-designer/manager';
 import { debounce } from '@epic-designer/utils';
 import { useElementSize, useResizeObserver, watchOnce } from '@vueuse/core';
 
@@ -31,6 +32,7 @@ const { handleElementDrag, handleElementDragEnd, handleElementDragStart } =
   useElementDrag(editScreenContainerRef);
 const { height, width } = useElementSize(editScreenContainerRef);
 const { canvasScale, handleZoom } = useElementZoom(draggableElRef);
+const EpContextMenu = pluginManager.component.get('epContextMenu');
 
 const draggableComputed = computed(() => {
   return pressSpace.value && props.draggable;
@@ -240,7 +242,10 @@ function computedScale() {
             :class="{ 'pointer-events-none': draggableComputed }"
             :style="canvasBoxStyle"
           >
-            <slot></slot>
+            <component v-if="EpContextMenu" :is="EpContextMenu">
+              <slot></slot>
+            </component>
+            <slot v-else></slot>
           </div>
         </div>
       </div>
