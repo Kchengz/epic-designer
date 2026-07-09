@@ -9,6 +9,8 @@ export { EpDesigner } from './components/designer/';
 // 兼容旧版组件名
 export { EpDesigner as EDesigner } from './components/designer/';
 
+export { default as EpNodeItem } from './components/designer/src/modules/editContainer/nodeItem.vue';
+
 // 注册全局组件
 // const EDesignr = {
 //   install (app: App) {
