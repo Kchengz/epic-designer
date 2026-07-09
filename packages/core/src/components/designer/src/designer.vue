@@ -20,7 +20,7 @@ import {
 
 import { useDesigner } from '../hooks/useDesigner';
 import { useHotkeys } from '../hooks/useHotkeys';
-import EpicPreview from './modules/preview/index.vue';
+import EpPreview from './modules/preview/index.vue';
 
 const props = withDefaults(defineProps<DesignerProps>(), {
   canvasMode: 'desktop',
@@ -42,19 +42,19 @@ const emit = defineEmits([
 ]);
 
 setupPanel(pluginManager);
-const EHeader = loadAsyncComponent(() => import('./modules/header/index.vue'));
-const EActivityBar = loadAsyncComponent(
+const EpHeader = loadAsyncComponent(() => import('./modules/header/index.vue'));
+const EpActivityBar = loadAsyncComponent(
   () => import('./modules/activityBar/index.vue'),
 );
-const EEditContainer = loadAsyncComponent(
+const EpEditContainer = loadAsyncComponent(
   () => import('./modules/editContainer/index.vue'),
 );
-const ERightSidebar = loadAsyncComponent(
+const EpRightSidebar = loadAsyncComponent(
   () => import('./modules/rightSidebar/index.vue'),
 );
 const epBuilderSlot = pluginManager.component.get('epBuilderSlot');
 
-const previewRef = ref<InstanceType<typeof EpicPreview> | null>(null);
+const previewRef = ref<InstanceType<typeof EpPreview> | null>(null);
 
 const {
   handleDelete,
@@ -210,7 +210,7 @@ defineExpose({
       >
         <div class="ep-header-container" v-if="!props.hiddenHeader">
           <slot name="header">
-            <EHeader @preview="handlePreview" @save="handleSave">
+            <EpHeader @preview="handlePreview" @save="handleSave">
               <template #header>
                 <slot name="header-prefix"></slot>
               </template>
@@ -229,21 +229,18 @@ defineExpose({
               <template #right-suffix>
                 <slot name="header-right-suffix"></slot>
               </template>
-            </EHeader>
+            </EpHeader>
           </slot>
         </div>
         <div
           class="ep-split-view-container"
           :class="{ 'hidden-header': hiddenHeader }"
         >
-          <EActivityBar />
-          <EEditContainer />
-          <ERightSidebar />
+          <EpActivityBar />
+          <EpEditContainer />
+          <EpRightSidebar />
         </div>
-        <EpicPreview
-          ref="previewRef"
-          :hide-confirm="props.hidePreviewConfirm"
-        />
+        <EpPreview ref="previewRef" :hide-confirm="props.hidePreviewConfirm" />
         <component v-if="epBuilderSlot" :is="epBuilderSlot" />
       </div>
     </template>

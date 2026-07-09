@@ -1,1 +1,1 @@
-export { default as EpicTree } from './tree.vue';
+export { default as EpTree } from './tree.vue';

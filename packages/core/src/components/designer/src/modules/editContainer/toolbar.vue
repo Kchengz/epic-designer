@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 
-import { EpicIcon, EpTooltip } from '@epic-designer/base-ui';
+import { EpIcon, EpTooltip } from '@epic-designer/base-ui';
 import { useDesignerContext, useStore } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import {
@@ -10,7 +10,7 @@ import {
   migrateComponentProps,
 } from '@epic-designer/utils';
 
-import EpicPreviewJson from './previewJson.vue';
+import EpPreviewJson from './previewJson.vue';
 
 const Select = pluginManager.component.get('select');
 
@@ -18,7 +18,7 @@ const { canvasScale, disabledZoom } = useStore();
 const designer = useDesignerContext();
 const pageSchema = designer.pageSchema;
 const revoke = designer.revoke;
-const previewJson = ref<InstanceType<typeof EpicPreviewJson> | null>(null);
+const previewJson = ref<InstanceType<typeof EpPreviewJson> | null>(null);
 
 const deviceOptions = [
   {
@@ -286,7 +286,7 @@ function handleSetCanvas(type: string) {
             :class="{ disabled: action.disabled }"
             @click="action.on"
           >
-            <EpicIcon :name="action.icon" />
+            <EpIcon :name="action.icon" />
           </div>
         </EpTooltip>
       </template>
@@ -325,13 +325,13 @@ function handleSetCanvas(type: string) {
             :class="{ checked: item.key === selectedKey }"
             @click="handleSetCanvas(item.key)"
           >
-            <EpicIcon :name="item.icon" />
+            <EpIcon :name="item.icon" />
           </div>
         </template>
       </div>
       <!-- 画布类型切换 end -->
     </div>
   </div>
-  <EpicPreviewJson ref="previewJson" />
+  <EpPreviewJson ref="previewJson" />
   <!-- 工具条 end  -->
 </template>

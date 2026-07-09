@@ -5,7 +5,7 @@ import type { PropType } from 'vue';
 
 import { ref, watch } from 'vue';
 
-import { EpicNode } from '@epic-designer/base-ui';
+import { EpNode } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 import { deepClone, deepEqual } from '@epic-designer/utils';
 import { useVModel } from '@vueuse/core';
@@ -154,7 +154,7 @@ function handleDelete(index: number) {
             {{ componentSchema.label }}
           </div>
           <div class="flex-1">
-            <EpicNode
+            <EpNode
               is-property
               v-model="requiredRule[componentSchema.model]"
               :component-schema="{ ...componentSchema, noFormItem: true }"

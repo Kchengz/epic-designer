@@ -1,1 +1,1 @@
-export { default as EpicNode } from './node.vue';
+export { default as EpNode } from './node.vue';

@@ -4,7 +4,7 @@ import type { ComponentSchema } from '@epic-designer/types';
 import { computed, PropType } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 import { getUUID } from '@epic-designer/utils';
 
@@ -67,13 +67,13 @@ function handleDelete(index: number) {
         :key="index"
         class="ep-tab-pane-editor-item my-2 grid grid-cols-[auto_auto_16px] items-center gap-2"
       >
-        <EpicIcon class="handle cursor-move text-lg" name="icon--epic--drag" />
+        <EpIcon class="handle cursor-move text-lg" name="icon--epic--drag" />
         <Input v-model:value="item.label" v-model="item.label" />
         <div
           v-if="tabList.length > 1"
           class="ep-option-del-btn flex items-center"
         >
-          <EpicIcon
+          <EpIcon
             class="hover:text-red cursor-pointer text-lg"
             name="icon--epic--delete-outline-rounded"
             @click="handleDelete(index)"

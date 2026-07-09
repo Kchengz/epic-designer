@@ -3,14 +3,14 @@ import type { ComponentSchema } from '@epic-designer/types';
 
 import { computed, provide, useAttrs } from 'vue';
 
-import { EpicNode } from '@epic-designer/base-ui';
+import { EpNode } from '@epic-designer/base-ui';
 import { NODE_ATTRS_KEY, useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
-import EpicNodes from './nodes.vue';
+import EpNodes from './nodes.vue';
 
 defineOptions({
-  name: 'EpicNodeItem',
+  name: 'EpNodeItem',
 });
 const props = withDefaults(
   defineProps<{
@@ -44,7 +44,7 @@ function isDraggable() {
 }
 </script>
 <template>
-  <EpicNode
+  <EpNode
     :component-schema="props.schema"
     class="edit-draggable-widget"
     :show-hidden-items="designerProps?.showHiddenItems"
@@ -58,7 +58,7 @@ function isDraggable() {
       "
       #edit-node
     >
-      <EpicNodeItem
+      <EpNodeItem
         v-for="node in props.schema.children"
         :key="node.id"
         :schema="node"
@@ -67,10 +67,10 @@ function isDraggable() {
     </template>
     <!-- childImmovable不可拖拽设计 end -->
     <template v-else #edit-node>
-      <EpicNodes
+      <EpNodes
         v-if="props.schema.children"
         v-model:schemas="props.schema.children"
       />
     </template>
-  </EpicNode>
+  </EpNode>
 </template>

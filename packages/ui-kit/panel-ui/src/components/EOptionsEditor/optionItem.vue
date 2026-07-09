@@ -2,7 +2,7 @@
 import { inject } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 import { useVModel } from '@vueuse/core';
 
@@ -71,7 +71,7 @@ function handleRemove(index: number) {
         "
         class="option-item text-16px text-$ep-text-secondary mb-2 grid items-center gap-2"
       >
-        <EpicIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
+        <EpIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
         <Input
           v-model="option.label"
           v-model:value="option.label"
@@ -82,13 +82,13 @@ function handleRemove(index: number) {
           v-model:value="option.value"
           placeholder="value"
         />
-        <EpicIcon
+        <EpIcon
           v-if="tree"
           class="text-lg! cursor-pointer"
           name="icon--epic--add-rounded"
           @click="handleAddChildren(option)"
         />
-        <EpicIcon
+        <EpIcon
           class="hover:text-red cursor-pointer"
           name="icon--epic--delete-outline-rounded"
           @click="handleRemove(index)"

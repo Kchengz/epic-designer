@@ -1,6 +1,6 @@
 import type { PluginManager } from '@epic-designer/manager';
 
-import { EpicNode } from '@epic-designer/base-ui';
+import { EpNode } from '@epic-designer/base-ui';
 
 import EpField from './EpField';
 import MonacoEditor from './MonacoEditor';
@@ -50,7 +50,7 @@ export function setupComponent(pluginManager: PluginManager): void {
     async () => await import('./EOptionsEditor/index.vue'),
   );
 
-  pluginManager.component.add('EpicNode', EpicNode);
+  pluginManager.component.add('EpNode', EpNode);
 
   const componentArray = [MonacoEditor, EpField];
 

@@ -6,7 +6,7 @@ import type { PropType } from 'vue';
 import { ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 import { getUUID } from '@epic-designer/utils';
 import { useVModel } from '@vueuse/core';
@@ -115,7 +115,7 @@ function handleDelete(index: number) {
         :key="item.id"
         class="ep-col-editor-item text-16px text-$ep-text-secondary mb-2 grid grid-cols-[16px_auto_16px] items-center gap-2"
       >
-        <EpicIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
+        <EpIcon class="handle mr-2 cursor-move" name="icon--epic--drag" />
         <Number
           :key="selectedAttr"
           v-model:value="item.props[selectedAttr]"
@@ -125,7 +125,7 @@ function handleDelete(index: number) {
           :max="24"
         />
         <template v-if="innerValue.length > 1">
-          <EpicIcon
+          <EpIcon
             class="hover:text-$ep-destructive cursor-pointer"
             name="icon--epic--delete-outline-rounded"
             @click="handleDelete(index)"

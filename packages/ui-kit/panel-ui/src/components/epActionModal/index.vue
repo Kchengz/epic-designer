@@ -3,7 +3,7 @@ import type { ComponentSchema, FormDataModel } from '@epic-designer/types';
 
 import { computed, nextTick, reactive, ref, toRaw } from 'vue';
 
-import { EpicIcon, EpicTree } from '@epic-designer/base-ui';
+import { EpIcon, EpTree } from '@epic-designer/base-ui';
 import { useDesignerContext, usePageManager } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { deepClone, findSchemaById, getUUID } from '@epic-designer/utils';
@@ -265,7 +265,7 @@ defineExpose({
           </div>
           组件
           <div class="h-0 flex-1">
-            <EpicTree
+            <EpTree
               v-model:selected-keys="selectedKeys"
               :options="pageSchema.schemas"
               @node-click="handleNodeClick"
@@ -276,7 +276,7 @@ defineExpose({
                   :class="{ hidden: schema.props?.hidden }"
                 >
                   <span class="max-w-full truncate">
-                    <EpicIcon
+                    <EpIcon
                       v-if="schema.props?.hidden"
                       name="icon--epic--visibility-off-outline-rounded"
                       class="translate-y-2px"
@@ -299,7 +299,7 @@ defineExpose({
                   </Button>
                 </div>
               </template>
-            </EpicTree>
+            </EpTree>
           </div>
         </div>
         <!-- 动作选择 start -->
@@ -336,7 +336,7 @@ defineExpose({
           >
             <div class="flex flex-col gap-1">
               <div class="flex items-center">
-                <EpicIcon name="icon--epic--info" class="mr-2" />
+                <EpIcon name="icon--epic--info" class="mr-2" />
                 <span class="text-$ep-text-helper text-sm font-medium">
                   {{ componentSchema?.label }}
                   <span class="text-$ep-text-secondary">

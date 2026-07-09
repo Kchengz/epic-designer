@@ -4,11 +4,11 @@ import { computed, onMounted, ref } from 'vue';
 import { useDesignerContext } from '@epic-designer/hooks';
 
 import EpicEditScreenContainer from './editScreenContainer.vue';
-import EpicNodeItem from './nodeItem.vue';
-import EpicPreviewWidgets from './previewWidgets.vue';
+import EpNodeItem from './nodeItem.vue';
+import EpPreviewWidgets from './previewWidgets.vue';
 
 const epicEditRangeRef = ref<HTMLDivElement | null>(null);
-const epicPreviewWidgetsRef = ref<null | typeof EpicPreviewWidgets>(null);
+const epicPreviewWidgetsRef = ref<null | typeof EpPreviewWidgets>(null);
 
 const { pageSchema, props } = useDesignerContext();
 const rootSchema = computed(() => {
@@ -39,8 +39,8 @@ onMounted(() => {
         class="ep-edit-range relative overflow-auto rounded-md"
         :style="getEditRangestyle"
       >
-        <EpicNodeItem :schema="rootSchema" />
-        <EpicPreviewWidgets ref="epicPreviewWidgetsRef" />
+        <EpNodeItem :schema="rootSchema" />
+        <EpPreviewWidgets ref="epicPreviewWidgetsRef" />
       </div>
     </EpicEditScreenContainer>
   </section>

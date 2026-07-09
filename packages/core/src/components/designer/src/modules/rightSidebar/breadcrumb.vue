@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ComponentSchema } from '@epic-designer/types';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpIcon } from '@epic-designer/base-ui';
 import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
@@ -28,7 +28,7 @@ function handleSelect(schema: ComponentSchema) {
           "
           >...
         </span>
-        <EpicIcon
+        <EpIcon
           v-if="index !== 0"
           class="m-1"
           name="icon--epic--arrow-forward-ios-rounded"

@@ -4,7 +4,7 @@ import type { ComponentSchema } from '@epic-designer/types';
 import { computed, ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
-import { EpCollapse, EpCollapsePanel, EpicIcon } from '@epic-designer/base-ui';
+import { EpCollapse, EpCollapsePanel, EpIcon } from '@epic-designer/base-ui';
 import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { findSchemaInfoById, generateNewSchema } from '@epic-designer/utils';
@@ -72,7 +72,7 @@ function handleClick(schema: ComponentSchema) {
         allow-clear
       >
         <template #prefix>
-          <EpicIcon
+          <EpIcon
             class="text-$ep-text-helper"
             name="icon--epic--search-rounded"
           />
@@ -110,7 +110,7 @@ function handleClick(schema: ComponentSchema) {
                 class="ep-component-item flex items-center truncate"
                 @click="handleClick(item)"
               >
-                <EpicIcon
+                <EpIcon
                   :name="
                     pluginManager.component.getConfigByType(item.type).icon ??
                     ''

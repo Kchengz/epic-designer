@@ -1,1 +1,1 @@
-export { default as EBuilder } from './src/builder.vue';
+export { default as EpBuilder } from './src/builder.vue';

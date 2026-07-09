@@ -1,11 +1,13 @@
 import 'virtual:uno.css';
 import './index.less';
 
-export { EBuilder } from './components/builder/';
-export { EDesigner } from './components/designer/';
-// 初始化设计器
+export { EpBuilder } from './components/builder/';
 
-// const components = [EBuilder, EDesigner]
+// 兼容旧版组件名
+export { EpBuilder as EBuilder } from './components/builder/';
+export { EpDesigner } from './components/designer/';
+// 兼容旧版组件名
+export { EpDesigner as EDesigner } from './components/designer/';
 
 // 注册全局组件
 // const EDesignr = {

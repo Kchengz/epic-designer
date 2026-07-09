@@ -3,7 +3,7 @@ import type { ActivitybarModel } from '@epic-designer/types';
 
 import { computed, ref, shallowRef } from 'vue';
 
-import { EpicIcon, EpTooltip } from '@epic-designer/base-ui';
+import { EpIcon, EpTooltip } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 
 defineOptions({
@@ -46,7 +46,7 @@ function handleClick(item: ActivitybarModel, index: number) {
             :class="{ checked: activityBarCheckedIndex === index }"
             @click="handleClick(item, index)"
           >
-            <EpicIcon :name="item.icon" />
+            <EpIcon :name="item.icon" />
             <!-- <div class="text-14px">
             {{ item.title }}
           </div> -->

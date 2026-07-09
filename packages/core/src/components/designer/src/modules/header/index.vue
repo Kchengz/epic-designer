@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpIcon } from '@epic-designer/base-ui';
 import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
@@ -52,7 +52,7 @@ function handleSave() {
         <div>
           <Button size="small" @click="handlePreview">
             <span class="flex! h-full items-center">
-              <EpicIcon name="icon--epic--eye" class="mr-4px" />
+              <EpIcon name="icon--epic--eye" class="mr-4px" />
               预览
             </span>
           </Button>
@@ -60,7 +60,7 @@ function handleSave() {
         <div class="ml-2">
           <Button size="small" @click="handleSave">
             <span class="flex! h-full items-center">
-              <EpicIcon
+              <EpIcon
                 name="icon--epic--save-outline-rounded"
                 class="mr-4px"
               />

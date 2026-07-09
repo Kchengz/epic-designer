@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 
-import { EpicIcon, EpicTree } from '@epic-designer/base-ui';
+import { EpIcon, EpTree } from '@epic-designer/base-ui';
 import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { findSchemaInfoById, generateNewSchema } from '@epic-designer/utils';
@@ -77,7 +77,7 @@ function handleDelete(schema) {
 </script>
 <template>
   <div class="ep-outline">
-    <EpicTree
+    <EpTree
       :options="pageSchema.schemas"
       draggable
       :selected-keys="selectedKeys"
@@ -92,7 +92,7 @@ function handleDelete(schema) {
           @mouseleave.stop="designer.setHoverNode(null)"
         >
           <span class="max-w-full truncate">
-            <EpicIcon
+            <EpIcon
               class="ep-component-icon translate-y-2px"
               :name="pluginManager.component.getIcon(schema.type)"
             />
@@ -120,7 +120,7 @@ function handleDelete(schema) {
               active: schema.props?.hidden || schema.status?.lock,
             }"
           >
-            <EpicIcon
+            <EpIcon
               v-if="!schema.props?.hidden"
               class="mr-2"
               :class="{ active: schema.status?.lock }"
@@ -131,7 +131,7 @@ function handleDelete(schema) {
               "
               @click="handleLock(schema)"
             />
-            <EpicIcon
+            <EpIcon
               v-if="!schema.status?.lock"
               class="mr-2"
               :class="{ active: schema.props?.hidden }"
@@ -142,13 +142,13 @@ function handleDelete(schema) {
               "
               @click="handleShow(schema)"
             />
-            <EpicIcon
+            <EpIcon
               v-if="!schema.status?.lock && !schema.props?.hidden"
               class="mr-2"
               name="icon--epic--copy-all-outline-rounded"
               @click="handleCopy(schema)"
             />
-            <EpicIcon
+            <EpIcon
               v-if="!schema.status?.lock && !schema.props?.hidden"
               class="mr-2"
               name="icon--epic--delete-outline-rounded"
@@ -158,6 +158,6 @@ function handleDelete(schema) {
           <!-- 组件操作 end -->
         </div>
       </template>
-    </EpicTree>
+    </EpTree>
   </div>
 </template>

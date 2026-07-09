@@ -5,7 +5,7 @@ import type { TreeProps } from './types';
 
 import { computed, provide, ref, useSlots } from 'vue';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpIcon } from '@epic-designer/base-ui';
 import { pluginManager } from '@epic-designer/manager';
 
 import ETreeNodes from './treeNodes.vue';
@@ -97,7 +97,7 @@ provide(TREE_CONTEXT_KEY, {
         allow-clear
       >
         <template #prefix>
-          <EpicIcon name="icon--epic--search-rounded" />
+          <EpIcon name="icon--epic--search-rounded" />
         </template>
       </Input>
     </div>

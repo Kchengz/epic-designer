@@ -3,7 +3,7 @@ import type { PropType } from 'vue';
 
 import { VueDraggable } from 'vue-draggable-plus';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpIcon } from '@epic-designer/base-ui';
 import { useDesignerContext } from '@epic-designer/hooks';
 import { findSchemaById } from '@epic-designer/utils';
 
@@ -98,7 +98,7 @@ function getNewEvents(type: string) {
       <div
         class="ep-event-btn text-$ep-text-secondary flex items-center text-lg"
       >
-        <EpicIcon
+        <EpIcon
           name="icon--epic--add-rounded"
           @click="handleOpen(item.type)"
         />
@@ -121,7 +121,7 @@ function getNewEvents(type: string) {
           :key="action.id"
         >
           <div class="w-36px flex items-center text-lg">
-            <EpicIcon
+            <EpIcon
               class="handle text-$ep-text-helper mr-2 cursor-move text-lg"
               name="icon--epic--drag"
             />
@@ -139,10 +139,10 @@ function getNewEvents(type: string) {
               class="ep-edit-btn"
               @click="handleEdit(index, item.type, action)"
             >
-              <EpicIcon name="icon--epic--page-info-outline-rounded" />
+              <EpIcon name="icon--epic--page-info-outline-rounded" />
             </div>
             <div class="ep-del-btn" @click="handleDelete(index, item.type)">
-              <EpicIcon name="icon--epic--delete-outline-rounded" />
+              <EpIcon name="icon--epic--delete-outline-rounded" />
             </div>
           </div>
         </div>

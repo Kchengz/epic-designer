@@ -16,7 +16,7 @@ import {
   watch,
 } from 'vue';
 
-import { EpBaseLoader, EpicNode } from '@epic-designer/base-ui';
+import { EpBaseLoader, EpNode } from '@epic-designer/base-ui';
 import {
   BUILDER_KEY,
   createEventBus,
@@ -212,7 +212,7 @@ defineExpose({
           'ep-table-view': props.tableView,
         }"
       >
-        <EpicNode
+        <EpNode
           v-for="(item, index) in pageManager.pageSchema.schemas"
           :key="index"
           :component-schema="item"

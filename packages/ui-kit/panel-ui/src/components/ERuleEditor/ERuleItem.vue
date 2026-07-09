@@ -3,7 +3,7 @@ import type { FormItemRule } from '@epic-designer/types';
 
 import { computed } from 'vue';
 
-import { EpicIcon, EpicNode } from '@epic-designer/base-ui';
+import { EpIcon, EpNode } from '@epic-designer/base-ui';
 import { usePageManager } from '@epic-designer/hooks';
 
 import { lenTypeOptions, triggerOptions, typeOptions } from './data';
@@ -145,7 +145,7 @@ function handleDelete() {
           {{ componentSchema.label }}
         </div>
         <div class="ep-attr-input">
-          <EpicNode
+          <EpNode
             is-property
             v-model="modelRule[componentSchema.model]"
             :component-schema="{ ...componentSchema, noFormItem: true }"
@@ -158,7 +158,7 @@ function handleDelete() {
       class="rule-btn-delete text-md w-24px h-24px rounded-bl-2 color-white absolute right-0 top-0 flex cursor-pointer items-center justify-center transition-all"
       @click="handleDelete"
     >
-      <EpicIcon name="icon--epic--delete-outline-rounded" />
+      <EpIcon name="icon--epic--delete-outline-rounded" />
     </div>
   </div>
 </template>

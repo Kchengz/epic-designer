@@ -3,7 +3,7 @@ import type { editor } from 'monaco-editor';
 
 import { nextTick, onMounted, ref, watch } from 'vue';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpIcon } from '@epic-designer/base-ui';
 import { useTheme } from '@epic-designer/hooks';
 import * as monaco from 'monaco-editor';
 
@@ -166,7 +166,7 @@ defineExpose({
       @click="isFullScreen = !isFullScreen"
       v-if="props.allowFullscreen"
     >
-      <EpicIcon
+      <EpIcon
         :name="
           isFullScreen
             ? `icon--epic--close-fullscreen`

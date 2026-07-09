@@ -3,7 +3,7 @@ import type { ComponentSchema } from '@epic-designer/types';
 
 import { computed, nextTick, ref, watchEffect } from 'vue';
 
-import { EpicNode } from '@epic-designer/base-ui';
+import { EpNode } from '@epic-designer/base-ui';
 import { useDesignerContext, useTableMeta } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { getValueByPath, setValueByPath } from '@epic-designer/utils';
@@ -123,7 +123,7 @@ watchEffect(() => {
       class="ep-attr-input"
       :class="{ 'block!': props.schema.layout === 'vertical' }"
     >
-      <EpicNode
+      <EpNode
         is-property
         :component-schema="{
           ...props.schema,

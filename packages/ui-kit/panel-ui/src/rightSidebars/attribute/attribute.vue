@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, watchEffect } from 'vue';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpIcon } from '@epic-designer/base-ui';
 import { useDesignerContext, useTableMeta } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 import { useClipboard } from '@vueuse/core';
@@ -65,7 +65,7 @@ const componentAttributes = computed(() => {
         class="bg-$ep-secondary rounded-1 h-full flex-1 px-2 leading-8"
         @click="copy(designer.state.selectedNode?.id ?? '')"
       >
-        <EpicIcon
+        <EpIcon
           class="ep-component-icon translate-y-2px mr-1"
           :name="
             pluginManager.component.getIcon(designer.state.selectedNode!.type)

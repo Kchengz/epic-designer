@@ -3,7 +3,7 @@ import type { PanelName } from './collapseContext';
 
 import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
 
-import { EpicIcon } from '../icon';
+import { EpIcon } from '../icon';
 import { COLLAPSE_CONTEXT_KEY } from './collapseContext';
 
 interface Props {
@@ -123,7 +123,7 @@ onUnmounted(() => {
         :class="{ 'ep-collapse-panel__arrow--active': isActive }"
       >
         <slot name="arrow">
-          <EpicIcon name="icon--epic--arrow-forward-ios-rounded" />
+          <EpIcon name="icon--epic--arrow-forward-ios-rounded" />
         </slot>
       </div>
     </div>

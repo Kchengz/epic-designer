@@ -3,7 +3,7 @@ import type { ComponentSchema } from '@epic-designer/types';
 
 import { computed, ref, watch } from 'vue';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpIcon } from '@epic-designer/base-ui';
 import {
   useDesignerContext,
   usePageManager,
@@ -376,21 +376,21 @@ defineExpose({
           class="ep-widget-action-item pointer-events-auto"
           @click="handleSelectParentNode"
         >
-          <EpicIcon name="icon--epic--upward" />
+          <EpIcon name="icon--epic--upward" />
         </div>
         <div
           title="复制"
           class="ep-widget-action-item pointer-events-auto"
           @click="designer.handleDuplicate"
         >
-          <EpicIcon name="icon--epic--copy-all-outline-rounded" />
+          <EpIcon name="icon--epic--copy-all-outline-rounded" />
         </div>
         <div
           title="删除"
           class="ep-widget-action-item pointer-events-auto"
           @click="designer.handleDelete"
         >
-          <EpicIcon name="icon--epic--delete-outline-rounded" />
+          <EpIcon name="icon--epic--delete-outline-rounded" />
         </div>
       </div>
       <!-- 操作按钮 end  -->

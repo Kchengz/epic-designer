@@ -3,7 +3,7 @@ import type { ComponentSchema } from '@epic-designer/types';
 
 import { computed } from 'vue';
 
-import { EpicNode } from '@epic-designer/base-ui';
+import { EpNode } from '@epic-designer/base-ui';
 
 const props = defineProps<{
   actionArgsConfigs: ComponentSchema[];
@@ -49,7 +49,7 @@ function handleSetValue(value: any, field: string) {
           {{ item.label }}
         </div>
         <div class="ep-attr-input">
-          <EpicNode
+          <EpNode
             is-property
             :component-schema="{
               ...item,

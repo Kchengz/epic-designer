@@ -7,7 +7,7 @@ import { VueDraggable } from 'vue-draggable-plus';
 import { useDesignerContext, usePageManager } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
-import EpicNodeItem from './nodeItem.vue';
+import EpNodeItem from './nodeItem.vue';
 
 defineOptions({
   name: 'EditNodeItem',
@@ -131,7 +131,7 @@ function isInline(schema: ComponentSchema) {
       :key="element.id"
       :data-epic-id="element.id"
     >
-      <EpicNodeItem :schema="element" />
+      <EpNodeItem :schema="element" />
     </div>
   </VueDraggable>
 </template>

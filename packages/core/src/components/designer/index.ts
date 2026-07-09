@@ -1,1 +1,1 @@
-export { default as EDesigner } from './src/designer.vue';
+export { default as EpDesigner } from './src/designer.vue';

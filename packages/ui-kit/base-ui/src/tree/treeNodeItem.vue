@@ -3,7 +3,7 @@ import type { ComponentSchema } from '@epic-designer/types';
 
 import { computed, defineComponent, h } from 'vue';
 
-import { EpicIcon } from '@epic-designer/base-ui';
+import { EpIcon } from '@epic-designer/base-ui';
 import { useDesignerContext } from '@epic-designer/hooks';
 import { pluginManager } from '@epic-designer/manager';
 
@@ -107,7 +107,7 @@ init();
         :class="{ expanded }"
         @click="handleExpanded"
       >
-        <EpicIcon name="icon--epic--caret-right-outlined" />
+        <EpIcon name="icon--epic--caret-right-outlined" />
       </span>
       <TreeNodeText />
     </a>
