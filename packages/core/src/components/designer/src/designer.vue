@@ -52,7 +52,8 @@ const EpEditContainer = loadAsyncComponent(
 const EpRightSidebar = loadAsyncComponent(
   () => import('./modules/rightSidebar/index.vue'),
 );
-const epBuilderSlot = pluginManager.component.get('epBuilderSlot');
+const EpBuilderSlot = pluginManager.component.get('epBuilderSlot');
+const EpDesignerSlot = pluginManager.component.get('epDesignerSlot');
 
 const previewRef = ref<InstanceType<typeof EpPreview> | null>(null);
 
@@ -241,7 +242,8 @@ defineExpose({
           <EpRightSidebar />
         </div>
         <EpPreview ref="previewRef" :hide-confirm="props.hidePreviewConfirm" />
-        <component v-if="epBuilderSlot" :is="epBuilderSlot" />
+        <component v-if="EpBuilderSlot" :is="EpBuilderSlot" />
+        <component v-if="EpDesignerSlot" :is="EpDesignerSlot" />
       </div>
     </template>
     <template #fallback>
