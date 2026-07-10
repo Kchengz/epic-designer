@@ -71,12 +71,9 @@ async function handleOk() {
       values[`${name}`] = await kb.value.validate(name);
     }
 
-    // 如果只有一个表单组件且名称为 'default'，则将 values 赋值为 'default' 的值
-    if (
-      getFormNames.value.length === 1 &&
-      getFormNames.value[0] === 'default'
-    ) {
-      values = values.default;
+    // 如果只有一个表单组件时，直接赋值给 values
+    if (getFormNames.value.length === 1) {
+      values = values[getFormNames.value[0]];
     }
 
     // 将验证后的表单数据转换为 JSON 字符串格式，并赋值给 formValues

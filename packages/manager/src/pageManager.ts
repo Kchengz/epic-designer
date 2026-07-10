@@ -256,10 +256,15 @@ export function createPageManager() {
       // 尝试解析操作参数，如果没有提供，则使用传入的参数
       let methodArgs = action.args ? JSON.parse(action.args) : args;
 
+      const formNames = Object.keys(forms);
       // 处理数据参数
       const context = {
         event: args,
+        formData: (formNames.length === 1
+          ? forms[formNames[0]]
+          : forms) as Record<string, any>,
       };
+
       methodArgs = methodArgs.map((arg: any) => {
         // 如果是对象且标记为表达式，调用 jsep 计算
         if (arg && typeof arg === 'object' && arg.__isExpression__) {
