@@ -23,6 +23,7 @@ const props = withDefaults(
 );
 const attrs = useAttrs();
 const { pageSchema, props: designerProps } = useDesignerContext();
+
 provide(NODE_ATTRS_KEY, attrs);
 // 判断是否为叶子节点
 const isLeafNode = computed(() => !props.schema.children);

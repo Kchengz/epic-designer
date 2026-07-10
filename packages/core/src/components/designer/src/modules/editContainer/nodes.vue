@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ComponentSchema } from '@epic-designer/types';
 
-import { computed, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 import { useDesignerContext, usePageManager } from '@epic-designer/hooks';
@@ -19,7 +19,10 @@ const emit = defineEmits(['update:schemas']);
 const designer = useDesignerContext();
 const revoke = designer.revoke;
 const pageManager = usePageManager();
-
+const contextMenu = inject('contextMenu', {
+  close: () => {},
+  open: (_event: Event, _schema: ComponentSchema) => {},
+});
 const modelSchemas = computed({
   get: () => props.schemas,
   set: (val) => emit('update:schemas', val.filter(Boolean)),
@@ -70,6 +73,7 @@ function setSelectedNode(event: any) {
   const schema = getNodeSchema(event.item ?? event.target);
   event.stopPropagation();
   designer.setSelectedNode(schema);
+  contextMenu.close();
 }
 
 function setHoverNode(event: Event) {
@@ -129,6 +133,7 @@ function isInline(schema: ComponentSchema) {
       :class="{ 'ep-inline': isInline(element) }"
       v-for="element in modelSchemas"
       :key="element.id"
+      @contextmenu.stop="contextMenu.open($event, element)"
       :data-epic-id="element.id"
     >
       <EpNodeItem :schema="element" />
