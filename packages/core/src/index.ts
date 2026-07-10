@@ -1,13 +1,10 @@
 import 'virtual:uno.css';
 import './index.less';
-
-export { EpBuilder } from './components/builder/';
-
+// builder
+export { EBuilder, EpBuilder } from './components/builder/';
+// designer
+export { EDesigner, EpDesigner } from './components/designer/';
 // 兼容旧版组件名
-export { EpBuilder as EBuilder } from './components/builder/';
-export { EpDesigner } from './components/designer/';
-// 兼容旧版组件名
-export { EpDesigner as EDesigner } from './components/designer/';
 
 export { default as EpNodeItem } from './components/designer/src/modules/editContainer/nodeItem.vue';
 
