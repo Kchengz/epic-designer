@@ -69,13 +69,6 @@ function getSchemaByEpicId(epicId) {
   return instance?.exposed?.schema || null;
 }
 
-function setSelectedNode(event: any) {
-  const schema = getNodeSchema(event.item ?? event.target);
-  event.stopPropagation();
-  designer.setSelectedNode(schema);
-  contextMenu.close();
-}
-
 function setHoverNode(event: Event) {
   const schema = getNodeSchema(event.target);
   event.stopPropagation();
@@ -125,8 +118,6 @@ function isInline(schema: ComponentSchema) {
     @change="handleDragChange"
     @add="handleDragAdd"
     @end="handleDragEnd"
-    @click.stop="setSelectedNode"
-    @choose="setSelectedNode"
   >
     <div
       class="ep-node-item"
