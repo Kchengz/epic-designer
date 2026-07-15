@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import type { ComponentSchema } from '@epic-designer/types';
 
-import { inject } from 'vue';
-
-import { useEventBus } from '@epic-designer/hooks';
+import { useEventBus, useFormItem } from '@epic-designer/hooks';
 import { Input } from 'ant-design-vue';
 
 const props = withDefaults(
@@ -24,7 +22,7 @@ const props = withDefaults(
   },
 );
 
-const formData = inject<Record<string, any>>('formData', {});
+const { formData } = useFormItem();
 const eventBus = useEventBus();
 
 const handleDataSelector = () => {
