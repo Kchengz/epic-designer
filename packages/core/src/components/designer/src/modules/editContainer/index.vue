@@ -3,7 +3,8 @@ import type { ComponentSchema } from '@epic-designer/types';
 
 import { computed, inject, onMounted, ref } from 'vue';
 
-import { useDesignerContext, usePageManager } from '@epic-designer/hooks';
+import { useDesignerContext } from '@epic-designer/hooks';
+import { findSchemaById } from '@epic-designer/utils';
 
 import EpicEditScreenContainer from './editScreenContainer.vue';
 import EpNodeItem from './nodeItem.vue';
@@ -13,7 +14,6 @@ const epicEditRangeRef = ref<HTMLDivElement | null>(null);
 const epicPreviewWidgetsRef = ref<null | typeof EpPreviewWidgets>(null);
 
 const { pageSchema, props, setSelectedNode } = useDesignerContext();
-const pageManager = usePageManager();
 const contextMenu = inject('contextMenu', {
   close: () => {},
   open: (_event: Event, _schema: ComponentSchema) => {},
@@ -34,17 +34,8 @@ const getEditRangestyle = computed(() => {
   };
 });
 
-/**
- * 根据epicId获取schema的辅助函数
- * @param {string} epicId
- */
-function getSchemaByEpicId(epicId) {
-  const instance = pageManager.findInstance(epicId);
-  return instance?.exposed?.schema || null;
-}
-
 function setSelectedNodeById(epicId) {
-  const schema = getSchemaByEpicId(epicId);
+  const schema = findSchemaById(pageSchema.schemas, epicId);
   setSelectedNode(schema);
   contextMenu.close();
 }
@@ -56,7 +47,6 @@ onMounted(() => {
   epicEditRangeRef.value?.addEventListener('click', (event: any) => {
     event.stopPropagation();
     let epicId = event.target.dataset?.epicId;
-    console.log(event.target);
     if (!epicId) {
       // 查询其父级的 epicId
       let parent = event.target.parentElement;
@@ -68,7 +58,7 @@ onMounted(() => {
         parent = parent.parentElement;
 
         // 如果是点击操作栏，不处理
-        if (parent.classList.contains('ep-selected-widget')) {
+        if (parent?.classList?.contains('ep-selected-widget')) {
           return;
         }
       }
