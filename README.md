@@ -222,5 +222,6 @@ const pageSchema = {
 
 点击链接加入 qq 群聊
 
-- [【epic-designer 交流群：747609683】](https://jq.qq.com/?_wv=1027&k=CtrM9ce2)
+- [【epic-designer 交流群：747609683】（已满员）](https://jq.qq.com/?_wv=1027&k=CtrM9ce2)
+- [【epic-designer 交流群二：615906349】](https://qm.qq.com/q/l9MNNwWEF2)
 
